@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <EditText
+        android:id="@+id/etName"
+        style="@style/fppEt"
+        android:hint="@string/feature_name" />
+
+    <View style="@style/dividerSmall" />
+
+    <EditText
+        android:id="@+id/etComment"
+        style="@style/fppEt"
+        android:hint="@string/feature_comment" />
+
+    <View
+        android:id="@+id/divComment"
+        style="@style/dividerSmall" />
+
+    <LinearLayout
+        android:id="@+id/llColorText"
+        style="@style/fppLl"
+        android:visibility="gone" >
+
+        <TextView
+            android:id="@+id/tvColorText"
+            style="@style/fppTv"
+            android:text="@string/marker_color_text" />
+
+        <View
+            android:id="@+id/vColorText"
+            style="@style/fppView" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/divColorText"
+        style="@style/dividerSmall"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/llColorBack"
+        style="@style/fppLl"
+        android:visibility="gone" >
+
+        <TextView
+            android:id="@+id/tvColorBack"
+            style="@style/fppTv"
+            android:text="@string/marker_color_background" />
+
+        <View
+            android:id="@+id/vColorBack"
+            style="@style/fppView" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/divColorBack"
+        style="@style/dividerSmall"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/llClose"
+        style="@style/fppLl" >
+
+        <TextView
+            android:id="@+id/tvClose"
+            style="@style/fppTv"
+            android:text="@string/not_follow" />
+
+        <CheckBox
+            android:id="@+id/cbClose"
+            style="@style/fppCb" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/divProjectTasks"
+        style="@style/dividerSmall"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/checkProjectTasks"
+        style="@style/fppLl"
+        android:visibility="gone" >
+
+        <TextView
+            android:id="@+id/tvProjectTasks"
+            style="@style/fppTv"
+            android:text="@string/display_project_subtasks" />
+
+        <CheckBox
+            android:id="@+id/cbProjectTasks"
+            style="@style/fppCb" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/divClose"
+        style="@style/dividerSmall" />
+
+</merge>

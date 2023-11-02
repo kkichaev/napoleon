@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+	<LinearLayout
+		android:id="@+id/LinearLayout01"
+		android:layout_width="fill_parent"
+		style="?header">
+
+		<TextView
+			android:id="@+id/tvOrgInfo"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:scrollHorizontally="true"
+			android:text="@string/new_clients"
+			style="?headerText" />
+	</LinearLayout>
+
+	<ListView android:id="@+id/lvItems" 
+	    android:layout_weight="1"
+		android:layout_height="0dp" 
+		android:layout_width="fill_parent" 
+		android:background="@color/white" />
+
+	<LinearLayout
+		android:id="@+id/linearLayout1"
+		android:layout_width="fill_parent"
+		style="?footer"
+		>
+			
+		<ImageButton android:layout_width="wrap_content" 
+			android:layout_height="wrap_content" 
+			android:src="@drawable/new_order"
+			android:contentDescription="@string/newDoc" 
+			android:id="@+id/btnAdd" style="?footerButton"/>
+
+		<ImageButton
+		    android:id="@+id/btnSend"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+			style="?footerButton"
+		    android:src="@drawable/send" />
+
+	</LinearLayout>
+</LinearLayout>

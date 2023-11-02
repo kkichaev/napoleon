@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:id="@+id/itSync" android:icon="@drawable/ic_menu_refresh" android:title="@string/refresh" android:showAsAction="ifRoom"/>
+    <item android:id="@+id/itCall" android:icon="@drawable/ic_menu_call" android:title="@string/call_to_office" android:showAsAction="ifRoom"/>
+    <item android:id="@+id/itSetting" android:title="@string/settings"/>
+    <item android:id="@+id/itAbout" android:title="@string/about" />
+    <item android:id="@+id/itExit" android:title="@string/exit"/>
+</menu>

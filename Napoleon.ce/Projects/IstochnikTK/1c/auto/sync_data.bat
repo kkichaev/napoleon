@@ -1,0 +1,1 @@
+cscript sync.js SyncData

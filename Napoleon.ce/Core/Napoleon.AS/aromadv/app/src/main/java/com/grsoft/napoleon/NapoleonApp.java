@@ -1,0 +1,138 @@
+/*
+ * Copyright (C), 2011, Гильдия Разработчиков
+ *
+ * Демо программа (с базой данных)
+ *
+ * kki   16/05/2011   creating
+ */
+
+package com.grsoft.napoleon;
+
+import android.Manifest;
+import android.app.Activity;
+import android.content.Context;
+
+import com.grsoft.database.DocumentRestore;
+import com.grsoft.database.Hitching;
+import com.grsoft.database.HitchingCtor;
+import com.grsoft.dataobjects.DataObjectInfo;
+import com.grsoft.dataobjects.Firm;
+import com.grsoft.dataobjects.FirmEx;
+import com.grsoft.dataobjects.Order;
+import com.grsoft.dataobjects.Price;
+import com.grsoft.dataobjects.PriceEx;
+import com.grsoft.dataobjects.Sales;
+import com.grsoft.dataobjects.SalesEx;
+import com.grsoft.dataobjects.SalesItemEx;
+import com.grsoft.dataobjects.impl.DbObject;
+import com.grsoft.dataobjects.impl.OrderImpl;
+import com.grsoft.dataobjects.impl.OrderImplBase;
+import com.grsoft.dataobjects.impl.SalesImplEx;
+import com.grsoft.napoleon.documents.DocType;
+import com.grsoft.napoleon.documents.PkoDoc;
+import com.grsoft.napoleon.documents.SalesDoc;
+import com.grsoft.napoleon.documents.SalesDocEx;
+import com.grsoft.napoleon.documents.WSOrderDoc;
+import com.grsoft.napoleon.modules.print.NPrinter;
+import com.grsoft.napoleon.modules.print.Print;
+import com.grsoft.napoleon.util.CfgNplEx;
+import com.grsoft.napoleon.util.ConfigManager;
+import com.grsoft.network.ServerCommand;
+import com.grsoft.util.MenuHandler;
+import com.grsoft.util.MenuPrepareHitching;
+
+import java.util.List;
+
+public class NapoleonApp extends NapoleonAppBase {
+
+    class OrderEditor implements OrderImpl.PropertiesEditor {
+        @Override
+        public void edit(Context ctx, OrderImpl order, boolean isOldOrder) {
+            CreateOrder.open(ctx, order, isOldOrder);
+        }
+    }
+
+    @Override
+    protected void defineNewType() {
+        Main.ADD_PERMISSIONS.add(Manifest.permission.BLUETOOTH);
+        Main.ADD_PERMISSIONS.add(Manifest.permission.BLUETOOTH_ADMIN);
+
+        SalesDocEx.init();
+        Print.init();
+        Setting.addTabs.add(ScannerSettings.class);
+
+        DbObject.regNewDataType(Firm.class, FirmEx.class);
+		DbObject.regNewDataType(Sales.class, SalesEx.class);
+		DbObject.regNewDataType(Price.class, PriceEx.class);
+
+		DataObjectInfo.getInstance().replaceListType(SalesEx.class, "items", SalesItemEx.class);
+
+        super.defineNewType();
+
+		NPrinter.forms.put("nakl_black", "nakl_black");
+        NPrinter.forms.put("nakl", "nakl");
+
+        UpdateDB.addHitchingCtor(new HitchingCtor() {
+            @Override public Hitching create() { return new DocumentRestore(WSOrderDoc.instance()); }
+        }, UpdateDB.RESTORE_DATA_HITCHING);
+
+        Main.docMenuPrepared.add( new MenuPrepareHitching() {
+            @Override
+            public void menuPrepared(List<MenuHandler> menu, final Activity activity) {
+                menu.add(new MenuHandler(getString(R.string.wsorder_title), new Runnable() {
+                    @Override public void run() { WSOrderList.open(activity); }
+                }));
+            }
+        });
+    }
+
+    @Override
+    protected void initChildFeature() {
+        super.initChildFeature();
+
+        Features.DISABLE_EDIT_AFTER_PRINT = true;
+        Features.CANT_DEL_PRINTED_DOCS = true;
+        Features.ALLOW_MULTY_PKO_ON_SALES = true;
+        Features.UPD = true;
+        Features.HAVE_PRICE_MOVER = false;
+        Features.WH_QTY = true;
+    }
+
+    @Override
+    protected void initChildActivity() {
+        super.initChildActivity();
+
+        SalesDetail.activity = SalesDetailEx.class;
+        Documents.activity = DocumentsEx.class;
+        CreateSales.activity = CreateSalesEx.class;
+        Warehouse.activity = WarehouseEx.class;
+    }
+
+    @Override
+    protected void initChildDocTypes() {
+        DocType.addType(SalesDoc.instance(SalesImplEx.class));
+        DocType.addType(PkoDoc.instance());
+    }
+
+    @Override
+    public void setDefDocType() {
+        DocType.setCurDoc(SalesDoc.instance());
+    }
+
+    @Override
+    public void onCreate() {
+        ConfigManager.initConfig(new CfgNplEx());
+        super.onCreate();
+
+        OrderImpl.OrderEditor = new OrderEditor();
+        setProgrammVersion();
+    }
+
+    private void setProgrammVersion() {
+        try {
+            ServerCommand.ProgramVersion = getResources().getString(R.string.version);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}

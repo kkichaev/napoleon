@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<preference-headers xmlns:android="http://schemas.android.com/apk/res/android">
+   <header
+       android:id="@+id/hdNetwork"
+       android:fragment="com.grsoft.ads.SettingNetworkNew"
+       android:title="@string/network_setting"
+       android:summary="@string/network_setting_summary"/>
+   <header
+       android:id="@+id/hdSyncBg"
+       android:fragment="com.grsoft.ads.SettingSyncBkg"
+       android:title="@string/syncbkg"
+       android:summary="@string/syncbkg_summary"/>
+   <!--  
+   <header android:fragment="com.grsoft.ads.SettingGPS"
+       android:title="@string/gpstitle"
+       android:summary="@string/gpssummary"/>
+   -->
+   <header
+       android:id="@+id/hdNotify"
+       android:fragment="com.grsoft.ads.SettingNotify"
+       android:title="@string/notify"
+       android:summary="@string/notifysummary"/>
+
+   <header
+       android:id="@+id/hdExport"
+       android:title="Экспорт базы"
+       android:summary="Нажмите для экспорта базы"/>
+</preference-headers>

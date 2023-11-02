@@ -1,0 +1,181 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+  <objects>
+
+    <object name="OrdConfig">
+      <sources>
+        <source name="KeyValueTable">
+          <param name="fileName">"order.cfg"</param>
+        </source>
+      </sources>
+
+      <field name="key" type="string" />
+      <field name="value" type="string" />
+    </object>
+
+    <object name="Sklads">
+      <sources>
+        <source name="KeyValueDBFTable">
+          <param name="fileName">"SKLADS"</param>
+          <param name="key">"Склады"</param>
+          <param name="itemName">"NAME"</param>
+          <param name="itemKey">"ID"</param>
+        </source>
+      </sources>
+
+      <field name="key" type="string" />
+      <field name="value" type="string" />
+    </object>
+
+    <object name="Config">
+      <sources>
+        <source name="ObjectUnion">
+          <param>"OrdConfig"</param>
+          <param>"Sklads"</param>
+        </source>
+      </sources>
+
+      <field name="key" type="string" />
+      <field name="value" type="string" />
+    </object>
+
+    <object name="AgentPlan">
+      <sources>
+        <source name="SQTable" type="internal">
+          <param name="readFilter">
+            '"userid"=' + "'" + $user.id + "' and " +
+            '"begin" &lt;= ToDate("' + FormatDate(Now(),"DD.MM.YYYY") + '") and ' +
+            '"end" &gt;= ToDate("' + FormatDate(Now(),"DD.MM.YYYY") + '")'
+          </param>
+        </source>
+      </sources>
+
+      <member name="primaryKey">"userid,begin"</member>
+
+      <field name="userid" type="string" />
+      <field name="begin" type="date" />
+      <field name="end" type="date" />
+      <field name="items" type="collection">
+        <data>
+          <object name="AgemtPlanItems">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+            <field name="id" type="string" />
+            <field name="value" type="number" prec="3" />
+          </object>
+        </data>
+      </field>
+      <field name="groups" type="collection">
+        <data>
+          <object name="AgemtPlanGroups">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+            <field name="id" type="string" />
+            <field name="value" type="number" prec="3" />
+          </object>
+        </data>
+      </field>
+    </object>
+
+    <modify src="Order">
+      <add>
+        <field name="dogovor" type="string" width="20" data="ID_D" />
+        <field name="whCode" type="string" width="20" data="ID_WH" />
+      </add>
+    </modify>
+
+    <modify src="Firm">
+      <add>
+        <field name="bic" type="string" />
+        <field name="account" type="string" />
+        <field name="bankAccount" type="string" data="B_ACC" />
+        <field name="kpp" type="string" />
+      </add>
+    </modify>
+
+    <modify src="Org">
+      <add>
+        <field name="email" type="string" />
+        <field name="fullName" type="string" />
+        <field name="ido" type="string" />
+        <field name="dogovors" type="collection">
+          <data>
+            <object name="OrgDogovor">
+              <sources>
+                <source name="DBFTableSet">
+                  <param name="userTable">"DG"</param>
+                  <param name="commonTable">"DOGOVORS"</param>
+                  <param name="filter">"[ID] = $parent.ido"</param>
+                </source>
+              </sources>
+              <field name="id" type="string" data="ID_D" />
+              <field name="name" type="string" />
+              <field name="prcType" type="string" />
+            </object>
+          </data>
+        </field>
+      </add>
+    </modify>
+
+    <modify src="Price">
+      <add>
+        <field name="unit" type="string" />
+        <field name="tax" type="number" />
+        <field name="whQty" type="collection">
+          <data>
+            <object name="QtyItem">
+              <sources>
+                <source name="Sequence">
+                  <param name="source">$parent.source</param>
+                </source>
+              </sources>
+              <field name="qty" type="number" prec="3" />
+            </object>
+          </data>
+        </field>
+      </add>
+    </modify>
+
+    <modify src="Incass">
+      <add>
+        <field name="dogovor" type="string" width="30" data="ID_D" />
+      </add>
+    </modify>
+    
+    <modify src="Delivery">
+      <add>
+        <field name="payType" type="string" width="30" />
+        <field name="ido" type="string" />
+      </add>
+      <change>
+        <sources>
+          <source name="DBFTableSet">
+            <param name="userTable">"DLV"</param>
+            <param name="commonTable">"DELIVERY"</param>
+            <param name="catalog">"number;items;1"</param>
+            <param name="filter">"[ido] in $Org.ido"</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+    <modify src="Payment">
+      <add>
+        <field name="payType" type="string" width="30" />
+        <field name="ido" type="string" />
+      </add>
+      <change>
+        <sources>
+          <source name="DBFTable">
+            <param name="tableName">$object.table + $user.id</param>
+          </source>
+          <source name="DBFTable">
+            <param name="tableName">"PAYMENTS"</param>
+            <param name="filter">"[ido] in $Org.ido"</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+  </objects>
+</serverDefs>

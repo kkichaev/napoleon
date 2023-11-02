@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item
+        android:id="@+id/works"
+        android:icon="@drawable/ic_assignment_black_24dp"
+        android:title="@string/works" />
+    
+    <item
+        android:id="@+id/story"
+        android:icon="@drawable/ic_web_black_24dp"
+        android:title="@string/story_activity" />
+    
+    <!--
+    <item
+        android:id="@+id/chat"
+        android:icon="@drawable/ic_chat_black_24dp"
+        android:title="@string/chat" />
+    -->
+    
+    <item
+        android:id="@+id/reports"
+        android:icon="@drawable/ic_assessment_black_24dp"
+        android:title="@string/reports" />
+    
+    <item
+        android:id="@+id/audit"
+        android:icon="@drawable/audit"
+        android:title="@string/audit" />
+    
+    <item
+        android:id="@+id/task"
+        android:icon="@drawable/task"
+        android:title="@string/tasks" />
+    
+    <item
+        android:id="@+id/agents_in_fields"
+        android:icon="@drawable/ic_supervisor_account_black_24dp"
+        android:title="@string/agents_in_fields" />
+    
+    <item
+        android:id="@+id/setting"
+        android:icon="@drawable/ic_settings_black_24dp"
+        android:title="@string/action_settings" />
+
+    <item
+        android:id="@+id/about"
+        android:icon="@drawable/ic_info_black_24dp"
+        android:title="@string/about" />
+</menu>

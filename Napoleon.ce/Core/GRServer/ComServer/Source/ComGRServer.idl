@@ -1,0 +1,175 @@
+// ComGRServer.idl: источник IDL для ComGRServer
+//
+
+// Этот файл будет обработан средством MIDL для
+// создания библиотеки типов (ComGRServer.tlb) и кода маршалирования.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+	object,
+	uuid(88E11081-5A40-4865-B2F7-1E74936E5155),
+	dual,
+	nonextensible,
+	helpstring("Интерфейс IServer"),
+	pointer_default(unique)
+]
+interface IServer : IDispatch{
+	[id(1), helpstring("Подключение к серверу")] HRESULT Connect([in] BSTR name, [in] USHORT port, [in, defaultvalue("")] BSTR login, [in, defaultvalue("")] BSTR password, [in, defaultvalue("")] BSTR category, [out, retval, defaultvalue(NULL)] VARIANT_BOOL* result);
+   [id(2), helpstring("Получить объект-коллекцию")] HRESULT Get([in] BSTR name, [in] BSTR filter, [out,retval] IDispatch** collection);
+   [id(3), helpstring("Удалить объекты с сервера")] HRESULT Delete([in] BSTR name, [in] BSTR filter);
+   [id(4), helpstring("Получить пустой объект-коллекцию")] HRESULT New([in] BSTR name, [out,retval] IDispatch** collection);
+   [propget, id(5), helpstring("текстовое описание ошибки")] HRESULT ErrorMessage([out, retval] BSTR* pVal);
+   [id(6), helpstring("Получить отчет")] HRESULT Report([in] BSTR name, [in, defaultvalue(NULL)] IDispatch *params, [out,retval] IDispatch** collection);
+   [id(7), helpstring("Записать объект на сервер")] HRESULT Write([in] IDispatch *objcol);
+   [propget, id(8), helpstring("таймаут")] HRESULT Timeout([out, retval] int* pVal);
+   [propput, id(8), helpstring("таймаут")] HRESULT Timeout([in] int iVal);
+	[id(9), helpstring("Завершить сессию")] HRESULT EndSession(void);
+	[id(10), helpstring("Получить отчет")] HRESULT ReportStrParam([in] BSTR name, [in] BSTR params, [out, retval] IDispatch** collection);
+	[id(11), helpstring("Вызов модуля")] HRESULT Call([in] BSTR name, [in, defaultvalue(NULL)] IDispatch* params, [out, retval] IDispatch** collection);
+};
+[
+	object,
+	uuid(F664D4F1-B7F8-45A0-851B-B6C4B704B029),
+	dual,
+	nonextensible,
+	helpstring("Интерфейс IGRObjCol"),
+	pointer_default(unique)
+]
+interface IGRObjCol : IDispatch{
+   [id(1), helpstring("получить объект по индексу")] HRESULT Get([in] LONG index, [out,retval] IDispatch** object);
+   [id(2), helpstring("добавить новый объект в коллекцию")] HRESULT New([out,retval] IDispatch** object);
+   [id(3), helpstring("записать коллекцию на сервер")] HRESULT Write([in, defaultvalue("")]BSTR userid);
+   [id(4), helpstring("заменить коллекцию на сервере")] HRESULT Replace([in]BSTR userid);
+   [id(5), helpstring("удалить коллекцию")] HRESULT Delete([in, defaultvalue("")]BSTR userid);
+   [propget, id(6), helpstring("количество элементов")] HRESULT Count([out, retval] double* pVal);
+   [propget, id(7), helpstring("получить коллекцию полей объекта")] HRESULT Fields([out, retval] IDispatch** pVal);
+   [propget, id(8), helpstring("получить коллекцию ключевых полей обхекта")] HRESULT KeyFields([out, retval] IDispatch** pVal);
+   [id(9), helpstring("метод RemoveObject")] HRESULT RemoveObject([in] ULONG index);
+   [propget, id(10), helpstring("получить тип объекта")] HRESULT Type([out, retval] BSTR* pVal);
+   [propput, id(10), helpstring("установить тип объекта")] HRESULT Type([in] BSTR pVal);
+   [id(11), helpstring("записать без расчета расчетных поле")] HRESULT WriteDirect();
+	[id(12), helpstring("заменить коллекцию на сервере  без расчета расчетных поле")] HRESULT ReplaceDirect([in, defaultvalue("")]BSTR where);
+};
+[
+	object,
+	uuid(8A4455B1-BA69-40D8-A09E-28D0259EE3CC),
+	dual,
+	nonextensible,
+	helpstring("Интерфейс IGRObject"),
+	pointer_default(unique)
+]
+interface IGRObject : IDispatch{
+   [id(1), helpstring("получить свойство")] HRESULT Get([in] BSTR fieldName, [out, retval] VARIANT* value);
+   [id(2), helpstring("установить значение поля")] HRESULT Set([in] BSTR fieldName, [in] VARIANT value);
+   [id(3), helpstring("метод Delete")] HRESULT Delete(void);
+   [id(4), helpstring("метод DateToString")] HRESULT DateToString([in] BSTR fieldName, [out, retval] VARIANT* value);
+	[id(5), helpstring("метод DateFromString")] HRESULT DateFromString([in] BSTR fieldName, [in] BSTR dateValue);
+};
+[
+	object,
+	uuid(E8604670-E799-4BED-8535-F0FAFF6B88CA),
+	dual,
+	nonextensible,
+	helpstring("Интерфейс ICollection"),
+	pointer_default(unique)
+]
+interface ICollection : IDispatch{
+   [propget, id(1), helpstring("количество элементов")] HRESULT Count([out, retval] double* pVal);
+   [id(2), helpstring("получить элемент")] HRESULT Get([in] ULONG index,[out, retval] IDispatch** value);
+};
+[
+	object,
+	uuid(C13B1B38-90FF-4768-8560-B8513CD04041),
+	dual,
+	nonextensible,
+	helpstring("Интерфейс IField"),
+	pointer_default(unique)
+]
+interface IField : IDispatch{
+   [propget, id(1), helpstring("Имя")] HRESULT Name([out, retval] BSTR* pVal);
+   [propget, id(2), helpstring("Тип поля")] HRESULT Type([out, retval] double* pVal);
+   [propget, id(3), helpstring("свойство ChildObject")] HRESULT ChildObject([out, retval] IDispatch** pVal);
+};
+[
+	object,
+	uuid(A8BA8CD7-C512-4EA4-8611-33179028AA63),
+	dual,
+	nonextensible,
+	helpstring("Интерфейс IBinaryField"),
+	pointer_default(unique)
+]
+interface IBinaryField : IDispatch{
+   [id(1), helpstring("записать в файл")] HRESULT Write([in] BSTR name);
+   [propget, id(2), helpstring("размер поля")] HRESULT Size([out, retval] double* pVal);
+   [id(3), helpstring("метод Read")] HRESULT Read([in] BSTR name);
+	[id(4), helpstring("метод SetFrom")] HRESULT SetFrom([in] IDispatch* pVal);
+};
+[
+	uuid(31785177-6B2B-4A0C-B49C-FD1F13A7C00B),
+	version(1.0),
+	helpstring("Библиотека типов GRSoft.Server 1.0")
+]
+library ComGRServerLib
+{
+	importlib("stdole2.tlb");
+	[
+		uuid(A30D75CD-5866-4D6D-81FB-2FF0AAA97A14),
+		helpstring("Интерфейс событий _IServer")
+	]
+	dispinterface _IServerEvents
+	{
+		properties:
+		methods:
+	};
+	[
+		uuid(5DC08783-F6AA-42DA-A677-312193D7E989),
+		helpstring("GRServer Class")
+	]
+	coclass Server
+	{
+		[default] interface IServer;
+		[default, source] dispinterface _IServerEvents;
+	};
+	[
+		uuid(720CD65C-BEE7-491E-8CEE-28154362749A),
+		helpstring("ObjCol Class")
+	]
+	coclass ObjCol
+	{
+		[default] interface IGRObjCol;
+	};
+	[
+		uuid(5123E8DF-FDAB-4916-868E-6898957F9055),
+		helpstring("GRObject Class")
+	]
+	coclass GRObject
+	{
+		[default] interface IGRObject;
+	};
+	[
+		uuid(5D6950CD-82DD-475F-B47A-F82577BF924D),
+		helpstring("Collection Class")
+	]
+	coclass Collection
+	{
+		[default] interface ICollection;
+	};
+	[
+		uuid(FABC81BD-994C-4206-A475-704C19774723),
+		helpstring("Field Class")
+	]
+	coclass Field
+	{
+		[default] interface IField;
+	};
+	[
+		uuid(355356AA-413F-46F5-BBE1-3E9526264BC6),
+		helpstring("BinaryField Class")
+	]
+	coclass BinaryField
+	{
+		[default] interface IBinaryField;
+	};
+};

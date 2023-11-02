@@ -1,0 +1,92 @@
+/*
+ * Copyright (C), 2011, Гильдия Разработчиков
+ * 
+ * Демо программа (с базой данных)
+ *
+ * kki   16/05/2011   creating
+ */
+
+package com.grsoft.napoleon;
+
+import java.util.List;
+
+import android.app.Application;
+import android.content.Context;
+
+import com.grsoft.dataobjects.Order;
+import com.grsoft.dataobjects.OrderEx;
+import com.grsoft.dataobjects.Price;
+import com.grsoft.dataobjects.PriceEx;
+import com.grsoft.dataobjects.impl.DbObject;
+import com.grsoft.dataobjects.impl.OrderImpl;
+import com.grsoft.dataobjects.impl.OrderImplEx;
+import com.grsoft.napoleon.documents.DebtDoc;
+import com.grsoft.napoleon.documents.DocType;
+import com.grsoft.napoleon.documents.IncassDoc;
+import com.grsoft.napoleon.documents.OrderDoc;
+import com.grsoft.napoleon.documents.QuestionDoc;
+import com.grsoft.napoleon.documents.RemnantsDoc;
+import com.grsoft.napoleon.documents.VisitDoc;
+import com.grsoft.network.ServerCommand;
+import com.grsoft.util.FirstRunInit;
+
+public class NapoleonApp extends Application {
+	@SuppressWarnings("unused")
+	private static final String TAG = "NapoleonApp";
+	public List<DocType> potenzialOrgDocFilter;
+	
+	class OrderEditor implements OrderImpl.PropertiesEditor {
+		@Override
+		public void edit(Context ctx, OrderImpl order, boolean isOldOrder) {
+			CreateOrder.open(ctx, order, isOldOrder);
+		}
+	}
+	
+	private void initDocTypes() {
+		DocType.addType(OrderDoc.instance(OrderImplEx.class));
+		DocType.addType(DebtDoc.instance());
+		DocType.addType(VisitDoc.instance());
+		DocType.addType(RemnantsDoc.instance());
+		DocType.addType(IncassDoc.instance());
+		DocType.addType(QuestionDoc.instance());
+		
+		DocType.setCurDoc(OrderDoc.instance());
+		
+//		potenzialOrgDocFilter = new ArrayList<DocType>();
+//		potenzialOrgDocFilter.add(VisitDoc.instance());
+//		potenzialOrgDocFilter.add(MonitoringDoc.instance());
+		
+		DbObject.regNewDataType(Order.class, OrderEx.class);
+		DbObject.regNewDataType(Price.class, PriceEx.class);
+				
+		Features.SCRIPT_DOC = true;
+		Features.QUESTION = true;
+		Features.RECEIVE_REMNANTS_WHEN_SENDING = true;
+		//Features.INPUT_QTY_IN_PACK = true;
+		
+		//Features.USER_CAN_SCRIPT_OFF = true;
+		
+		Warehouse.activity = WarehouseEx.class;
+		VisitEdit.activity = VisitEditEx.class;
+		DocList.activity = DocListEx.class;
+		Documents.activity = DocumentsEx.class;
+		PriceCount.activity = PriceCountEx.class;
+	}
+	
+	@Override
+	public void onCreate() {
+		super.onCreate();
+		FirstRunInit.init(this);
+		initDocTypes();
+		OrderImpl.OrderEditor = new OrderEditor();
+		setProgrammVersion();
+	}
+	
+	private void setProgrammVersion() {
+		try{
+			ServerCommand.ProgramVersion = getResources().getString(R.string.version);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+}

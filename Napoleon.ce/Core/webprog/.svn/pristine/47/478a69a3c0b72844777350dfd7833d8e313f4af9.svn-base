@@ -1,0 +1,69 @@
+<template>
+  <q-page style="padding: 25px">
+    <q-card style="minHeight: calc(100vh - 100px); padding: 16px" >
+
+      <q-card-section style="padding: 0px">
+        <b>{{ $t('balance.title') }}</b>
+      </q-card-section>
+      <q-card-section style="padding: 0px; marginTop:8px">
+        {{ $t('balance.remnants') }} {{ balance.sum }}
+      </q-card-section>
+      <q-card-section style="padding: 0px; marginTop:8px">
+        {{ $t('balance.project') }}
+      </q-card-section>
+      <q-card-section style="padding: 0px; marginTop:16px">
+        <b>{{ $t('balance.details') }}</b>
+      </q-card-section>
+
+      <q-card-section style="padding: 0px; marginTop:8px">
+        Здесь будет выбор периода выборки!
+      </q-card-section>
+
+      <div style="margin-top:19px">
+      <q-table
+        style="padding: 0px; width: 100%"
+        :rows="rows"
+        :columns="columns"
+        row-key="name"
+        bordered
+        separator="cell"
+      />
+      </div>
+    </q-card>
+  </q-page>
+</template>
+
+<script setup>
+
+import { onMounted, ref } from 'vue';
+import { getBallance } from '../backend/backend'
+import { useI18n } from "vue-i18n";
+
+const i18n = useI18n()
+
+const columns = [
+  { name: 'name',label: i18n.t('balance.table_headers.data'), align: 'left', field: 'data', sortable: true, headerStyle: 'width: 14%'},
+  { name: 'calories', align: 'center', label: i18n.t('balance.table_headers.count_of_users'), align: 'left', field: 'calories', sortable: true, headerStyle: 'width: 14%',  },
+  { name: 'fat', label: i18n.t('balance.table_headers.project_name'), align: 'left', field: 'fat', sortable: true, headerStyle: 'width: 14%',  },
+  { name: 'carbs', label: i18n.t('balance.table_headers.tarif'), align: 'left', field: 'carbs', sortable: true, headerStyle: 'width: 14%',  },
+  { name: 'protein', label: i18n.t('balance.table_headers.outcoming'), align: 'left', field: 'protein', sortable: true, headerStyle: 'width: 14%',  },
+  { name: 'sodium', label: i18n.t('balance.table_headers.incoming'), align: 'left', field: 'sodium', sortable: true, headerStyle: 'width: 14%',  },
+  { name: 'calcium', label: i18n.t('balance.table_headers.sum'), align: 'left', field: 'calcium', sortable: true, headerStyle: 'width: 14%', },
+]
+
+const rows = []
+
+
+
+const balance = ref({sum: 10})
+
+onMounted(()=>{
+  console.log("onMounted")
+  getBallance().then((responce)=>{
+    console.log("balance: " + responce )
+    balance.value = responce.data[1].data[0]
+    //balance.value.sum = 1000
+    })
+    .catch(()=>console.log("balance error"))
+})
+</script>

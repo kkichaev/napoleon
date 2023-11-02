@@ -1,0 +1,43 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+    <object name="OrgFolder" >
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"FORG"</param>
+          <param name="commonTable">"FORGS"</param>
+          <param name="catalog">"name;items;0"</param>
+        </source>
+      </sources>
+      <field name="items" type="collection">
+        <data>
+          <object name="OrgFolderItem">
+            <field name="name" type="string" data="ID" width="55"/>
+            <field name="pos" type="number" data="rowid" />
+          </object>
+        </data>
+      </field>
+      <field name="name" type="string" width="20" />
+      <field name="userid" type="string" width="55" />
+    </object>
+
+    <modify src="Visit">
+      <change>
+        <sources>
+          <source name="DBFCatalogTable">
+            <param name="tableName">"VIT" + $user.id</param>
+            <param name="catalog">"created"</param>
+            <param name="ordered">1</param>
+          </source>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+      <add>
+        <event type="put">
+          <action name="WriteInternal">$object.type</action>
+          <action name="WriteToLog">$object.type;$object.date</action>
+        </event>
+      </add>
+    </modify>
+  </objects>
+</serverDefs>

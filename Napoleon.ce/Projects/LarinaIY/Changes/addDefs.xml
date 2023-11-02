@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+    <object name="Cost" >
+      <sources>
+        <source name="DBFCostReader">
+          <param name="cost">"OWD" + $user.id</param>
+          <param name="costType">"OWD" + $user.id</param>
+          <param name="costType_PriceID">"ID_I"</param>
+          <param name="costType_TypeID">"ID"</param>
+        </source>
+      </sources>
+
+      <field name="data" type="binary" />
+    </object>
+
+    <modify src="Price">
+      <add>
+        <field name="color" type="hex" />
+      </add>
+    </modify>
+	</objects>
+</serverDefs>

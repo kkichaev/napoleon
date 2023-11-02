@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/univ_padding"
+    android:paddingRight="@dimen/univ_padding"
+    android:layout_marginTop="@dimen/univ_padding" >
+
+    <RelativeLayout
+        android:id="@+id/date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="9dp"
+        android:paddingRight="@dimen/univ_padding_small"
+        android:gravity="center">
+
+        <View
+            android:id="@+id/line_comments_start"
+            android:layout_width="match_parent"
+            android:layout_height="1.4dp"
+            android:layout_marginTop="@dimen/univ_padding_tiny"
+            android:background="@color/properties_color_divider"
+            android:layout_marginRight="@dimen/univ_padding"
+            android:layout_marginLeft="5dp"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/date_container"/>
+
+        <LinearLayout
+            android:id="@+id/date_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true">
+
+        <TextView
+            android:id="@+id/day_of_week"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:textStyle="bold"
+            android:textColor="@color/com_color_day"
+            android:textSize="@dimen/text_size_simple"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"/>
+
+        <TextView
+            android:id="@+id/text_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:textStyle="bold"
+            android:textColor="@color/com_color_day"
+            android:textSize="@dimen/text_size_simple"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/day_of_week"/>
+
+            </LinearLayout>
+
+        <View
+            android:id="@+id/line_comments_start2"
+            android:layout_width="match_parent"
+            android:layout_height="1.4dp"
+            android:layout_marginTop="@dimen/univ_padding_tiny"
+            android:background="@color/properties_color_divider"
+            android:layout_marginLeft="@dimen/univ_padding"
+            android:layout_marginRight="12dp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/date_container"/>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/user"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:ellipsize="end"
+        android:gravity="left|center_vertical"
+        android:singleLine="true"
+        android:textSize="@dimen/text_size_simple"
+        android:paddingLeft="8dp"
+        android:textStyle="bold"
+        android:textColor="@color/properties_comment_name_creator"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="3dp">
+
+        <FrameLayout
+            android:id="@+id/frameLayout"
+            android:layout_marginTop="2.5dp"
+            android:layout_marginLeft="7dp"
+            android:layout_width="@dimen/univ_ab_height3"
+            android:layout_height="@dimen/univ_ab_height3">
+
+            <RelativeLayout
+                android:id="@+id/iv_img_container"
+                android:layout_width="@dimen/univ_ab_height3"
+                android:layout_height="@dimen/univ_ab_height3"
+                android:layout_gravity="right"
+                >
+
+                <ImageView
+                    android:id="@+id/image_view"
+                    android:layout_width="@dimen/univ_ab_height3"
+                    android:layout_height="@dimen/univ_ab_height3"
+                    android:layout_gravity="center"
+                    android:padding="1dp"/>
+
+                <ImageView
+                    android:id="@+id/iv_img_custom"
+                    android:layout_width="@dimen/univ_ab_height3"
+                    android:layout_height="@dimen/univ_ab_height3"
+                    android:layout_gravity="center"
+                    android:visibility="gone"/>
+
+            </RelativeLayout>
+
+        </FrameLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/text_comments"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_toLeftOf="@+id/time"
+                android:layout_toStartOf="@+id/time"
+                android:autoLink="all"
+                android:ellipsize="end"
+                android:layout_marginLeft="8dp"
+                android:gravity="left|center_vertical"
+                android:padding="@dimen/univ_padding_small"
+                android:singleLine="false"
+                android:textColorHint="@color/properties_comment_color3"
+                android:textSize="@dimen/text_size_aboutX"/>
+
+            <TextView
+                android:id="@+id/time"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/univ_ab_height_half"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:ellipsize="end"
+                android:gravity="center_vertical|right"
+                android:padding="@dimen/univ_padding_small"
+                android:singleLine="true"
+                android:textSize="@dimen/text_size_less"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

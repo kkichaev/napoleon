@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent">
+    <CheckBox 
+    	android:text="Вложенность" 
+    	android:id="@+id/cbInclude" 
+    	android:layout_width="wrap_content" 
+    	android:layout_height="wrap_content">
+    </CheckBox>
+    <CheckBox 
+    	android:text="Остаток" 
+    	android:id="@+id/cbRest" 
+    	android:layout_width="wrap_content" 
+    	android:layout_height="wrap_content">
+    </CheckBox>
+    <CheckBox 
+    	android:text="Цена" 
+    	android:id="@+id/cbCost" 
+    	android:layout_width="wrap_content" 
+    	android:layout_height="wrap_content">
+    </CheckBox>
+    <CheckBox 
+    	android:text="Заказ" 
+    	android:id="@+id/cbOrder" 
+    	android:layout_width="wrap_content" 
+    	android:layout_height="wrap_content">
+    </CheckBox>
+    
+</LinearLayout>

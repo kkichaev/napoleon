@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no' ?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:m="ASFMobileTrade">
+  <soapenv:Header />
+  <soapenv:Body>
+    <m:ПолучитьКодПодтверждения>
+      <m:Контакт>+79036384915</m:Контакт>
+      <m:ИдентификаторПриложения>1234</m:ИдентификаторПриложения>
+      <m:ИдентификаторУстройства>392195fb3e77f06f</m:ИдентификаторУстройства>
+    </m:ПолучитьКодПодтверждения>
+  </soapenv:Body>
+</soapenv:Envelope>

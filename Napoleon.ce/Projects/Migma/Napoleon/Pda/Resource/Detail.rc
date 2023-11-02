@@ -1,0 +1,104 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "NapoleonRes.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "resdefce.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Russian resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_RUS)
+#ifdef _WIN32
+LANGUAGE LANG_RUSSIAN, SUBLANG_DEFAULT
+#pragma code_page(1251)
+#endif //_WIN32
+
+IDD_ORG_INFO DIALOG  0, 0, 120, 134
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_SYSMENU
+FONT 8, "MS Shell Dlg"
+BEGIN
+    EDITTEXT        IDC_ORG_TITLE,0,0,120,10,ES_AUTOHSCROLL | WS_BORDER
+    EDITTEXT        IDC_ORG_ADDRESS,0,12,120,30,ES_MULTILINE  | ES_AUTOVSCROLL | ES_WANTRETURN
+END
+
+IDD_ORG_INFO  SHMENUBAR DISCARDABLE 
+BEGIN
+    IDR_MAIN_FRAME, 
+    3,
+
+    0, IDC_BACK, TBSTATE_ENABLED, TBSTYLE_BUTTON | TBSTYLE_AUTOSIZE, 0, IDC_BACK, 1,
+    I_IMAGENONE, IDC_VIEW_TYPE, TBSTATE_ENABLED, TBSTYLE_DROPDOWN | TBSTYLE_AUTOSIZE, IDC_VIEW_TYPE_CAP, IDC_VIEW_TYPE, NOMENU,
+    16, IDC_ADD, TBSTATE_ENABLED, TBSTYLE_BUTTON | TBSTYLE_AUTOSIZE, 0, IDC_ADD, 0,
+END
+
+IDD_ORDER_DETAIL DIALOG  0, 0, 186, 90
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Параметры заказа"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    RTEXT           "Дата",-1,2,4,26,8
+    CONTROL         "",IDC_ORDER_DATE,"SysDateTimePick32",DTS_RIGHTALIGN | WS_TABSTOP,29,2,40,12
+
+    LTEXT           "Время",-1,99,4,22,8
+    CONTROL         "",IDC_ORDER_TIME,"SysDateTimePick32",DTS_RIGHTALIGN | DTS_UPDOWN | DTS_APPCANPARSE | WS_TABSTOP | 0x8,125,3,30,12
+
+    RTEXT           "Цена",-1,2,18,26,8
+    COMBOBOX        IDC_COST_TYPE,29,16,60,100,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
+
+    //RTEXT           "+/-",IDC_COST_DSC_LABEL,94,18,30,8, SS_NOTIFY
+    PUSHBUTTON      "+/-",IDC_COST_DSC_LABEL,109,16,15,12
+    EDITTEXT        IDC_DISCOUNT,125,16,23,12, ES_AUTOHSCROLL | WS_TABSTOP
+    LTEXT           "%",-1,149,18,10,8
+
+    CONTROL         "Оплата через банк",IDC_BANK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,29,30,80,10
+
+    EDITTEXT        IDC_REMARK,2,41,98,44,ES_MULTILINE | ES_AUTOVSCROLL  | ES_WANTRETURN
+
+    PUSHBUTTON      "1",IDC_DIG_1,116,41,14,12
+    PUSHBUTTON      "2",IDC_DIG_2,129,41,14,12
+    PUSHBUTTON      "3",IDC_DIG_3,142,41,14,12
+    PUSHBUTTON      "4",IDC_DIG_4,116,52,14,12
+    PUSHBUTTON      "5",IDC_DIG_5,129,52,14,12
+    PUSHBUTTON      "6",IDC_DIG_6,142,52,14,12
+    PUSHBUTTON      "7",IDC_DIG_7,116,63,14,12
+    PUSHBUTTON      "8",IDC_DIG_8,129,63,14,12
+    PUSHBUTTON      "9",IDC_DIG_9,142,63,14,12
+    PUSHBUTTON      ".",IDC_DIG_PT,116,74,14,12
+    PUSHBUTTON      "0", IDC_DIG_0,129,74,14,12
+    PUSHBUTTON      "<-",IDC_DIG_BS,142,74,14,12
+
+    DEFPUSHBUTTON   "OK",IDOK,136,76,50,14
+    PUSHBUTTON      "Отмена",IDCANCEL,0,76,50,14
+END
+
+#endif    // Russian resources
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "NapoleonRes.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""resdefce.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\0"
+END
+
+
+#endif    // APSTUDIO_INVOKED

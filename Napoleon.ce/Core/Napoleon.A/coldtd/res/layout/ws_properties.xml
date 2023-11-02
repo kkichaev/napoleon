@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/white"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:background="@color/footer"
+        android:paddingTop="5dp"
+         >
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:text="Дата загрузки"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/tvLoadDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="01.12.12"
+            android:textColor="@color/blue"
+            android:textStyle="bold" />
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:background="@color/footer"
+        android:paddingTop="5dp">
+    	<TextView
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:text="Время, час" />
+
+        <TextView
+            android:id="@+id/tvLoadTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="12"
+            android:textColor="@color/blue"
+            android:textStyle="bold" />
+	</LinearLayout>
+
+    <TextView
+        android:id="@+id/tvOrg"
+        android:textColor="@color/blue"
+        android:padding="5dp"
+        android:textSize="18sp"
+        android:layout_width="fill_parent"
+        android:background="@color/footer"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:text="" />
+
+    <EditText
+        android:id="@+id/edComment"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="top|left" android:minLines="2"
+        android:layout_weight="1"
+        android:ems="10" />
+
+	<LinearLayout android:id="@+id/LinearLayout08" 
+		android:layout_height="wrap_content" 
+		android:layout_width="fill_parent" 
+		android:layout_weight="0" android:padding="5dp" android:background="@color/footer">
+		
+		<Button android:layout_width="wrap_content" 
+			android:layout_height="wrap_content" 
+			android:layout_weight="1" 
+			android:text="@string/cancel" android:id="@+id/btnCancel"></Button>
+		
+		<Button android:layout_width="wrap_content" 
+			android:layout_height="wrap_content" 
+			android:text="@string/ok" android:id="@+id/btnOK" 
+			android:layout_weight="3" 
+			android:textStyle="bold"></Button>
+	</LinearLayout>
+
+</LinearLayout>

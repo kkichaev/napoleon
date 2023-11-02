@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/LinearLayout01"
+        android:layout_width="fill_parent"
+        style="?header">
+
+        <TextView
+            android:id="@+id/tvOrg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scrollHorizontally="true"
+            android:text="OrgName"
+            style="?headerText" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/LinearLayout02"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/LinearLayout04"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            tools:ignore="NestedWeights" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/table_caption"
+                android:paddingLeft="3dp"
+                android:text="@string/caption"
+                android:textColor="@color/black"
+                tools:ignore="NestedWeights"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:background="@color/table_caption"
+                android:minWidth="80dp"
+                android:gravity="right"
+                android:paddingLeft="2dp"
+                android:paddingRight="2dp"
+                android:text="@string/qty"
+                android:textColor="@color/black"
+                />
+
+            <TextView
+                android:id="@+id/TextView03"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:layout_weight="0"
+                android:background="@color/table_caption"
+                android:minWidth="80dp"
+                android:paddingRight="3dp"
+                android:text="@string/sum"
+                android:textColor="@color/black"
+                />
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/lvItems"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@color/white" />
+
+        <LinearLayout
+            android:id="@+id/llFocus"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:orientation="vertical"
+            android:visibility="gone" >
+
+            <Button
+                android:id="@+id/btnFocus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/order_to_target_price"
+                android:textColor="#FF0000" >
+            </Button>
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llPrcInfo"
+        android:visibility="gone"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/footer"
+        android:orientation="horizontal"
+        android:layout_weight="0" >
+
+        <TextView
+            android:id="@+id/tvPrcInfo"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="15dp"
+            android:paddingTop="3dp"
+            android:text=""
+            android:textColor="@color/red"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="fill_parent"
+        style="?footer" >
+
+        <ImageButton
+            android:id="@+id/btnAddItems"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/new_order"
+            style="?footerButton" />
+
+        <ImageButton
+            android:id="@+id/btnEditOrder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/orderedit"
+            style="?footerButton"  />
+
+        <ImageButton
+            android:id="@+id/btnLines"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/line_2"
+            style="?footerButton" />
+
+        <ImageButton
+            android:id="@+id/btnSend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/send"
+            style="?footerButton"  />
+
+        <TextView
+            android:id="@+id/tvTotalSum"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="right"
+            android:text="@string/sum"
+            style="?footerText"/>
+    </LinearLayout>
+</LinearLayout>

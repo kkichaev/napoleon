@@ -1,0 +1,276 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+        <object name="OrgRegion">
+            <sources>
+                <source name="SQTable" type="internal">
+                    <param name="readFilter">" id in (select parent from org where id in(SELECT id FROM AgentOrg WHERE userid='" + $user.id + "'))"</param>
+                </source>
+            </sources>
+            
+            <member name="primaryKey">"id"</member>
+            
+            <field name="id" type="string" />
+            <field name="name" type="string" />
+            <field name="parent" type="string" />
+        </object>
+
+        <object name="OrgNotes">
+            <sources>
+                <source name="SQTable" type="internal" />
+            </sources>
+            
+            <member name="primaryKey">"id"</member>
+            
+            <field name="date" type="timestamp" />
+            <field name="id" type="string" />
+            <field name="text" type="string" />
+            <field name="userid" type="string" execOn="Put">$user.id</field>
+        </object>
+      
+        <object name="OrgType">
+            <sources>
+                <source name="SQTable" type="internal" />
+            </sources>
+            
+            <member name="primaryKey">"id"</member>
+            
+            <field name="id" type="string" />
+            <field name="name" type="string" />
+        </object>
+
+        <object name="Dealer">
+            <sources>
+                <source name="SQTable" type="internal" />
+            </sources>
+            
+            <member name="primaryKey">"id"</member>
+            
+            <field name="id" type="string" />
+            <field name="name" type="string" />
+        </object>
+
+        <object name="AgentOrg">
+            <sources>
+                <source name="SQTable" type="internal" />
+            </sources>
+            
+            <member name="primaryKey">"id,userid"</member>
+            
+            <field name="id" type="string" />
+            <field name="userid" type="string" />
+        </object>
+	    	    
+        <object  name="VstQuery">
+            <sources>
+                <source name="SQLQuery">
+                    <param name="stmt">
+                        "select remark from visit where id='$01'order by [date] desc limit 4"
+                    </param>
+                    <param name="debug"/>
+                </source>
+            </sources>
+            
+            <field name="remark" type="string" />
+        </object>
+        
+        <object name="OrgData">
+            <sources>
+                <source  name="SQTable" type="internal" />
+            </sources>
+            
+            <member name="primaryKey">"id"</member>
+            
+            <field name="id" type="string"/>
+            <field name="befvisit" type="string"/>
+            <field name="concurents" type="string"/>
+        </object>
+        
+        <object name="PlanogramDef">
+            <sources>
+                <source name="SQTable" type="internal">
+                    <param name="readFilter">"id IN (SELECT id FROM AgentOrg WHERE userid='" + $user.id + "')"</param>
+                </source>
+            </sources>
+            
+            <member name="primaryKey">"id"</member>
+            
+            <field name="id" type="string"/>
+            
+            <field name="items" type="collection">
+              <data>
+                <object name="PlanogramDefItem">
+                  <sources>
+                    <source name="SQTable" type="internal" />
+                  </sources>
+                  
+                  <field name="id" type="string"/>
+                  <field name="name" type="string"/>
+                  <field name="photo" type="binary"/>
+                </object>
+              </data>
+            </field>
+        </object>
+        
+        <object name="Planogram">
+          <sources>
+            <source name="SQTable" type="internal" />
+          </sources>
+
+          <member name="primaryKey">"userid,created"</member>
+
+          <field name="id" type="string" />
+          <field name="created" type="timestamp" />
+          <field name="date" type="timestamp" />
+          <field name="timeZone" type="number" />
+          <field name="serverTimeZone" type="number" data="S_TZ" execOn="Put" feature="USE_TIMEZONE">ServerTimeZone()</field>
+          <field name="userid" type="string" execOn="Put">$user.id</field>
+          <field name="sended" type="timestamp" execOn="Put">Now()</field>
+          <field name="approved" type="number" />
+          
+          <events>
+            <event type="put">
+              <action name="WriteToLog">$object.type;$object.date</action>
+            </event>
+          </events>
+        </object>
+        
+        <modify src="Agents">
+            <change>
+                <sources>
+                    <source name="SQTable" type="internal" />
+                </sources>
+            </change>
+        </modify>
+        
+        <modify src="Folder">
+            <change>
+                <sources>
+                    <source name="SQTable" type="internal" />
+                </sources>
+            </change>
+            
+            <add>
+                <member name="primaryKey">"id"</member>
+                <field name="userid" type="string" />
+            </add>
+        </modify>
+        
+        <modify src="ManagerFolder">
+            <change>
+                <sources>
+                    <source name="SQTable" type="internal" />
+                </sources>
+            </change>
+        </modify>
+        
+        <modify src="Price">
+            <change>
+                <sources>
+                    <source name="SQTable" type="internal" />
+                </sources>
+            </change>
+            
+            <remove>
+                <field name="cost" />
+            </remove>
+            
+            <add>
+                <member name="primaryKey">"id"</member>
+                <field name="userid" type="string" />
+                <field name="folderID" type="number" />
+                <field name="ntz" type="number" />
+            </add>
+        </modify>
+        
+        <modify src="ManagerPrice" table="Price">
+            <change>
+                <sources>
+                    <source name="SQTable" type="internal" />
+                </sources>
+            </change>
+            
+            <remove>
+                <field name="cost" />
+            </remove>
+            
+            <add>
+                <member name="primaryKey">"id"</member>
+                <field name="userid" type="string" />
+                <field name="folderID" type="number" />
+                <field name="ntz" type="number" />
+            </add>
+        </modify>
+      
+        <modify src="Org">
+            <change>
+                <sources>
+                    <source name="SQTable" type="internal">
+                        <param name="readFilter">"id IN (SELECT id FROM AgentOrg WHERE userid='" + $user.id + "')"</param>
+                    </source>
+                </sources>
+                
+                <member name="primaryKey">"id"</member>
+            </change>
+            
+            <add>
+                <field name="address" type="string" />
+                <field name="orgType" type="string" />
+                <field name="dealer" type="string" />
+                <field name="license" type="number" />
+                <field name="cheif" type="string" />
+                <field name="cheifPhone" type="string" />
+                <field name="contact" type="string" />
+                <field name="contactPhone" type="string" />
+                <field name="parent" type="string" />
+                <field name="avgTraff" type="number"/>
+                <field name="email" type="string" />
+                
+                <field name="dealers" type="collection">
+                    <data>
+                        <object name="OrgDealerItem">
+                            <sources>
+                                <source name="SQTable" type="internal" />
+                            </sources>
+                            
+                            <field name="id" type="string" />
+                        </object>
+                    </data>
+                </field>
+            
+            </add>
+        </modify>
+      
+       <modify src="Org" dest="CommonOrgs">
+            <change>
+                <sources>
+                    <source name="SQTable" type="internal" />
+                </sources>
+                
+                <member name="primaryKey">"id"</member>
+            </change>
+        </modify>
+      
+        <modify src="OrgRemnants">
+            <change>
+                <sources>
+                    <source name="SQTable" type="internal" />
+                </sources>
+            </change>
+        </modify>
+
+        <modify src="Agents" dest="AgentPrefix">
+            <add>
+                <field name="prefix" type="string" data="PFA" />
+                <field name="ser" type="string" /> 
+                <field name="number" type="string" />
+                <field name="region" type="string"  />
+                <field name="data" type="timestamp" />
+                <field name="fullname" type="string" />
+                <field name="userid" type="string" execOn="Get">$user.id</field>
+            </add>
+        </modify>
+        
+        
+   </objects>
+</serverDefs>

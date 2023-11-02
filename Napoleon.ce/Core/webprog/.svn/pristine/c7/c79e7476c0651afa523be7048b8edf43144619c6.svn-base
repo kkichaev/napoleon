@@ -1,0 +1,88 @@
+# Russian translations for PROJECT.
+# Copyright (C) 2023 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2023-03-01 10:32+0400\n"
+"PO-Revision-Date: 2023-01-06 14:04+0400\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: ru\n"
+"Language-Team: ru <LL@li.org>\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: app/api/req_connects.py:21
+msgid "req connect haven't req fields"
+msgstr ""
+
+#: app/api/req_connects.py:56
+msgid "no valid code"
+msgstr ""
+
+#: app/api/server_auth.py:25
+msgid "No server code"
+msgstr ""
+
+#: app/api/users.py:26
+msgid "EMail confirmation"
+msgstr "Подтверждение адреса электронной почты"
+
+#: app/api/templates/api/confirm_email.html:1
+#: app/api/templates/api/confirm_email.txt:1
+#, python-format
+msgid "Dear  %(username)s,"
+msgstr ""
+
+#: app/api/templates/api/confirm_email.html:3
+msgid "To confirm email"
+msgstr ""
+
+#: app/api/templates/api/confirm_email.html:5
+msgid "click here"
+msgstr ""
+
+#: app/api/templates/api/confirm_email.html:8
+msgid ""
+"Alternatively, you can paste the following link in your browser's address"
+" bar:"
+msgstr ""
+
+#: app/api/templates/api/confirm_email.html:10
+#: app/api/templates/api/confirm_email.txt:7
+msgid "If you have not requested a password reset simply ignore this message."
+msgstr ""
+
+#: app/api/templates/api/confirm_email.html:11
+#: app/api/templates/api/confirm_email.txt:9
+msgid "Sincerely"
+msgstr ""
+
+#: app/api/templates/api/confirm_email.html:12
+#: app/api/templates/api/confirm_email.txt:11
+msgid "The GRSoft Team"
+msgstr ""
+
+#: app/api/templates/api/confirm_email.txt:3
+msgid "To confirm email click on the following link:"
+msgstr ""
+
+#: app/auth/routes.py:45
+msgid "error in token data"
+msgstr ""
+
+#: app/auth/templates/auth/user_create_error.html:4
+msgid "Error while creating user:"
+msgstr ""
+
+#: app/auth/templates/auth/user_created.html:4
+msgid "User created successfully:"
+msgstr ""
+

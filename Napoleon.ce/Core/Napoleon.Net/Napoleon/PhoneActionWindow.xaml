@@ -1,0 +1,251 @@
+﻿<Window x:Name="window" x:Class="Napoleon.PhoneActionWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Napoleon"
+        mc:Ignorable="d"
+        Title="Работа с клиентом"
+        Height="400" Width="500"
+        Loaded="Window_Loaded"
+        Closed="Window_Closed"
+        Icon="Images\napoleon.ico">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" x:Name="progressLayout" Visibility="Hidden">
+            <ProgressBar  x:Name="progress" Height="30" IsIndeterminate="True"/>
+            <TextBlock Text="Идет сохранение..." HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Label 
+                Content="Дата отгрузки" 
+                Grid.Column="0"/>
+
+            <DatePicker Grid.Column="1" 
+                        HorizontalAlignment="Left" VerticalAlignment="Top" SelectedDate="{Binding DeliveryDate, ElementName=window, Mode=TwoWay}"/>
+
+            <TextBox 
+                Grid.Column="2" 
+                IsReadOnly="True"
+                Text="{Binding Path=DateDocument, 
+                    Mode=OneWay,
+                    StringFormat=\{0:HH:mm:ss\}, 
+                    RelativeSource={RelativeSource AncestorType=Window}}"/>
+
+            <TextBox 
+                Grid.Column="3" 
+                IsReadOnly="True"
+                Text="{Binding Path=TPCode, 
+                    Mode=OneWay,
+                    RelativeSource={RelativeSource AncestorType=Window}}"/>
+        </Grid>
+
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Label 
+                Content="Клиент:" 
+                Grid.Column="0"/>
+
+            <TextBox 
+                Grid.Column="1" 
+                IsReadOnly="True"
+                Text="{Binding Path=OrgName, 
+                    Mode=OneWay,
+                    RelativeSource={RelativeSource AncestorType=Window}}"/>
+
+            <Label 
+                Grid.Column="2" 
+                Content="ЛПР:"/>
+
+            <ComboBox 
+                x:Name="contacts"
+                Grid.Column="3" 
+                SelectionChanged="Contacts_SelectionChanged"
+                ItemsSource="{Binding Path=Contacts, RelativeSource={RelativeSource AncestorType=Window}}" 
+                DisplayMemberPath="Name"
+                SelectedValuePath="Name"
+                SelectedValue="{Binding Path=ContactFIO, RelativeSource={RelativeSource AncestorType=Window}}"/>
+        </Grid>
+
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Label 
+                Content="Пункт разгрузки:" 
+                Grid.Column="0"/>
+
+            <TextBox 
+                Grid.Column="1" 
+                IsReadOnly="True"
+                Text="{Binding Path=OrgAddress, 
+                    Mode=OneWay, 
+                    RelativeSource={RelativeSource AncestorType=Window}}" />
+
+            <Label 
+                Grid.Column="2" 
+                Content="Телефон:"/>
+
+            <TextBox
+                Grid.Column="3"
+                IsReadOnly="True"
+                Text="{Binding ElementName=contacts, Mode=OneWay, Path=SelectedItem.Phone}" />
+        </Grid>
+
+        <Grid Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Label 
+                Content="Агент:" 
+                Grid.Column="0"/>
+
+            <TextBox 
+                Grid.Column="1" 
+                IsReadOnly="True"
+                Text="{Binding Path=AgentName, 
+                    Mode=OneWay, 
+                    RelativeSource={RelativeSource AncestorType=Window}}" />
+
+            <Label 
+                Grid.Column="2" 
+                Content="Телефон агента:"/>
+
+            <TextBox
+                Grid.Column="3"
+                IsReadOnly="True"
+                Text="{Binding ElementName=AgentPhone, Mode=OneWay, Path=SelectedItem.Phone}" />
+        </Grid>
+
+        <Grid 
+            Grid.Row="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="13"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="28"/>
+                <ColumnDefinition Width="92"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="55"/>
+            </Grid.ColumnDefinitions>
+
+            <Label 
+                Content="Причина отказа:" 
+                Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
+
+            <ComboBox 
+                Grid.Column="2" 
+                SelectionChanged="ComboBox_SelectionChanged"
+                ItemsSource="{Binding Path=RejectCauseList, RelativeSource={RelativeSource AncestorType=Window}}" 
+                DisplayMemberPath="Name"
+                SelectedValuePath="Name"
+                SelectedValue="{Binding Path=RC, RelativeSource={RelativeSource AncestorType=Window}}" Grid.RowSpan="2"/>
+
+            <Button
+                Grid.Column="3"
+                Content="..."
+                Click="Open_RejectCauseEditor" Grid.RowSpan="2"/>
+        </Grid>
+
+        <Grid Grid.Row="6">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Label 
+                Content="Собеседник:" 
+                Grid.Column="0"/>
+
+            <TextBox 
+                Grid.Column="1" 
+                TextChanged="TextBox_TextChanged"
+                Text="{Binding Path=FIO,
+                    RelativeSource={RelativeSource AncestorType=Window}}" />
+        </Grid>
+
+        <Grid Grid.Row="7">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Label 
+                Content="Содержание разговора(кратко):" 
+                Grid.Row="0"/>
+
+            <TextBox 
+                Grid.Row="1" 
+                TextWrapping="Wrap"
+                TextChanged="TextBox_TextChanged"
+                Text="{Binding Path=Text, 
+                    RelativeSource={RelativeSource AncestorType=Window}}"/>
+        </Grid>
+
+        <Grid Grid.Row="8">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Label 
+                Content="Комментарий:" 
+                Grid.Row="0"/>
+
+            <TextBox 
+                Grid.Row="1" 
+                TextChanged="TextBox_TextChanged"
+                Text="{Binding Path=Remark, 
+                    RelativeSource={RelativeSource AncestorType=Window}}"/>
+        </Grid>
+
+        <Grid Grid.Row="9">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0" x:Name="btnOK" Click="BtnOK_Click" Content="OK" IsEnabled="False"/>
+            <Button Grid.Column="1" x:Name="btnClose" Click="BtnClose_Click" Content="Закрыть"/>
+            <Button Grid.Column="2" x:Name="btnOrder" Click="BtnOrder_Click" Content="Заявка"/>
+        </Grid>
+    </Grid>
+</Window>

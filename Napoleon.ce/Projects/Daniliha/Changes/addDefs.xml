@@ -1,0 +1,386 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+  <objects>
+    <object name="MoneyProxy">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+      <member name="primaryKey">"userid,created"</member>
+      <memberArray name="index">"created"</memberArray>
+
+      <field name="created" type="timestamp" />
+      <field name="timeZone" type="number" />
+      <field name="serverTimeZone" type="number" data="S_TZ" execOn="Put" feature="USE_TIMEZONE">ServerTimeZone()</field>
+      <field name="userid" type="string" execOn="Put">$user.id</field>
+      <field name="id" type="string" width="55" />
+      <field name="date" type="date" />
+      <field name="sended" type="timestamp" data="S_DATE" execOn="Put">Now()</field>
+      <field name="sum" type="number" prec="2" />
+      <field name="remark" type="string" width="100" />
+      <field name="latitude" type="number" prec="5" />
+      <field name="longitude" type="number" prec="5" />
+      <field name="stltime" type="number" />
+
+      <events>
+        <event type="put">
+          <action name="WriteToLog">$object.type;$object.created</action>
+        </event>
+      </events>
+    </object>
+    
+    <object name="PriceCost">
+      <sources>
+        <source name="SQLQuery">
+          <param name="stmt">
+            "select t.code as shortName, t.name as name, to_char(t.rn) as id, p.nomen as id_i, pi.price,
+            ((pi.pricedate - to_date('01-01-1970','DD-MM-YYYY')) * 86400 + 11644473600) * 10000000 as st_date,
+            NVL(((pi.enddate - to_date('01-01-1970','DD-MM-YYYY')) * 86400 + 11644473600) * 10000000,0) as e_date
+            from parus.dictarif t, parus.rlprices p, parus.rlpricespecs pi
+            where p.tarif = t.rn and p.rn = pi.prn and (pi.enddate is null or pi.enddate > current_date) order by id, id_i"
+          </param>
+        </source>
+      </sources>
+      <field name="shortName" type="string" />
+      <field name="id" type="string" />
+      <field name="name" type="string" />
+      <field name="items" type="collection">
+        <data>
+          <object name="Items">
+            <sources>
+              <source name="SQLQuery">
+                <param name="keyFields">"id"</param>
+              </source>
+            </sources>
+            <field name="id" type="string" data="id_i" />
+            <field name="items" type="collection">
+              <data>
+                <object name="Item">
+                  <sources>
+                    <source name="SQLQuery">
+                      <param name="keyFields">"id"</param>
+                    </source>
+                  </sources>
+                  <field name="cost" type="number" prec="2" data="price" />
+                  <field name="start" type="date" data="st_date" />
+                  <field name="finish" type="date" data="e_date" />
+                </object>
+              </data>
+            </field>
+          </object>
+        </data>
+      </field>
+    </object>
+    <modify src="Order">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+      <add>
+        <event type="put">
+          <action name="WriteToLog">$object.type;$object.created</action>
+        </event>
+      </add>
+    </modify>
+
+    <modify src="Order$items">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="Delivery">
+      <change>
+        <sources>
+          <source name="SQLQuery">
+            <param name="stmt">
+              "select id, number, date, payDate, qty, sum, sumd, id_i from Deliveries where userid = '" + $user.id + "'"
+            </param>
+          </source>
+        </sources>
+        <field name="number" type="string"  />
+      </change>
+    </modify>
+
+    <modify src="Delivery$items">
+      <change>
+        <sources>
+          <source name="SQLQuery">
+            <param name="keyFields">"number"</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="Payment">
+      <change>
+        <sources>
+          <source name="SQLTable" type="internal">
+            <param name="readFilter">'"userid" = ' + "'" + $user.id + "'"</param>
+          </source>
+        </sources>
+      </change>
+      <add>
+        <field name="userid" type="string" />
+        <member name="primaryKey">"userid,id,number"</member>
+      </add>
+    </modify>
+
+    <modify src="Incass">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+      <add>
+        <event type="put">
+          <action name="WriteToLog">$object.type;$object.created</action>
+        </event>
+      </add>
+    </modify>
+
+    <modify src="OrderCommitted">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal">
+            <param name="readFilter">'"userid"=' + "'" + $user.id + "'" + ' and "created" &gt;= ToDate(' + "'" + FormatDate(AdjustDate(Now(),-1,"month"),"DD.MM.YYYY") + "')" </param>
+          </source>
+        </sources>
+      </change>
+      <add>
+        <member name="primaryKey">"userid,created"</member>
+      </add>
+    </modify>
+
+    <modify src="ManagerFolder">
+      <change>
+        <sources>
+          <source name="SQLFolder" type="internal">
+            <param name="parentField">"parent"</param>
+            <param name="childField">"fid"</param>
+            <param name="stmt">
+              "select to_char(rn) as fid, to_char(crn) as parent, name from parus.acatalog where docname = 'Nomenclator'"
+            </param>
+          </source>
+        </sources>
+      </change>
+      <add>
+        <field name="fid" type="string" width="50" />
+        <field name="id" type="string" execOn="Get">$object.fid</field>
+        <field name="parent" type="string" width="50" />
+        <field name="userid" type="string" execOn="Put">$user.id</field>
+      </add>
+    </modify>
+
+    <modify src="Folder">
+      <change>
+        <sources>
+          <source name="SQLFolder" type="internal">
+            <param name="parentField">"parent"</param>
+            <param name="childField">"fid"</param>
+            <param name="rowidField">"id"</param>
+            <param name="stmt">
+              "select to_char(rn) as fid, to_char(crn) as parent, name from parus.acatalog where docname = 'Nomenclator'"
+            </param>
+          </source>
+        </sources>
+        <field name="id" type="number" />
+        <field name="fid" type="string" width="50" />
+        <field name="name" type="string" />
+        <field name="userid" type="string" />
+      </change>
+      <add>
+        <field name="parent" type="string" width="50" />
+      </add>
+    </modify>
+
+    <modify src="Price">
+      <change>
+        <sources>
+          <source name="SQLQuery">
+            <param name="stmt">
+              "select p.nomen_name as name, to_char(p.rn) as id, to_char(p.crn) as folder,
+              p.weight / 1000 as weight, nvl(pk.inpack, 1) as inpack, qt.qty as qty
+              from parus.dicnomns p left join
+              (select min(quant) as inpack, np.prn from parus.nomnpack np, parus.nomnmodifpack pk where quant > 1 and np.rn = pk.nomenpack group by np.prn) pk on p.rn = pk.prn
+              left join (select sum(s.restfact) as qty, n.prn as id from parus.goodssupply s, parus.goodsparties p, parus.nommodif n
+              where s.prn = p.rn and s.restfact > 0 and n.rn = p.nommodif and s.store = (select rn from parus.AZSAZSLISTMT where azs_number = 'ГХ')
+              group by n.prn) qt on qt.id = p.rn
+              where p.rn in (select distinct nomen from parus.rlprices c, parus.rlpricespecs pi where c.rn = pi.prn and (pi.enddate is null or pi.enddate > current_date))"
+            </param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+    
+    <modify src="ManagerPrice">
+      <change>
+        <sources>
+          <source name="SQLQuery">
+            <!--readFilter используется для чтения по умолчанию (когда идет команда Get)-->
+            <param name="stmt">
+              "select p.nomen_name as name, to_char(p.rn) as id, to_char(p.crn) as folder,
+              p.weight / 1000 as weight, nvl(pk.inpack, 1) as inpack, qt.qty as qty
+              from parus.dicnomns p left join (select min(quant) as inpack, prn from parus.nomnpack where quant > 1 group by prn) pk on p.rn = pk.prn
+              left join (select sum(s.restfact) as qty, n.prn as id from parus.goodssupply s, parus.goodsparties p, parus.nommodif n
+              where s.prn = p.rn and s.restfact > 0 and n.rn = p.nommodif and s.store = (select rn from parus.AZSAZSLISTMT where azs_number = 'ГХ')
+              group by n.prn) qt on qt.id = p.rn
+              where p.rn in (select distinct nomen from parus.rlprices c, parus.rlpricespecs pi where c.rn = pi.prn and (pi.enddate is null or pi.enddate > current_date))"
+            </param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="CommonOrgs">
+      <change>
+        <sources>
+          <source name="SQLQuery">
+            <param name="stmt">
+              "select * from Org o"
+            </param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="Org">
+      <change>
+        <sources>
+          <source name="SQLQuery">
+            <!--readFilter используется для чтения по умолчанию (когда идет команда Get)-->
+            <param name="stmt">
+              "select a.agnabbr as name, to_char(a.rn) as id, to_char(f.tarif) as pricetype, f.discount, f.current_sum as balance,
+              a.phone as phone, 'Телефон' as fio,
+              concat(concat(concat('г.',g_c.geogrname),concat(', ул.',g_s.geogrname)),concat(',',a.ADDR_HOUSE)) as address
+              from parus.agnlist a left join parus.geografy g_s on a.addr_street_rn = g_s.rn left join parus.geografy g_c on a.addr_city_rn = g_c.rn, parus.faceacc f
+              where a.rn = f.agent
+              and f.executive = to_number('" + $user.id + "')"</param>
+          </source>
+        </sources>
+      </change>
+      <add>
+        <field name="priceType" type="string" />
+        <field name="discount" type="number" prec="2" />
+        <field name="balance" type="number" prec="2" />
+      </add>
+    </modify>
+
+    <modify src="Org$contacts">
+      <change>
+        <sources>
+          <source name="SQLQuery">
+            <param name="keyFields">"id"</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="Agents">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+        <field name="id" type="string" />
+        <field name="name" type="string" />
+        <field name="login" type="string" width="30" />
+        <field name="password" type="string" width="30" />
+      </change>
+    </modify>
+
+    <modify src="Config">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+        <field name="value" type="string" width="4000" />
+      </change>
+    </modify>
+
+    <modify src="OrderProceeded">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal">
+            <param name="readFilter">'"userid"=' + "'" + $user.id + "'"</param>
+          </source>
+        </sources>
+      </change>
+      <add>
+        <field name="userid" type="string" />
+      </add>
+    </modify>
+    <modify src="OrgRemnants">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal">
+            <param name="readFilter">'"userid"=' + "'" + $user.id + "'"</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="MessageArchive">
+      <change>
+        <field name="message" type="string" width="4000"/>
+      </change>
+    </modify>
+
+    <modify src="Message">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal">
+            <param name="readFilter">'"userid" = ' + "'" + $user.id + "'"</param>
+          </source>
+        </sources>
+        <field name="message" type="string" width="4000"/>
+      </change>
+      <add>
+        <field name="date" type="timestamp" execOn="Put">Now()</field>
+        <field name="userid" type="string" execOn="Put">$user.id</field>
+      </add>
+    </modify>
+
+    <modify src="CommonMatrix">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+      <add>
+        <member name="primaryKey">"name"</member>
+        <field name="userid" type="string" />
+      </add>
+    </modify>
+    <modify src="CommonMatrix$items">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="Matrix">
+      <change>
+        <sources>
+          <source name="SQLQuery">
+            <param name="stmt">
+              'select cm."name" as name, i."id" as id from "CommonMatrix" cm, "CommonMatrix$items" i, "AgentMatrix" am
+              where cm."name" = i."CommonMatrix$name" and cm."name" = am."name" and am."userid" = ' + "'" + $user.id + "'" + ' order by cm."name"'
+            </param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+    <modify src="Matrix$items">
+      <change>
+        <sources>
+          <source name="SQLQuery">
+            <param name="keyFields">"name"</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+  </objects>
+</serverDefs>

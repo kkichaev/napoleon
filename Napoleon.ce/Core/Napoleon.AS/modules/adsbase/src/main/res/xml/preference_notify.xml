@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+    <!--  
+    <RingtonePreference 
+       android:key="newtaskrcv"
+       android:title="@string/newtaskrcv"
+       android:ringtoneType="notification"
+       android:defaultValue="content://settings/system/notification_sound" />
+   -->
+   <RingtonePreference 
+       android:key="taskmissed"
+       android:title="@string/taskmissed"
+       android:ringtoneType="notification" 
+       android:defaultValue="content://settings/system/notification_sound"/>
+   
+   <ListPreference 
+        android:key="taskmissedtime"
+        android:title="@string/taskmissedtime"
+        android:entries="@array/taskmissedtime_step"
+        android:entryValues="@array/taskmissedtime_step"
+        android:defaultValue="2"/>
+   
+   <RingtonePreference 
+       android:key="tasknotify"
+       android:title="@string/tasknotify"
+       android:ringtoneType="notification" 
+       android:defaultValue="content://settings/system/notification_sound"/>
+</PreferenceScreen>

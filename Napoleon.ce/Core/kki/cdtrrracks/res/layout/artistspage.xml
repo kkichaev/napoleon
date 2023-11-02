@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <view
+        android:id="@+id/view"
+        android:background="@color/artists"
+        class="AbsoluteLayout" 
+        style="@style/Menustreak"/>
+
+   <GridView
+       android:id="@+id/grid"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:layout_below="@+id/view"
+       android:alwaysDrawnWithCache="true"
+       android:columnWidth="78dp"
+       android:drawSelectorOnTop="false"
+       android:listSelector="@drawable/grid_selector"
+       android:numColumns="auto_fit"
+       android:persistentDrawingCache="animation|scrolling"
+       android:scrollbars="none"
+       android:stretchMode="spacingWidth" />
+    
+</RelativeLayout>

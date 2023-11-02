@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical"
+                android:id="@+id/llist"
+                android:background="#FFFFFF">
+
+    <RelativeLayout
+      android:id="@+id/main_container"
+      android:layout_width="fill_parent"
+      android:layout_height="fill_parent">
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_refresh_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.wearable.view.WearableListView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/sample_list_view"
+                />
+
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+        <com.software.shell.fab.ActionButton
+            xmlns:fab="http://schemas.android.com/apk/res-auto"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:id="@+id/add_task"
+            android:layout_marginRight="25dp"
+            android:layout_marginTop="28dp"
+            android:layout_alignParentRight="true"
+            fab:size="50dp"
+            fab:type="DEFAULT"
+            fab:button_color="#f2db68"
+            fab:button_colorPressed="#f2db68"
+            fab:image="@mipmap/ic_add_white_48dp"
+            fab:image_size="38dp"
+            fab:stroke_color="#f2db68"
+            fab:stroke_width="1.0dp"
+            fab:button_colorRipple="#fae57d"
+            fab:rippleEffect_enabled="true"
+            fab:shadowResponsiveEffect_enabled="false"
+            fab:show_animation="@anim/fab_roll_to_down"
+            fab:hide_animation="@anim/fab_roll_to_down"
+            fab:shadow_radius="1.0dp"
+            fab:shadow_xOffset="2.6dp"
+            fab:shadow_yOffset="1.8dp"
+            />
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

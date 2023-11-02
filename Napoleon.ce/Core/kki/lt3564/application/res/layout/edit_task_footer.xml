@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/Horizontal"
+    android:gravity="left" >
+
+    <ImageButton
+        android:id="@+id/btn_project"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/selector_custom_button"
+        android:padding="10dp"
+        android:gravity="center"
+        android:src="@drawable/project" />
+
+    <ImageButton
+        android:id="@+id/btn_category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:background="@drawable/selector_custom_button"
+        android:padding="10dp"
+        android:gravity="center"
+        android:src="@drawable/category" />
+
+<!--     <ImageButton -->
+<!--         android:id="@+id/btn_people" -->
+<!--         android:layout_width="wrap_content" -->
+<!--         android:layout_height="wrap_content" -->
+<!--         android:layout_marginLeft="10dp" -->
+<!--         android:background="@drawable/custom_button_background" -->
+<!--         android:padding="10dp" -->
+<!--         android:gravity="center" -->
+<!--         android:src="@drawable/commit" /> -->
+
+</LinearLayout>

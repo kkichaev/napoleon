@@ -1,0 +1,174 @@
+# Russian translations for PROJECT.
+# Copyright (C) 2023 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2023-05-09 11:21+0400\n"
+"PO-Revision-Date: 2023-01-06 14:04+0400\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: ru\n"
+"Language-Team: ru <LL@li.org>\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: app/api/req_connects.py:21
+msgid "req connect haven't req fields"
+msgstr ""
+
+#: app/api/req_connects.py:56
+msgid "no valid code"
+msgstr ""
+
+#: app/api/server_auth.py:25 app/moysklad/iframe.py:272
+msgid "No server code"
+msgstr ""
+
+#: app/api/users.py:34
+msgid "EMail confirmation"
+msgstr "Подтверждение адреса электронной почты"
+
+#: app/api/templates/api/confirm_email.html:1
+#: app/api/templates/api/confirm_email.txt:1
+#, python-format
+msgid "Dear  %(username)s,"
+msgstr ""
+
+#: app/api/templates/api/confirm_email.html:3
+msgid "To confirm email"
+msgstr ""
+
+#: app/api/templates/api/confirm_email.html:5
+msgid "click here"
+msgstr ""
+
+#: app/api/templates/api/confirm_email.html:8
+msgid ""
+"Alternatively, you can paste the following link in your browser's address"
+" bar:"
+msgstr ""
+
+#: app/api/templates/api/confirm_email.html:10
+#: app/api/templates/api/confirm_email.txt:7
+msgid "If you have not requested a password reset simply ignore this message."
+msgstr ""
+
+#: app/api/templates/api/confirm_email.html:11
+#: app/api/templates/api/confirm_email.txt:9
+msgid "Sincerely"
+msgstr ""
+
+#: app/api/templates/api/confirm_email.html:12
+#: app/api/templates/api/confirm_email.txt:11
+msgid "The GRSoft Team"
+msgstr ""
+
+#: app/api/templates/api/confirm_email.txt:3
+msgid "To confirm email click on the following link:"
+msgstr "Для подтверждения email пройдите по ссылке"
+
+#: app/auth/templates/auth/user_create_error.html:4
+msgid "Error while creating user:"
+msgstr "Ошибка при создании пользователя"
+
+#: app/auth/templates/auth/user_created.html:4
+msgid "User created successfully:"
+msgstr ""
+
+#: app/moysklad/iframe.py:126
+msgid "RootFolder"
+msgstr "Каталог товаров"
+
+#: app/moysklad/iframe.py:224
+msgid "Delivery"
+msgstr "Реализация"
+
+#: app/moysklad/iframe.py:249 app/moysklad/iframe.py:268
+#: app/moysklad/iframe.py:469
+msgid "No account"
+msgstr "Не найден проект"
+
+#: app/moysklad/iframe.py:259
+msgid "Put data to the server"
+msgstr "Выгрузка данных на сервер"
+
+#: app/moysklad/iframe.py:278 app/moysklad/iframe.py:282
+msgid "No server "
+msgstr "Не найден сервер"
+
+#: app/moysklad/iframe.py:475
+msgid "No firms"
+msgstr "Не выбрана ни одна организация"
+
+#: app/moysklad/iframe.py:479
+msgid "No stores"
+msgstr "Не выбран ни один склад"
+
+#: app/moysklad/iframe.py:493
+#, python-format
+msgid "Orders %d, Returns %d, Incass %d"
+msgstr "заявок %d, возвратов %d, пко %d"
+
+#: app/moysklad/iframe.py:494
+msgid "Load docs"
+msgstr "Загрузить документы"
+
+#: app/moysklad/templates/moysklad/iframe.html:6
+#: app/moysklad/templates/moysklad/iframe.html:47
+msgid "Moy Sklad settings"
+msgstr "Настройки обмена с AceTeam"
+
+#: app/moysklad/templates/moysklad/iframe.html:53
+msgid "Load new docs"
+msgstr "Загрузить документы"
+
+#: app/moysklad/templates/moysklad/iframe.html:54
+msgid "Put data"
+msgstr "Выгрузить данные"
+
+#: app/moysklad/templates/moysklad/iframe.html:58
+msgid "Auto syncing"
+msgstr "Автоматический обмен"
+
+#: app/moysklad/templates/moysklad/iframe.html:74
+msgid "Project code"
+msgstr "Код проекта"
+
+#: app/moysklad/templates/moysklad/iframe.html:79
+msgid "Enter code"
+msgstr "Введите код проекта"
+
+#: app/moysklad/templates/moysklad/iframe.html:85
+msgid "Agents"
+msgstr "Агенты"
+
+#: app/moysklad/templates/moysklad/iframe.html:96
+msgid "Firms"
+msgstr "Организации"
+
+#: app/moysklad/templates/moysklad/iframe.html:107
+msgid "Stores"
+msgstr "Склады"
+
+#: app/moysklad/templates/moysklad/iframe.html:121
+msgid "Set as primary"
+msgstr "Сделать основным"
+
+#: app/moysklad/templates/moysklad/iframe.html:127
+msgid "There isn't right to view settings"
+msgstr "Просмотр настроек доступен только администратору"
+
+#: app/moysklad/templates/moysklad/iframe.html:208
+#: app/moysklad/templates/moysklad/iframe.html:240
+msgid "Enter project code"
+msgstr ""
+"Сервер не работает. Введите код сервера и нажмите на кнопку <b>Выгрузить "
+"данные</b> для начала работы"
+

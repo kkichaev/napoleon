@@ -1,0 +1,11 @@
+package com.grsoft.dataobjects;
+
+import java.util.List;
+
+import com.grsoft.database.TableInfo;
+
+@TableInfo(name="orgmatrix", keyFields="id")
+public class OrgMatrix extends DataObject {
+	public String id;
+	public List<OrgMatrixItem> items;
+}

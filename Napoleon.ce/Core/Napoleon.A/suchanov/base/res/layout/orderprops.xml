@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TabHost
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent"
+  android:id="@android:id/tabhost"
+  android:background="#FFFFFF">
+  
+  	<LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:padding="1dp">
+        
+  		<TextView android:text="tvName"
+  			android:textColor="#000000"
+  			android:padding="1dp"
+  			android:id="@+id/tvName" android:layout_width="fill_parent" 
+  			android:layout_height="wrap_content"></TextView>
+        <TabWidget
+            android:id="@android:id/tabs"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" ></TabWidget>
+      
+        <FrameLayout 
+        	android:id="@android:id/tabcontent" 
+        	android:layout_width="fill_parent" 
+        	android:layout_height="wrap_content" 
+        	android:padding="1dp">
+        </FrameLayout>
+        
+        <LinearLayout 
+        	android:layout_height="wrap_content" 
+        	android:layout_width="fill_parent" 
+        	android:padding="5dp">
+
+         	<Button 
+         		android:layout_width="wrap_content" 
+         		android:layout_height="wrap_content" 
+         		android:layout_weight="0.1" 
+         		android:text="Отмена" 
+         		android:id="@+id/btnCancel"></Button>
+
+         <Button 
+         	android:layout_width="wrap_content" 
+         	android:layout_height="wrap_content" 
+         	android:text="ОК" 
+         	android:id="@+id/btnOK" 
+         	android:layout_weight="0.3" 
+         	android:textStyle="bold"></Button>
+      </LinearLayout>
+   </LinearLayout>
+</TabHost>

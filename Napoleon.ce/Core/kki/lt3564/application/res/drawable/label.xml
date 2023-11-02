@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item>
+        <shape android:shape="rectangle" >
+            <padding
+                android:bottom="@dimen/univ_padding_tiny"
+                android:left="@dimen/univ_padding_small"
+                android:right="@dimen/univ_padding_small"
+                android:top="@dimen/univ_padding_tiny" />
+
+            <corners android:radius="@dimen/univ_padding" />
+        </shape>
+    </item>
+
+</layer-list>

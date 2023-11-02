@@ -1,0 +1,735 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+    <object name="AgentPlan">
+      <sources>
+        <source name="SQTable" type="internal">
+          <param name="readFilter">"userid='$01' and " + '"begin" &gt;= $02"'</param>
+          <param name="$01">$user.id</param>
+          <param name="$02">ToDate(FormatDate(AdjustDate(Now(), -2, "month"),"DD.MM.YYYY"))</param>
+        </source>
+      </sources>
+
+      <member name="primaryKey">"userid,begin"</member>
+
+      <field name="userid" type="string" />
+      <field name="begin" type="date" />
+
+      <field name="plans" type="collection">
+        <data>
+          <object name="AgemtPlanGroups">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+            <field name="id" type="string" />
+            <field name="order" type="number" prec="2" />
+            <field name="akb" type="number" />
+          </object>
+        </data>
+      </field>
+    </object>
+
+    <object name="Offer" >
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"userid,created"</member>
+      <memberArray name="index">"created"</memberArray>
+
+      <field name="userid" type="string" data="USER_ID" execOn="Put">$user.id</field>
+      <field name="timeZone" type="number" />
+      <field name="serverTimeZone" type="number" data="S_TZ" execOn="Put" feature="USE_TIMEZONE">ServerTimeZone()</field>
+      <field name="created" type="timestamp" data="CREATED"/>
+      <field name="date" type="date" data="DATE" />
+      <field name="id" width="55" type="string" />
+      <field name="remark" type="string" />
+      <field name="sended" type="timestamp" data="" execOn="Put">Now()</field>
+      <field name="longitude" type="number" prec="5" />
+      <field name="latitude" type="number" prec="5" />
+      <field name="stltime" type="number" />
+      <field name="email" type="string" />
+
+      <field name="items" type="collection">
+        <data>
+          <object name="Item">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+
+            <field name="id" type="string" />
+          </object>
+        </data>
+      </field>
+      <events>
+        <event type="put">
+          <action name="WriteToLog">$object.type;$object.created</action>
+        </event>
+      </events>
+    </object>
+    
+    <object name="Balance">
+      <sources>
+        <source name="SQTable" type="internal">
+          <param name="readFilter">AgentDataFilter("id","Org",$01)</param>
+          <param name="$01">$user.id</param>
+        </source>
+      </sources>
+
+      <member name="primaryKey">"id"</member>
+
+      <field name="id" type="string" />
+      <field name="sum" type="number" prec="2"  />
+
+      <field name="documents" type="collection">
+        <data>
+          <object name="Item">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+
+            <field name="uid" type="string" />
+            <field name="number" type="string"  />
+            <field name="date" type="date" />
+            <field name="payDate" type="date" />
+            <field name="sum" type="number" prec="2"  />
+            <field name="sumDoc" type="number" prec="2"  />
+            <field name="title" type="string"  />
+            <field name="type" type="string"  />
+          </object>
+        </data>
+      </field>
+    </object>
+    <object name="PriceCost">
+      <sources>
+        <source name="SQTable" type="internal">
+          <param name="readFilter">AgentDataFilter("idItem","Price",$01)</param>
+          <param name="$01">$user.id</param>
+        </source>
+      </sources>
+      <member name="primaryKey">"idItem,id"</member>
+      <field name="idItem" type="string" />
+      <field name="id" type="string" />
+      <field name="date" type="date" />
+      <field name="cost" type="number" prec="2"/>
+    </object>
+
+    <object name="PriceTypes">
+      <sources>
+          <source name="SQTable" type="internal">
+            <param name="readFilter">AgentDataFilter("id","PriceType",$01)</param>
+            <param name="$01">$user.id</param>
+          </source>
+      </sources>
+
+      <member name="primaryKey">"id"</member>
+
+      <field name="id" type="string" />
+      <field name="name" type="string"/>
+    </object>
+
+    <object name="Stores">
+      <sources>
+        <source name="SQTable" type="internal">
+          <param name="readFilter">AgentDataFilter("id","Store",$01)</param>
+          <param name="$01">$user.id</param>
+          <param name="ordered" />
+        </source>
+      </sources>
+
+      <member name="primaryKey">"id"</member>
+
+      <field name="id" type="string" />
+      <field name="name" type="string"/>
+    </object>
+
+    <object name="StoreQty">
+      <sources>
+        <source name="SQTable" type="internal">
+          <param name="readFilter">AgentDataFilter("id","Store",$01) + AgentDataFilter("idItem","Price",$01, "and")</param>
+          <param name="$01">$user.id</param>
+        </source>
+      </sources>
+
+      <member name="primaryKey">"id,idItem"</member>
+
+      <field name="id" type="string" />
+      <field name="idItem" type="string" />
+      <field name="qty" type="number" prec="2" />
+    </object>
+
+
+    <object name="AgentData">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <field name="userid" type="string" />
+      <field name="id" type="string" />
+      <field name="type" type="string" />
+
+      <member name="primaryKey">"userid,id,type"</member>
+    </object>
+
+    <modify src="Agents">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+        <field name="id" type="string" />
+        <field name="id" type="string" />
+        <field name="name" type="string" />
+        <field name="login" type="string" width="30" />
+        <field name="password" type="string" width="30" />
+        <field name="snils" type="string" />
+      </change>
+    </modify>
+
+    <object name="OrgPrice">
+      <sources>
+        <source name="SQTable" type="internal">
+          <param name="readFilter">AgentDataFilter("id","Org",$01)</param>
+          <param name="$01">$user.id</param>
+        </source>
+      </sources>
+
+      <member name="primaryKey">"id"</member>
+
+      <field name="id" type="string" />
+      
+      <!-- 0 - Тариф, 1 - ТУ, 2 - Промо, 3 - ТКСГ -->
+      <field name="kind" type="number" />
+      <field name="number" type="string" />
+      <field name="start" type="date" />
+      <field name="finish" type="date" />
+
+      <field name="items" type="collection">
+        <data>
+          <object name="Item">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>            
+
+            <field name="id" type="string" />
+            <field name="cost" type="number" prec="2" />
+          </object>
+        </data>
+      </field>
+    </object>
+
+    <object name="ClientCard">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"number"</member>
+
+      <field name="number" type="string" />
+      <field name="name" type="string" />
+      <field name="idDsc" type="string" />
+      <field name="start" type="date" />
+      <field name="finish" type="date" />
+    </object>
+
+    <object name="Discount">
+      <sources>
+        <source name="SQTable" type="internal">
+		   <param name="readFilter">
+"id in (select distinct od.id from
+(select id from OrgDiscount where idOrg in (select id from AgentData where userid = '$01' and [type] = 'Org')
+union all
+select d.id from Discount d left join OrgDiscount od on d.id = od.id where idOrg is null) od,
+(select distinct id from StoreDiscount where idStore in (select id from AgentData where userid = '$01' and [type] = 'Store')
+union all
+select d.id from Discount d left join StoreDiscount od on d.id = od.id where idStore is null) sd
+where od.id = sd.id)"</param>
+		   <param name="$01">$user.id</param>
+		</source>
+      </sources>
+      <member name="primaryKey">"id"</member>
+
+      <field name="id" type="string" />
+      <field name="discount" type="number" prec="2" />
+      
+      <field name="priority" type="number" />
+      <!-- 0 - Тариф, 1 - ТУ, 2 - Промо, 3 - ТКСГ -->
+      <field name="kind" type="number" />
+      <field name="orgCost" type="number" />
+      
+      <field name="start" type="date" />
+      <field name="finish" type="date" />
+      <field name="parent" type="string" />
+
+      <field name="items" type="collection">
+        <data>
+          <object name="Item">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+            <field name="id" type="string" />
+            <!-- 0 Price, 1 folder -->
+            <field name="type" type="number" />
+          </object>
+        </data>
+      </field>
+    </object>
+
+    <object name="OrgDiscount">
+      <sources>
+        <source name="SQTable" type="internal">
+          <param name="readFilter">"idOrg in (select id from AgentData where userid = '$01' and [type] = 'Org')"</param>
+          <param name="$01">$user.id</param>
+        </source>
+      </sources>
+      <member name="primaryKey">"id,idOrg"</member>
+
+      <field name="id" type="string" />
+      <field name="idOrg" type="string" />
+    </object>
+
+    <object name="DiscountPriority">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+      <member name="primaryKey">"kind"</member>
+
+      <!-- 0 - Тариф, 1 - ТУ, 2 - Промо, 3 - ТКСГ -->
+      <field name="kind" type="number" />
+      <field name="orgCost" type="number" />
+      <field name="discount" type="number" />
+    </object>
+
+    <object name="StoreDiscount">
+      <sources>
+        <source name="SQTable" type="internal">
+          <param name="readFilter">"idStore in (select id from AgentData where userid = '$01' and [type] = 'Store')"</param>
+          <param name="$01">$user.id</param>
+        </source>
+      </sources>
+      <member name="primaryKey">"id,idStore"</member>
+
+      <field name="id" type="string" />
+      <field name="idStore" type="string" />
+    </object>
+
+    <object name="DiscountTree">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+      <member name="primaryKey">"id"</member>
+
+      <field name="id" type="string" />
+      <field name="parent" type="string" />
+      <field name="name" type="string" />
+      
+      <!-- 0 - минимум, 1 максимум, 2 сложение,- 3 умножение, 4 вытеснение -->
+      <field name="type" type="number" />
+    </object>
+
+    <modify src="Org">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal">
+            <param name="readFilter">AgentDataFilter("id","Org",$01)</param>
+            <param name="$01">$user.id</param>
+          </source>
+        </sources>
+      </change>
+      <add>
+        <member name="primaryKey">"id"</member>
+        
+        <field name="ido" type="string" />
+        <field name="email" type="string" />   
+        <!-- 0 by created, 1 by delivery -->
+        <field name="dscMode" type="number"/>
+      </add>
+    </modify>
+
+    <modify src="Org$contacts">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="Agents" dest="AgentUpdate" table="Agents">
+      <remove>
+        <field name="login" />
+        <field name="password" />
+      </remove>
+    </modify>
+
+    <modify src="Config">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+        <field name="value" type="string" width="4000" />
+      </change>
+    </modify>
+
+    <modify src="Price">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal">
+            <param name="readFilter">AgentDataFilter("id","Price",$01)</param>
+            <param name="$01">$user.id</param>
+          </source>
+        </sources>
+      </change>
+      <add>
+        <field name="fid" type="string"/>
+        <member name="primaryKey">"id"</member>
+      </add>
+    </modify>
+
+    <modify src="Folder">
+      <change>
+        <sources>
+          <source name="SQLFolder" type="internal">
+            <param name="parentField">"parent"</param>
+            <param name="childField">"fid"</param>
+            <param name="rowidField">"id"</param>
+          </source>
+        </sources>
+        <field name="id" type="number" />
+        <field name="fid" type="string" width="50" />
+        <field name="name" type="string" />
+        <field name="userid" type="string" />
+      </change>
+      <add>
+        <field name="parent" type="string" width="50" />
+      </add>
+    </modify>
+
+    <modify src="ManagerFolder">
+      <change>
+        <sources>
+          <source name="SQLFolder" type="internal">
+            <param name="parentField">"parent"</param>
+            <param name="childField">"fid"</param>
+          </source>
+        </sources>
+      </change>
+      <add>
+        <field name="fid" type="string" width="50" />
+        <field name="id" type="string" execOn="Get">$object.fid</field>
+        <field name="parent" type="string" width="50" />
+        <field name="userid" type="string" execOn="Put">$user.id</field>
+      </add>
+    </modify>
+
+    <modify src="ManagerPrice">
+      <change>
+        <sources>
+          <source name="SQLQuery">
+            <param name="stmt">"select * from Price where id in (select id from AgentData where [type]='Price' and userid='$01')"</param>
+            <param name="$01">$user.id</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="Delivery">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal">
+            <param name="readFilter">"date &gt;= $01 and id in (select id from AgentData where [type]='Org' and userid='$02')"</param>
+            <param name="$01">ToDate(FormatDate(AdjustDate(Now(), -1, "month"),"DD.MM.YYYY"))</param>
+            <param name="$02">$user.id</param>
+          </source>
+        </sources>
+        <field name="number" type="string"  />
+      </change>
+      <add>
+        <member name="primaryKey">"id,number"</member>
+        <memberArray name="index">"date</memberArray>
+        <field name="uid" type="string" />
+      </add>
+    </modify>
+
+    <modify src="Delivery$items">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="Delivery" dest="AgentDelivery">
+      <change>
+        <sources>
+          <source name="SQLQuery">
+            <param name="stmt">
+              "select d.* from Delivery d,
+              (select distinct d.id, d.number from Delivery d, Delivery$items di,
+              (select id from AgentData where [type] = 'Org' and userid = '$01') ad,
+              (select id from AgentData where [type] = 'Price' and userid = '$01') ap
+              where d.id = di.Delivery$id and d.number = di.Delivery$number
+              and d.id = ad.id and di.id = ap.id
+              and d.date &gt;= $02) ad
+              where d.id = ad.id and d.number = ad.number"
+            </param>
+            <param name="$01">$user.id</param>
+            <param name="$02">ToDate(FormatDate(AdjustDate(Now(),-3,"month"),"DD.MM.YYYY"))</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="CommonOrgs">
+      <change>
+        <sources>
+          <source name="SQLQuery">
+            <param name="stmt">
+              "select distinct * from Org o"
+            </param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="OrderCommitted">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal">
+            <param name="readFilter">'"userid"=' + "'" + $user.id + "'" + ' and "created" &gt;= ToDate(' + "'" + FormatDate(AdjustDate(Now(),-3,"day"),"DD.MM.YYYY") + "')" </param>
+          </source>
+        </sources>
+      </change>
+      <add>
+        <member name="primaryKey">"userid,created"</member>
+      </add>
+    </modify>
+
+    <modify src="OrderProceeded">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal">
+            <param name="readFilter">'"userid"=' + "'" + $user.id + "'"</param>
+          </source>
+        </sources>
+      </change>
+      <add>
+        <field name="userid" type="string" />
+      </add>
+    </modify>
+
+    <modify src="MessageArchive">
+      <change>
+        <field name="message" type="string" width="4000"/>
+      </change>
+    </modify>
+
+    <modify src="Message">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal">
+            <param name="readFilter">'"userid" = ' + "'" + $user.id + "'"</param>
+          </source>
+        </sources>
+        <field name="message" type="string" width="4000"/>
+      </change>
+      <add>
+        <field name="date" type="timestamp" execOn="Put">Now()</field>
+        <field name="userid" type="string" execOn="Put">$user.id</field>
+      </add>
+    </modify>
+
+    <modify src="CommonMatrix">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+      <add>
+        <member name="primaryKey">"name"</member>
+        <field name="userid" type="string" />
+      </add>
+    </modify>
+    
+    <modify src="CommonMatrix$items">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="Matrix">
+      <change>
+        <sources>
+          <source name="SQLQuery">
+            <param name="stmt">
+              "select cm.name as name, i.id as id
+              from (CommonMatrix as cm inner join [CommonMatrix$items] as i on cm.name = i.[CommonMatrix$name])
+              inner join AgentMatrix as am on cm.name = am.name
+              where am.userid = '"+$user.id+"'"
+            </param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+    
+    <modify src="Matrix$items">
+      <change>
+        <sources>
+          <source name="SQLQuery">
+            <param name="keyFields">"name"</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="Order">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+      <add>
+        <field name="deliveryType" type="string" />
+
+        <event type="put">
+          <action name="WriteToLog">$object.type;$object.created</action>
+        </event>
+      </add>
+    </modify>
+
+    <modify src="Order$items">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+      <add>
+        <field name="card" type="string" />
+        <field name="discount" type="number" prec="2" />
+        <field name="costWOD" type="number" prec="2" />
+      </add>
+    </modify>
+
+    <modify src="Incass">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+      <add>
+        <event type="put">
+          <action name="WriteToLog">$object.type;$object.created</action>
+        </event>
+      </add>
+    </modify>
+
+    <modify src="Incass$items">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="Returns">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+      <add>
+        <event type="put">
+          <action name="WriteToLog">$object.type;$object.created</action>
+        </event>
+      </add>
+    </modify>
+
+    <modify src="Returns$items">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+      <add>
+        <member name="primaryKey">"uid"</member>
+        
+        <field name="uid" type="string" />
+        <field name="items" type="collection">
+          <data>
+            <object name="ReturnDlv">
+              <sources>
+                <source name="SQTable" type="internal" />
+              </sources>
+
+              <field name="number" type="string" />
+              <field name="date" type="date" />
+              <field name="qty" type="number" prec="3" />
+              <field name="cost" type="number" prec="3" />
+              <field name="uid" type="string" />
+            </object>
+          </data>
+        </field>
+      </add>
+    </modify>
+
+    <modify src="Order" dest="NewOrders">
+      <change>
+        <sources>
+          <source name="SQLQuery">
+            <param name="stmt">
+              'select o.* from "Order" o left join "OrderCommitted" dc on o."userid" = dc."userid" and o."created" = dc."created"
+              where dc."created" is null and o."created" > $01'
+            </param>
+            <param name="$01">ToDate(FormatDate(AdjustDate(Now(), -3, "day"),"DD.MM.YYYY"))</param>
+          </source>
+        </sources>
+      </change>
+	  <add>
+		<field name="userid" type="string" />
+	  </add>
+    </modify>
+
+    <modify src="Incass" dest="NewIncass">
+      <change>
+        <sources>
+          <source name="SQLQuery">
+            <param name="stmt">
+              'select o.* from "Incass" o left join "OrderCommitted" dc on o."userid" = dc."userid" and o."created" = dc."created"
+              where dc."created" is null and o."created" > $01'
+            </param>
+            <param name="$01">ToDate(FormatDate(AdjustDate(Now(), -3, "day"),"DD.MM.YYYY"))</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="Returns" dest="NewReturns">
+      <change>
+        <sources>
+          <source name="SQLQuery">
+            <param name="stmt">
+              'select o.* from "Returns" o left join "OrderCommitted" dc on o."userid" = dc."userid" and o."created" = dc."created"
+              where dc."created" is null and o."created" > $01'
+            </param>
+            <param name="$01">ToDate(FormatDate(AdjustDate(Now(), -3, "day"),"DD.MM.YYYY"))</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="Offer" dest="NewOffers">
+      <change>
+        <sources>
+          <source name="SQLQuery">
+            <param name="stmt">
+              'select o.* from "Offer" o left join "OrderCommitted" dc on o."userid" = dc."userid" and o."created" = dc."created"
+              where dc."created" is null and o."created" > $01'
+            </param>
+            <param name="$01">ToDate(FormatDate(AdjustDate(Now(), -3, "day"),"DD.MM.YYYY"))</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+
+  </objects>
+</serverDefs>

@@ -1,0 +1,1205 @@
+Buildfile: f:\Projects\Core\Napoleon.A\profcosmeticnn\build.xml
+
+-set-mode-check:
+
+-set-release-mode:
+     [echo] *************************************************
+     [echo] ****  Android Manifest has debuggable=true   ****
+     [echo] **** Doing DEBUG packaging with RELEASE keys ****
+     [echo] *************************************************
+
+-release-obfuscation-check:
+     [echo] proguard.config is ${proguard.config}
+
+-pre-build:
+
+-check-env:
+ [checkenv] Android SDK Tools Revision 25.2.5
+ [checkenv] Installed at f:\android-sdks
+
+-setup:
+     [echo] Project Name: ProfCosmeticNN
+  [gettype] Project Type: Application
+
+-build-setup:
+[getbuildtools] Using latest Build Tools: 25.0.3
+     [echo] Resolving Build Target for ProfCosmeticNN...
+[gettarget] Project Target:   Android 4.0
+[gettarget] API level:        14
+     [echo] ----------
+     [echo] Creating output directories if needed...
+    [mkdir] Created dir: f:\Projects\Core\Napoleon.A\profcosmeticnn\bin\rsObj
+    [mkdir] Created dir: f:\Projects\Core\Napoleon.A\profcosmeticnn\bin\rsLibs
+     [echo] ----------
+     [echo] Resolving Dependencies for ProfCosmeticNN...
+[dependency] Library dependencies:
+[dependency] 
+[dependency] ------------------
+[dependency] Ordered libraries:
+[dependency] 
+[dependency] ------------------
+[dependency] API<=15: Adding annotations.jar to the classpath.
+     [echo] ----------
+     [echo] Building Libraries with 'release'...
+
+nodeps:
+
+-set-mode-check:
+
+-set-release-mode:
+     [echo] *************************************************
+     [echo] ****  Android Manifest has debuggable=true   ****
+     [echo] **** Doing DEBUG packaging with RELEASE keys ****
+     [echo] *************************************************
+
+-release-obfuscation-check:
+     [echo] proguard.config is ${proguard.config}
+
+-pre-build:
+
+-check-env:
+ [checkenv] Android SDK Tools Revision 25.2.5
+ [checkenv] Installed at f:\android-sdks
+
+-setup:
+     [echo] Project Name: network
+  [gettype] Project Type: Android Library
+
+-build-setup:
+[getbuildtools] Using latest Build Tools: 25.0.3
+     [echo] Resolving Build Target for network...
+[gettarget] Project Target:   Android 2.1
+[gettarget] API level:        7
+     [echo] ----------
+     [echo] Creating output directories if needed...
+    [mkdir] Created dir: F:\Projects\Core\Napoleon.A\modules\network\bin\rsObj
+    [mkdir] Created dir: F:\Projects\Core\Napoleon.A\modules\network\bin\rsLibs
+    [mkdir] Created dir: F:\Projects\Core\Napoleon.A\modules\network\bin\dexedLibs
+     [echo] ----------
+     [echo] Resolving Dependencies for network...
+[dependency] Library dependencies:
+[dependency] No Libraries
+[dependency] 
+[dependency] ------------------
+[dependency] API<=15: Adding annotations.jar to the classpath.
+
+-code-gen:
+[mergemanifest] Merging AndroidManifest files into one.
+[mergemanifest] Manifest merger disabled. Using project manifest only.
+     [echo] Handling aidl files...
+     [aidl] Found 1 AIDL files.
+     [aidl] Compiling 1 AIDL files.
+     [echo] ----------
+     [echo] Handling RenderScript files...
+     [echo] ----------
+     [echo] Handling Resources...
+     [aapt] Found Deleted Target File
+     [aapt] Generating resource IDs...
+     [aapt]     (skipping dir 'crunch' due to ANDROID_AAPT_IGNORE pattern 'crunch')
+     [echo] ----------
+     [echo] Handling BuildConfig class...
+[buildconfig] Generating BuildConfig class.
+
+-pre-compile:
+
+-compile:
+    [javac] Compiling 4 source files to F:\Projects\Core\Napoleon.A\modules\network\bin\classes
+    [javac] warning: [options] source value 1.5 is obsolete and will be removed in a future release
+    [javac] warning: [options] target value 1.5 is obsolete and will be removed in a future release
+    [javac] warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.
+    [javac] 3 warnings
+     [echo] Creating library output jar file...
+      [jar] Building jar: F:\Projects\Core\Napoleon.A\modules\network\bin\classes.jar
+
+-post-compile:
+
+-obfuscate:
+
+-dex:
+     [echo] Library project: do not convert bytecode...
+
+-crunch:
+   [crunch] Crunching PNG Files in source dir: F:\Projects\Core\Napoleon.A\modules\network\res
+   [crunch] To destination dir: F:\Projects\Core\Napoleon.A\modules\network\bin\res
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\network\res\drawable-large\pictograms.png => F:\Projects\Core\Napoleon.A\modules\network\bin\res\drawable-large\pictograms.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\network\bin\res\drawable-large\pictograms.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\network\res\drawable\message.png => F:\Projects\Core\Napoleon.A\modules\network\bin\res\drawable\message.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\network\bin\res\drawable\message.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\network\res\drawable\pictograms.png => F:\Projects\Core\Napoleon.A\modules\network\bin\res\drawable\pictograms.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\network\bin\res\drawable\pictograms.png: 0% size of source)
+   [crunch] Crunched 3 PNG files to update cache
+
+-package-resources:
+     [echo] Library project: do not package resources...
+
+-package:
+     [echo] Library project: do not package apk...
+
+-post-package:
+
+-release-prompt-for-password:
+
+-release-nosign:
+     [echo] 
+[propertyfile] Creating new property file: F:\Projects\Core\Napoleon.A\modules\network\bin\build.prop
+[propertyfile] Updating property file: F:\Projects\Core\Napoleon.A\modules\network\bin\build.prop
+[propertyfile] Updating property file: F:\Projects\Core\Napoleon.A\modules\network\bin\build.prop
+[propertyfile] Updating property file: F:\Projects\Core\Napoleon.A\modules\network\bin\build.prop
+
+-release-sign:
+
+-post-build:
+
+release:
+
+nodeps:
+
+-set-mode-check:
+
+-set-release-mode:
+     [echo] *************************************************
+     [echo] ****  Android Manifest has debuggable=true   ****
+     [echo] **** Doing DEBUG packaging with RELEASE keys ****
+     [echo] *************************************************
+
+-release-obfuscation-check:
+     [echo] proguard.config is ${proguard.config}
+
+-pre-build:
+
+-check-env:
+ [checkenv] Android SDK Tools Revision 25.2.5
+ [checkenv] Installed at f:\android-sdks
+
+-setup:
+     [echo] Project Name: NetworkChat
+  [gettype] Project Type: Android Library
+
+-build-setup:
+[getbuildtools] Using latest Build Tools: 25.0.3
+     [echo] Resolving Build Target for NetworkChat...
+[gettarget] Project Target:   Android 2.1
+[gettarget] API level:        7
+     [echo] ----------
+     [echo] Creating output directories if needed...
+    [mkdir] Created dir: F:\Projects\Core\Napoleon.A\modules\chat\bin\rsObj
+    [mkdir] Created dir: F:\Projects\Core\Napoleon.A\modules\chat\bin\rsLibs
+    [mkdir] Created dir: F:\Projects\Core\Napoleon.A\modules\chat\bin\dexedLibs
+     [echo] ----------
+     [echo] Resolving Dependencies for NetworkChat...
+[dependency] Library dependencies:
+[dependency] 
+[dependency] ------------------
+[dependency] Ordered libraries:
+[dependency] 
+[dependency] ------------------
+[dependency] API<=15: Adding annotations.jar to the classpath.
+
+-code-gen:
+[mergemanifest] Merging AndroidManifest files into one.
+[mergemanifest] Manifest merger disabled. Using project manifest only.
+     [echo] Handling aidl files...
+     [aidl] No AIDL files to compile.
+     [echo] ----------
+     [echo] Handling RenderScript files...
+     [echo] ----------
+     [echo] Handling Resources...
+     [aapt] Found Deleted Target File
+     [aapt] Generating resource IDs...
+     [aapt]     (skipping dir 'crunch' due to ANDROID_AAPT_IGNORE pattern 'crunch')
+     [aapt]     (skipping dir 'crunch' due to ANDROID_AAPT_IGNORE pattern 'crunch')
+     [echo] ----------
+     [echo] Handling BuildConfig class...
+[buildconfig] Generating BuildConfig class.
+
+-pre-compile:
+
+-compile:
+    [javac] Compiling 2 source files to F:\Projects\Core\Napoleon.A\modules\chat\bin\classes
+    [javac] warning: [options] source value 1.5 is obsolete and will be removed in a future release
+    [javac] warning: [options] target value 1.5 is obsolete and will be removed in a future release
+    [javac] warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.
+    [javac] 3 warnings
+     [echo] Creating library output jar file...
+      [jar] Building jar: F:\Projects\Core\Napoleon.A\modules\chat\bin\classes.jar
+
+-post-compile:
+
+-obfuscate:
+
+-dex:
+     [echo] Library project: do not convert bytecode...
+
+-crunch:
+   [crunch] Crunching PNG Files in source dir: F:\Projects\Core\Napoleon.A\modules\chat\res
+   [crunch] To destination dir: F:\Projects\Core\Napoleon.A\modules\chat\bin\res
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\chat\res\drawable-large\chatsend.png => F:\Projects\Core\Napoleon.A\modules\chat\bin\res\drawable-large\chatsend.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\chat\bin\res\drawable-large\chatsend.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\chat\res\drawable\bubble_a.9.png => F:\Projects\Core\Napoleon.A\modules\chat\bin\res\drawable\bubble_a.9.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\chat\bin\res\drawable\bubble_a.9.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\chat\res\drawable\bubble_b.9.png => F:\Projects\Core\Napoleon.A\modules\chat\bin\res\drawable\bubble_b.9.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\chat\bin\res\drawable\bubble_b.9.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\chat\res\drawable\chat.png => F:\Projects\Core\Napoleon.A\modules\chat\bin\res\drawable\chat.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\chat\bin\res\drawable\chat.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\chat\res\drawable\chatsend.png => F:\Projects\Core\Napoleon.A\modules\chat\bin\res\drawable\chatsend.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\chat\bin\res\drawable\chatsend.png: 0% size of source)
+   [crunch] Crunched 5 PNG files to update cache
+
+-package-resources:
+     [echo] Library project: do not package resources...
+
+-package:
+     [echo] Library project: do not package apk...
+
+-post-package:
+
+-release-prompt-for-password:
+
+-release-nosign:
+     [echo] 
+[propertyfile] Creating new property file: F:\Projects\Core\Napoleon.A\modules\chat\bin\build.prop
+[propertyfile] Updating property file: F:\Projects\Core\Napoleon.A\modules\chat\bin\build.prop
+[propertyfile] Updating property file: F:\Projects\Core\Napoleon.A\modules\chat\bin\build.prop
+[propertyfile] Updating property file: F:\Projects\Core\Napoleon.A\modules\chat\bin\build.prop
+
+-release-sign:
+
+-post-build:
+
+release:
+
+nodeps:
+
+-set-mode-check:
+
+-set-release-mode:
+     [echo] *************************************************
+     [echo] ****  Android Manifest has debuggable=true   ****
+     [echo] **** Doing DEBUG packaging with RELEASE keys ****
+     [echo] *************************************************
+
+-release-obfuscation-check:
+     [echo] proguard.config is ${proguard.config}
+
+-pre-build:
+
+-check-env:
+ [checkenv] Android SDK Tools Revision 25.2.5
+ [checkenv] Installed at f:\android-sdks
+
+-setup:
+     [echo] Project Name: network
+  [gettype] Project Type: Android Library
+
+-build-setup:
+[getbuildtools] Using latest Build Tools: 25.0.3
+     [echo] Resolving Build Target for network...
+[gettarget] Project Target:   Android 6.0
+[gettarget] API level:        23
+     [echo] ----------
+     [echo] Creating output directories if needed...
+    [mkdir] Created dir: F:\Projects\Core\Napoleon.A\modules\gson\bin\rsObj
+    [mkdir] Created dir: F:\Projects\Core\Napoleon.A\modules\gson\bin\rsLibs
+     [echo] ----------
+     [echo] Resolving Dependencies for network...
+[dependency] Library dependencies:
+[dependency] No Libraries
+[dependency] 
+[dependency] ------------------
+
+-code-gen:
+[mergemanifest] Found Deleted Target File
+[mergemanifest] Merging AndroidManifest files into one.
+[mergemanifest] Manifest merger disabled. Using project manifest only.
+     [echo] Handling aidl files...
+     [aidl] No AIDL files to compile.
+     [echo] ----------
+     [echo] Handling RenderScript files...
+     [echo] ----------
+     [echo] Handling Resources...
+     [aapt] Found new input file
+     [aapt] Generating resource IDs...
+     [echo] ----------
+     [echo] Handling BuildConfig class...
+[buildconfig] No need to generate new BuildConfig.
+
+-pre-compile:
+
+-compile:
+     [echo] Creating library output jar file...
+      [jar] Building jar: F:\Projects\Core\Napoleon.A\modules\gson\bin\classes.jar
+
+-post-compile:
+
+-obfuscate:
+
+-dex:
+     [echo] Library project: do not convert bytecode...
+
+-crunch:
+   [crunch] Crunching PNG Files in source dir: F:\Projects\Core\Napoleon.A\modules\gson\res
+   [crunch] To destination dir: F:\Projects\Core\Napoleon.A\modules\gson\bin\res
+   [crunch] Crunched 0 PNG files to update cache
+
+-package-resources:
+     [echo] Library project: do not package resources...
+
+-package:
+     [echo] Library project: do not package apk...
+
+-post-package:
+
+-release-prompt-for-password:
+
+-release-nosign:
+     [echo] 
+[propertyfile] Updating property file: F:\Projects\Core\Napoleon.A\modules\gson\bin\build.prop
+[propertyfile] Updating property file: F:\Projects\Core\Napoleon.A\modules\gson\bin\build.prop
+[propertyfile] Updating property file: F:\Projects\Core\Napoleon.A\modules\gson\bin\build.prop
+[propertyfile] Updating property file: F:\Projects\Core\Napoleon.A\modules\gson\bin\build.prop
+
+-release-sign:
+
+-post-build:
+
+release:
+
+nodeps:
+
+-set-mode-check:
+
+-set-release-mode:
+     [echo] *************************************************
+     [echo] ****  Android Manifest has debuggable=true   ****
+     [echo] **** Doing DEBUG packaging with RELEASE keys ****
+     [echo] *************************************************
+
+-release-obfuscation-check:
+     [echo] proguard.config is ${proguard.config}
+
+-pre-build:
+
+-check-env:
+ [checkenv] Android SDK Tools Revision 25.2.5
+ [checkenv] Installed at f:\android-sdks
+
+-setup:
+     [echo] Project Name: NapoleonDocs
+  [gettype] Project Type: Android Library
+
+-build-setup:
+[getbuildtools] Using latest Build Tools: 25.0.3
+     [echo] Resolving Build Target for NapoleonDocs...
+[gettarget] Project Target:   Android 2.1
+[gettarget] API level:        7
+     [echo] ----------
+     [echo] Creating output directories if needed...
+    [mkdir] Created dir: F:\Projects\Core\Napoleon.A\modules\documents\bin\rsObj
+    [mkdir] Created dir: F:\Projects\Core\Napoleon.A\modules\documents\bin\rsLibs
+    [mkdir] Created dir: F:\Projects\Core\Napoleon.A\modules\documents\bin\dexedLibs
+     [echo] ----------
+     [echo] Resolving Dependencies for NapoleonDocs...
+[dependency] Library dependencies:
+[dependency] 
+[dependency] ------------------
+[dependency] Ordered libraries:
+[dependency] 
+[dependency] ------------------
+[dependency] API<=15: Adding annotations.jar to the classpath.
+
+-code-gen:
+[mergemanifest] Merging AndroidManifest files into one.
+[mergemanifest] Manifest merger disabled. Using project manifest only.
+     [echo] Handling aidl files...
+     [aidl] No AIDL files to compile.
+     [echo] ----------
+     [echo] Handling RenderScript files...
+     [echo] ----------
+     [echo] Handling Resources...
+     [aapt] Found Deleted Target File
+     [aapt] Generating resource IDs...
+     [aapt]     (skipping dir 'crunch' due to ANDROID_AAPT_IGNORE pattern 'crunch')
+     [aapt]     (skipping dir 'crunch' due to ANDROID_AAPT_IGNORE pattern 'crunch')
+     [echo] ----------
+     [echo] Handling BuildConfig class...
+[buildconfig] Generating BuildConfig class.
+
+-pre-compile:
+
+-compile:
+    [javac] Compiling 2 source files to F:\Projects\Core\Napoleon.A\modules\documents\bin\classes
+    [javac] warning: [options] source value 1.5 is obsolete and will be removed in a future release
+    [javac] warning: [options] target value 1.5 is obsolete and will be removed in a future release
+    [javac] warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.
+    [javac] 3 warnings
+     [echo] Creating library output jar file...
+      [jar] Building jar: F:\Projects\Core\Napoleon.A\modules\documents\bin\classes.jar
+
+-post-compile:
+
+-obfuscate:
+
+-dex:
+     [echo] Library project: do not convert bytecode...
+
+-crunch:
+   [crunch] Crunching PNG Files in source dir: F:\Projects\Core\Napoleon.A\modules\documents\res
+   [crunch] To destination dir: F:\Projects\Core\Napoleon.A\modules\documents\bin\res
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\documents\res\drawable-large\camera.png => F:\Projects\Core\Napoleon.A\modules\documents\bin\res\drawable-large\camera.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\documents\bin\res\drawable-large\camera.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\documents\res\drawable-large\folder.png => F:\Projects\Core\Napoleon.A\modules\documents\bin\res\drawable-large\folder.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\documents\bin\res\drawable-large\folder.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\documents\res\drawable-large\folder_open.png => F:\Projects\Core\Napoleon.A\modules\documents\bin\res\drawable-large\folder_open.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\documents\bin\res\drawable-large\folder_open.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\documents\res\drawable-large\folder_opened.png => F:\Projects\Core\Napoleon.A\modules\documents\bin\res\drawable-large\folder_opened.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\documents\bin\res\drawable-large\folder_opened.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\documents\res\drawable-large\photo.png => F:\Projects\Core\Napoleon.A\modules\documents\bin\res\drawable-large\photo.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\documents\bin\res\drawable-large\photo.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\documents\res\drawable\attachment.png => F:\Projects\Core\Napoleon.A\modules\documents\bin\res\drawable\attachment.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\documents\bin\res\drawable\attachment.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\documents\res\drawable\camera.png => F:\Projects\Core\Napoleon.A\modules\documents\bin\res\drawable\camera.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\documents\bin\res\drawable\camera.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\documents\res\drawable\folder.png => F:\Projects\Core\Napoleon.A\modules\documents\bin\res\drawable\folder.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\documents\bin\res\drawable\folder.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\documents\res\drawable\folder_open.png => F:\Projects\Core\Napoleon.A\modules\documents\bin\res\drawable\folder_open.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\documents\bin\res\drawable\folder_open.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\documents\res\drawable\folder_opened.png => F:\Projects\Core\Napoleon.A\modules\documents\bin\res\drawable\folder_opened.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\documents\bin\res\drawable\folder_opened.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\documents\res\drawable\photo.png => F:\Projects\Core\Napoleon.A\modules\documents\bin\res\drawable\photo.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\documents\bin\res\drawable\photo.png: 0% size of source)
+   [crunch] Crunched 11 PNG files to update cache
+
+-package-resources:
+     [echo] Library project: do not package resources...
+
+-package:
+     [echo] Library project: do not package apk...
+
+-post-package:
+
+-release-prompt-for-password:
+
+-release-nosign:
+     [echo] 
+[propertyfile] Creating new property file: F:\Projects\Core\Napoleon.A\modules\documents\bin\build.prop
+[propertyfile] Updating property file: F:\Projects\Core\Napoleon.A\modules\documents\bin\build.prop
+[propertyfile] Updating property file: F:\Projects\Core\Napoleon.A\modules\documents\bin\build.prop
+[propertyfile] Updating property file: F:\Projects\Core\Napoleon.A\modules\documents\bin\build.prop
+
+-release-sign:
+
+-post-build:
+
+release:
+
+nodeps:
+
+-set-mode-check:
+
+-set-release-mode:
+     [echo] *************************************************
+     [echo] ****  Android Manifest has debuggable=true   ****
+     [echo] **** Doing DEBUG packaging with RELEASE keys ****
+     [echo] *************************************************
+
+-release-obfuscation-check:
+     [echo] proguard.config is ${proguard.config}
+
+-pre-build:
+
+-check-env:
+ [checkenv] Android SDK Tools Revision 25.2.5
+ [checkenv] Installed at f:\android-sdks
+
+-setup:
+     [echo] Project Name: Napoleon
+  [gettype] Project Type: Android Library
+
+-build-setup:
+[getbuildtools] Using latest Build Tools: 25.0.3
+     [echo] Resolving Build Target for Napoleon...
+[gettarget] Project Target:   Android 4.0
+[gettarget] API level:        14
+     [echo] ----------
+     [echo] Creating output directories if needed...
+    [mkdir] Created dir: F:\Projects\Core\Napoleon.A\modules\base\bin\rsObj
+    [mkdir] Created dir: F:\Projects\Core\Napoleon.A\modules\base\bin\rsLibs
+    [mkdir] Created dir: F:\Projects\Core\Napoleon.A\modules\base\bin\dexedLibs
+     [echo] ----------
+     [echo] Resolving Dependencies for Napoleon...
+[dependency] Library dependencies:
+[dependency] 
+[dependency] ------------------
+[dependency] Ordered libraries:
+[dependency] 
+[dependency] ------------------
+[dependency] API<=15: Adding annotations.jar to the classpath.
+
+-code-gen:
+[mergemanifest] Merging AndroidManifest files into one.
+[mergemanifest] Manifest merger disabled. Using project manifest only.
+     [echo] Handling aidl files...
+     [aidl] No AIDL files to compile.
+     [echo] ----------
+     [echo] Handling RenderScript files...
+     [echo] ----------
+     [echo] Handling Resources...
+     [aapt] Found Deleted Target File
+     [aapt] Generating resource IDs...
+     [aapt] nothing matches overlay file message.png, for flavor large-v4
+     [aapt]     (skipping dir 'crunch' due to ANDROID_AAPT_IGNORE pattern 'crunch')
+     [aapt]     (skipping dir 'crunch' due to ANDROID_AAPT_IGNORE pattern 'crunch')
+     [aapt]     (skipping dir 'crunch' due to ANDROID_AAPT_IGNORE pattern 'crunch')
+     [echo] ----------
+     [echo] Handling BuildConfig class...
+[buildconfig] Generating BuildConfig class.
+
+-pre-compile:
+
+-compile:
+    [javac] Compiling 2 source files to F:\Projects\Core\Napoleon.A\modules\base\bin\classes
+    [javac] warning: [options] source value 1.5 is obsolete and will be removed in a future release
+    [javac] warning: [options] target value 1.5 is obsolete and will be removed in a future release
+    [javac] warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.
+    [javac] 3 warnings
+     [echo] Creating library output jar file...
+      [jar] Building jar: F:\Projects\Core\Napoleon.A\modules\base\bin\classes.jar
+
+-post-compile:
+
+-obfuscate:
+
+-dex:
+     [echo] Library project: do not convert bytecode...
+
+-crunch:
+   [crunch] Crunching PNG Files in source dir: F:\Projects\Core\Napoleon.A\modules\base\res
+   [crunch] To destination dir: F:\Projects\Core\Napoleon.A\modules\base\bin\res
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable-large\apply.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\apply.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\apply.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable-large\calc.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\calc.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\calc.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable-large\clients.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\clients.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\clients.png: 73% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable-large\debt_doc.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\debt_doc.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\debt_doc.png: 85% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable-large\debt_doc_2.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\debt_doc_2.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\debt_doc_2.png: 85% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable-large\dlv_doc.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\dlv_doc.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\dlv_doc.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable-large\down.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\down.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\down.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable-large\edit_rep_prop.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\edit_rep_prop.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\edit_rep_prop.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable-large\filter.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\filter.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\filter.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable-large\find.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\find.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\find.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable-large\focus_error.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\focus_error.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\focus_error.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable-large\focus_goods.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\focus_goods.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\focus_goods.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable-large\focus_remark.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\focus_remark.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\focus_remark.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable-large\go_next.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\go_next.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\go_next.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable-large\go_prev.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\go_prev.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\go_prev.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable-large\goup.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\goup.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\goup.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable-large\gpsgather.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\gpsgather.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\gpsgather.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable-large\gpsno.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\gpsno.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\gpsno.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable-large\image.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\image.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\image.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable-large\incass.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\incass.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\incass.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable-large\incass_doc.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\incass_doc.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\incass_doc.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable-large\incass_doc_2.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\incass_doc_2.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\incass_doc_2.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable-large\left.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\left.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\left.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable-large\line_1.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\line_1.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\line_1.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable-large\line_2.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\line_2.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\line_2.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable-large\line_3.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\line_3.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\line_3.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable-large\line_x.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\line_x.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\line_x.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable-large\lines.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\lines.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\lines.png: 77% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable-large\message.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\message.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\message.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable-large\money_proxy.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\money_proxy.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\money_proxy.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable-large\new_contact.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\new_contact.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\new_contact.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable-large\new_order.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\new_order.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\new_order.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable-large\notsend.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\notsend.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\notsend.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable-large\order_doc.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\order_doc.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\order_doc.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable-large\order_doc_2.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\order_doc_2.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\order_doc_2.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable-large\orderedit.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\orderedit.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\orderedit.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable-large\pack_off.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\pack_off.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\pack_off.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable-large\pack_on.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\pack_on.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\pack_on.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable-large\pcd.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\pcd.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\pcd.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable-large\price.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\price.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\price.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable-large\price_home.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\price_home.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\price_home.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable-large\price_next.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\price_next.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\price_next.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable-large\price_path.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\price_path.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\price_path.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable-large\price_path_ex.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\price_path_ex.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\price_path_ex.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable-large\price_path_ex_top.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\price_path_ex_top.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\price_path_ex_top.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable-large\price_path_top.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\price_path_top.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\price_path_top.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable-large\price_prev.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\price_prev.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\price_prev.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable-large\quest_doc.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\quest_doc.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\quest_doc.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable-large\quest_doc_2.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\quest_doc_2.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\quest_doc_2.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable-large\remnants_doc.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\remnants_doc.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\remnants_doc.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable-large\remnants_doc_2.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\remnants_doc_2.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\remnants_doc_2.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable-large\return_doc.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\return_doc.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\return_doc.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable-large\return_doc_2.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\return_doc_2.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\return_doc_2.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable-large\route.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\route.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\route.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable-large\script_doc.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\script_doc.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\script_doc.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable-large\script_doc_2.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\script_doc_2.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\script_doc_2.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable-large\send.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\send.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\send.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable-large\sent.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\sent.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\sent.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable-large\setting_behavior.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\setting_behavior.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\setting_behavior.png: 72% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable-large\setting_network.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\setting_network.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\setting_network.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable-large\setting_photo.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\setting_photo.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\setting_photo.png: 70% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable-large\setting_warehouse.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\setting_warehouse.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\setting_warehouse.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable-large\skip.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\skip.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\skip.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable-large\start_tt.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\start_tt.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\start_tt.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable-large\stock_doc.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\stock_doc.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\stock_doc.png: 78% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable-large\stop_tt.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\stop_tt.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\stop_tt.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable-large\sync.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\sync.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\sync.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable-large\task_alert.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\task_alert.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\task_alert.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable-large\task_doc.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\task_doc.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\task_doc.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable-large\task_doc_2.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\task_doc_2.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\task_doc_2.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable-large\taskdoc.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\taskdoc.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\taskdoc.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable-large\up.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\up.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\up.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable-large\visit_doc.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\visit_doc.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\visit_doc.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable-large\visit_doc_2.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\visit_doc_2.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable-large\visit_doc_2.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\apply.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\apply.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\apply.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\calc.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\calc.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\calc.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\clients.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\clients.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\clients.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\debt_doc.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\debt_doc.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\debt_doc.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\debt_doc_2.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\debt_doc_2.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\debt_doc_2.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\del.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\del.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\del.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\dlv_doc.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\dlv_doc.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\dlv_doc.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\down.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\down.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\down.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\edit_rep_prop.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\edit_rep_prop.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\edit_rep_prop.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\filter.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\filter.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\filter.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\find.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\find.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\find.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\focus_error.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\focus_error.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\focus_error.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\focus_goods.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\focus_goods.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\focus_goods.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\focus_remark.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\focus_remark.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\focus_remark.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\folder_pic.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\folder_pic.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\folder_pic.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\go_next.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\go_next.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\go_next.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\go_prev.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\go_prev.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\go_prev.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\goup.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\goup.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\goup.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\gpsgather.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\gpsgather.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\gpsgather.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\gpsno.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\gpsno.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\gpsno.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\gpsok.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\gpsok.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\gpsok.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\ic_delete.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\ic_delete.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\ic_delete.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\icon.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\icon.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\icon.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\image.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\image.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\image.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\incass.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\incass.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\incass.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\incass_doc.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\incass_doc.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\incass_doc.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\incass_doc_2.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\incass_doc_2.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\incass_doc_2.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\k0.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\k0.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\k0.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\k1.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\k1.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\k1.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\k2.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\k2.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\k2.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\k3.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\k3.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\k3.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\k4.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\k4.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\k4.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\k5.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\k5.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\k5.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\k6.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\k6.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\k6.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\k7.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\k7.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\k7.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\k8.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\k8.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\k8.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\k9.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\k9.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\k9.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\kp1.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\kp1.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\kp1.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\left.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\left.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\left.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\line_1.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\line_1.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\line_1.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\line_2.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\line_2.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\line_2.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\line_3.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\line_3.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\line_3.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\line_4.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\line_4.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\line_4.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\line_x.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\line_x.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\line_x.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\lines.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\lines.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\lines.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\money_proxy.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\money_proxy.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\money_proxy.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\new_contact.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\new_contact.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\new_contact.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\new_order.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\new_order.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\new_order.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\nofoto.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\nofoto.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\nofoto.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\notsend.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\notsend.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\notsend.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\ok.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\ok.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\ok.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\okv.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\okv.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\okv.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\order_doc.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\order_doc.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\order_doc.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\order_doc_2.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\order_doc_2.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\order_doc_2.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\orderedit.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\orderedit.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\orderedit.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\pack_off.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\pack_off.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\pack_off.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\pack_on.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\pack_on.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\pack_on.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\pcd.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\pcd.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\pcd.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\price.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\price.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\price.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\price_home.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\price_home.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\price_home.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\price_next.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\price_next.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\price_next.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\price_path.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\price_path.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\price_path.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\price_path_ex.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\price_path_ex.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\price_path_ex.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\price_path_ex_top.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\price_path_ex_top.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\price_path_ex_top.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\price_path_top.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\price_path_top.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\price_path_top.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\price_prev.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\price_prev.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\price_prev.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\quest_doc.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\quest_doc.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\quest_doc.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\quest_doc_2.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\quest_doc_2.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\quest_doc_2.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\remnants_doc.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\remnants_doc.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\remnants_doc.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\remnants_doc_2.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\remnants_doc_2.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\remnants_doc_2.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\return_doc.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\return_doc.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\return_doc.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\return_doc_2.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\return_doc_2.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\return_doc_2.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\route.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\route.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\route.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\script_doc.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\script_doc.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\script_doc.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\script_doc_2.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\script_doc_2.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\script_doc_2.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\send.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\send.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\send.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\sent.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\sent.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\sent.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\setting_behavior.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\setting_behavior.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\setting_behavior.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\setting_network.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\setting_network.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\setting_network.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\setting_photo.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\setting_photo.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\setting_photo.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\setting_warehouse.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\setting_warehouse.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\setting_warehouse.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\skip.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\skip.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\skip.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\start_tt.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\start_tt.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\start_tt.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\stock_doc.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\stock_doc.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\stock_doc.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\stop_tt.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\stop_tt.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\stop_tt.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\sync.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\sync.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\sync.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\takephoto.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\takephoto.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\takephoto.png: 78% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\task_alert.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\task_alert.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\task_alert.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\task_doc.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\task_doc.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\task_doc.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\task_doc_2.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\task_doc_2.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\task_doc_2.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\taskdoc.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\taskdoc.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\taskdoc.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\up.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\up.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\up.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\visit_doc.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\visit_doc.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\visit_doc.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\visit_doc_2.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\visit_doc_2.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\visit_doc_2.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\x.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\x.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\x.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\base\res\drawable\zap.png => F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\zap.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\base\bin\res\drawable\zap.png: 0% size of source)
+   [crunch] Crunched 170 PNG files to update cache
+
+-package-resources:
+     [echo] Library project: do not package resources...
+
+-package:
+     [echo] Library project: do not package apk...
+
+-post-package:
+
+-release-prompt-for-password:
+
+-release-nosign:
+     [echo] 
+[propertyfile] Creating new property file: F:\Projects\Core\Napoleon.A\modules\base\bin\build.prop
+[propertyfile] Updating property file: F:\Projects\Core\Napoleon.A\modules\base\bin\build.prop
+[propertyfile] Updating property file: F:\Projects\Core\Napoleon.A\modules\base\bin\build.prop
+[propertyfile] Updating property file: F:\Projects\Core\Napoleon.A\modules\base\bin\build.prop
+
+-release-sign:
+
+-post-build:
+
+release:
+
+nodeps:
+
+-set-mode-check:
+
+-set-release-mode:
+     [echo] *************************************************
+     [echo] ****  Android Manifest has debuggable=true   ****
+     [echo] **** Doing DEBUG packaging with RELEASE keys ****
+     [echo] *************************************************
+
+-release-obfuscation-check:
+     [echo] proguard.config is ${proguard.config}
+
+-pre-build:
+
+-check-env:
+ [checkenv] Android SDK Tools Revision 25.2.5
+ [checkenv] Installed at f:\android-sdks
+
+-setup:
+     [echo] Project Name: NapoleonDelivery
+  [gettype] Project Type: Android Library
+
+-build-setup:
+[getbuildtools] Using latest Build Tools: 25.0.3
+     [echo] Resolving Build Target for NapoleonDelivery...
+[gettarget] Project Target:   Android 4.0
+[gettarget] API level:        14
+     [echo] ----------
+     [echo] Creating output directories if needed...
+    [mkdir] Created dir: F:\Projects\Core\Napoleon.A\modules\delivery\bin\rsObj
+    [mkdir] Created dir: F:\Projects\Core\Napoleon.A\modules\delivery\bin\rsLibs
+    [mkdir] Created dir: F:\Projects\Core\Napoleon.A\modules\delivery\bin\dexedLibs
+     [echo] ----------
+     [echo] Resolving Dependencies for NapoleonDelivery...
+[dependency] Library dependencies:
+[dependency] 
+[dependency] ------------------
+[dependency] Ordered libraries:
+[dependency] 
+[dependency] ------------------
+[dependency] API<=15: Adding annotations.jar to the classpath.
+
+-code-gen:
+[mergemanifest] Merging AndroidManifest files into one.
+[mergemanifest] Manifest merger disabled. Using project manifest only.
+     [echo] Handling aidl files...
+     [aidl] No AIDL files to compile.
+     [echo] ----------
+     [echo] Handling RenderScript files...
+     [echo] ----------
+     [echo] Handling Resources...
+     [aapt] Found Deleted Target File
+     [aapt] Generating resource IDs...
+     [aapt] nothing matches overlay file message.png, for flavor large-v4
+     [aapt] nothing matches overlay file pictograms.png, for flavor hdpi-v4
+     [aapt]     (skipping dir 'crunch' due to ANDROID_AAPT_IGNORE pattern 'crunch')
+     [aapt]     (skipping dir 'crunch' due to ANDROID_AAPT_IGNORE pattern 'crunch')
+     [aapt]     (skipping dir 'crunch' due to ANDROID_AAPT_IGNORE pattern 'crunch')
+     [aapt]     (skipping dir 'crunch' due to ANDROID_AAPT_IGNORE pattern 'crunch')
+     [aapt]     (skipping dir 'crunch' due to ANDROID_AAPT_IGNORE pattern 'crunch')
+     [echo] ----------
+     [echo] Handling BuildConfig class...
+[buildconfig] Generating BuildConfig class.
+
+-pre-compile:
+
+-compile:
+    [javac] Compiling 2 source files to F:\Projects\Core\Napoleon.A\modules\delivery\bin\classes
+    [javac] warning: [options] source value 1.5 is obsolete and will be removed in a future release
+    [javac] warning: [options] target value 1.5 is obsolete and will be removed in a future release
+    [javac] warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.
+    [javac] 3 warnings
+     [echo] Creating library output jar file...
+      [jar] Building jar: F:\Projects\Core\Napoleon.A\modules\delivery\bin\classes.jar
+
+-post-compile:
+
+-obfuscate:
+
+-dex:
+     [echo] Library project: do not convert bytecode...
+
+-crunch:
+   [crunch] Crunching PNG Files in source dir: F:\Projects\Core\Napoleon.A\modules\delivery\res
+   [crunch] To destination dir: F:\Projects\Core\Napoleon.A\modules\delivery\bin\res
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\delivery\res\drawable-hdpi\ic_date_range_white_24dp.png => F:\Projects\Core\Napoleon.A\modules\delivery\bin\res\drawable-hdpi\ic_date_range_white_24dp.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\delivery\bin\res\drawable-hdpi\ic_date_range_white_24dp.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\delivery\res\drawable-hdpi\pictograms.png => F:\Projects\Core\Napoleon.A\modules\delivery\bin\res\drawable-hdpi\pictograms.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\delivery\bin\res\drawable-hdpi\pictograms.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\delivery\res\drawable-large\ic_media_play.png => F:\Projects\Core\Napoleon.A\modules\delivery\bin\res\drawable-large\ic_media_play.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\delivery\bin\res\drawable-large\ic_media_play.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\delivery\res\drawable-large\ic_media_stop.png => F:\Projects\Core\Napoleon.A\modules\delivery\bin\res\drawable-large\ic_media_stop.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\delivery\bin\res\drawable-large\ic_media_stop.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\delivery\res\drawable-large\ic_menu_call.png => F:\Projects\Core\Napoleon.A\modules\delivery\bin\res\drawable-large\ic_menu_call.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\delivery\bin\res\drawable-large\ic_menu_call.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\delivery\res\drawable-large\ic_menu_mapmode.png => F:\Projects\Core\Napoleon.A\modules\delivery\bin\res\drawable-large\ic_menu_mapmode.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\delivery\bin\res\drawable-large\ic_menu_mapmode.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\delivery\res\drawable-large\ic_menu_refresh.png => F:\Projects\Core\Napoleon.A\modules\delivery\bin\res\drawable-large\ic_menu_refresh.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\delivery\bin\res\drawable-large\ic_menu_refresh.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\delivery\res\drawable-large\pictograms.png => F:\Projects\Core\Napoleon.A\modules\delivery\bin\res\drawable-large\pictograms.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\delivery\bin\res\drawable-large\pictograms.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\delivery\res\drawable-large\refresh.png => F:\Projects\Core\Napoleon.A\modules\delivery\bin\res\drawable-large\refresh.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\delivery\bin\res\drawable-large\refresh.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\delivery\res\drawable-mdpi\ic_date_range_white_24dp.png => F:\Projects\Core\Napoleon.A\modules\delivery\bin\res\drawable-mdpi\ic_date_range_white_24dp.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\delivery\bin\res\drawable-mdpi\ic_date_range_white_24dp.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\delivery\res\drawable-xhdpi\ic_date_range_white_24dp.png => F:\Projects\Core\Napoleon.A\modules\delivery\bin\res\drawable-xhdpi\ic_date_range_white_24dp.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\delivery\bin\res\drawable-xhdpi\ic_date_range_white_24dp.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\delivery\res\drawable-xxhdpi\ic_date_range_white_24dp.png => F:\Projects\Core\Napoleon.A\modules\delivery\bin\res\drawable-xxhdpi\ic_date_range_white_24dp.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\delivery\bin\res\drawable-xxhdpi\ic_date_range_white_24dp.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\delivery\res\drawable-xxxhdpi\ic_date_range_white_24dp.png => F:\Projects\Core\Napoleon.A\modules\delivery\bin\res\drawable-xxxhdpi\ic_date_range_white_24dp.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\delivery\bin\res\drawable-xxxhdpi\ic_date_range_white_24dp.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\delivery\res\drawable\ic_delete.png => F:\Projects\Core\Napoleon.A\modules\delivery\bin\res\drawable\ic_delete.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\delivery\bin\res\drawable\ic_delete.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\delivery\res\drawable\ic_media_play.png => F:\Projects\Core\Napoleon.A\modules\delivery\bin\res\drawable\ic_media_play.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\delivery\bin\res\drawable\ic_media_play.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\delivery\res\drawable\ic_media_stop.png => F:\Projects\Core\Napoleon.A\modules\delivery\bin\res\drawable\ic_media_stop.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\delivery\bin\res\drawable\ic_media_stop.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\delivery\res\drawable\ic_menu_call.png => F:\Projects\Core\Napoleon.A\modules\delivery\bin\res\drawable\ic_menu_call.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\delivery\bin\res\drawable\ic_menu_call.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\delivery\res\drawable\ic_menu_mapmode.png => F:\Projects\Core\Napoleon.A\modules\delivery\bin\res\drawable\ic_menu_mapmode.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\delivery\bin\res\drawable\ic_menu_mapmode.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\delivery\res\drawable\ic_menu_refresh.png => F:\Projects\Core\Napoleon.A\modules\delivery\bin\res\drawable\ic_menu_refresh.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\delivery\bin\res\drawable\ic_menu_refresh.png: 0% size of source)
+   [crunch] Processing image to cache: F:\Projects\Core\Napoleon.A\modules\delivery\res\drawable\pictograms.png => F:\Projects\Core\Napoleon.A\modules\delivery\bin\res\drawable\pictograms.png
+   [crunch]   (processed image to cache entry F:\Projects\Core\Napoleon.A\modules\delivery\bin\res\drawable\pictograms.png: 0% size of source)
+   [crunch] Crunched 20 PNG files to update cache
+
+-package-resources:
+     [echo] Library project: do not package resources...
+
+-package:
+     [echo] Library project: do not package apk...
+
+-post-package:
+
+-release-prompt-for-password:
+
+-release-nosign:
+     [echo] 
+[propertyfile] Creating new property file: F:\Projects\Core\Napoleon.A\modules\delivery\bin\build.prop
+[propertyfile] Updating property file: F:\Projects\Core\Napoleon.A\modules\delivery\bin\build.prop
+[propertyfile] Updating property file: F:\Projects\Core\Napoleon.A\modules\delivery\bin\build.prop
+[propertyfile] Updating property file: F:\Projects\Core\Napoleon.A\modules\delivery\bin\build.prop
+
+-release-sign:
+
+-post-build:
+
+release:
+
+-code-gen:
+[mergemanifest] Found Deleted Target File
+[mergemanifest] Merging AndroidManifest files into one.
+[mergemanifest] Manifest merger disabled. Using project manifest only.
+     [echo] Handling aidl files...
+     [aidl] No AIDL files to compile.
+     [echo] ----------
+     [echo] Handling RenderScript files...
+     [echo] ----------
+     [echo] Handling Resources...
+     [aapt] Found Deleted Target File
+     [aapt] Generating resource IDs...
+     [aapt] nothing matches overlay file message.png, for flavor large-v4
+     [aapt] nothing matches overlay file pictograms.png, for flavor hdpi-v4
+     [aapt]     (skipping dir 'crunch' due to ANDROID_AAPT_IGNORE pattern 'crunch')
+     [aapt]     (skipping dir 'crunch' due to ANDROID_AAPT_IGNORE pattern 'crunch')
+     [aapt]     (skipping dir 'crunch' due to ANDROID_AAPT_IGNORE pattern 'crunch')
+     [aapt]     (skipping dir 'crunch' due to ANDROID_AAPT_IGNORE pattern 'crunch')
+     [aapt]     (skipping dir 'crunch' due to ANDROID_AAPT_IGNORE pattern 'crunch')
+     [echo] ----------
+     [echo] Handling BuildConfig class...
+[buildconfig] No need to generate new BuildConfig.
+
+-pre-compile:
+
+-compile:
+    [javac] Compiling 3 source files to f:\Projects\Core\Napoleon.A\profcosmeticnn\bin\classes
+    [javac] warning: [options] source value 1.5 is obsolete and will be removed in a future release
+    [javac] warning: [options] target value 1.5 is obsolete and will be removed in a future release
+    [javac] warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.
+    [javac] 3 warnings
+
+-post-compile:
+
+-obfuscate:
+
+-dex:
+      [dex] input: f:\Projects\Core\Napoleon.A\profcosmeticnn\bin\classes
+      [dex] input: F:\Projects\Core\Napoleon.A\modules\delivery\bin\classes.jar
+      [dex] input: F:\Projects\Core\Napoleon.A\modules\base\bin\classes.jar
+      [dex] input: F:\Projects\Core\Napoleon.A\modules\documents\bin\classes.jar
+      [dex] input: F:\Projects\Core\Napoleon.A\modules\gson\bin\classes.jar
+      [dex] input: F:\Projects\Core\Napoleon.A\modules\chat\bin\classes.jar
+      [dex] input: F:\Projects\Core\Napoleon.A\modules\network\bin\classes.jar
+      [dex] input: F:\Projects\Core\Napoleon.A\modules\network\libs\commons-net-ftp-2.0.jar
+      [dex] input: F:\Projects\Core\Napoleon.A\modules\network\libs\android-support-v4.jar
+      [dex] input: f:\android-sdks\tools\support\annotations.jar
+      [dex] Pre-Dexing F:\Projects\Core\Napoleon.A\modules\delivery\bin\classes.jar -> classes-dc58ea8435f09cd24876178f009e8066.jar
+      [dex] Pre-Dexing F:\Projects\Core\Napoleon.A\modules\base\bin\classes.jar -> classes-0b4312cd829c1bf0440435be5d74ea2a.jar
+      [dex] Pre-Dexing F:\Projects\Core\Napoleon.A\modules\documents\bin\classes.jar -> classes-108c75fbda8f25a99197d4f1e4691024.jar
+      [dex] Pre-Dexing F:\Projects\Core\Napoleon.A\modules\gson\bin\classes.jar -> classes-e66ee04ce20eb91bdbfe8b1079b8a7a6.jar
+      [dex] Pre-Dexing F:\Projects\Core\Napoleon.A\modules\chat\bin\classes.jar -> classes-f31f808a0bef99e0ef4fec258540224b.jar
+      [dex] Pre-Dexing F:\Projects\Core\Napoleon.A\modules\network\bin\classes.jar -> classes-e2bffe9c63aea4771d24565991581476.jar
+      [dex] Using Pre-Dexed commons-net-ftp-2.0-df600b23fc538bc235e2edbd14169a1d.jar <- F:\Projects\Core\Napoleon.A\modules\network\libs\commons-net-ftp-2.0.jar
+      [dex] Using Pre-Dexed android-support-v4-8a035a3fa8fe93b5125e4d0bafaa76b8.jar <- F:\Projects\Core\Napoleon.A\modules\network\libs\android-support-v4.jar
+      [dex] Using Pre-Dexed annotations-5499adcf398751a8fd7a9cd9534d5bf9.jar <- f:\android-sdks\tools\support\annotations.jar
+      [dex] Found Deleted Target File
+      [dex] Converting compiled files and external libraries into f:\Projects\Core\Napoleon.A\profcosmeticnn\bin\classes.dex...
+       [dx] Merged dex #1 (37 defs/60.2KiB)
+       [dx] Merged dex #2 (1113 defs/1089.6KiB)
+       [dx] Merged dex #3 (2 defs/1.1KiB)
+       [dx] Merged dex #4 (627 defs/611.5KiB)
+       [dx] Merged dex #5 (77 defs/59.0KiB)
+       [dx] Merged dex #6 (131 defs/98.8KiB)
+       [dx] Merged dex #7 (258 defs/253.0KiB)
+       [dx] Merged dex #8 (174 defs/184.3KiB)
+       [dx] Merged dex #9 (16 defs/16.9KiB)
+       [dx] Merged dex #10 (60 defs/93.1KiB)
+       [dx] Result is 2495 defs/3063.9KiB. Took 0.3s
+
+-crunch:
+   [crunch] Crunching PNG Files in source dir: f:\Projects\Core\Napoleon.A\profcosmeticnn\res
+   [crunch] To destination dir: f:\Projects\Core\Napoleon.A\profcosmeticnn\bin\res
+   [crunch] Crunched 0 PNG files to update cache
+
+-package-resources:
+     [aapt] Found Deleted Target File
+     [aapt] Creating full resource package...
+     [aapt] nothing matches overlay file message.png, for flavor large-v4
+     [aapt] nothing matches overlay file pictograms.png, for flavor hdpi-v4
+     [aapt]     (skipping dir 'crunch' due to ANDROID_AAPT_IGNORE pattern 'crunch')
+     [aapt]     (skipping dir 'crunch' due to ANDROID_AAPT_IGNORE pattern 'crunch')
+     [aapt]     (skipping dir 'crunch' due to ANDROID_AAPT_IGNORE pattern 'crunch')
+     [aapt]     (skipping dir 'crunch' due to ANDROID_AAPT_IGNORE pattern 'crunch')
+     [aapt]     (skipping dir 'crunch' due to ANDROID_AAPT_IGNORE pattern 'crunch')
+     [aapt] Warning: AndroidManifest.xml already defines debuggable (in http://schemas.android.com/apk/res/android); using existing value in manifest.
+
+-package:
+[apkbuilder] Found Deleted Target File
+[apkbuilder] Creating ProfCosmeticNN-release-unsigned.apk for release...
+
+-post-package:
+
+-release-prompt-for-password:
+
+-release-nosign:
+
+-release-sign:
+     [echo] Signing final apk...
+ [zipalign] Running zip align on final apk...
+     [echo] Release Package: f:\Projects\Core\Napoleon.A\profcosmeticnn\bin\ProfCosmeticNN.apk
+[propertyfile] Updating property file: f:\Projects\Core\Napoleon.A\profcosmeticnn\bin\build.prop
+[propertyfile] Updating property file: f:\Projects\Core\Napoleon.A\profcosmeticnn\bin\build.prop
+[propertyfile] Updating property file: f:\Projects\Core\Napoleon.A\profcosmeticnn\bin\build.prop
+[propertyfile] Updating property file: f:\Projects\Core\Napoleon.A\profcosmeticnn\bin\build.prop
+
+-post-build:
+
+release:
+
+BUILD SUCCESSFUL
+Total time: 21 seconds

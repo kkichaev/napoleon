@@ -1,0 +1,154 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+   <objects>
+      <object name="Returns">
+         <sources>
+            <source name="DBFCatalogTable">
+               <param name="tableName">$object.table + $user.id</param>
+               <param name="catalog">"id"</param>
+               <param name="ordered">1</param>
+            </source>
+         </sources>
+
+         <member name="table">"VZT"</member>
+         <member name="primaryKey">"userid,created"</member>
+
+         <field name="userid" type="string" data="USER_ID" execOn="Put">$user.id</field>
+         <field name="created" type="timestamp" data="CREATED"/>
+         <field name="date" type="date" data="DATE" />
+         <field name="shedule" type="timestamp" data="ORD_CRTD" />
+         <field name="ordDate" type="date" data="ORD_DATE" />
+         <field name="id" width="20" type="string" />
+         <field name="remark" type="string" />
+
+         <field name="items" type="collection">
+            <data>
+               <object name="OrderItem">
+                  <sources>
+                     <source name="DBFCatalogItemTable"/>
+                  </sources>
+
+                  <field name="id" width="20" type="string" data="ID_I"/>
+                  <field name="qty" type="number" prec="3" />
+                  <field name="ordflag" width="1" type="number" execOn="Put">FirstItem($object)</field>
+               </object>
+            </data>
+         </field>
+
+      </object>
+
+      <object name="RetSend">
+         <sources>
+            <source name="DBFTableSet">
+               <param name="userTable">"RET"</param>
+               <param name="commonTable">"RETURNS"</param>
+               <param name="catalog">"number;items;0"</param>
+            </source>
+         </sources>
+
+         <member name="table">"RET"</member>
+
+         <field name="number" type="string" data="NUM"/>
+         <field name="created" type="timestamp"/>
+         <field name="date" type="date"/>
+         <field name="id" type="string" />
+
+         <field name="items" type="collection">
+            <data>
+               <object name="RetItem">
+                  <field name="id" type="string" data="ID_I"/>
+                  <field name="qty" type="number" prec="3" />
+               </object>
+            </data>
+         </field>
+
+      </object>
+
+      <object name="OrgRmntsSend">
+         <sources>
+            <source name="DBFTableSet">
+               <param name="userTable">"REST"</param>
+               <param name="commonTable">"RESTS"</param>
+               <param name="catalog">"id,date;items;0"</param>
+            </source>
+         </sources>
+
+         <member name="table">"REST"</member>
+
+         <field name="date" type="timestamp"/>
+         <field name="id" type="string" />
+
+         <field name="items" type="collection">
+            <data>
+               <object name="RetItem">
+                  <field name="id" type="string" data="ID_I"/>
+                  <field name="qty" type="number" prec="3" />
+               </object>
+            </data>
+         </field>
+
+      </object>
+
+      <object name="FolderCoef">
+         <sources>
+            <source name="SQTable" type="internal" />
+         </sources>
+
+         <member name="primaryKey">"fid"</member>
+
+         <field name="fid" type="string" />
+         <field name="coef" type="number" prec="2" />
+         <field name="id" type="number" hidden="put" execOn="Get" >FolderID($object.fid)</field>
+      </object>
+
+      <modify src="Price">
+         <add>
+            <field name="unitName" type="string" data="UNIT" />
+            <field name="avgWeight" type="number" prec="3" data="AVG_W" />
+         </add>
+      </modify>
+      <modify src="Org">
+         <add>
+            <field name="coef" type="number" prec="2" />
+            <field name="matrix" type="collection">
+               <data>
+                  <object name="OrgMatrix">
+                     <sources>
+                        <source name="DBFTableSet">
+                           <param name="userTable">"OMX"</param>
+                           <param name="commonTable">"ORGMTX"</param>
+                           <param name="filter">"[ID] = $parent.id"</param>
+                        </source>
+                     </sources>
+
+                     <field name="id" data="ID_I" type="string" />
+                  </object>
+               </data>
+            </field>
+         </add>
+      </modify>
+      <modify src="OrgFolder$items">
+         <add>
+            <field name="time" type="string" width="5" />
+         </add>
+      </modify>
+      <modify src="Order">
+         <add>
+            <field name="payType" type="string" width="30" />
+            <field name="shedule" type="timestamp" width="20" />
+         </add>
+      </modify>
+      <modify src="Delivery">
+         <change>
+            <sources>
+               <source name="DBFTableSet">
+                  <param name="userTable">"DLV"</param>
+                  <param name="commonTable">"DELIVERY"</param>
+                  <param name="catalog">"number,date;items;0"</param>
+                  <param name="filter">"[id] in $Org.id"</param>
+               </source>
+            </sources>
+         </change>
+      </modify>
+   </objects>
+</serverDefs>

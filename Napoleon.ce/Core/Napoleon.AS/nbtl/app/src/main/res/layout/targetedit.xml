@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:background="@color/white" >
+    
+    <EditText android:id="@+id/edRemark"
+        android:layout_width="fill_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1"
+        android:hint="@string/target_hint"
+        android:gravity="top|left"/>
+    
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/button_panel"
+        android:padding="5dp" >
+
+        <Button
+            android:id="@+id/btnCancel"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="@string/cancel" 
+            android:textSize="16sp"
+            android:visibility="gone">
+        </Button>
+
+        <Button
+            android:id="@+id/btnOK"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:text="@string/ok"
+            android:textStyle="bold" 
+            android:textSize="16sp">
+        </Button>
+    </LinearLayout>
+
+</LinearLayout>

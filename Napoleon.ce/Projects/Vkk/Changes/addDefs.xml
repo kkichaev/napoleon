@@ -1,0 +1,87 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+   <objects>
+      <object name="Remake">
+         <sources>
+            <source name="DBFTable">
+               <param name="tableName">$object.table + $user.id</param>
+            </source>
+         </sources>
+
+         <member name="table">"RMK"</member>
+         <member name="altTable">"REMAKE"</member>
+
+         <field name="id" type="string" />
+         <field name="text" type="string" />
+         <field name="name" type="string" />
+         <field name="sum" type="number" prec="2" />
+         <field name="number" type="string" data="NUM" />
+         <field name="date" type="date" />
+      </object>
+      
+      <object name="Dover">
+         <sources>
+            <source name="DBFTable">
+               <param name="tableName">$object.table + $user.id</param>
+            </source>
+         </sources>
+
+         <member name="table">"DVR"</member>
+         <member name="altTable">"DOVER"</member>
+
+         <field name="id" type="string" />
+         <field name="sum" type="number" prec="2" />
+         <field name="number" type="string" data="NUM" />
+         <field name="date" type="date" />
+      </object>
+    
+      <modify src="Price">
+         <add>
+            <field name="mult" type="number" prec="3" width="8" />
+         </add>
+      </modify>
+      <modify src="Org">
+         <add>
+            <field name="firm" type="number" width="2" />
+            <field name="delay" type="number" width="2" />
+            <field name="incass" type="number" hidden="true" />
+            <field name="flags" type="number" execOn="Get" >EncodeFlag($object.incass,9)</field>
+            
+          <field name="discount" type="collection">
+            <data>
+              <object name="OrgDiscountItem">
+                <sources>
+                  <source name="DBFTableSet">
+                    <param name="userTable">"DSC"</param>
+                    <param name="commonTable">"DISCOUNTS"</param>
+                    <param name="filter">"[ID] = $parent.id"</param>
+                  </source>
+                </sources>
+
+                <field name="id" data="ID_I" type="string" />
+                <field name="discount" data="DISC" type="number" prec="2"/>
+              </object>
+            </data>
+          </field>
+         </add>
+      </modify>
+      <modify src="Payment">
+         <add>
+            <field name="agent" type="string" />
+            <field name="payDate" type="date" data="PAY_DATE" />
+         </add>
+      </modify>
+      <modify src="Delivery" dest="ActDelivery">
+         <change>
+            <sources>
+              <source name="DBFTableSet">
+                <param name="userTable">"ADLV"</param>
+                <param name="commonTable">"ACTDLV"</param>
+                <param name="catalog">"number;items;1"</param>
+                <param name="filter">"[id] in $Org.id"</param>
+              </source>
+            </sources>
+         </change>
+      </modify>
+   </objects>
+</serverDefs>

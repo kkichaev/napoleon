@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_marginTop="60dp"
+        android:paddingStart="40dp"
+        android:paddingEnd="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/activation_code"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/code"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="5"
+            tools:text = "0345"
+            android:textSize="30sp"
+            android:layout_marginTop="16dp"
+            android:imeOptions="actionNext"
+            android:inputType="number"
+            tools:ignore="TextFields">
+            <requestFocus />
+        </EditText>
+
+        <TextView
+            android:id="@+id/connect_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/activation_code_hint"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/connect"
+            android:layout_marginTop="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:text="@string/connect"
+            android:backgroundTint="@color/value_color"
+            />
+
+        <Button
+            android:visibility="gone"
+            android:id="@+id/sync"
+            android:layout_marginTop="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:text="@string/sync"
+            android:backgroundTint="@color/value_color"
+            />
+    </LinearLayout>
+
+
+</LinearLayout>

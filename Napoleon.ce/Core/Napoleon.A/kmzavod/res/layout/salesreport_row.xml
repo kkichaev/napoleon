@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" >
+
+    <TextView
+        android:id="@+id/tvPos"
+        android:layout_width="@dimen/slc_pos_col"
+        android:layout_height="wrap_content"
+        android:text="№" />
+
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Клиент(ТТ)" />
+
+    <TextView
+        android:id="@+id/tvCol4"
+        android:layout_width="@dimen/slc_val_col"
+        android:layout_height="wrap_content"
+        android:text="Отгрузка" />
+    
+    <TextView
+        android:id="@+id/tvCol1"
+        android:layout_width="@dimen/slc_val_col"
+        android:layout_height="wrap_content"
+        android:text="Вес КМЗ" />
+
+    <TextView
+        android:id="@+id/tvCol2"
+        android:layout_width="@dimen/slc_val_col"
+        android:layout_height="wrap_content"
+        android:text="Фасовка КМЗ" />
+
+    <TextView
+        android:id="@+id/tvCol3"
+        android:layout_width="@dimen/slc_val_col"
+        android:layout_height="wrap_content"
+        android:text="Покупной" />
+    
+    <TextView
+        android:id="@+id/tvRes"
+        android:layout_width="@dimen/slc_val_col"
+        android:layout_height="wrap_content"
+        android:text="Всего" />
+</LinearLayout>

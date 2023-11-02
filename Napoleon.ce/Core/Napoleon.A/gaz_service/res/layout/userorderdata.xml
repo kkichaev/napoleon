@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" android:background="@color/white">
+    
+<LinearLayout 
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" android:padding="10dp">
+
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" android:stretchColumns="1">
+
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Вид услуги" 
+                android:textColor="@color/black" 
+                android:layout_gravity="center_vertical" 
+                android:paddingRight="10dp"/>
+
+            <Spinner
+                android:id="@+id/spWorkType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Клиент" 
+                android:textColor="@color/black" 
+                android:layout_gravity="center_vertical" 
+                android:paddingRight="10dp"/>
+
+            <EditText
+                android:id="@+id/edContact"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Счетчик" 
+                android:textColor="@color/black" 
+                android:layout_gravity="center_vertical" 
+                android:paddingRight="10dp"/>
+
+            <Spinner
+                android:id="@+id/spCounter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Номер" 
+                android:textColor="@color/black" 
+                android:layout_gravity="center_vertical" 
+                android:paddingRight="10dp"/>
+
+            <EditText
+                android:id="@+id/edNumCounter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </TableRow>
+        
+        <TableRow
+            android:id="@+id/trProtokolEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Протокол" 
+                android:textColor="@color/black" 
+                android:layout_gravity="center_vertical" 
+                android:paddingRight="10dp"/>
+
+            <Spinner
+                android:id="@+id/spProtocol"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </TableRow>
+        
+         <TableRow
+            android:id="@+id/trProtokolShow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Протокол" 
+                android:textColor="@color/black" 
+                android:layout_gravity="center_vertical" 
+                android:paddingRight="10dp"/>
+
+            <EditText
+                android:id="@+id/edProtocol"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </TableRow>
+        
+        <TableRow
+            android:id="@+id/trCertEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Свидетельство" 
+                android:textColor="@color/black" 
+                android:layout_gravity="center_vertical" 
+                android:paddingRight="10dp"/>
+
+            <Spinner
+                android:id="@+id/spCert"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </TableRow>
+        
+        <TableRow
+            android:id="@+id/trCertShow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Свидетельство" 
+                android:textColor="@color/black" 
+                android:layout_gravity="center_vertical" 
+                android:paddingRight="10dp"/>
+
+            <EditText
+                android:id="@+id/edCert"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </TableRow>
+        
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Показания" 
+                android:textColor="@color/black" 
+                android:layout_gravity="center_vertical" 
+                android:paddingRight="10dp"/>
+
+            <EditText
+                android:id="@+id/edDataCounter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"/>
+        </TableRow>
+        
+        <TableRow
+            android:id="@+id/tableRow4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Телефон" 
+                android:textColor="@color/black" 
+                android:layout_gravity="center_vertical" 
+                android:paddingRight="10dp"/>
+
+            <EditText
+                android:id="@+id/edPhone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" 
+                android:inputType="phone"/>
+        </TableRow>
+    </TableLayout>
+
+</LinearLayout>
+</ScrollView>

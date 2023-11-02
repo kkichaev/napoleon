@@ -1,0 +1,296 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+   <meta http-equiv='X-UA-Compatible' content='IE=Edge' />
+   <title>User Location</title>
+
+   <style type="text/css">
+      body, html {
+         width: 100%;
+         height: 100%;
+         margin: 0;
+         padding: 0;
+         overflow: hidden;
+      }
+
+      #map {
+         height: 100%;
+      }
+
+      .infomsg { display:none; }
+   </style>
+
+   <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAjuQiUAlecbUWCdh1QCnZzrWq37EPqPE0&callback=initialize" async defer></script>
+
+   <script type="text/javascript">
+      var map;
+      var markers = {};
+      var infowindow = null;
+      var polylines = [];
+
+      function showInfo(pos) {
+         try {
+            var m = markers[pos];
+            google.maps.event.trigger(m, 'click');
+            map.setCenter(m.position);
+         } catch (err) { }
+      }
+
+      function doStopDescr(obj) {
+         var result = "Остановка ";
+         var ds = new Date(obj.date);
+         var de = new Date(obj.endTime);
+         var dm = Math.round((de - ds) / (1000 * 60));
+         result += "<br>";
+         result += humanTime(dm);
+         result += "<br>";
+         result += obj.address;
+         return result;
+      }
+
+      function humanTime(min) {
+         return Math.round(min < 60) ? min + "&nbsp;мин." : Math.round(min / 60) + "&nbsp;ч.&nbsp;" + Math.round(min % 60) + "&nbsp;мин.";
+      }
+
+      function initialize() {
+         map = new google.maps.Map(document.getElementById("map"),
+         {
+            center: new google.maps.LatLng({ lat: 57.611453, lng: 39.83032 }),
+            zoom: 13
+         });
+
+         loadData('DATASECTION');
+      }
+
+      function drawRoute(points, bounds) {
+         var gpsColor = "#ff0000";
+         var gsmColor = "#b000b0";
+         var isGSM = null;
+         var routes = [];
+
+         points.forEach(function (p) {
+            if (isGSM == null || isGSM != p.isGSM) {
+               routes.push([]);
+               isGSM = p.isGSM;
+            }
+
+            routes[routes.length - 1].push(p);
+         });
+
+         routes.forEach(function (p) {
+            var path = [];
+            var color = p.isGSM != 0 ? gpsColor : gsmColor;
+
+            p.forEach(function (pp) {
+               var c = new google.maps.LatLng(pp.latitude, pp.longitude);
+               path.push(c);
+               bounds.extend(c);
+            });
+
+            var route = new google.maps.Polyline({
+               path: path,
+               icons: [{ icon: { path: 'M -1,2 0,-1 1,2 0,1' }, offset: '50%', repeat: '150px' }],
+               strokeColor: color,
+               strokeWeight: 5,
+               strokeOpacity: 1
+            });
+
+            route.setMap(map);
+            polylines.push(route);
+         });
+      }
+
+      function drawStops(stops, bounds) {
+         stops.forEach(function (p) {
+            var c = new google.maps.LatLng(p.latitude, p.longitude);
+            bounds.extend(c);
+            var marker = new google.maps.Marker({
+               position: c,
+               icon: "http://grsoft.ru/markers/orange/markerblank.png",
+               map: map,
+               info: p,
+            });
+
+            marker.addListener('click', function (e) {
+               if (infowindow != null)
+                  infowindow.close();
+
+               infowindow = new google.maps.InfoWindow({
+                  content: doStopDescr(this.info),
+               });
+
+               infowindow.open(map, this);
+            });
+
+            markers[p.idx] = marker;
+         });
+      }
+
+      function taskSolutionToString(sol) {
+         var res = "Неопределена";
+
+         switch (sol) {
+            case 0:
+               res = "Непринята";
+               break;
+            case 1:
+               res = "Выполнена";
+               break;
+            case 2:
+               res = "Отклонена";
+               break;
+            case 4:
+               res = "Принятая";
+               break;
+            case 5:
+               res = "Выполняется";
+               break;
+         }
+
+         return res;
+      }
+
+      function doDocDescr(d) {
+         var res = "Задача:&nbsp;" + d.task.text;
+         res += "<br>статус:&nbsp;" + taskSolutionToString(d.task.solution);
+         res += "<br>комметарий:&nbsp;" + d.task.execrem;
+         res += "<br>адрес:&nbsp;" + d.task.address;
+
+         return res;
+      }
+
+      function drawExecuted(docs, bounds) {
+         docs.forEach(function (p) {
+            if (p.task.latitude != 0 && p.task.longitude != 0) {
+               var c = new google.maps.LatLng(p.task.latitude, p.task.longitude);
+               bounds.extend(c);
+               var marker = new google.maps.Marker({
+                  position: c,
+                  icon: "http://grsoft.ru/markers/green/marker" + p.idx + ".png",
+                  map: map,
+                  info: p,
+               });
+
+               marker.addListener('click', function (e) {
+                  if (infowindow != null)
+                     infowindow.close();
+
+                  infowindow = new google.maps.InfoWindow({
+                     content: doDocDescr(this.info),
+                  });
+
+                  infowindow.open(map, this);
+               });
+
+               markers[p.idx] = marker;
+            }
+         });
+      }
+
+      function doPendDescr(d) {
+         var res = "Задача:&nbsp;" + d.task.text;
+         res += "<br>адрес:&nbsp;" + d.task.address;
+
+         return res;
+      }
+
+      function drawPendings(docs, bounds) {
+         docs.forEach(function (p) {
+            if (p.task.latitude != 0 && p.task.longitude != 0) {
+               var c = new google.maps.LatLng(p.task.latitude, p.task.longitude);
+               bounds.extend(c);
+               var marker = new google.maps.Marker({
+                  position: c,
+                  icon: "http://grsoft.ru/markers/blue/marker" + p.idx + ".png",
+                  map: map,
+                  info: p,
+               });
+
+               marker.addListener('click', function (e) {
+                  if (infowindow != null)
+                     infowindow.close();
+
+                  infowindow = new google.maps.InfoWindow({
+                     content: doPendDescr(this.info),
+                  });
+
+                  infowindow.open(map, this);
+               });
+
+               markers[p.idx] = marker;
+            }
+         });
+      }
+
+      function doStepPointsDescr(d) {
+         var dt = new Date(d.date);
+         var res = "время:&nbsp;" + dt.getHours() + ":" + dt.getMinutes();
+         res += "<br>скорость:&nbsp;" + d.speed * 3.6 + "&nbsp;км/ч";
+
+         return res;
+      }
+
+      function drawStepPoints(docs, bounds) {
+         docs.forEach(function (p) {
+            var c = new google.maps.LatLng(p.latitude, p.longitude);
+            bounds.extend(c);
+            var marker = new google.maps.Marker({
+               position: c,
+               icon: "http://grsoft.ru/markers/red/marker" + p.idx + ".png",
+               map: map,
+               info: p,
+            });
+
+            marker.addListener('click', function (e) {
+               if (infowindow != null)
+                  infowindow.close();
+
+               infowindow = new google.maps.InfoWindow({
+                  content: doStepPointsDescr(this.info),
+               });
+
+               infowindow.open(map, this);
+            });
+         });
+      }
+
+      function loadData(json) {
+         try {
+            polylines.forEach(function (p) { p.setMap(null); })
+
+            var data = JSON.parse(json)
+            var bounds = new google.maps.LatLngBounds();
+
+            if (data != null) {
+               if (data.points != null)
+                  drawRoute(data.points, bounds);
+
+               if (data.stops != null)
+                  drawStops(data.stops, bounds);
+
+               if (data.executed != null)
+                  drawExecuted(data.executed, bounds);
+
+               if (data.pendings != null)
+                  drawPendings(data.pendings, bounds);
+
+               if (data.stepoints != null)
+                  drawStepPoints(data.stepoints, bounds);
+
+               if (!bounds.isEmpty()) {
+                  map.setCenter(bounds.getCenter());
+                  map.fitBounds(bounds);
+               }
+            }
+         } catch (err) {
+            console.log(err);
+         }
+      }
+   </script>
+</head>
+
+<body>
+   <div id="map"></div>
+</body>
+</html>

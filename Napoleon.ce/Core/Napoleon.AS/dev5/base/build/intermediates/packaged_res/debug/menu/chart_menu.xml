@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:id="@+id/itSync"
+        android:icon="@drawable/sync2"
+        android:showAsAction="ifRoom"
+        android:title="@string/sync"/>
+
+    <item android:id="@+id/itSetting"
+        android:icon="@drawable/chart_setting"
+        android:showAsAction="ifRoom"
+        android:title="@string/charge"/>
+</menu>

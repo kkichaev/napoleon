@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.grsoft.manager"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:name="ManagerApp"
+        android:allowBackup="true"
+        android:icon="@drawable/pictograms"
+        android:label="@string/app_name"
+        android:theme="@style/ManagerTheme"
+        android:requestLegacyExternalStorage="true"
+        android:usesCleartextTraffic="true">
+        
+        <activity
+            android:name=".MainEx"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name="com.grsoft.manager.ManagerNew" android:configChanges="keyboard|keyboardHidden|orientation" android:screenOrientation="landscape" />
+        <activity android:name="com.grsoft.manager.AgentRoute" android:configChanges="keyboard|keyboardHidden|orientation" android:screenOrientation="landscape" />
+        <activity android:name="com.grsoft.manager.EditorsItems" android:configChanges="keyboard|keyboardHidden|orientation" android:screenOrientation="landscape" />
+        <activity android:name="com.grsoft.manager.Editors" android:configChanges="keyboard|keyboardHidden|orientation" android:screenOrientation="landscape" />
+        <activity android:name="com.grsoft.manager.RatingActionEdit" android:configChanges="keyboard|keyboardHidden|orientation" android:screenOrientation="landscape" />
+        <activity android:name="com.grsoft.manager.Preview" android:configChanges="keyboard|keyboardHidden|orientation" android:screenOrientation="landscape" />
+        <activity android:name="com.grsoft.manager.HistoryMessage" android:configChanges="keyboard|keyboardHidden|orientation" android:screenOrientation="landscape" />
+        <activity android:name="com.grsoft.manager.ManagerConfiguration" android:configChanges="keyboard|keyboardHidden|orientation" android:screenOrientation="landscape" />
+        <activity android:name="com.grsoft.manager.DocDetail" android:configChanges="keyboard|keyboardHidden|orientation" android:screenOrientation="landscape" />
+        <activity android:name="com.grsoft.manager.OrderDetail" android:configChanges="keyboard|keyboardHidden|orientation" android:screenOrientation="landscape"/>
+        <activity android:name="com.grsoft.manager.OrgTaskList" android:configChanges="keyboard|keyboardHidden|orientation" android:screenOrientation="landscape" />
+        
+        <service
+            android:name="com.grsoft.napoleon.Shared"
+            android:exported="true"
+            android:process=":shared"
+            tools:ignore="ExportedService" >
+            <intent-filter>
+                <action android:name="com.grsoft.napoleon.ExchangeService" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </service>
+
+        <service
+            android:name="FBMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="@string/default_notification_channel_id" />
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/ic_agent_alert" />
+        <!-- Set color used with incoming notification messages. This is used when no color is set for the incoming
+             notification message. See README(https://goo.gl/6BKBk7) for more. -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/alert" />
+
+        <service android:name="com.grsoft.util.ReportService" />
+
+         <activity android:name="com.grsoft.napoleon.CrashReport" android:configChanges="keyboard|keyboardHidden|orientation|screenSize" android:screenOrientation="landscape" />
+         <activity android:name="com.grsoft.network.BaseSimpleActivity" android:configChanges="keyboard|keyboardHidden|orientation|screenSize" android:screenOrientation="landscape" />
+         <activity android:name="com.grsoft.napoleon.QuestAttachmentsList" android:configChanges="keyboard|keyboardHidden|orientation|screenSize" android:screenOrientation="landscape" />
+         <activity android:name="com.grsoft.manager.ActivityReport" android:configChanges="keyboard|keyboardHidden|orientation|screenSize" android:screenOrientation="landscape" />
+         <activity android:name="com.grsoft.manager.AKBReport" android:configChanges="keyboard|keyboardHidden|orientation|screenSize" android:screenOrientation="landscape" />
+         <activity android:name="com.grsoft.manager.AuditEdit" android:configChanges="keyboard|keyboardHidden|orientation|screenSize" android:screenOrientation="landscape" />
+         <activity android:name="com.grsoft.manager.AuditQuests" android:configChanges="keyboard|keyboardHidden|orientation|screenSize" android:screenOrientation="landscape" />
+         <activity android:name="com.grsoft.manager.Documents" android:configChanges="keyboard|keyboardHidden|orientation|screenSize" android:screenOrientation="landscape" />
+         <activity android:name="com.grsoft.manager.EditOrgTask" android:configChanges="keyboard|keyboardHidden|orientation|screenSize" android:screenOrientation="landscape" />
+         <activity android:name="com.grsoft.manager.LeaderReport" android:configChanges="keyboard|keyboardHidden|orientation|screenSize" android:screenOrientation="landscape" />
+         <activity android:name="com.grsoft.manager.ManagerTaskList" android:configChanges="keyboard|keyboardHidden|orientation|screenSize" android:screenOrientation="landscape" />
+         <activity android:name="com.grsoft.manager.OrderSumReport" android:configChanges="keyboard|keyboardHidden|orientation|screenSize" android:screenOrientation="landscape" />
+         <activity android:name="com.grsoft.manager.OrgTaskListNew" android:configChanges="keyboard|keyboardHidden|orientation|screenSize" android:screenOrientation="landscape" />
+         <activity android:name="com.grsoft.manager.DeliveryDetail" android:configChanges="keyboard|keyboardHidden|orientation|screenSize" android:screenOrientation="landscape" />
+         <activity android:name="com.grsoft.manager.RemnantsDetail" android:configChanges="keyboard|keyboardHidden|orientation|screenSize" android:screenOrientation="landscape" />
+         <activity android:name="com.grsoft.manager.AboutNew" android:configChanges="keyboard|keyboardHidden|orientation|screenSize" android:screenOrientation="landscape" />
+         <activity android:name="com.grsoft.manager.AgentRouteNew" android:configChanges="keyboard|keyboardHidden|orientation|screenSize" android:screenOrientation="landscape" />
+         <activity android:name="com.grsoft.manager.AgentsInFields" android:configChanges="keyboard|keyboardHidden|orientation|screenSize" android:screenOrientation="landscape" />
+         <activity android:name="com.grsoft.manager.AuditActivity" android:configChanges="keyboard|keyboardHidden|orientation|screenSize" android:screenOrientation="landscape" />
+         <activity android:name="com.grsoft.manager.ManagerConfigurationNew" android:configChanges="keyboard|keyboardHidden|orientation|screenSize" android:screenOrientation="landscape" />
+         <activity android:name="com.grsoft.manager.ReportListActivity" android:configChanges="keyboard|keyboardHidden|orientation|screenSize" android:screenOrientation="landscape" />
+         <activity android:name="com.grsoft.manager.StoryTapeActivity" android:configChanges="keyboard|keyboardHidden|orientation|screenSize" android:screenOrientation="landscape" />
+         <activity android:name="com.grsoft.manager.QuestionDetail" android:configChanges="keyboard|keyboardHidden|orientation|screenSize" android:screenOrientation="landscape" />
+         <activity android:name="com.grsoft.manager.QuestionDetailNew" android:configChanges="keyboard|keyboardHidden|orientation|screenSize" android:screenOrientation="landscape" />
+         <activity android:name="com.grsoft.manager.VisitDetail" android:configChanges="keyboard|keyboardHidden|orientation|screenSize" android:screenOrientation="landscape" />
+         <activity android:name="com.grsoft.manager.VisitDetailNew" android:configChanges="keyboard|keyboardHidden|orientation|screenSize" android:screenOrientation="landscape" />
+         <activity android:name="com.grsoft.manager.QuestEdit" android:configChanges="keyboard|keyboardHidden|orientation|screenSize" android:screenOrientation="landscape" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="@string/fileprovider_authorities"
+            android:exported="false"
+            android:grantUriPermissions="true">
+
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/providers_path"/>
+        </provider>
+
+        <activity android:name="com.grsoft.manager.AgentAlerts"
+            android:parentActivityName=".MainEx"
+            android:configChanges="keyboard|keyboardHidden|orientation" android:screenOrientation="landscape" />
+
+    </application>
+
+</manifest>

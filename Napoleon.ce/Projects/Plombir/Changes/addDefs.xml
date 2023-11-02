@@ -1,0 +1,111 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+      <object name="OrgMatrix">
+         <sources>
+            <source name="DBFTableSet">
+               <param name="userTable">"CMTX"</param>
+               <param name="commonTable">"CMTX"</param>
+               <param name="catalog">"name;items;0"</param>
+            </source>
+         </sources>
+         <field name="items" type="collection">
+            <data>
+               <object name="MatrixItem">
+                  <field name="id" type="string" data="ID_I" width="20" />
+                  <field name="cost" type="number" prec="2" />
+               </object>
+            </data>
+         </field>
+         <field name="name" type="string" width="30" />
+      </object>
+      
+      <object name="DeliveryDay" sendAlways="true" removeOnCommit="true">
+         <sources>
+            <source name="DBFTableSet">
+               <param name="userTable">"DDLV"</param>
+               <param name="commonTable">"DDDLV"</param>
+               <param name="catalog">"number;items;1"</param>
+               <param name="filter">"[id] in $Org.id"</param>
+            </source>
+         </sources>
+         
+         <member name="table">"DDLV"</member>
+         
+         <field name="items" type="collection">
+            <data>
+               <object name="DeliveryItem">
+                  <field name="id" type="string" data="ID_I"/>
+                  <field name="qty" type="number" prec="3" />
+                  <field name="sum" type="number" prec="2" />
+                  <field name="taxSum" type="number" prec="2" data="TAX_I" feature="SALES_MODULE" />
+               </object>
+            </data>
+         </field>
+         
+         <field name="id" type="string" />
+         <field name="sumD" type="number" prec="2" />
+         <field name="number" type="string" data="NUM" />
+         <field name="supplyercode" type="string" data="FIRMA" feature="SALES_MODULE" />
+         <field name="date" type="date" />
+         <field name="created" type="timestamp" />
+         <field name="userid" type="string" />
+         <field name="payDate" type="date" /> 
+         <field name="color" type="hex" />
+      </object>
+
+          
+      <modify src="Org">
+          <add>
+              <field name="matrix" type="string" />
+              <field name="orgType" type="string" data="TYPE" />
+          </add>
+      </modify>
+      
+      <modify src="Delivery">
+          <add>
+              <field name="payDate" type="date" />
+          </add>
+      </modify>
+      
+      <modify src="Order">
+         <add>
+            <field name="whName" type="string" width="50" data="SKLAD" />
+         </add>
+      </modify>
+      
+      <modify src="Sales">
+         <add>
+            <field name="docType" type="string" width="20" data="DOC_TYPE" />
+         </add>
+      </modify>
+      
+      <modify src="Price">
+          <add>
+	         <field name="whQty" type="collection">
+	            <data>
+	               <object name="QtyItem">
+	                  <sources>
+	                     <source name="Sequence">
+	                        <param name="source">$parent.source</param>
+	                        <param name="startIndex">2</param>
+	                     </source>
+	                  </sources>
+	                  <field name="qty" type="number" prec="3" />
+	               </object>
+	            </data>
+	         </field>
+	       </add>
+	    </modify>
+      <modify src="PotenzialOrg">
+         <add>
+            <field name="outer" type="number" />
+         </add>
+      </modify>
+	<modify src="OrgFolder$items">
+         <change>
+	     	<field name="name" type="string" data="ID" width="50"/>
+         </change>
+    </modify>    
+    </objects>
+</serverDefs>

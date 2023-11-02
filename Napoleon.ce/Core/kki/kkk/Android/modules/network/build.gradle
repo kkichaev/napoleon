@@ -1,0 +1,49 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 29
+
+    defaultConfig {
+        minSdkVersion 15
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            resValue "string", "buildTime", new Date(System.currentTimeMillis()).toString()
+        }
+        market {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+            resValue "string", "buildTime", new Date(System.currentTimeMillis()).toString()
+        }
+
+        debug {
+            resValue "string", "buildTime", new Date(System.currentTimeMillis()).toString()
+        }
+    }
+
+    useLibrary 'org.apache.http.legacy'
+
+    lintOptions {
+        abortOnError false
+    }
+
+    compileOptions.encoding = 'windows-1251'
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+
+    api project(':json')
+
+    implementation 'androidx.appcompat:appcompat:1.0.0'
+    implementation 'commons-net:commons-net:3.6'
+}
+
+afterEvaluate {
+    generateReleaseBuildConfig.enabled = false
+    generateDebugBuildConfig.enabled = false
+    generateMarketBuildConfig.enabled = false
+}

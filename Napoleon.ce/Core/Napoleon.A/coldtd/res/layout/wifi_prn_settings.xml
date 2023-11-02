@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+
+    <TableRow
+        android:id="@+id/tableRow1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|center_vertical"
+            android:paddingRight="5dp"
+            android:textSize="16sp"
+            android:text="@string/ip" />
+
+        <EditText
+            android:id="@+id/edIp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10" >
+
+            <requestFocus />
+        </EditText>
+
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_gravity="right|center_vertical"
+            android:paddingRight="5dp"
+            android:textSize="16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/port" />
+
+        <EditText
+            android:id="@+id/edPort"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+             />
+
+    </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/textView3"
+            android:layout_gravity="right|center_vertical"
+            android:paddingRight="5dp"
+            android:textSize="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/print_copies" />
+
+            <EditText
+                android:id="@+id/edCopies"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+	            android:inputType="number"
+                 />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+	        <TextView
+	            android:layout_gravity="right|center_vertical"
+	            android:paddingRight="5dp"
+	            android:textSize="16sp"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="@string/row_count" />
+	
+	        <EditText
+	            android:inputType="number"
+	            android:id="@+id/edRowCount"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:ems="3" >
+	        </EditText>
+        
+        </TableRow>
+        
+</TableLayout>

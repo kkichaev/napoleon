@@ -1,0 +1,204 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+    <object name="ActionDef">
+      <sources>
+        <source name="SQTable" type="internal">
+          <param name="readFilter">'"start" &gt;= ToDate("' + FormatDate(AdjustDate(Now(),-7,"day"),"DD.MM.YYYY") + '")'</param>
+        </source>
+      </sources>
+
+      <member name="primaryKey">"id"</member>
+
+      <field name="id" type="string" />-
+      <field name="start" type="date" />
+      <field name="till" type="date" />
+      <field name="iditem" type="string" />
+      <field name="qty" type="number" />
+    </object>
+
+    <object name="Decision">
+      <sources>
+        <source name="DBFCatalogTable">
+          <param name="tableName">"DCN" + $user.id</param>
+        </source>
+        <source name="SQTable" type="internal"/>
+      </sources>
+
+      <member name="primaryKey">"userid,created"</member>
+
+      <field name="userid" type="string" />
+      <field name="created" type="timestamp" />
+      <field name="dodate" type="timestamp" />
+      <field name="value" type="number" />
+      
+      <field name="doctype" type="number" />
+      <field name="remark" type="string"/>
+      
+      <field name="manager" type="string" />
+      
+      <events>
+        <event type="put">
+          <action name="WriteInternal">$object.type</action>
+          <action name="WriteToLog">$object.type;$object.created</action>
+        </event>
+      </events>
+
+    </object>
+    
+    <object name="Sklad">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"SKL"</param>
+          <param name="commonTable">"SKLADS"</param>
+        </source>
+      </sources>
+
+      <field name="id" type="string" />
+      <field name="name" type="string" />
+      <field name="whIndex" type="number" data="WHI" />
+      <field name="costType" type="number" data="CT" />
+    </object>
+    
+    <object name="ReturnCause">
+        <sources>
+            <source name="SQTable" type="internal" >
+                <param name="readFilter">"rem=0"</param>
+             </source>   
+        </sources>
+        
+        <member name="primaryKey">"id"</member>
+        
+        <field name="id" type="string" />
+        <field name="text" type="string" />
+        <field name="rem" type="number" />
+    </object>
+    
+    <modify src="Order" dest="Action" table="Action">
+      <change>
+        <member name="table">"ACT"</member>
+      </change>
+      <add>
+        <field name="order" type="timestamp" />
+        <field name="def" type="string" width="100" />
+      </add>
+      <remove>
+        <field name="focusedItems" />
+        <field name="focusedFolders" />
+      </remove>
+    </modify>
+    
+    <modify src="Order">
+      <add>
+        <field name="whCode" type="string" data="WID" width="50"/>
+      </add>
+    </modify>
+
+    <modify src="Order$items">
+      <add>
+        <field name="discount" type="number" prec="2" />
+        <field name="costWODsc" type="number" prec ="2" />
+        <field name="actionGift" type="number" data="ACT_GIFT" />
+      </add>
+    </modify>
+
+    <modify src="Order" dest="ReqOrder" table="ReqOrder">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+      <remove>
+        <field name="focusedFolders" />
+        <field name="focusedItems" />
+      </remove>
+    </modify>
+    
+    <modify src="Org">
+      <add>
+          <field name="due" type="number" prec="2" />
+          <field name="postdue" type="number" prec="2" data="PDUE"/>
+          <field name="limitsum" type="number" data="DSUM" prec="2"/>
+          <field name="limitcnt" type="number" data="DCT" />
+          <field name="minSum" type="number" prec="2"/>
+          <field name="rsh" type="string"/>
+          <field name="ks" type="string"/>
+          <field name="bik" type="string"/>
+          <field name="inn" type="string"/>
+          <field name="factAddress" type="string" data="FACTADR"/>
+          <field name="fullName" type="string" />
+          <field name="merc" type="number" />
+          <field name="chznak" type="number" />
+      </add>
+    </modify>
+    
+    <modify src="PotenzialOrg" dest="ImportOrg">
+      <change>
+          <field name="userid" type="string" />
+      </change>
+    </modify>
+
+    <modify src="Price">
+      <add>
+        <field name="boxed" type="number" />
+        <field name="boxedReturn" type="number" data="BOX_RET" />
+        <field name="merc" type="number" />
+        <field name="chznak" type="number" />
+        
+        <field name="maxDsc" type="number" prec="2" />
+        <field name="actionQty" type="number" data="ACT_QTY" />
+
+        <field name="whQty" type="collection">
+          <data>
+            <object name="QtyItem">
+              <sources>
+                <source name="Sequence">
+                  <param name="source">$parent.source</param>
+                </source>
+              </sources>
+              <field name="qty" type="number" prec="3" />
+            </object>
+          </data>
+        </field>
+      </add>
+    </modify>
+    
+    <modify src="Incass">
+      <add>
+        <field name="dover" type="string" width="20"/>
+      </add>
+    </modify>
+    
+    <modify src="Returns$items">
+      <add>
+        <field name="uid" type="string" data="" />
+        <field name="cause" type="string" />
+        <field name="items" type="collection">
+          <data>
+            <object name="ReturnDlv">
+              <sources>
+                <source name="DBFCatalogItemTable"/>
+                <source name="SQTable" type="internal" />
+              </sources>
+
+              <field name="number" width="40" type="string" data="NUM_I"/>
+              <field name="date" type="date" data="DATE_I"/>
+              <field name="qty" type="number" prec="3" data="QTY_I"/>
+              <field name="cost" type="number" prec="2" data="COST_I"/>
+              <field name="docflag" width="1" type="number" execOn="Put">FirstItem($object)</field>
+            </object>
+          </data>
+        </field>
+        <member name="primaryKey">"uid"</member>
+      </add>
+    </modify>
+    
+    <modify src="Firm">
+      <add>
+        <field name="rsh" type="string"/>
+        <field name="ks" type="string"/>
+        <field name="bik" type="string"/>
+      </add>
+    </modify>
+  </objects>
+</serverDefs>

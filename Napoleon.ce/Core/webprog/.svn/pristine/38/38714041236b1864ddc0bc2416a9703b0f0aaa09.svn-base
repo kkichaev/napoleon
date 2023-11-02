@@ -1,0 +1,38 @@
+import { defineStore } from 'pinia'
+import { api } from 'boot/axios'
+
+
+export const useMainStore = defineStore('mainStore', {
+  state: () => ({
+    forgotPassword: false,
+    passwordRestore: false,
+  }),
+
+  // getters: {
+  //   doubleCount (state) {
+  //     return state.counter * 2
+  //   }
+  // },
+
+  actions: {
+    restorePassword () {
+      console.log("restorePassword")
+      this.router.push({name: 'RestorePassword'})
+    },
+    registerUser(user){
+      console.log(user)
+      const headers = {
+        'Content-Type': 'application/json;charset=UTF-8',
+        "Access-Control-Allow-Origin": "*",
+      }
+
+      api.post('https://aceteam.app/api/users', user,  headers)
+        .then(response => {
+          console.log('https://aceteam.app/api/users - success : ', response)
+        })
+        .catch(error =>{
+          console.log('/api/users - error : ', error)
+        })
+    }
+  }
+})

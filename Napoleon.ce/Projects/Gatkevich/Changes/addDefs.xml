@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+    <modify src="Incass">
+      <add>
+        <field name="firm" type="number" />
+        <field name="frm_name" type="string" width="30" execOn="Put">ConfigReader("Организация",$object.firm)</field>
+      </add>
+    </modify>
+    <modify src="Delivery">
+      <add>
+        <field name="firm" type="number" />
+      </add>
+    </modify>
+  </objects>
+</serverDefs>

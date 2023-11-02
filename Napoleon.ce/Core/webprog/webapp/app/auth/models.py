@@ -1,0 +1,67 @@
+import json
+from app import db
+from flask_login import UserMixin
+from werkzeug.security import generate_password_hash, check_password_hash
+from typing import Self
+
+class User(UserMixin, db.Model):
+    __tablename__ = 'users'
+
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(120), index=True, unique=True)
+    name = db.Column(db.String(120))
+    surname = db.Column(db.String(120))
+    password_hash = db.Column(db.String(128))
+
+    account = db.relationship('app.auth.models.Account', backref='user', uselist=False, lazy=True)
+
+    @staticmethod
+    def from_dic(data) -> Self:
+        u = User(email=data['email'], name=data['name'], surname=data['surname'])
+        u.set_password(data['password'])
+        return u
+
+    @staticmethod
+    def from_email(email:str) ->Self:
+        return User.query.filter_by(email=email).first()
+
+    def set_password(self, password) -> None:
+        self.password_hash = generate_password_hash(password)
+
+    def check_password(self, password) -> bool:
+        return check_password_hash(self.password_hash, password)
+
+    def update(self, src:dict[str,any]):
+        for el in ['name', 'surname']:
+            if el in src:
+                setattr(self, el, src[el])
+
+
+    def __repr__(self) -> str:
+        return 'User name:{} surname:{}'.format(self.name, self.surname)
+    
+    def to_dict(self) -> dict[str,any]:
+        ret = {'name':self.name, 'email':self.email, 'id':self.id, 'surname':self.surname}
+        if self.account:
+            ret['account'] = self.account.to_dict()
+        return ret
+
+
+class Account(db.Model):
+    __tablename__ = 'accounts'
+
+    id = db.Column(db.Integer, primary_key=True)
+    country = db.Column(db.String(3), nullable=False)  # iso alpha 3 code
+    currency = db.Column(db.String(3), nullable=False) # iso 4217 code
+    userid = db.Column(db.Integer, db.ForeignKey('users.id'))
+    # balance = db.Column(db.Float)
+    # user backref
+
+    def to_dict(self) -> dict[str, any]:
+        return {'id':self.id, 'country':self.country, 'currency':self.currency}
+    
+    @staticmethod
+    def from_dict(src) -> Self:
+        if not 'currency' in src or not 'country' in src: return None
+        return Account(country=src['country'], currency=src['currency'])
+    

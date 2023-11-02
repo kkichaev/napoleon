@@ -1,0 +1,135 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+  <objects>
+    <object name="FirmsConfig">
+      <sources>
+        <source name="KeyValueDBFTable">
+          <param name="fileName">"FIRMS"</param>
+          <param name="key">"Организация"</param>
+          <param name="itemName">"NAME"</param>
+          <param name="itemKey">"ID"</param>
+        </source>
+      </sources>
+
+      <field name="key" type="string" />
+      <field name="value" type="string" />
+    </object>
+    <object name="OrdConfig">
+      <sources>
+        <source name="KeyValueTable">
+          <param name="fileName">"order.cfg"</param>
+        </source>
+      </sources>
+
+      <field name="key" type="string" />
+      <field name="value" type="string" />
+    </object>
+
+    <object name="Config">
+      <sources>
+        <source name="ObjectUnion">
+          <param>"OrdConfig"</param>
+          <param>"FirmsConfig"</param>
+        </source>
+      </sources>
+
+      <field name="key" type="string" />
+      <field name="value" type="string" />
+    </object>
+    <modify src="Delivery">
+      <add>
+        <field name="payDate" type="date" />
+      </add>
+    </modify>
+    <modify src="Org">
+      <add>
+        <field name="dogovors" type="collection">
+          <data>
+            <object name="OrgDogovor">
+              <sources>
+                <source name="DBFTableSet">
+                  <param name="userTable">"DG"</param>
+                  <param name="commonTable">"DOGOVORS"</param>
+                  <param name="filter">"[ID] = $parent.id"</param>
+                </source>
+              </sources>
+              <field name="id" type="string" data="ID_D"/>
+              <field name="name" type="string" />
+              <field name="gen" type="number" />
+              <field name="stopMsg" type="string" />
+            </object>
+          </data>
+        </field>
+      </add>
+    </modify>
+    <modify src="Order">
+      <add>
+        <field name="dogCode" type="string" width="20" data="DOG" />
+      </add>
+    </modify>
+    <modify src="Sales">
+      <add>
+        <field name="dogCode" type="string" width="20" data="DOG" />
+      </add>
+    </modify>
+
+    <modify src="Price">
+      <add>
+        <field name="fullname" type="string"/>
+        <field name="article" type="string"/>
+      </add>
+    </modify>
+
+    <modify src="Firm">
+      <add>
+        <field name="kpp" type="string"/>
+      </add>
+    </modify>
+    <modify src="AgentPrefix">
+      <add>
+        <field name="dov" type="string"/>
+        <field name="avto" type="string"/>
+        <field name="navto" type="string"/>
+        <field name="driver" type="string"/>
+        <field name="driver2" type="string"/>
+        <field name="inndriver" type="string"/>
+      </add>
+    </modify>
+    
+    <modify src="Sales" dest="ArchSales" table="ArchSales">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+    </modify>
+    <modify src="Incass">
+        <add>
+            <field name="gendog" type="number"/>
+        </add>
+    </modify>
+
+    <modify src="Sales$items">
+      <add>
+        <field name="party" type="collection">
+          <data>
+            <object name="PartyQty">
+              <sources>
+                <source name="DBFCatalogItemTable"/>
+                <source name="SQTable" type="internal" />
+              </sources>
+
+              <field name="date" type="string" data="DATE_I"/>
+              <field name="number" type="string" data="NUMBER_I"/>
+              <field name="qty" type="number" prec="3" data="QTY_I" />
+              <field name="docflag" width="1" type="number" execOn="Put">FirstItem($object)</field>
+            </object>
+          </data>
+        </field>
+        <field name="uid" type="string" />
+        <member name="primaryKey">"uid"</member>
+      </add>
+    </modify>
+
+  </objects>
+</serverDefs>

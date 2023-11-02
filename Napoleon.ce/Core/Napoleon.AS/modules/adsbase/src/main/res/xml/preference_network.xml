@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory 
+        android:title="@string/network_setting">
+       <EditTextPreference
+           android:key="login"
+           android:title="@string/login"/>
+       <EditTextPreference 
+           android:key="password"
+           android:title="@string/passw"/>
+       <EditTextPreference 
+           android:key="ip1"
+           android:title="@string/ip"/>
+       <EditTextPreference 
+           android:key="ip2"
+           android:title="@string/ip2"/>
+       <EditTextPreference 
+           android:key="port"
+           android:title="@string/port"/>
+    </PreferenceCategory>
+</PreferenceScreen>

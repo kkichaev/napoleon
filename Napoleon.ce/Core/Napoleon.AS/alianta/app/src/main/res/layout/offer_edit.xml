@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/llHeader"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        style="?header">
+
+        <TextView
+            style="?headerText"
+            android:text="@string/organization"
+            android:id="@+id/tvOrg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/LinearLayout02"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/LinearLayout04"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            tools:ignore="NestedWeights" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+				android:background="@color/table_caption" 
+                android:paddingLeft="3dp"
+                android:text="@string/caption"
+                android:textColor="@color/black"
+                tools:ignore="NestedWeights" 
+                />
+
+            <TextView
+                android:id="@+id/TextView03"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:layout_weight="0"
+                android:background="@color/table_caption"
+                android:minWidth="80dp"
+                android:paddingRight="3dp"
+                android:text="@string/cost"
+                android:textColor="@color/black" 
+                />
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/lvItems"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@color/white" />
+
+        <LinearLayout
+            android:id="@+id/llFocus"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:orientation="vertical"
+            android:visibility="gone" >
+
+            <Button
+                android:id="@+id/btnFocus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/order_to_target_price"
+                android:textColor="#FF0000" >
+            </Button>
+            
+            
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llTaskBar"
+        android:layout_width="match_parent"
+        style="?footer">
+
+        <ImageButton
+            android:id="@+id/btnAddItems"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="7dp"
+            android:src="@drawable/new_order"
+            tools:ignore="ContentDescription"
+            style="?footerButton"/>
+
+        <ImageButton
+            android:id="@+id/btnPreview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="7dp"
+            android:src="@drawable/print"
+            tools:ignore="ContentDescription"
+            style="?footerButton"/>
+
+        
+        <ImageButton
+            android:id="@+id/btnSend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="7dp"
+            android:src="@drawable/send"
+            tools:ignore="ContentDescription"
+            style="?footerButton"/>
+
+        <TextView
+            android:id="@+id/tvDiscount"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="right"
+            android:text="@string/discount"
+            android:textSize="16sp"
+            style="?footerText" />
+    </LinearLayout>
+</LinearLayout>

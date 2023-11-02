@@ -1,0 +1,5 @@
+#!/usr/bin/bash
+
+sed  -n "s/^/export /p" .env > s_env
+source s_env
+rm s_env

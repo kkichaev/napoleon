@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding="windows-1251"?>
+<Wix xmlns='http://schemas.microsoft.com/wix/2003/01/wi'>
+   <Fragment Id='Add'>
+      <FeatureRef Id='Server'>
+         <ComponentRef Id='AddServerComponents' />
+         <ComponentRef Id='OneCComponents' />
+      </FeatureRef>
+
+      <DirectoryRef Id='_PRODUCT' >
+         <Component Id='AddServerComponents' Guid='17CA81F3-069F-4845-844D-2664BA8B1FBF'>
+            <File Id='AddDefsXml' Name='addDefs.xml' DiskId='1' Source='addDefs.xml' LongName='addDefs.xml'/>
+         </Component>
+         <Directory Id='OneC' LongName='Файлы 1C' Name='1cFiles'>
+            <Component Id='OneCComponents' Guid='5EBE22BB-B5A6-4fd7-9960-D299E6FBBFCA'>
+               <File Id='Napoleon1cert' Name='Napl1c.ert' DiskId='1' Source='ExchangePDA.ert' LongName='ExchangePDA.ert'/>
+               <File Id='PriceExtractorexe' Name='PriceEx.exe' DiskId='1' Source='PriceExtractor.exe' LongName='PriceExtractor.exe'/>
+            </Component>
+         </Directory>
+      </DirectoryRef>
+   </Fragment>
+</Wix>

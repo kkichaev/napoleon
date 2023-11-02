@@ -1,0 +1,189 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+		<objects>
+      <object name="Cost" >
+        <sources>
+          <source name="DBFCostReader">
+            <param name="cost">"OWD" + $user.id</param>
+            <param name="costType">"OWD" + $user.id</param>
+            <param name="costType_PriceID">"ID_I"</param>
+            <param name="costType_TypeID">"ID"</param>
+          </source>
+        </sources>
+
+        <field name="data" type="binary" />
+      </object>
+
+      <object name="AgentPlan">
+	        <sources>
+	          <source name="SQTable" type="internal">
+	            <param name="readFilter">
+	              '"userid"=' + "'" + $user.id + "' and " +
+	              '"begin" &lt;= ToDate("' + FormatDate(Now(),"DD.MM.YYYY") + '") and ' +
+	              '"end" &gt;= ToDate("' + FormatDate(Now(),"DD.MM.YYYY") + '")'
+	            </param>
+	          </source>
+	        </sources>
+	
+	        <member name="primaryKey">"userid,begin"</member>
+	
+	        <field name="userid" type="string" />
+	        <field name="begin" type="timestamp" />
+	        <field name="end" type="timestamp" />
+	
+	        <field name="groups" type="collection">
+	          <data>
+	            <object name="AgemtPlanGroups">
+	              <sources>
+	                <source name="SQTable" type="internal" />
+	              </sources>
+	              <field name="id" type="string" />
+				  <field name="type" type="number"/>
+	              <field name="valueSum" type="number" prec="2" />
+	              <field name="valueQty" type="number" prec="3" />
+	            </object>
+	          </data>
+	        </field>
+	      </object>
+	      
+	      <object name="Skalds">
+	      	  <sources>
+	        	 <source name="KeyValueDBFTable">
+		         	<param name="fileName">"SKLADS"</param>
+		         	<param name="key">"Склады"</param>
+	             	<param name="itemName">"NAME"</param>
+	             	<param name="itemKey">"ID"</param>
+	          	</source>
+	      	</sources>
+	      	<field name="key" type="string" />
+	      	<field name="value" type="string" />
+	    </object>
+	    
+	    <object name="OrdConfig">
+      		<sources>
+        		<source name="KeyValueTable">
+          			<param name="fileName">"ord"+$user.id+".cfg"</param>
+        		</source>
+        		<source name="KeyValueTable">
+          			<param name="fileName">"order.cfg"</param>
+        		</source>
+      		</sources>
+
+      		<field name="key" type="string" />
+      		<field name="value" type="string" />
+    	</object>
+	
+	    <object name="Config">
+	    	<sources>
+	        	<source name="ObjectUnion">
+	          		<param>"OrdConfig"</param>
+	          		<param>"Skalds"</param>
+	        	</source>
+	      	</sources>
+	      	<field name="key" type="string" />
+	      	<field name="value" type="string" />
+	    </object>
+	    
+	   	<object name="OrgMtx">
+	    	<sources>
+	        	<source name="SQTable" type="internal" />
+               	<param name="readFilter">'"userid"=' + "'" + $user.id + "'"</param>
+	       	</sources>
+           	<member name="primaryKey">"id,userid"</member>
+		    <field name="id" type="string" />
+           	<field name="userid" type="string" />
+           	<field name="matrix" type="string" />
+        </object>
+
+      
+	    <modify src="Order$items">
+	    	<add>
+	      		<field name="qty2" type="number" prec="3" />
+                <field name="remark" type="string" width="100" data="IREM"/>
+	    	</add>
+	  	</modify>
+
+      	<modify src="Order">
+      		<add>
+        		<field name="whCode" type="string" width="20" data="ID_WH" />
+      		</add>
+    	</modify>
+    	
+      	<modify src="Price">
+      		<add>
+        		<field name="whQty" type="collection">
+          			<data>
+            			<object name="CostItem">
+              				<sources>
+                				<source name="Sequence">
+                  					<param name="source">$parent.source</param>
+                  					<param name="startIndex">2</param>
+                				</source>
+              				</sources>
+              				<field name="qty" type="number" prec="2" />
+            			</object>
+          			</data>
+        		</field>
+      		</add>
+    	</modify>
+      
+        <modify src="Org">
+         <add>
+           <field name="ido" type="string" />
+            <field name="disc" type="number" prec="2"/> 
+            <!--<field name="discount" type="collection">
+               <data>
+                  <object name="OrgDiscountItem">
+                     <sources>
+                        <source name="DBFTableSet">
+                           <param name="userTable">"OFD"</param>
+                           <param name="commonTable">"ORGFD"</param>
+                           <param name="filter">"[ID] = $parent.id"</param>
+                        </source>
+                     </sources>
+
+                     <field name="fid" data="ID_I" type="string" />
+                     <field name="discount" data="DISC" type="number" prec="2"/>
+                     <field name="folderID" type="number" execOn="Get">FolderID($object.fid)</field>
+                  </object>
+               </data>
+            </field>
+            
+            <field name="costypes" type="collection">
+               <data>
+                  <object name="OrgCosTypeItem">
+                     <sources>
+                        <source name="DBFTableSet">
+                           <param name="userTable">"OSD"</param>
+                           <param name="commonTable">"ORGSD"</param>
+                           <param name="filter">"[ID] = $parent.id"</param>
+                        </source>
+                     </sources>
+
+                     <field name="fid" data="ID_I" type="string" />
+                     <field name="folderID" type="number" execOn="Get">FolderID($object.fid)</field>
+                     <field name="sumtype" data="ST" type="number"/>
+                  </object>
+               </data>
+            </field>
+            
+            <field name="price" type="collection">
+               <data>
+                  <object name="OrgPriceItem">
+                     <sources>
+                        <source name="DBFTableSet">
+                           <param name="userTable">"OWD"</param>
+                           <param name="commonTable">"ORGWD"</param>
+                           <param name="filter">"[ID] = $parent.id"</param>
+                        </source>
+                     </sources>
+
+                     <field name="id" data="ID_I" type="string" />
+                     <field name="cost" type="number" prec="2"/>
+                  </object>
+               </data>
+            </field>-->
+         </add>
+      </modify>
+	</objects>
+</serverDefs>

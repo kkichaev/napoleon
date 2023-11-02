@@ -1,0 +1,170 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+    <object name="OrderProceeded" sendAlways="true">
+      <sources>
+        <source name="DBFTable">
+          <param name="tableName">"POD" + $user.id</param>
+        </source>
+      </sources>
+
+      <!--имена полей "зашиты" в функцию-->
+      <field name="created" type="timestamp" />
+      <field name="remark" type="string" />
+      <field name="type" type="string" />
+
+      <events>
+        <event type="get">
+          <action name="ArchiveOrderProceeded">$object.created;$object.type;$object.remark</action>
+        </event>
+      </events>
+    </object>
+
+    <object name="ReqNewOrg">
+      <sources>
+        <source name="DBFCatalogTable">
+          <param name="tableName">"RNO" + $user.id</param>
+          <param name="catalog">created</param>
+          <param name="ordered">1</param>
+        </source>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"userid,created"</member>
+      <memberArray name="index">"created"</memberArray>
+
+      <field name="id" type="string" width="55" />
+      <field name="date" type="timestamp" />
+      <field name="created" type="timestamp" />
+      <field name="timeZone" type="number" />
+      <field name="serverTimeZone" type="number" data="S_TZ" execOn="Put" feature="USE_TIMEZONE">ServerTimeZone()</field>
+      <field name="remark" type="string" width="100" />
+      <field name="userid" type="string" execOn="Put">$user.id</field>
+      <field name="sended" type="timestamp" execOn="Put">Now()</field>
+
+      <field name="inn" type="string" width="100" />
+      <field name="name" type="string" width="100" />
+      <field name="ogrn" type="string" width="100" />
+      <field name="address" type="string" width="200" />
+      <field name="jurAddress" type="string" width="200" data="J_ADR" />
+
+      <field name="items" type="collection">
+        <data>
+          <object name="item">
+            <sources>
+              <sources>
+                <source name="DBFCatalogItemTable" />
+              </sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+
+            <field name="name" data="NAME_I" type="string" execOn="Put">ToFileName($user.id) + "\" + ToFileName($parent.id) + "\" + FormatDate($parent.created, "YYYYMMDDHHmmSS") + "_" + IndexOf($object) + DataExtention($object, "id") </field>
+            <field name="id" type="file" src="name" data=""  />
+          </object>
+        </data>
+      </field>
+      
+      <field name="latitude" type="number" prec="5" />
+      <field name="longitude" type="number" prec="5" />
+      <field name="stltime" type="number" />
+
+      <events>
+        <event type="put">
+          <action name="WriteToLog">$object.type;$object.date</action>
+          <action name="WriteInternal">$object.type</action>
+        </event>
+      </events>
+    </object>
+
+    <modify src="ReqNewOrg$items" dest="ReqNewOrgItemDoc" table="ReqNewOrg$items">
+      <change>
+        <sources>
+          <source name="DBFTable">
+            <param name="tableName">"RNO" + $user.id</param>
+          </source>
+          <source name="SQTable" type="internal" />
+        </sources>
+
+        <field name="name" type="string" execOn="Put" data="NAME_I">ToFileName($user.id) + "\" + $object.__nameBase  + DataExtention($object, "id")</field>
+        <field name="ReqNewOrg$created" type="timestamp" execOn="Put" data="" >$object.__date</field>
+        <field name="ReqNewOrg$userid" type="string" execOn="Put" data="">$user.id</field>
+      </change>
+      <add>
+        <events>
+          <event type="put">
+            <action name="WriteInternal">$object.type</action>
+          </event>
+        </events>
+      </add>
+    </modify>
+
+    <modify src="Price">
+      <add>
+        <field name="onePack" type="number" />
+        <field name="priceGroup" type="string" data="PRC_GRP" />
+        <field name="info" type="string" />
+        <field name="bestBefore" type="string" data="BST_BFR" />
+      </add>
+    </modify>
+    
+    <modify src="Org">
+      <add>
+        <field name="firms" type="string" />
+        <field name="price" type="collection">
+          <data>
+            <object name="PriceItem">
+              <sources>
+                <source name="DBFTableSet">
+                  <param name="userTable">"OPC"</param>
+                  <param name="commonTable">"PCCC"</param>
+                  <param name="filter">"[ID] = $parent.id"</param>
+                </source>
+              </sources>
+
+              <field name="costype" type="number" />
+              <field name="isItem" type="number" width="1" data="IS_ITEM" />
+              <field name="id" type="string" width="55" data="ID_C" />
+            </object>
+          </data>
+        </field>
+      </add>
+    </modify>
+
+    <modify src="Delivery">
+      <add>
+        <field name="dlv_pos" type="number" data="rowid" />
+        <field name="hidden" type="number" />
+      </add>
+    </modify>
+    
+    <modify src="Returns">
+      <add>
+        <field name="cause" type="string" />  
+      </add>
+    </modify>
+
+    <modify src="Returns$items">
+      <add>
+        <field name="uid" type="string" data="" />
+        
+        <field name="items" type="collection">
+          <data>
+            <object name="ReturnDlv">
+              <sources>
+                <source name="DBFCatalogItemTable"/>
+                <source name="SQTable" type="internal" />
+              </sources>
+
+              <field name="number" width="40" type="string" data="NUM_I"/>
+              <field name="date" type="date" data="DATE_I"/>
+              <field name="qty" type="number" prec="3" data="QTY_I"/>
+              <field name="cost" type="number" prec="2" data="COST_I"/>
+              <field name="docflag" width="1" type="number" execOn="Put">FirstItem($object)</field>
+            </object>
+          </data>
+        </field>
+        <member name="primaryKey">"uid"</member>
+      </add>
+    </modify>
+	</objects>
+</serverDefs>

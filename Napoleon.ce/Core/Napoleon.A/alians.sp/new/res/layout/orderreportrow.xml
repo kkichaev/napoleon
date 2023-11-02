@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" 
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    android:paddingLeft="3dp"
+    android:paddingRight="3dp">
+    
+	<TextView android:id="@+id/tvName"
+	    android:layout_height="wrap_content"
+	    android:layout_width="0dip"
+	    android:layout_weight="1"
+	    android:textColor="@color/black"
+	    android:textSize="18sp"/>
+	
+	<TextView android:id="@+id/tvWeight"
+	    android:layout_height="wrap_content"
+	    android:layout_width="@dimen/ord_col_width"
+	    android:textColor="@color/black"
+	    android:gravity="right"
+	    android:textSize="18sp"/>
+	
+	<TextView
+	    android:layout_marginLeft="@dimen/cell_margin" 
+	    android:id="@+id/tvSum"
+	    android:layout_height="wrap_content"
+	    android:layout_width="@dimen/ord_col_width"
+	    android:textColor="@color/black"
+	    android:gravity="right"
+	    android:textSize="18sp"/>
+</LinearLayout>

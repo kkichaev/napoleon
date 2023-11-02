@@ -1,0 +1,4 @@
+source ./vars
+./build-key iosa
+openssl rsa -in iosa.key -out iosa_rsa.key
+openssl pkcs12 -export -in iosa.crt -inkey iosa_rsa.key -certfile ca.crt -name iosa -out iosa.p12

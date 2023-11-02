@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding="windows-1251"?>
+<Wix xmlns='http://schemas.microsoft.com/wix/2006/wi'>
+  <Fragment Id='PythonReporter'>
+    <Feature Id='PythonReporter' Title='модуль Python' Description='Python для отчетов'
+              Absent='allow' ConfigurableDirectory='_PRODUCT' Level='1' >
+      <ComponentRef Id='PythonFiles'/>
+      <ComponentGroupRef Id='PythonLibFiles'/>
+    </Feature>
+
+    <DirectoryRef Id='_PRODUCT' >
+      <Component Id='PythonFiles' Guid='E71FC952-F804-4f11-901C-B7B01CFFA454'>
+        <File Id='python27_dll' Name='python27.dll' DiskId='1' Source='python27.dll' />
+        <File Id='reporter_dll' Name='Reporter.dll' DiskId='1' Source='Reporter.dll' />
+        <File Id='msvcp120_dll' Name='msvcp120.dll' DiskId='1' Source='msvcp120.dll' />
+        <File Id='msvcr120_dll' Name='msvcr120.dll' DiskId='1' Source='msvcr120.dll' />
+      </Component>
+    </DirectoryRef>
+  </Fragment>
+</Wix>

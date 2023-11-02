@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/drawer_footer_item"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@color/primary_color"
+        android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:paddingLeft="@dimen/univ_padding"
+        android:paddingBottom="7dp">
+
+        <RelativeLayout
+            android:id="@+id/iv_img_container"
+            android:layout_width="@dimen/univ_ab_height"
+            android:layout_height="@dimen/univ_ab_height"
+            android:layout_centerVertical="true">
+
+            <ImageView
+                android:id="@+id/image_view"
+                android:layout_width="@dimen/univ_ab_height"
+                android:layout_height="@dimen/univ_ab_height"
+                android:padding="6dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"/>
+
+            <ImageView
+                android:id="@+id/iv_img_custom"
+                android:layout_width="@dimen/univ_ab_height"
+                android:layout_height="@dimen/univ_ab_height"
+                android:padding="4dp"
+                android:visibility="gone"/>
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/text_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size"
+            android:layout_gravity="center"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/iv_img_container"
+            android:layout_toLeftOf="@+id/premium"
+            android:layout_toStartOf="@+id/premium"/>
+
+
+        <ImageView
+            android:id="@+id/premium"
+            android:layout_width="@dimen/univ_ab_height"
+            android:layout_height="@dimen/univ_ab_height"
+            android:src="@drawable/premium2"
+            android:visibility="gone"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:padding="8dp"
+            android:layout_marginRight="8dp"/>
+
+    </RelativeLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

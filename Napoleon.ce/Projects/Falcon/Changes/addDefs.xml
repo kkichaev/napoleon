@@ -1,0 +1,308 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+  <objects>
+    <object name="Incass">
+      <sources>
+        <source name="DBFCatalogTable">
+          <param name="tableName">$object.table + $user.id</param>
+          <param name="catalog">"id"</param>
+          <param name="ordered">1</param>
+        </source>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="table">"PKO"</member>
+      <member name="primaryKey">"userid,created"</member>
+
+      <field name="id" type="string" width="120" />
+      <field name="iddog" type="string" width="120" />
+      <field name="sum" type="number" prec="2" />
+      <field name="created" type="timestamp" />
+      <field name="date" type="date" />
+      <field name="remark" type="string" width="100" />
+      <field name="userid" type="string" execOn="Put">$user.id</field>
+
+      <field name="items" type="collection">
+        <data>
+          <object name="DocPayItem">
+            <sources>
+              <source name="DBFCatalogItemTable"/>
+              <source name="SQTable" type="internal" />
+            </sources>
+
+            <field name="number" width="20" type="string" data="NUM_I"/>
+            <field name="date" type="date" data="DATE_I" />
+            <field name="sum" type="number" data="SUM_I" width="10" prec="2" />
+            <field name="ordflag" width="1" type="number" execOn="Put">FirstItem($object)</field>
+          </object>
+        </data>
+      </field>
+      <events>
+        <event type="put">
+          <action name="WriteInternal">$object.type</action>
+          <action name="WriteToLog">$object.type;$object.created</action>
+        </event>
+      </events>
+    </object>
+
+    <object name="DeliveryMan">
+      <sources>
+        <source name="DBFTable">
+          <param name="tableName">"DM"  + $user.id </param>
+        </source>
+        <source name="DBFTable">
+          <param name="tableName">"DLVMAN"</param>
+        </source>
+      </sources>
+
+      <field name="id" type="string" width="120" />
+      <field name="name" type="string" width="250" />
+    </object>
+
+    <object name="Plan">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"PLN"</param>
+          <param name="commonTable">"PLANS"</param>
+        </source>
+      </sources>
+
+      <field name="date" type="timestamp" />
+      <field name="name" type="string" data="OBJECT" />
+      <field name="plan" type="number" prec="2" />
+      <field name="fact" type="number" prec="2" />
+      <field name="userid" type="string" />
+    </object>
+
+    <!--<object name="Discount">
+      <sources>
+        <source name="DBFTable">
+          <param name="tableName">"DISC"  + $user.id </param>
+        </source>
+        <source name="DBFTable">
+          <param name="tableName">"DISCOUNT"</param>
+        </source>
+      </sources>
+
+      <field name="id" type="string" width="120" />
+      <field name="name" type="string" width="250" />
+      <field name="val" type="number" prec="2" />
+    </object>-->
+
+    <object name="Discount">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"DISC"</param>
+          <param name="commonTable">"DISCOUNT"</param>
+          <param name="catalog">"id;items;0"</param>
+        </source>
+      </sources>
+      <field name="items" type="collection">
+        <data>
+          <object name="DiscountItem">
+            <field name="id" type="string" width="120" />
+            <field name="name" type="string" width="250" />
+            <field name="val" type="number" prec="2" />
+          </object>
+        </data>
+      </field>
+      <field name="id" type="string" width="120" data="ID_D" />
+    </object>
+
+    <modify src="Delivery">
+      <add>
+        <field name="dogovor" type="string" />
+        <field name="discid" type="string" width="120" />
+      </add>
+    </modify>
+
+    <modify src="Org">
+      <add>
+        <field name="dogovors" type="collection">
+          <data>
+            <object name="OrgDogovor">
+              <sources>
+                <source name="DBFTableSet">
+                  <param name="userTable">"ODG"</param>
+                  <param name="commonTable">"DOGOVORS"</param>
+                  <param name="filter">"[ID] = $parent.id"</param>
+                </source>
+              </sources>
+
+              <field name="name" type="string" />
+              <field name="id" type="string" data="ID_D" />
+              <field name="type" type="string" data="ID_TYPE" />
+              <field name="limit" type="number" prec="2"/>
+              <field name="deb" type="number" prec="2"/>
+              <field name="outdeb" type="number" prec="2"/>
+              <field name="minOrder" type="number" prec="2"/>
+              <field name="stop" type="number" />
+
+              <!--<field name="folders" type="collection">
+                <data>
+                  <object name="DgvFolders">
+                    <sources>
+                      <source name="DBFTableSet">
+                        <param name="userTable">"FLS"</param>
+                        <param name="commonTable">"DGVFLS"</param>
+                        <param name="filter">"[ID] = $parent.id"</param>
+                      </source>
+                    </sources>
+                    <field name="fid" type="string" data="ID_I"/>
+                  </object>
+                </data>
+              </field>-->
+            </object>
+          </data>
+        </field>
+        <field name="text" type="string"/>
+        <field name="deb" type="number" prec="2"/>
+      </add>
+    </modify>
+    <modify src="OrgRemnants">
+      <change>
+        <field name="id" width="120" type="string" />
+      </change>
+    </modify>
+    <modify src="OrgRemnants$items">
+      <change>
+        <field name="id" width="120" type="string" data="ID_I"/>
+      </change>
+    </modify>
+    <modify src="Order">
+      <add>
+        <field name="iddog" type="string" width="120" />
+        <field name="dlvman" type="string" width="120" />
+        <field name="discid" type="string" width="120" />
+        <field name="discval" type="number" prec="2" />
+      </add>
+      <change>
+        <field name="id" width="120" type="string" />
+      </change>
+    </modify>
+    <modify src="Order$items">
+      <change>
+        <field name="id" width="120" type="string" data="ID_I"/>
+      </change>
+      <add>
+        <field name="discid" width="120" type="string" data="DSC_I"/>
+      </add>
+    </modify>
+    <modify src="Price">
+      <add>
+        <field name="barcode" type="string" />
+      </add>
+    </modify>
+    <modify src="OrgFolder$items">
+      <change>
+        <field name="name" type="string" data="ID" width="120"/>
+      </change>
+    </modify>
+    <modify src="Sales">
+      <add>
+        <field name="iddog" type="string" width="120" />
+        <field name="dlvman" type="string" width="120" />
+        <field name="discid" type="string" width="120" />
+        <field name="discval" type="number" prec="2" />
+      </add>
+      <change>
+        <field name="id" width="120" type="string" />
+      </change>
+    </modify>
+    <modify src="Returns">
+      <add>
+        <field name="iddog" type="string" width="120" />
+        <field name="dlvman" type="string" width="120" />
+        <field name="discid" type="string" width="120" />
+        <field name="discval" type="number" prec="2" />
+      </add>
+      <change>
+        <field name="id" width="120" type="string" />
+      </change>
+    </modify>
+    <modify src="Returns$items">
+      <add>
+        <field name="number" width="20" type="string" data="NUM_I"/>
+        <field name="date" type="date" data="DATE_I" />
+        <field name="discid" type="string" data="DSC_I" width="120" />
+      </add>
+      <change>
+        <field name="id" width="120" type="string" data="ID_I"/>
+      </change>
+    </modify>
+    <modify src="CommonMatrix$items">
+      <change>
+        <field name="id" type="string" width="120" />
+      </change>
+    </modify>
+    <modify src="Matrix$items">
+      <change>
+        <field name="id" type="string" width="120" />
+      </change>
+    </modify>
+    <modify src="Folder">
+      <change>
+        <field name="fid" type="string" data="id" width="120" />
+        <field name="type" type="string" data="id_type" width="120" />
+      </change>
+    </modify>
+    <modify src="ManagerFolder">
+      <change>
+        <field name="id" type="string" width="120" />
+        <field name="type" type="string" data="id_type" width="120" />
+      </change>
+    </modify>
+    <modify src="Org$contacts">
+      <change>
+        <field name="id" type="string" width="120" />
+      </change>
+    </modify>
+    <modify src="Order" dest="FixOrder">
+       <change>
+          <sources>
+             <source name="SQTable" type="internal" />
+          </sources>
+       </change>     
+    </modify>
+    <modify src="Sales" dest="FixSales">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+    </modify>
+    <modify src="Incass" dest="FixIncass">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+    </modify>
+    <modify src="Returns" dest="FixReturns">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+    </modify>
+    <modify src="Sales">
+      <add>
+        <field name="iddog" type="string" width="120" />
+        <field name="dlvman" type="string" width="120" />
+        <field name="discid" type="string" width="120" />
+        <field name="discval" type="number" prec="2" />
+      </add>
+      <change>
+        <field name="id" width="120" type="string" />
+      </change>
+    </modify>
+    <modify src="Sales$items">
+      <change>
+        <field name="id" width="120" type="string" data="ID_I"/>
+      </change>
+      <add>
+        <field name="discid" width="120" type="string" data="DSC_I"/>
+      </add>
+    </modify>
+  </objects>
+</serverDefs>

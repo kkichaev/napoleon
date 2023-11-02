@@ -1,0 +1,350 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+  <objects>
+    
+    <object name="Dispatch">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"created,userid"</member>
+
+      <field name="userid" type="string" execOn="Put">$user.id</field>
+      <field name="date" type="timestamp"/>
+      <field name="created" type="timestamp" />
+      <field name="timeZone" type="number" />
+      <field name="serverTimeZone" type="number" data="S_TZ" execOn="Put" feature="USE_TIMEZONE">ServerTimeZone()</field>
+      <field name="sended" type="timestamp" data="S_DATE" execOn="Put">Now()</field>
+      <field name="id" type="string" />
+      <field name="latitude" type="number" prec="5" />
+      <field name="longitude" type="number" prec="5" />
+      <field name="itemid" type="string" />
+      <field name="visit" type="timestamp" />
+
+      <field name="times" type="collection">
+        <data>
+          <object name="DispatchTime">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+
+            <field name="start" type="timestamp"/>
+            <field name="finish" type="timestamp"/>
+          </object>
+        </data>
+      </field>
+
+      <field name="items" type="collection">
+        <data>
+          <object name="DispatchItem">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+
+            <field name="number" type="string"/>
+            <field name="state" type="number"/>
+            <field name="remark" type="string"/>
+            <field name="cause" type="string"/>
+            <field name="date" type="timestamp"/>
+            <field name="itemid" type="string"/>
+            <field name="type" type="string"/>
+          </object>
+        </data>
+      </field>
+
+      <events>
+        <event type="put">
+          <action name="WriteInternal">$object.type</action>
+          <action name="WriteToLog">$object.type;$object.date</action>
+        </event>
+      </events>
+    </object>
+
+    <object name="DIncass">
+      <sources>
+        <source name="DBFCatalogTable">
+          <param name="tableName">"DINC" + $user.id</param>
+          <param name="catalog">"id"</param>
+          <param name="ordered">1</param>
+        </source>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"created,userid"</member>
+
+      <field name="userid" type="string" execOn="Put">$user.id</field>
+      <field name="date" type="timestamp"/>
+      <field name="created" type="timestamp" />
+      <field name="timeZone" type="number" />
+      <field name="serverTimeZone" type="number" data="S_TZ" execOn="Put" feature="USE_TIMEZONE">ServerTimeZone()</field>
+      <field name="sended" type="timestamp" data="S_DATE" execOn="Put">Now()</field>
+      <field name="id" type="string" />
+      <field name="latitude" type="number" prec="5" />
+      <field name="longitude" type="number" prec="5" />
+      <field name="dispatch" type="timestamp"/>
+      <field name="disprem" type="string" />
+      <field name="number" type="string"/>
+      <field name="sum" type="number" prec="2"/>
+      <field name="params" type="number" />
+
+      <events>
+        <event type="put">
+          <action name="WriteInternal">$object.type</action>
+          <action name="WriteToLog">$object.type;$object.date</action>
+        </event>
+      </events>
+    </object>
+
+    <object name="DTask">
+      <sources>
+        <source name="DBFCatalogTable">
+          <param name="tableName">"DTSK" + $user.id</param>
+          <param name="catalog">"id"</param>
+          <param name="ordered">1</param>
+        </source>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"created,userid"</member>
+
+      <field name="userid" type="string" execOn="Put">$user.id</field>
+      <field name="date" type="timestamp"/>
+      <field name="created" type="timestamp" />
+      <field name="timeZone" type="number" />
+      <field name="serverTimeZone" type="number" data="S_TZ" execOn="Put" feature="USE_TIMEZONE">ServerTimeZone()</field>
+      <field name="sended" type="timestamp" data="S_DATE" execOn="Put">Now()</field>
+      <field name="id" type="string" />
+      <field name="latitude" type="number" prec="5" />
+      <field name="longitude" type="number" prec="5" />
+      <field name="dispatch" type="timestamp"/>
+      <field name="disprem" type="string" />
+      <field name="number" type="string"/>
+      <field name="remark" type="string" />
+      <field name="params" type="number" />
+
+      <events>
+        <event type="put">
+          <action name="WriteInternal">$object.type</action>
+          <action name="WriteToLog">$object.type;$object.date</action>
+        </event>
+      </events>
+    </object>
+
+    <object name="DReturn">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"created,userid"</member>
+
+      <field name="userid" type="string" execOn="Put">$user.id</field>
+      <field name="date" type="timestamp"/>
+      <field name="created" type="timestamp" />
+      <field name="timeZone" type="number" />
+      <field name="serverTimeZone" type="number" data="S_TZ" execOn="Put" feature="USE_TIMEZONE">ServerTimeZone()</field>
+      <field name="sended" type="timestamp" data="S_DATE" execOn="Put">Now()</field>
+      <field name="id" type="string" />
+      <field name="latitude" type="number" prec="5" />
+      <field name="longitude" type="number" prec="5" />
+      <field name="dispatch" type="timestamp"/>
+      <field name="disprem" type="string" />
+      <field name="number" type="string"/>
+      <field name="remark" type="string" />
+
+      <field name="items" type="collection">
+        <data>
+          <object name="DReturnItem">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+
+            <field name="id" type="string"/>
+            <field name="pos" type="number"/>
+            <field name="inqty" type="number" prec="3"/>
+            <field name="outqty" type="number" prec="3"/>
+            <field name="cost" type="number" prec="2"/>
+            <field name="remark" type="string"/>
+            <field name="cause" type="string"/>
+          </object>
+        </data>
+      </field>
+
+      <events>
+        <event type="put">
+          <action name="WriteInternal">$object.type</action>
+          <action name="WriteToLog">$object.type;$object.date</action>
+        </event>
+      </events>
+    </object>
+
+    <object name="DShipment">
+      <sources>
+        <source name="DBFCatalogTable">
+          <param name="tableName">"DSHP" + $user.id</param>
+          <param name="catalog">"id"</param>
+          <param name="ordered">1</param>
+        </source>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"created,userid"</member>
+
+      <field name="userid" type="string" execOn="Put">$user.id</field>
+      <field name="date" type="timestamp"/>
+      <field name="created" type="timestamp" />
+      <field name="timeZone" type="number" />
+      <field name="serverTimeZone" type="number" data="S_TZ" execOn="Put" feature="USE_TIMEZONE">ServerTimeZone()</field>
+      <field name="sended" type="timestamp" data="S_DATE" execOn="Put">Now()</field>
+      <field name="id" type="string" />
+      <field name="latitude" type="number" prec="5" />
+      <field name="longitude" type="number" prec="5" />
+      <field name="dispatch" type="timestamp"/>
+      <field name="disprem" type="string" />
+      <field name="number" type="string"/>
+      <field name="remark" type="string" />
+      <field name="params" type="number" />
+
+      <field name="items" type="collection">
+        <data>
+          <object name="Item">
+            <sources>
+              <source name="DBFCatalogItemTable"/>
+              <source name="SQTable" type="internal" />
+            </sources>
+
+            <field name="id" type="string" data="ID_I"/>
+            <field name="pos" type="number"/>
+            <field name="inqty" type="number" prec="3"/>
+            <field name="outqty" type="number" prec="3"/>
+            <field name="cost" type="number" prec="2"/>
+            <field name="remark" type="string" data="REM_I"/>
+            <field name="cause" type="string"/>
+          </object>
+        </data>
+      </field>
+
+      <events>
+        <event type="put">
+          <action name="WriteInternal">$object.type</action>
+          <action name="WriteToLog">$object.type;$object.date</action>
+        </event>
+      </events>
+    </object>
+
+    <object name="Route">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"RT_"</param>
+          <param name="commonTable">"__ROUTES"</param>
+        </source>
+      </sources>
+
+      <!--<member name="primaryKey">"id"</member>-->
+
+      <field name="id" type="string"/>
+      <field name="created" type="timestamp"/>
+      <field name="userid" type="string"/>
+      <field name="start" type="timestamp"/>
+      <field name="finish" type="timestamp"/>
+    </object>
+
+    <object name="RouteItem">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"RTI_"</param>
+          <param name="commonTable">"__ROUTES"</param>
+          <param name="catalog">"route,id;docs;0"</param>
+        </source>
+      </sources>
+
+      <member name="primaryKey">"itemid"</member>
+
+      <field name="route" type="string"/>
+      <field name="itemid" type="string"/>
+      <field name="id" type="string"/>
+      <field name="pos" type="number"/>
+      <field name="remark" type="string"/>
+
+      <field name="docs" type="collection">
+        <data>
+          <object name="ItemDef">
+            <field name="id" type="string" />
+            <field name="number" type="string"/>
+            <field name="pos" type="number" data="POS_I"/>
+            <field name="remark" type="string" data="REM_I"/>
+            <field name="type" type="string"/>
+            <field name="title" type="string"/>
+          </object>
+        </data>
+      </field>
+    </object>
+    
+    <modify src="Org">
+      <add>
+        <field name="balance" type="number" prec="2" />
+      </add>
+    </modify>
+
+    <modify src="Org" dest="RoutePoint">
+    </modify>
+
+    <modify src="Order">
+      <add>
+        <field name="supplyer" type="number" />
+        <field name="sumType" type="number" />
+      </add>
+    </modify>
+
+    <object name="Waybill">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"WB_"</param>
+          <param name="commonTable">"__ROUTES"</param>
+          <param name="catalog">"number;items;0"</param>
+        </source>
+      </sources>
+
+      <field name="items" type="collection">
+        <data>
+          <object name="Item">
+
+            <field name="id" type="string" data="ID_I"/>
+            <field name="qty" type="number" prec="3" />
+            <field name="cost" type="number" prec="2" />
+            <field name="pos" type="number" />
+            <field name="barcode" type="string" data="BC_I"/>
+          </object>
+        </data>
+      </field>
+
+      <field name="id" type="string" />
+      <field name="sumD" type="number" prec="2" />
+      <field name="number" type="string" />
+      <field name="date" type="date" />
+      <field name="barcode" type="string" />
+      <field name="payDate" type="date" />
+      <field name="created" type="timestamp" />
+      <field name="userid" type="string" />
+    </object>
+
+    <modify src="Price" dest="DPrice">
+      <change>
+        <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"W"</param>
+          <param name="commonTable">"WAREHOUS"</param>
+        </source>
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="Visit" dest="DVisit" table="DVisit">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+    </modify>
+
+  </objects>
+</serverDefs>

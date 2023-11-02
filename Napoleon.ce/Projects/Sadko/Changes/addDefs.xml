@@ -1,0 +1,120 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+    <object name="Incass">
+      <sources>
+        <source name="DBFCatalogTable">
+          <param name="tableName">$object.table + $user.id</param>
+          <param name="catalog">"id"</param>
+          <param name="ordered">1</param>
+        </source>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="table">"Incass"</member>
+      <member name="primaryKey">"userid,created"</member>
+
+      <field name="id" type="string" width="120" />
+      <field name="sum" type="number" prec="2" />
+      <field name="created" type="timestamp" />
+      <field name="date" type="date" />
+      <field name="remark" type="string" width="100" />
+      <field name="userid" type="string" execOn="Put">$user.id</field>
+
+      <field name="items" type="collection">
+        <data>
+          <object name="DocPayItem">
+            <sources>
+              <source name="DBFCatalogItemTable"/>
+              <source name="SQTable" type="internal" />
+            </sources>
+
+            <field name="number" width="20" type="string" data="NUM_I"/>
+            <field name="date" type="date" data="DATE_I" />
+            <field name="sum" type="number" data="SUM_I" width="10" prec="2" />
+            <field name="ordflag" width="1" type="number" execOn="Put">FirstItem($object)</field>
+          </object>
+        </data>
+      </field>
+      <events>
+        <event type="put">
+          <action name="WriteInternal">$object.type</action>
+          <action name="WriteToLog">$object.type;$object.created</action>
+        </event>
+      </events>
+    </object>
+
+    <object name="Incomes">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"INC"</param>
+          <param name="commonTable">"INCOMES"</param>
+          <param name="catalog">"number;items;1"</param>
+        </source>
+      </sources>
+
+      <field name="date" type="date" />
+      <field name="number" type="string" data="NUM" />
+      <field name="items" type="collection">
+        <data>
+          <object name="IncomeItems">
+            <field name="id" type="string" data="ID_I" />
+            <field name="qty" type="number" />
+            <field name="pack" type="number" />
+          </object>
+        </data>
+      </field>
+    </object>
+    
+    <modify src="Org">
+      <add>
+        <field name="stopMsg" type="string" />
+        <field name="orgMatrix" type="collection">
+          <data>
+            <object name="OrgMtxItem">
+              <sources>
+                <source name="DBFTableSet">
+                  <param name="userTable">"OMX"</param>
+                  <param name="commonTable">"ORGMTX"</param>
+                  <param name="filter">"[ID] = $parent.id"</param>
+                </source>
+              </sources>
+
+              <field name="qty" type="number" prec="3" />
+              <field name="id" type="string" data="ID_I" />
+            </object>
+          </data>
+        </field>
+        <field name="discounts" type="collection">
+          <data>
+            <object name="OrgDscItem">
+              <sources>
+                <source name="DBFTableSet">
+                  <param name="userTable">"ODSC"</param>
+                  <param name="commonTable">"ORGDISCOUNTS"</param>
+                  <param name="filter">"[ID] = $parent.id"</param>
+                </source>
+              </sources>
+
+              <field name="discount" type="number" prec="2" data="DSC" />
+              <field name="id" type="string" data="ID_SUPL" />
+            </object>
+          </data>
+        </field>
+      </add>
+    </modify>
+    <modify src="Price">
+      <add>
+        <field name="discount" type="number" prec="2" data="DSC" />
+        <field name="action" type="number" />
+        <field name="supplier" type="string" data="SUPPL" />
+        <field name="idSuppl" type="string" data="ID_SUPL" />
+      </add>
+    </modify>
+    <modify src="Order$items">
+      <add>
+        <field name="discount" type="number" prec="2" data="DSC_I" />
+      </add>
+    </modify>
+	</objects>
+</serverDefs>

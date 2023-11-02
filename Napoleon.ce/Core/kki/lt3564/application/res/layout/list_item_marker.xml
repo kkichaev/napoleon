@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dialog_item_height">
+
+        <RelativeLayout
+            android:id="@+id/status_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dialog_item_height" >
+
+            <TextView
+                android:id="@+id/status_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/univ_padding"
+                android:layout_toRightOf="@id/status_icon"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/text_size_simple"
+                android:paddingLeft="@dimen/univ_padding_dialog_item"/>
+
+            <CheckBox
+                android:id="@+id/status_radio_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_vertical"
+                android:clickable="false"
+                android:focusable="false"
+                android:paddingRight="@dimen/univ_padding_dialog_item"/>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</merge>

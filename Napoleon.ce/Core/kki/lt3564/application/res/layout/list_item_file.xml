@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/univ_ab_height" >
+
+    <ImageView
+        android:id="@+id/file_icon"
+        android:layout_width="@dimen/univ_ab_height"
+        android:layout_height="@dimen/univ_ab_height"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="5dp"
+        android:padding="8dp" />
+
+    <LinearLayout
+        android:id="@+id/file_info"
+        android:background="@drawable/selector_menu_item"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/univ_ab_height"
+        android:layout_above="@+id/divider"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="8dp"
+        android:layout_toLeftOf="@+id/file_remove"
+        android:layout_toRightOf="@+id/file_icon"
+        android:gravity="center_vertical"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/file_name"
+            style="@style/tvFileNameBase"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/file_size"
+            style="@style/tvFileSize" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/file_remove"
+        android:background="@drawable/selector_menu_item"
+        android:layout_width="@dimen/univ_ab_height"
+        android:layout_height="@dimen/univ_ab_height"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:padding="@dimen/univ_padding_small" />
+
+</RelativeLayout>

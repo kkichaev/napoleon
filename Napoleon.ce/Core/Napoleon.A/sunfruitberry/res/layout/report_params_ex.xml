@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/LinearLayout01"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/footer"
+            android:paddingBottom="10dp"
+            android:paddingTop="5dp" >
+
+		    <TextView
+		        android:id="@+id/tvName"
+		        android:padding="3sp"
+			    android:textSize="16sp"
+			    android:textColor="@color/black"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="" />
+		</LinearLayout>
+
+        <TableLayout
+            android:stretchColumns="1"
+            android:layout_weight="1"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp" >
+
+            <TableRow
+                android:id="@+id/tableRow1"
+                android:padding="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:paddingRight="3dp"
+                    android:text="@string/date_start"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tvDateStart"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="fill_parent"
+                    android:textColor="@color/blue"
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:hint="@string/date_select_hint"
+                    android:text="" />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow2"
+                android:padding="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:paddingRight="3dp"
+                    android:text="@string/date_end"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tvDateEnd"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="fill_parent"
+                    android:textColor="@color/blue"
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:hint="@string/date_select_hint"
+                    android:text="" />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow3"
+            android:visibility="gone"
+                android:padding="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:paddingRight="3dp"
+                    android:text="@string/cagent"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" >
+
+	                <TextView
+	                    android:id="@+id/tvOrg"
+	                    android:layout_width="0dp"
+	                    android:layout_weight="1"
+	                    android:layout_height="fill_parent"
+	                    android:textColor="@color/blue"
+	                    android:textSize="16sp"
+	                    android:gravity="center"
+                    	android:hint="@string/org_select_hint"
+	                    android:text="" />
+	
+	                    
+	                <ImageButton
+	                    tools:ignore="ContentDescription"
+	                    android:id="@+id/btnClear"
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:layout_gravity="center"
+	                    android:src="@drawable/ic_delete" />
+                    
+                </LinearLayout>
+
+
+            </TableRow>
+        </TableLayout>
+
+	<LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/footer"
+        android:orientation="horizontal"
+        android:padding="7dp" >
+
+        <ImageButton
+            android:id="@+id/btnSend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="7dp"
+            android:src="@drawable/send"
+            tools:ignore="ContentDescription" />
+
+    </LinearLayout>        
+</LinearLayout>

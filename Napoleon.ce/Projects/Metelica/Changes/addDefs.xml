@@ -1,0 +1,175 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+  <objects>
+    <object name="Prices">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"PRC"</param>
+          <param name="commonTable">"PRICES"</param>
+          <param name="catalog">"price;items;0"</param>
+        </source>
+      </sources>
+      <field name="items" type="collection">
+        <data>
+          <object name="RestInItem">
+            <field name="id" type="string" />
+            <field name="cost" type="number" prec="2" />
+            <field name="mgrCost" type="number" prec="2" />
+            <field name="minCost" type="number" prec="2" />
+          </object>
+        </data>
+      </field>
+      <field name="price" type="number" />
+    </object>
+
+    <object name="RestIn">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"RTT"</param>
+          <param name="commonTable">"RTTS"</param>
+          <param name="catalog">"id;items;0"</param>
+        </source>
+      </sources>
+      <field name="items" type="collection">
+        <data>
+          <object name="RestInItem">
+            <field name="id" type="string" data="ID_F" />
+            <field name="plan" type="number" />
+          </object>
+        </data>
+      </field>
+      <field name="id" type="string" />
+    </object>
+
+    <object name="RestOut">
+      <sources>
+        <source name="DBFCatalogTable">
+          <param name="tableName">$object.table + $user.id</param>
+          <param name="catalog">"id"</param>
+          <param name="ordered">1</param>
+        </source>
+      </sources>
+
+      <member name="table">"OTT"</member>
+      <member name="primaryKey">"userid,created"</member>
+
+      <field name="userid" type="string" data="USER_ID" execOn="Put">$user.id</field>
+      <field name="created" type="timestamp" data="CREATED"/>
+      <field name="sended" type="timestamp" data="S_DATE" execOn="Put">Now()</field>
+      <field name="date" type="date" execOn="Put">$object.created</field>
+      <field name="id" width="20" type="string" />
+      <field name="remark" type="string" />
+      <field name="items" type="collection">
+        <data>
+          <object name="RestOutItem">
+            <sources>
+              <source name="DBFCatalogItemTable"/>
+            </sources>
+
+            <field name="id" width="20" type="string" data="ID_F"/>
+            <field name="plan" type="number"  />
+            <field name="qty" type="number"  />
+            <field name="order" type="number"  />
+            <field name="ordflag" width="1" type="number" execOn="Put">FirstItem($object)</field>
+          </object>
+        </data>
+      </field>
+    </object>
+
+    <object name="OrderDecision" sendAlways="true">
+      <sources>
+        <source name="DBFTable">
+          <param name="tableName">"DCO"</param>
+        </source>
+        <source name="SQTable" type="internal" >
+          <param name="readFilter">
+            '"userid"=' + "'" + $user.id + "' and " +
+            '"created" &gt;= ToDate("' + FormatDate(Now(),"DD.MM.YYYY") + '")'
+          </param>
+
+        </source>
+      </sources>
+
+      <member name="primaryKey">"userid,created"</member>
+
+      <field name="order" type="timestamp" />
+      <field name="decision" type="number" />
+      <field name="created" type="timestamp" />
+      <field name="timeZone" type="number" />
+      <field name="serverTimeZone" type="number" data="S_TZ" execOn="Put" features="USE_TIMEZONE">ServerTimeZone()</field>
+      <field name="userid" type="string" />
+      <field name="id" type="string" width="30" />
+      <field name="sended" type="timestamp" data="S_DATE" execOn="Put">Now()</field>
+      <field name="remark" type="string" width="100" />
+      <field name="latitude" type="number" prec="5" />
+      <field name="longitude" type="number" prec="5" />
+
+      <events>
+        <event type="put">
+          <action name="WriteInternal">$object.type</action>
+        </event>
+      </events>
+    </object>
+
+    <modify src="Delivery" dest="ManagerDelivery">
+      <change>
+        <sources>
+          <source name="DBFTableSet">
+            <param name="userTable">"DLV"</param>
+            <param name="commonTable">"DELIVERY"</param>
+            <param name="catalog">"number;items;1"</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+    <modify src="Payment" dest="ManagerPayment">
+      <change>
+        <sources>
+          <source name="DBFTableSet">
+            <param name="userTable">"PAY"</param>
+            <param name="commonTable">"PAYMENT"</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+    <modify src="Price">
+      <add>
+        <field name="barcode" type="string" />
+        <field name="minCost" type="number" prec="2" />
+        <field name="best" type="number" />
+        <field name="mgrCost" type="number" prec="2" />
+        <field name="minCost" type="number" prec="2" />
+      </add>
+    </modify>
+    <modify src="Org">
+      <add>
+        <field name="info" type="string" />
+        <field name="price" type="number" />
+      </add>
+    </modify>
+    <modify src="OrgRemnants">
+      <change>
+        <sources>
+          <source name="DBFCatalogTable">
+            <param name="tableName">$object.table + $user.id</param>
+            <param name="catalog">"id"</param>
+            <param name="ordered">1</param>
+          </source>
+          <source name="SQTable" type="internal" />
+        </sources>
+        <event type="put">
+          <action name="WriteInternal">$object.type</action>
+          <action name="WriteToLog">$object.type;$object.date</action>
+        </event>
+      </change>
+    </modify>
+    <modify src="OrgRemnants$items">
+      <change>
+        <sources>
+          <source name="DBFCatalogItemTable"/>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+    </modify>
+  </objects>
+</serverDefs>

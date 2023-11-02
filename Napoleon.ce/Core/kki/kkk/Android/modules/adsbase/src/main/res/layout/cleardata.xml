@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/select_data_to_delete"
+        android:textColor="@color/black"
+        android:textSize="18sp" 
+        android:paddingBottom="25dp"/>
+
+    <CheckBox
+        android:id="@+id/cbPictures"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/pictures_data"
+        android:textColor="@color/black" />
+
+    <CheckBox
+        android:id="@+id/cbAttach"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/attachments_data"
+        android:textColor="@color/black" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1" />
+
+    <TextView
+        android:id="@+id/tvWarning"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/clearing_warning"
+        android:textColor="@color/black"
+        android:textSize="18sp" 
+        android:paddingBottom="25dp"/>
+    
+    <com.grsoft.ads.view.MyButton
+        android:id="@+id/btnClear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@drawable/button_selector"
+        android:text="@string/clear_data"
+        android:textColor="@color/btncancel" />
+
+</LinearLayout>

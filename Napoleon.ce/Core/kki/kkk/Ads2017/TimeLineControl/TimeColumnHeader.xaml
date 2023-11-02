@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="Ads2017.TimeColumnHeader"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Ads2017"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300"
+             x:Name="TimeColumnHeaderControl">
+    <StackPanel>
+        <local:TimeColumnHeaderCell Text="00:00" Height="{Binding Path=HourRowHeight, ElementName=TimeColumnHeaderControl}"/>
+        <local:TimeColumnHeaderCell Text="01:00" Height="{Binding Path=HourRowHeight, ElementName=TimeColumnHeaderControl}"/>
+        <local:TimeColumnHeaderCell Text="02:00" Height="{Binding Path=HourRowHeight, ElementName=TimeColumnHeaderControl}"/>
+        <local:TimeColumnHeaderCell Text="03:00" Height="{Binding Path=HourRowHeight, ElementName=TimeColumnHeaderControl}"/>
+        <local:TimeColumnHeaderCell Text="04:00" Height="{Binding Path=HourRowHeight, ElementName=TimeColumnHeaderControl}"/>
+        <local:TimeColumnHeaderCell Text="05:00" Height="{Binding Path=HourRowHeight, ElementName=TimeColumnHeaderControl}"/>
+        <local:TimeColumnHeaderCell Text="06:00" Height="{Binding Path=HourRowHeight, ElementName=TimeColumnHeaderControl}"/>
+        <local:TimeColumnHeaderCell Text="07:00" Height="{Binding Path=HourRowHeight, ElementName=TimeColumnHeaderControl}"/>
+        <local:TimeColumnHeaderCell Text="08:00" Height="{Binding Path=HourRowHeight, ElementName=TimeColumnHeaderControl}"/>
+        <local:TimeColumnHeaderCell Text="09:00" Height="{Binding Path=HourRowHeight, ElementName=TimeColumnHeaderControl}"/>
+        <local:TimeColumnHeaderCell Text="10:00" Height="{Binding Path=HourRowHeight, ElementName=TimeColumnHeaderControl}"/>
+        <local:TimeColumnHeaderCell Text="11:00" Height="{Binding Path=HourRowHeight, ElementName=TimeColumnHeaderControl}"/>
+        <local:TimeColumnHeaderCell Text="12:00" Height="{Binding Path=HourRowHeight, ElementName=TimeColumnHeaderControl}"/>
+        <local:TimeColumnHeaderCell Text="13:00" Height="{Binding Path=HourRowHeight, ElementName=TimeColumnHeaderControl}"/>
+        <local:TimeColumnHeaderCell Text="14:00" Height="{Binding Path=HourRowHeight, ElementName=TimeColumnHeaderControl}"/>
+        <local:TimeColumnHeaderCell Text="15:00" Height="{Binding Path=HourRowHeight, ElementName=TimeColumnHeaderControl}"/>
+        <local:TimeColumnHeaderCell Text="16:00" Height="{Binding Path=HourRowHeight, ElementName=TimeColumnHeaderControl}"/>
+        <local:TimeColumnHeaderCell Text="17:00" Height="{Binding Path=HourRowHeight, ElementName=TimeColumnHeaderControl}"/>
+        <local:TimeColumnHeaderCell Text="18:00" Height="{Binding Path=HourRowHeight, ElementName=TimeColumnHeaderControl}"/>
+        <local:TimeColumnHeaderCell Text="19:00" Height="{Binding Path=HourRowHeight, ElementName=TimeColumnHeaderControl}"/>
+        <local:TimeColumnHeaderCell Text="20:00" Height="{Binding Path=HourRowHeight, ElementName=TimeColumnHeaderControl}"/>
+        <local:TimeColumnHeaderCell Text="21:00" Height="{Binding Path=HourRowHeight, ElementName=TimeColumnHeaderControl}"/>
+        <local:TimeColumnHeaderCell Text="22:00" Height="{Binding Path=HourRowHeight, ElementName=TimeColumnHeaderControl}"/>
+        <local:TimeColumnHeaderCell Text="23:00" Height="{Binding Path=HourRowHeight, ElementName=TimeColumnHeaderControl}"/>
+    </StackPanel>
+</UserControl>

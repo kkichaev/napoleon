@@ -1,0 +1,32 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+  <objects>
+    <modify src="Org">
+      <add>
+        <field name="sklad" type="number" />
+        <field name="dogovors" type="collection">
+          <data>
+            <object name="Item">
+              <sources>
+                <source name="DBFTableSet">
+                  <param name="userTable">"DG"</param>
+                  <param name="commonTable">"CONTACTS"</param>
+                  <param name="filter">"[ID] = $parent.id"</param>
+                </source>
+              </sources>
+              <field name="name" type="string" />
+              <field name="id" type="string" data="ID_D" />
+            </object>
+          </data>
+        </field>
+      </add>
+    </modify>
+
+    <modify src="Order">
+      <add>
+        <field name="dogovor" type="string" width="55" />
+      </add>
+    </modify>
+
+  </objects>
+</serverDefs>

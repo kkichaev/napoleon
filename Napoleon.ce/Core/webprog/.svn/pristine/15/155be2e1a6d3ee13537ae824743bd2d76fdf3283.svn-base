@@ -1,0 +1,5 @@
+#!/usr/bin/sh
+docker save grs | gzip > grs.tar.gz
+#scp grs.tar.gz ert@192.168.1.115:/home/ert
+scp grs.tar.gz ert@napmobile.ru:/srv/napoleon/dockers/
+grs.tar.gz

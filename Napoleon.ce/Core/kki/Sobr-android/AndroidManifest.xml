@@ -1,0 +1,117 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="ru.sobr.app"
+    android:versionCode="9"
+    android:versionName="2.17" >
+
+    <uses-sdk
+        android:minSdkVersion="7"
+        android:targetSdkVersion="16" />
+
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="true" />
+
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+
+    <!-- android:theme="@android:style/Theme.Light.NoTitleBar" -->
+    <!-- android:screenOrientation="portrait" -->
+    <!-- android:configChanges="keyboard|keyboardHidden|navigation|orientation" -->
+    <application
+        android:hardwareAccelerated="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/Theme.SobrTheme_Light" >
+        <activity
+            android:name=".ui.MainActivity"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            android:launchMode="singleTask" 
+            android:configChanges="orientation|keyboard|keyboardHidden">
+            
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+                android:name=".ui.SobrAssistActivity"
+                android:configChanges="keyboardHidden|orientation|keyboard"
+                android:theme="@android:style/Theme.Light.NoTitleBar"
+                />
+        <activity
+                android:name=".ui.WebViewActivity"
+                android:configChanges="keyboardHidden|orientation|keyboard"
+                android:theme="@android:style/Theme.Light.NoTitleBar"
+                />
+        <activity
+            android:name=".ui.TabEngineFragment"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            android:configChanges="keyboardHidden|orientation|keyboard" />
+        <activity
+            android:name=".ui.TabStateFragment"
+            android:windowSoftInputMode="stateAlwaysHidden" 
+            android:configChanges="keyboardHidden|orientation|keyboard"/>
+        <activity
+            android:name=".ui.TabSecurityFragment"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            android:configChanges="keyboardHidden|orientation|keyboard" />
+        <activity
+            android:name=".ui.ProfilesActivity"
+            android:label="@string/profiles"
+            android:uiOptions="splitActionBarWhenNarrow"
+            android:windowSoftInputMode="stateAlwaysHidden" 
+            android:configChanges="keyboardHidden|orientation|keyboard">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:mimeType="vnd.android.cursor.dir/vnd.sobr.app.Profiles" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.ProfileDetailActivity"
+            android:configChanges="keyboardHidden|orientation|keyboard"
+            android:label="@string/profile_new"
+            android:uiOptions="splitActionBarWhenNarrow"
+            android:windowSoftInputMode="stateAlwaysHidden" >
+            <intent-filter>
+                <action android:name="android.intent.action.EDIT" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:mimeType="vnd.android.cursor.item/vnd.sobr.app.Profiles" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.INSERT" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:mimeType="vnd.android.cursor.dir/vnd.sobr.app.Profiles" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="ru.sobr.app.ui.CustomProfileDetailActivity"
+            android:configChanges="keyboardHidden|orientation|keyboard"
+            android:label="@string/profile_user_settings_button"
+            android:uiOptions="splitActionBarWhenNarrow"
+            android:windowSoftInputMode="stateAlwaysHidden" >
+        </activity>
+
+        <provider
+            android:name=".provider.SobrProvider"
+            android:authorities="ru.sobr.app.provider"
+            android:exported="false" />
+
+        <receiver
+            android:name=".telephony.SmsStatusReceiver"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="ru.sobr.action.SMS_SENT" />
+            </intent-filter>
+        </receiver>
+    </application>
+
+</manifest>

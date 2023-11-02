@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:balloonberry="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/save_feature"
+        balloonberry:showAsAction="always"
+        android:icon="@drawable/apply"
+        android:title="@string/menu_save_task"/>
+
+</menu>

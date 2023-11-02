@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+   <meta http-equiv='X-UA-Compatible' content='IE=Edge' />
+   <title>User Location</title>
+
+   <style type="text/css">
+      body, html {
+         width: 100%;
+         height: 100%;
+         margin: 0;
+         padding: 0;
+         overflow: hidden;
+      }
+
+      #map {
+         height: 100%;
+      }
+
+      .infomsg { display:none; }
+   </style>
+
+   <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAjuQiUAlecbUWCdh1QCnZzrWq37EPqPE0&callback=initialize" async defer></script>
+
+   <script type="text/javascript">
+      var map;
+      var markers = {};
+      var infowindow = null;
+
+      function showInfo(pos) {
+        try{
+           var m = markers[pos];
+           google.maps.event.trigger(m, 'click');
+           map.setCenter(m.position);
+        }catch(err){}
+      }
+
+      function initialize() {
+         var mapTypeIds = [];
+   
+         for(var type in google.maps.MapTypeId) {
+            mapTypeIds.push(google.maps.MapTypeId[type]);
+         }
+   
+         mapTypeIds.push("OSM");
+
+         map = new google.maps.Map(document.getElementById("map"),{
+            center: new google.maps.LatLng({ lat: 57.611453, lng: 39.83032 }),
+            zoom: 13,
+            mapTypeId: "OSM",
+            mapTypeControlOptions: { mapTypeIds: mapTypeIds }
+         });
+
+         map.mapTypes.set("OSM", new google.maps.ImageMapType({
+            getTileUrl: function (coord, zoom) { return "http://tile.openstreetmap.org/" + zoom + "/" + coord.x + "/" + coord.y + ".png"; },
+            tileSize: new google.maps.Size(256, 256),
+            name: "OpenStreetMap",
+            maxZoom: 18
+         }));
+
+         loadData('DATASECTION');
+      }
+
+      function loadData(data) {
+         try{
+            var points = JSON.parse(data)
+            var bounds = new google.maps.LatLngBounds();
+
+            if (points != null) {
+               points.forEach(function (p){
+                  var pos = new google.maps.LatLng(p.location.latitude, p.location.longitude);
+
+                  var marker = new google.maps.Marker({
+                     position: pos,
+                     icon: "http://grsoft.ru/markers/green/marker" + p.pos + ".png",
+                     map: map,
+                     info: p,
+                  });
+
+                  marker.addListener('click', function (e) {
+                     if (infowindow != null)
+                        infowindow.close();
+
+                     infowindow = new google.maps.InfoWindow({
+                        content: this.info.location.agent.name,
+                     });
+
+                     infowindow.open(map,this);
+                  });
+
+                  bounds.extend(pos);
+                  markers[p.pos] =  marker;
+               });
+
+               map.setCenter(bounds.getCenter());
+               map.fitBounds(bounds);
+            }
+         }catch(err){}
+      }
+   </script>
+</head>
+
+<body> <div id="map"></div>
+</body>
+</html>

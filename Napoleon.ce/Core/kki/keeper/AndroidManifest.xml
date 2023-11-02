@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+      package="com.keeper" 
+      android:versionName="1.12" 
+      android:versionCode="11">
+    <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="8"/>
+    
+    <uses-permission 
+    	android:name="android.permission.WRITE_EXTERNAL_STORAGE">
+    </uses-permission>
+
+    <application android:icon="@drawable/icon" 
+    		android:label="@string/app_name" 
+    		android:name="com.keeper.KeeperApp"
+    		android:theme="@android:style/Theme.Holo.Light">
+    		
+        <activity 
+        	android:label="@string/app_name" 
+        	android:name=".views.Password"
+        	android:clearTaskOnLaunch="true">
+        	  	
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
+        <activity android:name=".views.Group" 
+        	android:label="@string/app_name"/>
+        	
+        <activity android:name=".views.Uri"/>
+        <activity android:name=".views.Accounts"/>
+        <activity android:name=".views.Setting"/>
+    </application>
+</manifest>

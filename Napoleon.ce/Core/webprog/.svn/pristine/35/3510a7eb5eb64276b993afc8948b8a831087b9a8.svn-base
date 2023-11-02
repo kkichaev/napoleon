@@ -1,0 +1,125 @@
+<template>
+  <q-page padding>
+    <q-card class="q-ml-auto q-mr-auto" flat>
+      <q-card-section class="form-title text-center">
+        {{ $t("register.title") }}
+      </q-card-section>
+
+      <q-card-section v-if="!regSuccess">
+        <q-form ref="form">
+          <q-input
+            v-model="email"
+            :label="$t('login.emailLabel')"
+            filled
+            :rules="[val => !!val || $t('field_is_required')]"/>
+
+          <q-input
+            style="margin-top: 36px"
+            v-model="name"
+            :label="$t('register.nameLabel')"
+            filled
+            :rules="[val => !!val || $t('field_is_required')]"/>
+
+          <q-input
+            style="margin-top: 36px"
+            v-model="surname"
+            :label="$t('register.surnameLabel')"
+            filled
+            :rules="[val => !!val || $t('field_is_required')]"/>
+
+          <q-input
+            style="margin-top: 36px"
+            :label="$t('login.passwordLabel')"
+            filled
+            v-model="password"
+            :rules="[val => !!val || $t('field_is_required')]"
+          />
+
+          <q-input
+            style="margin-top: 36px"
+            :label="$t('register.passwordConfirmLabel')"
+            filled
+            v-model="password2"
+            :rules="[val => !!val || $t('field_is_required')]"
+          />
+        </q-form>
+
+        <q-btn
+          class="login-btn login-form-text"
+          no-caps
+          style="margin-top: 40px"
+          @click="register"
+          :label="$t('register.registerAction')"
+          :loading="useBackendStore().loading"
+        />
+      </q-card-section>
+
+      <q-card-section v-if="regSuccess">
+        <div class="text-center" style="margin-top: 40px">Проект и ваши данные успешно зарегестрированы</div>
+        <div class="text-center" style="margin-top: 36px">На указанный email было отправлено письмо. Вам необходимо подтвердить свой адрес</div>
+        <div class="text-center">после этого можно будет авторизироваься</div>
+
+      </q-card-section>
+
+      <q-card-section v-if="regSuccess">
+
+      </q-card-section>
+
+      <q-card-section class="text-center">
+        <q-btn
+          class="login-form-text"
+          flat
+          :label="$t('register.autorization')"
+          no-caps
+          :to="{name: 'Login'}"
+        />
+      </q-card-section>
+
+      <q-card-section class="text-center">
+        <q-btn class="login-form-text" flat no-caps>
+          <u>{{ $t("login.supportEmail") }}</u>
+        </q-btn>
+      </q-card-section>
+    </q-card>
+  </q-page>
+</template>
+
+<script setup>
+import { ref, computed, watch } from "vue";
+import { useBackendStore } from "src/stores/backend";
+import { useQuasar } from "quasar";
+import { useMainStore } from "src/stores/main-store";
+import { useGuard } from 'src/components/guard'
+
+const name=ref('Вася')
+const surname=ref('Пупкин')
+const email = ref("kkichaev@yandex.ru");
+const password = ref("123456");
+const password2 = ref("123456");
+const regSuccess = computed(()=>useBackendStore().registrationStatus)
+const hasError = computed(()=>useBackendStore().errorCode != 0)
+const $q = useQuasar()
+const form = ref(null)
+const guard = useGuard()
+
+function register() {
+  form.value.validate().then((success)=>{
+    if (success)
+      useBackendStore().registerUser({email: email.value, name: name.value, password: password.value, surname: surname.value})
+  })
+}
+
+watch([hasError, regSuccess], ()=>{
+  console.log("watched: ", regSuccess)
+  if (hasError.value){
+    $q.notify({
+      message: useBackendStore().errorMessage,
+      color: 'red'
+    })
+
+    useBackendStore().clearError()
+  }
+})
+</script>
+
+<style scoped></style>

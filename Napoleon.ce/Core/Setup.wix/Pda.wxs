@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding="windows-1251"?>
+<Wix xmlns='http://schemas.microsoft.com/wix/2006/wi'>
+   <Fragment Id='Pda'>
+      <Feature Id='Pda' Title='Наполеон-Агент' Description='Программа торгового агнета на КПК' Level='1' Display='3'
+               ConfigurableDirectory='_PRODUCT' Absent='allow'>
+         <ComponentRef Id='PdaComponents' />
+         <ComponentRef Id='PdaDocs' />
+         <ComponentRef Id='PdaRegs' />
+        <ComponentGroupRef Id='Docs' />
+      </Feature>
+
+      <DirectoryRef Id='_PRODUCT' >
+         <Component Id='PdaComponents' Guid='B3309BF3-18F2-42fd-9A08-4E54B13A12C3'>
+           <File Id='NapoleonSetup_CAB' Name='NapoleonSetup.cab' DiskId='1' Source='NapoleonSetup.cab'  />
+            <File Id='InstallNpl' DiskId='1' Name='NplInstall.exe' Source='NplInstall.exe' KeyPath='yes' >
+               <Shortcut Id ='InstallNpl' Directory='ProgramMenuDir' 
+                         Name='Установка программы на КПК' Arguments='"[_PRODUCT]NapoleonSetup.ini"' Advertise='yes'/>
+            </File>
+            <File Id='NplIni' DiskId='1' Name='NapoleonSetup.ini' Source='NapoleonSetup.ini' />
+         </Component>
+         <Component Id='PdaDocs' Guid='3FEBD69F-4A1F-4920-AE34-91D8A47272EF'>
+            <File Id='PdaDoc' Name='Pda.pdf' DiskId='1' Source='Pda.pdf'  KeyPath='yes'>
+               <Shortcut Id='PdaDoc' Directory='Docs' Name='Агент'
+                         Description='Руководство пользователя для программы Наполеон-Агент на КПК' Advertise='yes' />
+            </File>
+         </Component>
+         <Component Id='PdaRegs' Guid='97A55974-8F35-4bee-9CAD-425CD17FCCE1'>
+           <RegistryValue Key='Software\[Manufacturer]\[ProductName]\PdaCab' Root='HKCU' Type='string' Value='' KeyPath='yes' />
+         </Component>
+      </DirectoryRef>
+   </Fragment>
+</Wix>

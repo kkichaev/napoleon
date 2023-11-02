@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+  	android:layout_height="fill_parent" 
+  	android:layout_width="fill_parent" 
+  	android:orientation="vertical">
+  	
+	<LinearLayout android:id="@+id/LinearLayout01" 
+		android:layout_height="wrap_content" 
+		android:layout_width="fill_parent" 
+		android:layout_weight="0" 
+		android:paddingBottom="10dp" 
+		android:paddingTop="5dp" 
+		android:background="@color/footer">
+		
+		<TextView android:layout_width="wrap_content" 
+			android:layout_height="wrap_content" 
+			android:id="@+id/tvOrg" 
+			android:text="OrgName" 
+			android:textStyle="bold" 
+			android:textSize="18sp" 
+			android:ellipsize="end" 
+			android:lines="1" 
+			android:scrollHorizontally="true" 
+			android:textColor="@color/black"/>
+	</LinearLayout>
+	
+	<LinearLayout android:id="@+id/LinearLayout02" 
+		android:layout_height="wrap_content" 
+		android:layout_width="fill_parent" 
+		android:layout_weight="1" 
+		android:orientation="vertical">
+		
+		<LinearLayout android:id="@+id/LinearLayout04" 
+			android:layout_height="wrap_content" 
+			android:layout_width="fill_parent" 
+			android:layout_weight="0" 
+			android:background="@color/black">
+			
+			<TextView android:id="@+id/TextView01" 
+				android:layout_width="wrap_content" 
+				android:layout_height="wrap_content" 
+				android:text="Название" 
+				android:layout_weight="1" 
+				android:background="@color/white" 
+				android:textColor="@color/black" 
+				android:layout_margin="1dp" 
+				android:paddingLeft="3dp"/>
+				
+			<TextView android:id="@+id/TextView02" 
+				android:layout_width="wrap_content" 
+				android:layout_height="wrap_content" 
+				android:layout_weight="0" 
+				android:background="@color/white" 
+				android:textColor="@color/black" 
+				android:layout_marginBottom="1dp" 
+				android:layout_marginRight="1dp" 
+				android:layout_marginTop="1dp" 
+				android:paddingLeft="2dp" 
+				android:paddingRight="2dp" 
+				android:text="Кол-во" 
+				android:minWidth="80dp"/>
+				
+			<TextView android:id="@+id/TextView03" 
+				android:layout_width="wrap_content" 
+				android:layout_height="wrap_content" 
+				android:text="Сумма" 
+				android:layout_weight="0" 
+				android:background="@color/white" 
+				android:textColor="@color/black" 
+				android:layout_marginLeft="0dp" 
+				android:layout_marginBottom="1dp" 
+				android:layout_marginRight="1dp" 
+				android:layout_marginTop="1dp" 
+				android:paddingRight="3dp" 
+				android:minWidth="80dp"/>
+		</LinearLayout>
+
+		<ListView android:layout_width="wrap_content" 
+			android:layout_height="wrap_content" 
+			android:layout_weight="1" 
+			android:id="@+id/lvItems" 
+			android:background="@color/white"/>
+			
+		<LinearLayout android:id="@+id/LinearLayout02" 
+			android:layout_height="wrap_content" 
+			android:layout_width="fill_parent" 
+			android:background="#FFFFFF"
+			android:orientation="vertical">
+			<LinearLayout android:id="@+id/llFocus" 
+				android:layout_height="wrap_content" 
+				android:layout_width="fill_parent"
+				android:visibility="gone" 
+				android:background="#FFFFFF"
+				android:orientation="vertical">
+				<Button android:id="@+id/btnFocus"
+					android:layout_width="wrap_content" 
+					android:textColor="#FF0000"
+					android:text="Закажите фокусный товар!"
+					android:layout_height="wrap_content"></Button>
+			</LinearLayout>
+			<TextView android:layout_width="fill_parent" 
+				android:layout_height="wrap_content" 
+				android:id="@+id/tvInfo" 
+				android:text="tvInfo"/>
+			<TextView android:layout_width="fill_parent" 
+				android:layout_height="wrap_content" 
+				android:id="@+id/tvInfo1" 
+				android:text="tvInfo1"/>
+		</LinearLayout>
+	</LinearLayout>
+	
+	<LinearLayout android:layout_height="wrap_content" 
+		android:layout_width="fill_parent" 
+		android:id="@+id/linearLayout1" 
+		android:background="@color/footer" 
+		android:orientation="horizontal" 
+		android:padding="7dp">
+		
+		<ImageButton android:layout_width="wrap_content" 
+			android:layout_height="wrap_content" 
+			android:id="@+id/btnAddItems" 
+			android:src="@drawable/new_order" 
+			android:layout_marginRight="7dp"/>
+			
+		<ImageButton android:layout_width="wrap_content" 
+			android:layout_height="wrap_content" 
+			android:src="@drawable/orderedit" 
+			android:id="@+id/btnEditOrder" 
+			android:layout_marginRight="7dp"/>
+			
+		<ImageButton android:layout_width="wrap_content" 
+			android:layout_height="wrap_content" 
+			android:id="@+id/btnLines" 
+			android:src="@drawable/line_2" 
+			android:layout_marginRight="7dp"/>
+			
+		<ImageButton android:layout_width="wrap_content" 
+			android:layout_height="wrap_content" 
+			android:src="@drawable/send" 
+			android:id="@+id/btnSend" 
+			android:layout_marginRight="7dp"/>
+			
+		<TextView android:layout_height="wrap_content" 
+			android:layout_gravity="center_vertical" 
+			android:layout_width="fill_parent" 
+			android:id="@+id/tvTotalSum" 
+			android:text="Сумма" 
+			android:textColor="@color/black" 
+			android:gravity="right"/>
+	</LinearLayout>
+</LinearLayout>

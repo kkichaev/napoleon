@@ -1,0 +1,5 @@
+flask db migrate -m "balance"
+flask db upgrade
+
+#flask db downgrade
+

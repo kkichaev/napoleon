@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="horizontal"
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content"
+  android:background="@drawable/list_selector">
+    <TextView 
+ 		android:textColor="@color/black" 
+    	android:text="tvName" 
+    	android:textSize="15dp"
+    	android:paddingRight="3dp"
+    	android:id="@+id/tvName"
+    	android:layout_weight="0.4" 
+    	android:layout_width="wrap_content" 
+    	android:layout_height="wrap_content" 
+    />
+    <TextView 
+ 		android:textColor="@color/black" 
+    	android:text="tvPlan" 
+    	android:textSize="15dp"
+    	android:paddingRight="3dp"
+    	android:id="@+id/tvPlan" 
+    	android:layout_weight="0.2" 
+    	android:layout_width="wrap_content" 
+    	android:layout_height="wrap_content" 
+    />
+    <TextView 
+ 		android:textColor="@color/black" 
+    	android:text="tvFact" 
+    	android:textSize="15dp"
+    	android:paddingRight="3dp"
+    	android:id="@+id/tvFact" 
+    	android:layout_weight="0.2" 
+    	android:layout_width="wrap_content" 
+    	android:layout_height="wrap_content" 
+    />
+    <TextView 
+ 		android:textColor="@color/black" 
+    	android:text="tvPrc" 
+    	android:textSize="15dp"
+    	android:paddingRight="3dp"
+    	android:id="@+id/tvPrc" 
+    	android:layout_weight="0.2" 
+    	android:layout_width="wrap_content" 
+    	android:layout_height="wrap_content" 
+    />
+    
+</LinearLayout>

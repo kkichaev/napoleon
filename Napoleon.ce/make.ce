@@ -1,0 +1,210 @@
+#
+#
+# MAKE для VC
+#
+#
+
+SHELL=$(ROOT)/shell
+
+LINK=link
+CC=cl
+RC=RC
+CCLIB=lib
+
+ifdef MS_LIBS
+ MS_LIBS+=coredll.lib corelibc.lib ole32.lib oleaut32.lib uuid.lib commctrl.lib Ws2.lib
+else
+ MS_LIBS=coredll.lib corelibc.lib ole32.lib oleaut32.lib uuid.lib commctrl.lib Ws2.lib
+endif
+
+MS_CFLAGS=/Os /c /W3 /EHa /fp:fast /GR- /nologo
+
+CAB_COMPRESS=true
+
+ifdef WCE_PLATFORM_MC3000C50B
+ WIN_CE_FLAGS=5.00
+ WIN_CE_CFLAGS=0x500
+
+ MS_LIB_PATH=c:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\ce\lib\$(PLATFORM);c:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\ce\atlmfc\lib\$(PLATFORM);c:\Program Files (x86)\Windows CE Tools\wce500\MC3000c50b\Lib\$(PLATFORM);$(ADD_LIB)
+ MS_INCLUDE=c:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\ce\include;c:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\ce\atlmfc\include;c:\Program Files (x86)\Windows CE Tools\wce500\MC3000c50b\Include\$(PLATFORM);$(ADD_INCLUDE);
+ MS_CFLAGS+=/D "_WIN32_IE=0x0400"
+ CAB_COMPRESS=false
+else ifdef Z2065_SDK
+ WIN_CE_FLAGS=6.00
+ WIN_CE_CFLAGS=0x600
+
+ MS_LIB_PATH=c:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\ce\lib\$(PLATFORM);c:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\ce\atlmfc\lib\$(PLATFORM);C:\Program Files (x86)\Windows CE Tools\wce600\Z2065_SDK\Lib\$(PLATFORM);$(ADD_LIB)
+ MS_INCLUDE=c:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\ce\include;c:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\ce\atlmfc\include;C:\Program Files (x86)\Windows CE Tools\wce600\Z2065_SDK\Include\$(PLATFORM);$(ADD_INCLUDE);
+ MS_CFLAGS+=/D "_WIN32_IE=0x0400"
+ CAB_COMPRESS=false
+
+ SUBSYSTEM = /subsystem:windowsce,6.00 /STACK:65536,4096 /DYNAMICBASE:NO /machine:THUMB
+else ifdef M81B_SDK
+ WIN_CE_FLAGS=6.00
+ WIN_CE_CFLAGS=0x600
+
+ MS_LIB_PATH=c:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\ce\lib\$(PLATFORM);c:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\ce\atlmfc\lib\$(PLATFORM);C:\Program Files (x86)\Windows CE Tools\wce600\M81B_SDK\Lib\$(PLATFORM);$(ADD_LIB)
+ MS_INCLUDE=c:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\ce\include;c:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\ce\atlmfc\include;C:\Program Files (x86)\Windows CE Tools\wce600\M81B_SDK\Include\$(PLATFORM);$(ADD_INCLUDE);
+ MS_CFLAGS+=/D "_WIN32_IE=0x0400"
+ CAB_COMPRESS=false
+
+ SUBSYSTEM = /subsystem:windowsce,6.00 /STACK:65536,4096 /DYNAMICBASE:NO /machine:THUMB
+else ifdef NATIVE_CE
+ WIN_CE_FLAGS=5.00
+ WIN_CE_CFLAGS=0x500
+
+ #MS_LIB_PATH=c:\Program Files\Microsoft Visual Studio 9.0\VC\ce\lib\$(PLATFORM);c:\Program Files\Windows CE Tools\wce500\STANDARDSDK_500\Atl\Lib\$(PLATFORM);c:\Program Files\Windows CE Tools\wce500\STANDARDSDK_500\Lib\$(PLATFORM);$(ADD_LIB)
+ #MS_INCLUDE=c:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\ce\include;c:\Program Files\Windows CE Tools\wce500\STANDARDSDK_500\Atl\include;C:\Program Files\Windows CE Tools\wce500\STANDARDSDK_500\Include\$(PLATFORM);$(ADD_INCLUDE);
+ MS_LIB_PATH=c:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\ce\lib\$(PLATFORM);c:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\ce\atlmfc\lib\$(PLATFORM);c:\Program Files\Windows CE Tools\wce500\STANDARDSDK_500\Lib\$(PLATFORM);$(ADD_LIB)
+ MS_INCLUDE=c:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\ce\include;c:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\ce\atlmfc\include;C:\Program Files\Windows CE Tools\wce500\STANDARDSDK_500\Include\$(PLATFORM);$(ADD_INCLUDE);
+ MS_CFLAGS+=/D "_WIN32_IE=0x0400"
+ CAB_COMPRESS=false
+else
+ WIN_CE_FLAGS=5.01
+ WIN_CE_CFLAGS=0x501
+ MS_LIBS+=note_prj.lib CellCore.lib atlosapis.lib
+ MS_CFLAGS+=/D "WIN32_PLATFORM_PSPC"
+
+ MS_LIB_PATH=c:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\ce\lib\$(PLATFORM);c:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\ce\atlmfc\lib\$(PLATFORM);c:\Program Files (x86)\Windows Mobile 5.0 SDK R2\PocketPC\Lib\$(PLATFORM);$(ADD_LIB)
+ MS_INCLUDE=c:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\ce\include;c:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\ce\atlmfc\include;c:\Program Files (x86)\Windows Mobile 5.0 SDK R2\PocketPC\Include\$(PLATFORM);$(ADD_INCLUDE);
+endif
+
+
+MS_CFLAGS+=/D "_WIN32_WCE=$(WIN_CE_CFLAGS)" /D "UNDER_CE=$(WIN_CE_CFLAGS)" /D WINCEOSVER=$(WIN_CE_CFLAGS) /D "WINCE"
+MS_CFLAGS+=/D "ARM" /D "_ARM_" /D "_UNICODE" /D "UNICODE" /D "WIN32" /D "_WINDOWS"
+ifdef M81B_SDK
+MS_CFLAGS+=/D "STANDARDSHELL_UI_MODEL" 
+else ifdef Z2065_SDK
+MS_CFLAGS+=/D "STANDARDSHELL_UI_MODEL" 
+else
+MS_CFLAGS+=/D "POCKETPC2003_UI_MODEL" 
+endif
+MS_CFLAGS+=/D "_ATL_STATIC_REGISTRY"
+MS_CFLAGS+=/D "NO_GZIP" /D "Microsoft" /D "_CRT_SECURE_NO_WARNINGS"
+
+
+ifdef SUBSYSTEM
+MS_LFLAGS=/NOLOGO /ARMPADCODE $(SUBSYSTEM)
+else
+MS_LFLAGS=/NOLOGO /ARMPADCODE /subsystem:windowsce,$(WIN_CE_FLAGS) /machine:THUMB
+endif
+
+ifdef DEF
+MS_LFLAGS += /DEF:"$(DEF)"
+endif
+
+ifdef DEBUG
+MS_CFLAGS += /Od /D "_DEBUG" /D "DEBUG" /Zi /MTd
+MS_LFLAGS += /DEBUG /INCREMENTAL /MANIFEST:NO /NODEFAULTLIB:"oldnames.lib" /ERRORREPORT:PROMPT
+else
+MS_CFLAGS += /GF /Gy /O2 /MT /D "NDEBUG" /Zi
+MS_LFLAGS += /INCREMENTAL:NO /MANIFEST:NO /OPT:REF /OPT:ICF /NODEFAULTLIB:"oldnames.lib"
+ifdef DEBUG_RELEASE
+MS_CFLAGS += /Zi
+MS_LFLAGS += /DEBUG
+endif 
+endif # DEBUG
+
+MS_LFLAGS += $(MS_LIBS)
+
+ifdef FLAGS
+MS_CFLAGS += $(FLAGS)
+endif
+
+BaseProject = $(PROJECT)
+ifdef VariantBase
+BaseProject = $(VariantBase)
+endif
+
+ifneq ($(BaseProject),Core)
+ifndef MODULE
+addPath = $(foreach vpth,$(VPATH),$(PROJECT_DIR)/$(BaseProject)/$(vpth))
+addPath += $(PROJECT_DIR)/$(BaseProject)
+
+ifdef REF_PROJECT
+addPath2 = $(foreach vpth,$(VPATH),$(PROJECT_DIR)/$(REF_PROJECT)/$(vpth))
+addPath += $(addPath2)
+endif
+
+else
+addPath = $(foreach vpth,$(VPATH),$(PROJECT_DIR)/$(BaseProject)/$(MODULE)/$(vpth))
+addPath += $(PROJECT_DIR)/$(BaseProject)/$(MODULE)
+
+ifdef REF_PROJECT
+addPath2 = $(foreach vpth,$(VPATH),$(PROJECT_DIR)/$(REF_PROJECT)/$(MODULE)/$(vpth))
+addPath += $(addPath2)
+endif
+
+endif
+
+ifneq ($(Variant),)
+varPath = $(foreach vpth,$(VPATH),$(PROJECT_DIR)/$(BaseProject)/Variants/$(Variant)/$(vpth))
+addPath := $(varPath) $(addPath)
+endif
+
+VPATH := $(addPath) $(VPATH)
+endif
+
+T_PATH=c:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE;c:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\ce\bin\x86_arm;c:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\bin;D:\Works\Perl\bin;c:\Program Files\Microsoft SDKs\Windows\v6.0A\bin
+export PATH:=$(subst ;,:,$(subst D:,/cygdrive/d,$(subst d:,/cygdrive/d,$(subst C:,/cygdrive/c,$(subst c:,/cygdrive/c,$(T_PATH))))))
+
+export INCLUDE=$(subst $(CYG_DRIVE),$(WIN_DRIVE),$(MS_INCLUDE)$(subst ; ,;,$(foreach  cp,$(VPATH),$(cp);))$(ROOT)/$(PCORE)/Include;$(ROOT)/$(PCORE)/Include.lib;$(ROOT)/$(PCORE)/Include.wtl)
+export LIB=$(MS_LIB_PATH);$(subst $(CYG_DRIVE),$(WIN_DRIVE),$(INT_DIR));$(subst $(CYG_DRIVE),$(WIN_DRIVE),$(OUT_DIR))
+
+CFLAGS=$(MS_CFLAGS)
+
+include $(ROOT)/make.def
+
+dummy := $(shell mkdir -p "$(subst $(CYG_DRIVE),$(WIN_DRIVE),$(INT_DIR))")
+
+ifdef SETUP_DLL
+  CAB_SETUP = SetupDLL=$(SETUP_DLL)
+endif
+
+ifdef CAB_PROG_NAME
+   CAB_PROG_NAME := ProgName=$(CAB_PROG_NAME)
+endif
+
+ifndef NO_PCH
+  STDAFX=stdafx.obj
+  STDAFX_CF=/Yu"stdafx.h"
+endif
+
+$(INT_DIR)/%.obj: %.cpp
+	@$(CC) $(CFLAGS) /TP $(STDAFX_CF) /Fo"$(subst $(CYG_DRIVE),$(WIN_DRIVE),$@)" /Fd"$(subst $(CYG_DRIVE),$(WIN_DRIVE),$(OUT_DIR)/$(PROGRAM).pdb)" /Fp"$(subst $(CYG_DRIVE),$(WIN_DRIVE),$(INT_DIR)/$(PROGRAM).pch)" $(subst $(CYG_DRIVE),$(WIN_DRIVE),$+)
+
+$(INT_DIR)/%.obj: %.c
+	@$(CC) $(CFLAGS) /Fo"$(subst $(CYG_DRIVE),$(WIN_DRIVE),$@)" /Fd"$(subst $(CYG_DRIVE),$(WIN_DRIVE),$(OUT_DIR)/$(PROGRAM).pdb)" $(subst $(CYG_DRIVE),$(WIN_DRIVE),$+)
+
+$(INT_DIR)/$(PROGRAM).%.res: %.rc
+	@$(RC) $(RC_FLAGS) /l 0x419 /d _WIN32_WCE /fo "$(subst $(CYG_DRIVE),$(WIN_DRIVE),$@)" $(subst $(CYG_DRIVE),$(WIN_DRIVE),$+)
+
+$(INT_DIR)/%.res: %.rc
+	@$(RC) $(RC_FLAGS) /l 0x419 /d _WIN32_WCE /fo "$(subst $(CYG_DRIVE),$(WIN_DRIVE),$@)" $(subst $(CYG_DRIVE),$(WIN_DRIVE),$+)
+$(INT_DIR)/Lang.%.res: Lang.%.rc
+	@$(RC) $(RC_FLAGS) /l 0x419 /d _WIN32_WCE /fo "$(subst $(CYG_DRIVE),$(WIN_DRIVE),$@)" $(subst $(CYG_DRIVE),$(WIN_DRIVE),$+)
+
+$(OUT_DIR)/$(PROGRAM).%.dll : $(INT_DIR)/Lang.%.res
+	@$(LINK) /OUT:"$(subst $(CYG_DRIVE),$(WIN_DRIVE),$@)" /DLL /PDB:"$(subst $(CYG_DRIVE),$(WIN_DRIVE),$(OUT_DIR)/$(PROGRAM).pdb)" $(MS_LFLAGS)  $(+F) $(STDAFX)
+
+$(OUT_DIR)/$(PROGRAM).dll : $(foreach fileName,$(SOURCE),$(INT_DIR)/$(fileName).obj)\
+$(foreach fileName,$(RESOURCE),$(INT_DIR)/$(fileName).res) \
+$(foreach libName,$(LIBS),$(OUT_DIR)/$(libName).lib)
+	@$(LINK) /OUT:"$(subst $(CYG_DRIVE),$(WIN_DRIVE),$@)" /DLL /PDB:"$(subst $(CYG_DRIVE),$(WIN_DRIVE),$(OUT_DIR)/$(PROGRAM).pdb)" $(MS_LFLAGS)  $(+F) $(STDAFX)
+
+$(OUT_DIR)/$(PROGRAM).exe : $(foreach fileName,$(SOURCE),$(INT_DIR)/$(fileName).obj)\
+$(foreach fileName,$(RESOURCE),$(INT_DIR)/$(fileName).res) \
+$(foreach libName,$(LIBS),$(OUT_DIR)/$(libName).lib)
+	@$(LINK) /MAP:"$(subst $(CYG_DRIVE),$(WIN_DRIVE),$(OUT_DIR)/$(PROGRAM).map)"  /out:"$(subst $(CYG_DRIVE),$(WIN_DRIVE),$@)" /PDB:"$(subst $(CYG_DRIVE),$(WIN_DRIVE),$(OUT_DIR)/$(PROGRAM).pdb)"  $(MS_LFLAGS)  $(+F) $(STDAFX)
+#	@$(LINK) /MAP:"$(subst $(CYG_DRIVE),$(WIN_DRIVE),$(OUT_DIR)/$(PROGRAM).map)"  /OUT:"$(subst $(CYG_DRIVE),$(WIN_DRIVE),$@)" /PDB:"$(subst $(CYG_DRIVE),$(WIN_DRIVE),$(OUT_DIR)/$(PROGRAM).pdb)" $(MS_LFLAGS)  $(+F) $(STDAFX)
+
+$(OUT_DIR)/$(PROGRAM).lib : MS_CFLAGS+=/D "_LIB" 
+$(OUT_DIR)/$(PROGRAM).lib : $(foreach fileName, $(SOURCE), $(INT_DIR)/$(fileName).obj)
+	@$(CCLIB) /nologo /LTCG /OUT:$(subst $(CYG_DRIVE),$(WIN_DRIVE),$@) /LIBPATH:"$(subst $(CYG_DRIVE),$(WIN_DRIVE),$(INT_DIR))" $(+F) $(STDAFX)
+
+$(INT_DIR)/stdafx.obj: stdafx.cpp
+	$(CC) $(CFLAGS) /TP /Yc"stdafx.h" /Fo"$(subst $(CYG_DRIVE),$(WIN_DRIVE),$@)" /Fd"$(subst $(CYG_DRIVE),$(WIN_DRIVE),$(OUT_DIR)/$(PROGRAM).pdb)" /Fp"$(subst $(CYG_DRIVE),$(WIN_DRIVE),$(INT_DIR)/$(PROGRAM).pch)" $(subst $(CYG_DRIVE),$(WIN_DRIVE),$+)
+
+$(OUT_DIR)/$(SETUP_PROGRAM).cab : $(CAB_SOURCE) $(foreach fileName,$(CAB_BIN),$(OUT_DIR)/$(fileName))
+#	echo $(CAB_SOURCE)
+	perl $(subst $(CYG_DRIVE),$(WIN_DRIVE),$(ROOT)/makecab.pl) $(subst $(CYG_DRIVE),$(WIN_DRIVE),$(OUT_DIR)) $(@F) Compress=$(CAB_COMPRESS) $(CAB_PROG_NAME) $(CAB_SETUP) $(CAB_ADD_STR) $(subst $(CYG_DRIVE),$(WIN_DRIVE),$+)

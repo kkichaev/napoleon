@@ -1,0 +1,926 @@
+com/itextpdf/text/List.java
+ com.itextpdf.text.List
+com/itextpdf/text/Jpeg2000.java
+ com.itextpdf.text.Jpeg2000
+com/itextpdf/text/pdf/PdfBorderArray.java
+ com.itextpdf.text.pdf.PdfBorderArray
+com/itextpdf/text/TextElementArray.java
+ com.itextpdf.text.TextElementArray
+com/itextpdf/text/html/simpleparser/ImageStore.java
+ com.itextpdf.text.html.simpleparser.ImageStore
+com/itextpdf/text/pdf/PdfBorderDictionary.java
+ com.itextpdf.text.pdf.PdfBorderDictionary
+com/itextpdf/text/pdf/qrcode/WriterException.java
+ com.itextpdf.text.pdf.qrcode.WriterException
+com/itextpdf/text/pdf/PdfMediaClipData.java
+ com.itextpdf.text.pdf.PdfMediaClipData
+com/itextpdf/text/LargeElement.java
+ com.itextpdf.text.LargeElement
+com/itextpdf/text/pdf/PdfDocument.java
+ com.itextpdf.text.pdf.PdfDocument
+ com.itextpdf.text.pdf.PdfDocument$Destination
+ com.itextpdf.text.pdf.PdfDocument$Indentation
+ com.itextpdf.text.pdf.PdfDocument$PdfCatalog
+ com.itextpdf.text.pdf.PdfDocument$PdfInfo
+com/itextpdf/text/pdf/CMapAwareDocumentFont.java
+ com.itextpdf.text.pdf.CMapAwareDocumentFont
+com/itextpdf/text/xml/xmp/PdfA1Schema.java
+ com.itextpdf.text.xml.xmp.PdfA1Schema
+com/itextpdf/text/pdf/GrayColor.java
+ com.itextpdf.text.pdf.GrayColor
+com/itextpdf/text/pdf/collection/PdfCollectionSchema.java
+ com.itextpdf.text.pdf.collection.PdfCollectionSchema
+com/itextpdf/text/pdf/PdfFileSpecification.java
+ com.itextpdf.text.pdf.PdfFileSpecification
+com/itextpdf/text/pdf/PdfNumberTree.java
+ com.itextpdf.text.pdf.PdfNumberTree
+com/itextpdf/text/pdf/fonts/cmaps/CMap.java
+ com.itextpdf.text.pdf.fonts.cmaps.CMap
+com/itextpdf/text/pdf/PdfPageElement.java
+ com.itextpdf.text.pdf.PdfPageElement
+com/itextpdf/text/pdf/Type1Font.java
+ com.itextpdf.text.pdf.Type1Font
+com/itextpdf/text/pdf/ShadingColor.java
+ com.itextpdf.text.pdf.ShadingColor
+com/itextpdf/text/pdf/TrueTypeFont.java
+ com.itextpdf.text.pdf.TrueTypeFont
+ com.itextpdf.text.pdf.TrueTypeFont$FontHeader
+ com.itextpdf.text.pdf.TrueTypeFont$HorizontalHeader
+ com.itextpdf.text.pdf.TrueTypeFont$WindowsMetrics
+com/itextpdf/text/pdf/events/PdfPageEventForwarder.java
+ com.itextpdf.text.pdf.events.PdfPageEventForwarder
+com/itextpdf/text/pdf/PRTokeniser.java
+ com.itextpdf.text.pdf.PRTokeniser
+ com.itextpdf.text.pdf.PRTokeniser$TokenType
+com/itextpdf/text/pdf/parser/PdfImageObject.java
+ com.itextpdf.text.pdf.parser.PdfImageObject
+ com.itextpdf.text.pdf.parser.PdfImageObject$1
+ com.itextpdf.text.pdf.parser.PdfImageObject$ImageBytesType
+ com.itextpdf.text.pdf.parser.PdfImageObject$TrackingFilter
+com/itextpdf/text/Rectangle.java
+ com.itextpdf.text.Rectangle
+com/itextpdf/text/pdf/PdfEncodings.java
+ com.itextpdf.text.pdf.PdfEncodings
+ com.itextpdf.text.pdf.PdfEncodings$1
+ com.itextpdf.text.pdf.PdfEncodings$Cp437Conversion
+ com.itextpdf.text.pdf.PdfEncodings$SymbolConversion
+ com.itextpdf.text.pdf.PdfEncodings$SymbolTTConversion
+ com.itextpdf.text.pdf.PdfEncodings$WingdingsConversion
+com/itextpdf/text/pdf/codec/PngWriter.java
+ com.itextpdf.text.pdf.codec.PngWriter
+com/itextpdf/text/pdf/parser/RenderFilter.java
+ com.itextpdf.text.pdf.parser.RenderFilter
+com/itextpdf/text/SplitCharacter.java
+ com.itextpdf.text.SplitCharacter
+com/itextpdf/text/pdf/parser/ContentByteUtils.java
+ com.itextpdf.text.pdf.parser.ContentByteUtils
+com/itextpdf/text/pdf/events/PdfPTableEventForwarder.java
+ com.itextpdf.text.pdf.events.PdfPTableEventForwarder
+com/itextpdf/text/pdf/qrcode/MaskUtil.java
+ com.itextpdf.text.pdf.qrcode.MaskUtil
+com/itextpdf/text/pdf/DefaultSplitCharacter.java
+ com.itextpdf.text.pdf.DefaultSplitCharacter
+com/itextpdf/text/pdf/MappedRandomAccessFile.java
+ com.itextpdf.text.pdf.MappedRandomAccessFile
+ com.itextpdf.text.pdf.MappedRandomAccessFile$1
+com/itextpdf/text/pdf/MultiColumnText.java
+ com.itextpdf.text.pdf.MultiColumnText
+ com.itextpdf.text.pdf.MultiColumnText$ColumnDef
+com/itextpdf/text/pdf/codec/wmf/MetaObject.java
+ com.itextpdf.text.pdf.codec.wmf.MetaObject
+com/itextpdf/text/ListItem.java
+ com.itextpdf.text.ListItem
+com/itextpdf/text/pdf/codec/TiffImage.java
+ com.itextpdf.text.pdf.codec.TiffImage
+com/itextpdf/text/pdf/hyphenation/ByteVector.java
+ com.itextpdf.text.pdf.hyphenation.ByteVector
+com/itextpdf/text/pdf/qrcode/BlockPair.java
+ com.itextpdf.text.pdf.qrcode.BlockPair
+com/itextpdf/text/xml/xmp/XmpWriter.java
+ com.itextpdf.text.xml.xmp.XmpWriter
+com/itextpdf/text/xml/XMLUtil.java
+ com.itextpdf.text.xml.XMLUtil
+com/itextpdf/text/Section.java
+ com.itextpdf.text.Section
+com/itextpdf/text/pdf/TrueTypeFontUnicode.java
+ com.itextpdf.text.pdf.TrueTypeFontUnicode
+com/itextpdf/text/pdf/PdfCopyFieldsImp.java
+ com.itextpdf.text.pdf.PdfCopyFieldsImp
+com/itextpdf/text/pdf/qrcode/QRCodeWriter.java
+ com.itextpdf.text.pdf.qrcode.QRCodeWriter
+com/itextpdf/text/pdf/parser/MarkedContentRenderFilter.java
+ com.itextpdf.text.pdf.parser.MarkedContentRenderFilter
+com/itextpdf/text/pdf/parser/Vector.java
+ com.itextpdf.text.pdf.parser.Vector
+com/itextpdf/text/pdf/StampContent.java
+ com.itextpdf.text.pdf.StampContent
+com/itextpdf/text/Meta.java
+ com.itextpdf.text.Meta
+com/itextpdf/text/pdf/PdfWriter.java
+ com.itextpdf.text.pdf.PdfWriter
+ com.itextpdf.text.pdf.PdfWriter$PdfBody
+ com.itextpdf.text.pdf.PdfWriter$PdfBody$PdfCrossReference
+ com.itextpdf.text.pdf.PdfWriter$PdfTrailer
+com/itextpdf/text/pdf/BadPdfFormatException.java
+ com.itextpdf.text.pdf.BadPdfFormatException
+com/itextpdf/text/pdf/PdfStream.java
+ com.itextpdf.text.pdf.PdfStream
+com/itextpdf/text/xml/xmp/XmpSchema.java
+ com.itextpdf.text.xml.xmp.XmpSchema
+com/itextpdf/text/html/simpleparser/HTMLTagProcessors.java
+ com.itextpdf.text.html.simpleparser.HTMLTagProcessors
+ com.itextpdf.text.html.simpleparser.HTMLTagProcessors$1
+ com.itextpdf.text.html.simpleparser.HTMLTagProcessors$10
+ com.itextpdf.text.html.simpleparser.HTMLTagProcessors$11
+ com.itextpdf.text.html.simpleparser.HTMLTagProcessors$12
+ com.itextpdf.text.html.simpleparser.HTMLTagProcessors$13
+ com.itextpdf.text.html.simpleparser.HTMLTagProcessors$14
+ com.itextpdf.text.html.simpleparser.HTMLTagProcessors$2
+ com.itextpdf.text.html.simpleparser.HTMLTagProcessors$3
+ com.itextpdf.text.html.simpleparser.HTMLTagProcessors$4
+ com.itextpdf.text.html.simpleparser.HTMLTagProcessors$5
+ com.itextpdf.text.html.simpleparser.HTMLTagProcessors$6
+ com.itextpdf.text.html.simpleparser.HTMLTagProcessors$7
+ com.itextpdf.text.html.simpleparser.HTMLTagProcessors$8
+ com.itextpdf.text.html.simpleparser.HTMLTagProcessors$9
+com/itextpdf/text/Font.java
+ com.itextpdf.text.Font
+ com.itextpdf.text.Font$1
+ com.itextpdf.text.Font$FontFamily
+ com.itextpdf.text.Font$FontStyle
+com/itextpdf/text/pdf/codec/BmpImage.java
+ com.itextpdf.text.pdf.codec.BmpImage
+com/itextpdf/text/pdf/PdfStructureElement.java
+ com.itextpdf.text.pdf.PdfStructureElement
+com/itextpdf/text/pdf/codec/BitFile.java
+ com.itextpdf.text.pdf.codec.BitFile
+com/itextpdf/text/pdf/PdfLine.java
+ com.itextpdf.text.pdf.PdfLine
+com/itextpdf/text/FontProvider.java
+ com.itextpdf.text.FontProvider
+com/itextpdf/text/pdf/codec/wmf/MetaDo.java
+ com.itextpdf.text.pdf.codec.wmf.MetaDo
+com/itextpdf/text/pdf/codec/Base64.java
+ com.itextpdf.text.pdf.codec.Base64
+ com.itextpdf.text.pdf.codec.Base64$InputStream
+ com.itextpdf.text.pdf.codec.Base64$OutputStream
+com/itextpdf/text/pdf/ExtendedColor.java
+ com.itextpdf.text.pdf.ExtendedColor
+com/itextpdf/text/xml/simpleparser/IanaEncodings.java
+ com.itextpdf.text.xml.simpleparser.IanaEncodings
+com/itextpdf/text/pdf/RadioCheckField.java
+ com.itextpdf.text.pdf.RadioCheckField
+com/itextpdf/text/pdf/PdfOutline.java
+ com.itextpdf.text.pdf.PdfOutline
+com/itextpdf/text/pdf/BaseField.java
+ com.itextpdf.text.pdf.BaseField
+com/itextpdf/text/pdf/TSAClientBouncyCastle.java
+ com.itextpdf.text.pdf.TSAClientBouncyCastle
+com/itextpdf/text/pdf/Type3Font.java
+ com.itextpdf.text.pdf.Type3Font
+com/itextpdf/text/Phrase.java
+ com.itextpdf.text.Phrase
+com/itextpdf/text/PageSize.java
+ com.itextpdf.text.PageSize
+com/itextpdf/text/pdf/codec/LZWStringTable.java
+ com.itextpdf.text.pdf.codec.LZWStringTable
+com/itextpdf/text/pdf/hyphenation/SimplePatternParser.java
+ com.itextpdf.text.pdf.hyphenation.SimplePatternParser
+com/itextpdf/text/pdf/codec/TIFFFaxDecoder.java
+ com.itextpdf.text.pdf.codec.TIFFFaxDecoder
+com/itextpdf/text/pdf/PdfEncryptor.java
+ com.itextpdf.text.pdf.PdfEncryptor
+com/itextpdf/text/ImgCCITT.java
+ com.itextpdf.text.ImgCCITT
+com/itextpdf/text/Chunk.java
+ com.itextpdf.text.Chunk
+com/itextpdf/text/pdf/PdfLiteral.java
+ com.itextpdf.text.pdf.PdfLiteral
+com/itextpdf/text/pdf/qrcode/BitVector.java
+ com.itextpdf.text.pdf.qrcode.BitVector
+com/itextpdf/text/pdf/HyphenationAuto.java
+ com.itextpdf.text.pdf.HyphenationAuto
+com/itextpdf/text/pdf/PdfReader.java
+ com.itextpdf.text.pdf.PdfReader
+ com.itextpdf.text.pdf.PdfReader$1
+ com.itextpdf.text.pdf.PdfReader$PageRefs
+com/itextpdf/text/pdf/PdfTextArray.java
+ com.itextpdf.text.pdf.PdfTextArray
+com/itextpdf/text/xml/xmp/XmpReader.java
+ com.itextpdf.text.xml.xmp.XmpReader
+com/itextpdf/text/xml/xmp/DublinCoreSchema.java
+ com.itextpdf.text.xml.xmp.DublinCoreSchema
+com/itextpdf/text/html/simpleparser/HTMLTagProcessor.java
+ com.itextpdf.text.html.simpleparser.HTMLTagProcessor
+com/itextpdf/text/pdf/collection/PdfCollectionItem.java
+ com.itextpdf.text.pdf.collection.PdfCollectionItem
+com/itextpdf/text/pdf/qrcode/CharacterSetECI.java
+ com.itextpdf.text.pdf.qrcode.CharacterSetECI
+com/itextpdf/text/pdf/FontSelector.java
+ com.itextpdf.text.pdf.FontSelector
+com/itextpdf/text/pdf/PdfIndirectObject.java
+ com.itextpdf.text.pdf.PdfIndirectObject
+com/itextpdf/text/xml/simpleparser/handler/HTMLNewLineHandler.java
+ com.itextpdf.text.xml.simpleparser.handler.HTMLNewLineHandler
+com/itextpdf/text/Utilities.java
+ com.itextpdf.text.Utilities
+com/itextpdf/text/pdf/qrcode/GF256.java
+ com.itextpdf.text.pdf.qrcode.GF256
+com/itextpdf/text/pdf/parser/PdfTextExtractor.java
+ com.itextpdf.text.pdf.parser.PdfTextExtractor
+com/itextpdf/text/pdf/PdfSmartCopy.java
+ com.itextpdf.text.pdf.PdfSmartCopy
+ com.itextpdf.text.pdf.PdfSmartCopy$ByteStore
+com/itextpdf/text/ElementListener.java
+ com.itextpdf.text.ElementListener
+com/itextpdf/text/pdf/PdfArray.java
+ com.itextpdf.text.pdf.PdfArray
+com/itextpdf/text/pdf/PdfFunction.java
+ com.itextpdf.text.pdf.PdfFunction
+com/itextpdf/text/pdf/PdfShadingPattern.java
+ com.itextpdf.text.pdf.PdfShadingPattern
+com/itextpdf/text/pdf/qrcode/ByteMatrix.java
+ com.itextpdf.text.pdf.qrcode.ByteMatrix
+com/itextpdf/text/pdf/PageResources.java
+ com.itextpdf.text.pdf.PageResources
+com/itextpdf/text/log/LoggerFactory.java
+ com.itextpdf.text.log.LoggerFactory
+com/itextpdf/text/pdf/PdfPatternPainter.java
+ com.itextpdf.text.pdf.PdfPatternPainter
+com/itextpdf/text/BadElementException.java
+ com.itextpdf.text.BadElementException
+com/itextpdf/text/pdf/TextField.java
+ com.itextpdf.text.pdf.TextField
+com/itextpdf/text/pdf/PdfAppearance.java
+ com.itextpdf.text.pdf.PdfAppearance
+com/itextpdf/text/pdf/interfaces/PdfAnnotations.java
+ com.itextpdf.text.pdf.interfaces.PdfAnnotations
+com/itextpdf/text/xml/simpleparser/EntitiesToUnicode.java
+ com.itextpdf.text.xml.simpleparser.EntitiesToUnicode
+com/itextpdf/text/pdf/codec/wmf/MetaPen.java
+ com.itextpdf.text.pdf.codec.wmf.MetaPen
+com/itextpdf/text/pdf/ByteBuffer.java
+ com.itextpdf.text.pdf.ByteBuffer
+com/itextpdf/text/pdf/PdfDate.java
+ com.itextpdf.text.pdf.PdfDate
+com/itextpdf/text/pdf/interfaces/PdfDocumentActions.java
+ com.itextpdf.text.pdf.interfaces.PdfDocumentActions
+com/itextpdf/text/pdf/qrcode/GF256Poly.java
+ com.itextpdf.text.pdf.qrcode.GF256Poly
+com/itextpdf/text/pdf/ICC_Profile.java
+ com.itextpdf.text.pdf.ICC_Profile
+com/itextpdf/text/Document.java
+ com.itextpdf.text.Document
+com/itextpdf/text/pdf/codec/TIFFConstants.java
+ com.itextpdf.text.pdf.codec.TIFFConstants
+com/itextpdf/text/pdf/codec/LZWCompressor.java
+ com.itextpdf.text.pdf.codec.LZWCompressor
+com/itextpdf/text/xml/XmlDomWriter.java
+ com.itextpdf.text.xml.XmlDomWriter
+com/itextpdf/text/pdf/SimpleBookmark.java
+ com.itextpdf.text.pdf.SimpleBookmark
+com/itextpdf/text/pdf/ColorDetails.java
+ com.itextpdf.text.pdf.ColorDetails
+com/itextpdf/text/DocListener.java
+ com.itextpdf.text.DocListener
+com/itextpdf/text/pdf/qrcode/Encoder.java
+ com.itextpdf.text.pdf.qrcode.Encoder
+com/itextpdf/text/pdf/PdfStamper.java
+ com.itextpdf.text.pdf.PdfStamper
+com/itextpdf/text/pdf/PushbuttonField.java
+ com.itextpdf.text.pdf.PushbuttonField
+com/itextpdf/text/pdf/BaseFont.java
+ com.itextpdf.text.pdf.BaseFont
+ com.itextpdf.text.pdf.BaseFont$StreamFont
+com/itextpdf/text/pdf/PdfCopyFields.java
+ com.itextpdf.text.pdf.PdfCopyFields
+com/itextpdf/text/pdf/codec/wmf/MetaState.java
+ com.itextpdf.text.pdf.codec.wmf.MetaState
+com/itextpdf/text/pdf/parser/TextExtractionStrategy.java
+ com.itextpdf.text.pdf.parser.TextExtractionStrategy
+com/itextpdf/text/pdf/draw/DrawInterface.java
+ com.itextpdf.text.pdf.draw.DrawInterface
+com/itextpdf/text/pdf/parser/LineSegment.java
+ com.itextpdf.text.pdf.parser.LineSegment
+com/itextpdf/text/pdf/PdfImportedPage.java
+ com.itextpdf.text.pdf.PdfImportedPage
+com/itextpdf/text/pdf/parser/PdfReaderContentParser.java
+ com.itextpdf.text.pdf.parser.PdfReaderContentParser
+com/itextpdf/text/html/HtmlTags.java
+ com.itextpdf.text.html.HtmlTags
+com/itextpdf/text/pdf/collection/PdfCollection.java
+ com.itextpdf.text.pdf.collection.PdfCollection
+com/itextpdf/text/pdf/PdfContentParser.java
+ com.itextpdf.text.pdf.PdfContentParser
+ com.itextpdf.text.pdf.PdfContentParser$1
+com/itextpdf/text/pdf/parser/RenderListener.java
+ com.itextpdf.text.pdf.parser.RenderListener
+com/itextpdf/text/pdf/PdfDictionary.java
+ com.itextpdf.text.pdf.PdfDictionary
+com/itextpdf/text/ImgTemplate.java
+ com.itextpdf.text.ImgTemplate
+com/itextpdf/text/api/WriterOperation.java
+ com.itextpdf.text.api.WriterOperation
+com/itextpdf/text/xml/xmp/XmpBasicSchema.java
+ com.itextpdf.text.xml.xmp.XmpBasicSchema
+com/itextpdf/text/pdf/PdfStructureTreeRoot.java
+ com.itextpdf.text.pdf.PdfStructureTreeRoot
+com/itextpdf/text/pdf/PdfDestination.java
+ com.itextpdf.text.pdf.PdfDestination
+com/itextpdf/text/log/SysoLogger.java
+ com.itextpdf.text.log.SysoLogger
+com/itextpdf/text/api/Indentable.java
+ com.itextpdf.text.api.Indentable
+com/itextpdf/text/pdf/hyphenation/TernaryTree.java
+ com.itextpdf.text.pdf.hyphenation.TernaryTree
+ com.itextpdf.text.pdf.hyphenation.TernaryTree$Iterator
+ com.itextpdf.text.pdf.hyphenation.TernaryTree$Iterator$Item
+com/itextpdf/text/pdf/CFFFontSubset.java
+ com.itextpdf.text.pdf.CFFFontSubset
+com/itextpdf/text/pdf/codec/JBIG2SegmentReader.java
+ com.itextpdf.text.pdf.codec.JBIG2SegmentReader
+ com.itextpdf.text.pdf.codec.JBIG2SegmentReader$JBIG2Page
+ com.itextpdf.text.pdf.codec.JBIG2SegmentReader$JBIG2Segment
+com/itextpdf/text/xml/simpleparser/SimpleXMLDocHandler.java
+ com.itextpdf.text.xml.simpleparser.SimpleXMLDocHandler
+com/itextpdf/text/pdf/codec/TiffWriter.java
+ com.itextpdf.text.pdf.codec.TiffWriter
+ com.itextpdf.text.pdf.codec.TiffWriter$FieldAscii
+ com.itextpdf.text.pdf.codec.TiffWriter$FieldBase
+ com.itextpdf.text.pdf.codec.TiffWriter$FieldByte
+ com.itextpdf.text.pdf.codec.TiffWriter$FieldImage
+ com.itextpdf.text.pdf.codec.TiffWriter$FieldLong
+ com.itextpdf.text.pdf.codec.TiffWriter$FieldRational
+ com.itextpdf.text.pdf.codec.TiffWriter$FieldShort
+ com.itextpdf.text.pdf.codec.TiffWriter$FieldUndefined
+com/itextpdf/text/pdf/PdfPublicKeyRecipient.java
+ com.itextpdf.text.pdf.PdfPublicKeyRecipient
+com/itextpdf/text/pdf/PdfRendition.java
+ com.itextpdf.text.pdf.PdfRendition
+com/itextpdf/text/html/HtmlEncoder.java
+ com.itextpdf.text.html.HtmlEncoder
+com/itextpdf/text/pdf/PdfReaderInstance.java
+ com.itextpdf.text.pdf.PdfReaderInstance
+com/itextpdf/text/html/simpleparser/HTMLWorker.java
+ com.itextpdf.text.html.simpleparser.HTMLWorker
+com/itextpdf/text/exceptions/InvalidPdfException.java
+ com.itextpdf.text.exceptions.InvalidPdfException
+com/itextpdf/text/pdf/PdfTransition.java
+ com.itextpdf.text.pdf.PdfTransition
+com/itextpdf/text/pdf/TSAClient.java
+ com.itextpdf.text.pdf.TSAClient
+com/itextpdf/text/Image.java
+ com.itextpdf.text.Image
+com/itextpdf/text/pdf/hyphenation/PatternConsumer.java
+ com.itextpdf.text.pdf.hyphenation.PatternConsumer
+com/itextpdf/text/pdf/hyphenation/Hyphenation.java
+ com.itextpdf.text.pdf.hyphenation.Hyphenation
+com/itextpdf/text/Anchor.java
+ com.itextpdf.text.Anchor
+com/itextpdf/text/pdf/interfaces/PdfEncryptionSettings.java
+ com.itextpdf.text.pdf.interfaces.PdfEncryptionSettings
+com/itextpdf/text/Chapter.java
+ com.itextpdf.text.Chapter
+com/itextpdf/text/xml/xmp/LangAlt.java
+ com.itextpdf.text.xml.xmp.LangAlt
+com/itextpdf/text/pdf/hyphenation/Hyphen.java
+ com.itextpdf.text.pdf.hyphenation.Hyphen
+com/itextpdf/text/pdf/qrcode/BitMatrix.java
+ com.itextpdf.text.pdf.qrcode.BitMatrix
+com/itextpdf/text/pdf/PdfEFStream.java
+ com.itextpdf.text.pdf.PdfEFStream
+com/itextpdf/text/pdf/DocumentFont.java
+ com.itextpdf.text.pdf.DocumentFont
+com/itextpdf/text/pdf/internal/PdfViewerPreferencesImp.java
+ com.itextpdf.text.pdf.internal.PdfViewerPreferencesImp
+com/itextpdf/text/pdf/parser/InlineImageUtils.java
+ com.itextpdf.text.pdf.parser.InlineImageUtils
+ com.itextpdf.text.pdf.parser.InlineImageUtils$InlineImageParseException
+com/itextpdf/text/pdf/codec/TIFFLZWDecoder.java
+ com.itextpdf.text.pdf.codec.TIFFLZWDecoder
+com/itextpdf/text/pdf/PdfSignatureAppearance.java
+ com.itextpdf.text.pdf.PdfSignatureAppearance
+ com.itextpdf.text.pdf.PdfSignatureAppearance$1
+ com.itextpdf.text.pdf.PdfSignatureAppearance$RangeStream
+ com.itextpdf.text.pdf.PdfSignatureAppearance$RenderingMode
+ com.itextpdf.text.pdf.PdfSignatureAppearance$SignatureEvent
+com/itextpdf/text/pdf/codec/TIFFField.java
+ com.itextpdf.text.pdf.codec.TIFFField
+com/itextpdf/text/html/simpleparser/TableWrapper.java
+ com.itextpdf.text.html.simpleparser.TableWrapper
+com/itextpdf/text/pdf/PdfColor.java
+ com.itextpdf.text.pdf.PdfColor
+com/itextpdf/text/pdf/qrcode/Mode.java
+ com.itextpdf.text.pdf.qrcode.Mode
+com/itextpdf/text/pdf/qrcode/BitArray.java
+ com.itextpdf.text.pdf.qrcode.BitArray
+com/itextpdf/text/pdf/PdfAction.java
+ com.itextpdf.text.pdf.PdfAction
+com/itextpdf/text/pdf/BidiLine.java
+ com.itextpdf.text.pdf.BidiLine
+com/itextpdf/text/WritableDirectElement.java
+ com.itextpdf.text.WritableDirectElement
+com/itextpdf/text/BuildConfig.java
+ com.itextpdf.text.BuildConfig
+com/itextpdf/text/pdf/internal/PdfVersionImp.java
+ com.itextpdf.text.pdf.internal.PdfVersionImp
+com/itextpdf/text/pdf/PdfName.java
+ com.itextpdf.text.pdf.PdfName
+com/itextpdf/text/pdf/PdfXConformanceException.java
+ com.itextpdf.text.pdf.PdfXConformanceException
+com/itextpdf/text/pdf/qrcode/ReedSolomonException.java
+ com.itextpdf.text.pdf.qrcode.ReedSolomonException
+com/itextpdf/text/pdf/codec/GifImage.java
+ com.itextpdf.text.pdf.codec.GifImage
+ com.itextpdf.text.pdf.codec.GifImage$GifFrame
+com/itextpdf/text/pdf/hyphenation/Hyphenator.java
+ com.itextpdf.text.pdf.hyphenation.Hyphenator
+com/itextpdf/text/pdf/PdfPageEvent.java
+ com.itextpdf.text.pdf.PdfPageEvent
+com/itextpdf/text/pdf/internal/PdfAnnotationsImp.java
+ com.itextpdf.text.pdf.internal.PdfAnnotationsImp
+com/itextpdf/text/xml/simpleparser/handler/NeverNewLineHandler.java
+ com.itextpdf.text.xml.simpleparser.handler.NeverNewLineHandler
+com/itextpdf/text/pdf/CrlClient.java
+ com.itextpdf.text.pdf.CrlClient
+com/itextpdf/text/pdf/PdfImage.java
+ com.itextpdf.text.pdf.PdfImage
+com/itextpdf/text/pdf/qrcode/ReedSolomonEncoder.java
+ com.itextpdf.text.pdf.qrcode.ReedSolomonEncoder
+com/itextpdf/text/Header.java
+ com.itextpdf.text.Header
+com/itextpdf/text/ImgRaw.java
+ com.itextpdf.text.ImgRaw
+com/itextpdf/text/factories/RomanNumberFactory.java
+ com.itextpdf.text.factories.RomanNumberFactory
+ com.itextpdf.text.factories.RomanNumberFactory$RomanDigit
+com/itextpdf/text/MarkedSection.java
+ com.itextpdf.text.MarkedSection
+com/itextpdf/text/pdf/TrueTypeFontSubSet.java
+ com.itextpdf.text.pdf.TrueTypeFontSubSet
+com/itextpdf/text/pdf/CMYKColor.java
+ com.itextpdf.text.pdf.CMYKColor
+com/itextpdf/text/xml/xmp/PdfSchema.java
+ com.itextpdf.text.xml.xmp.PdfSchema
+com/itextpdf/text/pdf/PdfSpotColor.java
+ com.itextpdf.text.pdf.PdfSpotColor
+com/itextpdf/text/pdf/PdfException.java
+ com.itextpdf.text.pdf.PdfException
+com/itextpdf/text/pdf/parser/LocationTextExtractionStrategy.java
+ com.itextpdf.text.pdf.parser.LocationTextExtractionStrategy
+ com.itextpdf.text.pdf.parser.LocationTextExtractionStrategy$TextChunk
+com/itextpdf/text/log/Logger.java
+ com.itextpdf.text.log.Logger
+com/itextpdf/text/pdf/parser/TextRenderInfo.java
+ com.itextpdf.text.pdf.parser.TextRenderInfo
+com/itextpdf/text/pdf/collection/PdfCollectionField.java
+ com.itextpdf.text.pdf.collection.PdfCollectionField
+com/itextpdf/text/pdf/PdfObject.java
+ com.itextpdf.text.pdf.PdfObject
+com/itextpdf/text/html/simpleparser/ElementFactory.java
+ com.itextpdf.text.html.simpleparser.ElementFactory
+com/itextpdf/text/pdf/PdfConcatenate.java
+ com.itextpdf.text.pdf.PdfConcatenate
+com/itextpdf/text/xml/simpleparser/NewLineHandler.java
+ com.itextpdf.text.xml.simpleparser.NewLineHandler
+com/itextpdf/text/pdf/qrcode/FormatInformation.java
+ com.itextpdf.text.pdf.qrcode.FormatInformation
+com/itextpdf/text/pdf/PdfLayerMembership.java
+ com.itextpdf.text.pdf.PdfLayerMembership
+com/itextpdf/text/xml/simpleparser/EntitiesToSymbol.java
+ com.itextpdf.text.xml.simpleparser.EntitiesToSymbol
+com/itextpdf/text/pdf/qrcode/QRCode.java
+ com.itextpdf.text.pdf.qrcode.QRCode
+com/itextpdf/text/pdf/codec/PngImage.java
+ com.itextpdf.text.pdf.codec.PngImage
+ com.itextpdf.text.pdf.codec.PngImage$NewByteArrayOutputStream
+com/itextpdf/text/pdf/interfaces/PdfVersion.java
+ com.itextpdf.text.pdf.interfaces.PdfVersion
+com/itextpdf/text/pdf/GlyphList.java
+ com.itextpdf.text.pdf.GlyphList
+com/itextpdf/text/pdf/PdfDashPattern.java
+ com.itextpdf.text.pdf.PdfDashPattern
+com/itextpdf/text/pdf/codec/wmf/InputMeta.java
+ com.itextpdf.text.pdf.codec.wmf.InputMeta
+com/itextpdf/text/pdf/PdfSignature.java
+ com.itextpdf.text.pdf.PdfSignature
+com/itextpdf/text/pdf/parser/ContentOperator.java
+ com.itextpdf.text.pdf.parser.ContentOperator
+com/itextpdf/text/pdf/PdfPTable.java
+ com.itextpdf.text.pdf.PdfPTable
+com/itextpdf/text/ImgJBIG2.java
+ com.itextpdf.text.ImgJBIG2
+com/itextpdf/text/xml/simpleparser/SimpleXMLDocHandlerComment.java
+ com.itextpdf.text.xml.simpleparser.SimpleXMLDocHandlerComment
+com/itextpdf/text/pdf/PdfAcroForm.java
+ com.itextpdf.text.pdf.PdfAcroForm
+com/itextpdf/text/xml/XmlToTxt.java
+ com.itextpdf.text.xml.XmlToTxt
+com/itextpdf/text/html/HtmlUtilities.java
+ com.itextpdf.text.html.HtmlUtilities
+com/itextpdf/text/pdf/fonts/cmaps/CodespaceRange.java
+ com.itextpdf.text.pdf.fonts.cmaps.CodespaceRange
+com/itextpdf/text/html/WebColors.java
+ com.itextpdf.text.html.WebColors
+com/itextpdf/text/log/NoOpLogger.java
+ com.itextpdf.text.log.NoOpLogger
+com/itextpdf/text/ImgWMF.java
+ com.itextpdf.text.ImgWMF
+com/itextpdf/text/pdf/PRIndirectReference.java
+ com.itextpdf.text.pdf.PRIndirectReference
+com/itextpdf/text/pdf/PdfResources.java
+ com.itextpdf.text.pdf.PdfResources
+com/itextpdf/text/pdf/interfaces/PdfPageActions.java
+ com.itextpdf.text.pdf.interfaces.PdfPageActions
+com/itextpdf/text/pdf/PdfTransparencyGroup.java
+ com.itextpdf.text.pdf.PdfTransparencyGroup
+com/itextpdf/text/pdf/IntHashtable.java
+ com.itextpdf.text.pdf.IntHashtable
+ com.itextpdf.text.pdf.IntHashtable$Entry
+ com.itextpdf.text.pdf.IntHashtable$IntHashtableIterator
+com/itextpdf/text/api/Spaceable.java
+ com.itextpdf.text.api.Spaceable
+com/itextpdf/text/pdf/PdfFormXObject.java
+ com.itextpdf.text.pdf.PdfFormXObject
+com/itextpdf/text/pdf/events/FieldPositioningEvents.java
+ com.itextpdf.text.pdf.events.FieldPositioningEvents
+com/itextpdf/text/pdf/hyphenation/HyphenationException.java
+ com.itextpdf.text.pdf.hyphenation.HyphenationException
+com/itextpdf/text/RectangleReadOnly.java
+ com.itextpdf.text.RectangleReadOnly
+com/itextpdf/text/html/simpleparser/ImageProvider.java
+ com.itextpdf.text.html.simpleparser.ImageProvider
+com/itextpdf/text/pdf/codec/TIFFFaxDecompressor.java
+ com.itextpdf.text.pdf.codec.TIFFFaxDecompressor
+com/itextpdf/text/pdf/collection/PdfCollectionSort.java
+ com.itextpdf.text.pdf.collection.PdfCollectionSort
+com/itextpdf/text/pdf/PdfNumber.java
+ com.itextpdf.text.pdf.PdfNumber
+com/itextpdf/text/html/simpleparser/ImageProcessor.java
+ com.itextpdf.text.html.simpleparser.ImageProcessor
+com/itextpdf/text/html/simpleparser/LinkProcessor.java
+ com.itextpdf.text.html.simpleparser.LinkProcessor
+com/itextpdf/text/exceptions/IllegalPdfSyntaxException.java
+ com.itextpdf.text.exceptions.IllegalPdfSyntaxException
+com/itextpdf/text/pdf/PdfPageLabels.java
+ com.itextpdf.text.pdf.PdfPageLabels
+ com.itextpdf.text.pdf.PdfPageLabels$PdfPageLabelFormat
+com/itextpdf/text/pdf/PdfFormField.java
+ com.itextpdf.text.pdf.PdfFormField
+com/itextpdf/text/pdf/PdfPage.java
+ com.itextpdf.text.pdf.PdfPage
+com/itextpdf/text/pdf/CJKFont.java
+ com.itextpdf.text.pdf.CJKFont
+com/itextpdf/text/pdf/SequenceList.java
+ com.itextpdf.text.pdf.SequenceList
+com/itextpdf/text/ChapterAutoNumber.java
+ com.itextpdf.text.ChapterAutoNumber
+com/itextpdf/text/pdf/PdfBoolean.java
+ com.itextpdf.text.pdf.PdfBoolean
+com/itextpdf/text/pdf/qrcode/MatrixUtil.java
+ com.itextpdf.text.pdf.qrcode.MatrixUtil
+com/itextpdf/text/pdf/LZWDecoder.java
+ com.itextpdf.text.pdf.LZWDecoder
+com/itextpdf/text/pdf/SpotColor.java
+ com.itextpdf.text.pdf.SpotColor
+com/itextpdf/text/pdf/FdfReader.java
+ com.itextpdf.text.pdf.FdfReader
+com/itextpdf/text/pdf/internal/PdfXConformanceImp.java
+ com.itextpdf.text.pdf.internal.PdfXConformanceImp
+com/itextpdf/text/pdf/FdfWriter.java
+ com.itextpdf.text.pdf.FdfWriter
+ com.itextpdf.text.pdf.FdfWriter$Wrt
+com/itextpdf/text/pdf/interfaces/PdfViewerPreferences.java
+ com.itextpdf.text.pdf.interfaces.PdfViewerPreferences
+com/itextpdf/text/pdf/draw/LineSeparator.java
+ com.itextpdf.text.pdf.draw.LineSeparator
+com/itextpdf/text/pdf/PdfPages.java
+ com.itextpdf.text.pdf.PdfPages
+com/itextpdf/text/pdf/PdfPSXObject.java
+ com.itextpdf.text.pdf.PdfPSXObject
+com/itextpdf/text/pdf/LtvTimestamp.java
+ com.itextpdf.text.pdf.LtvTimestamp
+com/itextpdf/text/pdf/PdfOCG.java
+ com.itextpdf.text.pdf.PdfOCG
+com/itextpdf/text/pdf/qrcode/ByteArray.java
+ com.itextpdf.text.pdf.qrcode.ByteArray
+com/itextpdf/text/pdf/PdfPRow.java
+ com.itextpdf.text.pdf.PdfPRow
+com/itextpdf/text/pdf/collection/PdfTargetDictionary.java
+ com.itextpdf.text.pdf.collection.PdfTargetDictionary
+com/itextpdf/text/Annotation.java
+ com.itextpdf.text.Annotation
+com/itextpdf/text/pdf/parser/MarkedContentInfo.java
+ com.itextpdf.text.pdf.parser.MarkedContentInfo
+com/itextpdf/text/pdf/OcspClient.java
+ com.itextpdf.text.pdf.OcspClient
+com/itextpdf/text/log/Level.java
+ com.itextpdf.text.log.Level
+com/itextpdf/text/pdf/PdfPCell.java
+ com.itextpdf.text.pdf.PdfPCell
+com/itextpdf/text/ZapfDingbatsNumberList.java
+ com.itextpdf.text.ZapfDingbatsNumberList
+com/itextpdf/text/SpecialSymbol.java
+ com.itextpdf.text.SpecialSymbol
+com/itextpdf/text/pdf/ArabicLigaturizer.java
+ com.itextpdf.text.pdf.ArabicLigaturizer
+ com.itextpdf.text.pdf.ArabicLigaturizer$charstruct
+com/itextpdf/text/exceptions/UnsupportedPdfException.java
+ com.itextpdf.text.exceptions.UnsupportedPdfException
+com/itextpdf/text/pdf/XfaForm.java
+ com.itextpdf.text.pdf.XfaForm
+ com.itextpdf.text.pdf.XfaForm$AcroFieldsSearch
+ com.itextpdf.text.pdf.XfaForm$InverseStore
+ com.itextpdf.text.pdf.XfaForm$Stack2
+ com.itextpdf.text.pdf.XfaForm$Xml2Som
+ com.itextpdf.text.pdf.XfaForm$Xml2SomDatasets
+ com.itextpdf.text.pdf.XfaForm$Xml2SomTemplate
+com/itextpdf/text/pdf/PdfString.java
+ com.itextpdf.text.pdf.PdfString
+com/itextpdf/text/pdf/Barcode128.java
+ com.itextpdf.text.pdf.Barcode128
+ com.itextpdf.text.pdf.Barcode128$1
+ com.itextpdf.text.pdf.Barcode128$Barcode128CodeSet
+com/itextpdf/text/pdf/PdfCopyFormsImp.java
+ com.itextpdf.text.pdf.PdfCopyFormsImp
+com/itextpdf/text/pdf/PdfICCBased.java
+ com.itextpdf.text.pdf.PdfICCBased
+com/itextpdf/text/pdf/PdfCopy.java
+ com.itextpdf.text.pdf.PdfCopy
+ com.itextpdf.text.pdf.PdfCopy$IndirectReferences
+ com.itextpdf.text.pdf.PdfCopy$PageStamp
+ com.itextpdf.text.pdf.PdfCopy$RefKey
+ com.itextpdf.text.pdf.PdfCopy$StampContent
+com/itextpdf/text/pdf/qrcode/ErrorCorrectionLevel.java
+ com.itextpdf.text.pdf.qrcode.ErrorCorrectionLevel
+com/itextpdf/text/pdf/PatternColor.java
+ com.itextpdf.text.pdf.PatternColor
+com/itextpdf/text/pdf/codec/wmf/MetaBrush.java
+ com.itextpdf.text.pdf.codec.wmf.MetaBrush
+com/itextpdf/text/pdf/PdfOCProperties.java
+ com.itextpdf.text.pdf.PdfOCProperties
+com/itextpdf/text/pdf/Barcode.java
+ com.itextpdf.text.pdf.Barcode
+com/itextpdf/text/DocumentException.java
+ com.itextpdf.text.DocumentException
+com/itextpdf/text/pdf/XfdfReader.java
+ com.itextpdf.text.pdf.XfdfReader
+com/itextpdf/text/pdf/FilterHandlers.java
+ com.itextpdf.text.pdf.FilterHandlers
+ com.itextpdf.text.pdf.FilterHandlers$1
+ com.itextpdf.text.pdf.FilterHandlers$FilterHandler
+ com.itextpdf.text.pdf.FilterHandlers$Filter_ASCII85DECODE
+ com.itextpdf.text.pdf.FilterHandlers$Filter_ASCIIHEXDECODE
+ com.itextpdf.text.pdf.FilterHandlers$Filter_CCITTFAXDECODE
+ com.itextpdf.text.pdf.FilterHandlers$Filter_DoNothing
+ com.itextpdf.text.pdf.FilterHandlers$Filter_FLATEDECODE
+ com.itextpdf.text.pdf.FilterHandlers$Filter_LZWDECODE
+ com.itextpdf.text.pdf.FilterHandlers$Filter_RUNLENGTHDECODE
+com/itextpdf/text/pdf/AcroFields.java
+ com.itextpdf.text.pdf.AcroFields
+ com.itextpdf.text.pdf.AcroFields$1
+ com.itextpdf.text.pdf.AcroFields$FieldPosition
+ com.itextpdf.text.pdf.AcroFields$InstHit
+ com.itextpdf.text.pdf.AcroFields$Item
+ com.itextpdf.text.pdf.AcroFields$SorterComparator
+com/itextpdf/text/pdf/hyphenation/CharVector.java
+ com.itextpdf.text.pdf.hyphenation.CharVector
+com/itextpdf/text/pdf/BarcodeEAN.java
+ com.itextpdf.text.pdf.BarcodeEAN
+com/itextpdf/text/html/simpleparser/CellWrapper.java
+ com.itextpdf.text.html.simpleparser.CellWrapper
+com/itextpdf/text/pdf/NumberArray.java
+ com.itextpdf.text.pdf.NumberArray
+com/itextpdf/text/exceptions/BadPasswordException.java
+ com.itextpdf.text.exceptions.BadPasswordException
+com/itextpdf/text/pdf/Type3Glyph.java
+ com.itextpdf.text.pdf.Type3Glyph
+com/itextpdf/text/Paragraph.java
+ com.itextpdf.text.Paragraph
+com/itextpdf/text/xml/simpleparser/SimpleXMLParser.java
+ com.itextpdf.text.xml.simpleparser.SimpleXMLParser
+com/itextpdf/text/pdf/events/PdfPCellEventForwarder.java
+ com.itextpdf.text.pdf.events.PdfPCellEventForwarder
+com/itextpdf/text/factories/RomanAlphabetFactory.java
+ com.itextpdf.text.factories.RomanAlphabetFactory
+com/itextpdf/text/ExceptionConverter.java
+ com.itextpdf.text.ExceptionConverter
+com/itextpdf/text/pdf/PdfFont.java
+ com.itextpdf.text.pdf.PdfFont
+com/itextpdf/text/pdf/PdfAnnotation.java
+ com.itextpdf.text.pdf.PdfAnnotation
+ com.itextpdf.text.pdf.PdfAnnotation$PdfImportedLink
+com/itextpdf/text/pdf/EnumerateTTC.java
+ com.itextpdf.text.pdf.EnumerateTTC
+com/itextpdf/text/pdf/PdfVisibilityExpression.java
+ com.itextpdf.text.pdf.PdfVisibilityExpression
+com/itextpdf/text/BaseColor.java
+ com.itextpdf.text.BaseColor
+com/itextpdf/text/pdf/parser/TaggedPdfReaderTool.java
+ com.itextpdf.text.pdf.parser.TaggedPdfReaderTool
+com/itextpdf/text/pdf/draw/DottedLineSeparator.java
+ com.itextpdf.text.pdf.draw.DottedLineSeparator
+com/itextpdf/text/pdf/parser/SimpleTextExtractionStrategy.java
+ com.itextpdf.text.pdf.parser.SimpleTextExtractionStrategy
+com/itextpdf/text/pdf/codec/JBIG2Image.java
+ com.itextpdf.text.pdf.codec.JBIG2Image
+com/itextpdf/text/xml/xmp/XmpMMSchema.java
+ com.itextpdf.text.xml.xmp.XmpMMSchema
+com/itextpdf/text/error_messages/MessageLocalization.java
+ com.itextpdf.text.error_messages.MessageLocalization
+com/itextpdf/text/Jpeg.java
+ com.itextpdf.text.Jpeg
+com/itextpdf/text/pdf/PdfLister.java
+ com.itextpdf.text.pdf.PdfLister
+com/itextpdf/text/pdf/interfaces/PdfXConformance.java
+ com.itextpdf.text.pdf.interfaces.PdfXConformance
+com/itextpdf/text/xml/xmp/XmpArray.java
+ com.itextpdf.text.xml.xmp.XmpArray
+com/itextpdf/text/factories/GreekAlphabetFactory.java
+ com.itextpdf.text.factories.GreekAlphabetFactory
+com/itextpdf/text/pdf/qrcode/Version.java
+ com.itextpdf.text.pdf.qrcode.Version
+ com.itextpdf.text.pdf.qrcode.Version$ECB
+ com.itextpdf.text.pdf.qrcode.Version$ECBlocks
+com/itextpdf/text/pdf/parser/PdfContentReaderTool.java
+ com.itextpdf.text.pdf.parser.PdfContentReaderTool
+com/itextpdf/text/pdf/codec/wmf/Point.java
+ com.itextpdf.text.pdf.codec.wmf.Point
+com/itextpdf/text/html/simpleparser/ChainedProperties.java
+ com.itextpdf.text.html.simpleparser.ChainedProperties
+ com.itextpdf.text.html.simpleparser.ChainedProperties$TagAttributes
+com/itextpdf/text/ZapfDingbatsList.java
+ com.itextpdf.text.ZapfDingbatsList
+com/itextpdf/text/pdf/interfaces/PdfRunDirection.java
+ com.itextpdf.text.pdf.interfaces.PdfRunDirection
+com/itextpdf/text/api/package-info.java
+ com.itextpdf.text.api.package-info
+com/itextpdf/text/pdf/PdfChunk.java
+ com.itextpdf.text.pdf.PdfChunk
+com/itextpdf/text/pdf/parser/GraphicsState.java
+ com.itextpdf.text.pdf.parser.GraphicsState
+com/itextpdf/text/pdf/codec/TIFFDirectory.java
+ com.itextpdf.text.pdf.codec.TIFFDirectory
+com/itextpdf/text/RomanList.java
+ com.itextpdf.text.RomanList
+com/itextpdf/text/pdf/qrcode/EncodeHintType.java
+ com.itextpdf.text.pdf.qrcode.EncodeHintType
+com/itextpdf/text/pdf/PdfPTableEventSplit.java
+ com.itextpdf.text.pdf.PdfPTableEventSplit
+com/itextpdf/text/pdf/BidiOrder.java
+ com.itextpdf.text.pdf.BidiOrder
+com/itextpdf/text/GreekList.java
+ com.itextpdf.text.GreekList
+com/itextpdf/text/pdf/PdfCopyForms.java
+ com.itextpdf.text.pdf.PdfCopyForms
+com/itextpdf/text/pdf/PdfPCellEvent.java
+ com.itextpdf.text.pdf.PdfPCellEvent
+com/itextpdf/text/pdf/PRAcroForm.java
+ com.itextpdf.text.pdf.PRAcroForm
+ com.itextpdf.text.pdf.PRAcroForm$FieldInformation
+com/itextpdf/text/pdf/PdfContentByte.java
+ com.itextpdf.text.pdf.PdfContentByte
+ com.itextpdf.text.pdf.PdfContentByte$GraphicState
+com/itextpdf/text/DocWriter.java
+ com.itextpdf.text.DocWriter
+com/itextpdf/text/pdf/CrlClientImp.java
+ com.itextpdf.text.pdf.CrlClientImp
+com/itextpdf/text/pdf/PdfPattern.java
+ com.itextpdf.text.pdf.PdfPattern
+com/itextpdf/text/pdf/parser/Matrix.java
+ com.itextpdf.text.pdf.parser.Matrix
+com/itextpdf/text/pdf/SimpleNamedDestination.java
+ com.itextpdf.text.pdf.SimpleNamedDestination
+com/itextpdf/text/pdf/events/IndexEvents.java
+ com.itextpdf.text.pdf.events.IndexEvents
+ com.itextpdf.text.pdf.events.IndexEvents$1
+ com.itextpdf.text.pdf.events.IndexEvents$Entry
+com/itextpdf/text/pdf/PRStream.java
+ com.itextpdf.text.pdf.PRStream
+com/itextpdf/text/pdf/PdfTemplate.java
+ com.itextpdf.text.pdf.PdfTemplate
+com/itextpdf/text/pdf/PdfPageEventHelper.java
+ com.itextpdf.text.pdf.PdfPageEventHelper
+com/itextpdf/text/pdf/parser/ImageRenderInfo.java
+ com.itextpdf.text.pdf.parser.ImageRenderInfo
+com/itextpdf/text/html/simpleparser/StyleSheet.java
+ com.itextpdf.text.html.simpleparser.StyleSheet
+com/itextpdf/text/pdf/PdfNameTree.java
+ com.itextpdf.text.pdf.PdfNameTree
+com/itextpdf/text/pdf/codec/wmf/MetaFont.java
+ com.itextpdf.text.pdf.codec.wmf.MetaFont
+com/itextpdf/text/pdf/PdfGState.java
+ com.itextpdf.text.pdf.PdfGState
+com/itextpdf/text/pdf/hyphenation/HyphenationTree.java
+ com.itextpdf.text.pdf.hyphenation.HyphenationTree
+com/itextpdf/text/MarkedObject.java
+ com.itextpdf.text.MarkedObject
+com/itextpdf/text/pdf/FontDetails.java
+ com.itextpdf.text.pdf.FontDetails
+com/itextpdf/text/pdf/PdfPTableEvent.java
+ com.itextpdf.text.pdf.PdfPTableEvent
+com/itextpdf/text/pdf/PdfShading.java
+ com.itextpdf.text.pdf.PdfShading
+com/itextpdf/text/pdf/ExtraEncoding.java
+ com.itextpdf.text.pdf.ExtraEncoding
+com/itextpdf/text/pdf/PdfDeveloperExtension.java
+ com.itextpdf.text.pdf.PdfDeveloperExtension
+com/itextpdf/text/pdf/RandomAccessFileOrArray.java
+ com.itextpdf.text.pdf.RandomAccessFileOrArray
+com/itextpdf/text/pdf/PdfNull.java
+ com.itextpdf.text.pdf.PdfNull
+com/itextpdf/text/pdf/fonts/FontsResourceAnchor.java
+ com.itextpdf.text.pdf.fonts.FontsResourceAnchor
+com/itextpdf/text/pdf/VerticalText.java
+ com.itextpdf.text.pdf.VerticalText
+com/itextpdf/text/Element.java
+ com.itextpdf.text.Element
+com/itextpdf/text/pdf/ColumnText.java
+ com.itextpdf.text.pdf.ColumnText
+com/itextpdf/text/FontFactoryImp.java
+ com.itextpdf.text.FontFactoryImp
+com/itextpdf/text/pdf/parser/XObjectDoHandler.java
+ com.itextpdf.text.pdf.parser.XObjectDoHandler
+com/itextpdf/text/pdf/OutputStreamCounter.java
+ com.itextpdf.text.pdf.OutputStreamCounter
+com/itextpdf/text/pdf/parser/PdfContentStreamProcessor.java
+ com.itextpdf.text.pdf.parser.PdfContentStreamProcessor
+ com.itextpdf.text.pdf.parser.PdfContentStreamProcessor$1
+ com.itextpdf.text.pdf.parser.PdfContentStreamProcessor$BeginMarkedContent
+ com.itextpdf.text.pdf.parser.PdfContentStreamProcessor$BeginMarkedContentDictionary
+ com.itextpdf.text.pdf.parser.PdfContentStreamProcessor$BeginText
+ com.itextpdf.text.pdf.parser.PdfContentStreamProcessor$Do
+ com.itextpdf.text.pdf.parser.PdfContentStreamProcessor$EndMarkedContent
+ com.itextpdf.text.pdf.parser.PdfContentStreamProcessor$EndText
+ com.itextpdf.text.pdf.parser.PdfContentStreamProcessor$FormXObjectDoHandler
+ com.itextpdf.text.pdf.parser.PdfContentStreamProcessor$IgnoreOperatorContentOperator
+ com.itextpdf.text.pdf.parser.PdfContentStreamProcessor$IgnoreXObjectDoHandler
+ com.itextpdf.text.pdf.parser.PdfContentStreamProcessor$ImageXObjectDoHandler
+ com.itextpdf.text.pdf.parser.PdfContentStreamProcessor$ModifyCurrentTransformationMatrix
+ com.itextpdf.text.pdf.parser.PdfContentStreamProcessor$MoveNextLineAndShowText
+ com.itextpdf.text.pdf.parser.PdfContentStreamProcessor$MoveNextLineAndShowTextWithSpacing
+ com.itextpdf.text.pdf.parser.PdfContentStreamProcessor$PopGraphicsState
+ com.itextpdf.text.pdf.parser.PdfContentStreamProcessor$ProcessGraphicsStateResource
+ com.itextpdf.text.pdf.parser.PdfContentStreamProcessor$PushGraphicsState
+ com.itextpdf.text.pdf.parser.PdfContentStreamProcessor$ResourceDictionary
+ com.itextpdf.text.pdf.parser.PdfContentStreamProcessor$SetTextCharacterSpacing
+ com.itextpdf.text.pdf.parser.PdfContentStreamProcessor$SetTextFont
+ com.itextpdf.text.pdf.parser.PdfContentStreamProcessor$SetTextHorizontalScaling
+ com.itextpdf.text.pdf.parser.PdfContentStreamProcessor$SetTextLeading
+ com.itextpdf.text.pdf.parser.PdfContentStreamProcessor$SetTextRenderMode
+ com.itextpdf.text.pdf.parser.PdfContentStreamProcessor$SetTextRise
+ com.itextpdf.text.pdf.parser.PdfContentStreamProcessor$SetTextWordSpacing
+ com.itextpdf.text.pdf.parser.PdfContentStreamProcessor$ShowText
+ com.itextpdf.text.pdf.parser.PdfContentStreamProcessor$ShowTextArray
+ com.itextpdf.text.pdf.parser.PdfContentStreamProcessor$TextMoveNextLine
+ com.itextpdf.text.pdf.parser.PdfContentStreamProcessor$TextMoveStartNextLine
+ com.itextpdf.text.pdf.parser.PdfContentStreamProcessor$TextMoveStartNextLineWithLeading
+ com.itextpdf.text.pdf.parser.PdfContentStreamProcessor$TextSetTextMatrix
+com/itextpdf/text/pdf/PdfRectangle.java
+ com.itextpdf.text.pdf.PdfRectangle
+com/itextpdf/text/pdf/CFFFont.java
+ com.itextpdf.text.pdf.CFFFont
+ com.itextpdf.text.pdf.CFFFont$DictNumberItem
+ com.itextpdf.text.pdf.CFFFont$DictOffsetItem
+ com.itextpdf.text.pdf.CFFFont$Font
+ com.itextpdf.text.pdf.CFFFont$IndexBaseItem
+ com.itextpdf.text.pdf.CFFFont$IndexMarkerItem
+ com.itextpdf.text.pdf.CFFFont$IndexOffsetItem
+ com.itextpdf.text.pdf.CFFFont$Item
+ com.itextpdf.text.pdf.CFFFont$MarkerItem
+ com.itextpdf.text.pdf.CFFFont$OffsetItem
+ com.itextpdf.text.pdf.CFFFont$RangeItem
+ com.itextpdf.text.pdf.CFFFont$StringItem
+ com.itextpdf.text.pdf.CFFFont$SubrMarkerItem
+ com.itextpdf.text.pdf.CFFFont$UInt16Item
+ com.itextpdf.text.pdf.CFFFont$UInt24Item
+ com.itextpdf.text.pdf.CFFFont$UInt32Item
+ com.itextpdf.text.pdf.CFFFont$UInt8Item
+com/itextpdf/text/pdf/PdfContents.java
+ com.itextpdf.text.pdf.PdfContents
+com/itextpdf/text/pdf/PdfIndirectReference.java
+ com.itextpdf.text.pdf.PdfIndirectReference
+com/itextpdf/text/pdf/Pfm2afm.java
+ com.itextpdf.text.pdf.Pfm2afm
+com/itextpdf/text/pdf/codec/CCITTG4Encoder.java
+ com.itextpdf.text.pdf.codec.CCITTG4Encoder
+com/itextpdf/text/FontFactory.java
+ com.itextpdf.text.FontFactory
+com/itextpdf/text/pdf/draw/VerticalPositionMark.java
+ com.itextpdf.text.pdf.draw.VerticalPositionMark
+com/itextpdf/text/pdf/HyphenationEvent.java
+ com.itextpdf.text.pdf.HyphenationEvent
+com/itextpdf/text/pdf/PdfLayer.java
+ com.itextpdf.text.pdf.PdfLayer
+com/itextpdf/text/pdf/fonts/cmaps/CMapParser.java
+ com.itextpdf.text.pdf.fonts.cmaps.CMapParser
+ com.itextpdf.text.pdf.fonts.cmaps.CMapParser$1
+ com.itextpdf.text.pdf.fonts.cmaps.CMapParser$LiteralName
+ com.itextpdf.text.pdf.fonts.cmaps.CMapParser$Operator
+com/itextpdf/text/pdf/PdfStamperImp.java
+ com.itextpdf.text.pdf.PdfStamperImp
+ com.itextpdf.text.pdf.PdfStamperImp$PageStamp
+com/itextpdf/text/pdf/parser/FilteredRenderListener.java
+ com.itextpdf.text.pdf.parser.FilteredRenderListener
+com/itextpdf/text/pdf/parser/FilteredTextRenderListener.java
+ com.itextpdf.text.pdf.parser.FilteredTextRenderListener

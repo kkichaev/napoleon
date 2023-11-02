@@ -1,0 +1,25 @@
+package com.grsoft.dataobjects;
+
+import java.util.Date;
+
+import com.grsoft.types.FieldOrder;
+import com.grsoft.types.Scale;
+import com.grsoft.util.Consts;
+
+public class PriceSalesQty extends DataObject implements Comparable<PriceSalesQty> {
+	static Date CHECK_DATE = new Date(10 * 24 * 3600 * 1000);
+
+	@FieldOrder(order=0)
+	public Date date = new Date();
+
+	@FieldOrder(order=1)
+	@Scale(value=Consts.QTY_SCALE)
+	public int qty = 0;
+
+	@Override
+	public int compareTo(PriceSalesQty arg0) {
+		return date.compareTo(arg0.date);
+	}
+	
+	public boolean isFake() { return date.compareTo(CHECK_DATE) < 0; }
+}

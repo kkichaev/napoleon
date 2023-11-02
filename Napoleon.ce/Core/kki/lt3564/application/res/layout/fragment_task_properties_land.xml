@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    android:gravity="center">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <FrameLayout
+            android:id="@+id/menu_subtasks_container"
+            android:layout_width="@dimen/fragment_task_properties_item_size"
+            android:layout_height="@dimen/fragment_task_properties_item_size">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center">
+
+                <ImageView
+                    android:id="@+id/menu_subtasks_icon"
+                    android:layout_width="@dimen/fragment_task_properties_icon_size"
+                    android:layout_height="@dimen/fragment_task_properties_icon_size"
+                    android:src="@drawable/menu_subtasks_icon"
+                    android:layout_gravity="center"
+                    android:clickable="true"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/menu_subtasks"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/fragment_task_properties_text_size"
+                    android:layout_gravity="center"/>
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="@dimen/fragment_task_properties_item_size"
+            android:layout_height="@dimen/fragment_task_properties_item_size">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center">
+
+                <ImageView
+                    android:id="@+id/menu_properties_icon"
+                    android:layout_width="@dimen/fragment_task_properties_icon_size"
+                    android:layout_height="@dimen/fragment_task_properties_icon_size"
+                    android:src="@drawable/menu_properties_icon"
+                    android:layout_gravity="center"
+                    android:clickable="true"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/menu_properties"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/fragment_task_properties_text_size"
+                    android:layout_gravity="center"/>
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="@dimen/fragment_task_properties_item_size"
+            android:layout_height="@dimen/fragment_task_properties_item_size">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center">
+
+                <ImageView
+                    android:id="@+id/menu_assign_icon"
+                    android:layout_width="@dimen/fragment_task_properties_icon_size"
+                    android:layout_height="@dimen/fragment_task_properties_icon_size"
+                    android:src="@drawable/menu_assign_icon"
+                    android:layout_gravity="center"
+                    android:clickable="true"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/menu_assign"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/fragment_task_properties_text_size"
+                    android:layout_gravity="center"/>
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <FrameLayout
+            android:layout_width="@dimen/fragment_task_properties_item_size"
+            android:layout_height="@dimen/fragment_task_properties_item_size">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center">
+
+                <ImageView
+                    android:id="@+id/menu_term_icon"
+                    android:layout_width="@dimen/fragment_task_properties_icon_size"
+                    android:layout_height="@dimen/fragment_task_properties_icon_size"
+                    android:src="@drawable/menu_term_icon"
+                    android:layout_gravity="center"
+                    android:clickable="true"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/menu_term"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/fragment_task_properties_text_size"
+                    android:layout_gravity="center" />
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="@dimen/fragment_task_properties_item_size"
+            android:layout_height="@dimen/fragment_task_properties_item_size">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center">
+
+                <ImageView
+                    android:id="@+id/menu_delete_icon"
+                    android:layout_width="@dimen/fragment_task_properties_icon_size"
+                    android:layout_height="@dimen/fragment_task_properties_icon_size"
+                    android:src="@drawable/menu_dell_icon"
+                    android:layout_gravity="center"
+                    android:clickable="true"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/menu_dell"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/fragment_task_properties_text_size"
+                    android:layout_gravity="center"/>
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

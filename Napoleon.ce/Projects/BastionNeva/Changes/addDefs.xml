@@ -1,0 +1,127 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+   <objects>
+      <object name="OrderProceededSended">
+         <sources>
+            <source name="SQTable" type="internal" />
+         </sources>
+
+         <member name="primaryKey">"userid,created"</member>
+
+         <field name="created" type="string" />
+         <field name="userid" type="string" />
+      </object>
+      
+      <object name="OrderProceeded" removeOnCommit="true" sendAlways="true">
+         <sources>
+            <source name="DBFTable">
+               <param name="tableName">"POD" + $user.id</param>
+            </source>
+         </sources>
+
+         <!--имена полей "зашиты" в функцию-->
+         <field name="created" type="timestamp" />
+         <field name="remark" type="string" />
+         <field name="type" type="string" />
+         <events>
+            <event type="get">
+               <action name="WritePod">$object.created</action>
+            </event>
+         </events>
+      </object>
+
+      <object name="Pays">
+         <sources>
+            <source name="DBFTable">
+               <param name="tableName">"OPL" + $user.id</param>
+            </source>
+         </sources>
+
+         <field name="id" type="string" />
+         <field name="date" type="date" />
+         <field name="number" type="string" data="NUM" />
+         <field name="sum" type="number" prec="2" />
+      </object>
+      
+      <object name="Plans">
+         <sources>
+            <source name="DBFTable">
+               <param name="tableName">"PLN" + $user.id</param>
+            </source>
+         </sources>
+
+         <field name="name" type="string" />
+         <field name="plan" type="string" />
+         <field name="fact" type="string" />
+         <field name="procent" type="string" data="PRC" />
+      </object>
+
+      <modify src="Agents">
+         <change>
+            <sources>
+               <source name="DBFTable">
+                  <param name="tableName">"USERS1"</param>
+               </source>
+            </sources>
+         </change>
+      </modify>
+
+      <modify src="Price">
+         <add>
+            <field name="limit" type="number" prec="0" />
+         </add>
+      </modify>
+
+      <modify src="Delivery">
+         <add>
+            <field name="payDate" type="date" />
+         </add>
+      </modify>
+
+      <modify src="Org">
+         <add>
+            <field name="matrix" type="collection">
+               <data>
+                  <object name="OrgMatrix">
+                     <sources>
+                        <source name="DBFTableSet">
+                           <param name="userTable">"OMX"</param>
+                           <param name="commonTable">"ORGMTX"</param>
+                           <param name="filter">"[ID] = $parent.id"</param>
+                        </source>
+                     </sources>
+
+                     <field name="id" data="ID_I" type="string" />
+                  </object>
+               </data>
+            </field>
+            <field name="params" type="collection">
+               <data>
+                  <object name="OrgParam">
+                     <sources>
+                        <source name="DBFTableSet">
+                           <param name="userTable">"PRM"</param>
+                           <param name="commonTable">"PRMS"</param>
+                           <param name="filter">"[ID] = $parent.id"</param>
+                        </source>
+                     </sources>
+
+                     <field name="key" type="string" />
+                     <field name="value" type="string" />
+                  </object>
+               </data>
+            </field>
+            </add>
+      </modify>
+   </objects>
+   <actions>
+      <action name="WritePod">
+         <params>
+            <param name="created" />
+         </params>
+         <do>
+            <put object="OrderProceededSended" sourceType="internal">$object.userid=$user.id;$object.created=$created</put>
+         </do>
+      </action>
+   </actions>
+</serverDefs>

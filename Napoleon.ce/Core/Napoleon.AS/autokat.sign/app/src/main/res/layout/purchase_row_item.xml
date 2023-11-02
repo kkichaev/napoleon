@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/purchase_back_line">
+
+        <TextView
+            android:id="@+id/name"
+            style="@style/PurchaseRowText"
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="wrap_content"
+            android:paddingStart="4dp"
+            tools:text="Керамика"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:layout_marginLeft="1dp"
+            android:background="@color/white"/>
+
+        <TextView
+            android:id="@+id/weight"
+            style="@style/PurchaseRowText"
+            android:layout_width="0dp"
+            android:layout_weight="0.25"
+            android:layout_height="match_parent"
+            android:gravity="end|center_vertical"
+            android:paddingEnd="4dp"
+            tools:text="2,050"
+            android:layout_marginLeft="1dp"
+            android:background="@color/white"/>
+
+        <TextView
+            android:id="@+id/cost"
+            style="@style/PurchaseRowText"
+            android:layout_width="0dp"
+            android:layout_weight="0.25"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="1dp"
+            android:gravity="end|center_vertical"
+            android:paddingEnd="4dp"
+            tools:text="22 000,00"
+            android:layout_marginStart="1dp"
+            android:background="@color/white"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/purchase_back_line" />
+
+</LinearLayout>

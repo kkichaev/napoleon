@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="@dimen/univ_ab_height"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/simple_toolbar_container"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/toolbar_text_name"
+                style="@style/etAssignTaskText"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical|left"
+                android:singleLine="false"
+                android:hint="@string/error_empty_task_title"
+                android:textColor="@color/properties_text_color"
+                android:textColorHint="@color/properties_hint_color"
+                android:textCursorDrawable="@null"
+                android:textIsSelectable="true"
+                android:textSize="22dp"
+                />
+
+            <EditText
+                android:id="@+id/toolbar_edit_name"
+                style="@style/etAssignTaskEdit"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:gravity="center_vertical|left"
+                android:hint="@string/error_empty_task_title"
+                android:inputType="textMultiLine|textCapSentences"
+                android:textColor="@color/properties_text_color"
+                android:textColorHint="@color/properties_hint_color"
+                android:textCursorDrawable="@null"
+                android:textSize="22dp"
+                />
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/divider_comment"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@color/properties_color_divider"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:minHeight="@dimen/univ_ab_height"
+        android:layout_gravity="center_vertical|left"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_marginLeft="10dp"
+            android:padding="2dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="3dp"
+            android:src="@drawable/parent"/>
+
+        <TextView
+            android:id="@+id/task_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="23dp"
+            android:gravity="center_vertical"
+            android:minHeight="@dimen/univ_ab_height"
+            android:singleLine="true"
+            android:textColor="@color/parent_color"
+            android:textSize="@dimen/text_size_about"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:orientation="horizontal"
+        android:background="@android:color/white">
+
+        <EditText
+            android:id="@+id/comment"
+            style="@style/etAssignTaskEdit"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="@dimen/size_marker"
+            android:hint="@string/task_comment"
+            android:singleLine="false"
+            android:textColorHint="@color/properties_hint_color"/>
+
+        <TextView
+            android:id="@+id/tv_comment"
+            style="@style/etAssignTaskText"
+            android:layout_gravity="center_vertical"
+            android:textColorHint="@color/properties_hint_color"
+            android:textIsSelectable="true"
+            android:hint="@string/task_comment"/>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/marker_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/univ_ab_height"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:minHeight="@dimen/univ_ab_height">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <RelativeLayout
+                android:id="@+id/marker_z_layout"
+                android:layout_width="@dimen/size_marker_container"
+                android:layout_height="@dimen/size_marker_container">
+
+
+                <ImageView
+                    android:id="@+id/marker_zero"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="@dimen/padding_simple"
+                    android:background="@drawable/buttonshape"/>
+
+                <ImageView
+                    android:id="@+id/marker_zero_s"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/buttonshape_stroke"/>
+
+                <ImageView
+                    android:id="@+id/check_zero"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/checked"
+                    android:padding="4dp"
+                    android:visibility="gone"/>
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/marker_a_layout"
+                android:layout_width="@dimen/size_marker_container"
+                android:layout_height="@dimen/size_marker_container"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/marker_a"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="@dimen/padding_simple"
+                    android:background="@drawable/buttonshape"/>
+
+                <ImageView
+                    android:id="@+id/marker_a_s"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/buttonshape_stroke"/>
+
+                <ImageView
+                    android:id="@+id/check_a"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/checked"
+                    android:padding="4dp"
+                    android:visibility="gone"/>
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/marker_b_layout"
+                android:layout_width="@dimen/size_marker_container"
+                android:layout_height="@dimen/size_marker_container"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/marker_b"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="@dimen/padding_simple"
+                    android:background="@drawable/buttonshape"/>
+
+                <ImageView
+                    android:id="@+id/marker_b_s"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/buttonshape_stroke"/>
+
+                <ImageView
+                    android:id="@+id/check_b"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/checked"
+                    android:padding="4dp"
+                    android:visibility="gone"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/marker_c_layout"
+                android:layout_width="@dimen/size_marker_container"
+                android:layout_height="@dimen/size_marker_container"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/marker_c"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="@dimen/padding_simple"
+                    android:background="@drawable/buttonshape"/>
+
+                <ImageView
+                    android:id="@+id/marker_c_s"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/buttonshape_stroke"/>
+
+                <ImageView
+                    android:id="@+id/check_c"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/checked"
+                    android:padding="4dp"
+                    android:visibility="gone"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/marker_d_layout"
+                android:layout_width="@dimen/size_marker_container"
+                android:layout_height="@dimen/size_marker_container"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/marker_d"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="@dimen/padding_simple"
+                    android:background="@drawable/buttonshape"/>
+
+                <ImageView
+                    android:id="@+id/marker_d_s"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/buttonshape_stroke"/>
+
+                <ImageView
+                    android:id="@+id/check_d"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/checked"
+                    android:padding="4dp"
+                    android:visibility="gone"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/marker_e_layout"
+                android:layout_width="@dimen/size_marker_container"
+                android:layout_height="@dimen/size_marker_container"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/marker_e"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="@dimen/padding_simple"
+                    android:background="@drawable/buttonshape"/>
+
+                <ImageView
+                    android:id="@+id/marker_e_s"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/buttonshape_stroke"/>
+
+                <ImageView
+                    android:id="@+id/check_e"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/checked"
+                    android:padding="4dp"
+                    android:visibility="gone"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/marker_all"
+                android:layout_width="@dimen/size_marker_container"
+                android:layout_height="@dimen/size_marker_container"
+                android:padding="2dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/more"/>
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/status_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/mainSelectableItemBackground"
+        android:minHeight="@dimen/univ_ab_height"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/status"
+            android:layout_width="@dimen/univ_ab_height"
+            android:layout_height="@dimen/univ_ab_height"
+            android:layout_marginLeft="6dp"
+            android:layout_gravity="top"
+            android:padding="6dp"
+            android:src="@drawable/status0" />
+
+        <TextView
+            android:id="@+id/tv_status"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginLeft="4dp"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
+            android:padding="@dimen/univ_padding_small"
+            android:singleLine="true"
+            android:textColor="@color/properties_text_color"
+            android:textSize="@dimen/text_size_simple"
+            android:longClickable="false"
+            android:clickable="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"/>
+
+        <!--
+        <EditText
+            android:id="@+id/title"
+            style="@style/etAssignTaskEdit"
+            android:layout_gravity="center_vertical"
+            android:hint="@string/task_new"
+            android:singleLine="false"  />
+
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/etAssignTaskText"
+            android:layout_gravity="center_vertical"
+            android:hint="@string/task_new" /> -->
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

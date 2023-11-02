@@ -1,0 +1,590 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+  <objects>
+    <object name="LoadedOrders">
+      <sources>
+        <source name="XMLTable">
+          <param name="tableName">"ldo" + $user.id + ".xml"</param>
+          <param name="encoding">"utf8"</param>
+          <param name="mode">"overwrite"</param>
+          <param name="docElement">"order"</param>
+        </source>
+      </sources>
+      
+      <field name="date" type="date" format="DD/MM/YYYY" />
+      <field name="firm" type="string" width="20" />
+      <field name="id" width="55" type="string" />
+      <field name="remark" type="string" />
+      <field name="items" type="collection">
+        <data>
+          <object name="OrderItem">
+            <sources>
+              <source name="XMLTable">
+                <param name="docElement">"item"</param>
+                <param name="enclosureElement">"items"</param>
+              </source>
+            </sources>
+
+            <field name="id" width="40" type="string" />
+            <field name="qty" type="number" prec="3" />
+            <field name="cost" type="number" prec="2" />
+
+          </object>
+        </data>
+      </field>
+
+    </object>
+
+    <object name="Returns" feature="RETURN_DOC">
+      <sources>
+        <source name="XMLTable">
+          <param name="tableName">"ret" + $user.id + "_" + FormatDate(Now(), "YYYYMMDDHHmmSS") + ".xml"</param>
+          <param name="docElement">"doc"</param>
+          <param name="rootElement">"returns"</param>
+          <param name="encoding">"utf8"</param>
+          <param name="mode">"append"</param>
+        </source>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="table">"VZT"</member>
+      <member name="primaryKey">"userid,created"</member>
+      <memberArray name="index">"created"</memberArray>
+
+      <field name="userid" type="string" execOn="Put">$user.id</field>
+      <field name="timeZone" type="number" />
+      <field name="serverTimeZone" type="number" execOn="Put" feature="USE_TIMEZONE">ServerTimeZone()</field>
+      <field name="created" type="timestamp" format="YYYYMMDDHHmmSS" />
+      <field name="date" type="date" />
+      <field name="id" width="55" type="string" />
+      <field name="remark" type="string" />
+      <field name="sended" type="timestamp" format="YYYYMMDDHHmmSS" execOn="Put">Now()</field>
+
+      <field name="items" type="collection">
+        <data>
+          <object name="OrderItem">
+            <sources>
+              <source name="XMLTable">
+                <param name="docElement">"item"</param>
+                <param name="enclosureElement">"items"</param>
+              </source>
+              <source name="SQTable" type="internal" />
+            </sources>
+
+            <field name="id" width="40" type="string" />
+            <field name="qty" type="number" prec="3" />
+            <field name="cost" type="number" prec="2" />
+            <field name="cause" type="string" />
+            <!--<field name="items" type="collection">
+              <data>
+                <object name="ReturnDlv">
+                  <sources>
+                    <source name="XMLTable">
+                      <param name="docElement">"item"</param>
+                      <param name="enclosureElement">"items"</param>
+                    </source>
+                    <source name="SQTable" type="internal" />
+                  </sources>
+
+                  <field name="number" width="40" type="string" />
+                  <field name="date" type="date" />
+                  <field name="qty" type="number" prec="3" />
+                  <field name="cost" type="number" prec="2" />
+                </object>
+              </data>
+            </field>-->
+          </object>
+        </data>
+      </field>
+      <events>
+        <event type="put">
+          <action name="WriteInternal">$object.type</action>
+          <action name="WriteToLog">$object.type;$object.created</action>
+        </event>
+      </events>
+    </object>
+
+    <object name="PricePhoto" sendLimit="1000000" >
+      <sources>
+        <source name="XMLTable">
+          <param name="tableName">"prz" + $user.id + ".xml"</param>
+          <param name="encoding">"utf8"</param>
+          <param name="mode">"overwrite"</param>
+          <param name="docElement">"photo"</param>
+        </source>
+        <source name="XMLTable">
+          <param name="tableName">"prezent.xml"</param>
+          <param name="encoding">"utf8"</param>
+          <param name="mode">"overwrite"</param>
+          <param name="docElement">"photo"</param>
+        </source>
+      </sources>
+      <field name="path" type="string" />
+      <field name="photo" type="file" src="path" />
+      <field name="id" type="string" />
+    </object>
+
+    <object name="Firm" >
+      <sources>
+        <source name="XMLTable">
+          <param name="tableName">"firm" + $user.id + ".xml"</param>
+          <param name="encoding">"utf8"</param>
+          <param name="mode">"overwrite"</param>
+          <param name="docElement">"firm"</param>
+        </source>
+        <source name="XMLTable">
+          <param name="tableName">"firms.xml"</param>
+          <param name="encoding">"utf8"</param>
+          <param name="mode">"overwrite"</param>
+          <param name="docElement">"firm"</param>
+        </source>
+      </sources>
+
+      <field name="id" type="string" />
+      <field name="name" type="string" />
+      <field name="cost" type="number" />
+      <field name="qty" type="number" />
+    </object>
+
+    <object name="MLM">
+      <sources>
+        <source name="XMLTable">
+          <param name="tableName">"mlm" + $user.id + ".xml"</param>
+          <param name="encoding">"utf8"</param>
+          <param name="mode">"overwrite"</param>
+          <param name="docElement">"mlm"</param>
+        </source>
+      </sources>
+
+      <field name="format" type="string" />
+
+      <field name="marks" type="collection">
+        <data>
+          <object name="Mark">
+            <sources>
+              <source name="XMLTable">
+                <param name="docElement">""</param>
+                <param name="enclosureElement">"tms"</param>
+              </source>
+            </sources>
+            <field name="id" data="tm" type="string" />
+          </object>
+        </data>
+      </field>
+
+      <field name="groups" type="collection">
+        <data>
+          <object name="Mark">
+            <sources>
+              <source name="XMLTable">
+                <param name="docElement">""</param>
+                <param name="enclosureElement">"grps"</param>
+              </source>
+            </sources>
+            <field name="id" data="grp" type="string" />
+          </object>
+        </data>
+      </field>
+
+      <field name="items" type="collection">
+        <data>
+          <object name="Mark">
+            <sources>
+              <source name="XMLTable">
+                <param name="docElement">""</param>
+                <param name="enclosureElement">"nmcls"</param>
+              </source>
+            </sources>
+            <field name="id" data="nmcl" type="string" />
+          </object>
+        </data>
+      </field>
+
+    </object>
+
+    <object name="FMLM">
+      <sources>
+        <source name="XMLTable">
+          <param name="tableName">"fmlm" + $user.id + ".xml"</param>
+          <param name="encoding">"utf8"</param>
+          <param name="mode">"overwrite"</param>
+          <param name="docElement">"fmlm"</param>
+        </source>
+      </sources>
+
+      <field name="id" type="string" />
+
+      <field name="items" type="collection">
+        <data>
+          <object name="Mark">
+            <sources>
+              <source name="XMLTable">
+                <param name="docElement">""</param>
+                <param name="enclosureElement">"nmcls"</param>
+              </source>
+            </sources>
+            <field name="id" data="nmcl" type="string" />
+          </object>
+        </data>
+      </field>
+
+    </object>
+
+    <modify src="Agents">
+      <change>
+        <sources>
+          <source name="XMLTable">
+            <param name="tableName">"users.xml"</param>
+            <param name="encoding">"utf8"</param>
+            <param name="mode">"overwrite"</param>
+            <param name="docElement">"user"</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="Folder">
+      <change>
+        <sources>
+          <source name="XMLFolder">
+            <param name="tableName">"f" + $user.id + ".xml"</param>
+            <param name="encoding">"utf8"</param>
+            <param name="mode">"overwrite"</param>
+            <param name="docElement">"folder"</param>
+          </source>
+          <source name="XMLFolder">
+            <param name="tableName">"folders.xml"</param>
+            <param name="encoding">"utf8"</param>
+            <param name="mode">"overwrite"</param>
+            <param name="docElement">"folder"</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="ManagerFolder">
+      <change>
+        <sources>
+          <source name="XMLTable">
+            <param name="tableName">"f" + $user.id + ".xml"</param>
+            <param name="encoding">"utf8"</param>
+            <param name="mode">"overwrite"</param>
+            <param name="docElement">"folder"</param>
+          </source>
+          <source name="XMLTable">
+            <param name="tableName">"folders.xml"</param>
+            <param name="encoding">"utf8"</param>
+            <param name="mode">"overwrite"</param>
+            <param name="docElement">"folder"</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="ManagerPrice">
+      <change>
+        <sources>
+          <source name="XMLTable">
+            <param name="tableName">"w" + $user.id + ".xml"</param>
+            <param name="encoding">"utf8"</param>
+            <param name="mode">"overwrite"</param>
+            <param name="docElement">"nmcl"</param>
+          </source>
+          <source name="XMLTable">
+            <param name="tableName">"warehous.xml"</param>
+            <param name="encoding">"utf8"</param>
+            <param name="mode">"overwrite"</param>
+            <param name="docElement">"nmcl"</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="Price">
+      <change>
+        <sources>
+          <source name="XMLTable">
+            <param name="tableName">"w" + $user.id + ".xml"</param>
+            <param name="encoding">"utf8"</param>
+            <param name="mode">"overwrite"</param>
+            <param name="docElement">"nmcl"</param>
+          </source>
+          <source name="XMLTable">
+            <param name="tableName">"warehous.xml"</param>
+            <param name="encoding">"utf8"</param>
+            <param name="mode">"overwrite"</param>
+            <param name="docElement">"nmcl"</param>
+          </source>
+        </sources>
+      </change>
+      <add>
+        <field name="tradeMark" type="string" data="tm" />
+        <field name="group" type="string" data="grp" />
+        <field name="expired" type="string" />
+        <field name="minQty" type="number" data="div" />
+
+        <field name="cost" type="collection">
+          <data>
+            <object name="CostItem">
+              <sources>
+                <source name="XMLTable">
+                  <param name="docElement">""</param>
+                  <param name="enclosureElement">"costs"</param>
+                </source>
+              </sources>
+              <field name="cost" type="number" prec="2" />
+            </object>
+          </data>
+        </field>
+
+        <field name="qtys" type="collection" >
+          <data>
+            <object name="QtyItem">
+              <sources>
+                <source name="XMLTable">
+                  <param name="docElement">""</param>
+                  <param name="enclosureElement">"qtys"</param>
+                </source>
+              </sources>
+              <field name="qty" type="number" prec="2" />
+            </object>
+          </data>
+        </field>
+
+        <field name="haveParts" type="number" />
+        <field name="parts" type="collection" >
+          <data>
+            <object name="PartsData">
+              <sources>
+                <source name="XMLTable">
+                  <param name="docElement">""</param>
+                  <param name="enclosureElement">"parts"</param>
+                </source>
+              </sources>
+
+              <field name="items" type="collection" >
+                <data>
+                  <object name="PartsData">
+                    <sources>
+                      <source name="XMLTable">
+                        <param name="docElement">""</param>
+                        <param name="enclosureElement">"whData"</param>
+                      </source>
+                    </sources>
+                    <field name="weight" type="number" prec="3" />
+                  </object>
+                </data>
+              </field>
+            </object>
+          </data>
+        </field>
+
+      </add>
+    </modify>
+
+    <modify src="Org">
+      <change>
+        <sources>
+          <source name="XMLTable">
+            <param name="tableName">"o" + $user.id + ".xml"</param>
+            <param name="encoding">"utf8"</param>
+            <param name="mode">"overwrite"</param>
+            <param name="docElement">"org"</param>
+          </source>
+          <source name="XMLTable">
+            <param name="tableName">"orgs.xml"</param>
+            <param name="encoding">"utf8"</param>
+            <param name="mode">"overwrite"</param>
+            <param name="docElement">"org"</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="Org$contacts">
+      <change>
+        <sources>
+          <source name="XMLTable">
+            <param name="docElement">"contact"</param>
+            <param name="enclosureElement">"contacts"</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="OrgFolder">
+      <change>
+        <sources>
+          <source name="XMLUserTable">
+            <param name="userTable">"forg"</param>
+            <param name="commonTable">"forgs"</param>
+            <param name="encoding">"utf8"</param>
+            <param name="mode">"overwrite"</param>
+            <param name="docElement">"day"</param>
+          </source>
+          <source name="XMLTable">
+            <param name="tableName">"forg" + $user.id + ".xml"</param>
+            <param name="encoding">"utf8"</param>
+            <param name="mode">"overwrite"</param>
+            <param name="docElement">"day"</param>
+          </source>
+          <source name="XMLTable">
+            <param name="tableName">"forgs.xml"</param>
+            <param name="encoding">"utf8"</param>
+            <param name="mode">"overwrite"</param>
+            <param name="docElement">"day"</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="OrgFolder$items">
+      <change>
+        <sources>
+          <source name="XMLTable">
+            <param name="docElement">""</param>
+            <param name="enclosureElement">"orgs"</param>
+          </source>
+        </sources>
+        <field name="name" type="string" data="id"/>
+      </change>
+    </modify>
+
+    <modify src="Delivery">
+      <change>
+        <sources>
+          <source name="XMLTable">
+            <param name="tableName">"dlv" + $user.id + ".xml"</param>
+            <param name="encoding">"utf8"</param>
+            <param name="mode">"overwrite"</param>
+            <param name="docElement">"outcome"</param>
+          </source>
+          <source name="XMLTable">
+            <param name="tableName">"delivery.xml"</param>
+            <param name="encoding">"utf8"</param>
+            <param name="mode">"overwrite"</param>
+            <param name="docElement">"outcome"</param>
+          </source>
+        </sources>
+        <field name="number" type="string" data="doc_num" />
+        <field name="date" type="date" data="doc_date" format="DD.MM.YYYY" />
+        <field name="created" type="timestamp" format="YYYYMMDDHHmmSS" />
+      </change>
+    </modify>
+
+    <modify src="Delivery$items">
+      <change>
+        <sources>
+          <source name="XMLTable">
+            <param name="docElement">"item"</param>
+            <param name="enclosureElement">"items"</param>
+          </source>
+        </sources>
+        <field name="id" type="string" />
+      </change>
+    </modify>
+
+    <modify src="OrderProceeded">
+      <change>
+        <sources>
+          <source name="XMLTable">
+            <param name="tableName">"pod" + $user.id + "_*.xml"</param>
+            <param name="docElement">"pod"</param>
+            <param name="rootElement">"pods"</param>
+            <param name="encoding">"utf8"</param>
+          </source>
+        </sources>
+        <field name="created" type="timestamp" format="YYYYMMDDHHmmSS" />
+      </change>
+    </modify>
+
+    <modify src="Visit">
+      <add>
+        <event type="put">
+          <action name="WriteInternal">$object.type</action>
+          <action name="WriteToLog">$object.type;$object.created</action>
+        </event>
+      </add>
+      <change>
+        <sources>
+          <source name="XMLTable">
+            <param name="tableName">"vzt" + $user.id + "_" + FormatDate(Now(), "YYYYMMDDHHmmSS") + ".xml"</param>
+            <param name="docElement">"visit"</param>
+            <param name="rootElement">"visits"</param>
+            <param name="encoding">"utf8"</param>
+            <param name="mode">"append"</param>
+          </source>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="Order">
+      <add>
+        <field name="firm" type="string" width="20" />
+      </add>
+      <change>
+        <sources>
+          <source name="XMLTable">
+            <param name="tableName">"z" + $user.id + "_" + FormatDate(Now(), "YYYYMMDDHHmmSS") + ".xml"</param>
+            <param name="docElement">"order"</param>
+            <param name="rootElement">"orders"</param>
+            <param name="encoding">"utf8"</param>
+            <param name="mode">"append"</param>
+          </source>
+          <source name="SQTable" type="internal" />
+        </sources>
+
+        <field name="userid" type="string" execOn="Put">$user.id</field>
+        <field name="created" type="timestamp" format="YYYYMMDDHHmmSS"/>
+        <field name="timeZone" type="number" />
+        <field name="serverTimeZone" type="number" execOn="Put" feature="USE_TIMEZONE">ServerTimeZone()</field>
+        <field name="sended" type="timestamp" format="YYYYMMDDHHmmSS" execOn="Put">Now()</field>
+        <field name="date" type="timestamp" />
+        <!--<field name="date" type="date" format="DD/MM/YYYY" />-->
+        <field name="delay" type="number" prec="0" />
+        <field name="paydate" type="date" format="DD/MM/YYYY" execOn="Put">AdjustDate($object.date, $object.delay, "day")</field>
+        <field name="id" width="55" type="string" />
+        <field name="remark" type="string" />
+        <field name="items" type="collection">
+          <data>
+            <object name="OrderItem">
+              <sources>
+                <source name="XMLTable">
+                  <param name="docElement">"item"</param>
+                  <param name="enclosureElement">"items"</param>
+                </source>
+                <source name="SQTable" type="internal" />
+              </sources>
+
+              <field name="id" width="40" type="string" />
+              <field name="qty" type="number" prec="3" />
+              <field name="discount" type="number" width="6" prec="1" feature="ORD_ITEM_DISCOUNT" />
+              <field name="cost" type="number" prec="2" />
+              <field name="flags" type="number" width="9" prec="0" data="" />
+              <field name="pack" type="number" width="1" execOn="Put">DecodeFlag($object.flags, 1, "", "1")</field>
+
+              <field name="parts" type="collection">
+                <data>
+                  <object name="Parts">
+                    <sources>
+                      <source name="XMLTable">
+                        <param name="docElement">""</param>
+                        <param name="enclosureElement">"parts"</param>
+                      </source>
+                      <source name="SQTable" type="internal" />
+                    </sources>
+
+                    <field name="weight" type="number" prec="3" />
+                  </object>
+                </data>
+              </field>
+
+            </object>
+          </data>
+        </field>
+
+      </change>
+    </modify>
+  </objects>
+</serverDefs>

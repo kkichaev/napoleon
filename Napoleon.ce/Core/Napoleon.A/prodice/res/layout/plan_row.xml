@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_height="fill_parent" 
+	android:layout_width="fill_parent"
+	android:layout_weight="1" android:background="@drawable/list_selector">
+    <TextView 
+    	android:layout_width="wrap_content" 
+    	android:layout_height="wrap_content" 
+    	android:textColor="@color/black" 
+    	android:layout_weight="1" 
+		android:text="Name" 
+		android:padding="3dp" 
+    	android:id="@+id/tvName"/>
+	
+	<TextView 
+		android:layout_width="wrap_content" 
+		android:layout_height="wrap_content" 
+		android:id="@+id/tvPlan" 
+		android:text="Plan" 
+		android:gravity="right" 
+		android:padding="3dp" 
+		android:textColor="@color/black" />
+		
+	<TextView android:layout_width="wrap_content" 
+		android:layout_height="wrap_content" 
+		android:text="Date" 
+		android:id="@+id/tvDate"
+		android:gravity="right" 
+		android:textColor="@color/black" 
+		android:minWidth="85dp" 
+		android:padding="3dp" />
+</LinearLayout>

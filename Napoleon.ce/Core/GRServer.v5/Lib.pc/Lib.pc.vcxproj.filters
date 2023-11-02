@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Dbf">
+      <UniqueIdentifier>{a6075c1f-38e7-4116-99ba-0ff3a11873fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ZLib">
+      <UniqueIdentifier>{2de39b9c-6f73-42ed-a275-77a6cd99b46e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core">
+      <UniqueIdentifier>{88f9216b-8f6d-4aab-9429-a1007ebe7fdc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Core\stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Dbf\dbfapp.cpp">
+      <Filter>Source Files\Dbf</Filter>
+    </ClCompile>
+    <ClCompile Include="Dbf\dbfchfil.cpp">
+      <Filter>Source Files\Dbf</Filter>
+    </ClCompile>
+    <ClCompile Include="Dbf\dbfcnstr.cpp">
+      <Filter>Source Files\Dbf</Filter>
+    </ClCompile>
+    <ClCompile Include="Dbf\dbfdelre.cpp">
+      <Filter>Source Files\Dbf</Filter>
+    </ClCompile>
+    <ClCompile Include="Dbf\dbffill.cpp">
+      <Filter>Source Files\Dbf</Filter>
+    </ClCompile>
+    <ClCompile Include="Dbf\dbfgetfl.cpp">
+      <Filter>Source Files\Dbf</Filter>
+    </ClCompile>
+    <ClCompile Include="Dbf\dbfgo.cpp">
+      <Filter>Source Files\Dbf</Filter>
+    </ClCompile>
+    <ClCompile Include="Dbf\dbfgtfr.cpp">
+      <Filter>Source Files\Dbf</Filter>
+    </ClCompile>
+    <ClCompile Include="Dbf\dbfgthd.cpp">
+      <Filter>Source Files\Dbf</Filter>
+    </ClCompile>
+    <ClCompile Include="Dbf\dbfop.cpp">
+      <Filter>Source Files\Dbf</Filter>
+    </ClCompile>
+    <ClCompile Include="Dbf\dbfopen.cpp">
+      <Filter>Source Files\Dbf</Filter>
+    </ClCompile>
+    <ClCompile Include="Dbf\dbfrdrec.cpp">
+      <Filter>Source Files\Dbf</Filter>
+    </ClCompile>
+    <ClCompile Include="Dbf\dbfrecl.cpp">
+      <Filter>Source Files\Dbf</Filter>
+    </ClCompile>
+    <ClCompile Include="Dbf\dbfwrrc.cpp">
+      <Filter>Source Files\Dbf</Filter>
+    </ClCompile>
+    <ClCompile Include="Dbf\dbfwrrec.cpp">
+      <Filter>Source Files\Dbf</Filter>
+    </ClCompile>
+    <ClCompile Include="Dbf\getwdh.cpp">
+      <Filter>Source Files\Dbf</Filter>
+    </ClCompile>
+    <ClCompile Include="Zlib\adler32.c">
+      <Filter>Source Files\ZLib</Filter>
+    </ClCompile>
+    <ClCompile Include="Zlib\compress.c">
+      <Filter>Source Files\ZLib</Filter>
+    </ClCompile>
+    <ClCompile Include="Zlib\crc32.c">
+      <Filter>Source Files\ZLib</Filter>
+    </ClCompile>
+    <ClCompile Include="Zlib\deflate.c">
+      <Filter>Source Files\ZLib</Filter>
+    </ClCompile>
+    <ClCompile Include="Zlib\inffast.c">
+      <Filter>Source Files\ZLib</Filter>
+    </ClCompile>
+    <ClCompile Include="Zlib\inflate.c">
+      <Filter>Source Files\ZLib</Filter>
+    </ClCompile>
+    <ClCompile Include="Zlib\inftrees.c">
+      <Filter>Source Files\ZLib</Filter>
+    </ClCompile>
+    <ClCompile Include="Zlib\trees.c">
+      <Filter>Source Files\ZLib</Filter>
+    </ClCompile>
+    <ClCompile Include="Zlib\zutil.c">
+      <Filter>Source Files\ZLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Include\AES.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Include\C32.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\dateparse.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\filefield.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Include\OutStream.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\packet.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\pktops.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\servobj.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\socket.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\stdobjs.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\thread.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\token.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

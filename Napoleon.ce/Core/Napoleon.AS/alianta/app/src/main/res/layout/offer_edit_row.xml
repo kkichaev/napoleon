@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/list_selector" >
+
+    <TextView
+        android:id="@+id/tvOrder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:gravity="right"
+        android:paddingRight="5dp"
+        android:text="No"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:visibility="gone"
+        android:width="30sp"
+        tools:ignore="HardcodedText" />
+
+    <ImageView
+        android:id="@+id/ivItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:src="@drawable/empty" />
+
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_gravity="center_vertical"
+        android:text="Name"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:paddingRight="3dp"
+        android:paddingLeft="3dp"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/tvCost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:layout_gravity="center_vertical"
+        android:gravity="right"
+        android:maxWidth="80dp"
+        android:minWidth="80dp"
+        android:text="tvCost"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:width="70dp"
+        tools:ignore="HardcodedText" />
+
+</LinearLayout>

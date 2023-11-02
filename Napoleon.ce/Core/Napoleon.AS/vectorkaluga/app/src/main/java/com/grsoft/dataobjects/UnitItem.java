@@ -1,0 +1,22 @@
+package com.grsoft.dataobjects;
+
+import com.grsoft.types.FieldOrder;
+import com.grsoft.types.Scale;
+import com.grsoft.util.Consts;
+
+public class UnitItem extends DataObject {
+    @FieldOrder(order = 0)
+    public String id = "";
+
+    @FieldOrder(order = 1)
+    @Scale(value = Consts.QTY_SCALE)
+    public int inpack = 0;
+
+    @FieldOrder(order = 2)
+    public String name = "";
+
+    @Override
+    public String toString() {
+        return name;
+    }
+}

@@ -1,0 +1,536 @@
+﻿<resources>
+
+    <string name="app_name">SOBR</string>
+
+    <string name="sobr_assist_title">Internet-location SOBR-Assist</string>
+    <string name="sobr_assist_small">Service is availabce for registered users only.</string>
+    <string name="sobr_assist_registration_link"><a href="http://location.sobr-a.ru/client-portal/?action=register">Registration</a></string>
+    <string name="sobr_assist_registration">Registration</string>
+    <string name="sobr_assist_login_hint">Login</string>
+    <string name="sobr_assist_password_hint">Password</string>
+    <string name="state_sobr_assist">SOBR-Assist</string>
+    <string name="sobr_assist_description">SOBR-Assistance service\r\nFull range functionality "satellite" systems.\r\nCall Emergency Centre Responce.\r\nProffesional Anti-Theft Systems.\r\nProffesional anti-hi-jack.\r\nSearch of the vehicle in case of theft.\r\nTechnical assistance on the road.\r\nEvacuation vehicle.\r\nEmergency help.\r\nCar online location.</string>
+    <string name="sobr_assist_connect">Connection to SOBR-Assistance</string>
+
+	<string name="tab_name_engine">Engine</string>
+    <string name="tab_name_device">Device</string>
+    <string name="tab_name_state">State</string>
+    <string name="tab_name_security">Security</string>
+    <string name="tab_name_settings">Settings</string>
+
+    <string name="device_engine_title">Start</string>
+    <string name="device_engine_start_btn">Engine start</string>
+
+    <string name="device_preheater_title">Preheater</string>
+    <string name="device_preheater_on">Preheater_on</string>
+    <string name="device_preheater_off">Preheater_off</string>
+    
+    <string name="device_heater_title">Heater</string>
+    <string name="device_heater_on_btn">On</string>
+    <string name="device_heater_off_btn">Off</string>
+
+    <string name="device_timer_title">Timer</string>
+    <string name="device_timer_set_btn">Timer set</string>
+    
+    <string name="device_siren_on_title">Siren</string>
+    <string name="device_siren_on_btn">On</string>
+    
+    <string name="device_gate_title">Gate</string>
+    <string name="device_gate_open_close_btn">Open/Close</string>
+    
+    <string name="device_cmd_456_btn">On</string>
+    <string name="device_cmd_789_btn">Off</string>
+    
+    <string name="device_executionunit_title">Device executionunit</string>
+    <string name="device_executionunit_on">On</string>
+    <string name="device_executionunit_off">Off</string>
+
+    <string name="state_common">Common</string>
+    <string name="state_common_balance">Balance</string>
+    <string name="state_common_info">Listen to information</string>
+    <string name="state_common_info_sms">Get the sms</string>
+    
+    <string name="state_search_mode_title">Search mode</string>
+    <string name="state_search_mode_on_btn">On</string>
+    <string name="state_search_mode_off_btn">Off</string>
+
+    <string name="state_location">Location</string>
+    <string name="state_location_map">Map</string>
+    <string name="state_location_coordinates">Coordinates</string>
+    <string name="state_location_link_to_website">www.m.sobr.ru</string>
+    <string name="state_report_move_btn">Report on the move</string>
+
+    <string name="state_service_mode">Mode service</string>
+    <string name="state_service_mode_on">On</string>
+    <string name="state_service_mode_off">Off</string>
+    
+    <string name="state_infocall_dialog_posbtn">Call</string>
+    <string name="state_infocall_dialog_msg">Call the system and listen to the information message.</string>
+    <string name="state_infocall_dialog_msg_for_nobase_phone">After connecting with the system dial on
+			keyboard</string>
+
+    <string name="security_security">Arming</string>
+    <string name="security_security_on">On</string>
+    <string name="security_security_wo">On without the shock sensor</string>
+    <string name="security_security_off">Off</string>
+
+    <string name="security_mic">Microphone</string>
+    <string name="security_mic_on">On</string>
+    <string name="security_mic_dialog_message">After connecting to the system type on the keyboard</string>
+    <string name="security_mic_dialog_message_end">007*</string>
+
+    <string name="security_engine">Engine</string>
+    <string name="security_engine_lock">Lock</string>
+    <string name="security_engine_unlock">Unlock</string>
+
+    <string name="security_doors">Doors</string>
+    <string name="security_doors_open">Open</string>
+
+    <string name="settings_profile">Profile</string>
+    <string name="settings_profile_edit">Settings</string>
+    <string name="settings_password">Password</string>
+    <string name="settings_password_set">Set password</string>
+
+    <string name="settings_password_hint">Password</string>
+
+    <string name="profiles">Profiles</string>
+    <string name="profiles_empty">Profiles empty</string>
+    <string name="profiles_add">Add profiles</string>
+
+    <string name="profile_new">New profile</string>
+    <string name="profile_name">Profile name</string>
+    <string name="profile_phone_number">Telephone number system</string>
+    <string name="profile_password">Password</string>
+    <string name="profile_change_password">Change password</string>
+    <string name="profile_unlock_code">Unlock code engine</string>
+    <string name="profile_pin_code">PIN-code</string>
+    <string name="profile_base_phone_number">Base phone number</string>
+    <string name="profile_second_phone_number">Second phone number</string>
+    <string name="profile_third_phone_number">Third phone number</string>
+    <string name="profile_get_settings_info">Get settings info</string>
+    <string name="profile_max_balance">Balance limit</string>
+    <string name="profile_get_balance_code">Balance code</string>
+    <string name="profile_program_car_pult">Program car pult</string>
+    <string name="profile_program_keys">Program keys «Touch Memory»</string>
+    <string name="profile_program_label_1">Program label №1</string>
+    <string name="profile_program_label_2">Program label №2</string>
+    <string name="profile_program_label_3">Program label №3</string>
+
+    <string name="profile_name_hint">"For example, Mazda RX-3</string>
+    <string name="profile_phone_number_hint">For example, +79991234567</string>
+    <string name="profile_password_hint">Enter the 5 digits</string>
+    <string name="profile_unlock_code_hint">Enter 3 digits</string>
+    <string name="profile_pin_code_hint">Enter 4 digits</string>
+    <string name="profile_pin_code_on_start_hint">PIN-code on start</string>
+    <string name="profile_show_pass_hint">Show password</string>
+    <string name="profile_base_phone_number_hint">+ХХХХХХХХХХХ</string>
+    <string name="profile_second_phone_number_hint">+ХХХХХХХХХХХ</string>
+    <string name="profile_third_phone_number_hint">+ХХХХХХХХХХХ</string>
+    <string name="profile_max_balance_hint">Up to 10 characters</string>
+    <string name="profile_get_balance_code_hint">For example, *100#</string>
+
+    <string name="profile_program_keys_button">Program</string>
+    <string name="profile_program_label_1_button">Program</string>
+    <string name="profile_program_label_2_button">Program</string>
+    <string name="profile_program_label_3_button">Program</string>
+    <string name="profile_program_car_remote_button">Program</string>
+    <string name="profile_user_settings_button">Individual settings</string>
+    <string name="profile_get_settings_info_button">Get</string>
+    <string name="profile_save">Save</string>
+    <string name="profile_delete">Delete</string>
+    <string name="profile_dialog_chenge_pass_warning_text">
+Within 10 minutes of a password change, it is necessary to send the system a text message using the new password, for example your next adjustment or a request for information about other settings</string>
+    <string name="profile_dialog_chenge_pass_warning_title">Warning!</string>
+    <string name="profile_systemtype_title">System Type:</string>
+    
+    <string name="profile_user_confirm_btn">Ок</string>
+    <string name="profile_user_by_default_btn">By default</string>
+    <string name="profile_user_phone_status_title">User phone status</string>
+    <string name="profile_user_command_123_title">Command 123:</string>
+    <string name="profile_user_command_456_title">Command 456:</string>
+    <string name="profile_user_command_789_title">Command 789:</string>
+    <string name="profile_user_command_666_title">Command 666:</string>
+    <string name="profile_user_command_777_title">Command 777:</string>
+    <string name="profile_user_command_999_title">Command 999:</string>
+    <string name="profile_user_command_09_title">Command 09:</string>
+    <string name="profile_user_command_911_title">Command 911:</string>
+    
+    <string name="profile_user_gps_receiver_cbx">GPS-receiver</string>
+    <string name="profile_user_report_on_the_move_cbx">Report on the move</string>
+    <string name="profile_user_shock_sensor_cbx">Shock sensor</string>
+    <string name="profile_user_presence_of_an_immobilizer_cbx">Immobilizer (SOBR-IP 01 или SOBR-GSM 130)</string>
+    <string name="profile_user_custom_hint">Enter the name of the button</string>
+    <string name="profile_user_custom_title_hint">Enter the name of the command</string>
+    
+    <string name="profile_user_enable_daily_mode_title">Mode "daily"</string>
+    <string name="profile_user_enable_weekly_mode_title">Mode "weekly"</string>
+    <string name="profile_user_enable_button">On</string>
+    
+    <string name="profile_user_communication_time_title">Communication time</string>
+    <string name="profile_user_set_communication_time">Set</string>
+    
+    <string name="profile_pref_dialog_title_command_123">Command 123:</string>
+	<string name="profile_pref_summary_command_123">Command 123:</string>
+	<string name="profile_pref_title_command_123">Command 123:</string>
+	
+	
+    <string name="profile_delete_message">Profile delete</string>
+    <string name="profile_invalid">Profile invalid</string>
+    
+    <string name="profile_dialog_old_password">Old password</string>
+    <string name="profile_dialog_new_password">New password</string>
+    <string name="profile_dialog_new_password_confirm">New password confirm</string>
+    <string name="profile_dialog_new_password_error">New password error</string>
+    
+    <string name="profile_dialog_old_pincode">Old PIN-code</string>
+    <string name="profile_dialog_new_pincode">New PIN-code</string>
+    <string name="profile_dialog_new_pincode_confirm">Confirm PIN-code</string>
+    <string name="profile_dialog_new_pincode_error">New PIN-code error</string>
+    
+    <string name="profile_dialog_dailymode_message">Connects to the network and sends a text message once a day</string>
+    <string name="profile_dialog_weeklymode_message">Connects to the network every 8 hours, sends a text message once a week</string>
+    
+    <string name="profile_toast_sysnumber_error">Error: check the "number system"</string>
+    <string name="profile_toast_password_error">Error: check the "Password"</string>
+    <string name="profile_toast_unlockcode_error">Error: check the "Unlock Code Engine"</string>
+    <string name="profile_toast_pincode_error">Error: Check the box "PIN-code"</string>
+    <string name="profile_toast_basephonenumb_error">Error: check the "Basic phone"</string>
+    <string name="profile_toast_profilename_error">Error: check the "Profile Name"</string>
+
+    <string name="password_dialog_pin_code">Enter the PIN-code</string>
+    <string name="password_dialog_pin_code_error">Error: Invalid PIN-code</string>
+    
+    <string name="sms_sent">Sent</string>
+    <string name="sms_error">Error</string>
+    
+    <string name="operation_error">Operation error</string>
+    
+    <string name="changlog_dialog_message"></string>
+        
+    <string-array name="engine_timer_entries">
+        <item>Off</item>
+        <item>1:00</item>
+        <item>2:00</item>
+        <item>3:00</item>
+        <item>4:00</item>
+        <item>5:00</item>
+        <item>6:00</item>
+    </string-array>
+    
+    <string-array name="state_report_on_move_entries">
+        <item>Off</item>
+        <item>1 minute</item>
+        <item>2 minutes</item>
+        <item>3 minutes</item>
+        <item>4 minutes</item>
+        <item>5 minutes</item>
+        <item>6 minutes</item>
+        <item>7 minutes</item>
+        <item>8 minutes</item>
+        <item>9 minutes</item>
+        <item>10 minutes</item>
+        <item>11 minutes</item>
+        <item>12 minutes</item>
+        <item>13 minutes</item>
+        <item>14 minutes</item>
+        <item>15 minutes</item>
+        <item>16 minutes</item>
+        <item>17 minutes</item>
+        <item>18 minutes</item>
+        <item>19 minutes</item>
+        <item>20 minutes</item>
+        <item>21 minutes</item>
+        <item>22 minutes</item>
+        <item>23 minutes</item>
+        <item>24 minutes</item>
+        <item>25 minutes</item>
+        <item>26 minutes</item>
+        <item>27 minutes</item>
+        <item>28 minutes</item>
+        <item>29 minutes</item>
+        <item>30 minutes</item>
+        <item>31 minutes</item>
+        <item>32 minutes</item>
+        <item>33 minutes</item>
+        <item>34 minutes</item>
+        <item>35 minutes</item>
+        <item>36 minutes</item>
+        <item>37 minutes</item>
+        <item>38 minutes</item>
+        <item>39 minutes</item>
+        <item>40 minutes</item>
+        <item>41 minutes</item>
+        <item>42 minutes</item>
+        <item>43 minutes</item>
+        <item>44 minutes</item>
+        <item>45 minutes</item>
+        <item>46 minutes</item>
+        <item>47 minutes</item>
+        <item>48 minutes</item>
+        <item>49 minutes</item>
+        <item>50 minutes</item>
+        <item>51 minutes</item>
+        <item>52 minutes</item>
+        <item>53 minutes</item>
+        <item>54 minutes</item>
+        <item>55 minutes</item>
+        <item>56 minutes</item>
+        <item>57 minutes</item>
+        <item>58 minutes</item>
+        <item>59 minutes</item>
+        <item>60 minutes</item>
+
+    </string-array>
+    
+    <string-array name="state_report_on_move_entries_gsm510">
+        <item>Off</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>15</item>
+        <item>20</item>
+        <item>30</item>
+        <item>45</item>
+        <item>60</item>
+    </string-array>
+    
+    <string-array name="entries_system_type">
+        <item>SOBR&#8211;GSM, SOBR-G12&#8211;20</item>
+        <item>DomOnline</item>
+        <item>Chip 01&#8211;03</item>
+        <item>G01&#8211;03</item>
+        <item>SOBR&#8211;Chip 11/12R/13</item>
+        <item>SOBR GSM&#8211;510</item>
+    </string-array>
+    
+    <string-array name="entries_phone_status">
+        <item>Main</item>
+        <item>Second</item>
+    </string-array>
+    
+    <string-array name="entries_command_123">
+        <item>Engine start</item>
+        <item>Preheater</item>
+        <item>Siren</item>
+        <item>Gate</item>
+        <item>Its team</item>
+        <item>No</item>
+    </string-array>
+    
+    <string-array name="entries_command_123_1">
+        <item>Engine start</item>
+        <item>Preheater</item>
+        <item>Siren</item>
+        <item>Its team</item>
+        <item>No</item>
+    </string-array>
+    
+    <string-array name="entries_command_123_2">
+        <item>Siren</item>
+        <item>Gate</item>
+        <item>Its team</item>
+        <item>No</item>
+    </string-array>
+    
+    <string-array name="entries_command_456">
+        <item>Preheater</item>
+        <item>Siren</item>
+        <item>Device executionunit</item>
+        <item>Gate</item>
+        <item>Its team</item>
+        <item>No</item>
+    </string-array>
+    
+    <string-array name="entries_command_456_1">
+        <item>Preheater</item>
+        <item>Siren</item>
+        <item>Device executionunit</item>
+        <item>Its team</item>
+        <item>No</item>
+    </string-array>
+    
+    <string-array name="entries_command_456_2">
+        <item>Siren</item>
+        <item>Device executionunit</item>
+        <item>Gate</item>
+        <item>Its team</item>
+        <item>No</item>
+    </string-array>
+    
+    <string-array name="entries_command_789">
+        <item>Preheater</item>
+        <item>Device executionunit</item>
+        <item>Its team</item>
+        <item>No</item>
+    </string-array>
+    
+    <string-array name="entries_command_789_1">
+        <item>Preheater</item>
+        <item>Device executionunit</item>
+        <item>Its team</item>
+        <item>No</item>
+    </string-array>
+    
+    <string-array name="entries_command_666">
+        <item>Lock</item>
+        <item>Turn on the "Search"</item>
+        <item>No</item>
+    </string-array>
+    
+    <string-array name="entries_command_777">
+        <item>Turn on the heater</item>
+        <item>Gate</item>
+        <item>Its team</item>
+        <item>No</item>
+    </string-array>
+    
+    <string-array name="entries_command_999">
+        <item>Lock off</item>
+        <item>Turn off the heater</item>
+        <item>Disable the "Search"</item>
+        <item>its team</item>
+        <item>No</item>
+    </string-array>
+    
+    <string-array name="entries_command_999_1">
+        <item>Turn off the heater</item>
+        <item>its team</item>
+        <item>No</item>
+    </string-array>
+    
+    <string-array name="entries_command_09">
+        <item>Call and SMS</item>
+        <item>Just call</item>
+        <item>No</item>
+    </string-array>
+    
+    <string-array name="entries_command_911">
+        <item>Unlocking the doors</item>
+        <item>Its team</item>
+        <item>No</item>
+    </string-array>
+
+    <string name="work_mode">Work mode SOBR-GSM 510</string>
+    <string-array name="work_mode_entries">
+        <item>SOBR ATE-510 Support</item>
+        <item>Independently</item>
+    </string-array>
+    <string name="time_zone_title">Time zone</string>
+    <string-array name="time_zone_entries">
+        <item>GMT +0, Greenwich Mean Time</item>
+		<item>GMT +1, Central European Time</item>
+		<item>GMT +2, Kiev, Riga</item>
+		<item>GMT +3, Kaliningrad, Minsk</item>
+		<item>GMT +4, Moscow</item>
+		<item>GMT +5, Tashkent</item>
+		<item>GMT +6, Yekaterinburg, Almaty</item> 
+		<item>GMT +7, Novosibirsk, Kemerovo, Omsk</item>
+		<item>GMT +8, Krasnoyarsk</item>
+		<item>GMT +9, Irkutsk</item>
+		<item>GMT +10, Yakutia</item>
+		<item>GMT +11, Vladivostok, Khabarovsk</item>
+		<item>GMT +12, Magadan</item>
+    </string-array>
+    <string name="freq_conn_title">Session count</string>
+    <string-array name="freq_conn_entries">
+        <item>1 time per day</item>
+		<item>2 times per day</item>
+		<item>Every 8 hours</item>
+		<item>Every 6 hours</item>
+	</string-array>	
+	
+     <string-array name="freq_conn_entries_chip111213">
+        <item>1 time per day</item>
+		<item>2 times per day</item>
+		<item>Every 8 hours</item>
+	</string-array>	
+	
+    <string name="work_schedule_title">Work mode</string>
+    <string-array name="work_schedule_entries">
+        <item>Daily</item>
+		<item>Weekly</item>
+		<item>Every 2 weeks</item>
+		<item>Monthly</item>
+	</string-array>
+	
+    <string name="fifth_phone_number">Fifth phone number</string>
+    <string name="fifth_phone_number_hint">+ХХХХХХХХХХХ</string>
+    <string name="send">Send</string>
+	<string name="milage_title">Start mileage</string>    
+	<string name="milage_write">Record</string>
+	
+    <string name="resend_input_sms_title">Resend incoming sms</string>
+	<string-array name="resend_input_sms_entries">
+        <item> 0 - Do not forward incoming SMS </item> 
+		<item> 1 - Transfer SMS from unknown numbers</item> 
+		<item> 2 - Transfer SMS from all rooms except the ground</item>
+	</string-array>
+	<string name="millage_real_title">Mileage auto</string>
+	<string name="getknow">Get</string>
+	<string name="on">On</string>
+	<string name="off">Off</string>
+	<string name="find_on_parking_title">Search on parking</string>
+	<string name="preheater_title">Preheater</string>
+	<string name="sec_by_move_title">Motion detection protection (Smart search)</string>
+	<string name="sec_by_hour_title">Protection mode by time</string>
+	<string name="sec_on_title">On</string>
+	<string name="sec_off_title">Off</string>
+	<string name="sec_set_time_title">Set time</string>
+	<string name="sec_range_title">Interval</string>
+	<string name="start">Start</string>
+	<string name="finish">End</string>
+	
+	<string-array name="time_range_entries">
+	    <item>5</item>
+	    <item>10</item>
+	    <item>15</item>
+	    <item>20</item>
+	    <item>30</item>
+	    <item>45</item>
+	    <item>60</item>
+	    <item>90</item>
+	</string-array>
+	
+	<string name="ch1">Channel 1</string>
+	<string name="ch2">Channel 2</string>
+	<string name="ch3">Channel 3</string>
+	<string name="ch4">Channel 4</string>
+	<string name="cmdAbc_hint">Command \"Abc...\"</string>
+	<string name="keyAbc_hint">Key \"Abc...\"</string>
+	<string name="ok">ОК</string>
+	<string name="searh_on_prompt">It gets connected and sends SMS every 15 minutes</string>
+	<string name="communication_time_ptompt">To work offline, the day time is local, when the device "wakes up" – it registers for 5 minutes in the GSM network to wait for SMS commands</string>
+	<string name="cancel">Cancel</string>
+	<string name="freq_conn_prompt">To work offline. The device gets connected once at the specified day time and it can contact optionally later in 12 hours, or every 8 or 6 hours. Attention! Additional sessions will shorten the battery life!</string>
+	<string name="freq_conn_prompt_type_33">To work offline. The device gets connected once at the specified day time and it can contact optionally later in 12 hours, or every 8 hours. Attention! Additional sessions will shorten the battery life!</string>
+	<string name="work_schedule_prompt">To work offline. Every day or once in several days the device sends to the owner SMS with data </string>  
+	<string name="work_schedule_prompt_type_33">Every day or once in several days the device sends to the owner SMS with data. Default - the first week it sends every day, then every week</string>     
+	<string name="fifth_number_prompt">The device sends the value of the car mileage to this phone number on request. Enter the main phone number</string>
+	<string name="milage_prompt">Program the value of mileage as on the car odometer</string>
+	<string name="resend_input_sms_prompt">The device can send to the main phone all SMS received from unknown phone numbers, as well as from the second one – fifth one</string>
+	<string name="sec_by_move_on_prompt">The motion detection protection mode. The device will get connected and will send SMS if the protected object begins to move. If the movement continues, the device will continue to send SMS during the fixed time interval</string>
+	<string name="sec_by_move_off_prompt">Turn off the motion detection protection mode, turn off the protection mode by time</string>
+	<string name="sec_by_hour_prompt">The device can automatically turn on and off the motion detection protection mode at the set time</string>
+	<string name="sec_set_time_prompt">Time of enabling and disabling the protection mode by time</string>
+	<string name="sec_set_range_prompt">Motion sensor timeout - time interval after the end of an unscheduled session (motion detected), during which the continuing alarm of the sensor is ignored</string>
+	<string name="startpreheater">Start Preheater</string>
+	<string name="onoff">Onn/Off</string> 
+	<string name="immtitlegem510">Immobilizer (SOBR IP- 02)</string>
+	<string name="message">Message</string>
+	<string name="freq_conn_prompt_type_33">The device makes contact once
+		in the time of day and can go further at 12, or every 8 hours.
+		Attention! Additional sessions will shorten the battery life!</string>
+	<string name="communication_time_ptompt_type33">Time of day (local), 
+	    when the device "wakes up" - 5 minutes recorded in the GSM network to wait SMS commands.</string>
+	<string name="alarm">Alarm</string>
+	<string name="alarm_hint">Set the time the engine warms up (with an automatic engine start or preheater - depends on system settings during installation)</string>
+	<string name="commit_to_sms">Confirm the sending?</string>
+	<string name="yes">Yes</string>
+</resources>

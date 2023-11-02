@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/LinearLayout01"
+        android:layout_width="fill_parent"
+        style="?header">
+
+        <TextView
+            android:id="@+id/tvOrg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scrollHorizontally="true"
+            android:text="OrgName"
+            style="?headerText" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvChekInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="0dip"
+        android:layout_weight="1"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:text="tvChekInfo" />
+
+    <TextView
+        android:id="@+id/tvInfo"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="" />
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="fill_parent"
+        style="?footer" >
+        
+        <ImageButton
+            android:id="@+id/btnSend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/send"
+            style="?footerButton" />
+
+		<ImageButton
+		    android:id="@+id/btnDelete"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+            style="?footerButton"
+		    android:src="@drawable/baseline_delete_outline_white_48" />
+        
+    </LinearLayout>
+</LinearLayout>

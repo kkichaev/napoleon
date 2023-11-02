@@ -1,0 +1,65 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+    <objects>
+        <object name="MatrixOrder">
+            <sources>
+                <source name="SQTable" type="internal">
+                    <param name="readFilter">'"userid"=' + "'" + $user.id + "'"</param>
+                </source>
+            </sources>
+
+            <member name="primaryKey">"userid"</member>
+    
+            <field name="userid" type="string" execOn="Put">$user.id</field>
+            <field name="items" type="collection">
+                <data>
+                    <object name="MatrixName">
+                        <sources>
+                            <source name="SQTable" type="internal" />
+                        </sources>
+                        <field name="name" type="string" />
+                        <field name="order" type="number" />
+                    </object>
+                </data>
+            </field>
+        </object>
+    
+        <modify src="Org">
+            <add>
+                <field name="stop" type="number" hidden="true" />             
+                <field name="flags" type="number" execOn="Get" >EncodeFlagValue($object.stop,2,$object.block,3)</field>
+                <field name="block" type="number"/>
+                
+                <field name="price" type="collection">
+                    <data>
+                        <object name="OrgPrice">
+                            <sources>
+                                <source name="DBFTableSet">
+                                    <param name="userTable">"OP"</param>
+                                    <param name="commonTable">"ORGPRICE"</param>
+                                    <param name="filter">"[ID] = $parent.id"</param>
+                                </source>
+                            </sources>
+
+                            <field name="id" type="string" data="ID_P"/>
+                            <field name="minQty" type="number" prec="3" data="MIN_QTY"/>
+                        </object>
+                    </data>
+                </field>
+            </add>
+        </modify>
+        
+        <modify src="OrderProceeded">
+            <add>
+                <field name="fio" type="string" />             
+                <field name="phone" type="string"/>
+            </add>
+        </modify>
+        
+        <modify src="Price">
+            <add>
+                <field name="selout" type="date" data="SO" />             
+            </add>
+        </modify>
+    </objects>
+</serverDefs>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/llHeader"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        style="?header">
+
+        <TextView
+            style="?headerText"
+            android:text="@string/organization"
+            android:id="@+id/tvCaption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/LinearLayout04"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            tools:ignore="NestedWeights" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+				android:background="@color/table_caption" 
+                android:paddingLeft="3dp"
+                android:text="@string/caption"
+                android:textColor="@color/black"
+                tools:ignore="NestedWeights" 
+                />
+
+
+            <TextView
+                android:id="@+id/TextView03"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:layout_weight="0"
+                android:background="@color/table_caption"
+                android:minWidth="80dp"
+                android:paddingRight="3dp"
+                android:text="@string/sum"
+                android:textColor="@color/black" 
+                />
+        </LinearLayout>    
+
+	<ListView
+            android:id="@+id/lvItems"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@color/white" />
+
+    <LinearLayout
+        android:id="@+id/LinearLayout08"
+        style="?footer"
+        android:layout_width="fill_parent" >
+
+        <TextView android:layout_height="wrap_content"
+            android:text="@string/sum"
+            style="?footerText"
+            android:layout_width="0dip"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+            android:gravity="right"
+            android:id="@+id/tvTotalSum"/>
+    </LinearLayout>
+   
+    </LinearLayout>

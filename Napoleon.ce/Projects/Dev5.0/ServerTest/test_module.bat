@@ -1,0 +1,1 @@
+curl -v -X POST -H "Content-Type: application/json; charset=utf-8" -H "Authorization: Basic Mjoy" --data @call.json http://localhost:8888/call/orgtask

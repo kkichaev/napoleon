@@ -1,0 +1,29 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+    <object name="OrderImported" >
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"ODR"</param>
+          <param name="commonTable">"ODRR"</param>
+          <param name="catalog">"created;items;0"</param>
+        </source>
+      </sources>
+
+      <field name="created" type="timestamp" />
+      <field name="date" type="date" />
+      <field name="id" width="100" type="string" />
+      <field name="remark" type="string" />
+
+      <field name="items" type="collection">
+        <data>
+          <object name="OrderItem">
+            <field name="id" width="30" type="string" data="ID_I"/>
+            <field name="qty" type="number" prec="3" />
+            <field name="cost" type="number" prec="2" />
+          </object>
+        </data>
+      </field>
+    </object>
+  </objects>
+</serverDefs>

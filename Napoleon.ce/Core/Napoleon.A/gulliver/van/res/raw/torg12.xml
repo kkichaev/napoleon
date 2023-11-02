@@ -1,0 +1,855 @@
+<object TreasuryVersion="1" name="pf">
+   <Album>True</Album>
+   <object name="Label29">
+      <Text>`Агент`</Text>
+      <TextAlign>TopLeft</TextAlign>
+      <Size>304, 44</Size>
+      <FontSize>8</FontSize>
+      <Location>1334, 2246</Location>
+   </object>
+   <object name="Label3">
+      <Text>`Агент`</Text>
+      <TextAlign>TopLeft</TextAlign>
+      <Size>304, 44</Size>
+      <FontSize>8</FontSize>
+      <Location>1340, 2178</Location>
+   </object>
+   <object name="Label2">
+      <Text>`Агент`</Text>
+      <TextAlign>TopLeft</TextAlign>
+      <Size>304, 44</Size>
+      <FontSize>8</FontSize>
+      <Location>1340, 2106</Location>
+   </object>
+   <object name="Label9">
+      <Text>По доверенности `ДОВЕРЕННОСТЬ`</Text>
+      <TextAlign>BottomLeft</TextAlign>
+      <Size>760, 42</Size>
+      <FontSize>8</FontSize>
+      <Location>514, 2178</Location>
+   </object>
+   <object name="Label1">
+      <Text>По доверенности `ДОВЕРЕННОСТЬ`</Text>
+      <TextAlign>BottomLeft</TextAlign>
+      <Size>746, 39</Size>
+      <FontSize>8</FontSize>
+      <Location>396, 2258</Location>
+   </object>
+   <object name="Label4">
+      <Text>По доверенности `ДОВЕРЕННОСТЬ`</Text>
+      <TextAlign>BottomLeft</TextAlign>
+      <Size>965, 40</Size>
+      <FontSize>8</FontSize>
+      <Location>320, 2116</Location>
+   </object>
+   <object name="Label5">
+      <Text>`Основание`</Text>
+      <TextAlign>TopLeft</TextAlign>
+      <Size>2377, 47</Size>
+      <FontSize>9</FontSize>
+      <Location>323, 822</Location>
+   </object>
+   <object name="Label6">
+      <Text>"___"____________ 20___года</Text>
+      <TextAlign>MiddleLeft</TextAlign>
+      <Size>531, 46</Size>
+      <FontSize>8</FontSize>
+      <Location>2323, 2348</Location>
+   </object>
+   <object name="Label7">
+      <Text>`wdatestr`</Text>
+      <TextAlign>MiddleLeft</TextAlign>
+      <Size>379, 53</Size>
+      <FontSize>8</FontSize>
+      <Location>750, 2324</Location>
+   </object>
+   <object name="Label8">
+      <Text>`bruttoText`</Text>
+      <TextAlign>TopLeft</TextAlign>
+      <Size>1452, 54</Size>
+      <FontSize>8</FontSize>
+      <Location>1099, 1897</Location>
+   </object>
+   <object name="Label10">
+      <Text>Всего по накладной</Text>
+      <TextAlign>MiddleRight</TextAlign>
+      <Size>366, 46</Size>
+      <FontSize>8</FontSize>
+      <Location>1199, 1656</Location>
+   </object>
+   <object name="Table1">
+      <TableHeight>
+         <Item0>42</Item0>
+      </TableHeight>
+      <Text>Table3</Text>
+      <Rows>
+         <Cells0>
+            <Item0>0,1,1,"`qty`",</Item0>
+            <Item1>1,1,1,"`brutto`",</Item1>
+            <Item2>2,1,1,"`qty`.000",</Item2>
+            <Item3>3,1,1,"Х",</Item3>
+            <Item4>4,1,1,"`sumwtax`",</Item4>
+            <Item5>5,1,1,"Х",</Item5>
+            <Item6>6,1,1,"`sumtax`",</Item6>
+            <Item7>7,1,1,"`sum`",</Item7>
+         </Cells0>
+      </Rows>
+      <TableWidth>
+         <Item0>112</Item0>
+         <Item1>259</Item1>
+         <Item2>404</Item2>
+         <Item3>654</Item3>
+         <Item4>944</Item4>
+         <Item5>1066</Item5>
+         <Item6>1246</Item6>
+         <Item7>1547</Item7>
+      </TableWidth>
+      <Size>1548, 43</Size>
+      <FontSize>8</FontSize>
+      <Location>1564, 1648</Location>
+   </object>
+   <object name="Table2">
+      <TableHeight>
+         <Item0>58</Item0>
+         <Item1>164</Item1>
+         <Item2>203</Item2>
+         <Item3>483</Item3>
+         <Item4>533</Item4>
+      </TableHeight>
+      <VariableRow>3</VariableRow>
+      <Text>Table7</Text>
+      <Rows>
+         <Cells0>
+            <Item0>0,1,2,"Номер по порядку",</Item0>
+            <Item1>1,2,1,"Товар",</Item1>
+            <Item2>3,2,1,"Единица измерения",</Item2>
+            <Item3>5,1,2,"Вид упа-ковки",</Item3>
+            <Item4>6,2,1,"Количество",</Item4>
+            <Item5>8,1,2,"Масса брутто",</Item5>
+            <Item6>9,1,2,"Коли-чество (масса нетто)",</Item6>
+            <Item7>10,1,2,"Цена, руб.коп.",</Item7>
+            <Item8>11,1,2,"Сумма без учёта НДС, руб.коп.",</Item8>
+            <Item9>12,2,1,"НДС",</Item9>
+            <Item10>14,2,2,"Сумма с учётом НДС, руб.коп.",</Item10>
+         </Cells0>
+         <Cells1>
+            <Item0>1,1,1,"наименование, характеристика, сорт, артикул товара",</Item0>
+            <Item1>2,1,1,"код",</Item1>
+            <Item2>3,1,1,"наименование",</Item2>
+            <Item3>4,1,1,"код по ОКЕИ",</Item3>
+            <Item4>6,1,1,"в одном месте",</Item4>
+            <Item5>7,1,1,"мест, штук",</Item5>
+            <Item6>12,1,1,"ставка, %",</Item6>
+            <Item7>13,1,1,"сумма, руб.коп.",</Item7>
+         </Cells1>
+         <Cells2>
+            <Item0>0,1,1,"1",</Item0>
+            <Item1>1,1,1,"2",</Item1>
+            <Item2>2,1,1,"3",</Item2>
+            <Item3>3,1,1,"4",</Item3>
+            <Item4>4,1,1,"5",</Item4>
+            <Item5>5,1,1,"6",</Item5>
+            <Item6>6,1,1,"7",</Item6>
+            <Item7>7,1,1,"8",</Item7>
+            <Item8>8,1,1,"9",</Item8>
+            <Item9>9,1,1,"10",</Item9>
+            <Item10>10,1,1,"11",</Item10>
+            <Item11>11,1,1,"12",</Item11>
+            <Item12>12,1,1,"13",</Item12>
+            <Item13>13,1,1,"14",</Item13>
+            <Item14>14,2,1,"15",</Item14>
+         </Cells2>
+         <Cells3>
+            <Item0>0,1,1,"`num`",</Item0>
+            <Item1>1,1,1,"`name`",MiddleLeft</Item1>
+            <Item2>2,1,1,"`id`",</Item2>
+            <Item3>3,1,1,"`unit`",</Item3>
+            <Item4>4,1,1,"`unitCode`",</Item4>
+            <Item5>5,1,1,"`packName`",</Item5>
+            <Item6>6,1,1,"`qtyInPack`",</Item6>
+            <Item7>7,1,1,"`qty`",</Item7>
+            <Item8>8,1,1,"`brutto`",</Item8>
+            <Item9>9,1,1,"`qty`.000",</Item9>
+            <Item10>10,1,1,"`cost`",</Item10>
+            <Item11>11,1,1,"`sumwtax`",</Item11>
+            <Item12>12,1,1,"`tax`",</Item12>
+            <Item13>13,1,1,"`sumtax`",</Item13>
+            <Item14>14,2,1,"`sum`",</Item14>
+         </Cells3>
+         <Cells4>
+            <Item0>0,7,1,"Итого",MiddleRight-Right|Top</Item0>
+            <Item1>7,1,1,"`pageqty`",</Item1>
+            <Item2>8,1,1,"`pageBrutto`",</Item2>
+            <Item3>9,1,1,"`pageqty`.000",</Item3>
+            <Item4>10,1,1,"X",</Item4>
+            <Item5>11,1,1,"`pagesumwtax`",</Item5>
+            <Item6>12,1,1,"X",</Item6>
+            <Item7>13,1,1,"`pagesumtax`",</Item7>
+            <Item8>14,2,1,"`pagesum`",</Item8>
+         </Cells4>
+      </Rows>
+      <TableWidth>
+         <Item0>123</Item0>
+         <Item1>895</Item1>
+         <Item2>982</Item2>
+         <Item3>1125</Item3>
+         <Item4>1299</Item4>
+         <Item5>1413</Item5>
+         <Item6>1562</Item6>
+         <Item7>1674</Item7>
+         <Item8>1820</Item8>
+         <Item9>1966</Item9>
+         <Item10>2216</Item10>
+         <Item11>2506</Item11>
+         <Item12>2628</Item12>
+         <Item13>2808</Item13>
+         <Item14>3001</Item14>
+         <Item15>3108</Item15>
+      </TableWidth>
+      <Object>items</Object>
+      <Size>3109, 534</Size>
+      <FontSize>8</FontSize>
+      <Location>3, 1119</Location>
+   </object>
+   <object name="Label11">
+      <Text>`qtyText`</Text>
+      <TextAlign>TopLeft</TextAlign>
+      <Size>422, 40</Size>
+      <FontSize>8</FontSize>
+      <Location>240, 1827</Location>
+   </object>
+   <object name="Label12">
+      <Text>М.П.</Text>
+      <TextAlign>TopLeft</TextAlign>
+      <Size>98, 40</Size>
+      <FontSize>8</FontSize>
+      <Location>1809, 2335</Location>
+   </object>
+   <object name="Label13">
+      <Text>Груз получил грузополучатель</Text>
+      <TextAlign>MiddleLeft</TextAlign>
+      <Size>294, 91</Size>
+      <FontSize>8</FontSize>
+      <Location>1675, 2244</Location>
+   </object>
+   <object name="Label14">
+      <Text>М.П.</Text>
+      <TextAlign>TopLeft</TextAlign>
+      <Size>120, 40</Size>
+      <FontSize>8</FontSize>
+      <Location>210, 2324</Location>
+   </object>
+   <object name="Label15">
+      <Text>года</Text>
+      <TextAlign>MiddleLeft</TextAlign>
+      <Size>90, 40</Size>
+      <FontSize>8</FontSize>
+      <Location>3072, 1994</Location>
+   </object>
+   <object name="Label16">
+      <Text>от</Text>
+      <TextAlign>MiddleLeft</TextAlign>
+      <Size>55, 40</Size>
+      <FontSize>8</FontSize>
+      <Location>2518, 1994</Location>
+   </object>
+   <object name="Label17">
+      <Text>выданной</Text>
+      <TextAlign>MiddleLeft</TextAlign>
+      <Size>180, 40</Size>
+      <FontSize>8</FontSize>
+      <Location>1679, 2056</Location>
+   </object>
+   <object name="Label18">
+      <Text>По доверенности №</Text>
+      <TextAlign>MiddleLeft</TextAlign>
+      <Size>374, 40</Size>
+      <FontSize>8</FontSize>
+      <Location>1679, 1994</Location>
+   </object>
+   <object name="Label19">
+      <Text>`sumText`</Text>
+      <TextAlign>MiddleLeft</TextAlign>
+      <Size>1153, 40</Size>
+      <FontSize>8</FontSize>
+      <Location>464, 2052</Location>
+   </object>
+   <object name="Label20">
+      <Text>листах</Text>
+      <TextAlign>MiddleLeft</TextAlign>
+      <Size>131, 40</Size>
+      <FontSize>8</FontSize>
+      <Location>1503, 1994</Location>
+   </object>
+   <object name="Label21">
+      <Text>Всего отпущено на сумму</Text>
+      <TextAlign>MiddleLeft</TextAlign>
+      <Size>442, 63</Size>
+      <FontSize>8</FontSize>
+      <Location>14, 2056</Location>
+   </object>
+   <object name="Label22">
+      <Text>Главный (старший) бухгалтер</Text>
+      <TextAlign>MiddleLeft</TextAlign>
+      <Size>494, 40</Size>
+      <FontSize>8</FontSize>
+      <Location>14, 2182</Location>
+   </object>
+   <object name="Label23">
+      <Text>Отпуск груза произвел</Text>
+      <TextAlign>MiddleLeft</TextAlign>
+      <Size>394, 40</Size>
+      <FontSize>8</FontSize>
+      <Location>14, 2258</Location>
+   </object>
+   <object name="Label24">
+      <Text>Отпуск разрешил</Text>
+      <TextAlign>MiddleLeft</TextAlign>
+      <Size>316, 40</Size>
+      <FontSize>8</FontSize>
+      <Location>14, 2119</Location>
+   </object>
+   <object name="Label25">
+      <Text>Приложение (паспорта, сертификаты и т.п.) на</Text>
+      <TextAlign>MiddleLeft</TextAlign>
+      <Size>727, 40</Size>
+      <FontSize>8</FontSize>
+      <Location>14, 1994</Location>
+   </object>
+   <object name="Label26">
+      <Text>Всего мест</Text>
+      <TextAlign>MiddleLeft</TextAlign>
+      <Size>207, 40</Size>
+      <FontSize>8</FontSize>
+      <Location>4, 1827</Location>
+   </object>
+   <object name="Label27">
+      <Text>`numText`</Text>
+      <TextAlign>TopLeft</TextAlign>
+      <Size>793, 40</Size>
+      <FontSize>8</FontSize>
+      <Location>240, 1764</Location>
+   </object>
+   <object name="Label28">
+      <Text>порядковых номеров записей</Text>
+      <TextAlign>MiddleLeft</TextAlign>
+      <Size>517, 40</Size>
+      <FontSize>8</FontSize>
+      <Location>1253, 1764</Location>
+   </object>
+   <object name="Label30">
+      <Text>Товарная накладная имеет приложение на</Text>
+      <TextAlign>MiddleLeft</TextAlign>
+      <Size>711, 40</Size>
+      <FontSize>8</FontSize>
+      <Location>4, 1708</Location>
+   </object>
+   <object name="Label31">
+      <Text>ТОВАРНАЯ НАКЛАДНАЯ</Text>
+      <TextAlign>MiddleRight</TextAlign>
+      <Size>559, 49</Size>
+      <FontSize>10</FontSize>
+      <Location>982, 1007</Location>
+   </object>
+   <object name="Table3">
+      <TableHeight>
+         <Item0>74</Item0>
+         <Item1>139</Item1>
+      </TableHeight>
+      <Text>Table3</Text>
+      <Rows>
+         <Cells0>
+            <Item0>0,1,1,"Номер документа",</Item0>
+            <Item1>1,1,1,"Дата составления",</Item1>
+         </Cells0>
+         <Cells1>
+            <Item0>0,1,1,"`number`",</Item0>
+            <Item1>1,1,1,"`date`",</Item1>
+         </Cells1>
+      </Rows>
+      <TableWidth>
+         <Item0>338</Item0>
+         <Item1>666</Item1>
+      </TableWidth>
+      <Size>667, 140</Size>
+      <FontSize>8</FontSize>
+      <Location>1667, 930</Location>
+   </object>
+   <object name="Label32">
+      <Text>`name`, `inn`, `address`, тел. `phone`, `bank`</Text>
+      <TextAlign>TopLeft</TextAlign>
+      <Size>2387, 92</Size>
+      <FontSize>9</FontSize>
+      <Location>325, 707</Location>
+   </object>
+   <object name="Label33">
+      <Text>`ПолноеНаименование`,  `Наименование`,  `ИНН`, `Адрес`, тел. `Телефон`, `Банк`</Text>
+      <TextAlign>TopLeft</TextAlign>
+      <Size>2369, 107</Size>
+      <FontSize>9</FontSize>
+      <Location>329, 569</Location>
+   </object>
+   <object name="Label34">
+      <Text>Основание</Text>
+      <TextAlign>MiddleLeft</TextAlign>
+      <Size>228, 39</Size>
+      <FontSize>8</FontSize>
+      <Location>10, 812</Location>
+   </object>
+   <object name="Label35">
+      <Text>Плательщик</Text>
+      <TextAlign>MiddleLeft</TextAlign>
+      <Size>283, 40</Size>
+      <FontSize>8</FontSize>
+      <Location>10, 707</Location>
+   </object>
+   <object name="Label36">
+      <Text>Поставщик</Text>
+      <TextAlign>MiddleLeft</TextAlign>
+      <Size>283, 39</Size>
+      <FontSize>8</FontSize>
+      <Location>10, 572</Location>
+   </object>
+   <object name="Label37">
+      <Text>`name`,  `inn`, `address`, тел. `phone`, `bank`</Text>
+      <TextAlign>TopLeft</TextAlign>
+      <Size>2064, 96</Size>
+      <FontSize>9</FontSize>
+      <Location>336, 360</Location>
+   </object>
+   <object name="Label38">
+      <Text>`address`</Text>
+      <TextAlign>MiddleLeft</TextAlign>
+      <Size>2107, 40</Size>
+      <FontSize>8</FontSize>
+      <Location>333, 478</Location>
+   </object>
+   <object name="Label39">
+      <Text>Адрес доставки</Text>
+      <TextAlign>MiddleLeft</TextAlign>
+      <Size>316, 40</Size>
+      <FontSize>8</FontSize>
+      <Location>10, 481</Location>
+   </object>
+   <object name="Label40">
+      <Text>Грузополучатель
+</Text>
+      <TextAlign>MiddleLeft</TextAlign>
+      <Size>316, 40</Size>
+      <FontSize>8</FontSize>
+      <Location>14, 360</Location>
+   </object>
+   <object name="Label41">
+      <Text>`ПолноеНаименование`,  `Наименование`,  `ИНН`, `Адрес`, тел. `Телефон`,  `Банк`</Text>
+      <TextAlign>TopLeft</TextAlign>
+      <Size>2472, 112</Size>
+      <FontSize>9</FontSize>
+      <Location>33, 135</Location>
+   </object>
+   <object name="Label42">
+      <Text>Транспортная накладная</Text>
+      <TextAlign>MiddleRight</TextAlign>
+      <Size>453, 40</Size>
+      <FontSize>8</FontSize>
+      <Location>2256, 876</Location>
+   </object>
+   <object name="Label43">
+      <Text>Вид операции</Text>
+      <TextAlign>MiddleRight</TextAlign>
+      <Size>283, 40</Size>
+      <FontSize>8</FontSize>
+      <Location>2612, 1019</Location>
+   </object>
+   <object name="Table4">
+      <TableHeight>
+         <Item0>68</Item0>
+         <Item1>137</Item1>
+         <Item2>207</Item2>
+         <Item3>277</Item3>
+      </TableHeight>
+      <Text>Table2</Text>
+      <Rows>
+         <Cells0>
+            <Item0>0,1,1,"номер",MiddleRight</Item0>
+         </Cells0>
+         <Cells1>
+            <Item0>0,1,1,"дата",MiddleRight</Item0>
+         </Cells1>
+         <Cells2>
+            <Item0>0,1,1,"номер",MiddleRight</Item0>
+         </Cells2>
+         <Cells3>
+            <Item0>0,1,1,"дата",MiddleRight</Item0>
+         </Cells3>
+      </Rows>
+      <TableWidth>
+         <Item0>195</Item0>
+      </TableWidth>
+      <Size>196, 278</Size>
+      <FontSize>8</FontSize>
+      <Location>2715, 723</Location>
+   </object>
+   <object name="Label44">
+      <Text>Вид деятельности по ОКДП</Text>
+      <TextAlign>MiddleRight</TextAlign>
+      <Size>542, 40</Size>
+      <FontSize>8</FontSize>
+      <Location>2353, 346</Location>
+   </object>
+   <object name="Label45">
+      <Text>по ОКПО</Text>
+      <TextAlign>MiddleRight</TextAlign>
+      <Size>199, 39</Size>
+      <FontSize>8</FontSize>
+      <Location>2679, 596</Location>
+   </object>
+   <object name="Label46">
+      <Text>по ОКПО</Text>
+      <TextAlign>MiddleRight</TextAlign>
+      <Size>199, 39</Size>
+      <FontSize>8</FontSize>
+      <Location>2679, 469</Location>
+   </object>
+   <object name="Label47">
+      <Text>по ОКПО</Text>
+      <TextAlign>MiddleRight</TextAlign>
+      <Size>223, 39</Size>
+      <FontSize>8</FontSize>
+      <Location>2656, 409</Location>
+   </object>
+   <object name="Label48">
+      <Text>по ОКПО</Text>
+      <TextAlign>MiddleRight</TextAlign>
+      <Size>293, 40</Size>
+      <FontSize>8</FontSize>
+      <Location>2602, 277</Location>
+   </object>
+   <object name="Label49">
+      <Text>Форма по ОКУД</Text>
+      <TextAlign>MiddleRight</TextAlign>
+      <Size>338, 40</Size>
+      <FontSize>8</FontSize>
+      <Location>2557, 207</Location>
+   </object>
+   <object name="Table5">
+      <TableHeight>
+         <Item0>66</Item0>
+         <Item1>132</Item1>
+         <Item2>198</Item2>
+         <Item3>264</Item3>
+         <Item4>330</Item4>
+         <Item5>459</Item5>
+         <Item6>594</Item6>
+         <Item7>662</Item7>
+         <Item8>731</Item8>
+         <Item9>801</Item9>
+         <Item10>871</Item10>
+         <Item11>940</Item11>
+      </TableHeight>
+      <Text>Table1</Text>
+      <Rows>
+         <Cells0>
+            <Item0>0,1,1,"Код",</Item0>
+         </Cells0>
+         <Cells1>
+            <Item0>0,1,1,"0330212",</Item0>
+         </Cells1>
+         <Cells2>
+            <Item0>0,1,1,"60818327",</Item0>
+         </Cells2>
+         <Cells3>
+            <Item0>0,1,1,"",</Item0>
+         </Cells3>
+         <Cells4>
+            <Item0>0,1,1,"",</Item0>
+         </Cells4>
+         <Cells5>
+            <Item0>0,1,1,"60818327",</Item0>
+         </Cells5>
+         <Cells6>
+            <Item0>0,1,1,"",</Item0>
+         </Cells6>
+         <Cells7>
+            <Item0>0,1,1,"",</Item0>
+         </Cells7>
+         <Cells8>
+            <Item0>0,1,1,"",</Item0>
+         </Cells8>
+         <Cells9>
+            <Item0>0,1,1,"",</Item0>
+         </Cells9>
+         <Cells10>
+            <Item0>0,1,1,"",</Item0>
+         </Cells10>
+         <Cells11>
+            <Item0>0,1,1,"",</Item0>
+         </Cells11>
+      </Rows>
+      <TableWidth>
+         <Item0>251</Item0>
+      </TableWidth>
+      <Size>252, 941</Size>
+      <FontSize>8</FontSize>
+      <Location>2910, 129</Location>
+   </object>
+   <object name="Label50">
+      <Text>Унифицированная форма № ТОРГ-12. Утверждена постановлением Госкомстата России от 25.12.96 №132</Text>
+      <TextAlign>MiddleRight</TextAlign>
+      <Size>1659, 74</Size>
+      <FontSize>6</FontSize>
+      <Location>1497, 54</Location>
+   </object>
+   <object name="Label51">
+      <Text>Груз принял</Text>
+      <TextAlign>MiddleLeft</TextAlign>
+      <Size>228, 40</Size>
+      <FontSize>8</FontSize>
+      <Location>1679, 2186</Location>
+   </object>
+   <object name="Label52">
+      <Text>Масса груза (брутто)</Text>
+      <TextAlign>MiddleLeft</TextAlign>
+      <Size>354, 39</Size>
+      <FontSize>8</FontSize>
+      <Location>717, 1927</Location>
+   </object>
+   <object name="Label53">
+      <Text>Масса груза (нетто)</Text>
+      <TextAlign>MiddleLeft</TextAlign>
+      <Size>338, 40</Size>
+      <FontSize>8</FontSize>
+      <Location>714, 1844</Location>
+   </object>
+   <object name="Table6">
+      <TableHeight>
+         <Item0>62</Item0>
+         <Item1>122</Item1>
+      </TableHeight>
+      <Text>Table7</Text>
+      <Rows>
+         <Cells0>
+            <Item0>0,1,1,"",</Item0>
+         </Cells0>
+         <Cells1>
+            <Item0>0,1,1,"",</Item0>
+         </Cells1>
+      </Rows>
+      <TableWidth>
+         <Item0>549</Item0>
+      </TableWidth>
+      <Size>550, 123</Size>
+      <FontSize>6</FontSize>
+      <Location>2609, 1817</Location>
+   </object>
+   <object name="Label54">
+      <Text>и содержит</Text>
+      <TextAlign>MiddleLeft</TextAlign>
+      <Size>207, 40</Size>
+      <FontSize>8</FontSize>
+      <Location>4, 1764</Location>
+   </object>
+   <object name="Line1">
+      <Horizontal>True</Horizontal>
+      <Size>308, 10</Size>
+      <Location>760, 2376</Location>
+   </object>
+   <object name="Line16">
+      <Horizontal>True</Horizontal>
+      <LineText>подпись</LineText>
+      <Size>458, 19</Size>
+      <Location>2256, 2219</Location>
+   </object>
+   <object name="Line32">
+      <Horizontal>True</Horizontal>
+      <LineText>расшифровка подписи</LineText>
+      <Size>495, 23</Size>
+      <Location>1141, 2225</Location>
+   </object>
+   <object name="Line27">
+      <Horizontal>True</Horizontal>
+      <LineText>кем, кому (организация, место работы, должность, фамилия, и., о.)</LineText>
+      <Size>1292, 19</Size>
+      <Location>1867, 2095</Location>
+   </object>
+   <object name="Line25">
+      <Horizontal>True</Horizontal>
+      <LineText>прописью</LineText>
+      <Size>539, 29</Size>
+      <Location>714, 1747</Location>
+   </object>
+   <object name="Line18">
+      <Horizontal>True</Horizontal>
+      <LineText>договор, заказ-наряд</LineText>
+      <Size>2391, 19</Size>
+      <Location>325, 873</Location>
+   </object>
+   <object name="Line31">
+      <Horizontal>True</Horizontal>
+      <LineText>прописью</LineText>
+      <Size>1195, 23</Size>
+      <Location>439, 2095</Location>
+   </object>
+   <object name="Line22">
+      <Horizontal>True</Horizontal>
+      <LineText>адрес доставки</LineText>
+      <Size>2579, 23</Size>
+      <Location>331, 533</Location>
+   </object>
+   <object name="Line23">
+      <Horizontal>True</Horizontal>
+      <LineText>подпись</LineText>
+      <Size>343, 23</Size>
+      <Location>765, 2297</Location>
+   </object>
+   <object name="Line4">
+      <Horizontal>True</Horizontal>
+      <LineText>расшифровка подписи</LineText>
+      <Size>494, 23</Size>
+      <Location>1141, 2158</Location>
+   </object>
+   <object name="Line3">
+      <Horizontal>True</Horizontal>
+      <LineText>подпись</LineText>
+      <Size>342, 23</Size>
+      <Location>765, 2158</Location>
+   </object>
+   <object name="Line33">
+      <Horizontal>True</Horizontal>
+      <Size>1472, 11</Size>
+      <Location>1692, 2158</Location>
+   </object>
+   <object name="Line21">
+      <Horizontal>True</Horizontal>
+      <LineText>должность</LineText>
+      <Size>309, 23</Size>
+      <Location>407, 2297</Location>
+   </object>
+   <object name="Line30">
+      <Horizontal>True</Horizontal>
+      <LineText>расшифровка подписи</LineText>
+      <Size>496, 23</Size>
+      <Location>1141, 2297</Location>
+   </object>
+   <object name="Line19">
+      <Horizontal>True</Horizontal>
+      <LineText>(расшифровка подписи)</LineText>
+      <Size>411, 19</Size>
+      <Location>2751, 2219</Location>
+   </object>
+   <object name="Line6">
+      <Horizontal>True</Horizontal>
+      <LineText>организация, адрес, телефон, факс, банковские реквизиты</LineText>
+      <Size>2585, 19</Size>
+      <Location>324, 687</Location>
+   </object>
+   <object name="Line15">
+      <Horizontal>True</Horizontal>
+      <Size>485, 9</Size>
+      <Location>2019, 2033</Location>
+   </object>
+   <object name="Line14">
+      <Horizontal>True</Horizontal>
+      <LineText>подпись</LineText>
+      <Size>459, 19</Size>
+      <Location>2256, 2297</Location>
+   </object>
+   <object name="Line8">
+      <Horizontal>True</Horizontal>
+      <LineText>подпись</LineText>
+      <Size>343, 23</Size>
+      <Location>765, 2225</Location>
+   </object>
+   <object name="Line11">
+      <Horizontal>True</Horizontal>
+      <LineText>организация, адрес, телефон, факс, банковские реквизиты</LineText>
+      <Size>2578, 22</Size>
+      <Location>331, 459</Location>
+   </object>
+   <object name="Line2">
+      <Horizontal>True</Horizontal>
+      <LineText>структурное подразделение</LineText>
+      <Size>2111, 23</Size>
+      <Location>329, 323</Location>
+   </object>
+   <object name="Line17">
+      <Horizontal>False</Horizontal>
+      <Size>10, 354</Size>
+      <Location>1664, 1994</Location>
+   </object>
+   <object name="Line9">
+      <Horizontal>True</Horizontal>
+      <LineText>должность</LineText>
+      <Size>284, 19</Size>
+      <Location>1945, 2219</Location>
+   </object>
+   <object name="Line35">
+      <Horizontal>True</Horizontal>
+      <LineText>организация, адрес, телефон, факс, банковские реквизиты</LineText>
+      <Size>2390, 19</Size>
+      <Location>325, 806</Location>
+   </object>
+   <object name="Line7">
+      <Horizontal>True</Horizontal>
+      <Size>453, 9</Size>
+      <Location>2612, 2033</Location>
+   </object>
+   <object name="Line10">
+      <Horizontal>True</Horizontal>
+      <LineText>прописью</LineText>
+      <Size>1514, 22</Size>
+      <Location>1068, 1882</Location>
+   </object>
+   <object name="Line29">
+      <Horizontal>True</Horizontal>
+      <LineText>организация-грузоотправитель, адрес, телефон, факс, банковские реквизиты</LineText>
+      <Size>2110, 23</Size>
+      <Location>329, 258</Location>
+   </object>
+   <object name="Line24">
+      <Horizontal>True</Horizontal>
+      <LineText>прописью</LineText>
+      <Size>1043, 23</Size>
+      <Location>210, 1803</Location>
+   </object>
+   <object name="Line34">
+      <Horizontal>True</Horizontal>
+      <LineText>должность</LineText>
+      <Size>308, 23</Size>
+      <Location>407, 2158</Location>
+   </object>
+   <object name="Line20">
+      <Horizontal>True</Horizontal>
+      <LineText>(расшифровка подписи)</LineText>
+      <Size>412, 19</Size>
+      <Location>2751, 2297</Location>
+   </object>
+   <object name="Line12">
+      <Horizontal>True</Horizontal>
+      <LineText>должность</LineText>
+      <Size>285, 19</Size>
+      <Location>1945, 2297</Location>
+   </object>
+   <object name="Line13">
+      <Horizontal>True</Horizontal>
+      <Size>369, 26</Size>
+      <Location>2369, 2393</Location>
+   </object>
+   <object name="Line26">
+      <Horizontal>True</Horizontal>
+      <LineText>прописью</LineText>
+      <Size>484, 23</Size>
+      <Location>210, 1866</Location>
+   </object>
+   <object name="Line5">
+      <Horizontal>True</Horizontal>
+      <LineText>прописью</LineText>
+      <Size>708, 23</Size>
+      <Location>765, 2033</Location>
+   </object>
+   <object name="Line28">
+      <Horizontal>True</Horizontal>
+      <LineText>прописью</LineText>
+      <Size>1502, 17</Size>
+      <Location>1069, 1957</Location>
+   </object>
+</object>

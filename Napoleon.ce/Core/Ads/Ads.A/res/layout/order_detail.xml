@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <ListView
+        android:id="@+id/lvOrderItems"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" android:layout_weight="1" android:background="@color/white">
+    </ListView>
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" android:paddingTop="7dp" android:paddingBottom="7dp" android:paddingLeft="3dp" android:background="@color/footer">
+
+        <ImageButton
+            android:id="@+id/btnLines"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/line_2" />
+
+        <ImageButton
+            android:id="@+id/btnAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/add_mat" android:layout_marginLeft="2dp" android:layout_marginRight="5dp"/>
+
+        <TextView
+            android:id="@+id/tvInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="tvInfo" android:textColor="@color/black" android:layout_gravity="center_vertical"/>
+
+    </LinearLayout>
+
+</LinearLayout>

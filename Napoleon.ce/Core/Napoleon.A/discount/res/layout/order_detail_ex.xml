@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/LinearLayout01"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:background="@color/footer"
+        android:paddingBottom="10dp"
+        android:paddingTop="5dp" >
+
+        <TextView
+            android:id="@+id/tvOrg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scrollHorizontally="true"
+            android:text="OrgName"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            tools:ignore="HardcodedText" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/LinearLayout02"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/LinearLayout04"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            tools:ignore="NestedWeights" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+				android:background="@color/table_caption" 
+                android:paddingLeft="3dp"
+                android:text="@string/caption"
+                android:textColor="@color/black"
+                tools:ignore="NestedWeights" 
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:background="@color/table_caption"
+                android:minWidth="80dp"
+                android:gravity="right"
+                android:paddingLeft="2dp"
+                android:paddingRight="2dp"
+                android:text="@string/qty"
+                android:textColor="@color/black" 
+                />
+
+            <TextView
+                android:id="@+id/TextView03"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:layout_weight="0"
+                android:background="@color/table_caption"
+                android:minWidth="80dp"
+                android:paddingRight="3dp"
+                android:text="@string/sum"
+                android:textColor="@color/black" 
+                />
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/lvItems"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@color/white" />
+
+		<LinearLayout
+            android:id="@+id/llActions"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:paddingTop="5dp"
+            android:orientation="horizontal"
+            android:visibility="visible" >
+
+            <Button
+                android:id="@+id/btnAction"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/check_actions"
+                android:textColor="@color/black" >
+            </Button>
+            
+			<TextView
+			    android:id="@+id/tvInfo"
+			    android:layout_gravity="center_vertical"
+			    android:layout_width="0dp"
+			    android:layout_height="wrap_content"
+			    android:layout_weight="1"
+			    android:paddingLeft="5dp"
+			    android:textColor="@color/black"
+			    android:text="" />
+
+            
+        </LinearLayout>        
+        <LinearLayout
+            android:id="@+id/llFocus"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:orientation="vertical"
+            android:visibility="gone" >
+
+            <Button
+                android:id="@+id/btnFocus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/order_to_target_price"
+                android:textColor="#FF0000" >
+            </Button>
+            
+            
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/footer"
+        android:orientation="horizontal"
+        android:padding="7dp" >
+
+        <ImageButton
+            android:id="@+id/btnAddItems"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="7dp"
+            android:src="@drawable/new_order"
+            tools:ignore="ContentDescription" />
+
+        <ImageButton
+            android:id="@+id/btnEditOrder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="7dp"
+            android:src="@drawable/orderedit"
+            tools:ignore="ContentDescription" />
+
+        <ImageButton
+            android:id="@+id/btnLines"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="7dp"
+            android:src="@drawable/line_2"
+            tools:ignore="ContentDescription" />
+
+        <ImageButton
+            android:id="@+id/btnSend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="7dp"
+            android:src="@drawable/send"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/tvTotalSum"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="right"
+            android:text="@string/sum"
+            android:textColor="@color/black" 
+            android:textSize="16sp"/>
+    </LinearLayout>
+</LinearLayout>

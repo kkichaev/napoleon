@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/forma"
+                android:textColor="@color/black"
+                android:textSize="@dimen/title_text_sz" />
+
+            <Button
+                android:id="@+id/btnForma"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Forma" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/row_margin"
+                android:text="@string/inn"
+                android:textColor="@color/black"
+                android:textSize="@dimen/title_text_sz" />
+
+            <EditText
+                android:id="@+id/edINN"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/row_margin"
+                android:text="@string/raschet"
+                android:textColor="@color/black"
+                android:textSize="@dimen/title_text_sz" />
+
+            <CheckBox
+                android:id="@+id/cbCash"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cash"
+                android:textColor="@color/black"
+                android:textSize="@dimen/title_text_sz" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/row_margin"
+                android:text="@string/numberdogovor"
+                android:textColor="@color/black"
+                android:textSize="@dimen/title_text_sz" />
+
+            <EditText
+                android:id="@+id/edNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/coordGPS"
+                android:textColor="@color/black"
+                android:textSize="@dimen/title_text_sz" />
+
+            <Button
+                android:id="@+id/btnGPS"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="GPS" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/row_margin"
+                android:text="@string/orgselect"
+                android:textColor="@color/black"
+                android:textSize="@dimen/title_text_sz" />
+
+            <Button
+                android:id="@+id/btnOrgSelect"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="btnOrgSelect" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/previewPhotoHightControl"
+                android:orientation="horizontal" >
+
+                <ImageButton
+                    android:id="@+id/btnPhoto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_selector"
+                    android:src="@drawable/ic_add_a_photo_black_48dp"
+                    android:textColor="@color/btnok" />
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <LinearLayout
+                        android:id="@+id/preview"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal" >
+                    </LinearLayout>
+                </HorizontalScrollView>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

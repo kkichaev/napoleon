@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding="windows-1251"?>
+<Wix xmlns='http://schemas.microsoft.com/wix/2003/01/wi'>
+   <Fragment Id='Add'>
+      <Feature Id='AndPda' Title='Наполеон-Андроид' Description='Программы для торговых агентов и мерчендайзинга под Андроид' Level='1' Display='3'
+               ConfigurableDirectory='_PRODUCT' Absent='allow'>
+         <ComponentRef Id='AndPdaComponents' />
+      </Feature>
+
+      <DirectoryRef Id='_PRODUCT' >
+         <Component Id='AndPdaComponents' Guid='8ED612D6-9E4B-495a-9C1E-372C48B77C9B'>
+            <File Id='Napoleon_APK' Name='Npl.apk' LongName='Napoleon.apk' DiskId='1' Source='Napoleon.apk' KeyPath='yes' />
+         </Component>
+      </DirectoryRef>
+   </Fragment>
+</Wix>

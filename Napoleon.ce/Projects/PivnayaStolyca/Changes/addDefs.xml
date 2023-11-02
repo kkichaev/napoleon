@@ -1,0 +1,81 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+  <objects>
+    <object name="Actions">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"Act"</param>
+          <param name="commonTable">"Actions"</param>
+          <param name="catalog">"item,id;items;0"</param>
+        </source>
+      </sources>
+      <field name="items" type="collection">
+        <data>
+          <object name="MatrixItem">
+            <field name="id" type="string" data="REF_ITEM" />
+          </object>
+        </data>
+      </field>
+      <field name="id" type="string" />
+      <field name="item" type="string" />
+      <field name="name" type="string" />
+      <field name="start" type="date" />
+      <field name="end" type="date" />
+      <field name="forNewClient" type="number" data="NEW_CLI" />
+      <field name="discount" type="number" data="DSC_SUM" prec="2" />
+      <field name="inPrc" type="number" data="DSC_PRC" />
+      <field name="opAnd" type="number" data="OP_AND" />
+
+      <field name="minSum" type="number" data="MIN_SUM" prec="2" />
+      <field name="minSku" type="number" data="MIN_SKU" />
+      <field name="minKeg" type="number" data="MIN_KEG" />
+      <field name="minPack" type="number" data="MIN_PACK" />
+      <field name="mustBe" type="string" />
+      <field name="distrType" type="number" data="DISTR_TP" />
+    </object>
+    
+    <modify src="Price">
+      <add>
+        <field name="isKeg" type="number" data="IS_KEG" />
+      </add>
+    </modify>
+    
+    <modify src="Org">
+      <add>
+        <field name="blockMsg" type="string" />
+        <field name="info" type="string" />
+        <field name="ido" type="string" />
+
+        <field name="discounts" type="collection">
+          <data>
+            <object name="Dsc">
+              <sources>
+                <source name="DBFTableSet">
+                  <param name="userTable">"DSC"</param>
+                  <param name="commonTable">"DISCOUNTS"</param>
+                  <param name="filter">"[IDO] = $parent.ido"</param>
+                </source>
+              </sources>
+
+              <field name="discount" data="DSC" type="number" prec="2" />
+              <field name="type" type="number" />
+              <field name="id" type="string"  />
+            </object>
+          </data>
+        </field>
+      </add>
+    </modify>
+    <modify src="Order">
+      <add>
+        <field name="action" type="string" width="25" />
+        <field name="actionItem" type="string" width="25" data="ACT_ITEM" />
+        <field name="actionSum" type="number" prec="2" data="" />
+      </add>
+    </modify>
+    <modify src="Order$items">
+      <add>
+        <field name="costWD" type="number" prec="2" />
+      </add>
+    </modify>
+  </objects>
+</serverDefs>

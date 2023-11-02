@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <ScrollView
+        android:id="@+id/svScroll"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:keepScreenOn="true"
+        tools:ignore="UselessParent" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <CheckBox
+                android:id="@+id/cbVibrate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/vibration" />
+
+            <CheckBox
+                android:id="@+id/cbAllowRotateScreen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/rotate_screen" />
+
+            <CheckBox
+                android:id="@+id/cbAutostart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/autostart" />
+
+            <CheckBox
+                android:id="@+id/cbAutostartAsService"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/service" />
+
+            <CheckBox
+                android:id="@+id/cbSaveReports"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/save_reports" />
+            
+            <LinearLayout
+                android:id="@+id/llPrintSource"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/print"
+                    android:textColor="@color/white" 
+                    android:textSize="16sp"/>
+
+                <Spinner
+                    android:id="@+id/spPrintSrc"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:entries="@array/print_src" />
+            </LinearLayout>
+
+            <CheckBox
+                android:id="@+id/cbScriptOff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/script_off" />
+
+            <CheckBox
+                android:id="@+id/cbVisitToDel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/remove_visit_older" />
+
+            <Spinner
+                android:id="@+id/spVisitToDel"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/day_to_del_visit" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/docs_for_period"
+                android:textColor="@color/white" 
+                android:textSize="16sp"/>
+
+            <Spinner
+                android:id="@+id/spMonthRecreate"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/months_to_recreate" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

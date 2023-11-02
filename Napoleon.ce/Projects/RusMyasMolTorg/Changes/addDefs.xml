@@ -1,0 +1,31 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+		<object name="Reserve">
+			<sources>
+				<source name="DBFTableSet">
+				<param name="userTable">"RSR"</param>
+				<param name="commonTable">"RESERV"</param>
+				<param name="catalog">"id;items;0"</param>
+				</source>
+			</sources>
+
+			<field name="id" type="string" data="IDORG"/>
+
+			<field name="items" type="collection">
+				<data>
+					<object name="ReserveItem">
+						<field name="id" type="string" data="IDITEM"/>
+						<field name="qty" type="number" prec="3"/>
+					</object>
+				</data>
+			</field>
+		</object>
+
+		<modify src="Order">
+			<add>
+				<field name="dlvType" type="number" data="DT" />
+			</add>
+		</modify>
+	</objects>
+</serverDefs>

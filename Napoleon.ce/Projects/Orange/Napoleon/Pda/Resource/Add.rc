@@ -1,0 +1,101 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "NapoleonRes.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "resdefce.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Russian resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_RUS)
+#ifdef _WIN32
+LANGUAGE LANG_RUSSIAN, SUBLANG_DEFAULT
+#pragma code_page(1251)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+ 
+IDD_DOC_PAY DIALOG  0, 0, 120, 134
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_SYSMENU
+FONT 8, "MS Shell Dlg"
+BEGIN
+    RTEXT           "Дата",IDC_DATE_LABEL,1,22,25,8,NOT WS_VISIBLE
+    CONTROL         "",IDC_ORDER_DATE,"SysDateTimePick32",DTS_RIGHTALIGN | WS_TABSTOP | NOT WS_VISIBLE,27,20,40,12
+
+    //RTEXT           "Сумма",IDC_STATIC,68,22,22,8
+    //EDITTEXT        IDC_SUM,92,21,40,12,ES_AUTOHSCROLL
+
+    RTEXT           "Сумма",IDC_STATIC,1,22,25,8
+    EDITTEXT        IDC_SUM,27,21,40,12,ES_AUTOHSCROLL
+
+    RTEXT           "№ довер.",-1,69,22,35,8
+    EDITTEXT        IDC_DOC_NUMBER,104,21,40,12,ES_AUTOHSCROLL
+
+    RTEXT           "Фирма",-1,1,35,25,8
+    COMBOBOX        IDC_SUPPL,27,34,101,66,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
+
+    RTEXT           "Тип",-1,1,47,25,8
+    COMBOBOX        IDC_COST_TYPE,27,46,101,66,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
+
+    CONTROL         "",IDC_TABLE,"SysListView32",LVS_ALIGNLEFT | LVS_OWNERDATA | LVS_OWNERDRAWFIXED | WS_TABSTOP,0,7,120,110
+
+    LTEXT           "Static",IDC_ORG_TITLE,0,2,120,18
+
+END
+
+IDD_RFRG_PAY DIALOG  0, 0, 120, 134
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_SYSMENU
+FONT 8, "MS Shell Dlg"
+BEGIN
+    COMBOBOX        IDC_UNIT_TEXT,39,0,109,92,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    RTEXT           "Торг.Точка",IDC_UNIT_LABEL,0,2,35,8
+    CONTROL         "",IDC_TABLE,"SysListView32",LVS_ALIGNLEFT | LVS_OWNERDATA | WS_TABSTOP,0,7,120,110
+END
+
+IDD_RFRG_PAY SHMENUBAR DISCARDABLE
+BEGIN
+    IDR_MAIN_FRAME, 
+    2,
+
+    0, IDC_BACK, TBSTATE_ENABLED, TBSTYLE_BUTTON | TBSTYLE_AUTOSIZE, 0, IDC_BACK, 1,
+    1, IDC_SEND, TBSTATE_ENABLED, TBSTYLE_BUTTON | TBSTYLE_AUTOSIZE, 0, IDC_SEND, 1,
+END
+
+IDD_RFRG_PAY MENU 
+BEGIN
+    POPUP "LocalMenu"
+    BEGIN
+        MENUITEM "&Примечание",                   IDC_EDIT
+    END
+END
+
+IDC_REMARK DIALOG  0, 0, 156, 129
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
+EXSTYLE 0x80000000L
+CAPTION "Примечание"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    EDITTEXT        IDC_TEXT,1,14,111,40,ES_AUTOVSCROLL|ES_MULTILINE|WS_BORDER
+    PUSHBUTTON      "OK",IDOK,2,86,60,14
+    PUSHBUTTON      "Отмена",IDCANCEL,41,86,60,14
+END
+
+
+#endif    // Russian resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="PlanText">
+        <item name="android:layout_margin">1dp</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:padding">4dp</item>
+    </style>
+
+    <style name="PlanValue" parent="PlanText">
+        <item name="android:ems">8</item>
+        <item name="android:minLines">2</item>
+    </style>
+</resources>

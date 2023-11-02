@@ -1,0 +1,83 @@
+<template>
+  <q-layout view="hHh Lpr fFf">
+    <q-header elevated>
+      <q-toolbar class="toolbar">
+        <div class="col-1" />
+        <q-avatar>
+          <img src="~/assets/ic_launcher.png" />
+        </q-avatar>
+        <q-toolbar-title style="font-weight: 500">{{
+          $t("appTitle")
+        }}</q-toolbar-title>
+
+        <q-space />
+
+        <q-btn-dropdown
+          flat
+          :label="getLocaleLabel($i18n.locale)"
+          no-caps
+          dropdown-icon="img: /src/assets/arrow-white.png"
+        >
+          <q-list>
+            <q-item
+              v-for="opt in locales"
+              clickable
+              v-close-popup
+              @click="selectLocale(opt.value)"
+              :key="opt.value"
+            >
+              <q-item-section>
+                <q-item-label>{{ opt.label }}</q-item-label>
+              </q-item-section>
+            </q-item>
+          </q-list>
+        </q-btn-dropdown>
+      </q-toolbar>
+    </q-header>
+
+    <q-page-container>
+      <div class="row">
+        <div class="q-ml-auto q-mr-auto">
+          <router-view />
+        </div>
+      </div>
+    </q-page-container>
+  </q-layout>
+</template>
+
+<script setup>
+import { computed, ref } from "vue";
+import { useQuasar, Quasar } from "quasar";
+import { useI18n } from "vue-i18n";
+
+const locale = computed(() => getLocaleLabel($q.lang.isoName));
+const $q = useQuasar();
+const i18n = useI18n();
+
+const locales = [
+  { value: "en-US", label: "En" },
+  { value: "ru", label: "Ru" },
+];
+
+function getLocaleLabel(key) {
+  var res = "";
+  if (key == "") {
+    key = $q.lang.isoName;
+  }
+  locales.every((loc) => {
+    if (loc.value === key) {
+      res = loc.label;
+      return false;
+    }
+    return true;
+  });
+
+  return res;
+}
+
+function selectLocale(key) {
+  i18n.locale.value = "en-US";
+}
+</script>
+
+<style scoped></style>

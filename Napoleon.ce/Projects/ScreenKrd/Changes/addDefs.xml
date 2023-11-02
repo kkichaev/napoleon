@@ -1,0 +1,139 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+    <object name="DivisionOrg">
+      <sources>
+        <source name="SQTable" type="internal"/>
+      </sources>
+      
+      <member name="primaryKey">"id"</member>
+      
+      <field name="id" type="number"/>
+      
+      <field name="items" type="collection">
+        <data>
+          <object name="DivisionOrgItem">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+            
+            <field name="id" type="string" />
+          </object>
+        </data>
+      </field>
+    </object>
+    
+    <modify src="Org">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal">
+            <param name="readFilter">"id in (select id from divisionorg$items where divisionorg$id in (select division$id from Division$agents where id='" + $user.id + "')) and (rem = 0 or rem is null)"</param>
+          </source>
+        </sources>
+          
+        <member name="primaryKey">"id"</member>
+      </change>
+            
+      <add>
+        <field name="formatTT" type="string" />
+        <field name="rem" type="number"/>
+      </add>
+    </modify>
+    
+    <modify src="Agents">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="ManagerFolder">
+      <change>
+        <sources>
+          <source name="SQLFolder" type="internal">
+            <param name="parentField">"parent"</param>
+            <param name="childField">"fid"</param>
+          </source>
+        </sources>
+      </change>
+      <add>
+        <member name="primaryKey">"fid"</member>
+        <field name="fid" type="string" width="50" />
+        <field name="id" type="string" execOn="Get">$object.fid</field>
+        <field name="parent" type="string" width="50" />
+        <field name="userid" type="string" />
+      </add>
+    </modify>
+
+    <modify src="Folder">
+      <change>
+        <sources>
+          <source name="SQLFolder" type="internal">
+            <param name="parentField">"parent"</param>
+            <param name="childField">"fid"</param>
+            <param name="rowidField">"id"</param>
+          </source>
+        </sources>
+        <field name="id" type="number" />
+        <field name="fid" type="string" width="50" />
+        <field name="name" type="string" />
+        <field name="userid" type="string" />
+      </change>
+      <add>
+        <member name="primaryKey">"fid"</member>
+        <field name="parent" type="string" width="50" />
+      </add>
+    </modify>
+
+    <modify src="Price">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal">
+            <param name="readFilter">"rem=0"</param>
+          </source>
+        </sources>
+      </change>
+      
+      <add>
+        <member name="primaryKey">"id"</member>
+        <field name="fid" type="string" width="50" />
+        <field name="rem" type="number"/>
+        
+      </add>
+    </modify>
+    
+    <modify src="Price$cost">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="ManagerPrice" table="Price">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal">
+            <param name="readFilter">"rem=0"</param>
+          </source>
+        </sources>
+      </change>
+      <add>
+        <member name="primaryKey">"id"</member>
+        <field name="rem" type="number"/>
+        <field name="cost" type="collection">
+          <data>
+            <object name="CostItem">
+              <sources>
+                <source name="SQTable" type="internal" table="Price$cost" />
+              </sources>
+              <field name="cost" type="number" />
+            </object>
+          </data>
+        </field>
+      </add>      
+    </modify>
+    
+  </objects>
+</serverDefs>

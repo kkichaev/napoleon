@@ -1,0 +1,543 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+               android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+    android:background="@color/white">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:text="@string/training_courses"
+        android:textSize="22dp"
+        android:gravity="center"
+        android:layout_marginTop="5dp"
+        android:fontFamily="sans-serif-medium"
+        android:background="@color/white"
+        android:textColor="@color/intro_text_color"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:layout_alignParentBottom="true"
+        android:fillViewport="true"
+        android:overScrollMode="never"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="@dimen/univ_padding">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="@dimen/univ_padding">
+
+                <ImageView
+                    android:layout_width="68dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/market1"/>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minHeight="100dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="20dp"
+                            android:gravity="left|top"
+                            android:text="@string/market_name1"
+                            android:textStyle="bold"
+                            android:paddingLeft="@dimen/univ_padding_small"
+                            android:layout_gravity="center"
+                            android:textSize="12dp"
+                            android:textColor="@color/intro_text_color"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:gravity="left|top"
+                            android:text="@string/market_subname1"
+                            android:paddingLeft="@dimen/univ_padding_small"
+                            android:paddingRight="@dimen/univ_padding_small"
+                            android:layout_gravity="center"
+                            android:textSize="10dp"
+                            android:textColor="@color/intro_text_color"/>
+
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="105dp"
+                        android:orientation="horizontal"
+                        android:layout_gravity="bottom"
+                        android:gravity="right|bottom">
+
+                        <Button
+                            android:id="@+id/product1"
+                            android:layout_width="80dp"
+                            android:layout_height="25dp"
+                            android:layout_centerHorizontal="true"
+                            android:background="@drawable/selector_bg_btn_blue2"
+                            android:text="@string/open"
+                            android:textColor="@color/white"
+                            android:textSize="12dp"
+                            android:textAllCaps="false"
+                            style="?android:attr/borderlessButtonStyle" />
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+            
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="@dimen/univ_padding">
+
+                <ImageView
+                    android:layout_width="68dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/market2"/>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minHeight="100dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:gravity="left|top"
+                            android:text="@string/market_name2"
+                            android:textStyle="bold"
+                            android:paddingLeft="@dimen/univ_padding_small"
+                            android:layout_gravity="center"
+                            android:textSize="12dp"
+                            android:textColor="@color/intro_text_color"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:gravity="left|top"
+                            android:text="@string/market_subname2"
+                            android:paddingLeft="@dimen/univ_padding_small"
+                            android:paddingRight="@dimen/univ_padding_small"
+                            android:layout_gravity="center"
+                            android:textSize="10dp"
+                            android:textColor="@color/intro_text_color"/>
+
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="105dp"
+                        android:orientation="horizontal"
+                        android:layout_gravity="bottom"
+                        android:gravity="right|bottom"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true">
+
+                        <Button
+                            android:id="@+id/product2"
+                            android:layout_width="80dp"
+                            android:layout_height="25dp"
+                            android:layout_centerHorizontal="true"
+                            android:background="@drawable/selector_bg_btn_orange"
+                            android:text="@string/contact_details"
+                            android:textColor="@color/white"
+                            android:textSize="12dp"
+                            android:textAllCaps="false"
+                            style="?android:attr/borderlessButtonStyle" />
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+            
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="@dimen/univ_padding">
+
+                <ImageView
+                    android:layout_width="68dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/market3"/>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minHeight="100dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="20dp"
+                            android:gravity="left|top"
+                            android:text="@string/market_name3"
+                            android:textStyle="bold"
+                            android:paddingLeft="@dimen/univ_padding_small"
+                            android:layout_gravity="center"
+                            android:textSize="12dp"
+                            android:textColor="@color/intro_text_color"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:gravity="left|top"
+                            android:text="@string/market_subname3"
+                            android:paddingLeft="@dimen/univ_padding_small"
+                            android:paddingRight="@dimen/univ_padding_small"
+                            android:layout_gravity="center"
+                            android:textSize="10dp"
+                            android:textColor="@color/intro_text_color"/>
+
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="105dp"
+                        android:orientation="horizontal"
+                        android:layout_gravity="bottom"
+                        android:gravity="right|bottom">
+
+                        <Button
+                            android:id="@+id/product3"
+                            android:layout_width="80dp"
+                            android:layout_height="25dp"
+                            android:layout_centerHorizontal="true"
+                            android:background="@drawable/selector_bg_btn_orange"
+                            android:text="@string/contact_details"
+                            android:textColor="@color/white"
+                            android:textSize="12dp"
+                            android:textAllCaps="false"
+                            style="?android:attr/borderlessButtonStyle" />
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+            
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="@dimen/univ_padding">
+
+                <ImageView
+                    android:layout_width="68dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/market4"/>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minHeight="100dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="20dp"
+                            android:gravity="left|top"
+                            android:text="@string/market_name4"
+                            android:textStyle="bold"
+                            android:paddingLeft="@dimen/univ_padding_small"
+                            android:layout_gravity="center"
+                            android:textSize="12dp"
+                            android:textColor="@color/intro_text_color"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:gravity="left|top"
+                            android:text="@string/market_subname4"
+                            android:paddingLeft="@dimen/univ_padding_small"
+                            android:paddingRight="@dimen/univ_padding_small"
+                            android:layout_gravity="center"
+                            android:textSize="10dp"
+                            android:textColor="@color/intro_text_color"/>
+
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="105dp"
+                        android:orientation="horizontal"
+                        android:layout_gravity="bottom"
+                        android:gravity="right|bottom">
+
+                        <Button
+                            android:id="@+id/product4"
+                            android:layout_width="80dp"
+                            android:layout_height="25dp"
+                            android:layout_centerHorizontal="true"
+                            android:background="@drawable/selector_bg_btn_orange"
+                            android:text="@string/contact_details"
+                            android:textColor="@color/white"
+                            android:textSize="12dp"
+                            android:textAllCaps="false"
+                            style="?android:attr/borderlessButtonStyle" />
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+            
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="@dimen/univ_padding">
+
+                <ImageView
+                    android:layout_width="68dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/market5"/>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minHeight="100dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:gravity="left|top"
+                            android:text="@string/market_name5"
+                            android:textStyle="bold"
+                            android:paddingLeft="@dimen/univ_padding_small"
+                            android:layout_gravity="center"
+                            android:textSize="12dp"
+                            android:textColor="@color/intro_text_color"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:gravity="left|top"
+                            android:text="@string/market_subname5"
+                            android:paddingLeft="@dimen/univ_padding_small"
+                            android:paddingRight="@dimen/univ_padding_small"
+                            android:layout_gravity="center"
+                            android:textSize="10dp"
+                            android:textColor="@color/intro_text_color"/>
+
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="105dp"
+                        android:orientation="horizontal"
+                        android:layout_gravity="bottom"
+                        android:gravity="right|bottom">
+
+                        <Button
+                            android:id="@+id/product5"
+                            android:layout_width="80dp"
+                            android:layout_height="25dp"
+                            android:layout_centerHorizontal="true"
+                            android:background="@drawable/selector_bg_btn_orange"
+                            android:text="@string/contact_details"
+                            android:textColor="@color/white"
+                            android:textSize="12dp"
+                            android:textAllCaps="false"
+                            style="?android:attr/borderlessButtonStyle" />
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="@dimen/univ_padding">
+
+                <ImageView
+                    android:layout_width="68dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/market6"/>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minHeight="110dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="15dp"
+                            android:gravity="left|top"
+                            android:text="@string/market_name6"
+                            android:textStyle="bold"
+                            android:paddingLeft="@dimen/univ_padding_small"
+                            android:layout_gravity="center"
+                            android:textSize="12dp"
+                            android:textColor="@color/intro_text_color"/>
+
+                        <TextView
+                            android:id="@+id/textView2"
+                            android:layout_width="match_parent"
+                            android:layout_height="75dp"
+                            android:layout_gravity="center"
+                            android:gravity="left|top"
+                            android:paddingLeft="@dimen/univ_padding_small"
+                            android:paddingRight="@dimen/univ_padding_small"
+                            android:text="@string/market_subname6"
+                            android:textColor="@color/intro_text_color"
+                            android:textSize="10dp"/>
+
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="115dp"
+                        android:orientation="horizontal"
+                        android:layout_gravity="bottom"
+                        android:gravity="right|bottom">
+
+                        <Button
+                            android:id="@+id/product6"
+                            android:layout_width="80dp"
+                            android:layout_height="25dp"
+                            android:layout_centerHorizontal="true"
+                            android:background="@drawable/selector_bg_btn_orange"
+                            android:text="@string/contact_details"
+                            android:textColor="@color/white"
+                            android:textSize="12dp"
+                            android:textAllCaps="false"
+                            style="?android:attr/borderlessButtonStyle" />
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="@dimen/univ_padding">
+
+                <ImageView
+                    android:layout_width="68dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/market7"/>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minHeight="110dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="15dp"
+                            android:gravity="left|top"
+                            android:text="Практикум 'Ахиллесова пята'"
+                            android:textStyle="bold"
+                            android:paddingLeft="@dimen/univ_padding_small"
+                            android:layout_gravity="center"
+                            android:textSize="12dp"
+                            android:textColor="@color/intro_text_color"/>
+
+                        <TextView
+                            android:id="@+id/textView2"
+                            android:layout_width="match_parent"
+                            android:layout_height="75dp"
+                            android:layout_gravity="center"
+                            android:gravity="left|top"
+                            android:paddingLeft="@dimen/univ_padding_small"
+                            android:paddingRight="@dimen/univ_padding_small"
+                            android:text="Пошаговое руководство по выявлению сильных и слабых сторон человека/проекта. Включает в себя инструкции с описанием действий для преимуществ и недостатков. Они применимы как в бизнесе, так и в личной жизни."
+                            android:textColor="@color/intro_text_color"
+                            android:textSize="10dp"/>
+
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="115dp"
+                        android:orientation="horizontal"
+                        android:layout_gravity="bottom"
+                        android:gravity="right|bottom">
+
+                        <Button
+                            android:id="@+id/product7"
+                            android:layout_width="80dp"
+                            android:layout_height="25dp"
+                            android:layout_centerHorizontal="true"
+                            android:background="@drawable/selector_bg_btn_orange"
+                            android:text="@string/contact_details"
+                            android:textColor="@color/white"
+                            android:textSize="12dp"
+                            android:textAllCaps="false"
+                            style="?android:attr/borderlessButtonStyle" />
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>

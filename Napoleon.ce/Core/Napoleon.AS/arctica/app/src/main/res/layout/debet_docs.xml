@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.gesture.GestureOverlayView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/gestures"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:eventsInterceptionEnabled="true"
+    android:gestureColor="#00000000"
+    android:gestureStrokeType="single"
+    android:orientation="vertical"
+    android:uncertainGestureColor="#00000000">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:baselineAligned="false"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/LinearLayout01"
+            style="?header"
+            android:layout_width="fill_parent">
+
+            <TextView
+                android:id="@+id/tvOrgInfo"
+                style="?headerText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scrollHorizontally="true"
+                android:text="OrgName" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/LinearLayout04"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/black">
+
+            <TextView
+                android:id="@+id/NameTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:width="80dp"
+                android:background="@color/table_caption"
+                android:textColor="#000000" />
+
+            <TextView
+                android:id="@+id/DateTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="1dp"
+                android:layout_weight="0.25"
+                android:background="@color/table_caption"
+                android:paddingLeft="7dp"
+                android:text="@string/date"
+                android:textColor="#000000" />
+
+            <TextView
+                android:id="@+id/SumColumnTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="1dp"
+                android:layout_weight="0.25"
+                android:background="@color/table_caption"
+                android:gravity="right"
+                android:paddingRight="3dp"
+                android:text="@string/sum"
+                android:textColor="#000000" />
+        </LinearLayout>
+
+        <ExpandableListView
+            android:id="@+id/lvDocs"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@color/white" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            style="?footer"
+            android:layout_width="fill_parent">
+
+            <ImageButton
+                android:id="@+id/btnDocFilter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="7dp"
+                android:contentDescription="@string/selectDocType"
+                android:src="@drawable/icon"
+                style="?footerButton"/>
+
+            <ImageButton
+                android:id="@+id/btnNewDoc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="7dp"
+                android:contentDescription="@string/newDoc"
+                android:src="@drawable/new_order"
+                style="?footerButton"/>
+
+            <ImageButton
+                android:id="@+id/btnGpsStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="7dp"
+                android:contentDescription="@string/gpsStatus"
+                android:src="@drawable/gpsno"
+                style="?footerButton"/>
+
+            <TextView
+                android:id="@+id/tvTotalSum"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="right"
+                android:text="@string/sum"
+                style="?footerText"/>
+        </LinearLayout>
+    </LinearLayout>
+</android.gesture.GestureOverlayView>

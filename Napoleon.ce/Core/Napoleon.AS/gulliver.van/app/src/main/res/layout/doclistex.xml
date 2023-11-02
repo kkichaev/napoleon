@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/llFilterPanel"
+        style="?header"
+        android:layout_width="fill_parent"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/tvFilter"
+            style="?headerText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView" >
+        </TextView>
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/lvDocs"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/white"
+        android:clickable="true" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        style="?footer"
+        android:layout_width="fill_parent" >
+
+        <ImageButton
+            android:id="@+id/btnDocFilter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="?footerButton"
+            android:src="@drawable/icon"
+            tools:ignore="ContentDescription" />
+
+        <ImageButton
+            android:id="@+id/btnSend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="?footerButton"
+            android:src="@drawable/send"
+            tools:ignore="ContentDescription" />
+
+        <ImageButton
+            android:id="@+id/btnDelete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="?footerButton"
+            android:src="@drawable/left"
+            tools:ignore="ContentDescription" />
+
+        <ImageButton
+            android:id="@+id/btnFilter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="?footerButton"
+            android:src="@drawable/filter"
+            tools:ignore="ContentDescription" >
+
+        </ImageButton>
+
+        <ImageButton
+            android:id="@+id/btnPrint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="?footerButton"
+            android:src="@drawable/print" />
+
+        <TextView
+            android:id="@+id/tvDocSum"
+            style="?footerText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:text="tvDocSum"
+            android:textStyle="bold" >
+        </TextView>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,39 @@
+27013c27013
+static int winSync(sqlite3_file *id, int flags){ 
+<     return (pFile->lastErrno == ERROR_NOT_SUPPORTED) ? SQLITE_OK : SQLITE_IOERR;
+---
+>     return SQLITE_IOERR;
+27680c27680
+static int winDelete( 
+<  return (   (rc == INVALID_FILE_ATTRIBUTES) ) ? SQLITE_OK : SQLITE_IOERR_DELETE;
+---
+>  return (   (rc == INVALID_FILE_ATTRIBUTES) 
+>           && (error == ERROR_FILE_NOT_FOUND)) ? SQLITE_OK : SQLITE_IOERR_DELETE;
+68109c68109
+< # define GlogUpperToLower(A)     if( A<0x80 ){ A = sqlite3UpperToLower[A]; }else if(A == 0x401){ A = 0x450; }else if( A >= 0x410 && A <= 0x42F ){ A += 0x20; }
+---
+> # define GlogUpperToLower(A)     if( A<0x80 ){ A = sqlite3UpperToLower[A]; }
+
+
+странная ошибка в эмуляторе - решается вторым вызовом CreateFileW
+in winOpen after 
+    h = CreateFileW((WCHAR*)zConverted,
+       dwDesiredAccess,
+       dwShareMode,
+       NULL,
+       dwCreationDisposition,
+       dwFlagsAndAttributes,
+       NULL
+    );
+
+#if SQLITE_OS_WINCE
+     if( GetLastError() == ERROR_ACCESS_DENIED )
+          h = CreateFileW((WCHAR*)zConverted,
+             dwDesiredAccess,
+             dwShareMode,
+             NULL,
+             dwCreationDisposition,
+             dwFlagsAndAttributes,
+             NULL
+          );
+#endif

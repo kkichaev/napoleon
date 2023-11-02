@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/llHeader"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/tvPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:lines="2"
+            android:text="Название товара" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/lightskyblue" />
+
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="0" >
+
+        <TableRow>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="Формат ТТ" />
+
+            <EditText
+                android:id="@+id/edFormat"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content" 
+                android:inputType="number"/>
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="Остатки (кол-во)" />
+
+            <EditText
+                android:id="@+id/edQty"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content" 
+                android:inputType="numberDecimal"/>
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="Фейсы" />
+
+            <EditText
+                android:id="@+id/edFace"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content" 
+                android:inputType="numberDecimal"/>
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="Цена на полке" />
+
+            <EditText
+                android:id="@+id/edCost"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content" 
+                android:inputType="numberDecimal"/>
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="Отметка промо" />
+
+            <CheckBox
+                android:id="@+id/cbPromo"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content" />
+        </TableRow>
+    </TableLayout>
+
+    <TextView
+        android:layout_marginTop="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:text="Причина OOS" />
+
+    <EditText
+        android:id="@+id/edOOS"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:gravity="top|left"
+        android:maxLength="200"
+        android:layout_weight="0.5" />
+    
+    <TextView
+        android:layout_marginTop="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:text="Комментарий" />
+
+    <EditText
+        android:id="@+id/edRemark"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:gravity="top|left"
+        android:maxLength="200"
+        android:layout_weight="0.5" />
+
+    <LinearLayout
+        android:id="@+id/LinearLayout08"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:background="@color/button_panel"
+        android:padding="5dp" >
+
+        <Button
+            android:id="@+id/btnCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/cancel" >
+        </Button>
+
+        <Button
+            android:id="@+id/btnOK"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:text="@string/ok"
+            android:textStyle="bold" >
+        </Button>
+    </LinearLayout>
+
+</LinearLayout>

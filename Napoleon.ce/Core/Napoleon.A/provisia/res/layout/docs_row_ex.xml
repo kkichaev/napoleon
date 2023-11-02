@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_height="fill_parent" 
+	android:layout_width="fill_parent"
+	android:layout_weight="1" android:background="@drawable/list_selector">
+    <TextView 
+    	android:layout_width="wrap_content" 
+    	android:layout_height="wrap_content" 
+		android:textSize="16sp"
+    	android:textColor="@color/black" 
+    	android:layout_weight="1" 
+		android:paddingLeft="4dp"
+    	android:id="@+id/tvOther"
+		android:width="110dp"
+		/>
+	
+	<TextView 
+		android:layout_width="wrap_content" 
+		android:layout_height="wrap_content" 
+		android:id="@+id/tvDate" 
+		android:text="Date" 
+		android:textSize="16sp"
+		android:textColor="@color/black"
+		android:paddingLeft="4dp"
+		android:width="90dp"
+		/>
+		
+	<TextView android:layout_width="wrap_content" 
+		android:layout_height="wrap_content" 
+		android:text="Sum" 
+		android:id="@+id/tvSum"
+		android:textSize="16sp"
+		android:layout_weight="1" 
+		android:gravity="right" android:textColor="@color/black"
+		android:paddingLeft="4dp"
+		android:width="70dp"
+		/>
+
+	<TextView android:layout_width="wrap_content" 
+		android:layout_height="wrap_content" 
+		android:text="Type" 
+		android:id="@+id/tvType"
+		android:textSize="16sp"
+		android:layout_weight="1" 
+		android:gravity="right"
+		android:textColor="@color/black" 
+		android:paddingLeft="4dp"
+		android:width="45dp" 
+		/>
+</LinearLayout>

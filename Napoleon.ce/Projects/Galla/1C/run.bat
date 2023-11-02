@@ -1,0 +1,1 @@
+"C:\Program Files (x86)\1cv82\8.2.14.528\bin\1cv8s.exe" ENTERPRISE /FC:\Works\Napoleon\1C\Галла /Execute "C:\Works\Napoleon\1C\Галла\НаполеонВыгрузка.epf" /N Процессор /P ghjuhfvvbcn /C ВыгрузитьПрайс

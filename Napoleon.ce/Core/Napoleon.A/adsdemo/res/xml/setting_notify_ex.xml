@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+   <RingtonePreference 
+       android:key="message_snd"
+       android:title="Сообщение"
+       android:ringtoneType="notification" />
+   <RingtonePreference 
+       android:key="order_snd"
+       android:title="Заявка"
+       android:ringtoneType="notification" />
+   <CheckBoxPreference 
+       android:key="vibrate"
+       android:title="Вибрация"/>
+   <RingtonePreference 
+       android:key="order_missed"
+       android:title="Заявка не выполняется"
+       android:ringtoneType="notification" />
+   <ListPreference
+       android:title="Оповещать если не начата работа мин." 
+       android:entries="@array/delay_entries_missed"
+       android:entryValues="@array/delay_entry_missed_values"
+       android:key="interval_missed"
+       android:defaultValue="5"/>
+</PreferenceScreen>

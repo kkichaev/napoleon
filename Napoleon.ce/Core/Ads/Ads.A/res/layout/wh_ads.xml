@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+  	android:layout_width="fill_parent" 
+  	android:layout_height="fill_parent" 
+  	android:orientation="vertical">
+
+	<LinearLayout android:id="@+id/llTop" 
+		android:layout_height="wrap_content" 
+		android:layout_width="fill_parent" 
+		android:layout_weight="0" 
+		android:background="#80ffcc" 
+		android:paddingBottom="10dp" 
+		android:paddingTop="5dp">
+		
+    	<ImageView android:layout_width="wrap_content" 
+    		android:layout_height="wrap_content" 
+    		android:id="@+id/ivGoUp" 
+    		android:src="@drawable/goup"></ImageView>
+    	
+    	<LinearLayout android:id="@+id/llLables"
+    		android:layout_width="wrap_content"
+    		android:layout_height="fill_parent"
+    		android:orientation="horizontal"
+    		android:layout_weight="1"
+    		android:padding="0dp">
+			<TextView android:text="Прайс" 
+				android:id="@+id/tvItemSelectUpLevel" 
+				android:textColor="@color/dark_blue" 
+				android:textStyle="bold" 
+				android:textSize="18sp" 
+				android:layout_height="fill_parent" 
+				android:gravity="center_vertical" 
+				android:lines="1" 
+				android:ellipsize="end" 
+				android:scrollHorizontally="true" android:layout_width="wrap_content" android:layout_weight="1"></TextView>
+		</LinearLayout>
+		<ImageView android:layout_width="wrap_content"
+			android:visibility="gone" 
+			android:layout_height="wrap_content" 
+			android:layout_marginRight="5dp" 
+			android:src="@drawable/filter" android:id="@+id/ivFilter" android:layout_marginTop="5dp"></ImageView>
+	</LinearLayout>
+
+	<ListView android:layout_height="wrap_content" 
+		android:id="@+id/lvOrderItemSelect" 
+		android:layout_weight="1" 
+		android:layout_width="fill_parent" 
+		android:background="#c0ccff"/>
+
+	<LinearLayout
+	    android:id="@+id/linearLayout1"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_weight="0" android:background="@color/footer" android:paddingTop="5dp" android:paddingBottom="5dp" android:paddingLeft="3dp">
+
+		<ImageButton
+		    android:id="@+id/btnLines"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:src="@drawable/line_2" />
+
+	</LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+   <objects>
+   	<modify src="Price">
+   		<change>
+        	<field name="vanQty" type="number" prec="3" execOn="Get">$object.qty</field>
+   		</change>
+   	</modify>
+   </objects>
+</serverDefs>

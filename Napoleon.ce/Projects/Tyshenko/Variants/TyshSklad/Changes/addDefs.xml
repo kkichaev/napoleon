@@ -1,0 +1,179 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+  <objects>
+
+    <object name="NewDocuments">
+      <sources>
+        <source name="SQLQuery">
+          <param name="stmt">
+            "select wd.userid, wd.created from WhOutDoc wd left join HandledDocs hd on wd.userid = hd.userid and wd.created = hd.created where hd.created is null and wd.sended &gt;= $01"
+          </param>
+          <param name="$01">ToDate(FormatDate(Now(),"DD.MM.YYYY"))</param>
+        </source>
+      </sources>
+
+      <field name="userid" type="string" />
+      <field name="created" type="timestamp" />
+    </object>
+    
+    <object name="HandledDocs">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"userid,created"</member>
+
+      <field name="userid" type="string" />
+      <field name="created" type="timestamp" />
+    </object>
+
+    <object name="WhOutDoc">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"userid,created"</member>
+      <memberArray name="index">"date"</memberArray>
+
+      <field name="userid" type="string" execOn="Put">$user.id</field>
+      <field name="created" type="timestamp" />
+      <field name="timeZone" type="number" />
+      <field name="serverTimeZone" type="number" data="S_TZ" execOn="Put" feature="USE_TIMEZONE">ServerTimeZone()</field>
+      <field name="sended" type="timestamp" data="S_DATE" execOn="Put">Now()</field>
+
+      <!-- from source -->
+      <field name="id" width="55" type="string" />
+      <field name="type" type="string" />
+      <field name="number" type="string" />
+      <field name="date" type="timestamp" />
+
+      <field name="remark" type="string" />
+      <field name="items" type="collection">
+        <data>
+          <object name="Item">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+
+            <field name="id" width="40" type="string" data="ID_I"/>
+            <field name="qty" type="number" prec="3" />
+            <field name="inputQty" type="number" prec="3" />
+            <field name="packCoef" type="number" prec="3" />
+            <field name="isBaseUnit" type="number" />
+            <field name="ordflag" width="1" type="number" execOn="Put">FirstItem($object)</field>
+          </object>
+        </data>
+      </field>
+
+      <field name="latitude" type="number" prec="4" />
+      <field name="longitude" type="number" prec="4" />
+      <field name="stltime" type="number" />
+
+      <events>
+        <event type="put">
+          <action name="WriteToLog">$object.type;$object.date</action>
+        </event>
+      </events>
+    </object>    
+    
+    <object name="ReqDocParam">
+      <field name="type" type="string" />
+      <field name="id" type="string" />
+      <field name="number" type="string" />
+      <field name="date" type="date" />
+      <field name="status" type="number" />
+    </object>
+
+    <object name="ReqDocAnswer">
+      <!--status 0 - fail, 1 ok-->
+      <field name="status" type="number" />
+      <field name="message" type="string" />
+    </object>
+
+    <object name="WorkingDocuments">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"userid,type,date,id,number"</member>
+
+      <field name="type" type="string" />
+      <field name="id" type="string" />
+      <field name="number" type="string" />
+      <field name="date" type="date" />
+
+      <field name="userid" type="string" execOn="Put">$user.id</field>
+
+      <!--status 0 - in work, 1 finished -->
+      <field name="status" type="number" />
+      <field name="sended" type="timestamp" execOn="Put">Now()</field>
+    </object>
+
+    <modify src="Agents">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="Price">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+      <add>
+        <member name="primaryKey">"id"</member>
+        <field name="packName" type="string" />
+        <field name="barcode" type="string" />
+        <field name="boxBarcode" type="string" />
+      </add>
+    </modify>
+
+    <modify src="Price" dest="WhPrice">
+      <change>
+        <sources>
+          <source name="SQLQuery">
+            <param name="stmt">
+              'select * from Price where id in
+              (select wdi.id from WHDocs$items wdi, WHDocs wd where wdi.WHDocs$date = wd.date and wdi.WHDocs$id = wd.id and wdi.WHDocs$number = wd.number and wdi.WHDocs$type = wd.type and wd.changed &gt;= $01)'
+            </param>
+            <param name="$01">ToDate(FormatDate(AdjustDate(Now(), -1, "day"),"DD.MM.YYYY"))</param>
+          </source>
+        </sources>
+        <field name="qtyInPack" type="number" prec="3" />
+      </change>
+    </modify>
+
+    <modify src="Delivery" dest="WHDocs" table="WHDocs">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal">
+            <param name="readFilter">'changed &gt;= $01'</param>
+            <param name="$01">ToDate(FormatDate(AdjustDate(Now(), -1, "day"),"DD.MM.YYYY"))</param>
+          </source>
+        </sources>
+      </change>
+      <add>
+        <member name="primaryKey">"type,date,id,number"</member>
+        <field name="type" type="string" />
+        <field name="name" type="string" />
+        <field name="changed" type="timestamp" execOn="Put">Now()</field>
+      </add>
+    </modify>
+
+    <modify src="Delivery$items" dest="WHDocs$items" table="WHDocs$items">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+      <add>
+        <field name="packCoef" type="number" prec="3" />
+        <field name="isBaseUnit" type="number" />
+      </add>
+    </modify>
+
+  </objects>
+</serverDefs>

@@ -1,0 +1,226 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+  <objects>
+    <object name="OrdConfig">
+      <sources>
+        <source name="KeyValueTable">
+          <param name="fileName">"ord"+$user.id+".cfg"</param>
+        </source>
+        <source name="KeyValueTable">
+          <param name="fileName">"order.cfg"</param>
+        </source>
+      </sources>
+
+      <field name="key" type="string" />
+      <field name="value" type="string" />
+    </object>
+
+    <object name="SkaldsInt">
+      <sources>
+        <source name="DBFTable">
+          <param name="tableName">"SKLADS"</param>
+        </source>
+      </sources>
+      <field name="key" type="string" width="20" data="ID" />
+      <field name="value" type="string" width="100" data="NAME" />
+    </object>
+
+    <object name="Skalds">
+      <sources>
+        <source name="KeyValueDBFTable">
+          <param name="fileName">"SKLADS"</param>
+          <param name="key">"Склады"</param>
+          <param name="itemName">"NAME"</param>
+          <param name="itemKey">"ID"</param>
+        </source>
+      </sources>
+      <field name="key" type="string" />
+      <field name="value" type="string" />
+    </object>
+
+    <object name="Config">
+      <sources>
+        <source name="ObjectUnion">
+          <param>"OrdConfig"</param>
+          <param>"Skalds"</param>
+        </source>
+      </sources>
+      <field name="key" type="string" />
+      <field name="value" type="string" />
+    </object>
+
+    <modify src="Price">
+      <add>
+        <field name="whQty" type="collection">
+          <data>
+            <object name="QtyItem">
+              <sources>
+                <source name="DBFTableSet">
+                  <param name="userTable">"WQT"</param>
+                  <param name="commonTable">"WQTY"</param>
+                  <param name="filter">"[ID] = $parent.id"</param>
+                </source>
+              </sources>
+              <field name="qty" type="number" prec="2" />
+              <field name="cost" type="number" prec="2" />
+              <field name="id" type="string" width="55" />
+            </object>
+          </data>
+        </field>
+      </add>
+      <change>
+        <field name="cost" type="collection">
+          <data>
+            <object name="CostItem">
+              <sources>
+              <source name="DBFTableSet">
+                <param name="userTable">"WCT"</param>
+                <param name="commonTable">"WCOST"</param>
+                <param name="filter">"[ID] = $parent.id"</param>
+              </source>
+              </sources>
+              <field name="id" type="string" width="55" />
+              <field name="cost" type="number" prec="2" />
+            </object>
+          </data>
+        </field>
+      </change>
+    </modify>
+
+    <modify src="ManagerFolder" dest="SyncFolder">
+      <change>
+        <sources>
+          <source name="DBFTableSet">
+            <param name="userTable">"F"</param>
+            <param name="commonTable">"FOLDERS"</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+    
+    <modify src="ManagerPrice">
+      <add>
+        <field name="whQty" type="collection">
+          <data>
+            <object name="QtyItem">
+                <sources>
+                  <source name="DBFTableSet">
+                    <param name="userTable">"WQT"</param>
+                    <param name="commonTable">"WQTY"</param>
+                    <param name="filter">"[ID] = $parent.id"</param>
+                  </source>
+                </sources>
+                <field name="qty" type="number" prec="2" />
+              <field name="cost" type="number" prec="2" />
+              <field name="id" type="string" width="55" />
+            </object>
+          </data>
+        </field>
+      </add>
+      <change>
+        <field name="cost" type="collection">
+          <data>
+            <object name="CostItem">
+              <sources>
+                <source name="DBFTableSet">
+                  <param name="userTable">"WCT"</param>
+                  <param name="commonTable">"WCOST"</param>
+                  <param name="filter">"[ID] = $parent.id"</param>
+                </source>
+              </sources>
+              <field name="id" type="string" width="55" />
+              <field name="cost" type="number" prec="2" />
+            </object>
+          </data>
+        </field>
+      </change>
+    </modify>
+
+    <modify src="Org">
+      <add>
+        <field name="discount" type="number" prec="2" />
+      </add>
+    </modify>
+
+    <modify src="Order">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+      <add>
+        <field name="whCode" type="string" width="20" data="ID_WH" />
+        <event type="writeCommit">
+          <action name="WriteOrderToXML" />
+        </event>
+        <event type="put">
+          <action name="RunBat" />
+          <action name="WriteToLog">$object.type;$object.created</action>
+        </event>
+      </add>
+    </modify>
+    <modify src="Order$items">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="Payment">
+      <change>
+        <sources>
+          <source name="DBFTableSet">
+            <param name="userTable">"PAY"</param>
+            <param name="commonTable">"PAYMENT"</param>
+            <param name="filter">"[id] in $Org.id"</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="Delivery">
+      <change>
+        <field name="id" type="string" width="15" />
+        <field name="number" type="string" data="NUM" width="15" />
+        <field name="userid" type="string" width="30" />
+      </change>
+    </modify>
+
+    <modify src="Delivery$items">
+      <change>
+        <field name="id" type="string" width="15" data="ID_I"/>
+      </change>
+    </modify>
+
+    <modify src="Monitoring$items">
+      <add>
+        <field name="cost" type="number" prec="2"/>
+      </add>
+    </modify>
+    <modify src="MonitoringItem">
+      <add>
+        <field name="pos" type="number"/>
+      </add>
+    </modify>
+  </objects>
+
+  <!--<events>
+    <event type="resolveObjects">
+      <action name="ResolveXMLObjects" />
+    </event>
+  </events>-->
+
+  <actions>
+    <!--<action name="ResolveXMLObjects">
+      <do>
+        <runReport name="loadXMLObjects" />
+      </do>
+    </action>-->
+    <action name="WriteOrderToXML">
+      <do>
+        <runReport name="writeOrderToXML" />
+      </do>
+    </action>
+  </actions>
+</serverDefs>

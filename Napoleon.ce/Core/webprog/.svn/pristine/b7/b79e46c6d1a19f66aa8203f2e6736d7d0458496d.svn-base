@@ -1,0 +1,24 @@
+export default{
+  appTitle : "Napoleon Cloud",
+
+  login :{
+    title : "Вход в систему",
+    emailLabel : "Введите email",
+    passwordLabel : "Введите email",
+    savePassword : "Сохранить пароль",
+    enter : "Войти",
+    reqistration: "Регистрация",
+    supportEmail: "Написать в тех. поддержку",
+    forgotPassword: "Забыли пароль?"
+  },
+  confirm : {
+    title : "Подтверждение email",
+  },
+  register:{
+    title: "Регистрация проекта",
+    nameLabel : "Введите имя",
+    passwordConfirmLabel: "Повторите пароль",
+    registerAction: "Регистрация",
+    autorization: "Авторизация"
+  }
+}

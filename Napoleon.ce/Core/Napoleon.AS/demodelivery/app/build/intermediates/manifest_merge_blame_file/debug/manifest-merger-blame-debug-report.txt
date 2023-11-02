@@ -1,0 +1,815 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.grsoft.napoleon.dostavka"
+4    android:versionCode="17"
+5    android:versionName="17" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="21"
+8-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml
+9        android:targetSdkVersion="31" />
+9-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml
+10
+11    <uses-feature
+11-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:4:5-6:36
+12        android:name="android.hardware.location"
+12-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:5:9-49
+13        android:required="false" />
+13-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:6:9-33
+14    <uses-feature
+14-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:7:5-9:36
+15        android:name="android.hardware.location.gps"
+15-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:8:9-53
+16        android:required="false" />
+16-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:9:9-33
+17    <uses-feature
+17-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:10:5-12:36
+18        android:name="android.hardware.location.network"
+18-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:11:9-57
+19        android:required="false" />
+19-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:12:9-33
+20    <uses-feature
+20-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:13:5-15:36
+21        android:name="android.hardware.telephony"
+21-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:14:9-50
+22        android:required="false" />
+22-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:15:9-33
+23    <uses-feature
+23-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:16:5-18:36
+24        android:name="android.hardware.wifi"
+24-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:17:9-45
+25        android:required="false" />
+25-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:18:9-33
+26    <uses-feature
+26-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:19:5-21:36
+27        android:name="android.hardware.camera"
+27-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:20:9-47
+28        android:required="false" />
+28-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:21:9-33
+29    <uses-feature
+29-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:22:5-24:36
+30        android:name="android.hardware.touchscreen"
+30-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:23:9-52
+31        android:required="false" />
+31-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:24:9-33
+32
+33    <uses-permission android:name="android.permission.CALL_PHONE" />
+33-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:26:5-69
+33-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:26:22-66
+34    <uses-permission android:name="android.permission.INTERNET" />
+34-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:27:5-67
+34-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:27:22-64
+35    <uses-permission android:name="android.permission.CAMERA" />
+35-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:28:5-65
+35-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:28:22-62
+36    <!--
+37         Camera features. I think it can bring an installation problem
+38
+39 		<uses-feature android:name="android.hardware.camera.autofocus" />
+40    -->
+41
+42    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+42-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:34:5-79
+42-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:34:22-76
+43    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+43-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:35:5-81
+43-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:35:22-78
+44    <uses-permission android:name="android.permission.VIBRATE" />
+44-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:36:5-66
+44-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:36:22-63
+45    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+45-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:37:5-81
+45-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:37:22-78
+46    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+46-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:38:5-75
+46-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:38:22-72
+47    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+47-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:39:5-81
+47-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:39:22-78
+48    <uses-permission android:name="android.permission.WAKE_LOCK" />
+48-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:40:5-68
+48-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:40:22-65
+49    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+49-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:41:5-79
+49-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:41:22-76
+50    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+50-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:42:5-83
+50-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:42:22-80
+51    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+51-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:43:5-77
+51-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:43:22-74
+52    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+52-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:44:5-95
+52-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:44:22-92
+53    <uses-permission android:name="oppo.permission.OPPO_COMPONENT_SAFE" />
+53-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:45:5-75
+53-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:45:22-72
+54    <uses-permission android:name="com.huawei.permission.external_app_settings.USE_COMPONENT" />
+54-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:46:5-97
+54-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:46:22-94
+55    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+55-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:47:5-77
+55-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:47:22-75
+56    <uses-permission android:name="android.permission.ACTION_MANAGE_OVERLAY_PERMISSION" />
+56-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:48:5-90
+56-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:48:22-88
+57    <uses-permission android:name="Manifest.permission.FOREGROUND_SERVICE" />
+57-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:49:5-77
+57-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:49:22-75
+58    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+58-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:50:5-85
+58-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:50:22-82
+59    <!--
+60    	<uses-permission android:name="android.permission.FLASHLIGHT"/>
+61    	<uses-feature android:name="android.hardware.camera.flash" />
+62    -->
+63
+64    <supports-screens
+64-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:56:5-60:39
+65        android:largeScreens="true"
+65-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:57:9-36
+66        android:normalScreens="true"
+66-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:58:9-37
+67        android:resizeable="true"
+67-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:59:9-34
+68        android:smallScreens="true" />
+68-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:60:9-36
+69
+70    <queries>
+70-->[androidx.camera:camera-extensions:1.1.0-beta01] C:\Users\kkich_u\.gradle\caches\transforms-3\845fb62ab130ae563b3d61f9a2cf0ce3\transformed\jetified-camera-extensions-1.1.0-beta01\AndroidManifest.xml:24:5-28:15
+71        <intent>
+71-->[androidx.camera:camera-extensions:1.1.0-beta01] C:\Users\kkich_u\.gradle\caches\transforms-3\845fb62ab130ae563b3d61f9a2cf0ce3\transformed\jetified-camera-extensions-1.1.0-beta01\AndroidManifest.xml:25:9-27:18
+72            <action android:name="androidx.camera.extensions.action.VENDOR_ACTION" />
+72-->[androidx.camera:camera-extensions:1.1.0-beta01] C:\Users\kkich_u\.gradle\caches\transforms-3\845fb62ab130ae563b3d61f9a2cf0ce3\transformed\jetified-camera-extensions-1.1.0-beta01\AndroidManifest.xml:26:13-86
+72-->[androidx.camera:camera-extensions:1.1.0-beta01] C:\Users\kkich_u\.gradle\caches\transforms-3\845fb62ab130ae563b3d61f9a2cf0ce3\transformed\jetified-camera-extensions-1.1.0-beta01\AndroidManifest.xml:26:21-83
+73        </intent>
+74    </queries>
+75
+76    <uses-feature
+76-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\kkich_u\.gradle\caches\transforms-3\6c6aa27b0e8af307a5b8632a4ea7ce3c\transformed\jetified-play-services-maps-17.0.0\AndroidManifest.xml:26:5-28:35
+77        android:glEsVersion="0x00020000"
+77-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\kkich_u\.gradle\caches\transforms-3\6c6aa27b0e8af307a5b8632a4ea7ce3c\transformed\jetified-play-services-maps-17.0.0\AndroidManifest.xml:27:9-41
+78        android:required="true" />
+78-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\kkich_u\.gradle\caches\transforms-3\6c6aa27b0e8af307a5b8632a4ea7ce3c\transformed\jetified-play-services-maps-17.0.0\AndroidManifest.xml:28:9-32
+79
+80    <application
+80-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:63:5-302:19
+81        android:name="com.grsoft.napoleon.dostavka.NapoleonApp"
+81-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:64:9-64
+82        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+82-->[androidx.core:core:1.7.0] C:\Users\kkich_u\.gradle\caches\transforms-3\376792b261fdcbfd86757f02ea12377d\transformed\core-1.7.0\AndroidManifest.xml:24:18-86
+83        android:debuggable="true"
+84        android:icon="@drawable/pictograms"
+84-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:65:9-44
+85        android:label="@string/app_name"
+85-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:66:9-41
+86        android:requestLegacyExternalStorage="true"
+86-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:69:9-52
+87        android:testOnly="true"
+88        android:theme="@style/Napoleon"
+88-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:67:9-40
+89        android:usesCleartextTraffic="true" >
+89-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:68:9-44
+90        <activity
+90-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:70:9-81:20
+91            android:name="com.grsoft.napoleon.dostavka.MainEx"
+91-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:71:13-63
+92            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+92-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:72:13-83
+93            android:exported="true"
+93-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:74:13-36
+94            android:label="@string/app_name"
+94-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:73:13-45
+95            android:launchMode="singleTask" >
+95-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:75:13-44
+96            <intent-filter>
+96-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:76:13-80:29
+97                <action android:name="android.intent.action.MAIN" />
+97-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:77:17-69
+97-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:77:25-66
+98
+99                <category android:name="android.intent.category.LAUNCHER" />
+99-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:79:17-77
+99-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:79:27-74
+100            </intent-filter>
+101        </activity>
+102
+103        <receiver
+103-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:83:9-93:20
+104            android:name="com.grsoft.napoleon.dostavka.RebootRcv"
+104-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:85:13-66
+105            android:enabled="true"
+105-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:86:13-35
+106            android:exported="true"
+106-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:84:13-36
+107            android:permission="android.permission.RECEIVE_BOOT_COMPLETED" >
+107-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:87:13-75
+108            <intent-filter>
+108-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:88:13-92:29
+109                <action android:name="android.intent.action.BOOT_COMPLETED" />
+109-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:89:17-79
+109-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:89:25-76
+110
+111                <category android:name="android.intent.category.DEFAULT" />
+111-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:91:17-76
+111-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:91:27-73
+112            </intent-filter>
+113        </receiver>
+114        <receiver
+114-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:95:9-109:20
+115            android:name="com.grsoft.util.SystemActionReciever"
+115-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:97:13-64
+116            android:exported="true"
+116-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:96:13-36
+117            android:permission="android.permission.RECEIVE_BOOT_COMPLETED" >
+117-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:98:13-75
+118            <intent-filter>
+118-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:99:13-108:29
+119                <action android:name="android.location.PROVIDERS_CHANGED" />
+119-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:100:17-77
+119-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:100:25-74
+120                <action android:name="android.intent.action.TIME_SET" />
+120-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:101:17-73
+120-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:101:25-70
+121                <action android:name="android.intent.action.DATE_SET" />
+121-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:102:17-73
+121-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:102:25-70
+122                <action android:name="android.intent.action.TIME_TICK" />
+122-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:103:17-74
+122-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:103:25-71
+123                <action android:name="android.intent.action.BOOT_COMPLETED" />
+123-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:89:17-79
+123-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:89:25-76
+124                <action android:name="android.intent.action.ACTION_SHUTDOWN" />
+124-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:105:17-80
+124-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:105:25-77
+125
+126                <category android:name="android.intent.category.DEFAULT" />
+126-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:91:17-76
+126-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:91:27-73
+127            </intent-filter>
+128        </receiver>
+129
+130        <service android:name="com.grsoft.napoleon.dostavka.MainService" />
+130-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:111:9-76
+130-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:111:18-73
+131
+132        <activity
+132-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:113:9-115:86
+133            android:name="com.grsoft.napoleon.CrashReport"
+133-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:114:13-59
+134            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+134-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:115:13-83
+135        <activity
+135-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:116:9-118:86
+136            android:name="com.grsoft.network.BaseSimpleActivity"
+136-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:117:13-65
+137            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+137-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:118:13-83
+138
+139        <service android:name="com.grsoft.util.NapoleonServiceW" />
+139-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:120:9-68
+139-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:120:18-65
+140        <service android:name="com.grsoft.util.NapoleonService" />
+140-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:121:9-67
+140-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:121:18-64
+141
+142        <activity
+142-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:123:9-125:86
+143            android:name="com.grsoft.napoleon.dostavka.Setting"
+143-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:124:13-64
+144            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+144-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:125:13-83
+145        <activity
+145-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:126:9-128:141
+146            android:name="com.grsoft.napoleon.dostavka.DIncassEdit"
+146-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:127:13-68
+147            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+147-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:128:13-83
+148            android:windowSoftInputMode="stateHidden|adjustResize" />
+148-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:128:84-138
+149        <activity
+149-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:129:9-131:86
+150            android:name="com.grsoft.napoleon.dostavka.DTaskEdit"
+150-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:130:13-66
+151            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+151-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:131:13-83
+152        <activity
+152-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:132:9-134:86
+153            android:name="com.grsoft.napoleon.dostavka.DWaybillEdit"
+153-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:133:13-69
+154            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+154-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:134:13-83
+155        <activity
+155-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:135:9-137:86
+156            android:name="com.grsoft.napoleon.dostavka.DShipmentEdit"
+156-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:136:13-70
+157            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+157-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:137:13-83
+158        <activity
+158-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:138:9-140:86
+159            android:name="com.grsoft.napoleon.dostavka.DShipmentEditEx"
+159-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:139:13-72
+160            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+160-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:140:13-83
+161        <activity
+161-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:141:9-143:86
+162            android:name="com.grsoft.napoleon.dostavka.DReturnEdit"
+162-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:142:13-68
+163            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+163-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:143:13-83
+164        <activity
+164-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:144:9-146:86
+165            android:name="com.grsoft.napoleon.QuestAttachmentsList"
+165-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:145:13-68
+166            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+166-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:146:13-83
+167        <activity
+167-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:147:9-149:86
+168            android:name="com.grsoft.napoleon.CalendarActivity"
+168-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:148:13-64
+169            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+169-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:149:13-83
+170        <activity
+170-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:150:9-152:86
+171            android:name="com.grsoft.napoleon.CameraPreview"
+171-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:151:13-61
+172            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+172-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:152:13-83
+173        <activity
+173-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:153:9-155:86
+174            android:name="com.grsoft.napoleon.MoneyProxyForm"
+174-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:154:13-62
+175            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+175-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:155:13-83
+176        <activity
+176-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:156:9-158:86
+177            android:name="com.grsoft.napoleon.OrgTaskList"
+177-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:157:13-59
+178            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+178-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:158:13-83
+179        <activity
+179-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:159:9-161:86
+180            android:name="com.grsoft.napoleon.QuestEdit"
+180-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:160:13-57
+181            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+181-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:161:13-83
+182        <activity
+182-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:162:9-164:86
+183            android:name="com.grsoft.napoleon.UpdateDBW"
+183-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:163:13-57
+184            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+184-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:164:13-83
+185        <activity
+185-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:165:9-167:86
+186            android:name="com.grsoft.napoleon.BehaviorSettingW"
+186-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:166:13-64
+187            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+187-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:167:13-83
+188        <activity
+188-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:168:9-170:86
+189            android:name="com.grsoft.napoleon.Configuration"
+189-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:169:13-61
+190            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+190-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:170:13-83
+191        <activity
+191-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:171:9-173:86
+192            android:name="com.grsoft.napoleon.GpsSetting"
+192-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:172:13-58
+193            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+193-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:173:13-83
+194        <activity
+194-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:174:9-176:86
+195            android:name="com.grsoft.napoleon.PhotoSetting"
+195-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:175:13-60
+196            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+196-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:176:13-83
+197        <activity
+197-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:177:9-179:86
+198            android:name="com.grsoft.napoleon.CreateReturn"
+198-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:178:13-60
+199            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+199-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:179:13-83
+200        <activity
+200-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:180:9-182:86
+201            android:name="com.grsoft.napoleon.PotenzialOrg"
+201-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:181:13-60
+202            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+202-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:182:13-83
+203        <activity
+203-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:183:9-185:86
+204            android:name="com.grsoft.napoleon.PresentationFolderW"
+204-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:184:13-67
+205            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+205-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:185:13-83
+206        <activity
+206-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:186:9-188:86
+207            android:name="com.grsoft.napoleon.PricePresentation"
+207-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:187:13-65
+208            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+208-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:188:13-83
+209        <activity
+209-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:189:9-191:86
+210            android:name="com.grsoft.napoleon.QuestAnswer"
+210-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:190:13-59
+211            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+211-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:191:13-83
+212        <activity
+212-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:192:9-194:86
+213            android:name="com.grsoft.napoleon.QuestionWebView"
+213-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:193:13-63
+214            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+214-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:194:13-83
+215        <activity
+215-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:195:9-197:86
+216            android:name="com.grsoft.napoleon.ReportList"
+216-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:196:13-58
+217            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+217-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:197:13-83
+218        <activity
+218-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:198:9-200:86
+219            android:name="com.grsoft.napoleon.ReportParams"
+219-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:199:13-60
+220            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+220-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:200:13-83
+221        <activity
+221-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:201:9-203:86
+222            android:name="com.grsoft.napoleon.ReportView"
+222-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:202:13-58
+223            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+223-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:203:13-83
+224        <activity
+224-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:204:9-206:86
+225            android:name="com.grsoft.script.ScriptEdit"
+225-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:205:13-56
+226            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+226-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:206:13-83
+227        <activity
+227-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:207:9-209:86
+228            android:name="com.grsoft.napoleon.DeliveryDetail"
+228-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:208:13-62
+229            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+229-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:209:13-83
+230        <activity
+230-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:210:9-212:86
+231            android:name="com.grsoft.napoleon.DocList"
+231-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:211:13-55
+232            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+232-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:212:13-83
+233        <activity
+233-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:213:9-215:86
+234            android:name="com.grsoft.napoleon.ScriptsList"
+234-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:214:13-59
+235            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+235-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:215:13-83
+236        <activity
+236-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:216:9-218:86
+237            android:name="com.grsoft.napoleon.DocumentsBase"
+237-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:217:13-61
+238            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+238-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:218:13-83
+239        <activity
+239-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:219:9-221:86
+240            android:name="com.grsoft.napoleon.DocumentsW"
+240-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:220:13-58
+241            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+241-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:221:13-83
+242        <activity
+242-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:222:9-224:86
+243            android:name="com.grsoft.napoleon.FocusItemEditor"
+243-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:223:13-63
+244            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+244-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:224:13-83
+245        <activity
+245-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:225:9-227:86
+246            android:name="com.grsoft.napoleon.IncassEdit"
+246-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:226:13-58
+247            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+247-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:227:13-83
+248        <activity
+248-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:228:9-230:86
+249            android:name="com.grsoft.napoleon.IncassDebDistrEdit"
+249-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:229:13-66
+250            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+250-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:230:13-83
+251        <activity
+251-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:231:9-233:86
+252            android:name="com.grsoft.napoleon.Messages"
+252-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:232:13-56
+253            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+253-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:233:13-83
+254        <activity
+254-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:234:9-236:86
+255            android:name="com.grsoft.napoleon.Napoleon"
+255-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:235:13-56
+256            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+256-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:236:13-83
+257        <activity
+257-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:237:9-239:86
+258            android:name="com.grsoft.napoleon.OrderDetail"
+258-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:238:13-59
+259            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+259-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:239:13-83
+260        <activity
+260-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:240:9-242:86
+261            android:name="com.grsoft.napoleon.OrderDeliveryDetail"
+261-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:241:13-67
+262            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+262-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:242:13-83
+263        <activity
+263-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:243:9-245:86
+264            android:name="com.grsoft.napoleon.ReturnDetail"
+264-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:244:13-60
+265            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+265-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:245:13-83
+266        <activity
+266-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:246:9-248:86
+267            android:name="com.grsoft.napoleon.Presentation"
+267-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:247:13-60
+268            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+268-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:248:13-83
+269        <activity
+269-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:249:9-251:86
+270            android:name="com.grsoft.napoleon.RemnantsDetail"
+270-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:250:13-62
+271            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+271-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:251:13-83
+272        <activity
+272-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:252:9-254:86
+273            android:name="com.grsoft.napoleon.TaskForm"
+273-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:253:13-56
+274            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+274-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:254:13-83
+275        <activity
+275-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:255:9-257:86
+276            android:name="com.grsoft.napoleon.VisitEdit"
+276-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:256:13-57
+277            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+277-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:257:13-83
+278        <activity
+278-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:258:9-260:86
+279            android:name="com.grsoft.napoleon.VisitEditNew"
+279-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:259:13-60
+280            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+280-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:260:13-83
+281        <activity
+281-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:261:9-263:86
+282            android:name="com.grsoft.napoleon.dostavka.VisitEditDelivery"
+282-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:262:13-74
+283            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+283-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:263:13-83
+284        <activity
+284-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:264:9-266:86
+285            android:name="com.grsoft.napoleon.Warehouse"
+285-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:265:13-57
+286            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+286-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:266:13-83
+287        <activity
+287-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:267:9-269:86
+288            android:name="com.grsoft.napoleon.PricePresentationFolder"
+288-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:268:13-71
+289            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+289-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:269:13-83
+290        <activity
+290-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:270:9-272:86
+291            android:name="com.grsoft.napoleon.Setting"
+291-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:271:13-55
+292            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+292-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:272:13-83
+293        <activity
+293-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:274:10-147
+294            android:name="com.grsoft.napoleon.DispositionActivity"
+294-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:274:20-74
+295            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+295-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:274:75-145
+296        <activity
+296-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:275:10-151
+297            android:name="com.grsoft.napoleon.dostavka.RoutePointView"
+297-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:275:20-78
+298            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+298-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:275:79-149
+299        <activity
+299-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:276:10-150
+300            android:name="com.grsoft.napoleon.dostavka.RouteCalendar"
+300-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:276:20-77
+301            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+301-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:276:78-148
+302
+303        <provider
+303-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:278:9-287:20
+304            android:name="androidx.core.content.FileProvider"
+304-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:279:13-62
+305            android:authorities="@string/fileprovider_authorities"
+305-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:280:13-67
+306            android:exported="false"
+306-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:281:13-37
+307            android:grantUriPermissions="true" >
+307-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:282:13-47
+308            <meta-data
+308-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:284:13-286:58
+309                android:name="android.support.FILE_PROVIDER_PATHS"
+309-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:285:17-67
+310                android:resource="@xml/providers_path" />
+310-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:286:17-55
+311        </provider>
+312
+313        <activity
+313-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:289:9-153
+314            android:name="com.grsoft.napoleon.dostavka.DFakeShipmentEdit"
+314-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:289:19-80
+315            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+315-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:289:81-151
+316        <activity
+316-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:290:9-155
+317            android:name="com.grsoft.napoleon.dostavka.DispositionDelivery"
+317-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:290:19-82
+318            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+318-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:290:83-153
+319        <activity
+319-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:292:9-296:51
+320            android:name="com.grsoft.camera.CameraActivity"
+320-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:293:13-60
+321            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+321-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:295:13-83
+322            android:screenOrientation="portrait"
+322-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:296:13-49
+323            android:theme="@style/Theme.AppCompat" />
+323-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:294:13-51
+324        <activity
+324-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:298:9-300:86
+325            android:name="com.grsoft.napoleon.dostavka.VisitEditEx"
+325-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:299:13-68
+326            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+326-->D:\projects\Napoleon.ce\Core\Napoleon.AS\demodelivery\app\src\main\AndroidManifest.xml:300:13-83
+327
+328        <uses-library
+328-->[androidx.camera:camera-extensions:1.1.0-beta01] C:\Users\kkich_u\.gradle\caches\transforms-3\845fb62ab130ae563b3d61f9a2cf0ce3\transformed\jetified-camera-extensions-1.1.0-beta01\AndroidManifest.xml:31:9-33:40
+329            android:name="androidx.camera.extensions.impl"
+329-->[androidx.camera:camera-extensions:1.1.0-beta01] C:\Users\kkich_u\.gradle\caches\transforms-3\845fb62ab130ae563b3d61f9a2cf0ce3\transformed\jetified-camera-extensions-1.1.0-beta01\AndroidManifest.xml:32:13-59
+330            android:required="false" />
+330-->[androidx.camera:camera-extensions:1.1.0-beta01] C:\Users\kkich_u\.gradle\caches\transforms-3\845fb62ab130ae563b3d61f9a2cf0ce3\transformed\jetified-camera-extensions-1.1.0-beta01\AndroidManifest.xml:33:13-37
+331
+332        <service
+332-->[androidx.camera:camera-camera2:1.1.0-beta01] C:\Users\kkich_u\.gradle\caches\transforms-3\4a0eae0bd6aa4d2184dba9b5657cb9df\transformed\jetified-camera-camera2-1.1.0-beta01\AndroidManifest.xml:26:9-35:19
+333            android:name="androidx.camera.core.impl.MetadataHolderService"
+333-->[androidx.camera:camera-camera2:1.1.0-beta01] C:\Users\kkich_u\.gradle\caches\transforms-3\4a0eae0bd6aa4d2184dba9b5657cb9df\transformed\jetified-camera-camera2-1.1.0-beta01\AndroidManifest.xml:27:13-75
+334            android:enabled="false"
+334-->[androidx.camera:camera-camera2:1.1.0-beta01] C:\Users\kkich_u\.gradle\caches\transforms-3\4a0eae0bd6aa4d2184dba9b5657cb9df\transformed\jetified-camera-camera2-1.1.0-beta01\AndroidManifest.xml:28:13-36
+335            android:exported="false" >
+335-->[androidx.camera:camera-camera2:1.1.0-beta01] C:\Users\kkich_u\.gradle\caches\transforms-3\4a0eae0bd6aa4d2184dba9b5657cb9df\transformed\jetified-camera-camera2-1.1.0-beta01\AndroidManifest.xml:29:13-37
+336            <meta-data
+336-->[androidx.camera:camera-camera2:1.1.0-beta01] C:\Users\kkich_u\.gradle\caches\transforms-3\4a0eae0bd6aa4d2184dba9b5657cb9df\transformed\jetified-camera-camera2-1.1.0-beta01\AndroidManifest.xml:32:13-34:89
+337                android:name="androidx.camera.core.impl.MetadataHolderService.DEFAULT_CONFIG_PROVIDER"
+337-->[androidx.camera:camera-camera2:1.1.0-beta01] C:\Users\kkich_u\.gradle\caches\transforms-3\4a0eae0bd6aa4d2184dba9b5657cb9df\transformed\jetified-camera-camera2-1.1.0-beta01\AndroidManifest.xml:33:17-103
+338                android:value="androidx.camera.camera2.Camera2Config$DefaultProvider" />
+338-->[androidx.camera:camera-camera2:1.1.0-beta01] C:\Users\kkich_u\.gradle\caches\transforms-3\4a0eae0bd6aa4d2184dba9b5657cb9df\transformed\jetified-camera-camera2-1.1.0-beta01\AndroidManifest.xml:34:17-86
+339        </service> <!-- Needs to be explicitly declared on P+ -->
+340        <uses-library
+340-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\kkich_u\.gradle\caches\transforms-3\6c6aa27b0e8af307a5b8632a4ea7ce3c\transformed\jetified-play-services-maps-17.0.0\AndroidManifest.xml:33:9-35:40
+341            android:name="org.apache.http.legacy"
+341-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\kkich_u\.gradle\caches\transforms-3\6c6aa27b0e8af307a5b8632a4ea7ce3c\transformed\jetified-play-services-maps-17.0.0\AndroidManifest.xml:34:13-50
+342            android:required="false" />
+342-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\kkich_u\.gradle\caches\transforms-3\6c6aa27b0e8af307a5b8632a4ea7ce3c\transformed\jetified-play-services-maps-17.0.0\AndroidManifest.xml:35:13-37
+343
+344        <service
+344-->[com.google.android.gms:play-services-mlkit-barcode-scanning:18.0.0] C:\Users\kkich_u\.gradle\caches\transforms-3\dc097d09fda9c4b67964a470345edb89\transformed\jetified-play-services-mlkit-barcode-scanning-18.0.0\AndroidManifest.xml:9:9-15:19
+345            android:name="com.google.mlkit.common.internal.MlKitComponentDiscoveryService"
+345-->[com.google.android.gms:play-services-mlkit-barcode-scanning:18.0.0] C:\Users\kkich_u\.gradle\caches\transforms-3\dc097d09fda9c4b67964a470345edb89\transformed\jetified-play-services-mlkit-barcode-scanning-18.0.0\AndroidManifest.xml:10:13-91
+346            android:directBootAware="true"
+346-->[com.google.mlkit:common:18.0.0] C:\Users\kkich_u\.gradle\caches\transforms-3\9396d4265ae67279d3538274db694682\transformed\jetified-common-18.0.0\AndroidManifest.xml:17:13-43
+347            android:exported="false" >
+347-->[com.google.android.gms:play-services-mlkit-barcode-scanning:18.0.0] C:\Users\kkich_u\.gradle\caches\transforms-3\dc097d09fda9c4b67964a470345edb89\transformed\jetified-play-services-mlkit-barcode-scanning-18.0.0\AndroidManifest.xml:11:13-37
+348            <meta-data
+348-->[com.google.android.gms:play-services-mlkit-barcode-scanning:18.0.0] C:\Users\kkich_u\.gradle\caches\transforms-3\dc097d09fda9c4b67964a470345edb89\transformed\jetified-play-services-mlkit-barcode-scanning-18.0.0\AndroidManifest.xml:12:13-14:85
+349                android:name="com.google.firebase.components:com.google.mlkit.vision.barcode.internal.BarcodeRegistrar"
+349-->[com.google.android.gms:play-services-mlkit-barcode-scanning:18.0.0] C:\Users\kkich_u\.gradle\caches\transforms-3\dc097d09fda9c4b67964a470345edb89\transformed\jetified-play-services-mlkit-barcode-scanning-18.0.0\AndroidManifest.xml:13:17-120
+350                android:value="com.google.firebase.components.ComponentRegistrar" />
+350-->[com.google.android.gms:play-services-mlkit-barcode-scanning:18.0.0] C:\Users\kkich_u\.gradle\caches\transforms-3\dc097d09fda9c4b67964a470345edb89\transformed\jetified-play-services-mlkit-barcode-scanning-18.0.0\AndroidManifest.xml:14:17-82
+351            <meta-data
+351-->[com.google.mlkit:vision-common:17.0.0] C:\Users\kkich_u\.gradle\caches\transforms-3\d327918b7f0e9f30a31fc3901f847333\transformed\jetified-vision-common-17.0.0\AndroidManifest.xml:12:13-14:85
+352                android:name="com.google.firebase.components:com.google.mlkit.vision.common.internal.VisionCommonRegistrar"
+352-->[com.google.mlkit:vision-common:17.0.0] C:\Users\kkich_u\.gradle\caches\transforms-3\d327918b7f0e9f30a31fc3901f847333\transformed\jetified-vision-common-17.0.0\AndroidManifest.xml:13:17-124
+353                android:value="com.google.firebase.components.ComponentRegistrar" />
+353-->[com.google.mlkit:vision-common:17.0.0] C:\Users\kkich_u\.gradle\caches\transforms-3\d327918b7f0e9f30a31fc3901f847333\transformed\jetified-vision-common-17.0.0\AndroidManifest.xml:14:17-82
+354            <meta-data
+354-->[com.google.mlkit:common:18.0.0] C:\Users\kkich_u\.gradle\caches\transforms-3\9396d4265ae67279d3538274db694682\transformed\jetified-common-18.0.0\AndroidManifest.xml:20:13-22:85
+355                android:name="com.google.firebase.components:com.google.mlkit.common.internal.CommonComponentRegistrar"
+355-->[com.google.mlkit:common:18.0.0] C:\Users\kkich_u\.gradle\caches\transforms-3\9396d4265ae67279d3538274db694682\transformed\jetified-common-18.0.0\AndroidManifest.xml:21:17-120
+356                android:value="com.google.firebase.components.ComponentRegistrar" />
+356-->[com.google.mlkit:common:18.0.0] C:\Users\kkich_u\.gradle\caches\transforms-3\9396d4265ae67279d3538274db694682\transformed\jetified-common-18.0.0\AndroidManifest.xml:22:17-82
+357        </service>
+358
+359        <provider
+359-->[com.google.mlkit:common:18.0.0] C:\Users\kkich_u\.gradle\caches\transforms-3\9396d4265ae67279d3538274db694682\transformed\jetified-common-18.0.0\AndroidManifest.xml:9:9-13:38
+360            android:name="com.google.mlkit.common.internal.MlKitInitProvider"
+360-->[com.google.mlkit:common:18.0.0] C:\Users\kkich_u\.gradle\caches\transforms-3\9396d4265ae67279d3538274db694682\transformed\jetified-common-18.0.0\AndroidManifest.xml:10:13-78
+361            android:authorities="com.grsoft.napoleon.dostavka.mlkitinitprovider"
+361-->[com.google.mlkit:common:18.0.0] C:\Users\kkich_u\.gradle\caches\transforms-3\9396d4265ae67279d3538274db694682\transformed\jetified-common-18.0.0\AndroidManifest.xml:11:13-69
+362            android:exported="false"
+362-->[com.google.mlkit:common:18.0.0] C:\Users\kkich_u\.gradle\caches\transforms-3\9396d4265ae67279d3538274db694682\transformed\jetified-common-18.0.0\AndroidManifest.xml:12:13-37
+363            android:initOrder="99" />
+363-->[com.google.mlkit:common:18.0.0] C:\Users\kkich_u\.gradle\caches\transforms-3\9396d4265ae67279d3538274db694682\transformed\jetified-common-18.0.0\AndroidManifest.xml:13:13-35
+364
+365        <activity
+365-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\kkich_u\.gradle\caches\transforms-3\e83c4bdaa63676cd01a8054eca5e272c\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:20:9-22:45
+366            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+366-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\kkich_u\.gradle\caches\transforms-3\e83c4bdaa63676cd01a8054eca5e272c\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:20:19-85
+367            android:exported="false"
+367-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\kkich_u\.gradle\caches\transforms-3\e83c4bdaa63676cd01a8054eca5e272c\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:22:19-43
+368            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+368-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\kkich_u\.gradle\caches\transforms-3\e83c4bdaa63676cd01a8054eca5e272c\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:21:19-78
+369
+370        <meta-data
+370-->[com.google.android.gms:play-services-basement:18.0.0] C:\Users\kkich_u\.gradle\caches\transforms-3\17ad6f48ea804a3ab1e40046a47ce71a\transformed\jetified-play-services-basement-18.0.0\AndroidManifest.xml:21:9-23:69
+371            android:name="com.google.android.gms.version"
+371-->[com.google.android.gms:play-services-basement:18.0.0] C:\Users\kkich_u\.gradle\caches\transforms-3\17ad6f48ea804a3ab1e40046a47ce71a\transformed\jetified-play-services-basement-18.0.0\AndroidManifest.xml:22:13-58
+372            android:value="@integer/google_play_services_version" />
+372-->[com.google.android.gms:play-services-basement:18.0.0] C:\Users\kkich_u\.gradle\caches\transforms-3\17ad6f48ea804a3ab1e40046a47ce71a\transformed\jetified-play-services-basement-18.0.0\AndroidManifest.xml:23:13-66
+373
+374        <provider
+374-->[androidx.emoji2:emoji2:1.0.0] C:\Users\kkich_u\.gradle\caches\transforms-3\8b7c53cedc320aafa8740bc99100eae7\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:26:9-34:20
+375            android:name="androidx.startup.InitializationProvider"
+375-->[androidx.emoji2:emoji2:1.0.0] C:\Users\kkich_u\.gradle\caches\transforms-3\8b7c53cedc320aafa8740bc99100eae7\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:27:13-67
+376            android:authorities="com.grsoft.napoleon.dostavka.androidx-startup"
+376-->[androidx.emoji2:emoji2:1.0.0] C:\Users\kkich_u\.gradle\caches\transforms-3\8b7c53cedc320aafa8740bc99100eae7\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:28:13-68
+377            android:exported="false" >
+377-->[androidx.emoji2:emoji2:1.0.0] C:\Users\kkich_u\.gradle\caches\transforms-3\8b7c53cedc320aafa8740bc99100eae7\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:29:13-37
+378            <meta-data
+378-->[androidx.emoji2:emoji2:1.0.0] C:\Users\kkich_u\.gradle\caches\transforms-3\8b7c53cedc320aafa8740bc99100eae7\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:31:13-33:52
+379                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+379-->[androidx.emoji2:emoji2:1.0.0] C:\Users\kkich_u\.gradle\caches\transforms-3\8b7c53cedc320aafa8740bc99100eae7\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:32:17-75
+380                android:value="androidx.startup" />
+380-->[androidx.emoji2:emoji2:1.0.0] C:\Users\kkich_u\.gradle\caches\transforms-3\8b7c53cedc320aafa8740bc99100eae7\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:33:17-49
+381            <meta-data
+381-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\kkich_u\.gradle\caches\transforms-3\e3d5f7348f31abeaadb43deed4aab633\transformed\jetified-lifecycle-process-2.4.0\AndroidManifest.xml:31:13-33:52
+382                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+382-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\kkich_u\.gradle\caches\transforms-3\e3d5f7348f31abeaadb43deed4aab633\transformed\jetified-lifecycle-process-2.4.0\AndroidManifest.xml:32:17-78
+383                android:value="androidx.startup" />
+383-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\kkich_u\.gradle\caches\transforms-3\e3d5f7348f31abeaadb43deed4aab633\transformed\jetified-lifecycle-process-2.4.0\AndroidManifest.xml:33:17-49
+384        </provider> <!-- The activities will be merged into the manifest of the hosting app. -->
+385        <activity
+385-->[com.google.android.play:core:1.8.0] C:\Users\kkich_u\.gradle\caches\transforms-3\a1d3bf1d528da94da11073181bd76563\transformed\jetified-core-1.8.0\AndroidManifest.xml:12:5-271
+386            android:name="com.google.android.play.core.missingsplits.PlayCoreMissingSplitsActivity"
+386-->[com.google.android.play:core:1.8.0] C:\Users\kkich_u\.gradle\caches\transforms-3\a1d3bf1d528da94da11073181bd76563\transformed\jetified-core-1.8.0\AndroidManifest.xml:12:15-102
+387            android:enabled="false"
+387-->[com.google.android.play:core:1.8.0] C:\Users\kkich_u\.gradle\caches\transforms-3\a1d3bf1d528da94da11073181bd76563\transformed\jetified-core-1.8.0\AndroidManifest.xml:12:103-126
+388            android:exported="false"
+388-->[com.google.android.play:core:1.8.0] C:\Users\kkich_u\.gradle\caches\transforms-3\a1d3bf1d528da94da11073181bd76563\transformed\jetified-core-1.8.0\AndroidManifest.xml:12:127-151
+389            android:launchMode="singleInstance"
+389-->[com.google.android.play:core:1.8.0] C:\Users\kkich_u\.gradle\caches\transforms-3\a1d3bf1d528da94da11073181bd76563\transformed\jetified-core-1.8.0\AndroidManifest.xml:12:204-239
+390            android:process=":playcore_missing_splits_activity"
+390-->[com.google.android.play:core:1.8.0] C:\Users\kkich_u\.gradle\caches\transforms-3\a1d3bf1d528da94da11073181bd76563\transformed\jetified-core-1.8.0\AndroidManifest.xml:12:152-203
+391            android:stateNotNeeded="true" />
+391-->[com.google.android.play:core:1.8.0] C:\Users\kkich_u\.gradle\caches\transforms-3\a1d3bf1d528da94da11073181bd76563\transformed\jetified-core-1.8.0\AndroidManifest.xml:12:240-269
+392        <activity
+392-->[com.google.android.play:core:1.8.0] C:\Users\kkich_u\.gradle\caches\transforms-3\a1d3bf1d528da94da11073181bd76563\transformed\jetified-core-1.8.0\AndroidManifest.xml:13:5-226
+393            android:name="com.google.android.play.core.common.PlayCoreDialogWrapperActivity"
+393-->[com.google.android.play:core:1.8.0] C:\Users\kkich_u\.gradle\caches\transforms-3\a1d3bf1d528da94da11073181bd76563\transformed\jetified-core-1.8.0\AndroidManifest.xml:13:15-95
+394            android:enabled="false"
+394-->[com.google.android.play:core:1.8.0] C:\Users\kkich_u\.gradle\caches\transforms-3\a1d3bf1d528da94da11073181bd76563\transformed\jetified-core-1.8.0\AndroidManifest.xml:13:96-119
+395            android:exported="false"
+395-->[com.google.android.play:core:1.8.0] C:\Users\kkich_u\.gradle\caches\transforms-3\a1d3bf1d528da94da11073181bd76563\transformed\jetified-core-1.8.0\AndroidManifest.xml:13:120-144
+396            android:stateNotNeeded="true"
+396-->[com.google.android.play:core:1.8.0] C:\Users\kkich_u\.gradle\caches\transforms-3\a1d3bf1d528da94da11073181bd76563\transformed\jetified-core-1.8.0\AndroidManifest.xml:13:145-174
+397            android:theme="@style/Theme.PlayCore.Transparent" /> <!-- The service will be merged into the manifest of the hosting app. -->
+397-->[com.google.android.play:core:1.8.0] C:\Users\kkich_u\.gradle\caches\transforms-3\a1d3bf1d528da94da11073181bd76563\transformed\jetified-core-1.8.0\AndroidManifest.xml:13:175-224
+398        <service
+398-->[com.google.android.play:core:1.8.0] C:\Users\kkich_u\.gradle\caches\transforms-3\a1d3bf1d528da94da11073181bd76563\transformed\jetified-core-1.8.0\AndroidManifest.xml:16:5-145
+399            android:name="com.google.android.play.core.assetpacks.AssetPackExtractionService"
+399-->[com.google.android.play:core:1.8.0] C:\Users\kkich_u\.gradle\caches\transforms-3\a1d3bf1d528da94da11073181bd76563\transformed\jetified-core-1.8.0\AndroidManifest.xml:16:14-95
+400            android:enabled="false"
+400-->[com.google.android.play:core:1.8.0] C:\Users\kkich_u\.gradle\caches\transforms-3\a1d3bf1d528da94da11073181bd76563\transformed\jetified-core-1.8.0\AndroidManifest.xml:16:96-119
+401            android:exported="true" />
+401-->[com.google.android.play:core:1.8.0] C:\Users\kkich_u\.gradle\caches\transforms-3\a1d3bf1d528da94da11073181bd76563\transformed\jetified-core-1.8.0\AndroidManifest.xml:16:120-143
+402        <service
+402-->[com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\kkich_u\.gradle\caches\transforms-3\f812cd3802314e8c7f46a5bbe2d76c81\transformed\jetified-transport-backend-cct-2.3.3\AndroidManifest.xml:29:9-35:19
+403            android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery"
+403-->[com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\kkich_u\.gradle\caches\transforms-3\f812cd3802314e8c7f46a5bbe2d76c81\transformed\jetified-transport-backend-cct-2.3.3\AndroidManifest.xml:30:13-103
+404            android:exported="false" >
+404-->[com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\kkich_u\.gradle\caches\transforms-3\f812cd3802314e8c7f46a5bbe2d76c81\transformed\jetified-transport-backend-cct-2.3.3\AndroidManifest.xml:31:13-37
+405            <meta-data
+405-->[com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\kkich_u\.gradle\caches\transforms-3\f812cd3802314e8c7f46a5bbe2d76c81\transformed\jetified-transport-backend-cct-2.3.3\AndroidManifest.xml:32:13-34:39
+406                android:name="backend:com.google.android.datatransport.cct.CctBackendFactory"
+406-->[com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\kkich_u\.gradle\caches\transforms-3\f812cd3802314e8c7f46a5bbe2d76c81\transformed\jetified-transport-backend-cct-2.3.3\AndroidManifest.xml:33:17-94
+407                android:value="cct" />
+407-->[com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\kkich_u\.gradle\caches\transforms-3\f812cd3802314e8c7f46a5bbe2d76c81\transformed\jetified-transport-backend-cct-2.3.3\AndroidManifest.xml:34:17-36
+408        </service>
+409        <service
+409-->[com.google.android.datatransport:transport-runtime:2.2.6] C:\Users\kkich_u\.gradle\caches\transforms-3\a90e3c21b4b20073688df0856351a09d\transformed\jetified-transport-runtime-2.2.6\AndroidManifest.xml:26:9-30:19
+410            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService"
+410-->[com.google.android.datatransport:transport-runtime:2.2.6] C:\Users\kkich_u\.gradle\caches\transforms-3\a90e3c21b4b20073688df0856351a09d\transformed\jetified-transport-runtime-2.2.6\AndroidManifest.xml:27:13-117
+411            android:exported="false"
+411-->[com.google.android.datatransport:transport-runtime:2.2.6] C:\Users\kkich_u\.gradle\caches\transforms-3\a90e3c21b4b20073688df0856351a09d\transformed\jetified-transport-runtime-2.2.6\AndroidManifest.xml:28:13-37
+412            android:permission="android.permission.BIND_JOB_SERVICE" >
+412-->[com.google.android.datatransport:transport-runtime:2.2.6] C:\Users\kkich_u\.gradle\caches\transforms-3\a90e3c21b4b20073688df0856351a09d\transformed\jetified-transport-runtime-2.2.6\AndroidManifest.xml:29:13-69
+413        </service>
+414
+415        <receiver
+415-->[com.google.android.datatransport:transport-runtime:2.2.6] C:\Users\kkich_u\.gradle\caches\transforms-3\a90e3c21b4b20073688df0856351a09d\transformed\jetified-transport-runtime-2.2.6\AndroidManifest.xml:32:9-34:40
+416            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver"
+416-->[com.google.android.datatransport:transport-runtime:2.2.6] C:\Users\kkich_u\.gradle\caches\transforms-3\a90e3c21b4b20073688df0856351a09d\transformed\jetified-transport-runtime-2.2.6\AndroidManifest.xml:33:13-132
+417            android:exported="false" />
+417-->[com.google.android.datatransport:transport-runtime:2.2.6] C:\Users\kkich_u\.gradle\caches\transforms-3\a90e3c21b4b20073688df0856351a09d\transformed\jetified-transport-runtime-2.2.6\AndroidManifest.xml:34:13-37
+418    </application>
+419
+420</manifest>

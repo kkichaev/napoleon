@@ -1,0 +1,335 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+  <objects>
+    <modify src="Agents" feature="SQL_AGENTS">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="Org" feature="SQL_ORG">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal">
+            <param name="readFilter">'"userid" = ' + "'" + $user.id + "'"</param>
+          </source>
+        </sources>
+      </change>
+      <add>
+        <member name="primaryKey">"userid,id"</member>
+      </add>
+    </modify>
+
+    <modify src="Org$contacts" feature="SQL_ORG">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="Config" feature="SQL_CONFIG">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal">
+            <param name="readFilter">'"userid" = ' + "'" + $user.id + "'"</param>
+          </source>
+        </sources>
+      </change>
+      <add>
+        <member name="primaryKey">"userid,key"</member>
+        <field name="value" type="string" width="4000" />
+        <field name="userid" type="string" />
+      </add>
+    </modify>
+
+  <modify src="OrderProceeded" feature="SQL_ORDER_COMMIT">
+    <change>
+      <sources>
+        <source name="SQTable" type="internal">
+          <param name="readFilter">'"userid"=' + "'" + $user.id + "'"</param>
+        </source>
+      </sources>
+    </change>
+    <add>
+      <field name="userid" type="string" />
+    </add>
+  </modify>
+
+  <modify src="OrderCommitted" feature="SQL_ORDER_COMMIT">
+    <change>
+      <sources>
+        <source name="SQTable" type="internal">
+          <param name="readFilter">'"userid"=' + "'" + $user.id + "'" + ' and "created" &gt;= ToDate(' + "'" + FormatDate(AdjustDate(Now(),-1,"month"),"DD.MM.YYYY") + "')" </param>
+        </source>
+      </sources>
+    </change>
+    <add>
+      <member name="primaryKey">"userid,created"</member>
+    </add>
+  </modify>
+
+
+  <modify src="Order" feature="SQL_DOCS">
+    <change>
+      <sources>
+        <source name="SQTable" type="internal">
+          <param name="readFilter">'"userid"=' + "'" + $user.id + "'"</param>
+        </source>
+      </sources>
+    </change>
+
+    <add>
+      <event type="put">
+        <action name="WriteToLog">$object.type;$object.created</action>
+      </event>
+    </add>
+  </modify>
+  
+  <modify src="Order$items" feature="SQL_DOCS">
+    <change>
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+    </change>
+  </modify>
+
+  <modify src="Returns" feature="SQL_DOCS">
+    <change>
+      <sources>
+        <source name="SQTable" type="internal">
+          <param name="readFilter">'"userid"=' + "'" + $user.id + "'"</param>
+        </source>
+      </sources>
+    </change>
+
+    <add>
+      <event type="put">
+        <action name="WriteToLog">$object.type;$object.created</action>
+      </event>
+    </add>
+  </modify>
+
+  <modify src="Returns$items" feature="SQL_DOCS">
+    <change>
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+    </change>
+  </modify>
+
+  <modify src="Incass" feature="SQL_DOCS">
+    <change>
+      <sources>
+        <source name="SQTable" type="internal">
+          <param name="readFilter">'"userid"=' + "'" + $user.id + "'"</param>
+        </source>
+      </sources>
+    </change>
+
+    <add>
+      <event type="put">
+        <action name="WriteToLog">$object.type;$object.created</action>
+      </event>
+    </add>
+  </modify>
+  
+  <modify src="Incass" feature="SQL_DOCS">
+    <change>
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+    </change>
+  </modify>
+
+  <modify src="MessageArchive" feature="SQL_MESSAGE">
+    <change>
+      <field name="message" type="string" width="4000"/>
+    </change>
+  </modify>
+
+  <modify src="Message" feature="SQL_MESSAGE">
+    <change>
+      <sources>
+        <source name="SQTable" type="internal">
+          <param name="readFilter">'"userid" = ' + "'" + $user.id + "'"</param>
+        </source>
+      </sources>
+      <field name="message" type="string" width="4000"/>
+    </change>
+    <add>
+      <field name="date" type="timestamp" execOn="Put">Now()</field>
+      <field name="userid" type="string" execOn="Put">$user.id</field>
+    </add>
+  </modify>
+
+  <modify src="CommonMatrix" feature="SQL_MATRIX">
+    <change>
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+    </change>
+    <add>
+      <member name="primaryKey">"name"</member>
+      <field name="userid" type="string" />
+    </add>
+  </modify>
+  
+  <modify src="CommonMatrix$items" feature="SQL_MATRIX">
+    <change>
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+    </change>
+  </modify>
+
+  <modify src="Matrix" feature="SQL_MATRIX">
+    <change>
+      <sources>
+        <source name="SQLQuery">
+          <param name="stmt">
+            "select cm.name as name, i.id as id
+            from (CommonMatrix as cm inner join [CommonMatrix$items] as i on cm.name = i.[CommonMatrix$name])
+            inner join AgentMatrix as am on cm.name = am.name
+            where am.userid = '"+$user.id+"'"
+          </param>
+        </source>
+      </sources>
+    </change>
+  </modify>
+  
+  <modify src="Matrix$items" feature="SQL_MATRIX">
+    <change>
+      <sources>
+        <source name="SQLQuery">
+          <param name="keyFields">"name"</param>
+        </source>
+      </sources>
+    </change>
+  </modify>
+
+  <modify src="ManagerFolder" feature="SQL_FOLDER">
+    <change>
+      <sources>
+        <source name="SQLFolder" type="internal">
+          <param name="parentField">"parent"</param>
+          <param name="childField">"fid"</param>
+          <!--<param name="readFilter">"[userid] = '" + $user.id + "'"</param>-->
+        </source>
+      </sources>
+    </change>
+    <add>
+      <field name="fid" type="string" width="50" />
+      <field name="id" type="string" execOn="Get">$object.fid</field>
+      <field name="parent" type="string" width="50" />
+      <field name="userid" type="string" execOn="Put">$user.id</field>
+      <member name="primaryKey">"userid,fid"</member>
+    </add>
+  </modify>
+
+  <modify src="Folder" feature="SQL_FOLDER">
+    <change>
+      <sources>
+        <source name="SQLFolder" type="internal">
+          <param name="parentField">"parent"</param>
+          <param name="childField">"fid"</param>
+          <param name="rowidField">"id"</param>
+          <param name="stmt">
+            "SELECT * FROM [Folder] where [userid] is null or [userid] = ''"
+          </param>
+          <!--<param name="stmt">
+            "if exists(select TOP(1) * from [Folder] where [userid] = '" + $user.id + "')
+            SELECT * FROM [Folder] where [userid] = '" + $user.id + "'
+            else
+            SELECT * FROM [Folder] where [userid] is null or [userid] = ''"
+          </param>-->
+        </source>
+      </sources>
+      <field name="id" type="number" />
+      <field name="fid" type="string" width="50" />
+      <field name="name" type="string" />
+      <field name="userid" type="string" />
+    </change>
+    <add>
+      <field name="parent" type="string" width="50" />
+      <member name="primaryKey">"userid,fid"</member>
+    </add>
+  </modify>
+
+  <modify src="Payment" features="SQL_PAYMENT">
+    <change>
+      <sources>
+        <source name="SQTable" type="internal">
+          <param name="readFilter">
+            '"userid" = ' + "'" + $user.id + "'"
+          </param>
+        </source>
+      </sources>
+      <field name="userid" type="string"  />
+    </change>
+  </modify>
+
+  <modify src="Delivery" feature="SQL_DELIVERY">
+    <change>
+      <sources>
+        <source name="SQTable" type="internal">
+          <param name="readFilter">
+            '"userid" = ' + "'" + $user.id + "'"
+          </param>
+        </source>
+      </sources>
+      <field name="number" type="string"  />
+    </change>
+    <add>
+      <member name="primaryKey">"userid,number,id"</member>
+    </add>
+  </modify>
+
+  <modify src="Delivery$items" feature="SQL_DELIVERY">
+    <change>
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+    </change>
+  </modify>
+
+    <modify src="Price" feature="SQL_PRICE">
+      <add>
+        <member name="primaryKey">"id"</member>
+      </add>
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="ManagerPrice" feature="SQL_PRICE" table="Price">
+      <add>
+        <member name="primaryKey">"id"</member>
+      </add>
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+    </modify>
+    
+    <modify src="Price$cost" feature="SQL_PRICE">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+    </modify>
+    <modify src="ManagerPrice$cost" feature="SQL_PRICE" table="Price$cost">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+    </modify>
+  </objects>
+</serverDefs>

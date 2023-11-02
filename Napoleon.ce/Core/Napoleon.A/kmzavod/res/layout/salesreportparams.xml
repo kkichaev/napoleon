@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:text="Период" />
+
+        <TextView
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:text="C" />
+
+        <TextView
+            android:id="@+id/tvStart"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:textSize="22sp"
+            android:text="01.01.2001" />
+
+        <TextView
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:text="ПО" />
+
+        <TextView
+            android:id="@+id/tvFinish"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:textSize="22sp"
+            android:text="01.01.2001" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Канал продаж" 
+        android:layout_marginTop="20dp"/>
+
+    <View 
+        android:layout_width="match_parent"
+        android:layout_height="1dip"
+        android:background="@color/grey"/>
+    
+    <ListView
+        android:id="@+id/salesChaneel"
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="0.25"/>
+    
+    <View 
+        android:layout_width="match_parent"
+        android:layout_height="1dip"
+        android:background="@color/grey"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" 
+        android:layout_marginTop="20dp">
+"
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Контрагент" />
+
+        <ImageButton
+            android:id="@+id/btnCheck"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/btn_check_on" />
+
+        <ImageButton
+            android:id="@+id/btnReset"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/btn_check_off" />
+    </LinearLayout>
+
+    <View 
+        android:layout_width="match_parent"
+        android:layout_height="1dip"
+        android:background="@color/grey"/>
+    
+    <ListView
+        android:id="@+id/orgs"
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="0.75" />
+    
+	<View 
+        android:layout_width="match_parent"
+        android:layout_height="1dip"
+        android:background="@color/grey"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Единица измерения" 
+        android:layout_marginTop="20dp"/>
+
+    <Spinner
+        android:id="@+id/spUnits"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/sr_units" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Статус документа" />
+
+    <Spinner
+        android:id="@+id/spStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/sr_doc_types" />
+
+    <Button
+        android:id="@+id/btnOK"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/create_report" />
+
+</LinearLayout>

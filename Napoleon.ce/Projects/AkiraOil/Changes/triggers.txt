@@ -1,0 +1,33 @@
+CREATE OR REPLACE FUNCTION ins_zakaz() RETURNS trigger AS $ins_zakaz$
+    DECLARE idnum bigint;
+    BEGIN
+        select unum into idnum from s1c._zakaz where manag=new."userid" and num_vx=new."orderTag";
+        IF idnum is null THEN
+           INSERT INTO s1c._zakaz (num, pril, apart, manag, num_vx, dt_vx, komm, zstate, dtism)
+               values (0, 'napoleon', new."id", new.userid, new."orderTag",
+                  to_timestamp(new."date"/10000000-11644473600), new.remark, 0, now());
+        END IF;
+        RETURN NEW;
+    END;
+$ins_zakaz$ LANGUAGE plpgsql;
+
+CREATE TRIGGER ins_zakaz BEFORE INSERT ON "Order"
+    FOR EACH ROW EXECUTE PROCEDURE ins_zakaz();
+
+CREATE OR REPLACE FUNCTION ins_items() RETURNS trigger AS $ins_items$
+    DECLARE idnum bigint;
+    DECLARE idart varchar;
+    BEGIN
+        select unum into idnum from s1c._zakaz where manag=new."Order$userid" and num_vx =
+           (select "orderTag" from "Order" where "created" = new."Order$created" and "userid" = new."Order$userid");
+        select art into idart from s1c._zakaz_th where unum=idnum and art=new."id";
+        IF idart is null THEN
+           INSERT INTO s1c._zakaz_th (unum, art, cena_z, qty_z)
+               values (idnum, new."id", new.cost, new.qty);
+        END IF;
+        RETURN NEW;
+    END;
+$ins_items$ LANGUAGE plpgsql;
+
+CREATE TRIGGER ins_items BEFORE INSERT ON "Order$items"
+    FOR EACH ROW EXECUTE PROCEDURE ins_items();

@@ -1,0 +1,54 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+    <object name="OrdConfig">
+      <sources>
+        <source name="KeyValueTable">
+          <param name="fileName">"ord"+$user.id+".cfg"</param>
+        </source>
+        <source name="KeyValueTable">
+          <param name="fileName">"order.cfg"</param>
+        </source>
+      </sources>
+
+      <field name="key" type="string" />
+      <field name="value" type="string" />
+    </object>
+
+    <object name="MatrixConfig">
+      <sources>
+        <source name="KeyValueTable">
+          <param name="fileName">"Mtx"+$user.id+".cfg"</param>
+        </source>
+      </sources>
+
+      <field name="key" type="string" />
+      <field name="value" type="string" />
+    </object>
+
+    <object name="Config">
+      <sources>
+        <source name="ObjectUnion">
+          <param>"OrdConfig"</param>
+          <param>"MatrixConfig"</param>
+        </source>
+      </sources>
+
+      <field name="key" type="string" />
+      <field name="value" type="string" />
+    </object>
+
+
+    <modify src="Org">
+      <add>
+        <field name="firm" type="number" />
+      </add>
+    </modify>
+    <modify src="Returns">
+      <add>
+        <field name="firma" type="string" width="30" execOn="Put" feature="!SALES_MODULE">KeyValueReader("order.cfg","Организация",$object.supplyer)</field>
+        <field name="ctype" type="string" width="30" execOn="Put">KeyValueReader("order.cfg","ВидЦены",$object.sumType)</field>
+      </add>
+    </modify>
+ 	</objects>
+</serverDefs>

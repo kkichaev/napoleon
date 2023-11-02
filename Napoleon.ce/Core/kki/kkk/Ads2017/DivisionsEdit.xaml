@@ -1,0 +1,131 @@
+﻿<RibbonWindow x:Class="Ads2017.DivisionsEdit"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Ads2017"
+        xmlns:p = "clr-namespace:Ads2017.Properties"
+        xmlns:src="clr-namespace:Ads2017"
+        mc:Ignorable="d"
+        Title="{Binding Source={x:Static p:Resources.manage_divisions}}" Height="621.275" Width="834.322" Loaded="RibbonWindow_Loaded" Closing="RibbonWindow_Closing">
+
+    <RibbonWindow.CommandBindings>
+        <CommandBinding Command="local:AdsCommands.Save" Executed="SaveExecuted" CanExecute="CanSaveExecute"/>
+        <CommandBinding Command="local:AdsCommands.Refresh" Executed="RefreshExecuted"/>
+        <CommandBinding Command="local:AdsCommands.Delete" Executed="DeleteExecuted"/>
+        <CommandBinding Command="local:AdsCommands.Add" Executed="AddExecuted"/>
+    </RibbonWindow.CommandBindings>
+
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Ribbon Grid.Row="0" SelectedIndex="0">
+            <Ribbon.ApplicationMenu>
+                <RibbonApplicationMenu Visibility="Collapsed"/>
+            </Ribbon.ApplicationMenu>
+
+            <RibbonTab Header="{Binding Source={x:Static p:Resources.operation}}" >
+                <RibbonGroup Header="{Binding Source={x:Static p:Resources.refresh}}">
+                    <RibbonButton 
+                        x:Name="btnRefresh" 
+                        LargeImageSource="Images\refresh.png" 
+                        Label="{Binding Source={x:Static p:Resources.refresh}}" 
+                        KeyTip="F5" 
+                        Command="local:AdsCommands.Refresh"
+                        ToolTipTitle ="{Binding Source={x:Static p:Resources.refresh_hint}}"
+                        ToolTipDescription="{Binding Source={x:Static p:Resources.refresh_description}}"/>
+
+                    <RibbonButton 
+                        x:Name="btnSave" 
+                        LargeImageSource="Images\save.png" 
+                        Label="{Binding Source={x:Static p:Resources.save}}" 
+                        KeyTip="Ctrl+S" 
+                        Command="local:AdsCommands.Save"
+                        ToolTipTitle ="{Binding Source={x:Static p:Resources.save_hint}}"
+                        ToolTipDescription="{Binding Source={x:Static p:Resources.save_description}}"/>
+                </RibbonGroup>
+
+                <RibbonGroup Header="{Binding Source={x:Static p:Resources.edit}}">
+                    <RibbonButton 
+                        x:Name="btnAdd" 
+                        LargeImageSource="Images\add.png" 
+                        Label="{Binding Source={x:Static p:Resources.add}}" 
+                        KeyTip="F8" 
+                        Command="local:AdsCommands.Add"
+                        ToolTipTitle ="{Binding Source={x:Static p:Resources.add_hint}}"
+                        ToolTipDescription="{Binding Source={x:Static p:Resources.add_description}}"/>
+
+                    <RibbonButton 
+                        x:Name="btnDel" 
+                        LargeImageSource="Images\delete.png" 
+                        Label="{Binding Source={x:Static p:Resources.del}}" 
+                        KeyTip="Ctrl+D" 
+                        Command="local:AdsCommands.Delete"
+                        ToolTipTitle ="{Binding Source={x:Static p:Resources.del_hint}}"
+                        ToolTipDescription="{Binding Source={x:Static p:Resources.del_description}}"/>
+                </RibbonGroup>
+
+                <RibbonGroup Header="{Binding Source={x:Static p:Resources.admpwd}}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Label Content="{x:Static p:Resources.admpwd}" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                        <TextBox x:Name="tbAdmpwd" Grid.Row="1" Width="150" KeyUp="tbAdmpwd_KeyUp"/>
+                    </Grid>
+                    
+                </RibbonGroup>
+            </RibbonTab>
+        </Ribbon>
+        <Grid Margin="0,0,0,0" Grid.Row="1" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <GridSplitter Grid.Column="1" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Stretch" Width="5"/>
+            <TreeView x:Name="tvDivisions" Margin="0,0,0,0" SelectedItemChanged="TvDivisions_SelectedItemChanged" GotFocus="TvDivisions_GotFocus" MouseDown="TvDivisions_MouseDown">
+                <TreeView.ItemTemplate>
+                    <HierarchicalDataTemplate DataType = "{x:Type src:Division}"
+                                              ItemsSource = "{Binding Path=Childs}">
+                        <DockPanel>
+                            <Image Source="Images\folder.png"/>
+                            <TextBlock VerticalAlignment="center" Margin="3" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>
+                        </DockPanel>
+                    </HierarchicalDataTemplate>
+                </TreeView.ItemTemplate>
+            </TreeView>
+            <Grid Grid.Column="2" Margin="0,0,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <GridSplitter HorizontalAlignment="Stretch" Height="5" Margin="0,0,0,0" Grid.Row="2" VerticalAlignment="Center"/>
+                <DataGrid x:Name="dgvManagers" Margin="0,0,0,0" Grid.Row="1" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" GotFocus="DgvManagers_GotFocus" MouseDown="DgvManagers_MouseDown" AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="{Binding Source={x:Static p:Resources.managers}}" Binding="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="*" SortDirection="Ascending"/>
+                        <DataGridTextColumn Header="{Binding Source={x:Static p:Resources.login}}" Binding="{Binding Login, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="*"/>
+                        <DataGridTextColumn Header="{Binding Source={x:Static p:Resources.password}}" Binding="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <DataGrid x:Name="dgvAgents" Margin="0,0,0,0" Grid.Row="3" GotFocus="DgvAgents_GotFocus" MouseDown="DgvAgents_MouseDown" AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="{Binding Source={x:Static p:Resources.users}}" Binding="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="*" SortDirection="Ascending"/>
+                        <DataGridTextColumn Header="{Binding Source={x:Static p:Resources.login}}" Binding="{Binding Login, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="*"/>
+                        <DataGridTextColumn Header="{Binding Source={x:Static p:Resources.password}}" Binding="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <Label Content="{x:Static p:Resources.division}" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                <TextBox x:Name="tbDivision" TextChanged="TbDivision_TextChanged" HorizontalAlignment="Left" Height="24" Margin="120,3,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="200"/>
+            </Grid>
+        </Grid>
+
+    </Grid>
+</RibbonWindow>

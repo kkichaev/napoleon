@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/linear_layout"
+    style="@style/mainSelectableItemBackground"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:padding="@dimen/univ_padding_small" >
+
+        <ImageView
+            android:id="@+id/iv_feature_img"
+            android:layout_width="@dimen/univ_ab_height"
+            android:layout_height="@dimen/univ_ab_height"
+            android:layout_alignParentLeft="true"
+            android:padding="@dimen/univ_padding_small"
+            android:src="@drawable/abc_ab_share_pack_mtrl_alpha" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_toRightOf="@+id/iv_feature_img"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/univ_padding_small"
+            android:paddingRight="@dimen/univ_padding_small"
+            android:scrollHorizontally="false"
+            android:singleLine="true"
+            android:textSize="@dimen/text_size" />
+
+        <TextView
+            android:id="@+id/tv_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/tv_title"
+            android:layout_toRightOf="@+id/iv_feature_img"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/univ_padding_small"
+            android:paddingRight="@dimen/univ_padding_small"
+            android:scrollHorizontally="false"
+            android:singleLine="true"
+            android:textSize="@dimen/text_size_simple" />
+    </RelativeLayout>
+
+    <View style="@style/dividerSmall" />
+
+</LinearLayout>

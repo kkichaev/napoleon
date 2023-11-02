@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/list_selector" 
+    android:orientation="horizontal" >
+    
+    <TextView
+        android:id="@+id/tvDocId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="DocId"
+		android:layout_weight="0.5" 
+        android:paddingLeft="7dp"
+        android:paddingRight="7dp"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        tools:ignore="HardcodedText" />
+
+  <TextView
+        android:id="@+id/tvFactId"
+        android:layout_width="0dip"
+        android:layout_height="wrap_content"
+		android:layout_weight="0.5" 
+        android:gravity="left"
+        android:paddingRight="2dp"
+        android:text="FactId"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        tools:ignore="HardcodedText" />
+
+    
+</LinearLayout>

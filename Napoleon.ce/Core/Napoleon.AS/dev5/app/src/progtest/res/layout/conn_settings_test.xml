@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_marginTop="60dp"
+        android:paddingStart="40dp"
+        android:paddingEnd="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Server code"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/server_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="20"
+            tools:text = "0345"
+            android:textSize="18sp"
+            android:layout_marginTop="16dp"
+            android:imeOptions="actionNext"
+            tools:ignore="TextFields">
+            <requestFocus />
+        </EditText>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Agent code"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/agent_code"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text = "0345"
+            android:textSize="18sp"
+            android:layout_marginTop="16dp"
+            android:imeOptions="actionNext"
+            tools:ignore="TextFields">
+        </EditText>
+
+        <Button
+            android:id="@+id/sync"
+            android:layout_marginTop="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:text="@string/sync"
+            android:backgroundTint="@color/value_color"
+            />
+    </LinearLayout>
+
+
+</LinearLayout>

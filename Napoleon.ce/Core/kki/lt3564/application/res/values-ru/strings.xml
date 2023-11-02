@@ -1,0 +1,813 @@
+<resources>
+    <string name="l_password">Пароль</string>
+    <string name="l_input">Войти</string>
+    <string name="l_create_account">Создать аккаунт</string>
+    <string name="message_auth_going">Идет авторизация...</string>
+    <string name="error_account_expired">Эта функция доступна только в платной версии</string>
+    <string name="error_account_frozen">Аккаунт заблокирован</string>
+    <string name="error_internet_access">Нет доступа к сети Интернет</string>
+    <string name="error_login">Введите логин</string>
+    <string name="error_password">Введите пароль</string>
+    <string name="error_server">Операция не удалась:</string>
+    <string name="error_wrong_auth">Неправильное имя пользователя или пароль</string>
+    <string name="error_wrong_serv">Не могу подключиться к серверу</string>
+    <string name="error_comment">Введите комментарий</string>
+    <string name="error_empty_task_title">Введите название задачи</string>
+    <string name="correct_server">Cервер доступен к работе</string>
+    <string name="error_wrong_answer_from_server">Неверный ответ от сервера</string>
+    <string name="error_wrong_answer_from_server_incorrect_root_container_title">Неверный ответ от сервера. Неправильное название корневого контейнера: ожидалось %1$s, но получено %2$s</string>
+    <string name="error_wrong_answer_from_server_absent_error_code_tag">Неверный ответ от сервера. Отсутствие тега error_code</string>
+    <string name="error_xml_pull_parser">Ошибка во время синтаксического анализа XML. %1$s</string>
+    <string name="error_unknown_type">Ошибка. %1$s</string>
+    <string name="error_code">Код ошибки</string>
+    <string name="error_ssl_handshake">Не могу проверить сертификат безопасности</string>
+    <string name="error_standard_version">У вас версия стандарт</string>
+    <string name="error_standard_version_during_synchronization">Синхронизация доступна только для Expert лицензии</string>
+    <string name="error_end_emp_limit">Превышен лимит пользователей в организации</string>
+    <string name="settings_user">Пользователь</string>
+    <string name="settings_change_user">Текущий пользователь:</string>
+    <string name="settings_change_user_title">Сменить пользователя</string>
+    <string name="settings_clean_data">Удалить все локальные данные. Данные будут восстановлены с сервера при синхронизации</string>
+    <string name="settings_clean_data_title">Очистить данные</string>
+    <string name="settings_basic">Основные</string>
+    <string name="settings_theme_dark">Темная</string>
+    <string name="settings_theme_light">Светлая</string>
+    <string name="settings_theme_title">Тема оформления</string>
+    <string name="settings_mode_phone">Телефон</string>
+    <string name="settings_mode_table">Планшет</string>
+    <string name="settings_mode_title">Портретный режим</string>
+    <string name="settings_reminder_off">Выключены</string>
+    <string name="settings_reminder_on">Включены</string>
+    <string name="settings_reminder_title">Напоминания</string>
+    <string name="settings_about_program">О программе</string>
+    <string name="txt_just_no">Отмена</string>
+    <string name="txt_just_yes">Да</string>
+    <string name="settings_confirmation">Подтверждение</string>
+    <string name="settings_clean_base"> Вы уверены, что хотите удалить локальные данные и потерять все недавние изменения?</string>
+    <string name="settings_logout">Вы уверены, что хотите выйти и потерять все недавние изменения?</string>
+    <string name="settings_site">Открыть веб сайт</string>
+    <string name="settings_community">Сообщество</string>
+    <string name="title_message">Обсуждение</string>
+    <string name="title_view">Просмотр</string>
+    <string name="title_edit">Редактирование</string>
+    <string name="task_new">Новая задача</string>
+    <string name="task">Свойства задачи</string>
+    <string name="task_comment">Напишите заметку...</string>
+    <string name="task_connection">Связи:</string>
+    <string name="task_instruct">Поручить</string>
+    <string name="task_assign">Поручить</string>
+    <string name="task_set_term">Установить дату</string>
+    <string name="task_performer_email">E-mail исполнителя</string>
+    <string name="task_status">Статус</string>
+    <string name="task_performer">Исполнитель: </string>
+    <string name="txt_status_icon">Иконка статуса задачи</string>
+    <string name="txt_collapse_icon">Иконка открытия / закрытия дерева проекта задачи</string>
+    <string name="txt_project_icon">Иконка проекта задачи</string>
+    <string name="connection_clear_mark">x</string>
+    <string name="task_project">Проекты</string>
+    <string name="task_category">Метки</string>
+    <string name="task_contact">Контакты</string>
+    <string name="prompt_task_title">Произнесите название задачи...</string>
+    <string name="prompt_task_comment">Произнесите название комментария...</string>
+    <string name="term">Дата:&#160;</string>
+    <string name="title_today_screen">Сегодня: %s</string>
+    <string name="task_today">Сегодня</string>
+    <string name="task_yesterday">Вчера</string>
+    <string name="task_tomorrow">Завтра</string>
+    <string name="task_msg">Сообщение</string>
+    <string name="task_inbox">Неразобранное</string>
+    <string name="task_i">Я</string>
+    <string name="task_review">Просмотр</string>
+    <string name="menu_subtasks">Подзадачи</string>
+    <string name="menu_term">Дата и напоминание</string>
+    <string name="menu_assign">Поручить</string>
+    <string name="menu_re_assign">Перепоручить</string>
+    <string name="menu_dell">Удалить</string>
+    <string name="menu_properties">Свойства</string>
+    <string name="confirm_delete_title">Подтверждение</string>
+    <string name="confirm_delete_text">Вы уверены, что хотите удалить задачу?</string>
+    <string name="menu_settings">Настройки</string>
+    <string name="menu_synchronize">Синхронизировать</string>
+    <string name="synchronize_start">Синхронизация запущена</string>
+    <string name="synchronize_end">Синхронизация завершена</string>
+    <string name="menu_show_hide_make_task">Показать/скрыть сделанные задачи</string>
+    <string name="menu_show_make_task">Показать завершенные задачи</string>
+    <string name="menu_hide_make_task">Скрыть завершенные задачи</string>
+    <string name="subtasks_empty">Подзадачи отсутствуют</string>
+    <string name="btn_ok">ОК</string>
+    <string name="btn_cancel">Отмена</string>
+    <string name="menu_help">Помощь</string>
+    <string name="menu_select_date">Выбор даты</string>
+    <string name="menu_add_task">Добавить задачу</string>
+    <string name="menu_save_task">Сохранить</string>
+    <string name="notification_title">Напоминание</string>
+    <string name="notifications">Напоминания</string>
+    <string name="task_term">Дата и напоминание</string>
+    <string name="btn_9_hours_using_12_hours_format">09:00 AM</string>
+    <string name="btn_18_hours_using_12_hours_format">06:00 PM</string>
+    <string name="btn_9_hours_using_24_hours_format">09:00</string>
+    <string name="btn_18_hours_using_24_hours_format">18:00</string>
+    <string name="btn_minus_30_minutes">-30 минут</string>
+    <string name="btn_minus_one_day">-1 день</string>
+    <string name="btn_plus_30_minutes">+30 минут</string>
+    <string name="btn_plus_one_day">+1 день</string>
+    <string name="btn_select_date">Выбрать</string>
+    <string name="btn_select_time">Выбрать</string>
+    <string name="btn_today">Сегодня</string>
+    <string name="btn_tomorrow">Завтра</string>
+    <string name="btn_without_term">Без даты</string>
+    <string name="btn_without_time">Без времени</string>
+    <string name="sm_input">Неразобранное</string>
+    <string name="sm_categories">Метки</string>
+    <string name="sm_projects">Проекты</string>
+    <string name="sm_available_me">Доступные мне</string>
+    <string name="sm_instruct_i">Поручено мной</string>
+    <string name="sm_instruct_me">Поручено мне</string>
+    <string name="task_not_begin">Не началось</string>
+    <string name="task_completed">Завершено</string>
+    <string name="note">Заметка</string>
+    <string name="task_in_work">В работе</string>
+    <string name="task_ready">Готово к сдаче</string>
+    <string name="task_paused">Отложено</string>
+    <string name="task_cancelled">Отменено</string>
+    <string name="task_rejected">Отклонено</string>
+    <string name="task_refine">На доработку</string>
+
+    <string-array name="months_full">
+        <item>Январь</item>
+        <item>Февраль</item>
+        <item>Март</item>
+        <item>Апрель</item>
+        <item>Май</item>
+        <item>Июнь</item>
+        <item>Июль</item>
+        <item>Август</item>
+        <item>Сентябрь</item>
+        <item>Октябрь</item>
+        <item>Ноябрь</item>
+        <item>Декабрь</item>
+    </string-array>
+    <string name="Monday">Понедельник</string>
+    <string name="Tuesday">Вторник</string>
+    <string name="Wednesday">Среда</string>
+    <string name="Thursday">Четверг</string>
+    <string name="Friday">Пятница</string>
+    <string name="Saturday">Суббота</string>
+    <string name="Sunday">Воскресенье</string>
+    <string name="Mo">Пн</string>
+    <string name="Tu">Вт</string>
+    <string name="We">Ср</string>
+    <string name="Th">Чт</string>
+    <string name="Fr">Пт</string>
+    <string name="Sa">Сб</string>
+    <string name="Su">Вс</string>
+
+    <!-- @since 2014-03-11 -->
+    <string name="blocking_process">Идет обработка данных...</string>
+    <string name="unit_bytes">&#160;байт</string>
+    <string name="unit_Kbytes">&#160;КБ</string>
+    <string name="unit_Mbytes">&#160;МБ</string>
+    <string name="btn_add">Добавить</string>
+    <string name="t_start_convertation">Началась конвертация файла в mp3</string>
+    <string name="t_start_download_file">Началась загрузка файла</string>
+    <string name="t_error_camera">Не удалось запустить камеру</string>
+    <string name="t_error_external_storage">Необходимо установить карту памяти</string>
+    <string name="t_error_file_saving">Не удалось сохранить файл</string>
+    <string name="t_error_free_space_needed">Недостаточно свободного места</string>
+    <string name="t_error_can_record_ones">Возможна запись одного файла за раз</string>
+    <string name="t_error_file_not_exist">Файл не существует</string>
+    <string name="t_error_feature_name">Выбрано недопустимое имя</string>
+    <string name="t_error_performer_not_unique">Выбранный участник уже добавлен</string>
+    <string name="d_error_title">Внимание</string>
+    <string name="d_audio_record_title">Аудиозапись</string>
+    <string name="d_project_remove_title">Удаление проекта</string>
+    <string name="d_project_remove_message">Вы действительно хотите удалить проект и все ваши задачи в нем?</string>
+    <string name="d_performer_remove_title">Удаление участника</string>
+    <string name="d_performer_remove_message">Действительно удалить участника?</string>
+    <string name="d_category_remove_title">Удаление метки</string>
+    <string name="d_category_remove_message">Действительно удалить метку?</string>
+    <string name="what_to_use">Что использовать?</string>
+    <string name="reg_email">Введите email</string>
+    <string name="reg_name">Имя</string>
+    <string name="reg_password">Введите пароль(минимум 8 символов)</string>
+    <string name="reg_create_acc">Создать аккаунт</string>
+    <string name="reg_complete">Регистрация прошла успешно</string>
+    <string name="reg_fill_email">Укажите свою электронную почту</string>
+    <string name="reg_fill_name">Укажите свое имя</string>
+    <string name="reg_fill_pass">Укажите пароль</string>
+    <string name="menu_marker">Цвет</string>
+    <string name="m_add_from_camera">Камера</string>
+    <string name="m_add_from_gallery">Из галереи</string>
+    <string name="m_add_audio">Аудиозапись</string>
+    <string name="m_go_left">Переместить влево</string>
+    <string name="m_go_right">Переместить вправо</string>
+    <string name="m_go_up">Переместить вверх</string>
+    <string name="m_go_down">Переместить вниз</string>
+    <string name="title_chooser_image">Выбор картинки</string>
+    <string name="project_new">Новый проект</string>
+    <string name="project_add">Добавить проект</string>
+    <string name="project_properties">Свойства проекта</string>
+    <string name="project_close">Закрыть проект</string>
+    <string name="project_show_subproj_tasks">Отображать задачи подпроектов</string>
+    <string name="project_show_in_navi">Показывать в навигаторе</string>
+    <string name="project_favorite">Избранный</string>
+    <string name="project_access">Доступ</string>
+    <string name="project_add_performer">Добавить участника проекта</string>
+    <string name="feature_name">Наименование</string>
+    <string name="feature_comment">Комментарий</string>
+    <string name="category_new">Новая метка</string>
+    <string name="category_properties">Свойства метки</string>
+    <string name="by_default">По умолчанию</string>
+    <string name="task_no_projects">Без проекта</string>
+    <string name="task_no_categories">Без метки</string>
+    <string name="task_file_exist">&#160;(не загружен)</string>
+    <string name="d_remove_file_title">Удаление файла</string>
+    <string name="d_remove_file_message">Действительно удалить файл из задачи?</string>
+    <string name="title_chooser_open">Открыть файл</string>
+    <string name="error_user_exist">Пользователь с таким email уже зарегистрирован. Если это ваш email - восстановите пароль.</string>
+    <string name="error_format_email">Введен неверный формат электронной почты</string>
+    <string name="error_format_password">Введен неверный формат пароля</string>
+    <string name="error_file_not_downloaded">Файл на сервер еще не загружен</string>
+    <string name="settings_private_office">Личный кабинет</string>
+    <string name="settings_support">Написать в тех. поддержку</string>
+    <string name="settings_blog">Наш блог</string>
+    <string name="settings_facebook">Мы в Facebook</string>
+    <string name="settings_vkontakte">Мы вКонтакте</string>
+    <string name="settings_twitter">Мы в Twitter</string>
+    <string name="settings_youtube">Мы в Youtube</string>
+    <string name="settings_autosync">Синхронизация</string>
+    <string name="settings_autosync_dialog_title">Время синхронизации</string>
+    <string name="settings_autosync_m2">Каждые 2 минуты</string>
+    <string name="settings_autosync_m15">Каждые 15 минут</string>
+    <string name="settings_autosync_m30">Каждые 30 минут</string>
+    <string name="settings_autosync_m60">Каждый час</string>
+    <string name="settings_autosync_off">Вручную</string>
+    <string name="settings_calendar">Календарь в навигаторе</string>
+    <string name="settings_calendar_on">Включен</string>
+    <string name="settings_calendar_off">Выключен</string>
+    <string name="settings_basic_data">Данные</string>
+    <string name="settings_strikethru_tasks">Зачеркивать завершенные</string>
+    <string name="settings_strikethru_on">Включено</string>
+    <string name="settings_strikethru_off">Выключено</string>
+
+    <!-- @since 2014-06-19 -->
+    <string name="title_emp">Сотрудники</string>
+    <string name="d_emp_remove_title">Удаление сотрудника</string>
+    <string name="d_emp_remove_message">Действительно удалить сотрудника?</string>
+    <string name="emp_display_as">Отображать как</string>
+    <string name="emp_name_on_server">Логин LeaderTask</string>
+    <string name="emp_new">Новый сотрудник</string>
+    <string name="emp_properties">Свойства сотрудника</string>
+    <string name="t_error_not_all_information">Заполнены не все поля</string>
+
+    <!-- @since 2014-06-27 -->
+    <string-array name="days_of_week_short">
+        <item>Пн</item>
+        <item>Вт</item>
+        <item>Ср</item>
+        <item>Чт</item>
+        <item>Пт</item>
+        <item>Сб</item>
+        <item>Вс</item>
+    </string-array>
+    <string-array name="lang_task_recurrence_weeks">
+        <item>Первый</item>
+        <item>Второй</item>
+        <item>Третий</item>
+        <item>Четвертый</item>
+        <item>Последний</item>
+    </string-array>
+
+    <string name="lang_task_after_day">День</string>
+    <string name="lang_task_after_week">Неделю</string>
+    <string name="lang_task_after_month">Месяц</string>
+    <string name="lang_task_after_year">Год</string>
+    <string name="lang_task_recurrence_daily">Ежедневно</string>
+    <string name="lang_task_recurrence_in">Каждый</string>
+    <string name="lang_task_recurrence_weekly">Еженедельно</string>
+    <string name="lang_task_recurrence_every_w">Каждую</string>
+    <string name="lang_task_recurrence_w_every">неделю, по</string>
+    <string name="lang_task_recurrence_monthly">Ежемесячно</string>
+    <string name="lang_task_recurrence_every_m">Каждый</string>
+    <string name="lang_task_recurrence_m_every">месяц</string>
+    <string name="lang_task_recurrence_m_every_d">числа</string>
+    <string name="lang_task_recurrence_yearly">Ежегодно</string>
+    <string name="lang_task_recurrence_every_y">Каждый</string>
+
+    <!-- @since 2014 09 30 -->
+    <string name="settings_language">Язык (language)</string>
+    <string name="settings_on_status">Нажатие на статус</string>
+    <string name="settings_Markers">Цвета</string>
+    <string name="settings_Labels">Ярлыки</string>
+
+    <string name="d_title_marker_remove">Удаление цвета</string>
+    <string name="d_title_label_remove">Удаление ярлыка</string>
+    <string name="d_title_pick_an_image_source">Выберите источник изображения</string>
+
+    <string name="d_message_marker_remove">Действительно удалить цвет?</string>
+    <string name="d_message_label_remove">Действительно удалить ярлык?</string>
+
+    <string name="lang_system">Системный</string>
+    <string name="expired">Просрочено</string>
+
+    <string name="default_task_name">Название задачи</string>
+    <string name="default_marker">Цвет</string>
+    <string name="default_project">Проект</string>
+    <string name="default_category">Метка</string>
+    <string name="default_label">Ярлык</string>
+
+    <string name="on_status_none">Ничего</string>
+    <string name="on_status_finish">Завершить</string>
+    <string name="on_status_select">Выбрать</string>
+
+    <string name="marker_new">Новый цвет</string>
+    <string name="marker_properties">Свойства цвета</string>
+    <string name="marker_color_text">Цвет букв</string>
+    <string name="marker_color_background">Цвет фона</string>
+    <string name="marker_all_caps">Все прописные</string>
+
+    <string name="label_new">Новый ярлык</string>
+    <string name="label_properties">Свойства ярлыка</string>
+    <string name="label_color">Выделение цветом</string>
+
+    <string name="task_label">Ярлыки</string>
+
+    <string name="t_error_no_auth">Пользователь не авторизирован</string>
+    <string name="t_error_same_process_not_stop">Предыдущая операция не окончена</string>
+    <string name="t_error_no_app_to_handle">Не найдено приложение, чтобы обработать запрос</string>
+    <string name="t_task_input">Задача добавлена в Неразобранное</string>
+    <string name="t_error_file_was_not_uploaded">Файл не был загружен на сервер</string>
+
+    <string-array name="media_sources">
+        <item>Камера</item>
+        <item>Галерея</item>
+    </string-array>
+
+    <string name="exception_unknown">Неизвестная ошибка</string>
+    <string name="exception_ssl">Не могу проверить сертификат безопасности</string>
+    <string name="exception_sqlite">Ошибка работы с базой данных</string>
+    <string name="exception_server">Ошибка при обращении к серверу</string>
+    <string name="exception_parsing_request">Ошибка при отправке запроса</string>
+    <string name="exception_parsing_response">Ошибка при получении ответа на запрос</string>
+    <string name="exception_parsing_overall">Ошибка при парсинге данных</string>
+    <string name="exception_reset_links">Ошибка во время пересчета связей задач</string>
+    <string name="exception_file_dowloading">Загрузка не удалась</string>
+    <string name="exception_test">Тестовая ошибка</string>
+
+    <string name="error_need_confirm_registration">Необходимо подтвердить регистрацию</string>
+    <string name="reg_fill_pass_is_too_short">Пароль слишком короткий</string>
+    <string name="reg_fill_email_name">Укажите свои регистрационные данные</string>
+    <string name="alternative_reg">Или создать аккаунт через:</string>
+    <string name="confirm_registration_text">Мы отправили Вам на почту специальное письмо. В этом письме нажмите на ссылку `Подтвердить регистрацию`. </string>
+    <string name="confirm_registration_name">Подтвердите регистрацию! </string>
+    <string name="error_timeout">Сервер не отвечает.</string>
+    <string name="task_files">Прикрепить файл</string>
+    <string name="onbackpressed_save">Cохранение изменений по кнопке назад</string>
+    <string name="menu_dont_save_task">Не сохранять</string>
+    <string name="pull_to_refresh_pull_label">потяните</string>
+    <string name="pull_to_refresh_release_label">отпустите</string>
+    <string name="pull_to_refresh_refreshing_label">обновление</string>
+    <string name="synchronization_updated">Синхронизировать</string>
+    <string name="task_today_lib">Сегодня</string>
+    <string name="task_yesterday_lib">Вчера</string>
+    <string name="task_before_lib">Позавчера</string>
+    <string name="follow_the_link">Перейти по ссылке</string>
+    <string name="copy_link">Копировать ссылку</string>
+    <string name="task_not_found">Задача не найдена</string>
+    <string name="saved_clipboard">Сохранено в буфер обмена</string>
+    <string name="back">Назад</string>
+    <string name="error_api_disabled">Данная функция больше не поддерживается. Пожалуйста обновитесь на новую версию программы.</string>
+    <string name="error_account_blocked">Аккаунт заблокирован</string>
+    <string name="no_space_left_on_device">Нет места на устройстве</string>
+    <string name="select_date">Выбрать дату</string>
+    <string name="select_time">Выбрать время</string>
+    <string name="settings_vibration">Вибрация</string>
+    <string name="settings_standart_sound">Стандартный звук</string>
+    <string name="task_unread">Непрочитанные</string>
+    <string name="settings_unread_show">Показывать</string>
+    <string name="settings_unread_dont_show">Не показывать</string>
+    <string name="settings_unread_in_navigator">Пункт непрочитанные в навигаторе</string>
+    <string name="order_by_default">Без сортировки</string>
+    <string name="order_by_term">Сортировать по дате</string>
+    <string name="order_by_marker">Сортировать по цвету</string>
+    <string name="already_registered">Уже зарегистрированы?</string>
+    <string name="forgot_password">Забыли пароль?</string>
+    <string name="synchronization_now">Синхронизация...</string>
+    <string name="never">Никогда</string>
+    <string name="updated">Обновлено</string>
+    <string name="license">Лицензия</string>
+    <string name="account">Аккаунт и лицензия</string>
+    <string name="free">Истекла</string>
+    <string name="to_premium">Купить Премиум</string>
+    <string name="premium_gone">истекает</string>
+    <string name="business_gone">истекает</string>
+    <string name="extend">Продлить лицензию</string>
+    <string name="days">дней</string>
+    <string name="settings_show_categories_in_navigator">Показывать метки</string>
+    <string name="not_follow">Не следить за проектом</string>
+    <string name="settings_task_count_in_navigator">Отображать количество задач</string>
+    <string name="intro_slide1_text">ВСЕ ЗАДАЧИ ВСЕГДА С СОБОЙ</string>
+    <string name="intro_slide1_subtext">На любом устройстве</string>
+    <string name="intro_slide2_text">СИНХРОНИЗАЦИЯ С УСТРОЙСТВАМИ </string>
+    <string name="intro_slide2_subtext">Все всегда под рукой </string>
+    <string name="intro_slide3_text">РАЗДЕЛЕНИЕ ЗАДАЧ ПО ПРОЕКТАМ </string>
+    <string name="intro_slide3_subtext">Удобное распределение задач </string>
+    <string name="intro_slide4_text">ПОРУЧЕНИЕ ЗАДАЧ СОТРУДНИКАМ</string>
+    <string name="intro_slide4_subtext">Поручать задачи очень легко</string>
+    <string name="intro_slide5_text">ДОСТУП ДАЖЕ БЕЗ ИНТЕРНЕТА </string>
+    <string name="intro_slide5_subtext">Доступ к задачам в любом месте </string>
+    <string name="intro_slide6_text">ВСЕ ЗАДАЧИ ДРЕВОВИДНЫЕ </string>
+    <string name="intro_slide6_subtext">На любом уровне задачи </string>
+    <string name="intro_slide7_text">КАЛЕНДАРЬ, МЕТКИ, ПРИОРИТЕТЫ</string>
+    <string name="intro_slide7_subtext">И многое другое…</string>
+    <string name="intro_start">Начать</string>
+    <string name="intro_forward">Далее</string>
+    <string name="settings_inbox_in_navigator">Скрывать пустые Неразобранные</string>
+    <string name="settings_navigator">Навигатор</string>
+    <string name="intro">Виртуальный тур</string>
+    <string name="intro_prev">Назад</string>
+    <string name="contact_groups">Группы контактов</string>
+    <string name="contacts">Контакты</string>
+    <string name="d_contact_group_remove_title">Удаление группы контактов</string>
+    <string name="d_contact_group_remove_message">Действительно удалить группу контактов?</string>
+    <string name="d_contact_remove_title">Удаление контакта</string>
+    <string name="d_contact_remove_message">Действительно удалить контакт?</string>
+    <string name="contacts_group_new">Новая группа контактов</string>
+    <string name="contacts_group_properties">Свойства группы контактов</string>
+    <string name="contacts_group_add_performer">Добавить участника группы</string>
+    <string name="contact_new">Новый контакт</string>
+    <string name="contact_properties">Свойства контакта</string>
+    <string name="contact_last_name">Фамилия</string>
+    <string name="contact_name">Имя</string>
+    <string name="contact_sername">Отчество</string>
+    <string name="contact_group">Группа</string>
+    <string name="contact_details">Подробнее</string>
+    <string name="contact_post">Должность</string>
+    <string name="contact_org">Название организации</string>
+    <string name="contact_connection">Средства связи</string>
+    <string name="contact_birthday">День рождения</string>
+    <string name="contact_home_adress">Домашний адрес</string>
+    <string name="contact_work_adress">Рабочий адрес</string>
+    <string name="add_comment">Отпр.</string>
+    <string name="order_by_name">Сортировать по наименованию</string>
+    <string name="not_change_status">Не менять статус</string>
+    <string name="rework_dialog_title">У исполнителя задача завершена, чтобы он увидел сообщение, смените статус у задачи.</string>
+    <string name="display_project_subtasks">Отображать задачи подпроектов</string>
+    <string name="take_on_exec">Взять на исполнение</string>
+    <string name="dell_communication">Удалить средство связи</string>
+    <string name="d_communication_remove_message">Действительно удалить средство связи?</string>
+    <string name="project_add_communication">Добавить средство связи</string>
+    <string name="comm_phone">Телефон</string>
+    <string name="comm_email">E-mail</string>
+    <string name="comm_msg">Мессенджер</string>
+    <string name="comm_www">Веб-сайт</string>
+    <string name="gender_men">Мужской</string>
+    <string name="gender_women">Женский</string>
+    <string name="gender_org">Организация</string>
+    <string name="gender_nobody">Не указан</string>
+    <string name="address_country">Страна</string>
+    <string name="address_region">Область / край</string>
+    <string name="address_city">Город</string>
+    <string name="address_street">Дом, улица</string>
+    <string name="address_index">Почтовый индекс</string>
+    <string name="copy">Копировать</string>
+    <string name="d_remove_file_message_contact">Действительно удалить файл из котнакта?</string>
+    <string name="search">Поиск</string>
+    <string name="pass_at_start">Пароль при запуске</string>
+    <string name="term_repeat">Повтор</string>
+    <string-array name="repeat_main_chooser">
+        <item>Не повторять</item>
+        <item>Ежедневно</item>
+        <item>Еженедельно</item>
+        <item>Ежемесячно</item>
+        <item>Ежегодно</item>
+    </string-array>
+    <string-array name="repeat_day_year_chooser">
+        <item>День</item>
+        <item>Неделя</item>
+        <item>Месяц</item>
+        <item>Год</item>
+    </string-array>
+    <string-array name="repeat_month_chooser">
+        <item>Каждый</item>
+        <item>Первый</item>
+        <item>Второй</item>
+        <item>Третий</item>
+        <item>Четвертый</item>
+        <item>Последний</item>
+    </string-array>
+    <string name="foto_del">Удалить фото</string>
+    <string name="foto_set">Установить фото</string>
+    <string name="choose">Выбрать</string>
+    <string name="choosen">Выбрано:</string>
+    <string name="confirm_delete_text_mass">Вы уверены, что хотите удалить выбранные задачи?</string>
+    <string name="add_checked_tasks">Пожалуйста, выберите задачи</string>
+    <string name="set_as_read">Сдел. прочитанными</string>
+    <string name="choose_new_file">Выбрать файл</string>
+    <string name="cut">Вырезать</string>
+    <string name="paste">Вставить</string>
+    <string name="task_added">Задача добавлена</string>
+    <string name="new_assignment">Новое поручение!</string>
+    <string name="l_login">Ваш логин</string>
+    <string name="properties_enter_comment">Введите сообщение...</string>
+    <string name="properties_comments">Комментарии</string>
+    <string name="account_license_expires">Лицензия истекает:</string>
+    <string name="account_license_org">Организация:</string>
+    <string name="account_license_director">Владелец лицензии:</string>
+    <string name="account_license_spase_server">Занято места на сервере:</string>
+    <string name="account_profile">Профиль</string>
+    <string name="account_change">Изменить фото</string>
+    <string name="account_password">Изменить пароль</string>
+    <string name="account_exit">Выход</string>
+    <string name="account_old_password">Введите текущий пароль</string>
+    <string name="account_new_password">Введите новый пароль</string>
+    <string name="account_new_password_again">Повторите новый пароль</string>
+    <string name="follow">Следить за проектом</string>
+    <string name="leave_project">Покинуть проект</string>
+    <string name="unboarding_addtasks">Начните работу с создания задачи</string>
+    <string name="settings_sound">Звуковые эффекты</string>
+    <string name="data_loading">Пожалуйста, подождите, идет загрузка</string>
+    <string name="task_create">Дата создания задачи -</string>
+    <string name="support_chat">Чат с поддержкой</string>
+    <string name="support_log">Отправить информацию для решения проблем</string>
+    <string name="sort_by_color">Сортировать по цвету</string>
+    <string name="sort_by_term">Сортировать по дате</string>
+    <string name="sort_by_date_creation">Сортировать по дате создания</string>
+    <string name="connection_string">Строка подключения</string>
+    <string name="connection_settings">Настройки подключения</string>
+    <string name="connection_add_str_sync_adress">Введите адрес</string>
+    <string name="search_not_elements">Поиск не дал результатов</string>
+    <string name="done">Готово</string>
+    <string-array name="pre_time">
+        <item>0</item>
+        <item>5</item>
+        <item>10</item>
+        <item>15</item>
+        <item>30</item>
+        <item>60</item>
+    </string-array>
+    <string name="pre_notify">До начала (в минутах):</string>
+    <string name="add_emp">Добавить сотрудника</string>
+    <string name="unboarding_dialog_members">Для того чтобы дать доступ к проекту, вам необходимо добавить сотрудника.</string>
+    <string name="unboarding_dialog_projects">Создайте ваши проекты! Проекты могут иметь подпроект любой вложенности.</string>
+    <string name="unboarding_dialog_performer">Для того чтобы поручить задачу сотруднику, вам необходимо сначала его добавить.</string>
+    <string name="unboarding_dialog_categories">Создайте свои метки! Например, \'Важно\', \'Срочно\', \'VIP-клиент\' и т.д. Это позволит вам группировать задачи по смысловым категориям. У одной задачи может быть несколько меток. Метки могут иметь древовидную структуру.</string>
+    <string name="unboarding_dialog_markers">Добавьте цвета. С помощью них вы сможете окрашивать задачи в нужный цвет. Например, важные задачи можно сделать красного цвета, а встречи окрашивать в синий цвет. В списке задач вы сможете сортировать задачи по цвету.</string>
+    <string name="unboarding_default_category1">Важно</string>
+    <string name="unboarding_default_category2">Срочно!</string>
+    <string name="unboarding_default_category3">Внимание</string>
+    <string name="del_project">Удалить проект</string>
+    <string name="preview_slide1_text">Привет, </string>
+    <string name="preview_slide1_subtext">Готовы выполнять больше задач каждый день? \n Давайте настроим Вам ЛидерТаск.</string>
+    <string name="preview_slide2_text">Выберите готовые проекты из списка</string>
+    <string name="preview_slide2_check2">Бизнес</string>
+    <string name="preview_slide2_check3">Семья</string>
+    <string name="preview_slide2_check4">Путешествия</string>
+    <string name="preview_slide2_check5">Хобби</string>
+    <string name="preview_slide3_text">Пригласить сотрудников</string>
+    <string name="preview_slide3_subtext">Введите E-mail ваших сотрудников</string>
+    <string name="preview_slide3_edit_hint">Введите E-mail сотрудника</string>
+    <string name="preview_slide3_no_emps">У меня нет сотрудников, я один</string>
+    <string name="preview_slide4_text">Напишите поручение вашему сотруднику</string>
+    <string name="preview_slide4_subtext">Задача поручается исполнителю</string>
+    <string name="preview_slide4_task">Задача</string>
+    <string name="preview_slide4_choose">Выберите сотрудника</string>
+    <string name="preview_slide5_text">Что нужно сделать сегодня?</string>
+    <string name="preview_slide5_subtext">Введите задачу на сегодня</string>
+    <string name="preview_slide5_footer">Не держите все в голове - запишите в список!</string>
+    <string name="preview_slide6_text">Какую задачу Вы бы хотели повторять каждый день?</string>
+    <string name="preview_slide6_everyday">Каждый день</string>
+    <string name="preview_slide7_text">Поздравляаем, ЛидерТаск готов к работе!</string>
+    <string name="preview_add">Пригласить</string>
+    <string name="preview_cansel">Завершить настройку</string>
+    <string name="market">Маркет ЛидерТаск</string>
+    <string name="training_courses">Обучающие курсы</string>
+    <string name="open">Открыть</string>
+    <string name="market_name1">Видеокурс по тайм-менеджменту</string>
+    <string name="market_subname1">Пройдите базовый курс по управлению временем</string>
+    <string name="market_name2">Электронная книга \'Секреты управления временем\'</string>
+    <string name="market_subname2">\'Секреты управления временем\' - электронная книга-справочник с точными инструкциями-технологиями для более успешного управления вашими делами.</string>
+    <string name="market_name3">Видеокурс \'Турбо Тайм-Менеджмент\'</string>
+    <string name="market_subname3">Видеокурс \'Турбо Тайм-Менеджмент\' разработан для тех, кто хочет быстро научиться управлять временем. В курсе собраны основные принципы высокой эффективности, рассказано КАК их применять здесь и сейчас.</string>
+    <string name="market_name4">База полезных советов</string>
+    <string name="market_subname4">Электронная книга с более чем 2600 полезными советами. База полезных советов - кладезь полезной практической информации, она работает на повышение вашей эффективности!</string>
+    <string name="market_name5">Главные методики Тайм-Менеджмента за 60мин</string>
+    <string name="market_subname5">Практическое руководство по применению трех систем тайм-менеджмента на практике</string>
+    <string name="app_rate_title">Оцените LeaderTask</string>
+    <string name="app_rate_text">Если вам нравится использовать LeaderTask, пожалуйста, оцените наше приложение.</string>
+    <string name="app_rate_rate">Оценить</string>
+    <string name="app_rate_later">Позже</string>
+    <string name="app_rate_no">Нет, спасибо</string>
+    <string name="add_color">Добавить цвет</string>
+    <string name="add_categoty">Добавить метку</string>
+    <string name="add_task_top">В начало списка</string>
+    <string name="add_task_bot">В конец списка</string>
+    <string name="add_task">Добавление задач</string>
+    <string name="author">Автор</string>
+    <string name="confirm_leave_project">Вы действительно хотите покинуть проект?</string>
+    <string name="error_no_email_facebook">Для регистрации вам необходимо указать свой E-mail в настройках аккаунта Facebook</string>
+    <string name="notification_task_done">Задача выполнена</string>
+    <string name="notification_new_comment">Новое сообщение</string>
+    <string name="notification_new_comments">Новые сообщения к задаче</string>
+    <string name="del_category">Удалить метку</string>
+    <string name="change_category">Изменить метку</string>
+    <string name="express_panel">Экспресс панель</string>
+    <string name="txt_just_nono">Нет</string>
+    <string name="account_cont_emps">Количество рабочих мест:</string>
+    <string name="add_new_user_message">Сотруднику отправлено письмо с дальнейшими инструкциями о начале работы в ЛидерТаск</string>
+    <string name="speech_dialog_title">Скажите что-нибудь</string>
+    <string name="notsave">Отменить изменения</string>
+    <string name="autonomy">Автономный режим</string>
+    <string name="one_week_in_nav">Одна неделя в календаре</string>
+    <string name="in">на</string>
+    <string name="settings_notification_for_me">О новых поручениях для меня</string>
+    <string name="settings_notification_by_me">О завершении моих поручений</string>
+    <string name="settings_notification_comments">Об обсуждении задач</string>
+    <string name="del_canceled">Удаление завершенных задач</string>
+    <string name="del_canceled2">Удалить все сделанные задачи</string>
+    <string name="del_canceled3">Удалить сделанные задачи старше месяца</string>
+    <string name="del_canceled_title">Действительно удалить все завершенные задачи?</string>
+    <string name="notify_overdue">У вас есть просроченные задачи</string>
+    <string name="notify_overdue_sub">Вам необходимо принять меры!</string>
+    <string name="settings_notification_overdue">О просроченных задачах</string>
+    <string name="settings_notification_unread">О непрочитанных задачах</string>
+    <string name="settings_notification_today">О задачах на сегодня</string>
+    <string name="notify_unread">У вас есть непрочитанные задачи</string>
+    <string name="notify_today">У вас есть задачи на сегодня</string>
+    <string name="notify_settings">Уведомления и напоминания</string>
+    <string name="overdue_in_nav">Пункт Просроченные</string>
+    <string name="overdue_tasks">Просроченные задачи</string>
+    <string name="settings_show_colors_in_navigator">Показывать цвета</string>
+    <string name="settings_show_emps_in_navigator">Показывать сотрудников</string>
+    <string name="settings_show_week_calendar">Номер недели в календаре</string>
+    <string name="market_name6">Сотрудники: Найм, мотивация, рост</string>
+    <string name="market_subname6">Пошаговое руководство по-найму, обучению, мотивации сотрудников, увеличению их производительности, а также сплочению коллектива. Помимо этого внутри вы найдёте чек-листы, тесты и конкретные примеры когда и как их применять.</string>
+    <string name="loading_text1">Загружаем задачи...</string>
+    <string name="loading_text2">Настраиваем ЛидерТаск...</string>
+    <string name="settings_show_week_calendar_first">Неделю начинать с 1 января</string>
+    <string name="emp_max">Вы достигли предела количества сотрудников. Необходимо расширить лицензию.</string>
+    <string name="emp_max_do">Расширить лицензию</string>
+    <string name="chronometry">Факт / План</string>
+    <string name="chronometry1">Минут</string>
+    <string name="chronometry2">Часов</string>
+    <string name="chronometry3">Дней</string>
+    <string name="chronometry4">Секунд</string>
+    <string name="chronometry_notify">Время по задаче истекло</string>
+    <string name="chronometry_del">Сбросить</string>
+    <string name="chronometry00">сек</string>
+    <string name="chronometry10">мин</string>
+    <string name="chronometry20">ч</string>
+    <string name="chronometry30">дн</string>
+    <string name="error_speeching">Вам необходимо включить распозование голоса в настройках</string>
+    <string name="chronometry_comment">Факт считается от статуса \'В работе\' до другого статуса автоматически</string>
+    <string name="fact">Факт</string>
+    <string name="paln">План</string>
+    <string name="settings_not_about">Уведомлять:</string>
+    <string name="d_color_remove_title">Удаление цвета</string>
+    <string name="d_color_remove_message">Действительно удалить цвет?</string>
+    <string name="after_tomorrow">Послезавтра</string>
+    <string name="innew">В</string>
+    <string name="Monday2">В понедельник</string>
+    <string name="Tuesday2">Во вторник</string>
+    <string name="Wednesday2">В среду</string>
+    <string name="Thursday2">В четверг</string>
+    <string name="Friday2">В пятницу</string>
+    <string name="Saturday2">В субботу</string>
+    <string name="Sunday2">В воскресенье</string>
+    <string name="may">мая</string>
+    <string name="show_all">Показать все</string>
+    <string name="task_check_set">Установить</string>
+    <string name="calendar_1_day">На 1 день</string>
+    <string name="calendar_3_day">На 3 дня</string>
+    <string name="calendar_7_day">На 7 дней</string>
+    <string name="calendar_name">Ежедневник</string>
+    <string name="no_tasts_title">Задач на сегодня нет!</string>
+    <string name="begin">Начало в:</string>
+    <string name="end">Конец в:</string>
+    <string name="settings_chrono">Хронометраж</string>
+    <string name="invitation">Приглашение в команду</string>
+    <string name="invitation_mes"> приглашает вас присоединиться к его команде </string>
+    <string name="invitation_yes">Вы успешно добавлены в команду!</string>
+    <string name="invitation_no">К сожалению, добавить вас в команду не удалось</string>
+    <string name="accept">Принять</string>
+    <string name="decline">Отказаться</string>
+    <string name="add_new_user_message2">Сотруднику отправлено приглашение в ЛидерТаск</string>
+    <string name="add_new_user_message3">Для начала работы сотруднику необходимо:  1) Установить Лидертаск на любое устройство 2) Ввести логин и пароль сотрудника:  %1$s  %2$s</string>
+    <string name="reg_email2">Введите вашу рабочую эл. почту</string>
+    <string name="error_addemp_org">Сотрудник уже состоит в другой организации</string>
+    <string name="member">Участник</string>
+    <string name="member2">успешно добавлен в вашу команду!</string>
+    <string name="phone_title">Введите ваш номер телефона</string>
+    <string name="phone_subtitle">Номер телефона нужен для обеспечения безопасности вашего аккаунта.</string>
+    <string name="toast_unboarding1">Отлично! Задача создана, теперь добавьте проект</string>
+    <string name="toast_unboarding2">Получилось! Теперь добавьте сотрудников</string>
+    <string name="toast_unboarding3">Великолепно!!! Теперь вы можете поручать задачу сотрудникам!</string>
+    <string name="toast_unboarding4">Супер! Задача поручена сотруднику!</string>
+    <string name="settings_cal_period">Рабочее время</string>
+    <string name="settings_cal_period_start">Начало дня</string>
+    <string name="settings_cal_period_end">Конец дня</string>
+    <string name="reg_rules">Регистрируясь, Вы соглашаетесь с</string>
+    <string name="reg_rules1">условиями использования</string>
+    <string name="reg_rules2">и</string>
+    <string name="reg_rules3">политикой конфиденциальности</string>
+    <string name="enter_your_name">Пожалуйста, введите ваше имя</string>
+    <string name="preview_slide3_edit_hint2">Введите имя сотрудника</string>
+    <string name="pro_projecr">Пробный проект</string>
+    <string name="pro_main1">Освойте ЛидерТаск (нажмите на эту задачу)</string>
+    <string name="pro_main2">Повысьте свою продуктивность</string>
+    <string name="pro_main3">Будьте в курсе</string>
+    <string name="pro_main1_1">Этот поможет вам быстро освоить ЛидерТаск.</string>
+    <string name="pro_main1_2">Постарайтесь выполнить все задания</string>
+    <string name="pro_main1_3">Если у задачи есть иконка «Лист бумаги» (располагается справа) - это означает, что у задачи есть примечание. Нажмите на задачу, чтобы его прочесть</string>
+    <string name="pro_main1_31">Примечание располагается в этой области</string>
+    <string name="pro_main1_4">Если у задачи есть индикатор-цифра в сером кружке (располагается слева) - это означает, что у задачи есть подзадачи. Нажмите на задачу, чтобы их увидеть</string>
+    <string name="pro_main1_4_1">Это подзадача</string>
+    <string name="pro_main1_5">Создайте задачи</string>
+    <string name="pro_main1_51">Откройте навигатор (панель слева), выберите любой день в календаре и нажмите на круглую кнопку добавления задачи. \n\n Задача привяжется к выбранному дню.</string>
+    <string name="pro_main1_6">Создайте проекты</string>
+    <string name="pro_main1_61">Проект  - это папка, в которую помещаются задачи, объединённые одной целью. \n\n Откройте навигатор и в секции «Проекты» нажмите на кнопку «Добавить проект». \n\n Одна конкретная задача может находиться только в одном проекте. \n\n Проекты можно выстраивать в деревья.</string>
+    <string name="pro_main1_7">Прикрепите метки и окрасьте задачи в нужный цвет</string>
+    <string name="pro_main1_71">Метка - это цветной ярлык с надписью внутри. \n\n Зайдите в задачу, нажмите на кнопку «Метки» и в появившемся окне выберите нужные метки. \n\n Далее окрасьте строчку задачи в произвольный цвет. Для этого нажмите на один из цветных квадратов, располагающихся под примечанием.</string>
+    <string name="pro_main1_8">Создайте подзадачи</string>
+    <string name="pro_main1_81">Выполните долгое нажатие на задачу и в появившемся меню выберите «Подзадачи». Вы спуститесь на уровень подзадач. \n\n Чтобы создать подзадачи, нажмите на круглую кнопку добавления задачи. \n\n К любой подзадаче можно добавить свои подзадачи. Глубина вложенности не ограничена.</string>
+    <string name="pro_main1_9">Распланируйте сегодняшний день</string>
+    <string name="pro_main1_91">Откройте навигатор и нажмите на пункт «Сегодня».  \n\n Добавьте задачи, которые нужно выполнить именно сегодня. \n\n Чтобы завершить задачу, нажмите на квадрат статуса (располагается в строчке задачи слева) и в появившемся окне выберите «Завершено». \n\n Чтобы скрыть завершённые задачи, нажмите на кнопку с иконкой трёх точек (располагается сверху справа) и в появившемся меню выберите «Скрыть завершённые задачи».</string>
+    <string name="pro_main1_10">Создайте поручение</string>
+    <string name="pro_main1_101">Зайдите в задачу, нажмите на кнопку «Поручить», затем нажмите на кнопку «Добавить сотрудника». Введите Имя и емейл сотрудника. \n\n Поручение будет отправлено вашему сотруднику в ЛидерТаск. \n\n Чтобы увидеть поручение, ваш работник должен открыть письмо от ЛидерТаска, скачать программу по ссылке и войти в приложение, используя логин и пароль, указанные в письме.</string>
+    <string name="pro_main1_11">Проконтролируйте поручение</string>
+    <string name="pro_main1_111">В каждую задачу встроен чат. В нём можно обсуждать с сотрудником рабочие моменты. \n\n Зайдите в задачу, найдите поле ввода комментария в нижней части окна и отправьте сообщение.  \n\n Обратите внимание на статус задачи. Он располагается под квадратами цветов. Всем новым задачам автоматически присваивается статус «Не началось». Если сотрудник изменил статус поручения на «Готово к сдаче» (в квадрате появилась красная галочка) - проверьте результат задачи.</string>
+    <string name="pro_main1_12">Начните совместную работу с коллегами</string>
+    <string name="pro_main1_121">Зайдите в проект, нажмите на кнопку с иконкой человека (сверху справа) и в открывшемся окне выберите нужных сотрудников. \n\n Выбранные сотрудники получат доступ к проекту. \n\n Сотрудники смогут видеть список задач внутри проекта, обсуждать их в чате, прикреплять файлы, а также добавлять новые задачи.</string>
+    <string name="pro_main2_1">Удобные жесты</string>
+    <string name="pro_main2_11">Зайдите в нужный день, проект или список задач сотрудника. \n\n В нижней части экрана быстро проведите пальцем справа-налево. Активируется режим пакетной работы с задачами. \n\n Нажмите поочерёдно на несколько задач, затем нажмите на кнопку с иконкой карандаша (располагается в нижней части экрана). В появившемся окне выберите действие для выбранных задач.</string>
+    <string name="pro_main2_2">Виджеты</string>
+    <string name="pro_main2_22">У ЛидерТаска есть 2 виджета: \n * Виджет быстрого добавления задачи \n * Виджет быстрого добавления фото \n\n Добавьте виджеты на рабочий стол.  \n\n Нажмите на виджет быстрого добавления задачи. В появившемся окне введите название задачи с помощью клавиатуры или нажмите на значок микрофона и надиктуйте задачу голосом (речь автоматически сконвертируется в текст). Задача будет добавлена в раздел «Неразобранное». \n\n Нажмите на виджет быстрого добавления фото. Запустится приложение камеры. Сделайте фото и нажмите на кнопку с иконкой галочки. В раздел «Неразобранное» будет добавлена задача с прикреплённым фото.</string>
+    <string name="pro_main2_3">Голосовое добавление задач с помощью команды «ОК, Google»</string>
+    <string name="pro_main2_33">Произнесите «ОК, Google». Затем произнесите команду: «ДОБАВИТЬ ЗАМЕТКУ забрать посылку». \n\n Задача «Забрать посылку» будет добавлена в раздел «Неразобранное».</string>
+    <string name="pro_main2_4">Распознование даты, времени и исполнителя в названии задачи</string>
+    <string name="pro_main2_44">Откройте виджет быстрого добавления задачи. \n\n Введите название задачи: надиктуйте голосом или наберите на клавиатуре.  \n\n ЛидерТаск распознает: \n * Дату, например: «Сегодня», «Завтра», «15 мая» \n * Время, например: «в 17:30», «в 3», «в полдень» \n * Исполнителя. Должно присутствовать слово «Поручить», например: «ПОРУЧИТЬ Дмитрий» или «ПОРУЧИТЬ Дмитрию» (нужно использовать имя сотрудника, как оно отображается в навигаторе) \n\n Задача отправится в соответствующий день или будет поручена нужному сотруднику.</string>
+    <string name="pro_main2_5">Повторяющиеся задачи</string>
+    <string name="pro_main2_55">Если сделать задачу повторяющейся, то она автоматически будет появляться в списке дел в определённые дни.  \n\n Зайдите в задачу, нажмите на кнопку «Дата и напоминание» и привяжите задачу к определённому дню. Затем нажмите на кнопку «Повтор», в появившемся окне нажмите на кнопку «Не повторять», в появившемся меню выберите интервал повторения задачи и затем произведите настройку интервала.</string>
+    <string name="pro_main2_6">Настройки</string>
+    <string name="pro_main2_66">Откройте навигатор и зайдите в раздел «Настройки» (располагается внизу).  \n\n Вы можете настроить более 20 параметров приложения. Например, уведомления, звуковые эффекты, пароль на вход в приложение, рабочее время, разделы в навигаторе и прочее.</string>
+    <string name="pro_main2_7">Сортировка задач</string>
+    <string name="pro_main2_77">ЛидерТаск умеет автоматически расставлять задачи в определённом порядке.  \n\n Сортировка производится по одному из 3 параметров: \n * Дата создания задачи \n * Цвет задачи \n * Дата и время, к которым привязана задача  \n\n Зайдите в нужный день, проект или список задач сотрудника. Нажмите на кнопку с иконкой трёх точек (располагается сверху справа). Выберите нужный параметр.  \n\n Сортировка запускается вручную каждый раз, когда необходимо расставить задачи определённым образом.</string>
+    <string name="pro_main2_8">Хронометраж</string>
+    <string name="pro_main2_88">Вы можете подключить к ЛидерТаску дополнительный модуль «Хронометраж». Он предназначен для точного подсчёта времени, потраченного на каждую задачу. \n\n Модуль можно приобрести в нашем Маркете - магазине дополнительных продуктов для ЛидерТаска. \n\n Прочитайте короткий обзор модуля: \n https://www.leadertask.ru/products/khronometrazh</string>
+    <string name="pro_main3_1">Подпишитесь на новости о ЛидерТаске</string>
+    <string name="pro_main3_11">Подпишитесь на новости о ЛидерТаске: \n * Зайдите в наше сообщество в VK: \n https://vk.com/leadertask \n * В правой колонке нажмите на кнопку «Подписаться на новости» \n * В появившемся окне нажмите на кнопку «Подписаться» \n * В следующем окне нажмите на кнопку «Разрешить»</string>
+    <string name="pro_main3_2">Оцените приложение в Play Маркет</string>
+    <string name="pro_main3_22">Будем признательны, если вы поставите нашему приложению оценку и напишете короткий отзыв: \n https://play.google.com/store/apps/details?id=com.ashberrysoft.leadertask</string>
+    <string name="pro_main3_3">Скачайте ЛидерТаск для других платформ</string>
+    <string name="pro_main3_33">Скачайте ЛидерТаск для Windows, Mac, iPhone и iPad: \n https://www.leadertask.ru/download</string>
+    <string name="pro_main3_4">Напишите нам!</string>
+    <string name="pro_main3_44">Если у вас есть вопросы, напишите нам: \n https://www.leadertask.ru/content/view/1024</string>
+    <string name="unboarding_default_marker1">Зеленый</string>
+    <string name="unboarding_default_marker2">Желтый</string>
+    <string name="unboarding_default_marker3">Оранжевый</string>
+    <string name="unboarding_default_marker4">Красный</string>
+    <string name="unboarding_default_marker5">Синий</string>
+    <string name="color_task_name1">Синим цветом удобно отмечать Встречи или Мероприятия. Вы можете создать любые цвета, которыми будете помечать задачи.</string>
+    <string name="color_task_name2">Красным цветом удобно помечать важные задачи.</string>
+    <string name="category_task_name1">Метки помогут вам отмечать задачи по различным признакам(важно, срочно) или по контекстам(дома, в офисе, в банке). Вы можете создать любое количество меток.</string>
+    <string name="preview_slide2_check1">Здоровье</string>
+    <string name="preview_color_add1">Цель года</string>
+    <string name="preview_color_add2">Цель месяца</string>
+    <string name="preview_color_add3">Цель недели</string>
+    <string name="pro_main0">Заберите ваш бонус!</string>
+    <string name="pro_main01">Откройте вашу электронную почту, которую вы указали при регистрации и нажмите на ссылку подтвердить регистрацию.  \n \n После регистрации вы получите  видео Мастер Класс «7 привычек успешных людей». Видео научит вас в разы ускорять исполнение ваших желаний!</string>
+    <string name="premium_dialog_1">ЛидерТаск Премиум</string>
+    <string name="premium_dialog_2">Получите полный доступ ко всем возможностям ЛидерТаск!</string>
+    <string name="premium_dialog_3">Премиум это:</string>
+    <string name="premium_dialog_4">100% функционал ЛидерТаска на всех платформах: Windows, Android, iPhone и iPad</string>
+    <string name="premium_dialog_5">Синхронизация задач на всех ваших устройствах</string>
+    <string name="premium_dialog_6">Поручение задач коллегам</string>
+    <string name="premium_dialog_7">Работа в общих проектах</string>
+    <string name="premium_dialog_8">Создание повторяющихся задач</string>
+    <string name="premium_dialog_9">Прикрепление файлов к задачам</string>
+    <string name="premium_dialog_10">Поиск задач</string>
+    <string name="premium_dialog_11">и многое другое...</string>
+    <string name="premium_dialog_12">Подписаться сейчас</string>
+    <string name="premium_dialog_13">1990,00₽ в год</string>
+    <string name="buy_chrono">Функция хронометража доступна за дополнительную оплату</string>
+    <string name="buy_for_extend">Для покупки расширенных функций необходимо сначала купить лицензию на ЛидерТаск</string>
+    <string name="chrono_price">990,00₽</string>
+    <string name="chrono_price_buy">Купить</string>
+
+    <string name="task_focus">В фокусе</string>
+    <string name="task_focus_menu">Фокус</string>
+    <string name="task_close_noty">Завершить</string>
+    <string name="task_tomorrow_noty">Отложить на завтра</string>
+    <string name="pin_at_start">Вход по ПИН коду</string>
+    <string name="finger_at_start">Вход по отпечатку пальца</string>
+    <string name="activity_not_locked_text">Nothing should happen on this page, here for test purpose</string>
+    <string name="activity_dialog_title">Forgot you Pincode?</string>
+    <string name="activity_dialog_accept">OK</string>
+    <string name="activity_dialog_decline">CANCEL</string>
+    <string name="activity_dialog_content">Tap \'OK\' to log out, when you log back in you\'ll be able to create a new Pincode.\n\nIf you remember your Pincode, tap \'Cancel\' to go back.</string>
+    <string name="activity_appcompat_message">I am a PinCompatActivity!</string>
+    <string name="task_access">Доступ</string>
+    <string name="multi_mode">Выбрать несколько задач</string>
+    <string name="buy_leadertask">Купить ЛидерТаск</string>
+    <string name="task_access_nav">Открытые мне задачи</string>
+</resources>

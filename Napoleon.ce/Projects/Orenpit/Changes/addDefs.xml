@@ -1,0 +1,77 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+    <object name="EquQty">
+      <sources>
+        <source name="DBFTable">
+          <param name="tableName">"EQTY"</param>
+        </source>
+      </sources>
+
+      <field name="id" type="string" />
+      <field name="idItem" type="string" data="ID_I"/>
+      <field name="qty" type="number" prec="3"/>
+    </object>
+
+    <object name="Equipment">
+      <sources>
+        <source name="DBFCatalogTable">
+          <param name="tableName">$object.table + $user.id</param>
+          <param name="catalog">"id"</param>
+          <param name="ordered">1</param>
+        </source>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="table">"EQUIP"</member>
+      <member name="primaryKey">"userid,created"</member>
+      <memberArray name="index">"created"</memberArray>
+
+      <field name="userid" type="string" data="USER_ID" execOn="Put">$user.id</field>
+      <field name="created" type="timestamp" data="CREATED,NUM"/>
+      <field name="timeZone" type="number" />
+      <field name="serverTimeZone" type="number" data="S_TZ" execOn="Put" feature="USE_TIMEZONE">ServerTimeZone()</field>
+      <field name="sended" type="timestamp" data="S_DATE" execOn="Put">Now()</field>
+      <field name="date" type="date" />
+      <field name="id" width="55" type="string" />
+      <field name="remark" type="string" />
+      <field name="items" type="collection">
+        <data>
+          <object name="OrderItem">
+            <sources>
+              <source name="DBFCatalogItemTable"/>
+              <source name="SQTable" type="internal" />
+            </sources>
+
+            <field name="id" width="40" type="string" data="ID_I"/>
+            <field name="qty" type="number" prec="3" />
+            <field name="ordflag" width="1" type="number" execOn="Put">FirstItem($object)</field>
+          </object>
+        </data>
+      </field>
+
+      <field name="latitude" type="number" prec="5" />
+      <field name="longitude" type="number" prec="5" />
+      <field name="stltime" type="number" />
+
+      <events>
+        <event type="put">
+          <action name="WriteInternal">$object.type</action>
+          <action name="WriteToLog">$object.type;$object.created</action>
+        </event>
+      </events>
+    </object>
+
+    <modify src="Org">
+      <add>
+        <field name="info" type="string" />
+      </add>
+    </modify>
+
+    <modify src="Price">
+      <add>
+        <field name="wcost" type="number" prec="2" />
+      </add>
+    </modify>
+	</objects>
+</serverDefs>

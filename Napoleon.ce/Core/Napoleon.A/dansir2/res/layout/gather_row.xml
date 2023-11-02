@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="horizontal"
+    android:paddingTop="7sp" >
+
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="wrap_content"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textSize="@dimen/row_font"
+        android:paddingLeft="4sp"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/tvRing"
+        android:gravity="right"
+        android:minWidth="40sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textSize="@dimen/row_font"
+        android:paddingRight="4sp"
+        android:textColor="@color/black" />
+
+</LinearLayout>

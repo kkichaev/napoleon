@@ -1,0 +1,37 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+   <objects>      
+     <modify src="Visit">
+       <change>
+         <sources>
+           <source name="DBFTable">
+             <param name="tableName">"VT" + $user.id</param>
+           </source>
+           <source name="SQTable" type="internal" />
+         </sources>
+       </change>
+       <add>
+          <event type="put">
+            <action name="WriteInternal">$object.type</action>
+            <action name="WriteToLog">$object.type;$object.date</action>
+          </event>
+       </add>
+     </modify>
+
+     <modify src="GPSPos">
+       <change>
+         <sources>
+           <source name="DBFTable">
+             <param name="tableName">"GPS" + $user.id</param>
+           </source>
+           <source name="SQTable" type="internal" />
+         </sources>
+       </change>
+       <add>
+         <event type="put">
+           <action name="WriteInternal">$object.type</action>
+         </event>
+       </add>
+     </modify>
+   </objects>
+</serverDefs>

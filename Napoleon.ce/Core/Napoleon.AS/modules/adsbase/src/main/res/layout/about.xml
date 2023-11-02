@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" 
+    android:layout_height="wrap_content"
+	android:layout_width="wrap_content"
+    android:orientation="vertical"
+    android:minWidth="300dp"
+    android:minHeight="250dp"
+    android:paddingTop="7dp"
+    android:paddingLeft="3dp"
+    android:paddingRight="3dp"
+    android:paddingBottom="7dp">
+	
+     <TextView
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:drawableLeft="@drawable/pictograms"
+         android:drawablePadding="10dp"
+         android:text="@string/productName"
+         android:textSize="20sp" />
+
+     <LinearLayout
+         android:layout_width="fill_parent"
+         android:layout_height="wrap_content"
+         android:layout_marginBottom="20dp"
+         android:layout_marginTop="20dp" >
+
+         <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:paddingRight="10dp"
+             android:text="@string/Version"/>
+
+         <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="@string/version"/>
+     </LinearLayout>
+
+     <TextView
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:text="@string/company"/>
+
+     <LinearLayout
+         android:layout_width="fill_parent"
+         android:layout_height="wrap_content"
+         android:layout_marginTop="10dp"
+         android:orientation="horizontal" >
+
+         <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:paddingRight="10dp"
+             android:text="@string/phone1"/>
+
+         <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="@string/contactPhone"/>
+     </LinearLayout>
+
+     <LinearLayout
+         android:layout_width="fill_parent"
+         android:layout_height="wrap_content"
+         android:layout_marginTop="10dp"
+         android:orientation="horizontal" >
+
+         <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:paddingRight="10dp"
+             android:text="@string/site"/>
+
+         <TextView
+             android:id="@+id/tvLink"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:autoLink="all"
+             android:text="@string/link"/>
+     </LinearLayout>
+
+     <Button
+         android:id="@+id/btnCheckUpdates"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_gravity="center_horizontal"
+         android:layout_marginTop="10dp"
+         android:text="@string/checkNew"
+         android:visibility="visible" />
+
+</LinearLayout>

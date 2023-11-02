@@ -1,0 +1,867 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{F240623C-4501-4DC4-9419-38435487BD93}</ProjectGuid>
+    <RootNamespace>Lib.pc</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>12.0.30501.0</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>..\bin\$(Configuration)\Core.New\</OutDir>
+    <IntDir>$(OutDir)$(TargetName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>..\bin\$(Configuration)\Core.New\</OutDir>
+    <IntDir>$(OutDir)$(TargetName).$(Platform)\</IntDir>
+    <TargetName>$(ProjectName)_$(Platform)</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>..\bin\$(Configuration)\Core.New\</OutDir>
+    <IntDir>$(OutDir)$(TargetName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>..\bin\$(Configuration)\Core.New\</OutDir>
+    <IntDir>$(OutDir)$(TargetName).$(Platform)\</IntDir>
+    <TargetName>$(ProjectName)_$(Platform)</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\Include;Include;ZLib;crypt;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;ENCODE_CONNECTION;LTM_DESC;LTC_SOURCE;_DEBUG;_WINDOWS;_USRDLL;SYNCPC_EXPORTS;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\Include;Include;ZLib;crypt;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;ENCODE_CONNECTION;LTM_DESC;LTC_SOURCE;_DEBUG;_WINDOWS;_USRDLL;SYNCPC_EXPORTS;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Lib>
+      <OutputFile>$(OutDir)$(ProjectName)_$(Platform).lib</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <PreBuildEvent>
+      <Command />
+    </PreBuildEvent>
+    <ClCompile>
+      <AdditionalIncludeDirectories>..\Include;Include;ZLib;crypt;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;ENCODE_CONNECTION;LTM_DESC;LTC_SOURCE;NDEBUG;_WINDOWS;_USRDLL;SYNCPC_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <PreBuildEvent>
+      <Command />
+    </PreBuildEvent>
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <AdditionalIncludeDirectories>..\Include;Include;ZLib;crypt;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;ENCODE_CONNECTION;LTM_DESC;LTC_SOURCE;NDEBUG;_WINDOWS;_USRDLL;SYNCPC_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Lib>
+      <OutputFile>$(OutDir)$(ProjectName)_$(Platform).lib</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\Include\AESEnc.cpp" />
+    <ClCompile Include="..\Include\C32.cpp" />
+    <ClCompile Include="..\Include\OutStream.cpp" />
+    <ClCompile Include="Core\dateparse.cpp" />
+    <ClCompile Include="Core\filefield.cpp" />
+    <ClCompile Include="Core\packet.cpp" />
+    <ClCompile Include="Core\pktops.cpp" />
+    <ClCompile Include="Core\servobj.cpp" />
+    <ClCompile Include="Core\socket.cpp" />
+    <ClCompile Include="Core\stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Core\stdobjs.cpp" />
+    <ClCompile Include="Core\thread.cpp" />
+    <ClCompile Include="crypt\adler32.c" />
+    <ClCompile Include="crypt\aes.c" />
+    <ClCompile Include="crypt\aes_tab.c" />
+    <ClCompile Include="crypt\anubis.c" />
+    <ClCompile Include="crypt\base64_decode.c" />
+    <ClCompile Include="crypt\base64_encode.c" />
+    <ClCompile Include="crypt\blake2b.c" />
+    <ClCompile Include="crypt\blake2bmac.c" />
+    <ClCompile Include="crypt\blake2bmac_file.c" />
+    <ClCompile Include="crypt\blake2bmac_memory.c" />
+    <ClCompile Include="crypt\blake2bmac_memory_multi.c" />
+    <ClCompile Include="crypt\blake2bmac_test.c" />
+    <ClCompile Include="crypt\blake2s.c" />
+    <ClCompile Include="crypt\blake2smac.c" />
+    <ClCompile Include="crypt\blake2smac_file.c" />
+    <ClCompile Include="crypt\blake2smac_memory.c" />
+    <ClCompile Include="crypt\blake2smac_memory_multi.c" />
+    <ClCompile Include="crypt\blake2smac_test.c" />
+    <ClCompile Include="crypt\blowfish.c" />
+    <ClCompile Include="crypt\bn_cutoffs.c" />
+    <ClCompile Include="crypt\bn_deprecated.c" />
+    <ClCompile Include="crypt\bn_mp_2expt.c" />
+    <ClCompile Include="crypt\bn_mp_abs.c" />
+    <ClCompile Include="crypt\bn_mp_add.c" />
+    <ClCompile Include="crypt\bn_mp_addmod.c" />
+    <ClCompile Include="crypt\bn_mp_add_d.c" />
+    <ClCompile Include="crypt\bn_mp_and.c" />
+    <ClCompile Include="crypt\bn_mp_clamp.c" />
+    <ClCompile Include="crypt\bn_mp_clear.c" />
+    <ClCompile Include="crypt\bn_mp_clear_multi.c" />
+    <ClCompile Include="crypt\bn_mp_cmp.c" />
+    <ClCompile Include="crypt\bn_mp_cmp_d.c" />
+    <ClCompile Include="crypt\bn_mp_cmp_mag.c" />
+    <ClCompile Include="crypt\bn_mp_cnt_lsb.c" />
+    <ClCompile Include="crypt\bn_mp_complement.c" />
+    <ClCompile Include="crypt\bn_mp_copy.c" />
+    <ClCompile Include="crypt\bn_mp_count_bits.c" />
+    <ClCompile Include="crypt\bn_mp_decr.c" />
+    <ClCompile Include="crypt\bn_mp_div.c" />
+    <ClCompile Include="crypt\bn_mp_div_2.c" />
+    <ClCompile Include="crypt\bn_mp_div_2d.c" />
+    <ClCompile Include="crypt\bn_mp_div_3.c" />
+    <ClCompile Include="crypt\bn_mp_div_d.c" />
+    <ClCompile Include="crypt\bn_mp_dr_is_modulus.c" />
+    <ClCompile Include="crypt\bn_mp_dr_reduce.c" />
+    <ClCompile Include="crypt\bn_mp_dr_setup.c" />
+    <ClCompile Include="crypt\bn_mp_error_to_string.c" />
+    <ClCompile Include="crypt\bn_mp_exch.c" />
+    <ClCompile Include="crypt\bn_mp_exptmod.c" />
+    <ClCompile Include="crypt\bn_mp_expt_u32.c" />
+    <ClCompile Include="crypt\bn_mp_exteuclid.c" />
+    <ClCompile Include="crypt\bn_mp_fread.c" />
+    <ClCompile Include="crypt\bn_mp_from_sbin.c" />
+    <ClCompile Include="crypt\bn_mp_from_ubin.c" />
+    <ClCompile Include="crypt\bn_mp_fwrite.c" />
+    <ClCompile Include="crypt\bn_mp_gcd.c" />
+    <ClCompile Include="crypt\bn_mp_get_double.c" />
+    <ClCompile Include="crypt\bn_mp_get_i32.c" />
+    <ClCompile Include="crypt\bn_mp_get_i64.c" />
+    <ClCompile Include="crypt\bn_mp_get_l.c" />
+    <ClCompile Include="crypt\bn_mp_get_ll.c" />
+    <ClCompile Include="crypt\bn_mp_get_mag_u32.c" />
+    <ClCompile Include="crypt\bn_mp_get_mag_u64.c" />
+    <ClCompile Include="crypt\bn_mp_get_mag_ul.c" />
+    <ClCompile Include="crypt\bn_mp_get_mag_ull.c" />
+    <ClCompile Include="crypt\bn_mp_grow.c" />
+    <ClCompile Include="crypt\bn_mp_incr.c" />
+    <ClCompile Include="crypt\bn_mp_init.c" />
+    <ClCompile Include="crypt\bn_mp_init_copy.c" />
+    <ClCompile Include="crypt\bn_mp_init_i32.c" />
+    <ClCompile Include="crypt\bn_mp_init_i64.c" />
+    <ClCompile Include="crypt\bn_mp_init_l.c" />
+    <ClCompile Include="crypt\bn_mp_init_ll.c" />
+    <ClCompile Include="crypt\bn_mp_init_multi.c" />
+    <ClCompile Include="crypt\bn_mp_init_set.c" />
+    <ClCompile Include="crypt\bn_mp_init_size.c" />
+    <ClCompile Include="crypt\bn_mp_init_u32.c" />
+    <ClCompile Include="crypt\bn_mp_init_u64.c" />
+    <ClCompile Include="crypt\bn_mp_init_ul.c" />
+    <ClCompile Include="crypt\bn_mp_init_ull.c" />
+    <ClCompile Include="crypt\bn_mp_invmod.c" />
+    <ClCompile Include="crypt\bn_mp_iseven.c" />
+    <ClCompile Include="crypt\bn_mp_isodd.c" />
+    <ClCompile Include="crypt\bn_mp_is_square.c" />
+    <ClCompile Include="crypt\bn_mp_kronecker.c" />
+    <ClCompile Include="crypt\bn_mp_lcm.c" />
+    <ClCompile Include="crypt\bn_mp_log_u32.c" />
+    <ClCompile Include="crypt\bn_mp_lshd.c" />
+    <ClCompile Include="crypt\bn_mp_mod.c" />
+    <ClCompile Include="crypt\bn_mp_mod_2d.c" />
+    <ClCompile Include="crypt\bn_mp_mod_d.c" />
+    <ClCompile Include="crypt\bn_mp_montgomery_calc_normalization.c" />
+    <ClCompile Include="crypt\bn_mp_montgomery_reduce.c" />
+    <ClCompile Include="crypt\bn_mp_montgomery_setup.c" />
+    <ClCompile Include="crypt\bn_mp_mul.c" />
+    <ClCompile Include="crypt\bn_mp_mulmod.c" />
+    <ClCompile Include="crypt\bn_mp_mul_2.c" />
+    <ClCompile Include="crypt\bn_mp_mul_2d.c" />
+    <ClCompile Include="crypt\bn_mp_mul_d.c" />
+    <ClCompile Include="crypt\bn_mp_neg.c" />
+    <ClCompile Include="crypt\bn_mp_or.c" />
+    <ClCompile Include="crypt\bn_mp_pack.c" />
+    <ClCompile Include="crypt\bn_mp_pack_count.c" />
+    <ClCompile Include="crypt\bn_mp_prime_fermat.c" />
+    <ClCompile Include="crypt\bn_mp_prime_frobenius_underwood.c" />
+    <ClCompile Include="crypt\bn_mp_prime_is_prime.c" />
+    <ClCompile Include="crypt\bn_mp_prime_miller_rabin.c" />
+    <ClCompile Include="crypt\bn_mp_prime_next_prime.c" />
+    <ClCompile Include="crypt\bn_mp_prime_rabin_miller_trials.c" />
+    <ClCompile Include="crypt\bn_mp_prime_rand.c" />
+    <ClCompile Include="crypt\bn_mp_prime_strong_lucas_selfridge.c" />
+    <ClCompile Include="crypt\bn_mp_radix_size.c" />
+    <ClCompile Include="crypt\bn_mp_radix_smap.c" />
+    <ClCompile Include="crypt\bn_mp_rand.c" />
+    <ClCompile Include="crypt\bn_mp_read_radix.c" />
+    <ClCompile Include="crypt\bn_mp_reduce.c" />
+    <ClCompile Include="crypt\bn_mp_reduce_2k.c" />
+    <ClCompile Include="crypt\bn_mp_reduce_2k_l.c" />
+    <ClCompile Include="crypt\bn_mp_reduce_2k_setup.c" />
+    <ClCompile Include="crypt\bn_mp_reduce_2k_setup_l.c" />
+    <ClCompile Include="crypt\bn_mp_reduce_is_2k.c" />
+    <ClCompile Include="crypt\bn_mp_reduce_is_2k_l.c" />
+    <ClCompile Include="crypt\bn_mp_reduce_setup.c" />
+    <ClCompile Include="crypt\bn_mp_root_u32.c" />
+    <ClCompile Include="crypt\bn_mp_rshd.c" />
+    <ClCompile Include="crypt\bn_mp_sbin_size.c" />
+    <ClCompile Include="crypt\bn_mp_set.c" />
+    <ClCompile Include="crypt\bn_mp_set_double.c" />
+    <ClCompile Include="crypt\bn_mp_set_i32.c" />
+    <ClCompile Include="crypt\bn_mp_set_i64.c" />
+    <ClCompile Include="crypt\bn_mp_set_l.c" />
+    <ClCompile Include="crypt\bn_mp_set_ll.c" />
+    <ClCompile Include="crypt\bn_mp_set_u32.c" />
+    <ClCompile Include="crypt\bn_mp_set_u64.c" />
+    <ClCompile Include="crypt\bn_mp_set_ul.c" />
+    <ClCompile Include="crypt\bn_mp_set_ull.c" />
+    <ClCompile Include="crypt\bn_mp_shrink.c" />
+    <ClCompile Include="crypt\bn_mp_signed_rsh.c" />
+    <ClCompile Include="crypt\bn_mp_sqr.c" />
+    <ClCompile Include="crypt\bn_mp_sqrmod.c" />
+    <ClCompile Include="crypt\bn_mp_sqrt.c" />
+    <ClCompile Include="crypt\bn_mp_sqrtmod_prime.c" />
+    <ClCompile Include="crypt\bn_mp_sub.c" />
+    <ClCompile Include="crypt\bn_mp_submod.c" />
+    <ClCompile Include="crypt\bn_mp_sub_d.c" />
+    <ClCompile Include="crypt\bn_mp_to_radix.c" />
+    <ClCompile Include="crypt\bn_mp_to_sbin.c" />
+    <ClCompile Include="crypt\bn_mp_to_ubin.c" />
+    <ClCompile Include="crypt\bn_mp_ubin_size.c" />
+    <ClCompile Include="crypt\bn_mp_unpack.c" />
+    <ClCompile Include="crypt\bn_mp_xor.c" />
+    <ClCompile Include="crypt\bn_mp_zero.c" />
+    <ClCompile Include="crypt\bn_prime_tab.c" />
+    <ClCompile Include="crypt\bn_s_mp_add.c" />
+    <ClCompile Include="crypt\bn_s_mp_balance_mul.c" />
+    <ClCompile Include="crypt\bn_s_mp_exptmod.c" />
+    <ClCompile Include="crypt\bn_s_mp_exptmod_fast.c" />
+    <ClCompile Include="crypt\bn_s_mp_get_bit.c" />
+    <ClCompile Include="crypt\bn_s_mp_invmod_fast.c" />
+    <ClCompile Include="crypt\bn_s_mp_invmod_slow.c" />
+    <ClCompile Include="crypt\bn_s_mp_karatsuba_mul.c" />
+    <ClCompile Include="crypt\bn_s_mp_karatsuba_sqr.c" />
+    <ClCompile Include="crypt\bn_s_mp_montgomery_reduce_fast.c" />
+    <ClCompile Include="crypt\bn_s_mp_mul_digs.c" />
+    <ClCompile Include="crypt\bn_s_mp_mul_digs_fast.c" />
+    <ClCompile Include="crypt\bn_s_mp_mul_high_digs.c" />
+    <ClCompile Include="crypt\bn_s_mp_mul_high_digs_fast.c" />
+    <ClCompile Include="crypt\bn_s_mp_prime_is_divisible.c" />
+    <ClCompile Include="crypt\bn_s_mp_rand_jenkins.c" />
+    <ClCompile Include="crypt\bn_s_mp_rand_platform.c" />
+    <ClCompile Include="crypt\bn_s_mp_reverse.c" />
+    <ClCompile Include="crypt\bn_s_mp_sqr.c" />
+    <ClCompile Include="crypt\bn_s_mp_sqr_fast.c" />
+    <ClCompile Include="crypt\bn_s_mp_sub.c" />
+    <ClCompile Include="crypt\bn_s_mp_toom_mul.c" />
+    <ClCompile Include="crypt\bn_s_mp_toom_sqr.c" />
+    <ClCompile Include="crypt\burn_stack.c" />
+    <ClCompile Include="crypt\camellia.c" />
+    <ClCompile Include="crypt\cast5.c" />
+    <ClCompile Include="crypt\cbc_decrypt.c" />
+    <ClCompile Include="crypt\cbc_done.c" />
+    <ClCompile Include="crypt\cbc_encrypt.c" />
+    <ClCompile Include="crypt\cbc_getiv.c" />
+    <ClCompile Include="crypt\cbc_setiv.c" />
+    <ClCompile Include="crypt\cbc_start.c" />
+    <ClCompile Include="crypt\ccm_add_aad.c" />
+    <ClCompile Include="crypt\ccm_add_nonce.c" />
+    <ClCompile Include="crypt\ccm_done.c" />
+    <ClCompile Include="crypt\ccm_init.c" />
+    <ClCompile Include="crypt\ccm_memory.c" />
+    <ClCompile Include="crypt\ccm_process.c" />
+    <ClCompile Include="crypt\ccm_reset.c" />
+    <ClCompile Include="crypt\ccm_test.c" />
+    <ClCompile Include="crypt\cfb_decrypt.c" />
+    <ClCompile Include="crypt\cfb_done.c" />
+    <ClCompile Include="crypt\cfb_encrypt.c" />
+    <ClCompile Include="crypt\cfb_getiv.c" />
+    <ClCompile Include="crypt\cfb_setiv.c" />
+    <ClCompile Include="crypt\cfb_start.c" />
+    <ClCompile Include="crypt\chacha20.c" />
+    <ClCompile Include="crypt\chacha20poly1305_add_aad.c" />
+    <ClCompile Include="crypt\chacha20poly1305_decrypt.c" />
+    <ClCompile Include="crypt\chacha20poly1305_done.c" />
+    <ClCompile Include="crypt\chacha20poly1305_encrypt.c" />
+    <ClCompile Include="crypt\chacha20poly1305_init.c" />
+    <ClCompile Include="crypt\chacha20poly1305_memory.c" />
+    <ClCompile Include="crypt\chacha20poly1305_setiv.c" />
+    <ClCompile Include="crypt\chacha20poly1305_setiv_rfc7905.c" />
+    <ClCompile Include="crypt\chacha20poly1305_test.c" />
+    <ClCompile Include="crypt\chacha_crypt.c" />
+    <ClCompile Include="crypt\chacha_done.c" />
+    <ClCompile Include="crypt\chacha_ivctr32.c" />
+    <ClCompile Include="crypt\chacha_ivctr64.c" />
+    <ClCompile Include="crypt\chacha_keystream.c" />
+    <ClCompile Include="crypt\chacha_setup.c" />
+    <ClCompile Include="crypt\chacha_test.c" />
+    <ClCompile Include="crypt\chc.c" />
+    <ClCompile Include="crypt\compare_testvector.c" />
+    <ClCompile Include="crypt\crc32.c" />
+    <ClCompile Include="crypt\crypt.c" />
+    <ClCompile Include="crypt\crypt_argchk.c" />
+    <ClCompile Include="crypt\crypt_cipher_descriptor.c" />
+    <ClCompile Include="crypt\crypt_cipher_is_valid.c" />
+    <ClCompile Include="crypt\crypt_constants.c" />
+    <ClCompile Include="crypt\crypt_find_cipher.c" />
+    <ClCompile Include="crypt\crypt_find_cipher_any.c" />
+    <ClCompile Include="crypt\crypt_find_cipher_id.c" />
+    <ClCompile Include="crypt\crypt_find_hash.c" />
+    <ClCompile Include="crypt\crypt_find_hash_any.c" />
+    <ClCompile Include="crypt\crypt_find_hash_id.c" />
+    <ClCompile Include="crypt\crypt_find_hash_oid.c" />
+    <ClCompile Include="crypt\crypt_find_prng.c" />
+    <ClCompile Include="crypt\crypt_fsa.c" />
+    <ClCompile Include="crypt\crypt_hash_descriptor.c" />
+    <ClCompile Include="crypt\crypt_hash_is_valid.c" />
+    <ClCompile Include="crypt\crypt_inits.c" />
+    <ClCompile Include="crypt\crypt_ltc_mp_descriptor.c" />
+    <ClCompile Include="crypt\crypt_prng_descriptor.c" />
+    <ClCompile Include="crypt\crypt_prng_is_valid.c" />
+    <ClCompile Include="crypt\crypt_prng_rng_descriptor.c" />
+    <ClCompile Include="crypt\crypt_register_all_ciphers.c" />
+    <ClCompile Include="crypt\crypt_register_all_hashes.c" />
+    <ClCompile Include="crypt\crypt_register_all_prngs.c" />
+    <ClCompile Include="crypt\crypt_register_cipher.c" />
+    <ClCompile Include="crypt\crypt_register_hash.c" />
+    <ClCompile Include="crypt\crypt_register_prng.c" />
+    <ClCompile Include="crypt\crypt_sizes.c" />
+    <ClCompile Include="crypt\crypt_unregister_cipher.c" />
+    <ClCompile Include="crypt\crypt_unregister_hash.c" />
+    <ClCompile Include="crypt\crypt_unregister_prng.c" />
+    <ClCompile Include="crypt\ctr_decrypt.c" />
+    <ClCompile Include="crypt\ctr_done.c" />
+    <ClCompile Include="crypt\ctr_encrypt.c" />
+    <ClCompile Include="crypt\ctr_getiv.c" />
+    <ClCompile Include="crypt\ctr_setiv.c" />
+    <ClCompile Include="crypt\ctr_start.c" />
+    <ClCompile Include="crypt\ctr_test.c" />
+    <ClCompile Include="crypt\der_decode_bit_string.c" />
+    <ClCompile Include="crypt\der_decode_boolean.c" />
+    <ClCompile Include="crypt\der_decode_choice.c" />
+    <ClCompile Include="crypt\der_decode_generalizedtime.c" />
+    <ClCompile Include="crypt\der_decode_ia5_string.c" />
+    <ClCompile Include="crypt\der_decode_integer.c" />
+    <ClCompile Include="crypt\der_decode_object_identifier.c" />
+    <ClCompile Include="crypt\der_decode_octet_string.c" />
+    <ClCompile Include="crypt\der_decode_printable_string.c" />
+    <ClCompile Include="crypt\der_decode_raw_bit_string.c" />
+    <ClCompile Include="crypt\der_decode_sequence_ex.c" />
+    <ClCompile Include="crypt\der_decode_sequence_flexi.c" />
+    <ClCompile Include="crypt\der_decode_sequence_multi.c" />
+    <ClCompile Include="crypt\der_decode_short_integer.c" />
+    <ClCompile Include="crypt\der_decode_subject_public_key_info.c" />
+    <ClCompile Include="crypt\der_decode_teletex_string.c" />
+    <ClCompile Include="crypt\der_decode_utctime.c" />
+    <ClCompile Include="crypt\der_decode_utf8_string.c" />
+    <ClCompile Include="crypt\der_encode_bit_string.c" />
+    <ClCompile Include="crypt\der_encode_boolean.c" />
+    <ClCompile Include="crypt\der_encode_generalizedtime.c" />
+    <ClCompile Include="crypt\der_encode_ia5_string.c" />
+    <ClCompile Include="crypt\der_encode_integer.c" />
+    <ClCompile Include="crypt\der_encode_object_identifier.c" />
+    <ClCompile Include="crypt\der_encode_octet_string.c" />
+    <ClCompile Include="crypt\der_encode_printable_string.c" />
+    <ClCompile Include="crypt\der_encode_raw_bit_string.c" />
+    <ClCompile Include="crypt\der_encode_sequence_ex.c" />
+    <ClCompile Include="crypt\der_encode_sequence_multi.c" />
+    <ClCompile Include="crypt\der_encode_set.c" />
+    <ClCompile Include="crypt\der_encode_setof.c" />
+    <ClCompile Include="crypt\der_encode_short_integer.c" />
+    <ClCompile Include="crypt\der_encode_subject_public_key_info.c" />
+    <ClCompile Include="crypt\der_encode_utctime.c" />
+    <ClCompile Include="crypt\der_encode_utf8_string.c" />
+    <ClCompile Include="crypt\der_length_bit_string.c" />
+    <ClCompile Include="crypt\der_length_boolean.c" />
+    <ClCompile Include="crypt\der_length_generalizedtime.c" />
+    <ClCompile Include="crypt\der_length_ia5_string.c" />
+    <ClCompile Include="crypt\der_length_integer.c" />
+    <ClCompile Include="crypt\der_length_object_identifier.c" />
+    <ClCompile Include="crypt\der_length_octet_string.c" />
+    <ClCompile Include="crypt\der_length_printable_string.c" />
+    <ClCompile Include="crypt\der_length_sequence.c" />
+    <ClCompile Include="crypt\der_length_short_integer.c" />
+    <ClCompile Include="crypt\der_length_teletex_string.c" />
+    <ClCompile Include="crypt\der_length_utctime.c" />
+    <ClCompile Include="crypt\der_length_utf8_string.c" />
+    <ClCompile Include="crypt\der_sequence_free.c" />
+    <ClCompile Include="crypt\der_sequence_shrink.c" />
+    <ClCompile Include="crypt\des.c" />
+    <ClCompile Include="crypt\dh.c" />
+    <ClCompile Include="crypt\dh_check_pubkey.c" />
+    <ClCompile Include="crypt\dh_export.c" />
+    <ClCompile Include="crypt\dh_export_key.c" />
+    <ClCompile Include="crypt\dh_free.c" />
+    <ClCompile Include="crypt\dh_generate_key.c" />
+    <ClCompile Include="crypt\dh_import.c" />
+    <ClCompile Include="crypt\dh_set.c" />
+    <ClCompile Include="crypt\dh_set_pg_dhparam.c" />
+    <ClCompile Include="crypt\dh_shared_secret.c" />
+    <ClCompile Include="crypt\dsa_decrypt_key.c" />
+    <ClCompile Include="crypt\dsa_encrypt_key.c" />
+    <ClCompile Include="crypt\dsa_export.c" />
+    <ClCompile Include="crypt\dsa_free.c" />
+    <ClCompile Include="crypt\dsa_generate_key.c" />
+    <ClCompile Include="crypt\dsa_generate_pqg.c" />
+    <ClCompile Include="crypt\dsa_import.c" />
+    <ClCompile Include="crypt\dsa_make_key.c" />
+    <ClCompile Include="crypt\dsa_set.c" />
+    <ClCompile Include="crypt\dsa_set_pqg_dsaparam.c" />
+    <ClCompile Include="crypt\dsa_shared_secret.c" />
+    <ClCompile Include="crypt\dsa_sign_hash.c" />
+    <ClCompile Include="crypt\dsa_verify_hash.c" />
+    <ClCompile Include="crypt\dsa_verify_key.c" />
+    <ClCompile Include="crypt\eax_addheader.c" />
+    <ClCompile Include="crypt\eax_decrypt.c" />
+    <ClCompile Include="crypt\eax_decrypt_verify_memory.c" />
+    <ClCompile Include="crypt\eax_done.c" />
+    <ClCompile Include="crypt\eax_encrypt.c" />
+    <ClCompile Include="crypt\eax_encrypt_authenticate_memory.c" />
+    <ClCompile Include="crypt\eax_init.c" />
+    <ClCompile Include="crypt\eax_test.c" />
+    <ClCompile Include="crypt\ecb_decrypt.c" />
+    <ClCompile Include="crypt\ecb_done.c" />
+    <ClCompile Include="crypt\ecb_encrypt.c" />
+    <ClCompile Include="crypt\ecb_start.c" />
+    <ClCompile Include="crypt\ecc.c" />
+    <ClCompile Include="crypt\ecc_ansi_x963_export.c" />
+    <ClCompile Include="crypt\ecc_ansi_x963_import.c" />
+    <ClCompile Include="crypt\ecc_decrypt_key.c" />
+    <ClCompile Include="crypt\ecc_encrypt_key.c" />
+    <ClCompile Include="crypt\ecc_export.c" />
+    <ClCompile Include="crypt\ecc_free.c" />
+    <ClCompile Include="crypt\ecc_get_size.c" />
+    <ClCompile Include="crypt\ecc_import.c" />
+    <ClCompile Include="crypt\ecc_make_key.c" />
+    <ClCompile Include="crypt\ecc_shared_secret.c" />
+    <ClCompile Include="crypt\ecc_sign_hash.c" />
+    <ClCompile Include="crypt\ecc_sizes.c" />
+    <ClCompile Include="crypt\ecc_test.c" />
+    <ClCompile Include="crypt\ecc_verify_hash.c" />
+    <ClCompile Include="crypt\error_to_string.c" />
+    <ClCompile Include="crypt\f8_decrypt.c" />
+    <ClCompile Include="crypt\f8_done.c" />
+    <ClCompile Include="crypt\f8_encrypt.c" />
+    <ClCompile Include="crypt\f8_getiv.c" />
+    <ClCompile Include="crypt\f8_setiv.c" />
+    <ClCompile Include="crypt\f8_start.c" />
+    <ClCompile Include="crypt\f8_test_mode.c" />
+    <ClCompile Include="crypt\f9_done.c" />
+    <ClCompile Include="crypt\f9_file.c" />
+    <ClCompile Include="crypt\f9_init.c" />
+    <ClCompile Include="crypt\f9_memory.c" />
+    <ClCompile Include="crypt\f9_memory_multi.c" />
+    <ClCompile Include="crypt\f9_process.c" />
+    <ClCompile Include="crypt\f9_test.c" />
+    <ClCompile Include="crypt\fortuna.c" />
+    <ClCompile Include="crypt\gcm_add_aad.c" />
+    <ClCompile Include="crypt\gcm_add_iv.c" />
+    <ClCompile Include="crypt\gcm_done.c" />
+    <ClCompile Include="crypt\gcm_gf_mult.c" />
+    <ClCompile Include="crypt\gcm_init.c" />
+    <ClCompile Include="crypt\gcm_memory.c" />
+    <ClCompile Include="crypt\gcm_mult_h.c" />
+    <ClCompile Include="crypt\gcm_process.c" />
+    <ClCompile Include="crypt\gcm_reset.c" />
+    <ClCompile Include="crypt\gcm_test.c" />
+    <ClCompile Include="crypt\gmp_desc.c" />
+    <ClCompile Include="crypt\hash_file.c" />
+    <ClCompile Include="crypt\hash_filehandle.c" />
+    <ClCompile Include="crypt\hash_memory.c" />
+    <ClCompile Include="crypt\hash_memory_multi.c" />
+    <ClCompile Include="crypt\hkdf.c" />
+    <ClCompile Include="crypt\hkdf_test.c" />
+    <ClCompile Include="crypt\hmac_done.c" />
+    <ClCompile Include="crypt\hmac_file.c" />
+    <ClCompile Include="crypt\hmac_init.c" />
+    <ClCompile Include="crypt\hmac_memory.c" />
+    <ClCompile Include="crypt\hmac_memory_multi.c" />
+    <ClCompile Include="crypt\hmac_process.c" />
+    <ClCompile Include="crypt\hmac_test.c" />
+    <ClCompile Include="crypt\kasumi.c" />
+    <ClCompile Include="crypt\katja_decrypt_key.c" />
+    <ClCompile Include="crypt\katja_encrypt_key.c" />
+    <ClCompile Include="crypt\katja_export.c" />
+    <ClCompile Include="crypt\katja_exptmod.c" />
+    <ClCompile Include="crypt\katja_free.c" />
+    <ClCompile Include="crypt\katja_import.c" />
+    <ClCompile Include="crypt\katja_make_key.c" />
+    <ClCompile Include="crypt\khazad.c" />
+    <ClCompile Include="crypt\kseed.c" />
+    <ClCompile Include="crypt\lrw_decrypt.c" />
+    <ClCompile Include="crypt\lrw_done.c" />
+    <ClCompile Include="crypt\lrw_encrypt.c" />
+    <ClCompile Include="crypt\lrw_getiv.c" />
+    <ClCompile Include="crypt\lrw_process.c" />
+    <ClCompile Include="crypt\lrw_setiv.c" />
+    <ClCompile Include="crypt\lrw_start.c" />
+    <ClCompile Include="crypt\lrw_test.c" />
+    <ClCompile Include="crypt\ltc_ecc_fp_mulmod.c" />
+    <ClCompile Include="crypt\ltc_ecc_is_valid_idx.c" />
+    <ClCompile Include="crypt\ltc_ecc_map.c" />
+    <ClCompile Include="crypt\ltc_ecc_mul2add.c" />
+    <ClCompile Include="crypt\ltc_ecc_mulmod.c" />
+    <ClCompile Include="crypt\ltc_ecc_mulmod_timing.c" />
+    <ClCompile Include="crypt\ltc_ecc_points.c" />
+    <ClCompile Include="crypt\ltc_ecc_projective_add_point.c" />
+    <ClCompile Include="crypt\ltc_ecc_projective_dbl_point.c" />
+    <ClCompile Include="crypt\ltm_desc.c" />
+    <ClCompile Include="crypt\md2.c" />
+    <ClCompile Include="crypt\md4.c" />
+    <ClCompile Include="crypt\md5.c" />
+    <ClCompile Include="crypt\mem_neq.c" />
+    <ClCompile Include="crypt\multi.c" />
+    <ClCompile Include="crypt\multi2.c" />
+    <ClCompile Include="crypt\noekeon.c" />
+    <ClCompile Include="crypt\ocb3_add_aad.c" />
+    <ClCompile Include="crypt\ocb3_decrypt.c" />
+    <ClCompile Include="crypt\ocb3_decrypt_last.c" />
+    <ClCompile Include="crypt\ocb3_decrypt_verify_memory.c" />
+    <ClCompile Include="crypt\ocb3_done.c" />
+    <ClCompile Include="crypt\ocb3_encrypt.c" />
+    <ClCompile Include="crypt\ocb3_encrypt_authenticate_memory.c" />
+    <ClCompile Include="crypt\ocb3_encrypt_last.c" />
+    <ClCompile Include="crypt\ocb3_init.c" />
+    <ClCompile Include="crypt\ocb3_int_ntz.c" />
+    <ClCompile Include="crypt\ocb3_int_xor_blocks.c" />
+    <ClCompile Include="crypt\ocb3_test.c" />
+    <ClCompile Include="crypt\ocb_decrypt.c" />
+    <ClCompile Include="crypt\ocb_decrypt_verify_memory.c" />
+    <ClCompile Include="crypt\ocb_done_decrypt.c" />
+    <ClCompile Include="crypt\ocb_done_encrypt.c" />
+    <ClCompile Include="crypt\ocb_encrypt.c" />
+    <ClCompile Include="crypt\ocb_encrypt_authenticate_memory.c" />
+    <ClCompile Include="crypt\ocb_init.c" />
+    <ClCompile Include="crypt\ocb_ntz.c" />
+    <ClCompile Include="crypt\ocb_shift_xor.c" />
+    <ClCompile Include="crypt\ocb_test.c" />
+    <ClCompile Include="crypt\ofb_decrypt.c" />
+    <ClCompile Include="crypt\ofb_done.c" />
+    <ClCompile Include="crypt\ofb_encrypt.c" />
+    <ClCompile Include="crypt\ofb_getiv.c" />
+    <ClCompile Include="crypt\ofb_setiv.c" />
+    <ClCompile Include="crypt\ofb_start.c" />
+    <ClCompile Include="crypt\omac_done.c" />
+    <ClCompile Include="crypt\omac_file.c" />
+    <ClCompile Include="crypt\omac_init.c" />
+    <ClCompile Include="crypt\omac_memory.c" />
+    <ClCompile Include="crypt\omac_memory_multi.c" />
+    <ClCompile Include="crypt\omac_process.c" />
+    <ClCompile Include="crypt\omac_test.c" />
+    <ClCompile Include="crypt\pelican.c" />
+    <ClCompile Include="crypt\pelican_memory.c" />
+    <ClCompile Include="crypt\pelican_test.c" />
+    <ClCompile Include="crypt\pkcs_1_i2osp.c" />
+    <ClCompile Include="crypt\pkcs_1_mgf1.c" />
+    <ClCompile Include="crypt\pkcs_1_oaep_decode.c" />
+    <ClCompile Include="crypt\pkcs_1_oaep_encode.c" />
+    <ClCompile Include="crypt\pkcs_1_os2ip.c" />
+    <ClCompile Include="crypt\pkcs_1_pss_decode.c" />
+    <ClCompile Include="crypt\pkcs_1_pss_encode.c" />
+    <ClCompile Include="crypt\pkcs_1_v1_5_decode.c" />
+    <ClCompile Include="crypt\pkcs_1_v1_5_encode.c" />
+    <ClCompile Include="crypt\pkcs_5_1.c" />
+    <ClCompile Include="crypt\pkcs_5_2.c" />
+    <ClCompile Include="crypt\pkcs_5_test.c" />
+    <ClCompile Include="crypt\pk_get_oid.c" />
+    <ClCompile Include="crypt\pmac_done.c" />
+    <ClCompile Include="crypt\pmac_file.c" />
+    <ClCompile Include="crypt\pmac_init.c" />
+    <ClCompile Include="crypt\pmac_memory.c" />
+    <ClCompile Include="crypt\pmac_memory_multi.c" />
+    <ClCompile Include="crypt\pmac_ntz.c" />
+    <ClCompile Include="crypt\pmac_process.c" />
+    <ClCompile Include="crypt\pmac_shift_xor.c" />
+    <ClCompile Include="crypt\pmac_test.c" />
+    <ClCompile Include="crypt\poly1305.c" />
+    <ClCompile Include="crypt\poly1305_file.c" />
+    <ClCompile Include="crypt\poly1305_memory.c" />
+    <ClCompile Include="crypt\poly1305_memory_multi.c" />
+    <ClCompile Include="crypt\poly1305_test.c" />
+    <ClCompile Include="crypt\radix_to_bin.c" />
+    <ClCompile Include="crypt\rand_bn.c" />
+    <ClCompile Include="crypt\rand_prime.c" />
+    <ClCompile Include="crypt\rc2.c" />
+    <ClCompile Include="crypt\rc4.c" />
+    <ClCompile Include="crypt\rc4_stream.c" />
+    <ClCompile Include="crypt\rc4_test.c" />
+    <ClCompile Include="crypt\rc5.c" />
+    <ClCompile Include="crypt\rc6.c" />
+    <ClCompile Include="crypt\rmd128.c" />
+    <ClCompile Include="crypt\rmd160.c" />
+    <ClCompile Include="crypt\rmd256.c" />
+    <ClCompile Include="crypt\rmd320.c" />
+    <ClCompile Include="crypt\rng_get_bytes.c" />
+    <ClCompile Include="crypt\rng_make_prng.c" />
+    <ClCompile Include="crypt\rsa_decrypt_key.c" />
+    <ClCompile Include="crypt\rsa_encrypt_key.c" />
+    <ClCompile Include="crypt\rsa_export.c" />
+    <ClCompile Include="crypt\rsa_exptmod.c" />
+    <ClCompile Include="crypt\rsa_free.c" />
+    <ClCompile Include="crypt\rsa_get_size.c" />
+    <ClCompile Include="crypt\rsa_import.c" />
+    <ClCompile Include="crypt\rsa_import_pkcs8.c" />
+    <ClCompile Include="crypt\rsa_import_x509.c" />
+    <ClCompile Include="crypt\rsa_make_key.c" />
+    <ClCompile Include="crypt\rsa_set.c" />
+    <ClCompile Include="crypt\rsa_sign_hash.c" />
+    <ClCompile Include="crypt\rsa_sign_saltlen_get.c" />
+    <ClCompile Include="crypt\rsa_verify_hash.c" />
+    <ClCompile Include="crypt\safer.c" />
+    <ClCompile Include="crypt\saferp.c" />
+    <ClCompile Include="crypt\safer_tab.c" />
+    <ClCompile Include="crypt\sha1.c" />
+    <ClCompile Include="crypt\sha224.c" />
+    <ClCompile Include="crypt\sha256.c" />
+    <ClCompile Include="crypt\sha3.c" />
+    <ClCompile Include="crypt\sha384.c" />
+    <ClCompile Include="crypt\sha3_test.c" />
+    <ClCompile Include="crypt\sha512.c" />
+    <ClCompile Include="crypt\sha512_224.c" />
+    <ClCompile Include="crypt\sha512_256.c" />
+    <ClCompile Include="crypt\skipjack.c" />
+    <ClCompile Include="crypt\sober128.c" />
+    <ClCompile Include="crypt\sober128tab.c" />
+    <ClCompile Include="crypt\sober128_stream.c" />
+    <ClCompile Include="crypt\sober128_test.c" />
+    <ClCompile Include="crypt\sprng.c" />
+    <ClCompile Include="crypt\s_ocb_done.c" />
+    <ClCompile Include="crypt\tfm_desc.c" />
+    <ClCompile Include="crypt\tiger.c" />
+    <ClCompile Include="crypt\twofish.c" />
+    <ClCompile Include="crypt\twofish_tab.c" />
+    <ClCompile Include="crypt\whirl.c" />
+    <ClCompile Include="crypt\whirltab.c" />
+    <ClCompile Include="crypt\xcbc_done.c" />
+    <ClCompile Include="crypt\xcbc_file.c" />
+    <ClCompile Include="crypt\xcbc_init.c" />
+    <ClCompile Include="crypt\xcbc_memory.c" />
+    <ClCompile Include="crypt\xcbc_memory_multi.c" />
+    <ClCompile Include="crypt\xcbc_process.c" />
+    <ClCompile Include="crypt\xcbc_test.c" />
+    <ClCompile Include="crypt\xtea.c" />
+    <ClCompile Include="crypt\xts_decrypt.c" />
+    <ClCompile Include="crypt\xts_done.c" />
+    <ClCompile Include="crypt\xts_encrypt.c" />
+    <ClCompile Include="crypt\xts_init.c" />
+    <ClCompile Include="crypt\xts_mult_x.c" />
+    <ClCompile Include="crypt\xts_test.c" />
+    <ClCompile Include="crypt\yarrow.c" />
+    <ClCompile Include="crypt\zeromem.c" />
+    <ClCompile Include="Dbf\dbfapp.cpp" />
+    <ClCompile Include="Dbf\dbfchfil.cpp" />
+    <ClCompile Include="Dbf\dbfcnstr.cpp" />
+    <ClCompile Include="Dbf\dbfdelre.cpp" />
+    <ClCompile Include="Dbf\dbffill.cpp" />
+    <ClCompile Include="Dbf\dbfgetfl.cpp" />
+    <ClCompile Include="Dbf\dbfgo.cpp" />
+    <ClCompile Include="Dbf\dbfgtfr.cpp" />
+    <ClCompile Include="Dbf\dbfgthd.cpp" />
+    <ClCompile Include="Dbf\dbfop.cpp" />
+    <ClCompile Include="Dbf\dbfopen.cpp" />
+    <ClCompile Include="Dbf\dbfrdrec.cpp" />
+    <ClCompile Include="Dbf\dbfrecl.cpp" />
+    <ClCompile Include="Dbf\dbfwrrc.cpp" />
+    <ClCompile Include="Dbf\dbfwrrec.cpp" />
+    <ClCompile Include="Dbf\getwdh.cpp" />
+    <ClCompile Include="Core\token.cpp" />
+    <ClCompile Include="Zlib\adler32.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Zlib\compress.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Zlib\crc32.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Zlib\deflate.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Zlib\inffast.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Zlib\inflate.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Zlib\inftrees.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Zlib\trees.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Zlib\zutil.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </PrecompiledHeader>
+    </ClCompile>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

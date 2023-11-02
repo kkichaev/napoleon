@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.gesture.GestureOverlayView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/gestures"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:eventsInterceptionEnabled="true"
+    android:gestureColor="#00000000"
+    android:gestureStrokeType="single"
+    android:orientation="vertical"
+    android:uncertainGestureColor="#00000000" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            android:layout_marginTop="10dp"
+            android:text="TextView"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            tools:ignore="HardcodedText" >
+        </TextView>
+
+        <TextView
+            android:id="@+id/tvAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            android:layout_marginTop="10dp"
+            android:text="TextView"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            tools:ignore="HardcodedText" >
+
+        </TextView>
+
+        <TabHost
+            android:id="@android:id/tabhost"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical" >
+
+                <TabWidget
+                    android:id="@android:id/tabs"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" >
+                </TabWidget>
+
+                <FrameLayout
+                    android:id="@android:id/tabcontent"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent" >
+
+                    
+        <LinearLayout
+            android:orientation="vertical"
+            android:id="@+id/ll1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            >
+ 			<LinearLayout
+	            android:id="@+id/llFIO"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:background="@color/black" >
+	
+	            <TextView
+	                android:id="@+id/tvFIOCaption"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_marginBottom="1dp"
+	                android:layout_marginLeft="1dp"
+	                android:layout_marginTop="1dp"
+	                android:layout_weight="0.25"
+	                android:background="@color/white"
+	                android:paddingLeft="20dp"
+	                android:text="@string/fio"
+	                android:textColor="@color/black"
+	                android:visibility="visible"
+	                tools:ignore="NestedWeights" />
+	
+	            <TextView
+	                android:id="@+id/tvPhoneCaption"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_marginBottom="1dp"
+	                android:layout_marginLeft="1dp"
+	                android:layout_marginRight="1dp"
+	                android:layout_marginTop="1dp"
+	                android:layout_weight="0.72"
+	                android:background="@color/white"
+	                android:paddingLeft="20dp"
+	                android:text="@string/phone"
+	                android:textColor="@color/black"
+	                android:visibility="visible" />
+	        </LinearLayout>
+	
+	        <LinearLayout
+	            android:id="@+id/linearLayout2"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	             >
+	
+	            <ListView
+	                android:id="@+id/lvContacts"
+	                android:layout_width="fill_parent"
+	                android:layout_height="fill_parent"
+	                 >
+	            </ListView>
+	        </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:id="@+id/ll2"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            >
+        
+	        <LinearLayout
+	            android:id="@+id/linearLayout11"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:background="@color/black" >
+	
+	            <TextView
+	                android:id="@+id/tvKeyName"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_marginBottom="1dp"
+	                android:layout_marginLeft="1dp"
+	                android:layout_marginTop="1dp"
+	                android:layout_weight="0.25"
+	                android:background="@color/white"
+	                android:paddingLeft="20dp"
+	                android:text="Параметр"
+	                android:textColor="@color/black"
+	                android:visibility="visible"
+	                tools:ignore="NestedWeights" />
+	
+	            <TextView
+	                android:id="@+id/tvValueName"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_marginBottom="1dp"
+	                android:layout_marginLeft="1dp"
+	                android:layout_marginRight="1dp"
+	                android:layout_marginTop="1dp"
+	                android:layout_weight="0.72"
+	                android:background="@color/white"
+	                android:paddingLeft="20dp"
+	                android:text="Значение"
+	                android:textColor="@color/black"
+	                android:visibility="visible" />
+	        </LinearLayout>
+	        <LinearLayout
+	            android:id="@+id/linearLayout12"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            >
+	
+	            <ListView
+	                android:id="@+id/lvParams"
+	                android:layout_width="fill_parent"
+	                android:layout_height="fill_parent"
+	                >
+	            </ListView>
+	        </LinearLayout>
+        </LinearLayout>
+                </FrameLayout>
+            </LinearLayout>
+        </TabHost>
+     </LinearLayout>
+
+</android.gesture.GestureOverlayView>

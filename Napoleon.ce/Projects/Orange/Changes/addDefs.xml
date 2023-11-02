@@ -1,0 +1,288 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+   <objects>
+      <object name="Proxy">
+         <sources>
+            <source name="DBFTable">
+               <param name="tableName">$object.table + $user.id</param>
+            </source>
+         </sources>
+         <member name="table">"DVR"</member>
+
+         <field name="id" type="string" width="20" />
+         <field name="sum" type="number" prec="2" />
+         <field name="date" type="timestamp" data="CREATED" />
+         <field name="docDate" type="date" data="DATE" execOn="Put">$object.date</field>
+         <field name="remark" type="string" width="100" />
+      </object>
+
+      <object name="OrgRemnants">
+         <sources>
+            <source name="DBFCatalogTable">
+               <param name="tableName">$object.table + $user.id</param>
+               <param name="catalog">"id"</param>
+               <param name="ordered">1</param>
+            </source>
+            <source name="SQTable" type="internal" />
+         </sources>
+
+         <member name="table">"OST"</member>
+         <member name="primaryKey">"userid,date"</member>
+
+         <field name="userid" type="string" data="USER_ID" execOn="Put">$user.id</field>
+         <field name="date" type="timestamp" data="CREATED" />
+         <field name="docDate" type="date" data="DATE" execOn="Put">$object.date</field>
+         <field name="id" width="20" type="string" />
+         <field name="items" type="collection">
+            <data>
+               <object name="OrgRemnantsItem">
+                  <sources>
+                     <source name="DBFCatalogItemTable"/>
+                     <source name="SQTable" type="internal" />
+                  </sources>
+
+                  <field name="id" width="20" type="string" data="ID_I"/>
+                  <field name="qty" type="number" prec="3" />
+                  <field name="flags" type="number" prec="0" data="SKU" />
+                  <field name="ordflag" width="1" type="number" data="FLAGS" execOn="Put">FirstItem($object)</field>
+               </object>
+            </data>
+         </field>
+
+         <field name="latitude" type="number" prec="4" />
+         <field name="longitude" type="number" prec="4" />
+
+         <events>
+            <event type="put">
+               <action name="WriteInternal">$object.type</action>
+               <action name="WriteToLog">$object.type;$object.date</action>
+            </event>
+         </events>
+      </object>
+
+      <object name="OrgRest">
+         <sources>
+            <source name="DBFCatalogTable">
+               <param name="tableName">$object.table + $user.id</param>
+               <param name="catalog">"id"</param>
+               <param name="ordered">1</param>
+            </source>
+            <source name="SQTable" type="internal" />
+         </sources>
+
+         <member name="table">"RST"</member>
+         <member name="primaryKey">"userid,date"</member>
+
+         <field name="userid" type="string" data="USER_ID" execOn="Put">$user.id</field>
+         <field name="date" type="timestamp" data="CREATED" />
+         <field name="docDate" type="date" data="DATE" execOn="Put">$object.date</field>
+         <field name="id" width="20" type="string" />
+         <field name="items" type="collection">
+            <data>
+               <object name="OrgRemnantsItem">
+                  <sources>
+                     <source name="DBFCatalogItemTable"/>
+                     <source name="SQTable" type="internal" />
+                  </sources>
+
+                  <field name="id" width="20" type="string" data="ID_I"/>
+                  <field name="qty" type="number" prec="3" />
+                  <field name="ordflag" width="1" type="number" data="FLAGS" execOn="Put">FirstItem($object)</field>
+               </object>
+            </data>
+         </field>
+
+         <events>
+            <event type="put">
+               <action name="WriteInternal">$object.type</action>
+               <action name="WriteToLog">$object.type;$object.date</action>
+            </event>
+         </events>
+      </object>
+
+
+      <object name="Visit">
+         <sources>
+            <source name="DBFTable">
+               <param name="tableName">$object.table + $user.id</param>
+            </source>
+            <source name="SQTable" type="internal" />
+         </sources>
+
+         <member name="table">"VT"</member>
+         <member name="primaryKey">"userid,date"</member>
+
+         <field name="id" type="string" width="20" />
+         <field name="date" type="timestamp" data="CREATED" />
+         <field name="docDate" type="date" data="DATE" execOn="Put">$object.date</field>
+         <field name="time" type="time" execOn="Put">$object.date</field>
+         <field name="remark" type="string" width="100" />
+         <field name="cause" type="string" width="100" />
+         <field name="userid" type="string" execOn="Put">$user.id</field>
+
+         <field name="items" type="collection">
+            <data>
+               <object name="VisitItem">
+                  <sources>
+                     <source name="SQTable" type="internal" />
+                  </sources>
+                  <field name="id" type="binary"/>
+               </object>
+            </data>
+         </field>
+
+         <field name="latitude" type="number" prec="4" />
+         <field name="longitude" type="number" prec="4" />
+
+         <events>
+            <event type="put">
+               <action name="WriteInternal">$object.type</action>
+               <action name="WriteToLog">$object.type;$object.date</action>
+            </event>
+         </events>
+      </object>
+      
+      <object name="DocPay">
+         <sources>
+            <source name="DBFCatalogTable">
+               <param name="tableName">$object.table + $user.id</param>
+               <param name="catalog">"id"</param>
+               <param name="ordered">1</param>
+            </source>
+         </sources>
+
+         <member name="table">"PDK"</member>
+
+         <field name="id" type="string" width="20" />
+         <field name="sum" type="number" prec="2" />
+         <field name="date" type="timestamp" data="CREATED" />
+         <field name="docDate" type="date" data="DATE" execOn="Put">$object.date</field>
+         <field name="remark" type="string" width="100" />
+         <field name="firma" type="string" width="30" data="ORG" execOn="Put">KeyValueReader("order.cfg","Организация",$object.supplier)</field>
+         <field name="number" type="string" width="30" />
+         <field name="type" type="string" width="50" />
+
+         <field name="items" type="collection">
+            <data>
+               <object name="DocPayItem">
+                  <sources>
+                     <source name="DBFCatalogItemTable"/>
+                  </sources>
+
+                  <field name="number" width="20" type="string" data="NUM_I"/>
+                  <field name="date" type="date" data="DATE_I" />
+                  <field name="sum" type="number" data="SUM_I" width="10" prec="2" />
+                  <field name="ordflag" width="1" type="number" execOn="Put">FirstItem($object)</field>
+               </object>
+            </data>
+         </field>
+      </object>
+      <object name="RfrDoc">
+         <sources>
+            <source name="DBFCatalogTable">
+               <param name="tableName">$object.table + $user.id</param>
+               <param name="catalog">"id"</param>
+               <param name="ordered">1</param>
+            </source>
+         </sources>
+
+         <member name="table">"DRF"</member>
+
+         <field name="id" type="string" width="20" />
+	     <field name="unitCode" type="number" width="7" data="IDU" />
+         <field name="created" type="timestamp" data="CREATED" />
+         <field name="docDate" type="date" data="DATE" execOn="Put">$object.created</field>
+
+         <field name="items" type="collection">
+            <data>
+               <object name="RfrDocItem">
+                  <sources>
+                     <source name="DBFCatalogItemTable"/>
+                  </sources>
+
+                  <field name="id" width="20" type="string" data="ID_I"/>
+                  <field name="text" width="100" type="string" data="TXT_I"/>
+	         	  <field name="presents" type="number" width="1" execOn="Put">DecodeFlag($object.flags, 1, "", "1")</field>
+                  <field name="ordflag" width="1" type="number" execOn="Put">FirstItem($object)</field>
+               </object>
+            </data>
+         </field>
+      </object>
+      <object name="OrgMatrix">
+         <sources>
+            <source name="DBFTableSet">
+               <param name="userTable">"OMX"</param>
+               <param name="commonTable">"ORGMTX"</param>
+            </source>
+         </sources>
+
+         <field name="id_i" type="string" width="20" />
+         <field name="id" type="string" width="20" />
+      </object>
+      <modify src="Org">
+           <add>
+	         <field name="units" type="collection">
+	            <data>
+	               <object name="Units">
+	                  <sources>
+	                     <source name="DBFTableSet">
+	                        <param name="userTable">"units"</param>
+	                        <param name="commonTable">"units"</param>
+	                        <param name="filter">"[IDO] = $parent.id"</param>
+	                     </source>
+	                  </sources>
+	                  <field name="id" type="number" />
+	                  <field name="name" type="string" />
+	               </object>
+	            </data>
+	         </field>
+	         <field name="delay" type="number" />
+	         <field name="refrigerators" type="collection">
+	            <data>
+	               <object name="Refrigerator">
+	                  <sources>
+	                     <source name="DBFTableSet">
+	                        <param name="userTable">"rfg"</param>
+	                        <param name="commonTable">"rfgs"</param>
+	                        <param name="filter">"[IDO] = $parent.id"</param>
+	                     </source>
+	                  </sources>
+	                  <field name="id" type="string" />
+	                  <field name="name" type="string" />
+	               </object>
+	            </data>
+	         </field>
+            <field name="matrix" type="collection">
+               <data>
+                  <object name="OrgMatrix">
+                     <sources>
+                        <source name="DBFTableSet">
+                           <param name="userTable">"OMX"</param>
+                           <param name="commonTable">"ORGMTX"</param>
+                           <param name="filter">"[ID] = $parent.id"</param>
+                        </source>
+                     </sources>
+
+                     <field name="id" data="ID_I" type="string" />
+                  </object>
+               </data>
+            </field>
+	      </add>
+       </modify>
+       
+       <modify src="Order">
+           <add>
+	           <field name="cash" type="number" width="1" execOn="Put">DecodeFlag($object.params, 2, "2", "1")</field>
+	           <field name="check" type="number" width="1" execOn="Put">DecodeFlag($object.params, 4, "2", "1")</field>
+	           <field name="unitCode" type="number" width="7" data="IDU" />
+              <field name="firma" type="string" width="30" execOn="Put" data="ORG">KeyValueReader("order.cfg","Организация",$object.supplyer)</field>
+           </add>
+       </modify>
+
+      <modify src="Price">
+          <change>
+              <field name="color" type="hex" />
+          </change>
+      </modify>
+   </objects>
+</serverDefs>

@@ -1,0 +1,179 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <!-- <PreferenceScreen
+        android:key="button_voicemail_category_key"
+        android:persistent="false"
+        android:title="Команда 123" >
+        <ListPreference
+            android:dialogTitle="@string/profile_pref_dialog_title_command_123"
+            android:entries="@array/entries_command_123"
+            android:entryValues="@array/entryvalues_command_123"
+            android:key="command_1234"
+            android:summary="@string/profile_pref_summary_command_123"
+            android:title="@string/profile_pref_title_command_123" />
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="pref_key_auto_delete"
+            android:summary="Самостоятельно ввести текст над клавишей и на клавише"
+            android:title="Своя кнопка" />
+
+        <EditTextPreference
+            android:dependency="pref_key_auto_delete"
+            android:dialogTitle="Текст над клавишей"
+            android:key="edittext_preference"
+            android:summary="Введите желаемый текст над клавишей"
+            android:title="Текст над клавишей" />
+        <EditTextPreference
+            android:dependency="pref_key_auto_delete"
+            android:dialogTitle="Текст на клавише"
+            android:key="edittext_preference"
+            android:summary="Введите желаемый текст на клавише"
+            android:title="Текст над клавишей" />
+    </PreferenceScreen>
+    <PreferenceScreen
+        android:key="button_voicemail_category_key"
+        android:persistent="false"
+        android:title="Команда 456" >
+        <ListPreference
+            android:dialogTitle="@string/profile_pref_dialog_title_command_123"
+            android:entries="@array/entries_command_123"
+            android:entryValues="@array/entryvalues_command_123"
+            android:key="command_1234"
+            android:summary="@string/profile_pref_summary_command_123"
+            android:title="@string/profile_pref_title_command_123" />
+
+        <Preference android:title="Заголовок" >
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="http://www.example.com" />
+        </Preference>
+    </PreferenceScreen>
+    <PreferenceScreen
+        android:key="button_voicemail_category_key"
+        android:persistent="false"
+        android:title="Команда 789" >
+        <ListPreference
+            android:dialogTitle="@string/profile_pref_dialog_title_command_123"
+            android:entries="@array/entries_command_123"
+            android:entryValues="@array/entryvalues_command_123"
+            android:key="command_1234"
+            android:summary="@string/profile_pref_summary_command_123"
+            android:title="@string/profile_pref_title_command_123" />
+
+        <Preference android:title="Заголовок" >
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="http://www.example.com" />
+        </Preference>
+    </PreferenceScreen>
+    <PreferenceScreen
+        android:key="button_voicemail_category_key"
+        android:persistent="false"
+        android:title="Команда 666" >
+        <ListPreference
+            android:dialogTitle="@string/profile_pref_dialog_title_command_123"
+            android:entries="@array/entries_command_123"
+            android:entryValues="@array/entryvalues_command_123"
+            android:key="command_1234"
+            android:summary="@string/profile_pref_summary_command_123"
+            android:title="@string/profile_pref_title_command_123" />
+
+        <Preference android:title="Заголовок" >
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="http://www.example.com" />
+        </Preference>
+    </PreferenceScreen>
+    <PreferenceScreen
+        android:key="button_voicemail_category_key"
+        android:persistent="false"
+        android:title="Команда 777" >
+        <ListPreference
+            android:dialogTitle="@string/profile_pref_dialog_title_command_123"
+            android:entries="@array/entries_command_123"
+            android:entryValues="@array/entryvalues_command_123"
+            android:key="command_1234"
+            android:summary="@string/profile_pref_summary_command_123"
+            android:title="@string/profile_pref_title_command_123" />
+
+        <Preference android:title="Заголовок" >
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="http://www.example.com" />
+        </Preference>
+    </PreferenceScreen>
+    <PreferenceScreen
+        android:key="button_voicemail_category_key"
+        android:persistent="false"
+        android:title="Команда 999" >
+        <ListPreference
+            android:dialogTitle="@string/profile_pref_dialog_title_command_123"
+            android:entries="@array/entries_command_123"
+            android:entryValues="@array/entryvalues_command_123"
+            android:key="command_1234"
+            android:summary="@string/profile_pref_summary_command_123"
+            android:title="@string/profile_pref_title_command_123" />
+
+        <Preference android:title="Заголовок" >
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="http://www.example.com" />
+        </Preference>
+    </PreferenceScreen>
+    <PreferenceScreen
+        android:key="button_voicemail_category_key"
+        android:persistent="false"
+        android:title="Команда 09" >
+        <ListPreference
+            android:dialogTitle="@string/profile_pref_dialog_title_command_123"
+            android:entries="@array/entries_command_123"
+            android:entryValues="@array/entryvalues_command_123"
+            android:key="command_1234"
+            android:summary="@string/profile_pref_summary_command_123"
+            android:title="@string/profile_pref_title_command_123" />
+
+        <Preference android:title="Заголовок" >
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="http://www.example.com" />
+        </Preference>
+    </PreferenceScreen>
+    <PreferenceScreen
+        android:key="button_voicemail_category_key"
+        android:persistent="false"
+        android:title="Команда 911" >
+        <ListPreference
+            android:dialogTitle="@string/profile_pref_dialog_title_command_123"
+            android:entries="@array/entries_command_123"
+            android:entryValues="@array/entryvalues_command_123"
+            android:key="command_1234"
+            android:summary="@string/profile_pref_summary_command_123"
+            android:title="@string/profile_pref_title_command_123" />
+
+        <Preference android:title="Заголовок" >
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="http://www.example.com" />
+        </Preference>
+    </PreferenceScreen> -->
+
+    <!--
+    <PreferenceCategory android:title="Основные настройки" >
+        <ListPreference
+            android:dialogTitle="@string/profile_pref_dialog_title_command_123"
+            android:entries="@array/entries_command_123"
+            android:entryValues="@array/entryvalues_command_123"
+            android:key="command_123"
+            android:summary="@string/profile_pref_summary_command_123"
+            android:title="@string/profile_pref_title_command_123" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Команда 123" >
+        <CheckBoxPreference
+            android:key="command_123_switcher"
+            android:summary="command_123_switcher"
+            android:title="command_123_switcher" />
+    </PreferenceCategory>
+    -->
+
+</PreferenceScreen>

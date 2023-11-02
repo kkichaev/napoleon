@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/LinearLayout01"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/footer"
+        android:paddingBottom="10dp"
+        android:paddingTop="5dp" >
+
+        <TextView
+            android:id="@+id/tvOrg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="OrgName"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            tools:ignore="HardcodedText" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/LinearLayout02"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/LinearLayout04"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:background="@color/black"
+            tools:ignore="NestedWeights" >
+
+            <TextView
+                style="@style/ActDetailCell"
+                android:layout_width="0dip"
+                android:layout_weight="1"
+                android:text="@string/caption"
+                tools:ignore="HardcodedText,NestedWeights" />
+
+            <TextView
+                style="@style/ActDetailCell"
+                android:text="Дата производства"
+                tools:ignore="HardcodedText,NestedWeights" />
+
+            <TextView
+                style="@style/ActDetailCell"
+                android:text="Срок годности"
+                tools:ignore="HardcodedText,NestedWeights" />
+
+            <TextView
+                style="@style/ActDetailCell"
+                android:layout_width="0dip"
+                android:layout_weight="1"
+                android:text="Комментарий"
+                tools:ignore="HardcodedText,NestedWeights" />
+
+            <TextView
+                style="@style/ActDetailCell"
+                android:text="@string/qty"
+                tools:ignore="HardcodedText,NestedWeights" />
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/lvItems"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@color/white" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/footer"
+        android:orientation="horizontal"
+        android:padding="7dp" >
+
+        <ImageButton
+            android:id="@+id/btnAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="7dp"
+            android:src="@drawable/new_order"
+            tools:ignore="ContentDescription" />
+
+        <ImageButton
+            android:id="@+id/btnDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="7dp"
+            android:src="@drawable/orderedit"
+            tools:ignore="ContentDescription" />
+
+        <ImageButton
+            android:id="@+id/btnSend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="7dp"
+            android:src="@drawable/send"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/tvTotalSum"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:text="@string/sum"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+</LinearLayout>

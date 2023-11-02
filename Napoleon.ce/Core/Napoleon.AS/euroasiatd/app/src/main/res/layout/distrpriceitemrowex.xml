@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/list_selector"
+    android:gravity="right"
+    android:orientation="horizontal"
+	android:descendantFocusability="blocksDescendants">
+	
+    <ImageView 
+    	android:layout_width="wrap_content" 
+    	android:id="@+id/iAction"
+    	android:padding="2dp"
+    	android:layout_height="wrap_content"
+    	android:layout_gravity="center_vertical"
+    	android:src="@drawable/empty"></ImageView>
+
+    <TextView
+        android:id="@+id/tvPriceItemName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="PriceItem"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/tvItemID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="2dp"
+        android:paddingRight="2dp"
+        android:text="ID"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="italic"
+        android:visibility="gone"
+        tools:ignore="HardcodedText" />
+
+    <LinearLayout
+        android:id="@+id/llQuant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:orientation="horizontal" 
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/tvClmn1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:paddingLeft="20dp"
+            android:paddingRight="5dp"
+            android:text="Clmn1"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            tools:ignore="HardcodedText,NestedWeights" >
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/tvClmn2"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:text="Clmn2"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            tools:ignore="HardcodedText" >
+
+        </TextView>
+    </LinearLayout>
+	
+    <CheckBox android:id="@+id/cbVal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    
+    <CheckBox android:id="@+id/cbAction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</LinearLayout>

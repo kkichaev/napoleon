@@ -1,0 +1,78 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "NapoleonRes.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "resdefce.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Russian resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_RUS)
+#ifdef _WIN32
+LANGUAGE LANG_RUSSIAN, SUBLANG_DEFAULT
+#pragma code_page(1251)
+#endif //_WIN32
+
+IDD_ORDER_DETAIL DIALOG  0, 0, 186, 90
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Параметры заказа"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    CONTROL         "",IDC_ORDER_DATE,"SysDateTimePick32",DTS_RIGHTALIGN | WS_TABSTOP,25,2,40,15
+    CONTROL         "",IDC_DELIVERY_DATE,"SysDateTimePick32",DTS_RIGHTALIGN | WS_TABSTOP,111,2,40,15
+    
+    CONTROL         "Посещение",IDD_VISIT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,44,18,101,10
+
+    EDITTEXT        IDC_FIND,0,0,70,14,ES_AUTOHSCROLL
+    CONTROL         "",IDC_UNIT_LIST,"SysListView32",LVS_ALIGNLEFT | WS_TABSTOP | LVS_OWNERDATA | LVS_OWNERDRAWFIXED | WS_BORDER ,43,30,110,87
+    LTEXT           "Торг.точка",IDC_UNIT_TEXT_LABEL,2,31,40,8
+    LTEXT           "",IDC_UNIT_TEXT,2,40,40,24
+    
+    PUSHBUTTON      "Отмена",IDCANCEL,0,76,50,14
+
+    LTEXT           "Дата",-1,2,5,18,8
+    LTEXT           "Отгрузка",-1,75,5,35,8
+    LTEXT           "Оптовая",IDC_COST_TEXT,2,18,30,10
+END
+
+IDD_DETAIL_PAGE2 DIALOG  0, 0, 186, 90
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Параметры заказа"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    EDITTEXT        IDC_REMARK,2,2,182,15,ES_MULTILINE | ES_AUTOVSCROLL | ES_AUTOHSCROLL | ES_WANTRETURN
+
+    PUSHBUTTON      "Отмена",IDCANCEL,0,76,50,14
+END
+
+#endif    // Russian resources
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "NapoleonRes.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""resdefce.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\0"
+END
+
+
+#endif    // APSTUDIO_INVOKED

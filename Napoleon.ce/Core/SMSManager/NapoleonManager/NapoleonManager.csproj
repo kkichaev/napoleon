@@ -1,0 +1,357 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{30D08BD6-1FFD-4D3F-BF0A-29D0A5291F67}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GRSoft.NapoleonManager</RootNamespace>
+    <AssemblyName>NapoleonManager</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ApplicationIcon>
+    </ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;Voshod</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ExpandableGridView, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Toolbox\ExpandableGridView.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Config.cs" />
+    <Compile Include="DataObjects\DataSets.cs" />
+    <Compile Include="FmAgent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FmAgent.Designer.cs">
+      <DependentUpon>FmAgent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FmAgentEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FmAgentEdit.Designer.cs">
+      <DependentUpon>FmAgentEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FmClass.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FmClass.Designer.cs">
+      <DependentUpon>FmClass.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FmClassEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FmClassEdit.Designer.cs">
+      <DependentUpon>FmClassEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FmConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FmConfig.Designer.cs">
+      <DependentUpon>FmConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FmDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FmDetail.designer.cs">
+      <DependentUpon>FmDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FmDogovor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FmDogovor.Designer.cs">
+      <DependentUpon>FmDogovor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FmDogovorEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FmDogovorEdit.Designer.cs">
+      <DependentUpon>FmDogovorEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FmLocality.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FmLocality.Designer.cs">
+      <DependentUpon>FmLocality.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FmLocalityEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FmLocalityEdit.Designer.cs">
+      <DependentUpon>FmLocalityEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FmParents.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FmParents.Designer.cs">
+      <DependentUpon>FmParents.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FmParentsEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FmParentsEdit.Designer.cs">
+      <DependentUpon>FmParentsEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FmRoute.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FmRoute.Designer.cs">
+      <DependentUpon>FmRoute.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FmSchedule.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FmSchedule.Designer.cs">
+      <DependentUpon>FmSchedule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FmSchool.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FmSchool.Designer.cs">
+      <DependentUpon>FmSchool.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FmSchoolEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FmSchoolEdit.Designer.cs">
+      <DependentUpon>FmSchoolEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FmSchoolSubject.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FmSchoolSubject.Designer.cs">
+      <DependentUpon>FmSchoolSubject.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FmSchoolSubjectEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FmSchoolSubjectEdit.Designer.cs">
+      <DependentUpon>FmSchoolSubjectEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FmStudent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FmStudent.Designer.cs">
+      <DependentUpon>FmStudent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FmStudentEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FmStudentEdit.Designer.cs">
+      <DependentUpon>FmStudentEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FmWait.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FmWait.Designer.cs">
+      <DependentUpon>FmWait.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataObjects\Objects.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FmAgent.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FmAgent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FmAgentEdit.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FmAgentEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FmClass.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FmClass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FmClassEdit.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FmClassEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FmConfig.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FmConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FmDetail.resx">
+      <DependentUpon>FmDetail.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FmDogovor.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FmDogovor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FmDogovorEdit.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FmDogovorEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FmLocality.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FmLocality.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FmLocalityEdit.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FmLocalityEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FmParents.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FmParents.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FmParentsEdit.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FmParentsEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FmRoute.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FmRoute.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FmSchedule.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FmSchedule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FmSchool.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FmSchool.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FmSchoolEdit.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FmSchoolEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FmSchoolSubject.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FmSchoolSubject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FmSchoolSubjectEdit.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FmSchoolSubjectEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FmStudent.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FmStudent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FmStudentEdit.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FmStudentEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FmWait.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FmWait.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Scools.resx">
+      <DependentUpon>Scools.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Reports\CommonStatisticReport.cs" />
+    <Compile Include="Reports\SchoolActivityReport.cs" />
+    <Compile Include="RtfWriter\RtfAbstract.cs" />
+    <Compile Include="RtfWriter\RtfBasics.cs" />
+    <Compile Include="RtfWriter\RtfBlockList.cs" />
+    <Compile Include="RtfWriter\RtfCharFormat.cs" />
+    <Compile Include="RtfWriter\RtfDocument.cs" />
+    <Compile Include="RtfWriter\RtfFieldControlWord.cs" />
+    <Compile Include="RtfWriter\RtfFootnote.cs" />
+    <Compile Include="RtfWriter\RtfHeaderFooter.cs" />
+    <Compile Include="RtfWriter\RtfImage.cs" />
+    <Compile Include="RtfWriter\RtfParagraph.cs" />
+    <Compile Include="RtfWriter\RtfTable.cs" />
+    <Compile Include="RtfWriter\RtfTableCell.cs" />
+    <Compile Include="RtfWriter\RtfUtility.cs" />
+    <Compile Include="Scools.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Scools.Designer.cs">
+      <DependentUpon>Scools.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\ControlDbMediator.cs" />
+    <Compile Include="Utils\Dialogs.cs" />
+    <Compile Include="Utils\OpenLink.cs" />
+    <Compile Include="Utils\PermanentData.cs" />
+    <Compile Include="Utils\StringUtil.cs" />
+    <Compile Include="UILib\TreeGridCell.cs" />
+    <Compile Include="UILib\TreeGridEvents.cs" />
+    <Compile Include="UILib\TreeGridNode.cs" />
+    <Compile Include="UILib\TreeGridNodeCollection.cs" />
+    <Compile Include="UILib\TreeGridView.cs" />
+    <Compile Include="Utils\Comparator.cs" />
+    <Compile Include="Utils\Types.cs" />
+    <Compile Include="Utils\WeekDay.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Napoleon.Net\GRPacket\GRPacket.csproj">
+      <Project>{3F426035-2A5E-48F3-81B1-17F94986F7ED}</Project>
+      <Name>GRPacket</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\minus.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plus.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\add.png" />
+    <Content Include="Resources\delete.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,110 @@
+<object TreasuryVersion="1" name="1">
+   <Album>True</Album>
+   <object name="Picture1">
+      <Image>pechat.png</Image>
+      <Size>552, 552</Size>
+      <Location>590, 1863</Location>
+   </object>
+   <object name="Label2">
+      <Text>`Агент`</Text>
+      <TextAlign>MiddleLeft</TextAlign>
+      <Size>560, 43</Size>
+      <FontSize>8</FontSize>
+      <Location>256, 1796</Location>
+      <event- eventName="Click">handler_Label2_Click</event->
+   </object>
+   <object name="Label4">
+      <Text>Товарный чек № `number`</Text>
+      <TextAlign>TopLeft</TextAlign>
+      <Size>867, 85</Size>
+      <FontSize>10</FontSize>
+      <Location>322, 40</Location>
+   </object>
+   <object name="Label1">
+      <Text>ИНН `ИНН`</Text>
+      <TextAlign>MiddleLeft</TextAlign>
+      <Size>809, 59</Size>
+      <FontSize>9</FontSize>
+      <Location>62, 336</Location>
+   </object>
+   <object name="Label32">
+      <Text>`date|dd.MMMM.yyyy`</Text>
+      <TextAlign>TopRight</TextAlign>
+      <Size>476, 59</Size>
+      <FontSize>9</FontSize>
+      <Location>911, 154</Location>
+   </object>
+   <object name="Table4">
+      <TableHeight>
+         <Item0>129</Item0>
+         <Item1>1263</Item1>
+      </TableHeight>
+      <VariableRow>1</VariableRow>
+      <Text>Table7</Text>
+      <Rows>
+         <Cells0>
+            <Item0>0,1,1,"Наименование товара",</Item0>
+            <Item1>1,1,1,"Кол-во",</Item1>
+            <Item2>2,1,1,"Цена",</Item2>
+            <Item3>3,2,1,"Сумма",</Item3>
+         </Cells0>
+         <Cells1>
+            <Item0>0,1,1,"`name`",MiddleLeft</Item0>
+            <Item1>1,1,1,"`qty`",</Item1>
+            <Item2>2,1,1,"`costtax`",</Item2>
+            <Item3>3,2,1,"`sum`",</Item3>
+         </Cells1>
+      </Rows>
+      <TableWidth>
+         <Item0>683</Item0>
+         <Item1>881</Item1>
+         <Item2>1099</Item2>
+         <Item3>628</Item3>
+         <Item4>1330</Item4>
+      </TableWidth>
+      <Object>items</Object>
+      <Size>1331, 1264</Size>
+      <FontSize>8</FontSize>
+      <Location>56, 416</Location>
+      <event- eventName="Click">handler_Table4_Click</event->
+   </object>
+   <object name="Label36">
+      <Text>Всего наименований `qty` на сумму `sum` руб.</Text>
+      <TextAlign>MiddleLeft</TextAlign>
+      <Size>963, 40</Size>
+      <FontSize>8</FontSize>
+      <Location>59, 1719</Location>
+   </object>
+   <object name="Label38">
+      <Text>ИП `Наименование`</Text>
+      <TextAlign>TopLeft</TextAlign>
+      <Size>1070, 59</Size>
+      <FontSize>9</FontSize>
+      <Location>62, 264</Location>
+   </object>
+   <object name="Label41">
+      <Text>Продавец</Text>
+      <TextAlign>MiddleLeft</TextAlign>
+      <Size>196, 40</Size>
+      <FontSize>8</FontSize>
+      <Location>59, 1796</Location>
+   </object>
+   <object name="Label3">
+      <Text>Подпись</Text>
+      <TextAlign>MiddleCenter</TextAlign>
+      <Size>180, 40</Size>
+      <FontSize>8</FontSize>
+      <Location>889, 1803</Location>
+   </object>
+   <object name="Line1">
+      <Horizontal>True</Horizontal>
+      <Size>340, 10</Size>
+      <Location>1053, 1843</Location>
+   </object>
+   <object name="Line6">
+      <Horizontal>True</Horizontal>
+      <Size>610, 20</Size>
+      <Location>243, 1843</Location>
+      <event- eventName="Click">handler_Line6_Click</event->
+   </object>
+</object>

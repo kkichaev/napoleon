@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+ 	xmlns:android="http://schemas.android.com/apk/res/android"
+ 	android:layout_height="fill_parent" 
+ 	android:layout_width="fill_parent" 
+ 	android:background="#FFFFFF" 
+ 	android:orientation="vertical">
+ 	
+	<TextView android:layout_height="wrap_content" 
+		android:layout_weight="0" 
+		android:layout_width="fill_parent" 
+		android:text="Имя организации" 
+		android:textStyle="bold" 
+		android:textColor="#0000FF" 
+		android:textSize="20sp" android:id="@+id/tvOrgName" 
+		android:ellipsize="end" 
+		android:lines="1" 
+		android:scrollHorizontally="true"></TextView>
+
+	<LinearLayout android:id="@+id/LinearLayout01" 
+		android:layout_height="wrap_content" 
+		android:layout_weight="0" 
+		android:layout_width="fill_parent" 
+		android:orientation="horizontal" 
+		android:layout_marginLeft="5dp" 
+		android:layout_marginRight="5dp">
+
+		<LinearLayout
+			android:layout_height="wrap_content" 
+			android:orientation="horizontal" 
+			android:paddingBottom="4dp"
+			android:layout_width="fill_parent">
+		
+			<TextView android:layout_width="wrap_content" 
+				android:layout_height="wrap_content" 
+				android:textColor="@color/blue" 
+				android:text="25.11.2010" 
+			    android:textSize="16sp"
+			    android:layout_gravity="center_vertical"
+			    android:paddingRight="4dp"
+				android:id="@+id/tvDate" 
+				></TextView>
+			<TextView
+			    android:id="@+id/tvTime"
+			    android:textColor="@color/blue"
+			    android:textSize="16sp"
+			    android:paddingRight="4dp"
+			    android:layout_gravity="center_vertical"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:text="TextView" />
+
+		   	<RadioGroup
+				android:orientation="horizontal" 
+				android:id="@+id/radioGroup1" 
+				android:layout_width="wrap_content" 
+				android:layout_height="wrap_content">
+				<RadioButton
+				    android:id="@+id/rbBefore"
+		    		android:textColor="@color/black"
+				    android:layout_width="wrap_content"
+				    android:layout_height="wrap_content"
+				    android:text="до" />
+		
+				<RadioButton
+				    android:id="@+id/rbAfter"
+		    		android:textColor="@color/black"
+				    android:layout_width="wrap_content"
+				    android:layout_height="wrap_content"
+				    android:text="после" />
+			</RadioGroup>		
+		</LinearLayout>
+
+	</LinearLayout>
+	
+	<LinearLayout android:id="@+id/linearLayout1" 
+		android:layout_weight="0" 
+		android:layout_height="wrap_content" 
+		android:orientation="horizontal" android:layout_width="fill_parent">
+	
+		<LinearLayout android:id="@+id/LinearLayout05" 
+			android:layout_weight="0" android:orientation="vertical" android:layout_height="fill_parent" android:layout_width="wrap_content">
+			
+			<TextView android:id="@+id/TextView03" 
+				android:layout_height="wrap_content" 
+				android:text="Фирма" 
+				android:textColor="#000000" 
+				android:layout_marginLeft="5dp" 
+				android:layout_marginRight="5dp" android:layout_weight="1" android:layout_width="fill_parent" android:gravity="center_vertical" android:minWidth="70dp"></TextView>
+			
+			<TextView android:id="@+id/TextView04" 
+				android:layout_height="wrap_content" 
+				android:textColor="#000000" 
+				android:text="Форма оплаты" 
+				android:layout_marginLeft="5dp" 
+				android:layout_marginRight="5dp" android:layout_weight="1" android:layout_width="fill_parent" android:gravity="center_vertical" android:minWidth="70dp"></TextView>	
+			
+		</LinearLayout>
+		
+		<LinearLayout android:id="@+id/LinearLayout06" 
+			android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_weight="1">
+			
+			<Spinner android:layout_height="wrap_content" 
+				android:layout_weight="1" 
+				android:id="@+id/spFirma" android:layout_width="fill_parent"></Spinner>
+			
+			<Spinner android:layout_height="wrap_content" 
+				android:layout_weight="1" android:id="@+id/spPrices" android:layout_width="fill_parent"></Spinner>
+		</LinearLayout>
+	</LinearLayout>
+	
+	<LinearLayout android:id="@+id/LinearLayout04" 
+		android:layout_height="wrap_content" 
+		android:layout_width="fill_parent" 
+		android:layout_weight="0">
+		
+		<CheckBox android:layout_width="wrap_content" 
+			android:layout_height="wrap_content" 
+			android:id="@+id/cbNetCost" 
+			android:text="Сетевая цена" 
+			android:layout_weight="0.1"
+			android:layout_marginRight="1dp" 
+			android:gravity="center_vertical" 
+			android:textColor="#000000"></CheckBox>
+
+		<TextView android:layout_width="wrap_content" 
+			android:layout_height="wrap_content" 
+			android:textColor="#000000" 
+			android:text="Скидка"
+			android:id="@+id/tvDelay" 
+			android:layout_marginLeft="1dp" 
+			></TextView>
+			
+		<EditText
+			android:layout_height="wrap_content" 
+			android:layout_width="wrap_content" 
+			android:id="@+id/edDiscount" 
+			android:layout_weight="0.8"
+			android:lines="1" /> 			
+	</LinearLayout>
+	
+	<LinearLayout 
+		android:layout_height="wrap_content" 
+		android:layout_width="fill_parent" 
+		>
+
+	</LinearLayout>
+	
+	<EditText android:layout_weight="1" 
+		android:layout_height="0dip" 
+		android:layout_width="fill_parent" 
+		android:id="@+id/edCreateOrderNotes" 
+		android:gravity="top|left" android:minLines="2" android:lines="2"></EditText>
+	
+	<LinearLayout android:id="@+id/LinearLayout08" 
+		android:layout_height="wrap_content" 
+		android:layout_width="fill_parent" 
+		android:layout_weight="0" android:padding="5dp" android:background="@color/button_panel">
+		
+		<Button android:layout_width="wrap_content" 
+			android:layout_height="wrap_content" 
+			android:layout_weight="1" 
+			android:text="Отмена" android:id="@+id/btnCancel"></Button>
+		
+		<Button android:layout_width="wrap_content" 
+			android:layout_height="wrap_content" 
+			android:text="ОК" android:id="@+id/btnOK" 
+			android:layout_weight="3" 
+			android:textStyle="bold"></Button>
+	</LinearLayout>
+</LinearLayout>

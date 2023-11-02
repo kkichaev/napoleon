@@ -1,0 +1,546 @@
+///////////////////////////////////////////////////
+//                                               //
+//               WinSock Error Codes             //
+//                                               //
+//                 10000 to 11999                //
+///////////////////////////////////////////////////
+
+//
+// WinSock error codes are also defined in WinSock.h
+// and WinSock2.h, hence the IFDEF
+//
+#ifndef WSABASEERR
+#define WSABASEERR 10000
+//
+// MessageId: WSAEINTR
+//
+// MessageText:
+//
+//  A blocking operation was interrupted by a call to WSACancelBlockingCall.
+//
+#define WSAEINTR                         10004L
+
+//
+// MessageId: WSAEBADF
+//
+// MessageText:
+//
+//  The file handle supplied is not valid.
+//
+#define WSAEBADF                         10009L
+
+//
+// MessageId: WSAEACCES
+//
+// MessageText:
+//
+//  An attempt was made to access a socket in a way forbidden by its access permissions.
+//
+#define WSAEACCES                        10013L
+
+//
+// MessageId: WSAEFAULT
+//
+// MessageText:
+//
+//  The system detected an invalid pointer address in attempting to use a pointer argument in a call.
+//
+#define WSAEFAULT                        10014L
+
+//
+// MessageId: WSAEINVAL
+//
+// MessageText:
+//
+//  An invalid argument was supplied.
+//
+#define WSAEINVAL                        10022L
+
+//
+// MessageId: WSAEMFILE
+//
+// MessageText:
+//
+//  Too many open sockets.
+//
+#define WSAEMFILE                        10024L
+
+//
+// MessageId: WSAEWOULDBLOCK
+//
+// MessageText:
+//
+//  A non-blocking socket operation could not be completed immediately.
+//
+#define WSAEWOULDBLOCK                   10035L
+
+//
+// MessageId: WSAEINPROGRESS
+//
+// MessageText:
+//
+//  A blocking operation is currently executing.
+//
+#define WSAEINPROGRESS                   10036L
+
+//
+// MessageId: WSAEALREADY
+//
+// MessageText:
+//
+//  An operation was attempted on a non-blocking socket that already had an operation in progress.
+//
+#define WSAEALREADY                      10037L
+
+//
+// MessageId: WSAENOTSOCK
+//
+// MessageText:
+//
+//  An operation was attempted on something that is not a socket.
+//
+#define WSAENOTSOCK                      10038L
+
+//
+// MessageId: WSAEDESTADDRREQ
+//
+// MessageText:
+//
+//  A required address was omitted from an operation on a socket.
+//
+#define WSAEDESTADDRREQ                  10039L
+
+//
+// MessageId: WSAEMSGSIZE
+//
+// MessageText:
+//
+//  A message sent on a datagram socket was larger than the internal message buffer or some other network limit, or the buffer used to receive a datagram into was smaller than the datagram itself.
+//
+#define WSAEMSGSIZE                      10040L
+
+//
+// MessageId: WSAEPROTOTYPE
+//
+// MessageText:
+//
+//  A protocol was specified in the socket function call that does not support the semantics of the socket type requested.
+//
+#define WSAEPROTOTYPE                    10041L
+
+//
+// MessageId: WSAENOPROTOOPT
+//
+// MessageText:
+//
+//  An unknown, invalid, or unsupported option or level was specified in a getsockopt or setsockopt call.
+//
+#define WSAENOPROTOOPT                   10042L
+
+//
+// MessageId: WSAEPROTONOSUPPORT
+//
+// MessageText:
+//
+//  The requested protocol has not been configured into the system, or no implementation for it exists.
+//
+#define WSAEPROTONOSUPPORT               10043L
+
+//
+// MessageId: WSAESOCKTNOSUPPORT
+//
+// MessageText:
+//
+//  The support for the specified socket type does not exist in this address family.
+//
+#define WSAESOCKTNOSUPPORT               10044L
+
+//
+// MessageId: WSAEOPNOTSUPP
+//
+// MessageText:
+//
+//  The attempted operation is not supported for the type of object referenced.
+//
+#define WSAEOPNOTSUPP                    10045L
+
+//
+// MessageId: WSAEPFNOSUPPORT
+//
+// MessageText:
+//
+//  The protocol family has not been configured into the system or no implementation for it exists.
+//
+#define WSAEPFNOSUPPORT                  10046L
+
+//
+// MessageId: WSAEAFNOSUPPORT
+//
+// MessageText:
+//
+//  An address incompatible with the requested protocol was used.
+//
+#define WSAEAFNOSUPPORT                  10047L
+
+//
+// MessageId: WSAEADDRINUSE
+//
+// MessageText:
+//
+//  Only one usage of each socket address (protocol/network address/port) is normally permitted.
+//
+#define WSAEADDRINUSE                    10048L
+
+//
+// MessageId: WSAEADDRNOTAVAIL
+//
+// MessageText:
+//
+//  The requested address is not valid in its context.
+//
+#define WSAEADDRNOTAVAIL                 10049L
+
+//
+// MessageId: WSAENETDOWN
+//
+// MessageText:
+//
+//  A socket operation encountered a dead network.
+//
+#define WSAENETDOWN                      10050L
+
+//
+// MessageId: WSAENETUNREACH
+//
+// MessageText:
+//
+//  A socket operation was attempted to an unreachable network.
+//
+#define WSAENETUNREACH                   10051L
+
+//
+// MessageId: WSAENETRESET
+//
+// MessageText:
+//
+//  The connection has been broken due to keep-alive activity detecting a failure while the operation was in progress.
+//
+#define WSAENETRESET                     10052L
+
+//
+// MessageId: WSAECONNABORTED
+//
+// MessageText:
+//
+//  An established connection was aborted by the software in your host machine.
+//
+#define WSAECONNABORTED                  10053L
+
+//
+// MessageId: WSAECONNRESET
+//
+// MessageText:
+//
+//  An existing connection was forcibly closed by the remote host.
+//
+#define WSAECONNRESET                    10054L
+
+//
+// MessageId: WSAENOBUFS
+//
+// MessageText:
+//
+//  An operation on a socket could not be performed because the system lacked sufficient buffer space or because a queue was full.
+//
+#define WSAENOBUFS                       10055L
+
+//
+// MessageId: WSAEISCONN
+//
+// MessageText:
+//
+//  A connect request was made on an already connected socket.
+//
+#define WSAEISCONN                       10056L
+
+//
+// MessageId: WSAENOTCONN
+//
+// MessageText:
+//
+//  A request to send or receive data was disallowed because the socket is not connected and (when sending on a datagram socket using a sendto call) no address was supplied.
+//
+#define WSAENOTCONN                      10057L
+
+//
+// MessageId: WSAESHUTDOWN
+//
+// MessageText:
+//
+//  A request to send or receive data was disallowed because the socket had already been shut down in that direction with a previous shutdown call.
+//
+#define WSAESHUTDOWN                     10058L
+
+//
+// MessageId: WSAETOOMANYREFS
+//
+// MessageText:
+//
+//  Too many references to some kernel object.
+//
+#define WSAETOOMANYREFS                  10059L
+
+//
+// MessageId: WSAETIMEDOUT
+//
+// MessageText:
+//
+//  A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+//
+#define WSAETIMEDOUT                     10060L
+
+//
+// MessageId: WSAECONNREFUSED
+//
+// MessageText:
+//
+//  No connection could be made because the target machine actively refused it.
+//
+#define WSAECONNREFUSED                  10061L
+
+//
+// MessageId: WSAELOOP
+//
+// MessageText:
+//
+//  Cannot translate name.
+//
+#define WSAELOOP                         10062L
+
+//
+// MessageId: WSAENAMETOOLONG
+//
+// MessageText:
+//
+//  Name component or name was too long.
+//
+#define WSAENAMETOOLONG                  10063L
+
+//
+// MessageId: WSAEHOSTDOWN
+//
+// MessageText:
+//
+//  A socket operation failed because the destination host was down.
+//
+#define WSAEHOSTDOWN                     10064L
+
+//
+// MessageId: WSAEHOSTUNREACH
+//
+// MessageText:
+//
+//  A socket operation was attempted to an unreachable host.
+//
+#define WSAEHOSTUNREACH                  10065L
+
+//
+// MessageId: WSAENOTEMPTY
+//
+// MessageText:
+//
+//  Cannot remove a directory that is not empty.
+//
+#define WSAENOTEMPTY                     10066L
+
+//
+// MessageId: WSAEPROCLIM
+//
+// MessageText:
+//
+//  A Windows Sockets implementation may have a limit on the number of applications that may use it simultaneously.
+//
+#define WSAEPROCLIM                      10067L
+
+//
+// MessageId: WSAEUSERS
+//
+// MessageText:
+//
+//  Ran out of quota.
+//
+#define WSAEUSERS                        10068L
+
+//
+// MessageId: WSAEDQUOT
+//
+// MessageText:
+//
+//  Ran out of disk quota.
+//
+#define WSAEDQUOT                        10069L
+
+//
+// MessageId: WSAESTALE
+//
+// MessageText:
+//
+//  File handle reference is no longer available.
+//
+#define WSAESTALE                        10070L
+
+//
+// MessageId: WSAEREMOTE
+//
+// MessageText:
+//
+//  Item is not available locally.
+//
+#define WSAEREMOTE                       10071L
+
+//
+// MessageId: WSASYSNOTREADY
+//
+// MessageText:
+//
+//  WSAStartup cannot function at this time because the underlying system it uses to provide network services is currently unavailable.
+//
+#define WSASYSNOTREADY                   10091L
+
+//
+// MessageId: WSAVERNOTSUPPORTED
+//
+// MessageText:
+//
+//  The Windows Sockets version requested is not supported.
+//
+#define WSAVERNOTSUPPORTED               10092L
+
+//
+// MessageId: WSANOTINITIALISED
+//
+// MessageText:
+//
+//  Either the application has not called WSAStartup, or WSAStartup failed.
+//
+#define WSANOTINITIALISED                10093L
+
+//
+// MessageId: WSAEDISCON
+//
+// MessageText:
+//
+//  Returned by WSARecv or WSARecvFrom to indicate the remote party has initiated a graceful shutdown sequence.
+//
+#define WSAEDISCON                       10101L
+
+//
+// MessageId: WSAENOMORE
+//
+// MessageText:
+//
+//  No more results can be returned by WSALookupServiceNext.
+//
+#define WSAENOMORE                       10102L
+
+//
+// MessageId: WSAECANCELLED
+//
+// MessageText:
+//
+//  A call to WSALookupServiceEnd was made while this call was still processing. The call has been canceled.
+//
+#define WSAECANCELLED                    10103L
+
+//
+// MessageId: WSAEINVALIDPROCTABLE
+//
+// MessageText:
+//
+//  The procedure call table is invalid.
+//
+#define WSAEINVALIDPROCTABLE             10104L
+
+//
+// MessageId: WSAEINVALIDPROVIDER
+//
+// MessageText:
+//
+//  The requested service provider is invalid.
+//
+#define WSAEINVALIDPROVIDER              10105L
+
+//
+// MessageId: WSAEPROVIDERFAILEDINIT
+//
+// MessageText:
+//
+//  The requested service provider could not be loaded or initialized.
+//
+#define WSAEPROVIDERFAILEDINIT           10106L
+
+//
+// MessageId: WSASYSCALLFAILURE
+//
+// MessageText:
+//
+//  A system call that should never fail has failed.
+//
+#define WSASYSCALLFAILURE                10107L
+
+//
+// MessageId: WSASERVICE_NOT_FOUND
+//
+// MessageText:
+//
+//  No such service is known. The service cannot be found in the specified name space.
+//
+#define WSASERVICE_NOT_FOUND             10108L
+
+//
+// MessageId: WSATYPE_NOT_FOUND
+//
+// MessageText:
+//
+//  The specified class was not found.
+//
+#define WSATYPE_NOT_FOUND                10109L
+
+//
+// MessageId: WSA_E_NO_MORE
+//
+// MessageText:
+//
+//  No more results can be returned by WSALookupServiceNext.
+//
+#define WSA_E_NO_MORE                    10110L
+
+//
+// MessageId: WSA_E_CANCELLED
+//
+// MessageText:
+//
+//  A call to WSALookupServiceEnd was made while this call was still processing. The call has been canceled.
+//
+#define WSA_E_CANCELLED                  10111L
+
+//
+// MessageId: WSAEREFUSED
+//
+// MessageText:
+//
+//  A database query failed because it was actively refused.
+//
+#define WSAEREFUSED                      10112L
+
+#ifdef UNDER_CE
+//
+// MessageId: WSAEDUPLICATE_NAME
+//
+// MessageText:
+//
+//  A duplicate name exists on the network
+//
+#define WSAEDUPLICATE_NAME               10900L
+#endif
+

@@ -1,0 +1,145 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+    <object name="Cost" feature="COST_MANAGER">
+      <sources>
+        <source name="DBFCostReader">
+          <param name="cost">"CS" + $user.id</param>
+          <param name="costType">"O" + $user.id</param>
+        </source>
+      </sources>
+
+      <field name="data" type="binary" />
+    </object>
+
+    <object name="InvAudit">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="table">"IAD"</member>
+      <member name="primaryKey">"userid,created"</member>
+
+      <field name="userid" type="string" data="USER_ID" execOn="Put">$user.id</field>
+      <field name="date" type="timestamp" data="NUM"/>
+      <field name="created" type="timestamp" />
+      <field name="timeZone" type="number" />
+      <field name="serverTimeZone" type="number" data="S_TZ" execOn="Put" feature="USE_TIMEZONE">ServerTimeZone()</field>
+      <field name="sended" type="timestamp" data="S_DATE" execOn="Put">Now()</field>
+      <field name="id" width="30" type="string" />
+      <field name="penult" type="timestamp" />
+      <field name="last" type="timestamp" />
+
+      <field name="items" type="collection">
+        <data>
+          <object name="InvAuditItem">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+
+            <field name="id" width="40" type="string" data="ID_I"/>
+            <field name="qty" type="number" prec="3" />
+            <field name="fact" type="number" prec="3" />
+            <field name="clear" type="number"/>
+            <field name="good" type="number" prec="3" />
+          </object>
+        </data>
+      </field>
+
+      <field name="latitude" type="number" prec="4" />
+      <field name="longitude" type="number" prec="4" />
+
+      <events>
+        <event type="put">
+          <action name="WriteToLog">$object.type;$object.date</action>
+        </event>
+      </events>
+    </object>
+
+    <object name="OrgInv">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"OIV"</param>
+          <param name="commonTable">"ORGINV"</param>
+        </source>
+      </sources>
+      <field name="id" type="string" />
+      <field name="id_i" type="string" />
+      <field name="qty" type="number" prec="3" />
+    </object>
+
+    <object name="TareDoc">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"userid,created"</member>
+
+      <field name="userid" type="string" data="USER_ID" execOn="Put">$user.id</field>
+      <field name="date" type="timestamp" data="NUM"/>
+      <field name="created" type="timestamp" />
+      <field name="timeZone" type="number" />
+      <field name="serverTimeZone" type="number" data="S_TZ" execOn="Put" feature="USE_TIMEZONE">ServerTimeZone()</field>
+      <field name="sended" type="timestamp" data="S_DATE" execOn="Put">Now()</field>
+      <field name="id" width="30" type="string" />
+
+      <field name="items" type="collection">
+        <data>
+          <object name="TareItem">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+
+            <field name="id" width="40" type="string" data="ID_I"/>
+            <field name="qty" type="number" prec="3" />
+            <field name="fact" type="number" prec="3" />
+          </object>
+        </data>
+      </field>
+
+      <field name="latitude" type="number" prec="4" />
+      <field name="longitude" type="number" prec="4" />
+
+      <events>
+        <event type="put">
+          <action name="WriteToLog">$object.type;$object.date</action>
+        </event>
+      </events>
+    </object>
+
+    <object name="OrgInv">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"OIV"</param>
+          <param name="commonTable">"ORGINV"</param>
+        </source>
+      </sources>
+      <field name="id" type="string" />
+      <field name="id_i" type="string" />
+      <field name="qty" type="number" prec="3" />
+      <field name="tare" type="number"  />
+    </object>
+
+    <object name="Inventory">
+      <sources>
+        <source name="DBFTable">
+          <param name="tableName">"INVENTORY"</param>
+        </source>
+      </sources>
+      <field name="id" type="string" />
+      <field name="name" type="string" />
+    </object>
+
+    <modify src="Order">
+      <add>
+        <field name="whId" type="string" width="20" />
+      </add>
+    </modify>
+
+    <modify src="Delivery">
+      <add>
+        <field name="color" type="hex" />
+      </add>
+    </modify>
+  </objects>
+</serverDefs>

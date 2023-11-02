@@ -1,0 +1,114 @@
+{
+  "_from": "@intlify/vite-plugin-vue-i18n@^7.0.0",
+  "_id": "@intlify/vite-plugin-vue-i18n@7.0.0",
+  "_inBundle": false,
+  "_integrity": "sha512-2TbDOQ8XD+vkc0s5OFmr+IY/k4mYMC7pzvx0xGQn+cU/ev314+yi7Z7N7rWcBgiYk1WOUalbGSo3d4nJDxOOyw==",
+  "_location": "/@intlify/vite-plugin-vue-i18n",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "range",
+    "registry": true,
+    "raw": "@intlify/vite-plugin-vue-i18n@^7.0.0",
+    "name": "@intlify/vite-plugin-vue-i18n",
+    "escapedName": "@intlify%2fvite-plugin-vue-i18n",
+    "scope": "@intlify",
+    "rawSpec": "^7.0.0",
+    "saveSpec": null,
+    "fetchSpec": "^7.0.0"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/@intlify/vite-plugin-vue-i18n/-/vite-plugin-vue-i18n-7.0.0.tgz",
+  "_shasum": "9f33b551b7540abae6854e004b532142654a254e",
+  "_spec": "@intlify/vite-plugin-vue-i18n@^7.0.0",
+  "_where": "/home/devteam/prog/webfront",
+  "author": {
+    "name": "kazuya kawaguchi",
+    "email": "kawakazu80@gmail.com"
+  },
+  "bugs": {
+    "url": "https://github.com/intlify/bundle-tools/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "@intlify/bundle-utils": "^3.1.2",
+    "@intlify/shared": "next",
+    "@rollup/pluginutils": "^4.2.0",
+    "debug": "^4.3.1",
+    "fast-glob": "^3.2.5",
+    "source-map": "0.6.1"
+  },
+  "deprecated": "This plugin support until Vite 3. If you would like to use on Vite 4, please use @intlify/unplugin-vue-i18n",
+  "description": "Vite plugin for Vue I18n",
+  "devDependencies": {
+    "unbuild": "^0.8.11"
+  },
+  "engines": {
+    "node": ">= 14.6"
+  },
+  "exports": {
+    ".": {
+      "import": "./lib/index.mjs",
+      "require": "./lib/index.cjs"
+    },
+    "./lib/*": "./lib/*",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "client.d.ts"
+  ],
+  "homepage": "https://github.com/intlify/bundle-tools/blob/main/packages/vite-plugin-vue-i18n/README.md",
+  "keywords": [
+    "i18n",
+    "plugin",
+    "vite",
+    "vitejs",
+    "vue",
+    "vue-i18n"
+  ],
+  "license": "MIT",
+  "main": "lib/index.cjs",
+  "module": "./lib/index.mjs",
+  "name": "@intlify/vite-plugin-vue-i18n",
+  "peerDependencies": {
+    "petite-vue-i18n": "*",
+    "vite": "^2.9.0 || ^3.0.0",
+    "vue-i18n": "*"
+  },
+  "peerDependenciesMeta": {
+    "petite-vue-i18n": {
+      "optional": true
+    },
+    "vite": {
+      "optional": true
+    },
+    "vue-i18n": {
+      "optional": true
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/intlify/bundle-tools.git",
+    "directory": "packages/vite-plugin-vue-i18n"
+  },
+  "scripts": {
+    "build": "unbuild",
+    "build:example": "vite build --config ./examples/vite.config.ts --outDir ./examples/dist",
+    "changelog": "jiti ../../scripts/changelog.ts",
+    "clean": "npm-run-all \"clean:*\"",
+    "clean:example": "rm -rf ./examples/dist",
+    "clean:lib": "rm -rf ./lib",
+    "dev": "vite examples --config ./examples/vite.config.ts",
+    "dev:composition": "vite examples/composition --config ./examples/composition/vite.config.ts",
+    "dev:global": "vite examples/global --config ./examples/global/vite.config.ts",
+    "dev:legacy": "vite examples/legacy --config ./examples/legacy/vite.config.ts",
+    "release": "jiti ../../scripts/release.ts",
+    "test": "yarn test:e2e",
+    "test:e2e": "jest --runInBand --config ./jest.e2e.config.js",
+    "watch": "tsc -p . --watch"
+  },
+  "types": "lib/index.d.ts",
+  "version": "7.0.0"
+}

@@ -1,0 +1,75 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+    <object name="Discounts">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">""</param>
+          <param name="commonTable">"DISCOUNTS"</param>
+          <param name="catalog">"id;items;0"</param>
+        </source>
+      </sources>
+      <field name="items" type="collection">
+        <data>
+          <object name="Item">
+            <field name="id" type="string" data="ID_I" />
+            <field name="isFolder" type="number" data="ISFLD" />
+          </object>
+        </data>
+      </field>
+      <field name="id" type="string" />
+      <field name="discount" type="number" prec="2" data="DSC" />
+      <field name="type" type="number" data="CTYPE" />
+    </object>
+    
+    <modify src="Price">
+      <add>
+        <field name="tax" type="number" />
+      </add>
+    </modify>
+    
+    <modify src="Org">
+      <add>
+        <field name="useTax" type="number" width="1" />
+        <field name="ido" type="string" />
+        <field name="itemCost" type="collection">
+          <data>
+            <object name="Item">
+              <sources>
+                <source name="DBFTableSet">
+                  <param name="userTable">"PRC"</param>
+                  <param name="commonTable">"PRC_CST"</param>
+                  <param name="filter">"[ID] = $parent.id"</param>
+                </source>
+              </sources>
+
+              <field name="cost" type="number" prec="2d" />
+              <field name="id" type="string" width="55" data="ID_I" />
+            </object>
+          </data>
+        </field>
+        
+        <field name="discounts" type="collection">
+          <data>
+            <object name="Item">
+              <sources>
+                <source name="DBFTableSet">
+                  <param name="userTable">"DSC"</param>
+                  <param name="commonTable">"DSC__NI"</param>
+                  <param name="filter">"[ID] = $parent.id"</param>
+                </source>
+              </sources>
+
+              <field name="id" type="string" width="55" data="ID_I" />
+            </object>
+          </data>
+        </field>
+      </add>
+    </modify>
+    <modify src="Delivery">
+      <add>
+        <field name="ido" type="string" />
+      </add>
+    </modify>
+	</objects>
+</serverDefs>

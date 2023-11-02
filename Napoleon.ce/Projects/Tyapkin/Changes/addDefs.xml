@@ -1,0 +1,82 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+  <objects>
+    <object name="OrgMatrix">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"MX"</param>
+          <param name="commonTable">"MTX"</param>
+        </source>
+      </sources>
+
+      <field name="orgid" type="string" />
+      <field name="name" type="string" />
+      <field name="userid" type="string" />
+    </object>
+    
+    <modify src="Org">
+      <add>
+        <field name="stop" type="number" />
+        <field name="flags" type="number" execOn="Get">EncodeFlag($object.stop,2)</field>
+        <field name="debt" type="number" prec="2"/>
+        <field name="matrixName" type="collection">
+          <data>
+            <object name="OrgMatrix">
+              <sources>
+                <source name="DBFTableSet">
+                  <param name="userTable">"MX"</param>
+                  <param name="commonTable">"MTX"</param>
+                  <param name="filter">"[ORGID] = $parent.id"</param>
+                </source>
+              </sources>
+
+              <field name="orgid" type="string" />
+              <field name="name" type="string" />
+            </object>
+          </data>
+        </field>
+        <!--<field name="matrix" type="collection">
+                    <data>
+                        <object name="OrgMatrix">
+                            <sources>
+                                <source name="DBFTableSet">
+                                    <param name="userTable">"OMX"</param>
+                                    <param name="commonTable">"ORGMTX"</param>
+                              <param name="filter">"[ORGID] = $parent.id"</param>
+                           </source>
+                            </sources>
+                            
+                            <field name="orgid" type="string" />
+                            <field name="id" type="string" />
+                        </object>
+                    </data>
+                </field>-->
+      </add>
+    </modify>
+    <modify src="AgentPrefix">
+      <add>
+        <field name="phone" type="string" />
+      </add>
+    </modify>
+    <modify src="Price">
+      <add>
+        <field name="mincost" type="number" prec="2"/>
+      </add>
+    </modify>
+    <modify src ="Firm">
+      <add>
+        <field name="tax" type="number" />
+      </add>
+    </modify>
+    <modify src="Incass">
+      <add>
+        <field name="firmCode" type="string" width="30" data="FIRMA" />
+      </add>
+    </modify>
+    <modify src="Returns">
+      <add>
+        <field name="firmCode" type="string" width="30" data="FIRMA" />
+      </add>
+    </modify>
+  </objects>
+</serverDefs>

@@ -1,0 +1,287 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+  <objects>
+
+    <object name="ReqTransfer">
+      <sources>
+        <source name="SQTable" type="internal">
+          <param name="readFilter">
+            "agent = '" + $user.id + "' and created &gt;= ToDate('" + FormatDate(AdjustDate(Now(),-3,"day"),"DD.MM.YYYY") + "')"
+          </param>
+        </source>
+      </sources>
+
+      <member name="primaryKey">"agent,created"</member>
+      <memberArray name="index">"date"</memberArray>
+
+      <field name="userid" type="string" execOn="Put">$user.id</field>m
+      <field name="date" type="date"/>
+      <field name="created" type="timestamp" />
+      <field name="timeZone" type="number" />
+      <field name="serverTimeZone" type="number" data="S_TZ" execOn="Put" feature="USE_TIMEZONE">ServerTimeZone()</field>
+      <field name="sended" type="timestamp" data="S_DATE" execOn="Put">Now()</field>
+
+      <field name="remark" type="string" />
+
+
+      <field name="direction" type="number" width="1" data="DIR" />
+      <field name="whId" type="string" width="55" />
+      <field name="agent" type="string" width="55" />
+
+      <field name="items" type="collection">
+        <data>
+          <object name="Item">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+
+            <field name="id" width="40" type="string" data="ID_I"/>
+            <field name="qty" type="number" prec="3" />
+            <field name="flags" type="number" prec="0" />
+            <field name="ordflag" width="1" type="number" execOn="Put">FirstItem($object)</field>
+          </object>
+        </data>
+      </field>
+
+      <field name="latitude" type="number" prec="4" />
+      <field name="longitude" type="number" prec="4" />
+      <field name="stltime" type="number" />
+    </object>
+
+    <modify src="ReqTransfer" dest="ReqTransfer1c" table="ReqTransfer1c">
+      <change>
+        <sources>
+          <source name="DBFCatalogTable">
+            <param name="tableName">"ATR" + $user.id</param>
+            <param name="catalog">"id"</param>
+            <param name="ordered">1</param>
+          </source>
+          <source name="SQTable" type="internal" />
+        </sources>
+        
+        <field name="agent" type="string" width="55" data="" />
+      </change>
+      <add>
+        <event type="put">
+          <action name="WriteInternal">$object.type</action>
+          <action name="WriteToLog">$object.type;$object.date</action>
+        </event>
+      </add>
+    </modify>
+
+    <modify src="ReqTransfer$items" dest ="ReqTransfer1c$items" table="ReqTransfer1c$items">
+      <change>
+        <sources>
+          <source name="DBFCatalogItemTable"/>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+    </modify>
+
+
+    <object name="TransferReject">
+      <sources>
+        <source name="SQTable" type="internal">
+          <param name="readFilter">
+            "agent = '" + $user.id + "' and created &gt;= ToDate('" + FormatDate(AdjustDate(Now(),-3,"day"),"DD.MM.YYYY") + "')"
+          </param>
+        </source>
+      </sources>
+      <member name="primaryKey">"agent,created"</member>
+
+      <field name="userid" type="string" execOn="Put">$user.id</field>
+      <field name="agent" type="string" />
+      <field name="created" type="timestamp" />
+      <field name="remark" type="string" />
+    </object>
+
+    <object name="TransferCommit">
+      <sources>
+        <source name="DBFCatalogTable">
+          <param name="tableName">"TCT" + $user.id</param>
+          <param name="catalog">"id"</param>
+          <param name="ordered">1</param>
+        </source>
+        <source name="SQTable" type="internal">
+          <param name="readFilter">
+            "agent = '" + $user.id + "' and created &gt;= ToDate('" + FormatDate(AdjustDate(Now(),-3,"day"),"DD.MM.YYYY") + "')"
+          </param>
+        </source>
+      </sources>
+
+      <member name="primaryKey">"agent,created,number"</member>
+
+      <field name="userid" type="string" execOn="Put">$user.id</field>
+      <field name="timeZone" type="number" />
+      <field name="serverTimeZone" type="number" data="S_TZ" execOn="Put" feature="USE_TIMEZONE">ServerTimeZone()</field>
+      <field name="sended" type="timestamp" data="S_DATE" execOn="Put">Now()</field>
+
+      <field name="remark" type="string" />
+
+
+      <field name="created" type="timestamp" />
+      <field name="direction" type="number" width="1" data="DIR" />
+      <field name="whId" type="string" width="55" />
+      <field name="agent" type="string" width="55" />
+      <field name="number" type="string" width="55" />
+      <field name="date" type="timestamp"/>
+
+      <field name="items" type="collection">
+        <data>
+          <object name="Item">
+            <sources>
+              <source name="DBFCatalogItemTable"/>
+              <source name="SQTable" type="internal" />
+            </sources>
+
+            <field name="id" width="40" type="string" data="ID_I"/>
+            <field name="qty" type="number" prec="3" />
+            <field name="flags" type="number" prec="0" />
+            <field name="ordflag" width="1" type="number" execOn="Put">FirstItem($object)</field>
+          </object>
+        </data>
+      </field>
+
+      <field name="latitude" type="number" prec="4" />
+      <field name="longitude" type="number" prec="4" />
+      <field name="stltime" type="number" />
+
+      <events>
+        <event type="put">
+          <action name="WriteInternal">$object.type</action>
+          <action name="WriteToLog">$object.type;$object.date</action>
+        </event>
+      </events>
+    </object>
+
+    <modify src="TransferCommit" dest="TransferDoc1c" table="TransferDoc1c">
+      <change>
+        <sources>
+          <source name="DBFShadowReader" type="any">
+            <param name="userTable">"TRA"</param>
+            <param name="commonTable">"__TRA"</param>
+            <param name="catalog">"number,date;items;1"</param>
+            <param name="removeAfterReading" />
+          </source>
+
+          <source name="SQTable" type="internal">
+            <param name="readFilter">
+              "agent = '" + $user.id + "' and loaded &gt;= ToDate('" + FormatDate(AdjustDate(Now(),-3,"day"),"DD.MM.YYYY") + "')"
+            </param>
+          </source>
+        </sources>
+        
+        <field name="agent" type="string" width="55" execOn="Put">$user.id</field>
+        <field name="loaded" type="timestamp" execOn="Put">Now()</field>
+      </change>
+      <add>
+        <memberArray name="index">"loaded"</memberArray>
+      </add>
+      <remove>
+        <event name="put" />
+      </remove>
+    </modify>
+
+    <modify src="TransferCommit$items" dest="TreansferDoc1c$items" table="TransferDoc1c$items">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+    </modify>
+        
+    <modify src="Agents">
+      <add>
+        <field name="userid" type="string" execOn="Get">$user.id</field>
+      </add>
+    </modify>  
+
+    <object name="MaxDiscounts">
+      <sources>
+        <source name="DBFTable">
+          <param name="tableName">"MAXDSC"</param>
+        </source>
+      </sources>
+
+      <field name="id" type="string" width="55" />
+      <field name="discount" type="number" prec="2" />
+    </object>
+
+    <object name="OrgDiscount">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"LDSC"</param>
+          <param name="commonTable">"LASTDSC"</param>
+          <param name="catalog">"id;items;0"</param>
+          <param name="filter">"[ID_O] in $Org.id"</param>
+        </source>
+      </sources>
+      <field name="items" type="collection">
+        <data>
+          <object name="Item">
+            <field name="id" type="string" width="40" />
+            <field name="discount" type="number" prec="2" />
+            <field name="cost" type="number" prec="2" />
+          </object>
+        </data>
+      </field>
+      <field name="id" type="string" width="30" data="ID_O" />
+    </object>
+
+    <object name="Sklads">
+      <sources>
+        <source name="DBFTable">
+          <param name="tableName">"SKL"+$user.id</param>
+        </source>
+        <source name="DBFTable">
+          <param name="tableName">"SKLADS"</param>
+        </source>
+      </sources>
+      <field name="id" type="string" />
+      <field name="name" type="string" />
+      <field name="userid" type="string" />
+      <field name="agentid" type="string" execOn="Get">$user.id</field>
+    </object>
+
+    <modify src="Price">
+      <add>
+        <field name="whQty" type="collection">
+          <data>
+            <object name="QtyItem">
+              <sources>
+                <source name="Sequence">
+                  <param name="source">$parent.source</param>
+                </source>
+              </sources>
+              <field name="qty" type="number" prec="3" />
+              <field name="res" type="number" prec="3" />
+            </object>
+          </data>
+        </field>
+        <field name="res" type="number" prec="3" />
+      </add>
+    </modify>
+
+    <modify src="Order">
+      <add>
+        <field name="document" type="string" width="100" />
+      </add>
+    </modify>
+    <modify src="Order$items">
+      <add>
+        <field name="discount" type="number" prec="2" />
+        <field name="priceCost" type="number" prec="2" data="PRICE" />
+        <field name="skladId" type="string" width="20" />
+        <field name="skladIndex" type="number" data="" />
+      </add>
+    </modify>
+
+    <modify src="Delivery$items">
+      <add>
+        <field name="discount" type="number" prec="2" data="DISCOUNT" />
+        <field name="cost" type="number" prec="2" data="COST" />
+      </add>
+    </modify>
+
+  </objects>
+</serverDefs>

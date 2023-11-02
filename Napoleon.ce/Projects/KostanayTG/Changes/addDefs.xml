@@ -1,0 +1,78 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+    <object name="OrdConfig">
+      <sources>
+        <source name="KeyValueTable">
+          <param name="fileName">"ord"+$user.id+".cfg"</param>
+        </source>
+        <source name="KeyValueTable">
+          <param name="fileName">"order.cfg"</param>
+        </source>
+      </sources>
+
+      <field name="key" type="string" />
+      <field name="value" type="string" />
+    </object>
+
+    <object name="Sklads">
+      <sources>
+        <source name="KeyValueDBFTable">
+          <param name="fileName">"SKL" + $user.id</param>
+          <param name="key">"СкладыNew"</param>
+          <param name="itemName">"NAME"</param>
+          <param name="itemKey">"ID"</param>
+        </source>
+        <source name="KeyValueDBFTable">
+          <param name="fileName">"SKLADS"</param>
+          <param name="key">"СкладыNew"</param>
+          <param name="itemName">"NAME"</param>
+          <param name="itemKey">"ID"</param>
+        </source>
+      </sources>
+
+      <field name="key" type="string" />
+      <field name="value" type="string" />
+    </object>
+
+    <object name="Config">
+      <sources>
+        <source name="ObjectUnion">
+          <param>"OrdConfig"</param>
+          <param>"Sklads"</param>
+        </source>
+      </sources>
+
+      <field name="key" type="string" />
+      <field name="value" type="string" />
+    </object>
+
+    <modify src="Price">
+      <change>
+        <field name="whQty" type="collection">
+          <data>
+            <object name="PriceQty">
+              <sources>
+                <source name="Sequence">
+                  <param name="source">$parent.source</param>
+                </source>
+              </sources>
+              <field name="qty" type="number" prec="2" />
+            </object>
+          </data>
+        </field>
+      </change>
+    </modify>
+
+    <modify src="Order">
+      <add>
+        <field name="sklad" type="string" width="50" />
+        <field name="withDocs" type="number" width="1" data="W_DOCS" />
+        <field name="orderOnly" type="number" width="1" data="ORDER" />
+        <field name="beznal" type="number" width="1" data="BN" />
+        <field name="whCode" type="string" width="50" data="ID_WH" />
+        <field name="whIndex" type="number" />
+      </add>
+    </modify>
+	</objects>
+</serverDefs>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/llOrgRow"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_weight="1"
+    android:background="@drawable/list_selector" >
+
+    <ImageView
+        android:id="@+id/ivFolder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:src="@drawable/icon"
+        tools:ignore="ContentDescription" >
+
+    </ImageView>
+
+	<TextView
+        android:id="@+id/tvRouteKind"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="3dp"
+        android:text="B"
+        android:width="25sp"
+        android:layout_gravity="center"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        tools:ignore="HardcodedText" />    
+    <TextView
+        android:id="@+id/tvOrgName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="3dp"
+        android:layout_weight="1"
+        android:ellipsize="end"
+        android:lines="3"
+        android:padding="5dp"
+        android:scrollHorizontally="true"
+        android:text="OrgName"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        tools:ignore="HardcodedText" />
+
+    <LinearLayout
+        android:id="@+id/lvDebs"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:background="@color/black"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="2dp"
+        android:layout_height="fill_parent" >
+
+        <TextView
+            android:id="@+id/tvF1"
+            android:text="f1"
+            tools:ignore="HardcodedText"
+            style="@style/FirmCell"
+             />
+
+        <TextView
+            android:id="@+id/tvF2"
+            style="@style/FirmCell"
+            tools:ignore="HardcodedText"
+            android:text="f2" />
+
+        <TextView
+            android:id="@+id/tvF3"
+            style="@style/FirmCell"
+            tools:ignore="HardcodedText"
+            android:text="f3" />
+
+        <TextView
+            android:id="@+id/tvF4"
+            style="@style/FirmCell"
+            tools:ignore="HardcodedText"
+            android:text="f4" />
+
+        <TextView
+        android:id="@+id/tvF5"
+            style="@style/FirmCell"
+        android:layout_marginRight="1dp"
+        tools:ignore="HardcodedText"
+        android:text="f5" />
+    </LinearLayout>
+
+    
+
+    <TextView
+        android:id="@+id/tvOrgSum"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_marginRight="3dp"
+        android:layout_weight="0"
+        android:gravity="right"
+        android:padding="5dp"
+        android:text="OrgSum"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        tools:ignore="HardcodedText" />
+
+</LinearLayout>

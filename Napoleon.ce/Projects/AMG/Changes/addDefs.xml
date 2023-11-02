@@ -1,0 +1,179 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+    <object name="UnusedScripts">
+      <sources>
+        <source name="SQLQuery">
+          <param name="stmt">'select sd."id" from "ScriptDef" sd left join "ScriptDoc" d on d."scriptId" = sd."id" where d."id" is null'</param>
+        </source>
+      </sources>
+    
+      <field name="id" type="number" />
+    </object>
+
+    <object name="Suppliers">
+      <sources>
+        <source name="DBFTable">
+          <param name="tableName">"SUPPL"</param>
+        </source>
+      </sources>
+
+      <field name="id" type="string" />
+      <field name="name" type="string" />
+    </object>
+    
+    <object name="OrgProp">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+      
+      <member name="primaryKey">"id"</member>
+
+      <field name="id" type="string" />
+      <field name="userid" type="string" />
+      <field name="script" type="number" />
+    </object>
+
+    <modify src="Agents">
+      <add>
+        <field name="division" type="string" width="60" />
+      </add>
+    </modify>
+    
+    <modify src="Org">
+      <change>
+        <sources>
+          <source name="DBFTableSet">
+            <param name="userTable">"O"</param>
+            <param name="commonTable">"ORGS"</param>
+            <param name="userFieldName">"division"</param>
+          </source>
+        </sources>
+      </change>
+      <add>
+        <field name="format" type="string" />
+        <field name="codeTT" type="string" />
+      </add>
+    </modify>
+
+    <modify src="CommonOrgs">
+      <change>
+        <sources>
+          <source name="DBFMaskReader">
+            <param name="tableName">"O*"</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="ScriptDef">
+      <add>
+        <field name="suppl" type="string" />
+      </add>
+    </modify>
+    
+    <modify src="DivisionManager">
+      <add>
+        <field name="suppl" type="string" />
+      </add>
+    </modify>
+
+    <modify dest="CopyVisit" src="VisitInfo" feature="HTTP_SERVER">
+      <add>
+        <field name="items" type="collection">
+          <data>
+            <object name="VisitItem">
+              <sources>
+                <source name="SQTable" type="internal" />
+              </sources>
+              
+              <field name="name" type="string" />
+              <field name="smallName" type="string" />
+              <field name="smallSize" type="string"  />
+              <field name="rating" type="number" feature="SNAPSHOT_RATING"/>
+              <field name="date" type="timestamp" />
+            </object>
+          </data>
+        </field>
+      </add>
+    </modify>
+
+    <modify src="OrgRemnants$items">
+      <add>
+        <field name="format" type="number" /> 
+        <field name="face" type="number" prec="3" /> 
+        <field name="cost" type="number" prec="2" /> 
+        <field name="promo" type="number" prec="2" /> 
+        <field name="oos" type="string"/> 
+        <field name="remark" type="string"/> 
+      </add>
+    </modify>
+
+    <modify src="ScriptDoc">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal">
+            <param name="whereFilter">'"sended" &lt;= ToDate("' + FormatDate(Now(),"DD.MM.YYYY") + '")'</param>
+            <param name="whereCondition">$user.licenseType = "monitor"</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="Answer">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal">
+            <param name="whereFilter">'"sended" &lt;= ToDate("' + FormatDate(Now(),"DD.MM.YYYY") + '")'</param>
+            <param name="whereCondition">$user.licenseType = "monitor"</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="OrgRemnants">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal">
+            <param name="whereFilter">'"sended" &lt;= ToDate("' + FormatDate(Now(),"DD.MM.YYYY") + '")'</param>
+            <param name="whereCondition">$user.licenseType = "monitor"</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="Visit">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal">
+            <param name="whereFilter">'"sended" &lt;= ToDate("' + FormatDate(Now(),"DD.MM.YYYY") + '")'</param>
+            <param name="whereCondition">$user.licenseType = "monitor"</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="VisitInfo">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal">
+            <param name="whereFilter">'"sended" &lt;= ToDate("' + FormatDate(Now(),"DD.MM.YYYY") + '")'</param>
+            <param name="whereCondition">$user.licenseType = "monitor"</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="VisitSrc">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal">
+            <param name="whereFilter">'"sended" &lt;= ToDate("' + FormatDate(Now(),"DD.MM.YYYY") + '")'</param>
+            <param name="whereCondition">$user.licenseType = "monitor"</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+  
+  </objects>
+</serverDefs>

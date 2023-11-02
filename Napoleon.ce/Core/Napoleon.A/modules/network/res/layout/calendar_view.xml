@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layoutMain"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@android:color/background_light"
+    android:orientation="vertical"
+    tools:ignore="Overdraw" >
+
+    <FrameLayout
+        android:id="@+id/calendar_day"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_gravity="left" >
+
+            <ImageView
+                android:id="@+id/btnMonthLeft"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:src="@android:drawable/ic_media_rew"
+                tools:ignore="ContentDescription" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textCalendarMonth"
+            style="@style/valueTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="" >
+        </TextView>
+
+        <LinearLayout
+            android:id="@+id/linearLayout11"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_gravity="right" >
+
+            <ImageView
+                android:id="@+id/btnCalendarCancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:src="@android:drawable/ic_delete"
+                android:visibility="gone"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/btnMonthRight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="7dip"
+                android:clickable="true"
+                android:src="@android:drawable/ic_media_ff"
+                tools:ignore="ContentDescription" />
+
+        </LinearLayout>
+    </FrameLayout>
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <TableLayout
+            android:id="@+id/tableLayoutCalendar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:stretchColumns="*" >
+
+            <TableRow
+                android:id="@+id/tableRow0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:minHeight="30dip" >
+
+                <TextView
+                    android:id="@+id/dayOfWeek0"
+                    style="@style/calendarDayOfWeekTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/day_of_week_1" >
+                </TextView>
+
+                <TextView
+                    android:id="@+id/dayOfWeek1"
+                    style="@style/calendarDayOfWeekTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/day_of_week_2" >
+                </TextView>
+
+                <TextView
+                    android:id="@+id/dayOfWeek2"
+                    style="@style/calendarDayOfWeekTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/day_of_week_3" >
+                </TextView>
+
+                <TextView
+                    android:id="@+id/dayOfWeek3"
+                    style="@style/calendarDayOfWeekTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/day_of_week_4" >
+                </TextView>
+
+                <TextView
+                    android:id="@+id/dayOfWeek4"
+                    style="@style/calendarDayOfWeekTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/day_of_week_5" >
+                </TextView>
+
+                <TextView
+                    android:id="@+id/dayOfWeek5"
+                    style="@style/calendarDayOfWeekTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/day_of_week_6" >
+                </TextView>
+
+                <TextView
+                    android:id="@+id/dayOfWeek6"
+                    style="@style/calendarDayOfWeekTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/day_of_week_7" >
+                </TextView>
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical" >
+
+                <include
+                    android:id="@+id/cell01"
+                    layout="@layout/lt_calendar_day_cell" />
+
+                <include
+                    android:id="@+id/cell02"
+                    layout="@layout/lt_calendar_day_cell" />
+
+                <include
+                    android:id="@+id/cell03"
+                    layout="@layout/lt_calendar_day_cell" />
+
+                <include
+                    android:id="@+id/cell04"
+                    layout="@layout/lt_calendar_day_cell" />
+
+                <include
+                    android:id="@+id/cell05"
+                    layout="@layout/lt_calendar_day_cell" />
+
+                <include
+                    android:id="@+id/cell06"
+                    layout="@layout/lt_calendar_day_cell" />
+
+                <include
+                    android:id="@+id/cell07"
+                    layout="@layout/lt_calendar_day_cell" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical" >
+
+                <include
+                    android:id="@+id/cell11"
+                    layout="@layout/lt_calendar_day_cell" />
+
+                <include
+                    android:id="@+id/cell12"
+                    layout="@layout/lt_calendar_day_cell" />
+
+                <include
+                    android:id="@+id/cell13"
+                    layout="@layout/lt_calendar_day_cell" />
+
+                <include
+                    android:id="@+id/cell14"
+                    layout="@layout/lt_calendar_day_cell" />
+
+                <include
+                    android:id="@+id/cell15"
+                    layout="@layout/lt_calendar_day_cell" />
+
+                <include
+                    android:id="@+id/cell16"
+                    layout="@layout/lt_calendar_day_cell" />
+
+                <include
+                    android:id="@+id/cell17"
+                    layout="@layout/lt_calendar_day_cell" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical" >
+
+                <include
+                    android:id="@+id/cell21"
+                    layout="@layout/lt_calendar_day_cell" />
+
+                <include
+                    android:id="@+id/cell22"
+                    layout="@layout/lt_calendar_day_cell" />
+
+                <include
+                    android:id="@+id/cell23"
+                    layout="@layout/lt_calendar_day_cell" />
+
+                <include
+                    android:id="@+id/cell24"
+                    layout="@layout/lt_calendar_day_cell" />
+
+                <include
+                    android:id="@+id/cell25"
+                    layout="@layout/lt_calendar_day_cell" />
+
+                <include
+                    android:id="@+id/cell26"
+                    layout="@layout/lt_calendar_day_cell" />
+
+                <include
+                    android:id="@+id/cell27"
+                    layout="@layout/lt_calendar_day_cell" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical" >
+
+                <include
+                    android:id="@+id/cell31"
+                    layout="@layout/lt_calendar_day_cell" />
+
+                <include
+                    android:id="@+id/cell32"
+                    layout="@layout/lt_calendar_day_cell" />
+
+                <include
+                    android:id="@+id/cell33"
+                    layout="@layout/lt_calendar_day_cell" />
+
+                <include
+                    android:id="@+id/cell34"
+                    layout="@layout/lt_calendar_day_cell" />
+
+                <include
+                    android:id="@+id/cell35"
+                    layout="@layout/lt_calendar_day_cell" />
+
+                <include
+                    android:id="@+id/cell36"
+                    layout="@layout/lt_calendar_day_cell" />
+
+                <include
+                    android:id="@+id/cell37"
+                    layout="@layout/lt_calendar_day_cell" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical" >
+
+                <include
+                    android:id="@+id/cell41"
+                    layout="@layout/lt_calendar_day_cell" />
+
+                <include
+                    android:id="@+id/cell42"
+                    layout="@layout/lt_calendar_day_cell" />
+
+                <include
+                    android:id="@+id/cell43"
+                    layout="@layout/lt_calendar_day_cell" />
+
+                <include
+                    android:id="@+id/cell44"
+                    layout="@layout/lt_calendar_day_cell" />
+
+                <include
+                    android:id="@+id/cell45"
+                    layout="@layout/lt_calendar_day_cell" />
+
+                <include
+                    android:id="@+id/cell46"
+                    layout="@layout/lt_calendar_day_cell" />
+
+                <include
+                    android:id="@+id/cell47"
+                    layout="@layout/lt_calendar_day_cell" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical" >
+
+                <include
+                    android:id="@+id/cell51"
+                    layout="@layout/lt_calendar_day_cell" />
+
+                <include
+                    android:id="@+id/cell52"
+                    layout="@layout/lt_calendar_day_cell" />
+
+                <include
+                    android:id="@+id/cell53"
+                    layout="@layout/lt_calendar_day_cell" />
+
+                <include
+                    android:id="@+id/cell54"
+                    layout="@layout/lt_calendar_day_cell" />
+
+                <include
+                    android:id="@+id/cell55"
+                    layout="@layout/lt_calendar_day_cell" />
+
+                <include
+                    android:id="@+id/cell56"
+                    layout="@layout/lt_calendar_day_cell" />
+
+                <include
+                    android:id="@+id/cell57"
+                    layout="@layout/lt_calendar_day_cell" />
+            </TableRow>
+        </TableLayout>
+    </ScrollView>
+
+</LinearLayout>

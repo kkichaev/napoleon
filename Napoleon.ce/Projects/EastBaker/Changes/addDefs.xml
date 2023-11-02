@@ -1,0 +1,26 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+    <modify src="Org">
+      <add>
+        <field name="firmIndex" type="number" data="FRM_IDX" />
+        <field name="matrix" type="collection">
+          <data>
+            <object name="MatriExItem">
+              <sources>
+                <source name="DBFTableSet">
+                  <param name="userTable">"OMX"</param>
+                  <param name="commonTable">"ORGMATRIX"</param>
+                  <param name="filter">"[ID] = $parent.id"</param>
+                </source>
+              </sources>
+
+              <field name="id" type="string" data="ID_I" />
+              <field name="order" type="number" data="rowid" />
+            </object>
+          </data>
+        </field>
+      </add>
+    </modify>
+	</objects>
+</serverDefs>

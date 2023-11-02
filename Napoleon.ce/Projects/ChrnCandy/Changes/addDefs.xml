@@ -1,0 +1,43 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+    <object name="PriceRemnants" sendAlways="true">
+      <sources>
+        <source name="DBFTable">
+          <param name="tableName">"PRICEQTY"</param>
+        </source>
+      </sources>
+
+      <field name="id" type="string" />
+      <field name="qty" type="number" prec="3" />
+    </object>
+
+    <object name="OrgType">
+      <sources>
+        <source name="DBFTable">
+          <param name="tableName">"TTP"</param>
+        </source>
+      </sources>
+
+      <field name="id" type="string" />
+      <field name="name" type="string" />
+    </object>
+
+    <object name="OrgMatrix">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"id"</member>
+
+      <field name="id" type="string" />
+      <field name="mtx" type="string" />
+    </object>
+
+    <modify src="Org">
+      <add>
+        <field name="idType" type="string" data="type" />
+      </add>
+    </modify>
+	</objects>
+</serverDefs>

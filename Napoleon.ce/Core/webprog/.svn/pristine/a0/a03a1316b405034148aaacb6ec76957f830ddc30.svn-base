@@ -1,0 +1,29 @@
+from app.api import api
+from flask import request
+from app.api.error import error_response
+from app.fcgi_client import send
+from flask_login import login_required, current_user
+from app.api.server_auth import server_login, current_server
+
+@api.route('/server')
+@server_login
+def server_info() :
+    return send('server_info', {'code':current_server.get()})
+
+
+@api.route('/servers')
+@login_required
+def server_list():
+    params = {'userid':current_user.id}
+    return send('server_list', params)
+    
+
+@api.route('/token')
+@login_required
+def get_server_token():
+    server_code = request.args.get('server_code')
+
+    make_new = request.args.get('new') or False    
+    params = {'code' : server_code, "new" : make_new, 'userid':current_user.id}
+    return send('token', params)
+

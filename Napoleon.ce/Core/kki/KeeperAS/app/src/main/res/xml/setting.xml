@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <EditTextPreference 
+    	android:title="@string/login" 
+    	android:key="login" 
+    	android:summary="@string/login_summary" />
+    	
+    <EditTextPreference
+    	android:title="@string/passw_len"
+    	android:key="passw_len"
+    	android:defaultValue="6"/>
+    	
+    <CheckBoxPreference
+    	android:key="show_passw"
+    	android:title="@string/show_passw"
+    	android:summary="@string/show_passw_desc"
+    	android:defaultValue="true"/>
+</PreferenceScreen>

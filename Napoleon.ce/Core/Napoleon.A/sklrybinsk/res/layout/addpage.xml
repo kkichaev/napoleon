@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:background="#FFFFFF"
+  android:orientation="vertical"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent">
+
+<TableLayout
+	android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_weight="0"
+    android:stretchColumns="1">
+    <TableRow>
+      <TextView
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:textColor="#000000"
+         android:text="Инкассация:"></TextView>
+
+      <EditText android:layout_weight="1"
+         android:layout_height="wrap_content"
+         android:layout_width="wrap_content"
+         android:id="@+id/edIncassSum"
+         android:minLines="2" android:lines="2"></EditText>
+    </TableRow>
+    <TableRow>
+      <TextView
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:textColor="#000000"
+         android:text="№ ТТН:"></TextView>
+
+      <EditText android:layout_weight="1"
+         android:layout_height="wrap_content"
+         android:layout_width="wrap_content"
+         android:id="@+id/edNumTTN"
+         android:minLines="2" android:lines="2"></EditText>
+    </TableRow>
+</TableLayout>
+
+   <Button android:layout_width="wrap_content"
+   	android:layout_gravity="center"
+      android:layout_height="wrap_content"
+      android:text="Документы" android:id="@+id/btnDocs"></Button>
+</LinearLayout>

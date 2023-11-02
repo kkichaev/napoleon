@@ -1,0 +1,1 @@
+cl encoder.c user32.lib

@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding="windows-1251"?>
+<Wix xmlns='http://schemas.microsoft.com/wix/2006/wi'>
+   <Product Id='25A053EB-DE99-4a76-945B-FE26F35E6596' Name='Наполеон АДС' Language='1049' UpgradeCode='6E9AA21B-E471-4a97-8F75-A49A10C9AFF8'
+            Version='3.1.0.1' Manufacturer='Гильдия разработчиков' Codepage='1251'>
+      <Package Id='*'
+                Description='НАПОЛЕОН АДС'
+                Comments='Инсталляция комплекса Наполеон АДС'
+                Manufacturer='Гильдия разработчиков' InstallerVersion='200' Compressed='yes' SummaryCodepage='1251' />
+      <Media Id='1' Cabinet='product.cab' EmbedCab='yes' />
+      <Property Id="DISABLEADVTSHORTCUTS" Value="1" />
+      <WixVariable Id="WixUILicenseRtf" Value="License.rtf" />
+      <WixVariable Id="WixUIBannerBmp" Value="Bitmaps\bannrbmp.bmp" />
+      <WixVariable Id="WixUIDialogBmp" Value="Bitmaps\dlgbmp.bmp" />
+      <WixVariable Id="WixUIExclamationIco" Value="Bitmaps\exclamic.ico" />
+      <WixVariable Id="WixUIInfoIco" Value="Bitmaps\info.ico" />
+      <WixVariable Id="WixUINewIco" Value="Bitmaps\New.ico" />
+      <WixVariable Id="WixUIUpIco" Value="Bitmaps\Up.ico" />
+      <FeatureRef Id='Server'>
+            <FeatureRef Id='PythonReporter' />
+      </FeatureRef>
+      <FeatureRef Id='AdsManager'/>
+      <FeatureRef Id='Admin'/>
+      <FeatureRef Id='Android'/>
+      <FeatureRef Id='ODBC'/>
+      <UIRef Id="WixUI_Mondo" />
+   </Product>
+</Wix>

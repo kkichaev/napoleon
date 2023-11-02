@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+	<ImageView android:id="@+id/ivBarcode"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_gravity="center_horizontal"
+	    android:paddingTop="35dp"/>
+	
+	<View android:layout_width="fill_parent"
+	    android:layout_height="0dp"
+	    android:layout_weight="1"/>
+	
+	<ImageView android:id="@+id/ivPreview"
+		android:layout_width="225dp"
+	    android:layout_height="225dp"
+	    android:padding="25dp"/>
+	
+	<LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/footer"
+        android:padding="7dp" >
+
+        <ImageButton
+            android:id="@+id/btnPhoto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="7dp"
+            android:src="@drawable/camera"/>
+    </LinearLayout>
+</LinearLayout>

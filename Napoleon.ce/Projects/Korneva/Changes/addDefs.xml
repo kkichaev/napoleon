@@ -1,0 +1,113 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+  <objects>
+    <object name="OrdFlag">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"OFL"</param>
+          <param name="commonTable">"ORDFLAG"</param>
+        </source>
+      </sources>
+
+      <field name="id" type="string" />
+      <field name="name" type="string" />
+    </object>
+
+    <object name="OrderProceeded" sendAlways="true">
+      <sources>
+        <source name="DBFTable">
+          <param name="tableName">"POD" + $user.id</param>
+        </source>
+      </sources>
+
+      <field name="created" type="timestamp" />
+      <field name="remark" type="string" />
+      <field name="type" type="string" />
+      <field name="approved" type="number" data="APR"/>
+    </object>
+    
+    <object name="DeliveryDay">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"DDLV"</param>
+          <param name="commonTable">"DDDLV"</param>
+          <param name="catalog">"number;items;1"</param>
+          <param name="filter">"[ido] in $Org.ido"</param>
+        </source>
+      </sources>
+
+      <member name="table">"DDLV"</member>
+
+      <field name="items" type="collection">
+        <data>
+          <object name="DeliveryItem">
+            <field name="id" type="string" data="ID_I"/>
+            <field name="qty" type="number" prec="3" />
+            <field name="sum" type="number" prec="2" />
+            <field name="taxSum" type="number" prec="2" data="TAX_I" feature="SALES_MODULE" />
+          </object>
+        </data>
+      </field>
+
+      <field name="id" type="string" />
+      <field name="sumD" type="number" prec="2" />
+      <field name="number" type="string" data="NUM" />
+      <field name="supplyercode" type="string" data="FIRMA" feature="SALES_MODULE" />
+      <field name="date" type="date" />
+      <field name="created" type="timestamp" />
+      <field name="userid" type="string" />
+      <field name="payDate" type="date" />
+      <field name="color" type="hex" />
+      <field name="ido" type="string" />
+      <field name="info" type="string" />
+    </object>
+
+    <modify src="Price">
+      <add>
+        <field name="packIn" type="number" width="1" />
+      </add>
+      <change>
+        <field name="color" type="hex" />
+      </change>
+    </modify>
+    <modify src="Incass">
+      <add>
+        <field name="chanel" type="string" width="50" execOn="Put">KeyValueReader("order.cfg","КаналСбыта",$object.sumType)</field>
+        <field name="check" type="number"/>
+      </add>
+    </modify>
+    <modify src="Org">
+      <add>
+        <field name="stopMsg" type="string" />
+        <field name="info" type="string" />
+        <field name="ido" type="string" />
+      </add>
+      <change>
+        <field name="color" type="hex" />
+      </change>
+    </modify>
+    <modify src="Delivery">
+      <change>
+        <sources>
+          <source name="DBFTableSet">
+            <param name="userTable">"DLV"</param>
+            <param name="commonTable">"DELIVERY"</param>
+            <param name="catalog">"number;items;1"</param>
+            <param name="filter">"[ido] in $Org.ido"</param>
+          </source>
+        </sources>
+      </change>
+      <add>
+        <field name="payDate" type="date" />
+        <field name="color" type="hex" />
+        <field name="ido" type="string" />
+        <field name="info" type="string" />
+      </add>
+    </modify>
+    <modify src="Order">
+      <add>
+        <field name="customFlags" type="string" data="CFL" />
+      </add>
+    </modify>
+  </objects>
+</serverDefs>

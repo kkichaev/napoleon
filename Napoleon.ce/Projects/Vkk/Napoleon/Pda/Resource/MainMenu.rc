@@ -1,0 +1,75 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "NapoleonRes.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "resdefce.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Russian resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_RUS)
+#ifdef _WIN32
+LANGUAGE LANG_RUSSIAN, SUBLANG_DEFAULT
+#pragma code_page(1251)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MAIN_FRAME MENU 
+BEGIN
+    POPUP "Last"
+    BEGIN
+        MENUITEM "&О программе",                IDC_ABOUT
+        //MENUITEM "&Регистрация",                IDC_REGISTER
+    END
+    POPUP "OrgList"
+    BEGIN
+        //POPUP "&Инфо"
+        //BEGIN
+        //    MENUITEM "&О программе",                IDC_ABOUT
+        //    MENUITEM "&Регистрация",                IDC_REGISTER
+        //END
+            MENUITEM "&О программе",                IDC_ABOUT
+        MENUITEM "&Настройки",                  IDC_PREFERENCE
+        MENUITEM SEPARATOR
+        MENUITEM "&Прием остатков",             IDC_RCV_PRICE
+        MENUITEM "С&инхронизация",              IDC_SYNC
+        MENUITEM SEPARATOR
+        MENUITEM "&Список документов",          IDD_ORDER_LIST
+#ifdef RCV_MESSAGE
+        MENUITEM "С&писок сообщений",           IDD_MESSAGE_LIST
+#endif
+        MENUITEM "Прайс-&лист",                 IDD_PRICE_LIST
+        MENUITEM SEPARATOR
+        MENUITEM "&Выход",                      IDC_QUIT
+    END
+    POPUP "ViewStyle"
+    BEGIN
+        MENUITEM "&Заказы",                     IDC_ORDER_VIEW
+        MENUITEM "&Накладные",                  IDC_DELIVERY_VIEW
+        MENUITEM "&Баланс",                     IDC_BALANCE_VIEW
+    END
+    POPUP "OrgFilter"
+    BEGIN
+        MENUITEM "&Все",                	 IDC_ALL
+        MENUITEM "&Желтые",                      IDC_YLW_FILTER     
+        MENUITEM "&Красные",                     IDC_RED_FILTER
+    END
+END
+
+#endif    // Russian resources
+/////////////////////////////////////////////////////////////////////////////
+
+

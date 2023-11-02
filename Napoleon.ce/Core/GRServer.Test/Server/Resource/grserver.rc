@@ -1,0 +1,343 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Russian (Russia) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_RUS)
+LANGUAGE LANG_RUSSIAN, SUBLANG_DEFAULT
+#pragma code_page(1251)
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_MAINICON            ICON                    "server.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MAINMENU MENU
+BEGIN
+    POPUP "SubMenu"
+    BEGIN
+        MENUITEM "Настройки",                   IDC_SETTINGS
+        MENUITEM "&Выход",                      ID_EXIT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 3,5,0,16
+ PRODUCTVERSION 3,5,0,16
+ FILEFLAGSMASK 0x17L
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x0L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "041904b0"
+        BEGIN
+            VALUE "FileDescription", "GRServer.exe"
+            VALUE "FileVersion", "3.5.0.16"
+            VALUE "InternalName", "GRServer"
+            VALUE "LegalCopyright", "Copyright (C) 2007-2020"
+            VALUE "OriginalFilename", "GRServer.exe"
+            VALUE "ProductName", "GRServer.exe"
+            VALUE "ProductVersion", "3.5.0.16"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x419, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_SETTINGS DIALOGEX 0, 0, 345, 217
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Настройки сервера"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_EXCHANGE_FOLDER,79,19,239,14,ES_AUTOHSCROLL
+    PUSHBUTTON      ">",IDC_BROWSE_FOLDER,321,19,14,14
+    EDITTEXT        IDC_PORT,79,39,84,14,ES_AUTOHSCROLL | ES_NUMBER
+    COMBOBOX        IDC_RUN_TYPE,79,59,84,49,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Изменить пароль...",IDC_SET_PASSWORD,173,40,78,14
+    DEFPUSHBUTTON   "ОК",IDOK,225,196,50,14
+    PUSHBUTTON      "Отмена",IDCANCEL,285,196,50,14
+    LTEXT           "Порт",IDC_STATIC,57,42,18,8
+    LTEXT           "Папка обмена",IDC_STATIC,27,22,48,8
+    LTEXT           "Запускать сервер",IDC_STATIC,13,61,62,8
+    PUSHBUTTON      "Plugins...",IDC_PLUGINS,173,59,78,14
+    PUSHBUTTON      "Регистрация...",IDC_REGISTER,79,196,83,14,NOT WS_VISIBLE
+    PUSHBUTTON      "Пароль COM...",IDC_SET_COM_PWD,260,40,78,14
+    PUSHBUTTON      "Создать аккаунт",IDC_JS_CREATE,79,164,78,14
+    LTEXT           "Резервное копирование",IDC_STATIC,81,83,82,8
+    GROUPBOX        "",IDC_STATIC,7,110,331,75
+    CONTROL         "Использовать GRSoft Join Server",IDC_USE_GRJS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,109,126,10
+    LTEXT           "Логин",IDC_STATIC,54,128,21,8
+    EDITTEXT        IDC_JS_LOGIN,79,126,84,14,ES_AUTOHSCROLL
+    LTEXT           "Пароль",IDC_STATIC,49,147,26,8
+    EDITTEXT        IDC_JS_PWD,79,145,84,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Настройки...",IDC_BACKUP_SETTINGS2,173,82,78,14
+    LTEXT           "",IDC_JS_STATUS,173,129,133,8
+    LTEXT           "",IDC_JS_ADDRESS,173,148,133,8
+    PUSHBUTTON      "Подключить",IDC_JS_OPEN,173,164,78,14
+END
+
+IDD_PASSWORD DIALOGEX 0, 0, 190, 59
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Введите пароль администратора"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_PASSWORD,46,15,133,14,ES_PASSWORD | ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "ОК",IDOK,79,38,50,14
+    PUSHBUTTON      "Отмена",IDCANCEL,133,38,50,14
+    LTEXT           "Пароль",IDC_STATIC,14,18,26,8
+END
+
+IDD_CHANGE_PASSWORD DIALOGEX 0, 0, 142, 94
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Введите новый пароль"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "ОК",IDOK,7,73,50,14
+    PUSHBUTTON      "Отмена",IDCANCEL,85,73,50,14
+    LTEXT           "Пароль",IDC_STATIC,7,7,26,8
+    LTEXT           "Повтор пароля",IDC_STATIC,7,36,52,8
+    EDITTEXT        IDC_PASSWORD,7,18,128,14,ES_PASSWORD | ES_AUTOHSCROLL
+    EDITTEXT        IDC_PASSWORD2,7,48,128,14,ES_PASSWORD | ES_AUTOHSCROLL
+END
+
+IDD_PLUGINS DIALOGEX 0, 0, 319, 183
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+CAPTION "Список плагинов"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "Закрыть",IDOK,262,162,50,14
+    CONTROL         "",IDC_PLUGINS,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,7,7,305,152
+    PUSHBUTTON      "Настроить",IDC_SETTINGS,206,162,50,14,WS_DISABLED
+END
+
+IDD_REGISTER DIALOGEX 0, 0, 240, 76
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_MAXIMIZEBOX | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Регистрация"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "ОК",IDOK,129,55,50,14
+    PUSHBUTTON      "Отмена",IDCANCEL,183,55,50,14
+    EDITTEXT        IDC_REQUEST,64,7,169,14,ES_AUTOHSCROLL | WS_DISABLED
+    EDITTEXT        IDC_RESPONSE,64,29,169,14,ES_AUTOHSCROLL
+    LTEXT           "Код сервера",IDC_STATIC,18,9,44,8
+    LTEXT           "Ответный код",IDC_STATIC,12,31,50,8
+END
+
+IDD_BACKUP_SHEDULER DIALOGEX 0, 0, 353, 144
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Резвное копирование базы"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,231,123,50,14
+    PUSHBUTTON      "Отмена",IDCANCEL,296,123,50,14
+    EDITTEXT        IDC_EXCHANGE_FOLDER,81,34,239,14,ES_AUTOHSCROLL
+    PUSHBUTTON      ">",IDC_BROWSE_FOLDER,325,34,14,14
+    LTEXT           "Папка для копий",IDC_STATIC,19,37,58,8
+    LTEXT           "Хранить копий",IDC_STATIC,27,57,51,8
+    EDITTEXT        IDC_COPIES,81,55,40,14,ES_AUTOHSCROLL
+    LTEXT           "0 - все",IDC_STATIC,127,58,23,8
+    CONTROL         "Резервное копирование",IDC_MAKE_BACKUP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,22,15,97,10
+    LTEXT           "Время запуска",IDC_STATIC,28,104,50,8
+    EDITTEXT        IDC_RUN_TIME,81,101,40,14,ES_AUTOHSCROLL
+    CONTROL         "Пн",IDC_CB_MN,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,82,83,25,10
+    CONTROL         "Вт",IDC_CB_TU,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,107,83,24,10
+    CONTROL         "Ср",IDC_CB_WD,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,133,83,25,10
+    CONTROL         "Чт",IDC_CB_TH,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,159,83,26,10
+    CONTROL         "Пт",IDC_CB_FR,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,185,83,27,10
+    CONTROL         "Сб",IDC_CB_ST,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,210,83,26,10
+    CONTROL         "Вс",IDC_CB_SU,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,237,83,24,10
+END
+
+IDD_RESTORE_BASE DIALOGEX 0, 0, 395, 198
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Восстановление базы"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,281,177,50,14
+    PUSHBUTTON      "Отмена",IDCANCEL,338,177,50,14
+    EDITTEXT        IDC_EXCHANGE_FOLDER,72,12,239,14,ES_AUTOHSCROLL
+    PUSHBUTTON      ">",IDC_BROWSE_FOLDER,316,12,14,14
+    LTEXT           "Папка для копий",IDC_STATIC,10,16,58,8
+    LISTBOX         IDC_ITEMS,7,49,381,116,LBS_SORT | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Доступные копии",IDC_STATIC,7,37,61,8
+    PUSHBUTTON      "Обновить",IDC_REFRESH,338,12,50,14
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_SETTINGS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 338
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 210
+    END
+
+    IDD_PASSWORD, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 183
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 52
+    END
+
+    IDD_CHANGE_PASSWORD, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 135
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 87
+    END
+
+    IDD_PLUGINS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 312
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 176
+    END
+
+    IDD_REGISTER, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 233
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 69
+    END
+
+    IDD_BACKUP_SHEDULER, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 346
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 137
+    END
+
+    IDD_RESTORE_BASE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 388
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 191
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// 1025
+//
+
+IDR_STD_OBJECTS         1025                    "stdObjects.bin"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE
+BEGIN
+    IDS_PWD_ERROR           "Вы ввели неправильный пароль"
+    IDS_ERROR               "Ошибка"
+    IDS_RUN_TRAY            "в трее"
+    IDS_RUN_SERVICE         "как службу"
+    IDS_BROWSE_FOLDER       "Выберите папку"
+    IDS_PWD_MISMATCH        "Введенный пароль не совпадает, повторите еще раз"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_RUN_UNDEF           "не инсталлирован"
+END
+
+#endif    // Russian (Russia) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

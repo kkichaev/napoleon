@@ -1,0 +1,95 @@
+
+/*
+ * Copyright (C), 2006-2007, Денис Мосягин
+ *
+ * Exchange Reflection
+ *
+ *  ert   01/12/2006   creating
+ */ 
+#ifndef __REFLECTION_TYPE_H
+#define __REFLECTION_TYPE_H
+
+//
+//------------------------------- TYPE REFLECTIONS ------------------------------------------
+//
+BEGIN_TYPE_REFLECTION(Agents)
+   REGISTER_STRING_MEMBER(Agents, id)
+   REGISTER_STRING_MEMBER(Agents, name)
+   REGISTER_STRING_MEMBER(Agents, login)
+   REGISTER_STRING_MEMBER(Agents, password)
+END_TYPE_REFLECTION(Agents)
+
+BEGIN_TYPE_REFLECTION(Price)
+   REGISTER_STRING_MEMBER(Price, id)
+   REGISTER_STRING_MEMBER(Price, name)
+   REGISTER_ULONG_SCALE_MEMBER(Price, cost, SUM_SCALE)
+   REGISTER_STRING_MEMBER(Price, barcode)
+END_TYPE_REFLECTION(Price)
+
+BEGIN_TYPE_REFLECTION(PriceItem)
+   REGISTER_STRING_MEMBER(PriceItem, barcode)
+END_TYPE_REFLECTION(PriceItem)
+
+BEGIN_TYPE_REFLECTION(PriceRcv)
+   REGISTER_COLLECTION_MEMBER(PriceRcv, items, PriceItem)
+   CHAIN_REFLECTION(PriceRcv, Price)
+END_TYPE_REFLECTION(PriceRcv)
+
+BEGIN_TYPE_REFLECTION(Server)
+   REGISTER_STRING_MEMBER(Server, ip)
+   REGISTER_STRING_MEMBER(Server, name)
+END_TYPE_REFLECTION(Server)
+
+BEGIN_TYPE_REFLECTION(DocItem)
+   REGISTER_STRING_MEMBER(DocItem, id)
+   REGISTER_ULONG_MEMBER(DocItem, order)
+   REGISTER_LONG_SCALE_MEMBER2(DocItem, qty, QTY_SCALE, true)
+END_TYPE_REFLECTION(DocItem)
+
+BEGIN_TYPE_REFLECTION(ControlDoc)
+   REGISTER_TIMESTAMP_MEMBER(ControlDoc, created)
+   REGISTER_ULONG_MEMBER(ControlDoc, params)
+
+   REGISTER_COLLECTION_MEMBER(ControlDoc, items, DocItem)
+END_TYPE_REFLECTION(ControlDoc)
+
+
+//
+//BEGIN_TYPE_REFLECTION(DocTypes)
+//   REGISTER_STRING_MEMBER(DocTypes, id)
+//   REGISTER_STRING_MEMBER(DocTypes, name)
+//   REGISTER_LONG_MEMBER(DocTypes, controlDoc)
+//   REGISTER_LONG_MEMBER(DocTypes, controlRack)
+//   REGISTER_LONG_MEMBER(DocTypes, controlItem)
+//   REGISTER_LONG_MEMBER(DocTypes, controlQty)
+//   REGISTER_LONG_MEMBER(DocTypes, isRouteList)
+//END_TYPE_REFLECTION(DocTypes)
+//
+//BEGIN_TYPE_REFLECTION(WhAgents)
+//   REGISTER_STRING_MEMBER(WhAgents, id)
+//   REGISTER_STRING_MEMBER(WhAgents, userid)
+//   REGISTER_USHORT_MEMBER(WhAgents, canInputQty)
+//   REGISTER_USHORT_MEMBER(WhAgents, canInputInPack)
+//   REGISTER_USHORT_MEMBER(WhAgents, inputRack)
+//END_TYPE_REFLECTION(WhAgents)
+
+//BEGIN_TYPE_REFLECTION(WhOrder)
+//   REGISTER_TIMESTAMP_MEMBER(WhOrder, created)
+//   REGISTER_STRING_MEMBER(WhOrder, id)
+//   REGISTER_ULONG_MEMBER(WhOrder, params)
+//
+//   REGISTER_COLLECTION_MEMBER(WhOrder, items, OrderItem)
+//END_TYPE_REFLECTION(WhOrder)
+
+BEGIN_TYPE_REFLECTION(Config)
+   REGISTER_STRING_MEMBER(Config, key)
+   REGISTER_STRING_MEMBER(Config, value)
+END_TYPE_REFLECTION(Config)
+
+BEGIN_TYPE_REFLECTION(OrderProceeded)
+   REGISTER_FILETIME_MEMBER(OrderProceeded, created)
+   REGISTER_STRING_MEMBER(OrderProceeded, remark)
+   REGISTER_STRING_MEMBER(OrderProceeded, type)
+END_TYPE_REFLECTION(OrderProceeded)
+
+#endif

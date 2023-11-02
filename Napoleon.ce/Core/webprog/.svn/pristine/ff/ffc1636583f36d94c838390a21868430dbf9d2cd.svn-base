@@ -1,0 +1,32 @@
+#!/usr/bin/sh
+
+echo "FROM python:3.11-slim
+RUN useradd ert
+WORKDIR /home/ert
+
+COPY requirements.txt requirements.txt
+RUN python -m venv prog
+RUN prog/bin/pip install -r requirements.txt
+
+COPY grserver grsmanager grsmanager.ini python.so stop_srv prog/
+
+RUN chown -R ert:ert ./
+USER ert
+
+EXPOSE 3000-4000
+
+RUN echo 'UserSite=/home/ert/clients/grpackages' > prog/reporter.ini
+RUN printf '#!/bin/sh\\\ncd /home/ert/prog\\\n./grsmanager start_servers' >> prog/start_prog
+RUN chmod +x prog/start_prog
+EXPOSE 3000-4000
+CMD prog/start_prog
+#CMD /bin/bash
+" > dockf
+
+docker stop grs
+docker rm grs
+docker image rm grs
+docker build --force-rm -f dockf -t grs ./
+rm dockf
+docker create --mount type=bind,source=/home/ert/clients,target=/home/ert/clients --env-file .env --name grs -it --network host grs
+

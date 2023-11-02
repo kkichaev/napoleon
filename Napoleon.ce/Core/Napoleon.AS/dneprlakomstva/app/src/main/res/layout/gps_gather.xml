@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/llHeader"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        style="?header">
+
+        <TextView
+            style="?headerText"
+            android:text="@string/organization"
+            android:id="@+id/tvOrgName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <TableLayout
+        android:layout_weight="1"
+        android:layout_width="fill_parent"
+        android:layout_height="0dip" >
+
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_weight="0.5"
+            android:layout_width="fill_parent"
+            android:layout_height="0dip" >
+
+            <TextView
+                android:id="@+id/tvGPS"
+                android:padding="5dp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:text="" />
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow2"
+            android:gravity="center_horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="0dip"
+            android:layout_weight="1" >
+
+            <Button
+                android:id="@+id/btnGPS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:text="@string/get_gps"
+                android:textSize="18sp" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow3"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent" >
+        </TableRow>
+
+    </TableLayout>
+
+    <LinearLayout
+        android:id="@+id/llTaskBar"
+        android:layout_width="match_parent"
+        style="?footer">
+
+        <ImageButton
+            android:id="@+id/btnSend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="?footerButton"
+            android:src="@drawable/send"
+            tools:ignore="ContentDescription" />
+
+    </LinearLayout>    
+</LinearLayout>

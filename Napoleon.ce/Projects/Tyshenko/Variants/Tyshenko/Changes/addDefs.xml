@@ -1,0 +1,64 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+    <object name="AgentPlan">
+      <sources>
+        <source name="SQTable" type="internal">
+          <param name="readFilter">
+            '"userid"=' + "'" + $user.id + "' and " +
+            '"begin" &lt;= ToDate("' + FormatDate(Now(),"DD.MM.YYYY") + '") and ' +
+            '"end" &gt;= ToDate("' + FormatDate(Now(),"DD.MM.YYYY") + '")'
+          </param>
+        </source>
+      </sources>
+
+      <member name="primaryKey">"userid,begin"</member>
+
+      <field name="userid" type="string" />
+      <field name="begin" type="date" />
+      <field name="end" type="date" />
+
+      <field name="groups" type="collection">
+        <data>
+          <object name="AgemtPlanGroups">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+            <field name="id" type="string" />
+            <field name="valueSum" type="number" prec="2" />
+            <field name="valueWeight" type="number" prec="3" />
+          </object>
+        </data>
+      </field>
+    </object>
+
+    <object name="FolderDsc">
+      <sources>
+        <source name="DBFTable">
+          <param name="tableName">"FLDDSC"</param>
+        </source>
+      </sources>
+      <field name="id" type="string" />
+      <field name="type" type="string" />
+      <field name="discount" type="number" prec="2" data="DSC" />
+    </object>
+
+    <modify src="Org">
+      <add>
+        <field name="discount" type="number" prec="2" data="DSC" />
+        <field name="type" type="string" />
+      </add>
+    </modify>
+    <modify src="Order">
+      <add>
+        <field name="discount" type="number" prec="2" data="DSC" />
+      </add>
+    </modify>
+    <modify src="Price">
+      <add>
+        <field name="discount" type="number" prec="2" data="DSC" />
+        <field name="useDiscount" type="number" data="USEDSC" />
+      </add>
+    </modify>
+  </objects>
+</serverDefs>

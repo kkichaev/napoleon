@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/univ_padding">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:singleLine="true"
+            android:minHeight="@dimen/univ_ab_height_half"
+            android:layout_height="wrap_content"
+            android:text="@string/connection_settings"
+            android:textSize="@dimen/text_size"
+            android:paddingLeft="@dimen/padding_expired"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:padding="@dimen/univ_padding"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:singleLine="true"
+            android:minHeight="@dimen/univ_ab_height_half"
+            android:layout_height="wrap_content"
+            android:text="@string/connection_string"
+            android:textSize="@dimen/text_size_normal"
+            android:paddingLeft="@dimen/padding_expired"
+            android:gravity="center_vertical"
+            android:textColor="@color/gray"/>
+
+        <EditText
+            android:id="@+id/editAddress"
+            android:inputType="text"
+            android:layout_width="match_parent"
+            android:singleLine="true"
+            android:minHeight="@dimen/univ_ab_height"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_simple"
+            android:hint="@string/connection_add_str_sync_adress"
+            android:gravity="center_vertical"/>
+
+    </LinearLayout>
+
+</ScrollView>

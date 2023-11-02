@@ -1,0 +1,3 @@
+#!/bin/bash
+envsubst '$GRS_FCGI_SOCK $GRS_PAGE_PREFIX' < nginx.cfg  > /etc/nginx/sites-available/default
+sudo /etc/init.d/nginx start

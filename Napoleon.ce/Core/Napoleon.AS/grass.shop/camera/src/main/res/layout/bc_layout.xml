@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    tools:context=".CameraActivity">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/lineH1"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.2"
+        />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/lineH2"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.6"
+        />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/lineV1"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.15"
+        />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/lineV2"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.85"
+        />
+
+
+    <androidx.camera.view.PreviewView
+        android:id="@+id/viewFinder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+    />
+
+    <com.grsoft.camera.BarcodeView
+        android:id="@+id/bvView"
+        custom:leftCoef="0.15"
+        custom:rightCoef="0.85"
+        custom:topCoef="0.2"
+        custom:bottomCoef="0.6"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+
+    <TextView
+        android:id="@+id/tvInput"
+        app:layout_constraintTop_toBottomOf="@id/lineH2"
+        app:layout_constraintLeft_toLeftOf="@id/lineV1"
+        app:layout_constraintRight_toRightOf="@id/lineV2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/inputManual"
+        android:gravity="center"
+        android:padding="8dp"
+        android:textSize="20sp"
+        android:textColor="#109B48"
+        android:background="@color/white"
+        />
+
+
+    <ImageView
+        android:visibility="gone"
+        android:id="@+id/btnTorch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:src="@drawable/flash_on"
+        android:paddingRight="25dp"
+        android:paddingTop="20dp"
+        android:background="@android:color/transparent"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

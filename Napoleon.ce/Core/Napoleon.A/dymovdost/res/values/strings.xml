@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Доставка</string>
+    <string name="undone">НЕ Выполнил</string>
+    <string name="done">Выполнил</string>
+    <string name="show_map">Показать на карте&#8230;</string>
+    <string name="settings">Настройки</string>
+    <string name="refresh">Обновить</string>
+    <string name="syncprocess">Синхронизация&#8230;</string>
+    <string name="kilobyte">%d КБ</string>
+    <string name="updateresult">Синхронизация завершена&lt;br>Трафик: %d КБ</string>
+    <string name="inputkey">Введите код приглашения</string>
+    <string name="newroute">Новый маршрут</string>
+    <string name="terminal">Окно (терминал): &lt;font color="black">%s&lt;/font></string>
+    <string name="contacts">%1$s: &lt;u>&lt;font color="blue">%2$s&lt;/font>&lt;/u></string>
+    <string name="input_remark">Введите комментарий</string>
+    <string name="reject_cause">Причина отказа</string>
+    <string name="myreject_cause">Своя причина</string>
+    <string name="input_reject_cause">Введите причину отказа</string>
+    <string name="need_input_text">Необходимо ввести текст!</string>
+    <string name="call_to_office">Позвонить в офис</string>
+    <string name="def_port_val">8989</string>
+    <string name="def_address">webapps.v-dymov.ru</string>
+    <string name="select_for_open">Выберите, чтобы открыть Доставка.</string>
+    <string name="exit">Выход</string>
+    <string name="def_gps_freq_val">60</string>
+    <string name="def_gps_dist_val">100</string>
+    <string name="network_prefs_title">настройка сети</string>
+    <string name="gps_prefs_title">настройка gps</string>
+    <string name="gps_sync_title">настройка фоновой синхронизации</string>
+    <string-array name="sync_time_entry">
+        <item>1</item>
+        <item>5</item>
+        <item>10</item>
+        <item>20</item>
+        <item>30</item>
+    </string-array>
+    <string name="sync_time_def_val">5</string>
+    <string name="about">О программе...</string>
+    <string name="route_is_loaded">Данные по этому маршруту уже загружены</string>
+    <string name="warning">Внимание!</string>
+    <string name="ask_load_new_route">Вы уверены, что хотите стереть все данные по выполнению и начать заново?</string>
+</resources>

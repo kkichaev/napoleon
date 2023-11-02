@@ -1,0 +1,205 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+    <object name="PriceFolderOrder">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+      <member name="primaryKey">"id"</member>
+      <field name="id" type="string" />
+      <field name="fid" type="string" />
+      <field name="folderID" type="number" execOn="Get">FolderID($object.fid)</field>
+      <field name="ord" type="number" />
+    </object>
+    
+    <object name="OrderCommitted">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"ODB"</param>
+          <param name="commonTable">"PRDS"</param>
+        </source>
+      </sources>
+
+      <field name="created" type="timestamp" data="ORDER" />
+      <field name="number" type="string" data="DLV" />
+      <field name="userid" type="string" />
+      <field name="type" type="string" />
+    </object>
+
+    <object name="Sklads">
+      <sources>
+        <source name="DBFTable">
+          <param name="tableName">"Sklads"</param>
+        </source>
+      </sources>
+      
+      <field name="id" type="string" />
+      <field name="name" type="string" />
+    </object>
+
+    <object name="PriceSklads">
+      <sources>
+        <source name="SQTable" type="internal"  />
+      </sources>
+      <member name="primaryKey">"id"</member>
+
+      <field name="id" type="string" />
+      <field name="idwh" type="string" />
+    </object>
+
+    <object name="AgentPlan">
+      <sources>
+        <source name="SQTable" type="internal" >
+          <param name="readFilter">'"userid"=' + "'" + $user.id + "'"</param>
+        </source>
+      </sources>
+      <member name="primaryKey">"userid,begin"</member>
+      <field name="userid" type="string" />
+      <field name="begin" type="date" />
+      <field name="end" type="date" />
+      <field name="items" type="collection">
+        <data>
+          <object name="AgemtPlanItems">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+            <field name="id" type="string" />
+            <field name="value" type="number" prec="3" />
+          </object>
+        </data>
+      </field>
+    </object>
+    
+    <object name="OrgProp">
+      <sources>
+        <source name="SQTable" type="internal" >
+          <param name="readFilter">'"userid"=' + "'" + $user.id + "'"</param>
+        </source>
+      </sources>
+      
+      <member name="primaryKey">"userid,id"</member>
+
+      <field name="id" type="string" />
+      <field name="userid" type="string" />
+      <field name="script" type="number" />
+      <field name="matrix" type="string" />
+    </object>
+    
+    <object name="StringCause">
+        <sources>
+            <source name="SQTable" type="internal" >
+                <param name="readFilter">"rem=0"</param>
+             </source>   
+        </sources>
+        
+        <member name="primaryKey">"id"</member>
+        
+        <field name="id" type="string" />
+        <field name="text" type="string" />
+        <field name="rem" type="number" />
+    </object>
+    
+    <modify src="Org">
+      <add>
+        <field name="balance" type="number" prec="2" />
+        <field name="prcType" type="string" />
+        <field name="delay" type="number" />
+        <field name="limit" type="number" prec="2" />
+        
+        <field name="discounts" type="collection">
+          <data>
+            <object name="OrgDsc">
+              <sources>
+                <source name="DBFTableSet">
+                  <param name="userTable">"DSC"</param>
+                  <param name="commonTable">"DISCOUNTS"</param>
+                  <param name="filter">"[ID] = $parent.id"</param>
+                </source>
+              </sources>
+
+              <field name="id" type="string" data="ID_I"/>
+              <field name="discount" type="number" prec="2" />
+            </object>
+          </data>
+        </field>
+      </add>
+    </modify>
+    <modify src="Price">
+      <add>
+        <field name="pack" type="string" />
+        <field name="isWeight" type="number" />
+        <field name="folderID" type="number" execOn="Get">GetPriceFolderID($object.id)</field>
+        <field name="ord" type="number" execOn="Get">GetPriceOrder($object.id)</field>
+      </add>
+      <change>
+        <sources>
+          <source name="DBFTableSet">
+            <param name="userTable">"W"</param>
+            <param name="commonTable">"WAREHOUS"</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+    <modify src="ManagerPrice">
+      <change>
+        <field name="folderID" type="number" execOn="Get">GetPriceFolderID($object.id)</field>
+        <field name="fid" type="string" execOn="Get">GetPriceFolderFID($object.id)</field>
+        <field name="ord" type="number" execOn="Get">GetPriceOrder($object.id)</field>
+      </change>
+    </modify>
+    <modify src="Order">
+      <add>
+        <field name="payType" type="string" width="50" />
+        <field name="vetCert" type="number" width="1" />
+        <field name="remAdr" type="string"  />
+        <field name="remInfo" type="string"  />
+      </add>
+    </modify>
+    <modify src="Order$items">
+      <add>
+        <field name="discount" type="number" prec="2" />
+        <field name="idwh" type="string" width="20" />
+      </add>
+    </modify>
+
+    <modify src="OrgRemnants$items">
+      <add>
+        <field name="cause" type="string" width="20" />
+      </add>
+    </modify>
+    
+    <modify src="Folder">
+      <add>
+        <field name="parent" type="string" />
+        <field name="hidden" type="number" />
+      </add>
+      <change>
+        <sources>
+          <source name="SQLFolder" type="internal">
+            <param name="parentField">"parent"</param>
+            <param name="childField">"fid"</param>
+            <param name="rowidField">"id"</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+    
+    <modify src="ManagerFolder">
+      <add>
+        <field name="id" type="string" execOn="Get">$object.fid</field>
+        <field name="fid" type="string" execOn="Put">$object.id</field>
+        <field name="userid" type="string" />
+        <field name="hidden" type="number" />
+      </add>
+      <change>
+        <sources>
+          <source name="SQLFolder" type="internal">
+            <param name="parentField">"parent"</param>
+            <param name="childField">"fid"</param>
+            <!--<param name="readFilter">'"division" in (select "Division$id" from "Division$agents" where id = ' + "'" + $user.id + "')"</param>-->
+          </source>
+        </sources>
+      </change>
+    </modify>
+  </objects>
+</serverDefs>

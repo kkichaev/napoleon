@@ -1,0 +1,215 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+  <objects>
+    <object name="Incomes">
+      <sources>
+        <source name="DBFCatalogTable">
+          <param name="tableName">"INCOME"</param>
+          <param name="catalog">"date"</param>
+          <param name="ordered">0</param>
+        </source>
+      </sources>
+
+      <field name="date" type="date" />
+      <field name="items" type="collection">
+        <data>
+          <object name="IncomeItems">
+            <sources>
+              <source name="DBFCatalogItemTable" />
+            </sources>
+
+            <field name="id" type="string" />
+            <field name="qty" type="number" prec="3" />
+            <field name="cost" type="number" prec="2" />
+            <field name="sum" type="number" prec="2" />
+          </object>
+        </data>
+      </field>
+    </object>
+
+    <object name="PKO1c">
+      <sources>
+        <source name="DBFTable">
+          <param name="tableName">"1CPKO"</param>
+          <param name="filter">"[ido] in $Org.ido"</param>
+        </source>
+      </sources>
+
+      <field name="ido" type="string" />
+      <field name="id" type="string" />
+      <field name="sum" type="number" prec="2" />
+      <field name="number" type="string" data="NUM" />
+      <field name="date" type="date" />
+    </object>
+
+    <object name="Firms">
+      <sources>
+        <source name="KeyValueDBFTable">
+          <param name="fileName">"FIRMS"</param>
+          <param name="key">"Организация"</param>
+          <param name="itemName">"NAME"</param>
+          <param name="itemKey">"ID"</param>
+        </source>
+      </sources>
+
+      <field name="key" type="string" />
+      <field name="value" type="string" />
+    </object>
+
+    <object name="OrdConfig">
+      <sources>
+        <source name="KeyValueTable">
+          <param name="fileName">"ord"+$user.id+".cfg"</param>
+        </source>
+        <source name="KeyValueTable">
+          <param name="fileName">"order.cfg"</param>
+        </source>
+      </sources>
+
+      <field name="key" type="string" />
+      <field name="value" type="string" />
+    </object>
+
+    <object name="Config">
+      <sources>
+        <source name="ObjectUnion">
+          <param>"OrdConfig"</param>
+          <param>"Firms"</param>
+        </source>
+      </sources>
+
+      <field name="key" type="string" />
+      <field name="value" type="string" />
+    </object>
+
+    <modify src="Sales">
+      <add>
+        <field name="isBlack" type="number" width="1" />
+      </add>
+    </modify>
+    <modify src="Org">
+      <add>
+        <field name="ido" type="string" />
+        <field name="dogovor" type="string" />
+        <field name="dogNum" type="string" />
+        <field name="dogDate" type="date" />
+        <field name="divName" type="string" />
+        <field name="stopMsg" type="string" />
+        <field name="payName" type="string" />
+        <field name="payPhone" type="string" />
+        <field name="payBank" type="string" />
+        <field name="payInn" type="string" />
+        <field name="kpk" type="number" />
+        <field name="isBlack" type="number" />
+
+        <field name="orgCost" type="collection">
+          <data>
+            <object name="OrgDsc">
+              <sources>
+                <source name="DBFTableSet">
+                  <param name="userTable">"PCO"</param>
+                  <param name="commonTable">"PRCOSTS"</param>
+                  <param name="filter">"[ID] = $parent.id"</param>
+                </source>
+              </sources>
+
+              <field name="id" type="string" data="IDC"/>
+              <field name="cost" type="number" prec="2" />
+            </object>
+          </data>
+        </field>
+      </add>
+    </modify>
+
+    <modify src="Order">
+      <add>
+        <field name="prcCode" type="string" width="30" />
+        <field name="stpRmt" type="string" width="30" />
+      </add>
+    </modify>
+
+    <modify src="Delivery">
+      <change>
+        <sources>
+          <source name="DBFTableSet">
+            <param name="userTable">"_DLV"</param>
+            <param name="commonTable">"DELIVERY"</param>
+            <param name="catalog">"number;items;1"</param>
+            <param name="filter">"[ido] in $Org.ido"</param>
+          </source>
+        </sources>
+      </change>
+      <add>
+        <field name="ido" type="string" />
+      </add>
+    </modify>
+
+    <modify src="Payment">
+      <change>
+        <source name="DBFTable">
+          <param name="tableName">"_PAY" + $user.id</param>
+        </source>
+        <source name="DBFTable">
+          <param>"PAYMENT"</param>
+          <param name="filter">"[ido] in $Org.ido"</param>
+        </source>
+      </change>
+      <add>
+        <field name="ido" type="string" />
+      </add>
+    </modify>
+
+    <modify src="Returns">
+      <add>
+        <field name="dlvDate" type="date" />
+        <field name="dlvNum" type="string" width="20" />
+      </add>
+    </modify>
+
+    <modify src="Order" dest="LoadedOrders">
+      <change>
+        <sources>
+          <source name="DBFTableSet">
+            <param name="userTable">"LD_ORD"</param>
+            <param name="commonTable">"LD_ORDERS"</param>
+            <param name="catalog">"created;items;1"</param>
+            <param name="filter">"[id] in $Org.id"</param>
+            <param name="userFieldName">"division"</param>
+          </source>
+        </sources>
+
+        <field name="items" type="collection">
+          <data>
+            <object name="Item">
+              <field name="id" type="string" data="ID_I"/>
+              <field name="qty" type="number" prec="3" />
+              <field name="cost" type="number" prec="2" />
+            </object>
+          </data>
+        </field>
+      </change>
+      <add>
+        <field name="created" type="timestamp" data="CREATED"/>
+      </add>
+    </modify>
+
+    <modify src="Price">
+      <add>
+        <field name="gost" type="string" />
+        <field name="cert" type="string" />
+        <field name="stcond" type="string" />
+        <field name="bestBfr" type="string" />
+      </add>
+    </modify>
+
+    <modify src="Firm">
+      <add>
+        <field name="bankName" type="string" data="B_NAME" />
+        <field name="bic" type="string" />
+        <field name="k_acc" type="string" />
+        <field name="acc" type="string" />
+      </add>
+    </modify>
+
+  </objects>
+</serverDefs>

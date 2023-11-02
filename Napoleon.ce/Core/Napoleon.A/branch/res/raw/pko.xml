@@ -1,0 +1,56 @@
+<object name="" TreasuryVersion="1"><object name="Label1"><FontSize>7</FontSize><TextAlign>TopLeft</TextAlign><Size>409, 49</Size><Text>`taxText`</Text><Location>1883, 906</Location></object><object name="Label2"><FontSize>7</FontSize><TextAlign>TopLeft</TextAlign><Size>1098, 44</Size><Text>`taxText`</Text><Location>342, 1220</Location></object><object name="Label3"><FontSize>8</FontSize><TextAlign>TopLeft</TextAlign><Size>639, 55</Size><Text>`Наименование`</Text><Location>1639, 33</Location></object><object name="Label4"><FontSize>6</FontSize><TextAlign>TopLeft</TextAlign><Size>599, 39</Size><Text>Отпечатано в системе НАПОЛЕОН, www.grsoft.ru</Text><Location>1709, 1613</Location></object><object name="Label5"><FontSize>7</FontSize><TextAlign>TopLeft</TextAlign><Size>1193, 108</Size><Text>ИНН/КПП `inn`, `name`, `address`</Text><Location>330, 961</Location></object><object name="Label6"><FontSize>7</FontSize><TextAlign>TopLeft</TextAlign><Size>489, 205</Size><Text>ИНН/КПП `inn`, `name`</Text><Location>1814, 299</Location></object><object name="Label7"><FontSize>7</FontSize><TextAlign>MiddleLeft</TextAlign><Size>664, 149</Size><Text>`sumText`</Text><Location>1644, 734</Location></object><object name="Label8"><FontSize>7</FontSize><TextAlign>MiddleLeft</TextAlign><Size>1282, 40</Size><Text>`sumText`</Text><Location>256, 1151</Location></object><object name="Label9"><FontSize>7</FontSize><TextAlign>MiddleLeft</TextAlign><Size>589, 39</Size><Text>`date`</Text><Location>1704, 239</Location></object><object name="Label10"><FontSize>7</FontSize><TextAlign>MiddleLeft</TextAlign><Size>144, 39</Size><Text>`number`</Text><Location>2169, 194</Location></object><object name="Label11"><FontSize>8</FontSize><TextAlign>TopLeft</TextAlign><Size>936, 316</Size><Text>ИНН/КПП `ИНН`, `Наименование`, `Адрес`, тел. `Телефон`, `Банк`</Text><Location>39, 29</Location></object><object name="Label12"><FontSize>7</FontSize><TextAlign>MiddleLeft</TextAlign><Size>126, 36</Size><Text>Кассир</Text><Location>1646, 1509</Location></object><object name="Label13"><FontSize>7</FontSize><TextAlign>MiddleLeft</TextAlign><Size>164, 79</Size><Text>Главный бухгалтер</Text><Location>1649, 1354</Location></object><object name="Label14"><FontSize>7</FontSize><TextAlign>MiddleLeft</TextAlign><Size>234, 39</Size><Text>М.П. (штампа)</Text><Location>1649, 1259</Location></object><object name="Label15"><FontSize>7</FontSize><TextAlign>TopLeft</TextAlign><Size>194, 39</Size><Text>В том числе</Text><Location>1644, 919</Location></object><object name="Label16"><FontSize>6</FontSize><TextAlign>MiddleRight</TextAlign><Size>124, 39</Size><Text>руб., коп.</Text><Location>2174, 644</Location></object><object name="Label17"><FontSize>7</FontSize><TextAlign>MiddleLeft</TextAlign><Size>129, 39</Size><Text>Сумма</Text><Location>1644, 644</Location></object><object name="Label18"><FontSize>7</FontSize><TextAlign>MiddleLeft</TextAlign><Size>179, 39</Size><Text>Принято от</Text><Location>1629, 299</Location></object><object name="Label19"><FontSize>8</FontSize><TextAlign>MiddleLeft</TextAlign><Size>254, 39</Size><Text>КВИТАНЦИЯ</Text><Location>1854, 134</Location></object><object name="Label20"><FontSize>8</FontSize><TextAlign>MiddleLeft</TextAlign><Size>304, 40</Size><Text>Получил кассир</Text><Location>79, 1502</Location></object><object name="Label21"><FontSize>8</FontSize><TextAlign>MiddleLeft</TextAlign><Size>342, 40</Size><Text>Главный бухгалтер</Text><Location>78, 1392</Location></object><object name="Label22"><FontSize>8</FontSize><TextAlign>MiddleLeft</TextAlign><Size>206, 40</Size><Text>Принято от</Text><Location>78, 961</Location></object><object name="Table1"><FontSize>6</FontSize><TableWidth><Item0>185</Item0><Item1>240</Item1><Item2>453</Item2><Item3>719</Item3><Item4>972</Item4><Item5>1216</Item5><Item6>1416</Item6><Item7>1488</Item7></TableWidth><Size>1489, 214</Size><Text>Table3</Text><Rows><Cells0><Item0>0,1,2,"Дебет",</Item0><Item1>1,4,1,"Кредет",</Item1><Item2>5,1,2,"Сумма, руб. коп.",</Item2><Item3>6,1,2,"Код целевого назначения",</Item3><Item4>7,1,2,"",</Item4></Cells0><Cells1><Item0>1,1,1,"",</Item0><Item1>2,1,1,"код структурного подразделения",</Item1><Item2>3,1,1,"корреспондирующий счёт, субсчёт",</Item2><Item3>4,1,1,"код аналитического учёта",</Item3></Cells1><Cells2><Item0>0,1,1,"",</Item0><Item1>1,1,1,"",</Item1><Item2>2,1,1,"",</Item2><Item3>3,1,1,"",</Item3><Item4>4,1,1,"",</Item4><Item5>5,1,1,"`sum`",</Item5><Item6>6,1,1,"",</Item6><Item7>7,1,1,"",</Item7></Cells2></Rows><Location>78, 730</Location><TableHeight><Item0>40</Item0><Item1>134</Item1><Item2>213</Item2></TableHeight></object><object name="Label23"><FontSize>8</FontSize><TextAlign>MiddleLeft</TextAlign><Size>595, 40</Size><Text>ПРИХОДНЫЙ КАССОВЫЙ ОРДЕР</Text><Location>78, 627</Location></object>
+<object name="Table2">
+	<FontSize>8</FontSize>
+	<TableWidth>
+		<Item0>462</Item0>
+		<Item1>894</Item1>
+	</TableWidth>
+	<Size>895, 185</Size>
+	<Text>Table2</Text>
+	<Rows>
+		<Cells0>
+			<Item0>0,1,1,"Номер документа",</Item0>
+			<Item1>1,1,1,"Дата составления",</Item1>
+		</Cells0>
+		<Cells1>
+			<Item0>0,1,1,"`number`",</Item0>
+			<Item1>1,1,1,"`date`",</Item1>
+		</Cells1>
+	</Rows>
+	<Location>672, 503</Location>
+	<TableHeight>
+		<Item0>111</Item0>
+		<Item1>184</Item1>
+	</TableHeight>
+</object><object name="Label24"><FontSize>8</FontSize><TextAlign>MiddleRight</TextAlign><Size>181, 40</Size><Text>по ОКПО</Text><Location>1101, 312</Location></object><object name="Label25"><FontSize>8</FontSize><TextAlign>MiddleRight</TextAlign><Size>287, 40</Size><Text>Форма по ОКУД</Text><Location>995, 202</Location></object>
+
+<object name="Table3">
+	<FontSize>8</FontSize>
+	<TableWidth>
+		<Item0>268</Item0>
+	</TableWidth>
+	<Size>269, 323</Size>
+	<Text>Table1</Text>
+	<Rows>
+		<Cells0>
+			<Item0>0,1,1,"Код",</Item0>
+		</Cells0>
+		<Cells1>
+			<Item0>0,1,1,"310001",</Item0>
+		</Cells1>
+		<Cells2>
+			<Item0>0,1,1,"",</Item0>
+		</Cells2>
+		<Cells3>
+			<Item0>0,1,1,"",</Item0>
+		</Cells3>
+	</Rows>
+	<Location>1298, 144</Location>
+	<TableHeight>
+		<Item0>50</Item0>
+		<Item1>106</Item1>
+		<Item2>258</Item2>
+		<Item3>322</Item3>
+	</TableHeight>
+	
+	</object><object name="Label26"><FontSize>8</FontSize><TextAlign>MiddleRight</TextAlign><Size>438, 40</Size><Text>России от 18.08.98 г. № 88</Text><Location>1129, 97</Location></object><object name="Label27"><FontSize>8</FontSize><TextAlign>MiddleRight</TextAlign><Size>559, 40</Size><Text>Утверждена постановлением Госкомстата</Text><Location>1008, 57</Location></object><object name="Label28"><FontSize>7</FontSize><TextAlign>MiddleLeft</TextAlign><Size>54, 39</Size><Text>от</Text><Location>1629, 239</Location></object><object name="Label29"><FontSize>7</FontSize><TextAlign>MiddleLeft</TextAlign><Size>529, 39</Size><Text>к приходному кассовому ордеру №</Text><Location>1629, 194</Location></object><object name="Label30"><FontSize>8</FontSize><TextAlign>MiddleLeft</TextAlign><Size>217, 40</Size><Text>В том числе</Text><Location>78, 1226</Location></object><object name="Label31"><FontSize>8</FontSize><TextAlign>MiddleLeft</TextAlign><Size>143, 40</Size><Text>Сумма</Text><Location>79, 1151</Location></object><object name="Label32"><FontSize>7</FontSize><TextAlign>MiddleLeft</TextAlign><Size>184, 39</Size><Text>Основание:</Text><Location>1639, 506</Location></object><object name="Label33"><FontSize>8</FontSize><TextAlign>MiddleLeft</TextAlign><Size>206, 40</Size><Text>Основание</Text><Location>78, 1071</Location></object><object name="Label34"><FontSize>8</FontSize><TextAlign>MiddleRight</TextAlign><Size>609, 39</Size><Text>Унифицированная форма № КО-1</Text><Location>953, 19</Location></object><object name="Label35"><FontSize>7</FontSize><TextAlign>MiddleLeft</TextAlign><Size>374, 39</Size><Text>`sum`</Text><Location>1784, 644</Location></object><object name="Label36"><FontSize>8</FontSize><TextAlign>MiddleLeft</TextAlign><Size>230, 40</Size><Text>Приложение</Text><Location>78, 1289</Location></object><object name="Line1"><LineText>расшифровка</LineText><Horizontal>True</Horizontal><Size>246, 13</Size><Location>2059, 1543</Location></object><object name="Line3"><Horizontal>True</Horizontal><Size>609, 9</Size><Location>1694, 279</Location></object><object name="Line5"><Horizontal>True</Horizontal><Size>454, 9</Size><Location>1854, 959</Location></object><object name="Line7"><Horizontal>False</Horizontal><Size>12, 1668</Size><Location>1600, 20</Location></object><object name="Line9"><LineText>расшифровка</LineText><Horizontal>True</Horizontal><Size>254, 14</Size><Location>2059, 1424</Location></object><object name="Line11"><Horizontal>True</Horizontal><Size>1285, 16</Size><Location>284, 1110</Location></object><object name="Line13"><LineText>расшифровка подписи</LineText><Horizontal>True</Horizontal><Size>683, 18</Size><Location>889, 1544</Location></object><object name="Line15"><LineText>структурное подразделение</LineText><Horizontal>True</Horizontal><Size>1220, 23</Size><Location>79, 466</Location></object><object name="Line17"><Horizontal>True</Horizontal><Size>664, 9</Size><Location>1644, 1119</Location></object><object name="Line19"><Horizontal>True</Horizontal><Size>664, 19</Size><Location>1639, 614</Location></object><object name="Line21"><Horizontal>False</Horizontal><Size>17, 1668</Size><Location>1613, 19</Location></object><object name="Line23"><Horizontal>True</Horizontal><Size>468, 14</Size><Location>1835, 544</Location></object><object name="Line2"><LineText>подпись</LineText><Horizontal>True</Horizontal><Size>213, 13</Size><Location>1816, 1543</Location></object><object name="Line6"><Horizontal>True</Horizontal><Size>1253, 28</Size><Location>318, 1328</Location></object><object name="Line10"><Horizontal>True</Horizontal><Size>149, 9</Size><Location>2154, 234</Location></object><object name="Line14"><LineText>цифрами</LineText><Horizontal>True</Horizontal><Size>389, 14</Size><Location>1774, 684</Location></object><object name="Line18"><LineText>линия отреза</LineText><Horizontal>False</Horizontal><Size>15, 1667</Size><Location>1587, 21</Location></object><object name="Line22"><LineText>прописью</LineText><Horizontal>True</Horizontal><Size>1330, 22</Size><Location>237, 1190</Location></object><object name="Line4"><LineText>организация</LineText><Horizontal>True</Horizontal><Size>664, 19</Size><Location>1629, 104</Location></object><object name="Line12"><LineText>подпись</LineText><Horizontal>True</Horizontal><Size>391, 29</Size><Location>463, 1544</Location></object><object name="Line20"><LineText>расшифровка подписи</LineText><Horizontal>True</Horizontal><Size>681, 24</Size><Location>889, 1429</Location></object><object name="Line8"><Horizontal>True</Horizontal><Size>1252, 25</Size><Location>318, 1265</Location></object><object name="Line24"><LineText>подпись</LineText><Horizontal>True</Horizontal><Size>214, 14</Size><Location>1824, 1424</Location></object><object name="Line16"><LineText>подпись</LineText><Horizontal>True</Horizontal><Size>391, 22</Size><Location>463, 1429</Location></object></object>

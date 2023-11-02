@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/LinearLayout01"
+        android:layout_width="fill_parent"
+        style="?header">
+
+        <TextView
+            android:id="@+id/tvOrg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scrollHorizontally="true"
+            android:text="OrgName"
+            style="?headerText" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical" >
+	<LinearLayout
+        android:background="@color/black"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:id="@+id/tvFirm"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:background="@color/bar_visit_color"
+            android:gravity="center"
+            android:text="@string/mfgr"
+            android:layout_marginRight="1dp"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:width="@dimen/firm_width"
+			 />
+
+        <TextView
+            android:id="@+id/tvBrand"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:background="@color/bar_visit_color"
+            android:gravity="center"
+            android:text="@string/brand"
+            android:layout_marginRight="1dp"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:width="@dimen/brand_width"
+			 />
+
+        <TextView
+            android:id="@+id/tvPrefix"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:background="@color/bar_visit_color"
+            android:gravity="center"
+            android:text="@string/prefix"
+            android:layout_marginRight="1dp"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:width="@dimen/prefix_width"
+			 />
+        	    	    
+        <TextView
+            android:id="@+id/tvName"
+            android:background="@color/bar_visit_color"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:layout_marginRight="1dp"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:paddingLeft="2dp"
+            android:paddingRight="2dp"
+            android:text="@string/item_name"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/tvCost"
+            android:background="@color/bar_visit_color"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:textSize="14sp"
+            android:paddingLeft="2dp"
+            android:width="55dp"
+            android:paddingRight="2dp"
+            android:text="@string/cost"
+            android:textColor="@color/white" />
+        
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/tvPrevDate"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="1dp"
+                android:layout_marginLeft="1dp"
+                android:background="@color/bar_visit_color"
+                android:gravity="center_horizontal"
+                android:text=""
+                android:textColor="@color/white"
+                tools:ignore="HardcodedText" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent" >
+
+                <TextView
+                    style="@style/WarehouseNumItemHead"
+                    tools:ignore="HardcodedText"
+                    android:text="остатки" />
+
+                <TextView
+                    style="@style/WarehouseNumItemHead"
+                    tools:ignore="HardcodedText"
+                    android:text="продажи" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:background="@color/bar_visit_color"
+                android:gravity="center_horizontal"
+                android:layout_marginLeft="1dp"
+                android:layout_marginBottom="1dp"
+                tools:ignore="HardcodedText"
+                android:text="сегодня"
+                android:textColor="@color/white" />
+
+            <LinearLayout                
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    style="@style/WarehouseNumItemHead"
+                    tools:ignore="HardcodedText"
+                    android:text="остатки" />
+
+                <TextView
+                    style="@style/WarehouseNumItemHead"
+                    tools:ignore="HardcodedText"
+                    android:text="рек.заказ" />
+
+				<TextView
+                    style="@style/WarehouseNumItemHead"
+                    tools:ignore="HardcodedText"
+                    android:text="заказ" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:background="@color/bar_visit_color"
+                android:gravity="center_horizontal"
+                android:layout_marginLeft="1dp"
+                android:layout_marginBottom="1dp"
+                tools:ignore="HardcodedText"
+                android:text="на день"
+                android:textColor="@color/white" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent" >
+
+                <TextView
+                    style="@style/WarehouseNumItemHead"
+                    tools:ignore="HardcodedText"
+                    android:text="план" />
+
+                <TextView
+                    style="@style/WarehouseNumItemHead"
+                    tools:ignore="HardcodedText"
+                    android:text="факт" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+        
+    </LinearLayout>        
+
+        <ListView
+            android:id="@+id/lvItems"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/white" >
+        </ListView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/footer"
+        android:orientation="vertical"
+		android:paddingBottom="7dp"
+        android:paddingTop="7dp" >
+		<LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" 
+                android:background="@android:color/black"
+                android:orientation="horizontal">
+            
+    	    <TextView
+                    style="@style/WarehouseNumItemHead"
+                    android:layout_weight="1"
+                    tools:ignore="HardcodedText"
+                    android:layout_margin="0dp"
+                    android:layout_width="0dip"
+                    android:gravity="right"
+                    android:paddingRight="10dp"
+                    android:text="Итого" />
+
+                <TextView
+                    android:id="@+id/tvSum"
+                    style="@style/WarehouseNumItemHead"
+                    tools:ignore="HardcodedText"
+                    android:text="" />
+    	    	    	    
+                <TextView
+                    android:id="@+id/tvPrevRest"
+                    style="@style/WarehouseNumItemHead"
+                    tools:ignore="HardcodedText"
+                    android:text="" />
+
+                <TextView
+                    android:id="@+id/tvPrevSales"
+                    style="@style/WarehouseNumItemHead"
+                    tools:ignore="HardcodedText"
+                    android:text="" />
+
+                <TextView
+                    android:id="@+id/tvCurRest"
+                    style="@style/WarehouseNumItemHead"
+                    tools:ignore="HardcodedText"
+                    android:text="" />
+                
+                <TextView
+                    android:id="@+id/tvAutoOrder"
+                    style="@style/WarehouseNumItemHead"
+                    tools:ignore="HardcodedText"
+                    android:text="" />
+                
+                <TextView
+                    android:id="@+id/tvCurOrder"
+                    style="@style/WarehouseNumItemHead"
+                    tools:ignore="HardcodedText"
+                    android:text="" />
+                
+                <TextView
+                    android:id="@+id/tvPlan"
+                    style="@style/WarehouseNumItemHead"
+                    tools:ignore="HardcodedText"
+                    android:text="" />
+                
+                <TextView
+                    android:id="@+id/tvFact"
+                    style="@style/WarehouseNumItemHead"
+                    tools:ignore="HardcodedText"
+                    android:text="" />
+                
+            </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="fill_parent"
+            style="?footer"
+            >
+        
+		<ImageButton
+            android:id="@+id/btnLines"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="?footerButton"
+            android:src="@drawable/line_2"
+            tools:ignore="ContentDescription" />
+		
+        <ImageButton
+            android:id="@+id/btnSend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="?footerButton"
+            android:src="@drawable/send"
+            tools:ignore="ContentDescription" >
+
+        </ImageButton>
+
+        <TextView
+            android:id="@+id/tvDate"
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:gravity="center_vertical"
+            tools:ignore="HardcodedText"
+            android:text="Дата доставки" />
+
+		<ImageButton
+            android:id="@+id/btnQtyFilter"
+            style="?footerButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/filter"
+            tools:ignore="ContentDescription" >
+
+        </ImageButton>
+
+            <TextView
+                android:id="@+id/tvTotals"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="right"
+                android:text="@string/sum"
+                style="?footerText"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

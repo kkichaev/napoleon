@@ -1,0 +1,8 @@
+package com.grsoft.dataobjects;
+
+import java.util.List;
+
+public class PriceEx extends Price {
+	public List<WhQty> whQty;
+	public List<UnitItem> units;
+}

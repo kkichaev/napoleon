@@ -1,0 +1,53 @@
+<template>
+  <q-page>
+    <q-card
+      style="margin: 24px"
+      v-for="item in data"
+      :key="item.id">
+
+      <q-card-section>
+        {{ item.id }}
+      </q-card-section>
+
+      <q-card-section>
+        <q-toggle
+          v-model="item.status"
+          color="green">
+
+          AAAA
+        </q-toggle>
+      </q-card-section>
+
+      <q-card-section>
+       {{ item.code }} " ---- " {{ item.status }}
+      </q-card-section>
+    </q-card>
+  </q-page>
+
+</template>
+
+<script>
+import { ref } from "vue";
+
+const data = [
+  {id:"Проект 1", status: true, code: "AASASASASASAS" },
+  {id:"Проект 2", status: false, code: "87234623hjhdsf8" },
+]
+
+const status = ref(false)
+
+export default{
+  setup(){
+    function check(item){
+      console.log("status: ", item.status)
+      return false
+    }
+
+    return {status, check }
+  },
+  data(){
+    return {data}
+  }
+}
+
+</script>

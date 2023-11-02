@@ -1,0 +1,49 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+  <objects>
+    <modify src="Org">
+      <add>
+        <field name="costs" type="collection">
+          <data>
+            <object name="OrgCost">
+              <sources>
+                <source name="DBFTableSet">
+                  <param name="userTable">"OCS"</param>
+                  <param name="commonTable">"OCOSTS"</param>
+                  <param name="filter">"[ID] = $parent.id"</param>
+                </source>
+              </sources>
+
+              <field name="isAction" data="ACT" type="number" />
+              <field name="cost" type="number" prec="2" />
+              <field name="id" type="string" data ="ID_I" />
+            </object>
+          </data>
+        </field>
+        <field name="discounts" type="collection">
+          <data>
+            <object name="DscCost">
+              <sources>
+                <source name="DBFTableSet">
+                  <param name="userTable">"ODSС"</param>
+                  <param name="commonTable">"ODISC"</param>
+                  <param name="filter">"[ID] = $parent.id"</param>
+                </source>
+              </sources>
+
+              <field name="discount" type="number" prec="2" data="COSTD" />
+              <field name="id" type="string" data ="ID_I" />
+              <field name="start" type="date" />
+              <field name="finish" type="date" />
+            </object>
+          </data>
+        </field>
+      </add>
+    </modify>
+    <modify src="Order$items">
+      <add>
+        <field name="costWO" type="number" prec="2" data="COST_WO" />
+      </add>
+    </modify>
+  </objects>
+</serverDefs>

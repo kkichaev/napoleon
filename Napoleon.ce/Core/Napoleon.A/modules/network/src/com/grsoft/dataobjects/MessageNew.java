@@ -1,0 +1,14 @@
+package com.grsoft.dataobjects;
+
+import java.util.Date;
+import com.grsoft.database.ServerInfo;
+import com.grsoft.database.TableInfo;
+
+@TableInfo(name="message", indexes="readed:date")
+@ServerInfo(name="Message")
+public class MessageNew extends DataObject {
+	public long rowid = -1;
+	public Date date;
+	public String message = "";
+	public int read = 0;
+}

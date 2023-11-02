@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+   <objects>
+     <modify src="Order">
+       <change>
+         <member name="table">"PRD"</member>
+       </change>
+     </modify>
+
+     <modify src="OrderCommitted">
+       <change>
+         <sources>
+           <source name="DBFTableSet">
+             <param name="userTable">"PORD"</param>
+             <param name="commonTable">"__PRDS"</param>
+           </source>
+         </sources>
+       </change>
+     </modify>
+
+   </objects>
+</serverDefs>

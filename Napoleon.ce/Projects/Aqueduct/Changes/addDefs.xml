@@ -1,0 +1,41 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+    <object name="Manufactor">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"MFR"</param>
+          <param name="commonTable">"MFRS"</param>
+        </source>
+      </sources>
+      <field name="id" type="string" />
+      <field name="name" type="string" />
+    </object>
+
+    <modify src="Price">
+      <add>
+        <field name="manufactor" type="string" data="MFR" />
+      </add>
+    </modify>
+    
+    <modify src="Org">
+      <add>
+        <field name="matrix" type="collection">
+          <data>
+            <object name="OrgMatrix">
+              <sources>
+                <source name="DBFTableSet">
+                  <param name="userTable">"OMX"</param>
+                  <param name="commonTable">"ORGMTX"</param>
+                  <param name="filter">"[ID] = $parent.id"</param>
+                </source>
+              </sources>
+
+              <field name="id" data="ID_I" type="string" />
+            </object>
+          </data>
+        </field>
+      </add>
+    </modify>
+  </objects>
+</serverDefs>

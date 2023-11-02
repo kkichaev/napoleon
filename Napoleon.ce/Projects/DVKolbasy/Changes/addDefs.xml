@@ -1,0 +1,57 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+    <!--object name="DlvReturn">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"DRV"</param>
+          <param name="commonTable">"DLVRET"</param>
+          <param name="catalog">"number;items;1"</param>
+          <param name="filter">"[id] in $Org.id"</param>
+        </source>
+      </sources>
+
+      <member name="table">"DRV"</member>
+
+      <field name="items" type="collection">
+        <data>
+          <object name="DeliveryItem">
+            <field name="id" type="string" data="ID_I"/>
+            <field name="qty" type="number" prec="3" />
+            <field name="sum" type="number" prec="2" />
+          </object>
+        </data>
+      </field>
+      <field name="id" type="string" />
+      <field name="number" type="string" data="NUM" />
+      <field name="userid" type="string" />
+      <field name="nachost" type="number" prec="2" />
+      <field name="prihod" type="number" prec="2" />
+      <field name="rashod" type="number" prec="2" />
+      <field name="sumD" data="KONOST" type="number" prec="2" />
+      <field name="date" type="timestamp" />
+    </object>-->
+
+    <modify src="Delivery">
+      <add>
+        <field name="nachost" type="number" prec="2" />
+        <field name="prihod" type="number" prec="2" />
+        <field name="rashod" type="number" prec="2" />
+        <field name="sumD" data="KONOST" type="number" prec="2" />
+        <field name="date" type="timestamp" />
+        <field name="type" type="string" />
+      </add>
+    </modify>
+
+    <modify src="Payment">
+      <add>
+        <field name="nachost" type="number" prec="2" />
+        <field name="prihod" type="number" prec="2" />
+        <field name="rashod" type="number" prec="2" />
+        <field name="sum" data="KONOST" type="number" prec="2" />
+        <field name="date" type="timestamp" />
+        <field name="type" type="string" />
+      </add>
+    </modify>
+  </objects>
+</serverDefs>

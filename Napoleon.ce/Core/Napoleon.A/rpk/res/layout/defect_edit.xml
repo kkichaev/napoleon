@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+ 	xmlns:android="http://schemas.android.com/apk/res/android"
+ 	android:layout_height="fill_parent" 
+ 	android:layout_width="fill_parent" 
+ 	android:background="#FFFFFF" 
+ 	android:orientation="vertical">
+ 	
+	<TextView android:layout_height="wrap_content" 
+		android:layout_weight="0" 
+		android:layout_width="fill_parent" 
+		android:text="Имя организации" 
+		android:textStyle="bold" 
+		android:textColor="#0000FF" 
+		android:textSize="20sp" android:id="@+id/tvOrgName" 
+		android:ellipsize="end" 
+		android:lines="1" 
+		android:scrollHorizontally="true"></TextView>
+
+	<LinearLayout android:id="@+id/LinearLayout01" 
+		android:layout_height="wrap_content" 
+		android:layout_weight="0" 
+		android:layout_width="fill_parent" 
+		android:orientation="horizontal" 
+		android:layout_margin = "10dp">
+
+		<LinearLayout android:id="@+id/LinearLayout02" 
+			android:layout_height="wrap_content" 
+			android:orientation="horizontal" 
+			android:layout_weight="1" 
+			android:layout_width="fill_parent">
+		
+			<TextView android:id="@+id/TextView01" 
+				android:layout_width="wrap_content" 
+				android:layout_height="wrap_content"
+				android:textColor="#000000" 
+				android:text="Дата:" 
+				android:layout_weight="1"></TextView>
+			
+			<TextView android:layout_width="wrap_content" 
+				android:layout_height="wrap_content" 
+				android:textColor="#000000" 
+				android:text="25.11.2010" 
+				android:layout_weight="1" 
+				android:id="@+id/tvDate" 
+				android:layout_marginLeft="5dp" 
+				android:layout_marginRight="5dp" 
+				android:textStyle="bold"></TextView>
+		</LinearLayout>
+
+	</LinearLayout>
+			
+	<LinearLayout android:id="@+id/LinearLayout07" 
+		android:layout_height="wrap_content" 
+		android:layout_width="fill_parent" 
+		android:layout_weight="1">
+		
+		<EditText android:layout_weight="1" 
+			android:layout_height="fill_parent" 
+			android:layout_width="fill_parent" 
+			android:id="@+id/edCreateOrderNotes" 
+			android:gravity="top|left" android:minLines="2" android:lines="2"></EditText>
+	</LinearLayout>
+	
+	<LinearLayout android:id="@+id/LinearLayout08" 
+		android:layout_height="wrap_content" 
+		android:layout_width="fill_parent" 
+		android:layout_weight="0" android:padding="5dp" android:background="@color/button_panel">
+		
+		<Button android:layout_width="wrap_content" 
+			android:layout_height="wrap_content" 
+			android:layout_weight="1" 
+			android:text="Отмена" android:id="@+id/btnCancel"></Button>
+		
+		<Button android:layout_width="wrap_content" 
+			android:layout_height="wrap_content" 
+			android:text="ОК" android:id="@+id/btnOK" 
+			android:layout_weight="3" 
+			android:textStyle="bold"></Button>
+	</LinearLayout>
+</LinearLayout>

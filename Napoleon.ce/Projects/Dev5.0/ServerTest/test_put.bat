@@ -1,0 +1,1 @@
+curl -v -X PUT -H "Content-Type: application/json; charset=utf-8"- -H "Authorization: Basic Mjoy" --data @put.json http://localhost:8888/object/

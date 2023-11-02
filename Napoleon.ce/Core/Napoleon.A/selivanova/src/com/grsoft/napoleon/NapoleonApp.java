@@ -1,0 +1,85 @@
+/*
+ * Copyright (C), 2011, Гильдия Разработчиков
+ * 
+ * Демо программа (с базой данных)
+ *
+ * kki   16/05/2011   creating
+ */
+
+package com.grsoft.napoleon;
+
+import android.app.Application;
+import android.content.Context;
+
+import com.grsoft.dataobjects.Firm;
+import com.grsoft.dataobjects.FirmEx;
+import com.grsoft.dataobjects.Incass;
+import com.grsoft.dataobjects.IncassEx;
+import com.grsoft.dataobjects.impl.DbObject;
+import com.grsoft.dataobjects.impl.OrderImpl;
+import com.grsoft.napoleon.documents.DebtDoc;
+import com.grsoft.napoleon.documents.DocType;
+import com.grsoft.napoleon.documents.IncassDoc;
+import com.grsoft.napoleon.documents.OrderDoc;
+import com.grsoft.napoleon.documents.RemnantsDoc;
+import com.grsoft.napoleon.documents.SalesDoc;
+import com.grsoft.napoleon.documents.VisitDoc;
+import com.grsoft.napoleon.modules.print.NPrinter;
+import com.grsoft.napoleon.modules.print.Print;
+import com.grsoft.napoleon.printsources.SalesPrintEx;
+import com.grsoft.network.ServerCommand;
+import com.grsoft.util.FirstRunInit;
+
+public class NapoleonApp extends Application {
+	@SuppressWarnings("unused")
+	private static final String TAG = "NapoleonApp";
+	
+	class OrderEditor implements OrderImpl.PropertiesEditor {
+		@Override
+		public void edit(Context ctx, OrderImpl order, boolean isOldOrder) {
+			CreateOrder.open(ctx, order, isOldOrder);
+		}
+	}
+	
+	private void initDocTypes() {
+		Print.init();
+		
+		DocType.addType(OrderDoc.instance());
+		DocType.addType(DebtDoc.instance());
+		DocType.addType(VisitDoc.instance());
+		DocType.addType(RemnantsDoc.instance());
+		DocType.addType(SalesDoc.instance());
+		DocType.addType(IncassDoc.instance());
+		
+		DocType.setCurDoc(SalesDoc.instance());
+		
+		DbObject.regNewDataType(Incass.class, IncassEx.class);
+		DbObject.regNewDataType(Firm.class, FirmEx.class);
+		
+		SalesDetail.SalesPrintType = SalesPrintEx.class;
+		
+		Warehouse.activity = WarehouseNew.class;
+		SalesDetail.activity = SalesDetailEx.class;
+		IncassEdit.activity = IncassEditEx.class;
+		
+		NPrinter.forms.put("Накладная", "nakl");
+	}
+	
+	@Override
+	public void onCreate() {
+		super.onCreate();
+		FirstRunInit.init(this);
+
+		initDocTypes();
+		OrderImpl.OrderEditor = new OrderEditor();
+		setProgrammVersion();
+	}
+
+	private void setProgrammVersion() {
+		try{
+			ServerCommand.ProgramVersion = getResources().getString(R.string.version);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+}

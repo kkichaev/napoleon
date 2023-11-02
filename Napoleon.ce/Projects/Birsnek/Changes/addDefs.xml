@@ -1,0 +1,87 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+  <objects>
+    <object name="Cost" feature="COST_MANAGER">
+      <sources>
+        <source name="DBFCostReader">
+          <param name="cost">"CS" + $user.id</param>
+          <param name="costType">"CTP" + $user.id</param>
+        </source>
+      </sources>
+
+      <field name="data" type="binary" />
+    </object>
+
+    <object name="MinCost">
+      <sources>
+        <source name="DBFTable">
+          <param name="tableName">"MINCOST"</param>
+        </source>
+      </sources>
+
+      <field name="id" type="string" width="30" />
+      <field name="id_i" type="string" width="30" />
+      <field name="minCost" type="number" prec="2" />
+    </object>
+
+    <modify src="Agents">
+      <add>
+        <field name="region" type="string" />
+      </add>
+    </modify>
+    
+    <!--
+    <modify src="Price">
+      <change>
+        <sources>
+          <source name="DBFPriceTable">
+            <param name="userTable">"W"</param>
+            <param name="commonTable">"WAREHOUS"</param>
+            <param name="filter">"[folder] in $folder.fid"</param>
+            <param name="userFieldName">"region"</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="Org">
+      <add>
+        <field name="minCost" type="collection">
+          <data>
+            <object name="CostItems">
+              <sources>
+                <source name="DBFTableSet">
+                  <param name="userTable">"MC"</param>
+                  <param name="commonTable">"MINCOST"</param>
+                  <param name="filter">"[ID] = $parent.id"</param>
+                </source>
+              </sources>
+
+              <field name="id" type="string" width="30" data="id_i" />
+              <field name="minCost" type="number" prec="2" />
+            </object>
+          </data>
+        </field>
+      </add>
+    </modify>-->
+
+    <modify src="Order$items">
+      <add>
+        <field name="discount" type="number" prec="2" data="DSC_I" />
+        <field name="bonus" type="number" prec="3" data="BNS" />
+      </add>
+    </modify>
+    
+    <modify src="Order">
+      <add>
+        <field name="costType" type="string" width="30" />
+      </add>
+    </modify>
+    
+    <modify src="Question$items">
+       <add>
+         <field name="optional" type="number" />
+       </add>
+    </modify>
+  </objects>
+</serverDefs>

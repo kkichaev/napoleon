@@ -1,0 +1,89 @@
+<template>
+  <q-page padding>
+    <q-card class="card-login fixed-center" flat>
+      <q-card-section class="form-title text-center">
+        {{ $t("login.title") }}
+      </q-card-section>
+
+      <q-card-section>
+        <q-form>
+          <q-input v-model="email" :label="$t('login.emailLabel')" filled />
+
+          <q-input
+            style="margin-top: 38px"
+            :label="$t('login.passwordLabel')"
+            filled
+            v-model="password"
+          />
+
+          <q-checkbox
+            :label="$t('login.savePassword')"
+            style="margin-top: 50px"
+            v-model="save_password"
+            class="login-form-text"
+          />
+        </q-form>
+
+        <q-card-section class="text-center" v-if="forgotPassword">
+          <q-btn
+            flat
+            :label="$t('login.forgotPassword')"
+            no-caps
+            class="login-form-text"
+            @click="restorePassword"
+          />
+        </q-card-section>
+
+        <q-btn
+          class="login-btn login-form-text"
+          no-caps
+          style="margin-top: 25px"
+          @click="login"
+          :label="$t('login.enter')"
+        />
+      </q-card-section>
+
+      <q-card-section class="text-center">
+        <q-btn
+          class="login-form-text"
+          flat
+          :label="$t('login.reqistration')"
+          no-caps
+          :to="{name: 'Register'}"
+        />
+      </q-card-section>
+
+      <q-card-section class="text-center">
+        <q-btn class="login-form-text" flat no-caps>
+          <u>{{ $t("login.supportEmail") }}</u>
+        </q-btn>
+      </q-card-section>
+    </q-card>
+  </q-page>
+</template>
+
+<script setup>
+import { ref } from "vue";
+import { useMainStore } from "src/stores/main-store";
+import { registerUser } from "src/backend/backend";
+
+const save_password = ref(false);
+const mainStore = useMainStore();
+const email = ref("test@test.com");
+const password = ref("123456");
+
+function login() {
+  // useMainStore().forgotPassword = true;
+  //registerUser({ email: email.value, password: password.value });
+}
+
+function forgotPassword() {
+  return mainStore.forgotPassword();
+}
+
+function restorePassword() {
+  useMainStore().restorePassword();
+}
+</script>
+
+<style scoped></style>

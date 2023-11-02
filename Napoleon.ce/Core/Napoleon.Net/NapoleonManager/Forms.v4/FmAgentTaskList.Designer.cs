@@ -1,0 +1,323 @@
+﻿namespace GRSoft.NapoleonManager
+{
+   partial class FmAgentTaskList
+   {
+      /// <summary>
+      /// Required designer variable.
+      /// </summary>
+      private System.ComponentModel.IContainer components = null;
+
+      /// <summary>
+      /// Clean up any resources being used.
+      /// </summary>
+      /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+      protected override void Dispose(bool disposing)
+      {
+         if (disposing && (components != null))
+         {
+            components.Dispose();
+         }
+         base.Dispose(disposing);
+      }
+
+      #region Windows Form Designer generated code
+
+      /// <summary>
+      /// Required method for Designer support - do not modify
+      /// the contents of this method with the code editor.
+      /// </summary>
+      private void InitializeComponent()
+      {
+         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FmAgentTaskList));
+         this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+         this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+         this.btnRefresh = new System.Windows.Forms.ToolStripButton();
+         this.btnAdd = new System.Windows.Forms.ToolStripButton();
+         this.btnEdit = new System.Windows.Forms.ToolStripButton();
+         this.btnDel = new System.Windows.Forms.ToolStripButton();
+         this.btnSave = new System.Windows.Forms.ToolStripButton();
+         this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+         this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
+         this.dgvTask = new System.Windows.Forms.DataGridView();
+         this.dtpStart = new System.Windows.Forms.DateTimePicker();
+         this.dtpFinish = new System.Windows.Forms.DateTimePicker();
+         this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+         this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+         this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+         this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+         this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+         this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+         this.dgvTaskStart = new System.Windows.Forms.DataGridViewTextBoxColumn();
+         this.dgvTaskFinish = new System.Windows.Forms.DataGridViewTextBoxColumn();
+         this.clmnCreator = new System.Windows.Forms.DataGridViewTextBoxColumn();
+         this.clmnCreated = new System.Windows.Forms.DataGridViewTextBoxColumn();
+         this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+         this.dgvTaskText = new System.Windows.Forms.DataGridViewTextBoxColumn();
+         this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+         this.toolStrip1.SuspendLayout();
+         ((System.ComponentModel.ISupportInitialize)(this.dgvTask)).BeginInit();
+         this.SuspendLayout();
+         // 
+         // statusStrip1
+         // 
+         this.statusStrip1.Location = new System.Drawing.Point(0, 387);
+         this.statusStrip1.Name = "statusStrip1";
+         this.statusStrip1.Size = new System.Drawing.Size(1076, 22);
+         this.statusStrip1.TabIndex = 0;
+         this.statusStrip1.Text = "statusStrip1";
+         // 
+         // toolStrip1
+         // 
+         this.toolStrip1.AutoSize = false;
+         this.toolStrip1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+         this.toolStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
+         this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnRefresh,
+            this.btnAdd,
+            this.btnEdit,
+            this.btnDel,
+            this.btnSave,
+            this.toolStripLabel1,
+            this.toolStripLabel2});
+         this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+         this.toolStrip1.Name = "toolStrip1";
+         this.toolStrip1.Size = new System.Drawing.Size(1076, 39);
+         this.toolStrip1.TabIndex = 1;
+         this.toolStrip1.Text = "toolStrip1";
+         // 
+         // btnRefresh
+         // 
+         this.btnRefresh.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+         this.btnRefresh.Image = global::GRSoft.NapoleonManager.Properties.Resources.view_refresh_6;
+         this.btnRefresh.ImageTransparentColor = System.Drawing.Color.Magenta;
+         this.btnRefresh.Name = "btnRefresh";
+         this.btnRefresh.Size = new System.Drawing.Size(36, 36);
+         this.btnRefresh.Text = "Обновить";
+         this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+         // 
+         // btnAdd
+         // 
+         this.btnAdd.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+         this.btnAdd.Image = global::GRSoft.NapoleonManager.Properties.Resources.add;
+         this.btnAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
+         this.btnAdd.Name = "btnAdd";
+         this.btnAdd.Size = new System.Drawing.Size(36, 36);
+         this.btnAdd.Text = "Добавить";
+         this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+         // 
+         // btnEdit
+         // 
+         this.btnEdit.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+         this.btnEdit.Image = global::GRSoft.NapoleonManager.Properties.Resources.edit;
+         this.btnEdit.ImageTransparentColor = System.Drawing.Color.Magenta;
+         this.btnEdit.Name = "btnEdit";
+         this.btnEdit.Size = new System.Drawing.Size(36, 36);
+         this.btnEdit.Text = "Изменить";
+         this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
+         // 
+         // btnDel
+         // 
+         this.btnDel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+         this.btnDel.Image = global::GRSoft.NapoleonManager.Properties.Resources.delete;
+         this.btnDel.ImageTransparentColor = System.Drawing.Color.Magenta;
+         this.btnDel.Name = "btnDel";
+         this.btnDel.Size = new System.Drawing.Size(36, 36);
+         this.btnDel.Text = "Удалить";
+         this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
+         // 
+         // btnSave
+         // 
+         this.btnSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+         this.btnSave.Image = global::GRSoft.NapoleonManager.Properties.Resources.Save1;
+         this.btnSave.ImageTransparentColor = System.Drawing.Color.Magenta;
+         this.btnSave.Name = "btnSave";
+         this.btnSave.Size = new System.Drawing.Size(36, 36);
+         this.btnSave.Text = "Сохранить";
+         this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+         // 
+         // toolStripLabel1
+         // 
+         this.toolStripLabel1.Name = "toolStripLabel1";
+         this.toolStripLabel1.Size = new System.Drawing.Size(16, 36);
+         this.toolStripLabel1.Text = "с";
+         // 
+         // toolStripLabel2
+         // 
+         this.toolStripLabel2.Margin = new System.Windows.Forms.Padding(180, 1, 0, 2);
+         this.toolStripLabel2.Name = "toolStripLabel2";
+         this.toolStripLabel2.Size = new System.Drawing.Size(25, 36);
+         this.toolStripLabel2.Text = "по";
+         // 
+         // dgvTask
+         // 
+         this.dgvTask.AllowUserToAddRows = false;
+         this.dgvTask.AllowUserToResizeRows = false;
+         this.dgvTask.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+         this.dgvTask.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvTaskStart,
+            this.dgvTaskFinish,
+            this.clmnCreator,
+            this.clmnCreated,
+            this.Column2,
+            this.dgvTaskText,
+            this.Column1});
+         this.dgvTask.Dock = System.Windows.Forms.DockStyle.Fill;
+         this.dgvTask.Location = new System.Drawing.Point(0, 39);
+         this.dgvTask.Name = "dgvTask";
+         this.dgvTask.RowHeadersVisible = false;
+         this.dgvTask.Size = new System.Drawing.Size(1076, 348);
+         this.dgvTask.TabIndex = 2;
+         this.dgvTask.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvTask_CellMouseDoubleClick);
+         // 
+         // dtpStart
+         // 
+         this.dtpStart.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+         this.dtpStart.Location = new System.Drawing.Point(204, 6);
+         this.dtpStart.Name = "dtpStart";
+         this.dtpStart.Size = new System.Drawing.Size(181, 26);
+         this.dtpStart.TabIndex = 3;
+         // 
+         // dtpFinish
+         // 
+         this.dtpFinish.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+         this.dtpFinish.Location = new System.Drawing.Point(413, 6);
+         this.dtpFinish.Name = "dtpFinish";
+         this.dtpFinish.Size = new System.Drawing.Size(181, 26);
+         this.dtpFinish.TabIndex = 3;
+         // 
+         // dataGridViewTextBoxColumn1
+         // 
+         this.dataGridViewTextBoxColumn1.DataPropertyName = "Start";
+         this.dataGridViewTextBoxColumn1.HeaderText = "Начало";
+         this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+         // 
+         // dataGridViewTextBoxColumn2
+         // 
+         this.dataGridViewTextBoxColumn2.DataPropertyName = "Finish";
+         this.dataGridViewTextBoxColumn2.HeaderText = "Окончание";
+         this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+         // 
+         // dataGridViewTextBoxColumn3
+         // 
+         this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+         this.dataGridViewTextBoxColumn3.DataPropertyName = "Creator";
+         this.dataGridViewTextBoxColumn3.HeaderText = "Текст";
+         this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+         // 
+         // dataGridViewTextBoxColumn4
+         // 
+         this.dataGridViewTextBoxColumn4.DataPropertyName = "Created";
+         this.dataGridViewTextBoxColumn4.HeaderText = "Дата создания";
+         this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+         // 
+         // dataGridViewTextBoxColumn5
+         // 
+         this.dataGridViewTextBoxColumn5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+         this.dataGridViewTextBoxColumn5.DataPropertyName = "Text";
+         this.dataGridViewTextBoxColumn5.HeaderText = "Текст";
+         this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+         // 
+         // dataGridViewTextBoxColumn6
+         // 
+         this.dataGridViewTextBoxColumn6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+         this.dataGridViewTextBoxColumn6.DataPropertyName = "Remark";
+         this.dataGridViewTextBoxColumn6.HeaderText = "Текст ответа на задачу";
+         this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+         // 
+         // dgvTaskStart
+         // 
+         this.dgvTaskStart.DataPropertyName = "Start";
+         this.dgvTaskStart.HeaderText = "Начало";
+         this.dgvTaskStart.Name = "dgvTaskStart";
+         // 
+         // dgvTaskFinish
+         // 
+         this.dgvTaskFinish.DataPropertyName = "Finish";
+         this.dgvTaskFinish.HeaderText = "Окончание";
+         this.dgvTaskFinish.Name = "dgvTaskFinish";
+         // 
+         // clmnCreator
+         // 
+         this.clmnCreator.DataPropertyName = "Creator";
+         this.clmnCreator.HeaderText = "Постановщик";
+         this.clmnCreator.Name = "clmnCreator";
+         // 
+         // clmnCreated
+         // 
+         this.clmnCreated.DataPropertyName = "Created";
+         this.clmnCreated.HeaderText = "Дата создания";
+         this.clmnCreated.Name = "clmnCreated";
+         // 
+         // Column2
+         // 
+         this.Column2.DataPropertyName = "Status";
+         this.Column2.HeaderText = "Статус";
+         this.Column2.Name = "Column2";
+         // 
+         // dgvTaskText
+         // 
+         this.dgvTaskText.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+         this.dgvTaskText.DataPropertyName = "Text";
+         this.dgvTaskText.HeaderText = "Текст";
+         this.dgvTaskText.Name = "dgvTaskText";
+         // 
+         // Column1
+         // 
+         this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+         this.Column1.DataPropertyName = "Remark";
+         this.Column1.HeaderText = "Текст ответа на задачу";
+         this.Column1.Name = "Column1";
+         // 
+         // FmAgentTaskList
+         // 
+         this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
+         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+         this.ClientSize = new System.Drawing.Size(1076, 409);
+         this.Controls.Add(this.dtpFinish);
+         this.Controls.Add(this.dtpStart);
+         this.Controls.Add(this.dgvTask);
+         this.Controls.Add(this.toolStrip1);
+         this.Controls.Add(this.statusStrip1);
+         this.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+         this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+         this.Name = "FmAgentTaskList";
+         this.Text = "Задачи";
+         this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FmAgentTaskList_FormClosing);
+         this.Load += new System.EventHandler(this.FmAgentTaskList_Load);
+         this.toolStrip1.ResumeLayout(false);
+         this.toolStrip1.PerformLayout();
+         ((System.ComponentModel.ISupportInitialize)(this.dgvTask)).EndInit();
+         this.ResumeLayout(false);
+         this.PerformLayout();
+
+      }
+
+      #endregion
+
+      private System.Windows.Forms.StatusStrip statusStrip1;
+      private System.Windows.Forms.ToolStrip toolStrip1;
+      private System.Windows.Forms.ToolStripButton btnRefresh;
+      private System.Windows.Forms.ToolStripButton btnAdd;
+      private System.Windows.Forms.ToolStripButton btnEdit;
+      private System.Windows.Forms.ToolStripButton btnDel;
+      private System.Windows.Forms.ToolStripButton btnSave;
+      private System.Windows.Forms.DataGridView dgvTask;
+      private System.Windows.Forms.ToolStripLabel toolStripLabel1;
+      private System.Windows.Forms.ToolStripLabel toolStripLabel2;
+      private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+      private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+      private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+      protected System.Windows.Forms.DateTimePicker dtpStart;
+      protected System.Windows.Forms.DateTimePicker dtpFinish;
+      private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+      private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+      private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+      private System.Windows.Forms.DataGridViewTextBoxColumn dgvTaskStart;
+      private System.Windows.Forms.DataGridViewTextBoxColumn dgvTaskFinish;
+      private System.Windows.Forms.DataGridViewTextBoxColumn clmnCreator;
+      private System.Windows.Forms.DataGridViewTextBoxColumn clmnCreated;
+      private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+      private System.Windows.Forms.DataGridViewTextBoxColumn dgvTaskText;
+      private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+   }
+}

@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:background="#FFFFFF"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/tvOrgName"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:layout_marginLeft="5sp"
+        android:ellipsize="end"
+        android:lines="1"
+        android:scrollHorizontally="true"
+        android:text="@string/org_name"
+        android:textColor="#0000FF"
+        android:textSize="20sp"
+        android:textStyle="bold" >
+    </TextView>
+
+    <ScrollView
+        android:id="@+id/scrollview"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:fillViewport="true" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+		    <LinearLayout
+		        android:layout_marginLeft="5sp"
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_weight="0"
+		        android:orientation="horizontal" >
+            
+		        <TextView
+		            android:id="@+id/tvInfo"
+		            android:padding="5sp"
+		            android:textSize="18sp"
+		            android:textColor="@color/black"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="" />
+	
+		      <LinearLayout
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_weight="0"
+		        android:orientation="vertical" >
+	
+		        <CheckBox
+		            android:enabled="false"
+		            android:textColor="@color/black"
+		            android:id="@+id/cbContrNum"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="CheckBox" />
+	
+		        <CheckBox
+		            android:enabled="false"
+		            android:textColor="@color/black"
+		            android:id="@+id/cbContrDate"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="CheckBox" />
+		    </LinearLayout>
+		    </LinearLayout>
+
+             <LinearLayout
+                 android:id="@+id/LinearLayout02"
+                 android:layout_width="fill_parent"
+                 android:layout_height="wrap_content"
+                 android:orientation="horizontal" >
+
+                 <TextView
+                     android:id="@+id/TextView01"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:text="@string/date"
+                     android:textColor="#000000" 
+                     android:textSize="16sp">
+                 </TextView>
+
+                 <TextView
+                     android:id="@+id/tvDate"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_marginLeft="8sp"
+                     android:layout_marginRight="8sp"
+                     android:text="25.11.2010"
+                     android:textColor="#000000"
+                     android:textStyle="bold"
+                     android:textSize="16sp"
+                     tools:ignore="HardcodedText" >
+                 </TextView>
+                 
+                 <TextView
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:text="@string/time"
+                     android:textColor="#000000" 
+                     android:textSize="16sp">
+                 </TextView>
+
+                 <TextView
+                     android:id="@+id/tvTime"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_marginLeft="8sp"
+                     android:layout_marginRight="8sp"
+                     android:text="00:00"
+                     android:textColor="#000000"
+                     android:textStyle="bold"
+                     android:textSize="16sp"
+                     tools:ignore="HardcodedText" >
+                 </TextView>
+
+                 <TextView
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:text="@string/nac"
+                     android:textColor="#000000" 
+                     android:textSize="16sp">
+                 </TextView>
+
+                 <TextView
+                     android:id="@+id/tvDiscount"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_marginLeft="8sp"
+                     android:layout_marginRight="8sp"
+                     android:text="0%"
+                     android:textColor="#000000"
+                     android:textStyle="bold"
+                     android:textSize="16sp"
+                     tools:ignore="HardcodedText" >
+                 </TextView>
+                 
+            </LinearLayout>
+
+            <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:stretchColumns="1" >
+
+                <TableRow
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="2dp" >
+
+                    <TextView
+                        android:id="@+id/TextView03"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:text="@string/firm"
+                        android:textColor="#000000" 
+                        android:textSize="16sp">
+                    </TextView>
+
+                    <Spinner
+                        android:id="@+id/spFirma"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+                    </Spinner>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="2dp" >
+
+                    <TextView
+                        android:id="@+id/TextView04"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:text="@string/account"
+                        android:textColor="#000000"
+                        android:textSize="16sp" >
+
+                    </TextView>
+
+                    <Spinner
+                        android:id="@+id/spAccounts"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" >
+                    </Spinner>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="2dp" >
+
+                    <TextView
+                        android:id="@+id/TextView04"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:text="@string/cost"
+                        android:textColor="#000000" 
+                        android:textSize="16sp">
+                    </TextView>
+
+                    <Spinner
+                        android:id="@+id/spPrices"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" >
+                    </Spinner>
+                </TableRow>
+
+		     <TableRow
+		         android:layout_width="wrap_content"
+		         android:layout_height="wrap_content"
+		         android:padding="2dp" >
+		
+		         <TextView
+		             android:id="@+id/TextView04"
+		             android:layout_width="wrap_content"
+		             android:layout_height="wrap_content"
+		             android:layout_gravity="center_vertical"
+		             android:layout_marginLeft="5dp"
+		             android:layout_marginRight="5dp"
+		             android:text="@string/dlv_type"
+		             android:textColor="#000000" 
+		             android:textSize="16sp">
+		         </TextView>
+		
+		         <Spinner
+		             android:id="@+id/spDlvType"
+		             android:layout_width="fill_parent"
+		             android:layout_height="wrap_content"
+		             android:layout_weight="1" >
+		         </Spinner>
+		     </TableRow>
+		
+		     <TableRow
+		         android:layout_width="wrap_content"
+		         android:layout_height="wrap_content"
+		         android:padding="2dp" >
+		
+		         <TextView
+		             android:id="@+id/TextView03"
+		             android:layout_width="wrap_content"
+		             android:layout_height="wrap_content"
+		             android:layout_gravity="center_vertical"
+		             android:layout_marginLeft="5dp"
+		             android:layout_marginRight="5dp"
+		             android:text="@string/pay_type"
+		             android:textColor="#000000" 
+		             android:textSize="16sp">
+		         </TextView>
+		
+		         <Spinner
+		             android:id="@+id/spPayType"
+		             android:layout_width="fill_parent"
+		             android:layout_height="wrap_content"
+		             android:layout_weight="1">
+		         </Spinner>
+		     </TableRow>
+		
+		     <TableRow
+		         android:layout_width="wrap_content"
+		         android:layout_height="wrap_content"
+		         android:padding="2dp" >
+		
+		         <TextView
+		             android:id="@+id/TextView03"
+		             android:layout_width="wrap_content"
+		             android:layout_height="wrap_content"
+		             android:layout_gravity="center_vertical"
+		             android:layout_marginLeft="5dp"
+		             android:layout_marginRight="5dp"
+		             android:text="@string/shp_type"
+		             android:textColor="#000000" 
+		             android:textSize="16sp">
+		         </TextView>
+		
+		         <Spinner
+		             android:id="@+id/spShipType"
+		             android:layout_width="fill_parent"
+		             android:layout_height="wrap_content"
+		             android:layout_weight="1">
+		         </Spinner>
+		     </TableRow>
+		     
+                <TableRow
+                    android:id="@+id/ftrAddress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="2dp"
+                    android:visibility="gone" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:text="@string/address"
+                        android:textColor="#000000" 
+                        android:textSize="16sp">
+                    </TextView>
+
+                    <Spinner
+                        android:id="@+id/spAddress"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content" >
+                    </Spinner>
+                </TableRow>
+            </TableLayout>
+
+            <LinearLayout
+                android:id="@+id/LinearLayout07"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" >
+
+                <EditText
+                    android:id="@+id/edCreateOrderNotes"
+                    android:maxLength="240"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:gravity="top|left"
+                    android:lines="2"
+                    android:minLines="2">
+                </EditText>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+        <LinearLayout 
+        	android:layout_height="wrap_content" 
+        	android:layout_width="fill_parent" 
+        	android:padding="5dp">
+
+         	<Button 
+         		android:layout_width="wrap_content" 
+         		android:layout_height="wrap_content" 
+         		android:layout_weight="0.1" 
+         		android:text="Отмена" 
+         		android:id="@+id/btnCancel"></Button>
+
+         <Button 
+         	android:layout_width="wrap_content" 
+         	android:layout_height="wrap_content" 
+         	android:text="ОК" 
+         	android:id="@+id/btnOK" 
+         	android:layout_weight="0.3" 
+         	android:textStyle="bold"></Button>
+      </LinearLayout>
+</LinearLayout>

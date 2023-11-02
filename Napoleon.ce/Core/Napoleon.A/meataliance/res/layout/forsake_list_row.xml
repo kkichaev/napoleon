@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white"
+    android:orientation="horizontal" 
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp">
+
+    <TextView
+        android:id="@+id/tvOrg"
+        android:layout_width="0dip"
+        android:layout_height="wrap_content"
+        android:text="tvOrg"
+        android:textColor="@color/black"
+        tools:ignore="HardcodedText" 
+        android:layout_weight="1"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:id="@+id/tvData"
+        android:layout_width="90dp"
+        android:layout_height="wrap_content"
+        android:text="tvData"
+        android:textColor="@color/black"
+        tools:ignore="HardcodedText" 
+        android:textSize="18sp"/>
+
+    <TextView
+        android:id="@+id/tvSum"
+        android:layout_width="90dp"
+        android:layout_height="wrap_content"
+        android:text="tvSum"
+        android:textColor="@color/black"
+        tools:ignore="HardcodedText" 
+        android:textSize="18sp"/>
+
+</LinearLayout>

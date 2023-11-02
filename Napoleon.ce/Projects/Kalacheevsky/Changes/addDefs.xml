@@ -1,0 +1,87 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+      <object name="Returns">
+         <sources>
+            <source name="DBFTableSet">
+               <param name="userTable">"RET"</param>
+               <param name="commonTable">"RETURNS"</param>
+               <param name="catalog">"number;items;1"</param>
+               <param name="filter">"[id] in $Org.id"</param>
+            </source>
+         </sources>
+         
+         <field name="items" type="collection">
+            <data>
+               <object name="ReturnItem">
+                  <field name="id" type="string" data="ID_I"/>
+                  <field name="qty" type="number" prec="3" />
+                  <field name="sum" type="number" prec="2" />
+               </object>
+            </data>
+         </field>
+         <field name="id" type="string" />
+         <field name="number" type="string" data="NUM" />
+         <field name="date" type="date" />
+         <field name="created" type="timestamp" />
+         <field name="userid" type="string" />
+      </object>
+      <object name="Dogovor">
+	         <sources>
+	            <source name="DBFTableSet">
+	               	<param name="userTable">"DG"</param>
+	              		<param name="commonTable">"DOGOVOR"</param>	
+	            </source>
+	         </sources>
+	
+	         <field name="id" type="string" width="25" />
+	         <field name="num" type="string" width="50" />
+	         <field name="name" type="string" width="50" />
+	         <field name="firm" type="string" width="25" />
+	         <field name="gen" type="number" hidden="true"/>
+	         <field name="block" type="number" hidden="true"/>
+	         <field name="ctype" type="number"/>
+	         <field name="flags" type="number" execOn="Get">EncodeFlag($object.gen,2,$object.block,3)</field>
+	     	</object>
+	       <modify src="Price">
+	        <add>
+	        	<field name="units" type="collection">
+	              <data>
+	                 <object name="Units">
+	                    <sources>
+	                       <source name="DBFTableSet">
+	                          <param name="userTable">"WU"</param>
+	                          <param name="commonTable">"WUNITS"</param>
+	                          <param name="filter">"[ID_I] = $parent.id"</param>
+	                       </source>
+	                    </sources>
+	                    <field name="id" type="string" />
+	                    <field name="name" type="string" />
+	                    <field name="inpack" type="number" prec="3" />
+	                 </object>
+	              </data>
+	        	</field>
+	        </add>
+	     </modify>
+		 <modify src="Org">
+			<add>
+				<field name="balance" type="number" prec="2" />
+				<field name="stop" type="number" hidden="true" />
+		          	<field name="flags" type="number" execOn="Get">EncodeFlag($object.stop,2)</field>
+		          	<field name="dogCode" type="string" data="DOG" />
+			</add>
+		 </modify>
+		 <modify src="Order">
+			<add>
+				<field name="dogCode" type="string" width="50" data="DOG" />
+				<field name="firma" type="string" width="50" execOn="Put" feature="!SALES_MODULE">KeyValueReader("order.cfg","Организация",$object.supplyer)</field>
+				<field name="store" type="string" width="50" execOn="Put" >KeyValueReader("order.cfg","Склад",$object.storecode)</field>
+			</add>
+		</modify>
+		<modify src="Order$items">
+	         <add>
+	            <field name="unit" type="string" data="ID_WU" />
+	         </add>
+      </modify>
+	</objects>
+</serverDefs>

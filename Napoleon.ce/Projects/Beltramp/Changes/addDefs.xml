@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+    <modify src="Order">
+      <add>
+        <field name="typeDo" type="string" data="TYPE_DO" width="50" execOn="Put">"Основание на продажу"</field>
+        <field name="statusDo" type="string" data="STATUS_DO" width="50" execOn="Put">"оформляемый"</field>
+        <field name="name" type="string" width="200" />
+      </add>
+    </modify>
+    <modify src="Order$items">
+      <add>
+        <field name="name" type="string" width="100" data="NAME_I" />
+        <field name="ed" type="string" width="10" execOn="Put">"штука"</field>
+      </add>
+    </modify>
+	</objects>
+</serverDefs>

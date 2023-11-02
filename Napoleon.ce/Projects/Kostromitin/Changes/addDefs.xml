@@ -1,0 +1,38 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+    <modify src="Price">
+      <add>
+        <field name="priority" type="number" data="PRT" />
+        <field name="qty2" type="number" prec="3" />
+        <field name="noDiscount" type="number" data="NODSC" />
+        <field name="isLukoil" type="number" />
+      </add>
+    </modify>
+
+    <modify src="Firm">
+      <add>
+        <field name="firmType" type="number" data="TYPE" />
+      </add>
+    </modify>
+    <modify src="Order">
+      <add>
+        <field name="useTax" type="number" width="1" />
+        <field name="lukoil" type="number" width="1" />
+        <field name="secondWH" type="number" width="1" />
+      </add>
+    </modify>
+    <modify src="Org">
+      <add>
+        <field name="prcType" type="string" />
+      </add>
+    </modify>
+    
+    <modify src="Order$items">
+      <add>
+        <field name="discount" type="number" prec="2" data="I_DISC" />
+      </add>
+    </modify>
+
+	</objects>
+</serverDefs>

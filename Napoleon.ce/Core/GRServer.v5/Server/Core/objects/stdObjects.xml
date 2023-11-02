@@ -1,0 +1,304 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+  <objects>
+    <fieldTemplate name="id" type="string" width="$const.keyWidth" />
+    <fieldTemplate name="name" type="string" width="$const.nameWidth" />
+  
+    <object name="ServerCommand">
+      <field name="command" type="string" />
+      <field name="param" type="string" />
+      <field name="userid" type="string" />
+      <field name="uuid" type="string" />
+      <field name="password" type="string" />
+      <field name="version" type="string" />
+      <field name="duration" type="number" />
+      <field name="project" type="string" />
+      <field name="category" type="string" />
+    </object>
+
+    <object name="Agents">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"id"</member>
+
+      <field template="id" />
+      <field template="name"/>
+    </object>
+
+    <object name="Division">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"id"</member>
+
+      <field name="id" type="number" />
+      <field template="name"/>
+
+      <field name="description" type="string" />
+      <field name="agents" type="collection">
+        <data>
+          <object name="DivisionAgents">
+            <sources>
+              <source name="SQTable" type="internal">
+                <param name="ordered" />
+              </source>
+            </sources>
+            <field name="id" type="string" />
+          </object>
+        </data>
+      </field>
+      <field name="parent" type="number" />
+    </object>
+
+    <object name="DivisionManager">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"id"</member>
+      <memberArray name="index">"login"</memberArray>
+
+      <field template="id"/>
+      <field template="name"/>
+
+      <field name="division" type="number" />
+      <field name="mobile" type="number" />
+
+      <field name="rights" type="collection">
+        <data>
+          <object name="DivisionManagerRights">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+            <field name="token" type="string" />
+            <field name="type" type="number" />
+            <field name="right" type="number" />
+          </object>
+        </data>
+      </field>
+    </object>
+    
+    <object name="LinkedUsers">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+      
+      <member name="primaryKey">"id"</member>
+      <memberArray name="index">"uuid"</memberArray>
+
+      <field template="id"/>
+      <field name="uuid" type="string" />
+      <field name="created" type="timestamp" execOn="Put">Now()</field>
+    </object>
+
+    <object name="UserUUIDQuery">
+      <sources>
+        <source name="SQLQuery">
+          <param name="stmt">
+          'select a."id" as id, \'Agents\' as user_type, 0 as division from "Agents" a, "LinkedUsers" l where a."id" = l."id" and l."uuid"=\'$01\'
+union all
+select a."id" as id, \'DivisionManager\' as user_type, division from "DivisionManager" a, "LinkedUsers" l where a."id" = l."id" and l."uuid"=\'$01\''
+          </param>
+        </source>
+      </sources>
+
+      <field template="id"/>
+      <field name="user_type" type="string" />
+      <field name="division" type="number" />
+    </object>
+
+
+    <object name="ServerAnswer">
+      <field name="response" type="number" />
+      <field name="message" type="string" />
+    </object>
+
+    <object name="UpdatePacket">
+      <field name="packet" type="binary" />
+    </object>
+
+    <object name="UpdateCommand">
+      <!-- пакет серверу для обновления -->
+      <field name="userid" type="string" />
+      <field name="password" type="string" />
+      <field name="packet" type="binary" />
+    </object>
+
+    <object name="StreamContinue">
+      <field name="continue" type="number" />
+    </object>
+
+    <object name="UserActivity">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"id"</member>
+
+      <field name="id" type="string" />
+      <field name="date" type="timestamp" />
+      <field name="version" type="string" />
+      <field name="duration" type="number" />
+    </object>
+
+    <object name="LicensedUsers">
+      <sources>
+        <source name="LicensedUsersSource" type="any" />
+      </sources>
+
+      <field name="id" type="string" />
+      <field name="type" type="string" />
+    </object>
+
+    <object name="LicenseCount">
+      <sources>
+        <source name="LicenseCountSource" />
+      </sources>
+
+      <field name="pda" type="number" />
+      <field name="manager" type="number" />
+      <field name="exclusiveManager" type="number" />
+    </object>
+
+    <object name="LicenseCountEx">
+      <sources>
+        <source name="LicenseCountSourceEx" />
+      </sources>
+
+      <field name="type" type="string" />
+      <field name="count" type="number" />
+    </object>
+
+    <object name="LicenseType">
+      <sources>
+        <source name="LicenseTypeSource" />
+      </sources>
+
+      <field name="type" type="string" />
+      <field name="forAgents" type="number" />
+      <field name="title" type="string" />
+    </object>
+
+    <object name="LicenseProjectData">
+      <sources>
+        <source name="LicenseProjectDataSource" />
+      </sources>
+
+      <field name="id" type="number" />
+      <field name="type" type="string" />
+      <field name="count" type="number" />
+      <field name="start" type="date" />
+      <field name="end" type="date" />
+    </object>
+
+    <object name="DemoProjectData">
+      <sources>
+        <source name="DemoProjectDataSource" />
+      </sources>
+
+      <field name="id" type="number" />
+      <field name="type" type="string" />
+      <field name="allowCount" type="number" />
+      <field name="timeSpan" type="number" />
+    </object>
+
+    <object name="ReqServerData">
+      <field name="name" type="string" />
+      <field name="data" type="string" />
+      <field name="tz" type="number" />
+    </object>
+
+    <object name="LicensingUsersData">
+      <sources>
+        <source name="LicensingUsersDataSource" />
+      </sources>
+
+      <field name="licenseID" type="number" />
+      <field name="login" type="string" />
+    </object>
+
+    <object name="User">
+      <field name="id" type="string" />
+      <field name="name" type="string" />
+      <field name="duration" type="number" />
+      <field name="registred" type="number" />
+      <field name="version" type="string" />
+      <field name="progID" type="string" />
+      <field name="licenseType" type="string" />
+    </object>
+
+    <object name="LogData">
+      <sources>
+        <source name="LogSource" />
+      </sources>
+      <field name="date" type="timestamp" />
+      <field name="text" type="string" />
+    </object>
+
+    <!-- Ошибка при выполнении питона -->
+    <object name="PythonExecError">
+      <field name="type" type="string" />
+      <field name="text" type="string" />
+      <field name="stackTrace" type="string" />
+    </object>
+
+    <object name="UploadFileRequests">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"code"</member>
+      
+      <field name="code" type="string" width="50" />
+      <field name="object" type="string" width="4000" />
+      <field name="objName" type="string" />
+      <field name="fldName" type="string" />
+      <field name="sended" type="timestamp" execOn="Put">Now()</field>
+    </object>
+
+    <object name="%ServerInfo">
+      <sources>
+        <source name="ServerInfo" />
+      </sources>
+      <field name="time" type="timestamp" execOn="Get" >Now()</field>
+      <field name="name" type="string" />
+      <field name="timeZone" type="number" execOn="Get">ServerTimeZone()</field>
+    </object>
+
+    <object name="%ActiveUsers">
+      <sources>
+        <source name="ActiveUsers" />
+      </sources>
+      <field name="duration" type="number" />
+      <field name="userid" type="string" />
+      <field name="ip" type="string" />
+      <field name="isExclusive" type="number" />
+    </object>
+
+    <object name="%ResolveInfo">
+      <field name="name" type="string" />
+    </object>
+
+    <object name="%ReportSourceParam">
+      <field name="condition" type="string" />
+      <field name="objectName" type="string" />
+    </object>
+  </objects>
+
+  <actions>
+    <action name="WriteActivity">
+      <do>
+        <put object="UserActivity" sourceType="internal">$object.id=$user.id;$object.date=Now();$object.version=$user.version;$object.duration=$user.duration</put>
+      </do>
+    </action>
+  </actions>
+
+  <events>
+    <event type="login">
+      <action name="WriteActivity" />
+    </event>
+  </events>
+</serverDefs>

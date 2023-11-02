@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tvPDegree"
+        android:layout_width="@dimen/btn_sz"
+        android:layout_height="@dimen/btn_sz"
+        android:background="@drawable/button_bkg"
+        android:gravity="center"
+        style="@style/AngleButton"
+        android:tag="@string/angle"
+        android:text="@string/angle"/>
+
+    <TextView
+        android:id="@+id/tvPMin"
+        android:layout_width="@dimen/btn_sz"
+        android:layout_height="@dimen/btn_sz"
+        android:background="@drawable/button_bkg"
+        android:gravity="center"
+        style="@style/AngleButton"
+        android:tag="@string/min"
+        android:text="@string/min"/>
+
+    <TextView
+        android:id="@+id/tvPSec"
+        android:layout_width="@dimen/btn_sz"
+        android:layout_height="@dimen/btn_sz"
+        android:background="@drawable/button_bkg"
+        android:gravity="center"
+        style="@style/AngleButton"
+        android:tag="@string/sec"
+        android:text="@string/sec"/>
+</LinearLayout>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="ManagerTheme" parent="@android:style/Theme.Light">
+        <item name="android:windowBackground">@color/appBackground</item>
+        <item name="android:colorBackground">@color/appBackground</item>
+        <item name="android:textColor">@color/defaultTextColor</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+    <style name="ManagerTheme.NoShadow">
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+</resources>

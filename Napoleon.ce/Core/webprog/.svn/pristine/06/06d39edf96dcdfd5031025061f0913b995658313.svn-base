@@ -1,0 +1,17 @@
+import { api } from "boot/axios";
+
+function getHost() {
+  if (window.location.host.indexOf("localhost") >= 0) {
+    return "https://aceteam.app";
+  }
+  return window.location.protocol + "//" + window.location.host;
+}
+
+export function registerUser(user) {
+  const headers = {
+    "Content-Type": "application/json;charset=UTF-8",
+  };
+
+  const url = getHost() + "/api/users";
+  return api.post(url, user, headers)
+}

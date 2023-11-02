@@ -1,0 +1,48 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+    <object name="WorkTime">
+      <sources>
+        <source name="DBFTable">
+          <param name="tableName">"WTM" + $user.id</param>
+        </source>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"userid,id,start"</member>
+      
+      <field name="userid" type="string" execOn="Put">$user.id</field>
+      <field name="id" type="string" />
+      <field name="start" type="timestamp" />
+      <field name="stop" type="timestamp" />
+
+      <events>
+        <event type="put">
+          <action name="WriteInternal">$object.type</action>
+        </event>
+      </events>
+    </object>
+
+    <modify src="Order">
+      <change>
+        <field name="firma" type="string" width="30" execOn="Put">KeyValueReader("order.cfg","Организация",$object.supplyer)</field>
+      </change>
+      <remove>
+        <field name="firmCode" />
+      </remove>
+    </modify>
+    
+    <modify src="CommonMatrix">
+        <add>
+            <field name="color" type="number" />
+        </add>
+    </modify>
+    
+    <modify src="Matrix">
+        <add>
+            <field name="color" type="number" />
+        </add>
+    </modify>
+    
+	</objects>
+</serverDefs>

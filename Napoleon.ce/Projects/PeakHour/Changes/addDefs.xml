@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+   <objects>
+     <modify src="Returns$items">
+       <add>
+         <field name="cause" width="50" type="string" />
+       </add>
+     </modify>
+   </objects>
+</serverDefs>

@@ -1,0 +1,434 @@
+﻿!name Yandex;
+-----------------------------------------------------------------------------------------------
+!beginmap orgaddress
+<!DOCTYPE html "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html> 
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+<script src="http://api-maps.yandex.ru/1.1/index.xml" type="text/javascript"></script> 
+
+<script type="text/javascript"> 
+	YMaps.jQuery(function () {
+		var map = new YMaps.Map(YMaps.jQuery("#YMapsID")[0]); 
+		map.addControl(new YMaps.TypeControl()); 
+		map.addControl(new YMaps.ToolBar()); 
+		map.addControl(new YMaps.Zoom()); 
+		map.addControl(new YMaps.MiniMap()); 
+		map.addControl(new YMaps.ScaleLine()); 
+		map.enableScrollZoom();
+
+		point = new YMaps.GeoPoint(##longitude##, ##latitude##);
+		mark = new YMaps.Placemark(point);
+		mark.description="##name##";
+		map.addOverlay(mark);
+
+		bnds = new YMaps.GeoCollectionBounds(); 
+		bnds.add(point);
+		map.setBounds(bnds);
+		map.setZoom(15);
+		mark.openBalloon();
+	});
+</script><style type="text/css">
+ body, html { width:100%; height:100%; margin:0; padding:0; overflow:hidden;}
+</style>
+</head>
+<body>
+<div id="YMapsID" style="width:100%;height:100%"></div> 
+</body> 
+</html>
+!endmap
+-----------------------------------------------------------------------------------------------
+!beginmap docorgaddress
+<!DOCTYPE html "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html> 
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+<script src="http://api-maps.yandex.ru/1.1/index.xml" type="text/javascript"></script> 
+
+<script type="text/javascript"> 
+	YMaps.jQuery(function () {
+		var map = new YMaps.Map(YMaps.jQuery("#YMapsID")[0]); 
+		map.addControl(new YMaps.TypeControl()); 
+		map.addControl(new YMaps.ToolBar()); 
+		map.addControl(new YMaps.Zoom()); 
+		map.addControl(new YMaps.MiniMap()); 
+		map.addControl(new YMaps.ScaleLine());
+                bnds = new YMaps.GeoCollectionBounds();
+
+	!var
+		point = new YMaps.GeoPoint(##longitude##, ##latitude##);
+		bnds.add(point);
+		mark = new YMaps.Placemark(point);
+		mark.setIconContent('<font color=##color##><b>##name##</b></font>');
+		mark.description="##name##";
+		map.addOverlay(mark);
+	!endvar
+		bnds.add(point);
+		map.setBounds(bnds);
+		map.setZoom(15);
+		mark.openBalloon();
+	});
+</script><style type="text/css">
+ body, html { width:100%; height:100%; margin:0; padding:0; overflow:hidden;}
+</style>
+</head>
+<body>
+<div id="YMapsID" style="width:100%;height:100%"></div> 
+</body> 
+</html>
+!endmap
+-----------------------------------------------------------------------------------------------
+!beginmap route
+<!DOCTYPE html "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html> 
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+<script src="http://api-maps.yandex.ru/1.1/index.xml" type="text/javascript"></script> 
+
+<script type="text/javascript"> 
+function havePoint(ar, point) {
+index = 0;
+for( ; index < ar.length; index++ ) {
+  pt = ar[index];
+  if( pt.getLat() == point.getLat() && pt.getLng() == point.getLng() )
+    return true;
+}
+return false;
+}		
+
+YMaps.jQuery(function () {
+	map = new YMaps.Map(YMaps.jQuery("#YMapsID")[0]); 
+	map.addControl(new YMaps.TypeControl()); 
+	map.addControl(new YMaps.ToolBar()); 
+	map.addControl(new YMaps.Zoom()); 
+	map.addControl(new YMaps.MiniMap()); 
+	map.addControl(new YMaps.ScaleLine()); 
+	map.enableScrollZoom();
+
+	bnds = new YMaps.GeoCollectionBounds();
+
+	var mark;
+
+	var plRoute = []; 
+
+	!var
+		point = new YMaps.GeoPoint(##longitude##, ##latitude##);
+		if( !havePoint(plRoute, point) ) {
+			plRoute.push(point);
+		bnds.add(point);
+		mark = new YMaps.Placemark(point);
+		mark.setIconContent('<font color=blue><b>##number##</b></font>');
+		mark.description="##name##";
+		map.addOverlay(mark); }
+	!endvar
+
+	plstyle = new YMaps.Style(); 
+	plstyle.lineStyle = new YMaps.LineStyle(); 
+	plstyle.lineStyle.strokeWidth = 3; 
+	plstyle.lineStyle.strokeColor='707070ff'; 
+
+	var pl1 = new YMaps.Polyline(plRoute);
+	pl1.setStyle(plstyle); 
+	map.addOverlay(pl1); 
+	bnds.add(pl1.getPoints());
+
+	map.setBounds(bnds);
+	var zoom = map.getZoom();
+	if( zoom > 0 ) { map.setZoom(zoom-1); }
+});
+</script><style type="text/css">
+ body, html { width:100%; height:100%; margin:0; padding:0; overflow:hidden;}
+</style>
+</head>
+<body>
+<div id="YMapsID" style="width:100%;height:100%"></div> 
+</body> 
+</html>
+!endmap
+
+-----------------------------------------------------------------------------------------------
+!beginmap traceroute
+!colorGPS=styleGPS;
+!colorGSM=styleGSM;
+<!DOCTYPE html "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html> 
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<script src="http://api-maps.yandex.ru/1.1/index.xml" type="text/javascript"></script> 
+
+<script type="text/javascript"> 
+   var map;
+   var markers = {};
+
+	function ShowInfo(lat, lng){
+      markers[lat+lng].openBalloon();
+		point = new YMaps.GeoPoint(lng, lat);
+		map.setCenter(point, map.getZoom());
+	}
+
+	YMaps.jQuery(function () {
+		map = new YMaps.Map(YMaps.jQuery("#YMapsID")[0]); 
+		map.addControl(new YMaps.TypeControl()); 
+		map.addControl(new YMaps.ToolBar()); 
+		map.addControl(new YMaps.Zoom()); 
+		map.addControl(new YMaps.MiniMap()); 
+		map.addControl(new YMaps.ScaleLine()); 
+		map.enableScrollZoom();
+
+		bnds = new YMaps.GeoCollectionBounds();
+
+		!var
+			point = new YMaps.GeoPoint(##longitude##, ##latitude##);
+			bnds.add(point);
+			mark = new YMaps.Placemark(point, {style: "default#greenSmallPoint"});
+			mark.setIconContent('<font color=green><b>##name##</b></font>');
+			mark.description='##descr##';
+			map.addOverlay(mark);
+         markers["##latitude####longitude##"]=mark;
+		!endvar
+
+		styleGPS = new YMaps.Style(); 
+		styleGPS.lineStyle = new YMaps.LineStyle(); 
+		styleGPS.lineStyle.strokeWidth = 4; 
+		styleGPS.lineStyle.strokeColor='ff0000ff'; 
+		styleGSM = new YMaps.Style(); 
+		styleGSM.lineStyle = new YMaps.LineStyle(); 
+		styleGSM.lineStyle.strokeWidth = 4; 
+		styleGSM.lineStyle.strokeColor='b000b0ff'; 
+
+		!var
+		var pl##number## = new YMaps.Polyline([ 
+		!cont
+		new YMaps.GeoPoint(##longitude##, ##latitude##)
+		!endcont
+		]);
+
+		pl##number##.setStyle(##color##); 
+		map.addOverlay(pl##number##); 
+		bnds.add(pl##number##.getPoints());
+		!endvar
+
+		!var
+		point = new YMaps.GeoPoint(##longitude##, ##latitude##);
+		bnds.add(point);
+		mark = new YMaps.Placemark(point, {style: "default#blueSmallPoint"});
+		mark.setIconContent('<font color=blue><b>##name##</b></font>');
+		mark.description='##descr##';
+		map.addOverlay(mark);
+		!endvar
+
+		!var
+		point = new YMaps.GeoPoint(##longitude##, ##latitude##);
+		bnds.add(point);
+		mark = new YMaps.Placemark(point, {style: "default#redSmallPoint"});
+		mark.setIconContent('<font color=red><b>##name##</b></font>');
+		mark.description='##descr##';
+		map.addOverlay(mark);
+		!endvar
+
+		map.setBounds(bnds);
+
+		var zoom = map.getZoom();
+		if( zoom > 0 ) { map.setZoom(zoom-1); }
+	});
+</script><style type="text/css">
+ body, html { width:100%; height:100%; margin:0; padding:0; overflow:hidden;}
+</style>
+</head>
+<body>
+<div id="YMapsID" style="width:100%;height:100%"></div> 
+</body> 
+</html>
+!endmap
+
+-----------------------------------------------------------------------------------------------
+!beginmap coverarea
+<!DOCTYPE html "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html> 
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<script src="http://api-maps.yandex.ru/1.1/index.xml" type="text/javascript"></script> 
+
+<script type="text/javascript"> 
+  YMaps.jQuery(function () {
+		map = new YMaps.Map(YMaps.jQuery("#YMapsID")[0]); 
+		map.addControl(new YMaps.TypeControl()); 
+		map.addControl(new YMaps.ToolBar()); 
+		map.addControl(new YMaps.Zoom()); 
+		map.addControl(new YMaps.MiniMap()); 
+		map.addControl(new YMaps.ScaleLine()); 
+		map.enableScrollZoom();
+
+		bnds = new YMaps.GeoCollectionBounds();
+
+		!var
+			point = new YMaps.GeoPoint(##longitude##, ##latitude##);
+			bnds.add(point);
+			mark = new YMaps.Placemark(point);
+			mark.setIconContent('<font color=##color##><b>##name##</b></font>');
+			mark.description="##descr##";
+			map.addOverlay(mark);
+		!endvar
+
+		map.setBounds(bnds);
+
+		var zoom = map.getZoom();
+		if( zoom > 0 ) { map.setZoom(zoom-1); }
+	});
+</script><style type="text/css">
+ body, html { width:100%; height:100%; margin:0; padding:0; overflow:hidden;}
+</style>
+</head>
+<body>
+<div id="YMapsID" style="width:100%;height:100%"></div> 
+</body> 
+</html>
+!endmap
+-----------------------------------------------------------------------------------------------
+!beginmap changeorgaddress
+<!DOCTYPE html "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html> 
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<script src="http://api-maps.yandex.ru/1.1/index.xml" type="text/javascript"></script> 
+
+<script type="text/javascript"> 
+var map = 0;
+var mark;
+var point;
+var bnds;
+
+function ShowOrg(lat, lng, name, updateBounds) {
+  
+  if( map == 0 )
+     return;
+
+  bnds.clear();
+  map.removeAllOverlays();
+  point = new YMaps.GeoPoint(lng, lat);
+  bnds.add(point);
+
+  zoom = map.getZoom();
+
+  mark = new YMaps.Placemark(point);
+  mark.setIconContent(name);
+  map.addOverlay(mark);
+
+  map.setBounds(bnds);
+  map.setCenter(point, 15);
+}
+
+ YMaps.jQuery(function () {
+  var cur = window.external.GetCurrentOrg('lat');
+  var startLat = 57.612053, startLng = 39.830773, startName = "Клиент";
+
+  if( cur != 0 ) {
+    startLat = cur;
+    startLng = window.external.GetCurrentOrg('lng');
+    startName = window.external.GetCurrentOrg('org');
+  }  
+
+	map = new YMaps.Map(YMaps.jQuery("#YMapsID")[0]); 
+	map.addControl(new YMaps.TypeControl()); 
+	map.addControl(new YMaps.ToolBar()); 
+	map.addControl(new YMaps.Zoom()); 
+	map.addControl(new YMaps.MiniMap()); 
+	map.addControl(new YMaps.ScaleLine()); 
+	map.enableScrollZoom();
+
+	map.disableDblClickZoom();
+	
+	bnds = new YMaps.GeoCollectionBounds();
+
+	point = new YMaps.GeoPoint(startLng, startLat);
+	bnds.add(point);
+	mark = new YMaps.Placemark(point);
+	mark.setIconContent(startName);
+	map.addOverlay(mark);
+
+	map.setBounds(bnds);
+	map.setZoom(15);
+
+	YMaps.Events.observe(map, map.Events.DblClick, function (map, mEvent) {
+                p = mEvent.getGeoPoint();
+                window.external.SetNewLocation(p.getLat(), p.getLng());
+	});
+});
+
+</script>
+<style type="text/css">
+ body, html { width:100%; height:100%; margin:0; padding:0; overflow:hidden;}
+</style>
+</head>
+<body>
+<div id="YMapsID" style="width:100%;height:100%"></div> 
+</body> 
+</html>
+!endmap
+
+-----------------------------------------------------------------------------------------------
+!beginmap userlocation
+<!DOCTYPE html "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html> 
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<script src="http://api-maps.yandex.ru/1.1/index.xml" type="text/javascript"></script> 
+
+<script type="text/javascript"> 
+   var map;
+   var markers = {};
+
+	function ShowInfo(lat, lng){
+      markers[lat+lng].openBalloon();
+		point = new YMaps.GeoPoint(lng, lat);
+		map.setCenter(point, map.getZoom());
+	}
+
+	YMaps.jQuery(function () {
+		map = new YMaps.Map(YMaps.jQuery("#YMapsID")[0]); 
+		map.addControl(new YMaps.TypeControl()); 
+		map.addControl(new YMaps.ToolBar()); 
+		map.addControl(new YMaps.Zoom()); 
+		map.addControl(new YMaps.MiniMap()); 
+		map.addControl(new YMaps.ScaleLine());
+                bnds = new YMaps.GeoCollectionBounds();
+
+	!var
+		point = new YMaps.GeoPoint(##longitude##, ##latitude##);
+		bnds.add(point);
+		mark = new YMaps.Placemark(point, {style: "default###balooncolor##SmallPoint"});
+		mark.setIconContent('<font color=##color##><b>##number##</b></font>');
+		mark.description="##name##";
+		map.addOverlay(mark);
+      markers["##latitude####longitude##"]=mark;
+	!endvar
+		bnds.add(point);
+		map.setBounds(bnds);
+	});
+</script><style type="text/css">
+ body, html { width:100%; height:100%; margin:0; padding:0; overflow:hidden;}
+</style>
+</head>
+<body>
+<div id="YMapsID" style="width:100%;height:100%"></div> 
+</body> 
+</html>
+!endmap

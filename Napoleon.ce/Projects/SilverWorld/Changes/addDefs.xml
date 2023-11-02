@@ -1,0 +1,53 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+        <object name="OrgTask">
+            <sources>
+                <source name="SQTable" type="internal">
+                    <param name="readFilter">'not "id" in (select "id" from taskdone$items where "done"= 1)'</param>
+                </source>
+            </sources>
+         
+            <member name="primaryKey">"id"</member>
+         
+            <field name="id" type="string" />
+            <field name="orgid" type="string" />
+            <field name="start" type="timestamp" />
+            <field name="finish" type="timestamp" />
+            <field name="text" type="string" />
+            <field name="userid" type="string" />
+        </object>
+      
+        <object name="TaskDone">
+            <sources>
+                <source name="SQTable" type="internal" />
+            </sources>
+         
+            <member name="primaryKey">"userid,created"</member>
+            <field name="created" type="timestamp" />
+            <field name="userid" type="string" execOn="Put">$user.id</field>
+            <field name="items" type="collection">
+                <data>
+                    <object name="TaskDoneItem">
+                        <sources>
+                            <source name="SQTable" type="internal" />
+                        </sources>
+                        <field name="id" type="string"/>
+                        <field name="text" type="string"/>
+                        <field name="done" type="number"/>
+                    </object>
+                </data>
+            </field>
+        </object>
+        
+        <modify src="Price">
+            <add>
+                <field name="desc" type="string" />
+                <field name="avgw" type="number" prec="3" />
+                <field name="costgr" type="number" prec="2" />
+                <field name="art" type="string" width="8" />
+            </add>
+        </modify>
+        
+	</objects>
+</serverDefs>

@@ -1,0 +1,71 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+    <object name="OrgDogovor">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"DG"</param>
+          <param name="commonTable">"DOGOVORS"</param>
+        </source>
+      </sources>
+
+      <field name="name" type="string" width="100" />
+      <field name="id" type="string" width="30" data="NUM" />
+      <field name="ido" type="string" width="30" data="ID" />
+      <field name="firm" type="string" width="30" />
+      <field name="costType" type="number" data="CTYPE" />
+    </object>
+
+    <modify src="Order">
+      <add>
+        <field name="supplCode" type="string" width="15" data="SUPLCODE" />
+        <field name="costCode" type="string" width="15" />
+        <field name="dogCode" type="string" width="15" />
+      </add>
+    </modify>
+    
+    <modify src="Org">
+      <add>
+        <field name="ido" type="string" />
+        <field name="defDog" type="string" data="DOG" />
+        <field name="balance" type="number" prec="2" />
+      </add>
+    </modify>
+
+    <modify src="Delivery">
+      <add>
+        <field name="ido" type="string" />
+        <field name="payDate" type="date" />
+        <field name="dogCode" type="string" data="ID_DOG" />
+      </add>
+      <change>
+        <sources>
+          <source name="DBFTableSet">
+            <param name="userTable">"DLV"</param>
+            <param name="commonTable">"DELIVERY"</param>
+            <param name="catalog">"number;items;1"</param>
+            <param name="filter">"[ido] in $Org.ido"</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="Payment">
+      <add>
+        <field name="ido" type="string" />
+        <field name="dogCode" type="string" data="ID_DOG" />
+      </add>
+      <change>
+        <sources>
+          <source name="DBFTable">
+            <param name="tableName">$object.table + $user.id</param>
+          </source>
+          <source name="DBFTable">
+            <param>$object.altTable</param>
+            <param name="filter">"[ido] in $Org.ido"</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+	</objects>
+</serverDefs>

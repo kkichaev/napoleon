@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:id="@+id/itOrder"  android:icon="@drawable/ic_list_white_24dp" android:showAsAction="ifRoom" android:title="@string/calendar"></item>
+    <item android:id="@+id/itSync" android:icon="@drawable/ic_autorenew_white_24dp"  android:showAsAction="ifRoom" android:title="@string/sync" ></item>
+    <item android:id="@+id/itCal"  android:actionLayout="@layout/calendar_item_menu" android:showAsAction="ifRoom" android:title="@string/calendar"></item>
+</menu>

@@ -1,0 +1,17 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace GRSoft.NapoleonManager
+{
+   partial class ScriptDocuments
+   {
+      static void InitDocuments()
+      {
+         docs = new List<ScriptDocument>();
+
+         docs.Add(new VisitDoc());
+         docs.Add(new RemnantsDoc());
+      }
+   }
+}

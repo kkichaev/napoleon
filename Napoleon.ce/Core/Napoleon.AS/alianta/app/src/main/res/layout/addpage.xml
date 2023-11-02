@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:background="#FFFFFF"
+  android:orientation="vertical"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent">
+
+      <TableRow android:id="@+id/tableRow1" 
+    	android:padding="2dp"
+    	android:visibility="gone"
+       	android:layout_width="wrap_content" 
+       	android:layout_height="wrap_content">
+		
+		<TextView android:id="@+id/TextView04" 
+			android:layout_height="wrap_content" 
+			android:textColor="#000000" 
+			android:text="Форма оплаты" 
+			android:layout_marginLeft="5dp" 
+			android:layout_marginRight="5dp" android:layout_width="wrap_content" 
+			android:layout_gravity="center_vertical"></TextView>
+		<CheckBox 
+			android:text="Банк" 
+			android:textColor="#000000" 
+			android:id="@+id/cbBank" 
+			android:layout_width="wrap_content" android:layout_height="wrap_content"></CheckBox>	
+	  </TableRow>
+
+		<TextView 
+			android:layout_height="wrap_content" 
+			android:textColor="#000000" 
+			android:paddingTop="5dp"
+			android:textSize="16sp"
+			android:text="@string/firm" 
+			android:layout_marginLeft="5dp" 
+			android:layout_width="wrap_content" 
+			android:layout_gravity="center_vertical"></TextView>	
+		<Spinner android:layout_height="wrap_content" 
+			android:id="@+id/spFirm" android:layout_width="fill_parent"></Spinner>
+      
+		<TextView
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_gravity="center_vertical"
+			android:paddingTop="5dp"
+			android:layout_marginLeft="5dp" 
+			android:textSize="16sp"
+		    android:text="@string/pay_method"
+		    android:textColor="#000000" >
+</TextView>	
+		<Spinner android:layout_height="wrap_content" 
+			android:id="@+id/spPayMethod" android:layout_width="fill_parent"></Spinner>
+				
+		<TextView 
+			android:layout_height="wrap_content" 
+			android:textColor="#000000" 
+			android:text="Метод доставки" 
+			android:paddingTop="5dp"
+			android:layout_marginLeft="5dp" 
+			android:textSize="16sp"
+			android:layout_width="wrap_content" 
+			android:layout_gravity="center_vertical"></TextView>	
+		<Spinner android:layout_height="wrap_content" 
+			android:id="@+id/spDlvMethod" android:layout_width="fill_parent"></Spinner>
+
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center_vertical"
+			android:paddingTop="5dp"
+			android:layout_marginLeft="5dp" 
+			android:textSize="16sp"
+              android:text="@string/dlv_dir"
+              android:textColor="#000000" />
+
+          <Spinner
+              android:id="@+id/spDlvDir"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+               />
+		
+		<TextView 
+		    android:visibility="gone"
+			android:layout_height="wrap_content" 
+			android:textColor="#000000" 
+			android:paddingTop="5dp"
+			android:layout_marginLeft="5dp" 
+			android:textSize="16sp"
+			android:text="Тип учета" 
+			android:layout_width="wrap_content" 
+			android:layout_gravity="center_vertical"></TextView>	
+		<Spinner android:layout_height="wrap_content" 
+			android:id="@+id/spControlType"
+			android:visibility="gone" 
+			android:layout_width="fill_parent"></Spinner>
+
+</LinearLayout>

@@ -1,0 +1,140 @@
+﻿<RibbonWindow 
+    x:Class="Napoleon.RejectCauseEditor"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:Napoleon"
+    mc:Ignorable="d"
+    Title="Редактор причин возврата" 
+    Height="600" Width="800"
+    Icon="Images\napoleon.ico"
+    Closing="RibbonWindow_Closing">
+    
+    <RibbonWindow.CommandBindings>
+        <CommandBinding Command="{x:Static local:NapoleonCommands.Refresh}" Executed="RefreshExecuted"/>
+        <CommandBinding Command="{x:Static local:NapoleonCommands.Save}" Executed="SaveExecuted" CanExecute="CanSaveExecute"/>
+        <CommandBinding Command="{x:Static local:NapoleonCommands.Add}" Executed="AddExecuted"/>
+        <CommandBinding Command="{x:Static local:NapoleonCommands.Delete}" Executed="DeleteExecuted"/>
+    </RibbonWindow.CommandBindings>
+
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="20"/>
+            </Grid.RowDefinitions>
+
+            <Ribbon Grid.Row="0" SelectedIndex="0">
+                <Ribbon.ApplicationMenu>
+                    <RibbonApplicationMenu Visibility="Collapsed"/>
+                </Ribbon.ApplicationMenu>
+
+                <RibbonTab 
+                    Header="Управление" 
+                    KeyTip="H">
+
+                    <RibbonGroup>
+                        <RibbonButton
+                            x:Name="btnRefresh" 
+                            LargeImageSource="Images\refresh.png" 
+                            Label="Обновить" 
+                            KeyTip="F5" 
+                            Command="local:NapoleonCommands.Refresh"
+                            ToolTipTitle ="Обновить (F5)"
+                            ToolTipDescription="Загрузить данные с сервера"/>
+
+                        <RibbonButton 
+                            x:Name="btnSave" 
+                            LargeImageSource="Images\save.png" 
+                            Label="Сохранить" 
+                            KeyTip="Ctrl+S" 
+                            Command="local:NapoleonCommands.Save"
+                            ToolTipTitle ="Сохранить (Ctrl+S)"
+                            ToolTipDescription="Сохранить данные"/>
+
+                    </RibbonGroup>
+
+                    <RibbonGroup Header="Редактирование">
+                        <RibbonButton 
+                            x:Name="btnAdd" 
+                            LargeImageSource="Images\add.png" 
+                            Label="Добавить" 
+                            KeyTip="F8" 
+                            Command="local:NapoleonCommands.Add"
+                            ToolTipTitle ="Добавить запись (F8)"
+                            ToolTipDescription="Добавить запись"/>
+
+                        <RibbonButton 
+                            x:Name="btnDel" 
+                            LargeImageSource="Images\delete.png" 
+                            Label="Удалить" 
+                            KeyTip="Ctrl+D" 
+                            Command="local:NapoleonCommands.Delete"
+                            ToolTipTitle ="Удалить запись (Ctrl+D)"
+                            ToolTipDescription="Удалить запись"/>
+                    </RibbonGroup>
+
+                    <RibbonGroup>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Grid.Column="0"   Content="Поиск" FontSize="10"/>
+                            <TextBox Grid.Column="1"  x:Name="tbSearch" Width="200" TextChanged="TbSearch_TextChanged"/>
+                            <RibbonButton
+                                Grid.Column="2"
+                                x:Name="btnSearchClear" 
+                                SmallImageSource="Images\clear.png" 
+                                Click="BtnSearchClear_Click"
+                                ToolTip ="Очисить поиск"/>
+                        </Grid>
+                    </RibbonGroup>
+                </RibbonTab>
+            </Ribbon>
+
+            <Grid Grid.Row="1" x:Name="progressLayout" Visibility="Hidden">
+                <ProgressBar  x:Name="progress" Height="30" IsIndeterminate="True"/>
+                <TextBlock Text="Идет сохранение..." HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>
+
+            <DataGrid 
+                x:Name="grid" 
+                AutoGenerateColumns="False" 
+                Grid.Row="2"
+                CellEditEnding="Grid_CellEditEnding">
+
+                <DataGrid.ColumnHeaderStyle>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="ContentTemplate">
+                            <Setter.Value>
+                                <DataTemplate>
+                                    <TextBlock TextWrapping="Wrap" Text="{Binding}"></TextBlock>
+                                </DataTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </DataGrid.ColumnHeaderStyle>
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Наименование" x:Name="Column1" Binding="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <StackPanel 
+                Grid.Row="3"  
+                HorizontalAlignment="Left" 
+                Orientation="Horizontal">
+
+                <Grid Width="{Binding ElementName=Column1,Path=ActualWidth}">
+                    <TextBlock Margin="10,0,0,0" Text=""></TextBlock>
+                </Grid>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</RibbonWindow>

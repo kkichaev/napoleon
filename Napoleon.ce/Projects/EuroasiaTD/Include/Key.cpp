@@ -1,0 +1,4 @@
+#include "stdafx.h"
+#include <AES.h>
+
+Key uploadKey = "\xFA\xC7\x91\x8F\x3A\xAA\x75\x02\x4C\x07\x61\x2C\x4F\xA8\xF2"; // для загрузки на сервер

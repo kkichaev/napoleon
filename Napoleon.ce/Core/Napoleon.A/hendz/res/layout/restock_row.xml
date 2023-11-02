@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/list_selector" >
+
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="left"
+        android:paddingLeft="3dp"
+        android:paddingRight="3dp"
+        android:text="tvName"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        tools:ignore="HardcodedText" >
+     </TextView>
+        
+    <TextView
+        android:id="@+id/tvSold"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:background="@drawable/qty_back"
+        android:gravity="right"
+        android:paddingLeft="3dp"
+        android:paddingRight="10dp"
+        android:text="tvSaled"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:width="80dp"
+        tools:ignore="HardcodedText" >
+
+    </TextView>
+    
+    <TextView
+        android:id="@+id/tvRest"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:background="@drawable/qty_back"
+        android:gravity="right"
+        android:paddingLeft="3dp"
+        android:paddingRight="10dp"
+        android:text="tvRest"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:width="80dp"
+        tools:ignore="HardcodedText" >
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/tvQty"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:background="@drawable/qty_back"
+        android:gravity="right"
+        android:paddingLeft="3dp"
+        android:paddingRight="10dp"
+        android:text="tvQty"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:width="80dp"
+        tools:ignore="HardcodedText" >
+
+    </TextView>    
+</LinearLayout>

@@ -1,0 +1,648 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="about" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="about_hint" xml:space="preserve">
+    <value>О программе (Ctrl+O)</value>
+  </data>
+  <data name="accuracy" xml:space="preserve">
+    <value>Точность</value>
+  </data>
+  <data name="action" xml:space="preserve">
+    <value>Событие</value>
+  </data>
+  <data name="add" xml:space="preserve">
+    <value>Добавить</value>
+  </data>
+  <data name="address" xml:space="preserve">
+    <value>Адрес</value>
+  </data>
+  <data name="add_description" xml:space="preserve">
+    <value>Добавить запись</value>
+  </data>
+  <data name="add_hint" xml:space="preserve">
+    <value>Добавить запись (F8)</value>
+  </data>
+  <data name="agent" xml:space="preserve">
+    <value>Агент</value>
+  </data>
+  <data name="agents_in_field" xml:space="preserve">
+    <value>Агенты в полях</value>
+  </data>
+  <data name="agents_in_field_descrition" xml:space="preserve">
+    <value>Посмотреть текущее положение пользователей на карте</value>
+  </data>
+  <data name="agents_in_field_hint" xml:space="preserve">
+    <value>Агенты в полях (Ctrl+A)</value>
+  </data>
+  <data name="attachments" xml:space="preserve">
+    <value>Вложения</value>
+  </data>
+  <data name="attachments_description" xml:space="preserve">
+    <value>Нажмите что бы добавить вложения к задаче</value>
+  </data>
+  <data name="attachments_hint" xml:space="preserve">
+    <value>Добавть файл</value>
+  </data>
+  <data name="browser" xml:space="preserve">
+    <value>Браузер</value>
+  </data>
+  <data name="browser_description" xml:space="preserve">
+    <value>Открыть браузер</value>
+  </data>
+  <data name="browser_hint" xml:space="preserve">
+    <value>Открыть браузер (Ctrl+O)</value>
+  </data>
+  <data name="cancel" xml:space="preserve">
+    <value>Отменить</value>
+  </data>
+  <data name="clear" xml:space="preserve">
+    <value>Очистить</value>
+  </data>
+  <data name="clear_description" xml:space="preserve">
+    <value>Стереть данные</value>
+  </data>
+  <data name="clear_hint" xml:space="preserve">
+    <value>Очистить</value>
+  </data>
+  <data name="client" xml:space="preserve">
+    <value>Клиент</value>
+  </data>
+  <data name="clients_templates" xml:space="preserve">
+    <value>Шаблоны клиентов</value>
+  </data>
+  <data name="close" xml:space="preserve">
+    <value>Закрыть</value>
+  </data>
+  <data name="contact" xml:space="preserve">
+    <value>Контакт</value>
+  </data>
+  <data name="content" xml:space="preserve">
+    <value>Содержание</value>
+  </data>
+  <data name="copy" xml:space="preserve">
+    <value>Копировать</value>
+  </data>
+  <data name="copy_description" xml:space="preserve">
+    <value>Копировать запись</value>
+  </data>
+  <data name="copy_hint" xml:space="preserve">
+    <value>Копировать (Ctrl+С)</value>
+  </data>
+  <data name="created" xml:space="preserve">
+    <value>Создана</value>
+  </data>
+  <data name="cut" xml:space="preserve">
+    <value>Вырезать</value>
+  </data>
+  <data name="cut_description" xml:space="preserve">
+    <value>Вырезать запись</value>
+  </data>
+  <data name="cut_hint" xml:space="preserve">
+    <value>Вырезать (Ctrl+X)</value>
+  </data>
+  <data name="date" xml:space="preserve">
+    <value>Дата</value>
+  </data>
+  <data name="del" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="del_description" xml:space="preserve">
+    <value>Удалить запись</value>
+  </data>
+  <data name="del_hint" xml:space="preserve">
+    <value>Удалить (Ctrl+D)</value>
+  </data>
+  <data name="disallow_edit" xml:space="preserve">
+    <value>Запрет редактирования</value>
+  </data>
+  <data name="distance" xml:space="preserve">
+    <value>Расстояние</value>
+  </data>
+  <data name="distance_gone" xml:space="preserve">
+    <value>Пройденное расстояние:</value>
+  </data>
+  <data name="edit" xml:space="preserve">
+    <value>Редактирование</value>
+  </data>
+  <data name="email" xml:space="preserve">
+    <value>Почта:</value>
+  </data>
+  <data name="excel" xml:space="preserve">
+    <value>Excel</value>
+  </data>
+  <data name="filter" xml:space="preserve">
+    <value>Фильтр</value>
+  </data>
+  <data name="fio" xml:space="preserve">
+    <value>ФИО</value>
+  </data>
+  <data name="from" xml:space="preserve">
+    <value>c</value>
+  </data>
+  <data name="help_description" xml:space="preserve">
+    <value>База знаний !</value>
+  </data>
+  <data name="help_hint" xml:space="preserve">
+    <value>База знаний (F1)</value>
+  </data>
+  <data name="hide" xml:space="preserve">
+    <value>Скрыть</value>
+  </data>
+  <data name="history" xml:space="preserve">
+    <value>История</value>
+  </data>
+  <data name="input_password" xml:space="preserve">
+    <value>Введите пароль</value>
+  </data>
+  <data name="interval_min" xml:space="preserve">
+    <value>Интервал (мин.)</value>
+  </data>
+  <data name="ip" xml:space="preserve">
+    <value>IP</value>
+  </data>
+  <data name="log" xml:space="preserve">
+    <value>Лог</value>
+  </data>
+  <data name="login" xml:space="preserve">
+    <value>Логин</value>
+  </data>
+  <data name="management" xml:space="preserve">
+    <value>Администрирование</value>
+  </data>
+  <data name="management_description" xml:space="preserve">
+    <value>Администрирование пользователей</value>
+  </data>
+  <data name="management_hint" xml:space="preserve">
+    <value>Менеджмент</value>
+  </data>
+  <data name="managers" xml:space="preserve">
+    <value>Руководители</value>
+  </data>
+  <data name="map" xml:space="preserve">
+    <value>Карта</value>
+  </data>
+  <data name="message" xml:space="preserve">
+    <value>Сообщение</value>
+  </data>
+  <data name="message_description" xml:space="preserve">
+    <value>Отправить сообщение</value>
+  </data>
+  <data name="message_for" xml:space="preserve">
+    <value>Сообщение для: \{0\}</value>
+  </data>
+  <data name="message_hint" xml:space="preserve">
+    <value>Сообщение (F6)</value>
+  </data>
+  <data name="message_history" xml:space="preserve">
+    <value>История сообщений</value>
+  </data>
+  <data name="mileage" xml:space="preserve">
+    <value>Пробег</value>
+  </data>
+  <data name="mileage_description" xml:space="preserve">
+    <value>Отчет о пройденном расстоянии</value>
+  </data>
+  <data name="mileage_hint" xml:space="preserve">
+    <value>Отчет по пробегу (Ctrl+K)</value>
+  </data>
+  <data name="minutes" xml:space="preserve">
+    <value>мин.</value>
+  </data>
+  <data name="myphone" xml:space="preserve">
+    <value>+7(4852)599-368</value>
+  </data>
+  <data name="name" xml:space="preserve">
+    <value>Имя</value>
+  </data>
+  <data name="ok" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="operation" xml:space="preserve">
+    <value>Управление</value>
+  </data>
+  <data name="orders" xml:space="preserve">
+    <value>Заявки</value>
+  </data>
+  <data name="orders_description" xml:space="preserve">
+    <value>Данные о заявках пользователей</value>
+  </data>
+  <data name="orders_extended" xml:space="preserve">
+    <value>Заявки на дополнительные работы</value>
+  </data>
+  <data name="orders_hint" xml:space="preserve">
+    <value>Заявки на дополнительные работы (Ctrl+U)</value>
+  </data>
+  <data name="password" xml:space="preserve">
+    <value>Пароль</value>
+  </data>
+  <data name="performer" xml:space="preserve">
+    <value>Исполнитель</value>
+  </data>
+  <data name="performers" xml:space="preserve">
+    <value>Исполнители</value>
+  </data>
+  <data name="phone" xml:space="preserve">
+    <value>Телефон</value>
+  </data>
+  <data name="photo" xml:space="preserve">
+    <value>Фото</value>
+  </data>
+  <data name="photo_report" xml:space="preserve">
+    <value>Фотоотчет</value>
+  </data>
+  <data name="please_wait" xml:space="preserve">
+    <value>Пожалуйста подождите...</value>
+  </data>
+  <data name="port" xml:space="preserve">
+    <value>Порт</value>
+  </data>
+  <data name="programm_name" xml:space="preserve">
+    <value>АДС  ""Наполеон"</value>
+  </data>
+  <data name="put" xml:space="preserve">
+    <value>Вставить</value>
+  </data>
+  <data name="put_descrition" xml:space="preserve">
+    <value>Вставить из буфера</value>
+  </data>
+  <data name="put_hint" xml:space="preserve">
+    <value>Вставить (Ctrl+V)</value>
+  </data>
+  <data name="refresh" xml:space="preserve">
+    <value>Обновить</value>
+  </data>
+  <data name="refresh_description" xml:space="preserve">
+    <value>Загрузить данные с сервера</value>
+  </data>
+  <data name="refresh_hint" xml:space="preserve">
+    <value>Обновить (F5)</value>
+  </data>
+  <data name="report" xml:space="preserve">
+    <value>Отчет</value>
+  </data>
+  <data name="report_by_distance" xml:space="preserve">
+    <value>Отчет по километражу</value>
+  </data>
+  <data name="route" xml:space="preserve">
+    <value>Маршрут движения</value>
+  </data>
+  <data name="route2" xml:space="preserve">
+    <value>Маршрут</value>
+  </data>
+  <data name="route_description" xml:space="preserve">
+    <value>Посмотреть на карте трек пользователя</value>
+  </data>
+  <data name="route_hint" xml:space="preserve">
+    <value>Маршрут движения (Ctrl+R)</value>
+  </data>
+  <data name="route_points" xml:space="preserve">
+    <value>Точки маршрута</value>
+  </data>
+  <data name="save" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="save_description" xml:space="preserve">
+    <value>Сохранить данные</value>
+  </data>
+  <data name="save_hint" xml:space="preserve">
+    <value>Загрузить фото (Ctrl+F5)</value>
+  </data>
+  <data name="saving_process" xml:space="preserve">
+    <value>Идет сохранение...</value>
+  </data>
+  <data name="search" xml:space="preserve">
+    <value>Искать</value>
+  </data>
+  <data name="select_period" xml:space="preserve">
+    <value>Выберите период</value>
+  </data>
+  <data name="send" xml:space="preserve">
+    <value>Отправить</value>
+  </data>
+  <data name="settings" xml:space="preserve">
+    <value>Настройки</value>
+  </data>
+  <data name="settings_hint" xml:space="preserve">
+    <value>Настройки программы (Ctrl+Q)</value>
+  </data>
+  <data name="setting_connect" xml:space="preserve">
+    <value>Настройки подключения</value>
+  </data>
+  <data name="status" xml:space="preserve">
+    <value>Статус</value>
+  </data>
+  <data name="task" xml:space="preserve">
+    <value>Задача</value>
+  </data>
+  <data name="task_journal" xml:space="preserve">
+    <value>Журнал задач</value>
+  </data>
+  <data name="task_journal_descrition" xml:space="preserve">
+    <value>Просмотреть все задачи</value>
+  </data>
+  <data name="task_journal_hint" xml:space="preserve">
+    <value>Журнал задач (Ctrl+J)</value>
+  </data>
+  <data name="template" xml:space="preserve">
+    <value>Шаблоны</value>
+  </data>
+  <data name="template_description" xml:space="preserve">
+    <value>Шаблоны клиентов</value>
+  </data>
+  <data name="template_hint" xml:space="preserve">
+    <value>Шаблоны клиентов</value>
+  </data>
+  <data name="time" xml:space="preserve">
+    <value>Время</value>
+  </data>
+  <data name="time_fact" xml:space="preserve">
+    <value>Время факт</value>
+  </data>
+  <data name="time_plan" xml:space="preserve">
+    <value>Время план</value>
+  </data>
+  <data name="titlename" xml:space="preserve">
+    <value>Название</value>
+  </data>
+  <data name="to" xml:space="preserve">
+    <value>по</value>
+  </data>
+  <data name="users" xml:space="preserve">
+    <value>Пользователи</value>
+  </data>
+  <data name="version" xml:space="preserve">
+    <value>Версия</value>
+  </data>
+  <data name="web_site" xml:space="preserve">
+    <value>Сайт:</value>
+  </data>
+  <data name="work_time_from" xml:space="preserve">
+    <value>Время работы с</value>
+  </data>
+  <data name="all" xml:space="preserve">
+    <value>Все</value>
+  </data>
+  <data name="done" xml:space="preserve">
+    <value>Выполнено</value>
+  </data>
+  <data name="inwork" xml:space="preserve">
+    <value>В работе</value>
+  </data>
+  <data name="progress" xml:space="preserve">
+    <value>Прогресс</value>
+  </data>
+  <data name="undone" xml:space="preserve">
+    <value>Не выполено</value>
+  </data>
+  <data name="ask_to_delete" xml:space="preserve">
+    <value>Запись будет удалена, удалить?</value>
+  </data>
+  <data name="ask_to_save" xml:space="preserve">
+    <value>Сохранить изменения?</value>
+  </data>
+  <data name="check_interval" xml:space="preserve">
+    <value>Проверьте интервал дат</value>
+  </data>
+  <data name="error" xml:space="preserve">
+    <value>Ошибка</value>
+  </data>
+  <data name="information" xml:space="preserve">
+    <value>Информация</value>
+  </data>
+  <data name="not" xml:space="preserve">
+    <value>НЕТ</value>
+  </data>
+  <data name="question" xml:space="preserve">
+    <value>Вопрос</value>
+  </data>
+  <data name="save_complete" xml:space="preserve">
+    <value>Изменения сохранены</value>
+  </data>
+  <data name="save_error" xml:space="preserve">
+    <value>Ошибка записи в базу данных</value>
+  </data>
+  <data name="paste" xml:space="preserve">
+    <value>Вставить</value>
+  </data>
+  <data name="apply_task_status" xml:space="preserve">
+    <value>Принятая</value>
+  </data>
+  <data name="inwork_task_status" xml:space="preserve">
+    <value>Выполняется</value>
+  </data>
+  <data name="new_task_status" xml:space="preserve">
+    <value>Непринята</value>
+  </data>
+  <data name="reject_task_status" xml:space="preserve">
+    <value>Отклонена</value>
+  </data>
+  <data name="resolved_task_status" xml:space="preserve">
+    <value>Выполнена</value>
+  </data>
+  <data name="stop" xml:space="preserve">
+    <value>Остановка</value>
+  </data>
+  <data name="write_message" xml:space="preserve">
+    <value>Написать сообщение</value>
+  </data>
+  <data name="notify_interval" xml:space="preserve">
+    <value>НЕТ,15,30,45,60</value>
+  </data>
+  <data name="gps_off" xml:space="preserve">
+    <value>GPS - Выключен</value>
+  </data>
+  <data name="gps_on" xml:space="preserve">
+    <value>GPS - Включен</value>
+  </data>
+  <data name="pda_off" xml:space="preserve">
+    <value>КПК - Выключен</value>
+  </data>
+  <data name="pda_on" xml:space="preserve">
+    <value>КПК - Включен</value>
+  </data>
+  <data name="pda_status" xml:space="preserve">
+    <value>КПК статус</value>
+  </data>
+  <data name="pragramm_crashed" xml:space="preserve">
+    <value>Сбой программы</value>
+  </data>
+  <data name="programm_finish" xml:space="preserve">
+    <value>Наполеон - Выход</value>
+  </data>
+  <data name="programm_start" xml:space="preserve">
+    <value>Наполеон - Запуск</value>
+  </data>
+  <data name="time_changed" xml:space="preserve">
+    <value>Время изменено</value>
+  </data>
+  <data name="created_by_napoleon" xml:space="preserve">
+    <value>Построен в системе  "Наполеон"</value>
+  </data>
+  <data name="km" xml:space="preserve">
+    <value>km</value>
+  </data>
+  <data name="m" xml:space="preserve">
+    <value>m</value>
+  </data>
+  <data name="main_division" xml:space="preserve">
+    <value>Основное подразделение</value>
+  </data>
+  <data name="add_agent" xml:space="preserve">
+    <value>Добавить пользователя</value>
+  </data>
+  <data name="add_division" xml:space="preserve">
+    <value>Добавить подразделение</value>
+  </data>
+  <data name="add_manager" xml:space="preserve">
+    <value>Добавить руководителя</value>
+  </data>
+  <data name="del_agent" xml:space="preserve">
+    <value>Удалить пользователя</value>
+  </data>
+  <data name="del_division" xml:space="preserve">
+    <value>Удалить подразделение</value>
+  </data>
+  <data name="del_manager" xml:space="preserve">
+    <value>Удалить руководителя</value>
+  </data>
+  <data name="new_agent" xml:space="preserve">
+    <value>Новый агент</value>
+  </data>
+  <data name="new_division" xml:space="preserve">
+    <value>Новое подразделение</value>
+  </data>
+  <data name="new_manager" xml:space="preserve">
+    <value>Новый менеджер</value>
+  </data>
+  <data name="division" xml:space="preserve">
+    <value>Подразделение</value>
+  </data>
+  <data name="manage_divisions" xml:space="preserve">
+    <value>Управление подразделениями</value>
+  </data>
+  <data name="select_agents" xml:space="preserve">
+    <value>Выберите агентов</value>
+  </data>
+  <data name="admpwd" xml:space="preserve">
+    <value>Пароль настроек МП</value>
+  </data>
+</root>

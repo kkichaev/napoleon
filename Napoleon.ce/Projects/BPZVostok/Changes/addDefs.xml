@@ -1,0 +1,89 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+    <object name="FirmCfg">
+      <sources>
+        <source name="KeyValueDBFTable">
+          <param name="fileName">"Firms"</param>
+          <param name="key">"Организация"</param>
+          <param name="itemName">"NAME"</param>
+          <param name="itemKey">"ID"</param>
+        </source>
+      </sources>
+
+      <field name="key" type="string" />
+      <field name="value" type="string" />
+    </object>
+
+    <object name="Config">
+      <sources>
+        <source name="ObjectUnion">
+          <param>"OrdConfig"</param>
+          <param>"FirmCfg"</param>
+        </source>
+      </sources>
+
+      <field name="key" type="string" />
+      <field name="value" type="string" />
+    </object>
+
+    <modify src="Price">
+      <add>
+        <field name="tara" type="number" />
+        <field name="action" type="number" />
+      </add>
+    </modify>
+    
+    <modify src="Order">
+      <add>
+        <field name="personalAgreement" data="PAGR" type="number" />
+      </add>
+    </modify>
+    
+    <modify src="Delivery">
+      <add>
+        <field name="firmCode" type="string" width="55" />
+      </add>
+    </modify>
+
+    <modify src="Payment">
+      <add>
+        <field name="firmCode" type="string" width="55" />
+      </add>
+    </modify>
+
+    <modify src="Incass">
+      <add>
+        <field name="firmCode" type="string" width="55" />
+      </add>
+    </modify>
+
+    <modify src="Firm">
+      <add>
+        <field name="action" type="number" />
+      </add>
+    </modify>
+
+    <modify src="Org">
+      <add>
+        <field name="personalAgreement" data="PAGR" type="number" /> 
+        <field name="tara" type="collection">
+          <data>
+            <object name="Tara">
+              <sources>
+                <source name="DBFTableSet">
+                  <param name="userTable">"OTR"</param>
+                  <param name="commonTable">"__OTATA_"</param>
+                  <param name="filter">"[ID] = $parent.id"</param>
+                </source>
+              </sources>
+
+              <field name="qty" type="number" prec="3" />
+              <field name="id" type="string" width="30" data="ID_I" />
+            </object>
+          </data>
+        </field>
+      </add>
+    </modify>
+	</objects>
+</serverDefs>

@@ -1,0 +1,60 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+    <object name="MatrixOrder">
+      <sources>
+        <source name="SQTable" type="internal">
+          <param name="readFilter">'"userid"=' + "'" + $user.id + "'"</param>
+        </source>
+      </sources>
+
+      <member name="primaryKey">"userid"</member>
+
+      <field name="userid" type="string" execOn="Put">$user.id</field>
+      <field name="items" type="collection">
+        <data>
+          <object name="MatrixName">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+            <field name="name" type="string" />
+            <field name="order" type="number" />
+          </object>
+        </data>
+      </field>
+    </object>
+
+    <modify src="Delivery">
+      <add>
+        <field name="payDate" type="date" />
+        <field name="sumRet" type="number" prec="2" />
+        <field name="sumPay" type="number" prec="2" />
+      </add>
+    </modify>
+    
+    <modify src="Order">
+      <add>
+        <field name="mtxstage" type="collection">
+          <data>
+            <object name="MtxStageItem">
+              <sources>
+                <source name="SQTable" type="internal" />
+              </sources>
+
+              <field name="name" type="string" />
+              <field name="start" type="timestamp" />
+              <field name="finish" type="timestamp" />
+            </object>
+          </data>
+        </field>
+      </add>
+    </modify>
+    
+    <modify src="Order$items">
+	    <add>
+        <field name="qty2" type="number" prec="3" />
+      </add>
+	  </modify>
+
+  </objects>
+</serverDefs>

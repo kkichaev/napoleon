@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <com.daimajia.swipe.SwipeLayout
+        android:id="@+id/task_swipe_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+    <!-- Bottom View Start-->
+    <FrameLayout
+        android:id="@+id/bottom_task_wrapper_right"
+        android:layout_width="match_parent"
+        android:weightSum="1"
+        android:layout_height="77dp"
+        android:background="#00e300">
+
+        <TextView
+            android:gravity="center_vertical"
+            android:layout_height="77dp"
+            android:layout_width="wrap_content"
+            android:textColor="@android:color/white"
+            android:text="@string/cancel_task"
+            android:ellipsize="end"
+            android:textSize="20dp"
+            android:layout_marginLeft="42dp"
+            android:layout_gravity="center_vertical|left"
+            />
+
+        <ImageView
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:src="@mipmap/ic_done"
+            android:gravity="center"
+            android:layout_marginBottom="3dp"
+            android:layout_gravity="center_vertical|left"/>
+
+    </FrameLayout>
+
+    <!-- Bottom View End-->
+
+    <!-- Surface View Start -->
+
+    <LinearLayout
+        android:id="@+id/linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical|left"
+        android:layout_marginRight="7dp"
+        android:paddingLeft="24dp"
+        android:background="@drawable/selector_item" >
+
+        <RelativeLayout
+            android:id="@+id/img_user_container"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:scaleX="0.8"
+            android:scaleY="0.8"
+            android:gravity="center"
+            android:layout_marginRight="8dp">
+
+            <ImageView
+                android:id="@+id/img_user"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:padding="1dp"/>
+
+            <ImageView
+                android:id="@+id/img_user_custom"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:visibility="gone"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/img_user_two_container"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:scaleX="0.8"
+            android:scaleY="0.8"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/img_user_two"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:padding="1dp"
+                android:visibility="gone"/>
+
+            <ImageView
+                android:id="@+id/img_user_custom_two"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:visibility="gone"/>
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/text_view"
+            android:layout_width="match_parent"
+            android:layout_height="77dp"
+            android:alpha="0.6"
+            android:ellipsize="end"
+            android:gravity="center_vertical|left"
+            android:maxLines="2"
+            android:text="Adaew"
+            android:scaleX="0.8"
+            android:scaleY="0.8"
+            android:textColor="#565656"
+            android:textSize="22dp"
+            />
+
+    </LinearLayout>
+
+
+        <!-- Surface View End -->
+    </com.daimajia.swipe.SwipeLayout>
+
+</LinearLayout>

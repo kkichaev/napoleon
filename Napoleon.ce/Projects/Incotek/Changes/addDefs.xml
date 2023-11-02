@@ -1,0 +1,205 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+   <objects>
+     <object name="Storcheck">
+       <sources>
+         <source name="SQTable" type="internal" />
+       </sources>
+
+       <member name="primaryKey">"userid,created"</member>
+       <memberArray name="index">"created"</memberArray>
+
+       <field name="id" type="string" width="55" />
+       <field name="date" type="timestamp" />
+       <field name="created" type="timestamp" />
+       <field name="timeZone" type="number" />
+       <field name="serverTimeZone" type="number" data="S_TZ" execOn="Put" feature="USE_TIMEZONE">ServerTimeZone()</field>
+       <field name="remark" type="string" width="100" />
+       <field name="cause" type="string" width="100" feature="VISIT_CAUSE" />
+       <field name="userid" type="string" execOn="Put">$user.id</field>
+       <field name="sended" type="timestamp" execOn="Put">Now()</field>
+
+       <field name="latitude" type="number" prec="5" />
+       <field name="longitude" type="number" prec="5" />
+
+       <field name="ho_best" type="number" />
+       <field name="showcase_best" type="number" />
+       <field name="corp_block" type="number" />
+       <field name="posm" type="number" />
+
+       <field name="share_ki" type="number" />
+       <field name="share_pf" type="number" />
+       
+       <field name="action" type="string" />
+
+       <field name="items" type="collection">
+         <data>
+           <object name="Item">
+             <sources>
+               <source name="SQTable" type="internal" />
+             </sources>
+             <field name="id" type="string" />
+           </object>
+         </data>
+       </field>
+
+       <events>
+         <event type="put">
+           <action name="WriteToLog">$object.type;$object.date</action>
+         </event>
+       </events>
+
+     </object>
+     <object name="StorcheckActions">
+       <sources>
+         <source name="SQTable" type="internal">
+           <param name="debug" />
+           <param name="readFilter">
+             '"date" >= (select ifnull(max("date"),0) from "StorcheckActions" where "date" &lt;= ToDate("' + FormatDate(Now(),"DD.MM.YYYY") +  '")) and "date" &lt; ToDate("' + FormatDate(AdjustDate(Now(),1,"month"),"DD.MM.YYYY") + '")'</param>
+         </source>
+       </sources>
+       <member name="primaryKey">date</member>
+
+       <field name="date" type="date" />
+       <field name="items" type="collection">
+         <data>
+           <object name="STGItem">
+             <sources>
+               <source name="SQTable" type="internal" />
+             </sources>
+
+             <field name="name" type="string" />
+           </object>
+         </data>
+       </field>
+     </object>
+
+     <object name="StorcheckGoods">
+       <sources>
+         <source name="SQTable" type="internal">
+           <param name="debug" />
+           <param name="readFilter">
+             '"date" >= (select ifnull(max("date"),0) from "StorcheckGoods" where "date" &lt;= ToDate("' + FormatDate(Now(),"DD.MM.YYYY") +  '")) and "date" &lt; ToDate("' + FormatDate(AdjustDate(Now(),1,"month"),"DD.MM.YYYY") + '")'
+           </param>
+         </source>
+       </sources>
+       <member name="primaryKey">date</member>
+
+       <field name="date" type="date" />
+       <field name="items" type="collection">
+         <data>
+           <object name="STGItem">
+             <sources>
+               <source name="SQTable" type="internal" />
+             </sources>
+
+             <field name="id" type="string" />
+             <field name="folder" type="number" />
+           </object>
+         </data>
+       </field>
+     </object>
+     
+     <object name="CategoryMatrix">
+       <sources>
+         <source name="DBFTableSet">
+           <param name="userTable">"CM"</param>
+           <param name="commonTable">"CATMTX"</param>
+           <param name="catalog">"name;items;0"</param>
+         </source>
+       </sources>
+       <field name="items" type="collection">
+         <data>
+           <object name="MatrixItem">
+             <field name="id" type="string" width="40" />
+           </object>
+         </data>
+       </field>
+       <field name="name" type="string" width="30" />
+     </object>
+     
+     <object name="MatrixOrder">
+       <sources>
+         <source name="SQTable" type="internal">
+           <param name="readFilter">'"userid"=' + "'" + $user.id + "'"</param>
+         </source>
+       </sources>
+
+       <member name="primaryKey">"userid"</member>
+
+       <field name="userid" type="string" execOn="Put">$user.id</field>
+       <field name="items" type="collection">
+         <data>
+           <object name="MatrixName">
+             <sources>
+               <source name="SQTable" type="internal" />
+             </sources>
+             <field name="name" type="string" />
+             <field name="order" type="number" />
+           </object>
+         </data>
+       </field>
+     </object>
+
+     <object name="Dover">
+       <sources>
+         <source name="DBFTable">
+           <param name="tableName">"DV"  + $user.id</param>
+         </source>
+       </sources>
+
+       <field name="number" type="string"/>
+       <field name="date" type="timestamp"/>
+     </object>
+
+     <modify src="Delivery">
+       <add>
+         <field name="color" type="hex" />
+       </add>
+     </modify>
+     <modify src="Org">
+       <add>
+         <field name="balance" type="number" prec="2" />
+         <field name="category" type="string" />
+       </add>
+     </modify>
+     <modify src="Price">
+       <add>
+         <field name="info" type="string" />
+         <field name="color" type="hex" />
+         <field name="units" type="collection">
+           <data>
+             <object name="Units">
+               <sources>
+                 <source name="DBFTableSet">
+                   <param name="userTable">"WU"</param>
+                   <param name="commonTable">"WUNITS"</param>
+                   <param name="filter">"[ID_I] = $parent.id"</param>
+                 </source>
+               </sources>
+               <field name="id" type="string" />
+               <field name="name" type="string" />
+               <field name="inpack" type="number" prec="3" />
+             </object>
+           </data>
+         </field>
+       </add>
+     </modify>
+     <modify src="Incass">
+       <add>
+         <field name="dvrnum" type="string" width="50" />
+         <field name="dvrdate" type="timestamp" />
+       </add>
+     </modify>
+     <modify src="Order$items">
+       <add>
+         <field name="unit" type="string" data="ID_WU" />
+       </add>
+     </modify>
+     <modify src="Returns$items">
+       <add>
+         <field name="cause" type="string" width="20" data="CAUSE_I" />
+       </add>
+     </modify>
+   </objects>
+</serverDefs>

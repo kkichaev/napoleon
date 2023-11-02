@@ -1,0 +1,83 @@
+<template>
+  <q-layout view="hHh Lpr fFf">
+    <q-header elevated>
+      <q-toolbar class="toolbar">
+        <q-toolbar-title>{{ $t("appTitle") }}</q-toolbar-title>
+
+        <q-space />
+
+        <q-btn-dropdown flat :label="locale" no-caps>
+          <q-list>
+            <q-item
+              v-for="opt in locales"
+              clickable
+              v-close-popup
+              @click="setLocale(opt.value)"
+              :key="opt.value"
+            >
+              <q-item-section>
+                <q-item-label>{{ opt.label }}</q-item-label>
+              </q-item-section>
+            </q-item>
+          </q-list>
+        </q-btn-dropdown>
+      </q-toolbar>
+    </q-header>
+
+    <q-page-container>
+      <router-view />
+    </q-page-container>
+  </q-layout>
+</template>
+
+<script setup>
+import { computed, useSSRContext } from "vue";
+import { useQuasar } from "quasar";
+
+// const useI18nfun = useI18n({ useScope: "global" });
+// const locale = computed(() => getLocaleLabel(this.$i18n.locale));
+const locale = computed(() => getLocaleLabel(""));
+const $q = useQuasar();
+
+const locales = [
+  { value: "en-US", label: "En" },
+  { value: "ru", label: "Ru" },
+];
+
+// process.stdout.write($q.lang.isoName);
+
+function getLocaleLabel(key) {
+  var res = "";
+  if (key == "") {
+    key = $q.lang.isoName;
+  }
+  locales.every((loc) => {
+    if (loc.value === key) {
+      res = loc.label;
+      return false;
+    }
+    return true;
+  });
+
+  return res;
+}
+
+function setLocale(key) {
+  // console.log(key);
+  const langList = import.meta.glob("../../node_modules/quasar/lang/*.mjs");
+
+  // process.stdout.write(key);
+  // const ssrContext = process.env.SERVER ? useSSRContext() : null;
+  try {
+    langList[`../../node_modules/quasar/lang/${key}.mjs`]().then((lang) => {
+      $q.lang.set(lang.default);
+    });
+  } catch (err) {
+    console.log(err);
+  }
+  // $q.lang.set()
+  // useI18nfun.locale.value = key;
+}
+</script>
+
+<style scoped></style>

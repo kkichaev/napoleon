@@ -1,0 +1,143 @@
+apply plugin: 'com.android.application'
+
+dependencies {
+    implementation fileTree(include: '*.jar', dir: 'libs')
+    implementation project(':mainlibs:AmbilWarna')
+    implementation project(':mainlibs:V2AndLib-commonandroid')
+    implementation project(':mainlibs:V2AndLib-media')
+    implementation project(':mainlibs:OrmliteContentProvider')
+    implementation project(':mainlibs:V2AndLib-commondata')
+    implementation files('libs/fm.jar')
+    implementation files('libs/fm.websync.jar')
+    implementation files('libs/json-simple-1.1.1.jar')
+    implementation project(':lollipin')
+    implementation 'com.google.firebase:firebase-messaging:17.6.0'
+    implementation 'com.facebook.android:facebook-android-sdk:4.5.0'
+    implementation 'com.android.support:appcompat-v7:26.0.0'
+    implementation 'com.android.support:cardview-v7:26.0.0'
+    implementation 'com.android.support:design:26.0.0'
+    implementation 'com.android.support:multidex:1.0.3'
+    implementation 'com.android.support:recyclerview-v7:26.0.0'
+    implementation 'com.github.shell-software:fab:1.1.2'
+    implementation 'com.jpardogo.materialtabstrip:library:1.1.1'
+    implementation 'com.github.alamkanak:android-week-view:1.2.6'
+    implementation 'com.squareup.okhttp3:okhttp:3.8.+'
+    //compile 'com.google.android.support:wearable:2.4.0'
+    implementation 'com.google.android.gms:play-services-wearable:16.0.1'
+    implementation 'com.google.android.gms:play-services-gcm:16.1.0'
+    implementation 'com.google.android.gms:play-services-analytics:16.0.8'
+    implementation 'com.google.android.gms:play-services-auth:16.0.1'
+    implementation 'com.google.android.gms:play-services-plus:16.0.0'
+    implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'com.github.ratty3697:android-smart-animation-library:1.6'
+    implementation 'uk.me.lewisdeane.ldialogs:ldialogs:1.2.0@aar'
+    implementation 'com.android.support:support-v4:26.0.0'
+    wearApp project(':wear')
+}
+
+android {
+    publishNonDefault true
+    /*productFlavors {
+        wear1 {
+            // Use the defaultConfig value
+            minSdkVersion 14
+        }
+        wear2 {
+            minSdkVersion 25
+        }
+    }*/
+    signingConfigs {
+        release {
+            keyAlias 'leadertask_key_alias'
+            keyPassword 'hf7458jfk4534'
+            storeFile file('../ReleaseBuild/leadertask_keystore')
+            storePassword 'gsyew2389172asdg'
+        }
+    }
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+        }
+    }
+    repositories {
+        mavenCentral()
+    }
+    defaultConfig {
+        compileSdkVersion 26
+        applicationId "com.ashberrysoft.leadertask"
+        minSdkVersion 14
+        targetSdkVersion 26
+        multiDexEnabled true
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                includeCompileClasspath true
+            }
+        }
+    }
+    dexOptions {
+        preDexLibraries = false
+        jumboMode true
+        javaMaxHeapSize "4g"
+    }
+    compileOptions {
+        sourceCompatibility '1.8'
+        targetCompatibility '1.8'
+        encoding = 'utf-8'
+    }
+    packagingOptions
+            {
+                exclude 'META-INF/DEPENDENCIES.txt'
+                exclude 'META-INF/DEPENDENCIES'
+                exclude 'META-INF/dependencies.txt'
+                exclude 'META-INF/LICENSE.txt'
+                exclude 'META-INF/LICENSE'
+                exclude 'META-INF/license.txt'
+                exclude 'META-INF/LGPL2.1'
+                exclude 'META-INF/NOTICE.txt'
+                exclude 'META-INF/NOTICE'
+                exclude 'META-INF/notice.txt'
+                exclude 'META-INF/services/javax.annotation.processing.Processor'
+            }
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+    sourceSets {
+        main {
+            manifest.srcFile 'AndroidManifest.xml'
+            java.srcDirs = ['src']
+            resources.srcDirs = ['src']
+            aidl.srcDirs = ['src']
+            renderscript.srcDirs = ['src']
+            res.srcDirs = ['res']
+            assets.srcDirs = ['assets']
+            jniLibs.srcDirs = ['libs']
+        }
+
+        // Move the tests to tests/java, tests/res, etc...
+        //instrumentTest.setRoot('tests')
+
+        // Move the build types to build-types/<type>
+        // For instance, build-types/debug/java, build-types/debug/AndroidManifest.xml, ...
+        // This moves them out of them default location under src/<type>/... which would
+        // conflict with src/ being used by the main source set.
+        // Adding new build types or product flavors should be accompanied
+        // by a similar customization.
+        debug.setRoot('build-types/debug')
+        release.setRoot('build-types/release')
+    }
+
+    applicationVariants.all {
+        variant ->
+            //project.logger.lifecycle('debug info: ' + variant)
+
+            if (variant.buildType.name == "release")
+                variant.outputs.all {
+                    outputFileName = "leadertask.apk.zip"
+                }
+    }
+
+}
+
+apply plugin: 'com.google.gms.google-services'

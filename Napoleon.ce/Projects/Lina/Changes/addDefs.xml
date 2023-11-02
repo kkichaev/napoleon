@@ -1,0 +1,105 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+  <objects>
+    <object name="ChekResponse" removeOnCommit="true">
+      <sources>
+        <source name="DBFTable">
+          <param name="tableName">"CRS" + $user.id</param>
+        </source>
+      </sources>
+
+      <field name="created" type="timestamp" />
+      <field name="fsign" type="string" />
+      <field name="fdrv" type="string" />
+      <field name="fdoc" type="string" />
+
+      <events>
+        <event type="get">
+          <action name="ArchiveChekResponse">$object.created;$object.link</action>
+        </event>
+      </events>
+    </object>
+
+    <object name="ArchiveChekResponse">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"userid,created"</member>
+
+      <field name="userid" type="string" />
+      <field name="created" type="timestamp" />
+      <field name="link" type="string" />
+    </object>
+
+    <object name="BankDoc" >
+      <sources>
+        <source name="DBFTable">
+          <param name="tableName">$object.table + $user.id</param>
+        </source>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="table">"Bank"</member>
+      <member name="primaryKey">"userid,created"</member>
+      <memberArray name="index">"created"</memberArray>
+
+      <field name="userid" type="string" data="USER_ID" execOn="Put">$user.id</field>
+      <field name="date" type="date" />
+      <field name="created" type="timestamp" data="CREATED"/>
+      <field name="timeZone" type="number" />
+      <field name="serverTimeZone" type="number" data="S_TZ" execOn="Put" feature="USE_TIMEZONE">ServerTimeZone()</field>
+      <field name="number" type="string" width="20" />
+      <field name="sended" type="timestamp" data="S_DATE" execOn="Put">Now()</field>
+      <field name="id" width="55" type="string" />
+      <field name="picture" type="string" />
+      <field name="sum" type="number" prec="2" />
+      <field name="latitude" type="number" prec="5" />
+      <field name="longitude" type="number" prec="5" />
+      <field name="stltime" type="number" />
+      
+      <events>
+        <event type="put">
+          <action name="WriteInternal">$object.type</action>
+        </event>
+      </events>
+    </object>
+
+    <object name="OrgCost">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"PRO"</param>
+          <param name="commonTable">"__NI"</param>
+          <param name="catalog">"id;items;1"</param>
+        </source>
+      </sources>
+      <field name="id" type="string" />
+      <field name="items" type="collection">
+        <data>
+          <object name="Item">
+            <field name="id" data="ID_I" type="string" />
+            <field name="cost" type="number" prec="2" />
+          </object>
+        </data>
+      </field>
+    </object>
+    
+    <modify src="Org">
+      <add>
+        <field name="ido" type="string" />
+      </add>
+    </modify>
+  </objects>
+
+  <actions>
+    <action name="ArchiveChekResponse">
+      <params>
+        <param name="created" />
+        <param name="link" />
+      </params>
+      <do>
+        <put object="ArchiveOrderProceeded" sourceType="internal">$object.userid=$user.id;$object.created=created;$object.link=link</put>
+      </do>
+    </action>
+  </actions>
+</serverDefs>

@@ -1,0 +1,55 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+    <modify src="Org">
+       <add>
+          <field name="discount" type="collection">
+             <data>
+                <object name="OrgDiscountItem">
+                   <sources>
+                      <source name="DBFTableSet">
+                         <param name="userTable">"OFD"</param>
+                         <param name="commonTable">"ORGFD"</param>
+                         <param name="filter">"[ID] = $parent.id"</param>
+                      </source>
+                   </sources>
+
+                   <field name="fid" data="ID_I" type="string" />
+                   <field name="discount" data="DISC" type="number" prec="2"/>
+                   <field name="folderID" type="number" execOn="Get">FolderID($object.fid)</field>
+                </object>
+             </data>
+          </field>
+          
+          <field name="price" type="collection">
+             <data>
+                <object name="OrgPriceItem">
+                   <sources>
+                      <source name="DBFTableSet">
+                         <param name="userTable">"OWD"</param>
+                         <param name="commonTable">"ORGWD"</param>
+                         <param name="filter">"[ID] = $parent.id"</param>
+                      </source>
+                   </sources>
+
+                   <field name="id" data="ID_I" type="string" />
+                   <field name="cost" type="number" prec="2"/>
+                </object>
+             </data>
+          </field>
+       </add>
+     </modify>
+     
+    <modify src="Order">
+      <add>
+        <field name="ret" type="number" />
+      </add> 
+    </modify>
+    
+    <modify src="Price">
+      <add>
+        <field name="nodisc" type="number" />
+      </add> 
+    </modify>
+	</objects>
+</serverDefs>

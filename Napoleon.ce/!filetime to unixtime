@@ -1,0 +1,15 @@
+
+--sqlite 
+select datetime(date / 10000000 - 11644473600, 'unixepoch')  from Visit
+
+--mssql
+select dateadd(ss, date/ 10000000 - 11644473600,'01/01/1970') as date from [Order]
+
+--postgre
+select to_timestamp(date/ 10000000 - 11644473600) from "PlanNew"
+
+
+-oracle
+select to_timestamp('01011970','ddmmyyyy') + numtodsinterval("date" / 10000000 - 11644473600, 'SECOND') from "Order"
+
+--select to_char(((sysdate - to_date('01011970','DDMMYYYY')) * (86400) - 3 * 86400 + 11644473600) * 10000000) from dual;

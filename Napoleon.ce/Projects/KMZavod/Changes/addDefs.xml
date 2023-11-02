@@ -1,0 +1,148 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+    <object name="TaskRemark">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"taskid"</member>
+      <memberArray name="index">"date"</memberArray>
+      
+      <field name="taskid" type="string" />
+      <field name="remark" type="string" />
+      <field name="date" type="timestamp" />
+    </object>
+    
+    <object name="SalesChannel">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"SCH"</param>
+          <param name="commonTable">"SLSCHN"</param>
+        </source>
+      </sources>
+      
+      <field name="id" type="string" />
+      <field name="name" type="string" />
+    </object>
+
+    <modify src="Org">
+      <add>
+        <field name="info" type="string" />
+        <field name="dogovors" type="collection">
+          <data>
+            <object name="OrgDogovor">
+              <sources>
+                <source name="DBFTableSet">
+                  <param name="userTable">"DG"</param>
+                  <param name="commonTable">"DOGOVORS"</param>
+                  <param name="filter">"[ID] = $parent.id"</param>
+                </source>
+              </sources>
+              <field name="id" type="string" data="ID_D" />
+              <field name="name" type="string" />
+              <field name="costype" type="number" />
+            </object>
+          </data>
+        </field>
+        <field name="discounts" type="collection">
+          <data>
+            <object name="OrgDiscount">
+              <sources>
+                <source name="DBFTableSet">
+                  <param name="userTable">"DSC"</param>
+                  <param name="commonTable">"DISCOUNTS"</param>
+                  <param name="filter">"[ID] = $parent.id"</param>
+                </source>
+              </sources>
+              <field name="dogovor" type="string" data="ID_D" />
+              <field name="id" type="string" data="ID_I" />
+              <field name="discount" type="number" prec="2" data="DSC" />
+            </object>
+          </data>
+        </field>
+        <field name="salesChannel" type="string" data="SC" />
+      </add>
+    </modify>
+    <modify src="Order">
+      <add>
+        <field name="dogovor" type="string" width="55" data="ID_D" />
+        <field name="phone" type="number" />
+      </add>
+    </modify>
+    <modify src="Payment">
+      <add>
+        <field name="dogovor" type="string" width="55" data="ID_D" />
+      </add>
+    </modify>
+    <modify src="Delivery">
+      <add>
+        <field name="dogovor" type="string" width="55" data="ID_D" />
+        <field name="pending" type="number" data="PND" />
+      </add>
+    </modify>
+    <modify src="DeliveryDay">
+      <add>
+        <field name="pending" type="number" data="PND" />
+      </add>
+    </modify>
+    <modify src="Delivery$items">
+      <add>
+        <field name="bestBefore" type="date" data="BEST_BFR"/>
+      </add>
+    </modify>
+    <modify src="Returns">
+      <add>
+        <field name="dogovor" type="string" width="55" data="ID_D" />
+      </add>
+    </modify>
+    <modify src="Returns$items">
+      <add>
+        <field name="items" type="collection">
+          <data>
+            <object name="ReturnDlv">
+              <sources>
+                <source name="DBFCatalogItemTable"/>
+                <source name="SQTable" type="internal" />
+              </sources>
+
+              <field name="cause" type="string" width="20" data="CAUSE_I"/>
+              <field name="number" width="40" type="string" data="NUM_I"/>
+              <field name="date" type="date" data="DATE_I"/>
+              <field name="qty" type="number" prec="3" data="QTY_I" />
+              <field name="cost" type="number" prec="2" data="COST_I"/>
+              <field name="docflag" width="1" type="number" execOn="Put">FirstItem($object)</field>
+            </object>
+          </data>
+        </field>
+      </add>
+    </modify>
+    <modify src="OrgTask">
+      <add>
+        <field name="groupid" type="string"/>
+        <memberArray name="index">"groupid"</memberArray>
+      </add>
+    </modify>
+    <modify src="Price">
+      <change>
+        <field name="color" type="hex" />
+      </change>
+      <add>
+        <field name="quant" type="number" prec="3"/>
+        <field name="type" type="number"/>
+        <field name="godn" type="number"/>
+      </add>
+    </modify>
+    <modify src="Order$items">
+      <add>
+        <field name="aqty" type="number" prec="3"/>
+      </add>
+    </modify>
+    <modify src="ScriptDef">
+      <add>
+        <field name="phone" type="number"/>
+      </add>
+    </modify>
+  </objects>
+
+</serverDefs>

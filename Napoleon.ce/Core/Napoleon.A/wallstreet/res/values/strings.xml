@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="startday">Начало рабочего дня</string>
+    <string name="finishday">Конец рабочего дня</string>
+    <string name="odometr">Одометр</string>
+    <string name="fuelrest">Остаток топлива</string>
+    <string name="odometr_title">Введите показания одометра</string>
+    <string name="odometr_empty_value_not_allowed">Неообходимо заполнеть все поля</string>
+    <string name="need_integer_value">Ошибка ввода! Введите целое число</string>
+    <string name="must_start_work_day">Рабочий день должен быть начат!</string>
+    <string name="refuel">Заправка</string>
+    <string name="common_cost">Прейскурант</string>
+    <string name="org_cost">Протокольная</string>
+    <string name="act_cost">Акционная</string>
+    <string name="our_face">Наши фейсы</string>
+    <string name="theirFace">Не наши фейсы</string>
+    <string name="onBoard">на полке</string>
+    <string name="end_below_start">Конечное показание, меньше нечального</string>
+    <string name="all_price">Все</string>
+    <string name="assortiment_matrix_title">&lt;Активный&gt;</string>
+    <string name="select_pic_for_status">Выберите картинку для статуса: &lt;b>%s&lt;/b></string>
+    <string name="action_info">&lt;b>&lt;font color="red">%3$s c &lt;/font>&lt;font color="blue">%1$s&lt;/font>&lt;font color="red"> по &lt;/font>&lt;font color="blue">%2$s&lt;/font> &lt;/font>&lt;/b></string>
+    <string name="cost_type_info">Тип цены: &lt;font color="blue">%s&lt;/font></string>
+    <string name="action_missing">Активность: &lt;font color="blue">НЕТ&lt;/font></string>
+    
+    <string-array name="cost_types" >
+        <item>Прейскурант</item>
+        <item>Протокол</item>
+         <item>Акция</item>
+    </string-array>
+    <string name="action_title">Расчет акций</string>
+    <string name="onWh">На складе</string>
+    <string name="InPack">В упаковке</string>
+    <string name="Cost1">Цена</string>
+    <string name="Sum1">Сумма</string>
+    <string name="OrderQty">Заказ</string>
+    <string name="InOrder">В заказ</string>
+    <string name="IncBntTitle">Добавить</string>
+    <string name="DecBtnTitle">Отнять</string>
+    <string name="PackBreacked">Нарушена кратность заказа.&lt;br>Кратность заказа: %1$s&lt;br>В заказе: %2$s</string>
+    <string name="Caution">Внимание</string>
+    <string name="DocStatuses">Статусы документов</string>
+    <string name="WorkDayShouldClosed">Перед выходом необходимо завершить рабочий день!</string>
+    <string name="Statuses">Статусы</string>
+</resources>

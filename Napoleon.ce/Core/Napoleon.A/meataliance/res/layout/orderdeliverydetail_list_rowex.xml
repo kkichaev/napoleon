@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/list_selector" >
+
+    <View 
+        android:id="@+id/vDelimeter"
+        android:layout_width="1dp"
+        android:layout_height="fill_parent"
+        android:background="@color/black"
+        android:layout_toLeftOf="@id/tvSum"
+        android:layout_alignBottom="@id/tvName"/>
+    
+    <TextView
+        android:id="@+id/tvDispatch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@id/vDelimeter"
+        android:layout_weight="0"
+        android:gravity="right"
+        android:minWidth="65dp"
+        android:paddingRight="4dp"
+        android:text="dispat"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:width="35dp"
+        tools:ignore="ObsoleteLayoutParam,HardcodedText"/>
+
+    <TextView
+        android:id="@+id/tvQty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/tvSum"
+        android:layout_toLeftOf="@id/tvDispatch"
+        android:layout_weight="0"
+        android:gravity="right"
+        android:minWidth="65dp"
+        android:paddingRight="4dp"
+        android:text="qty"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:width="50dp"
+        tools:ignore="ObsoleteLayoutParam,HardcodedText" />
+    
+    <TextView
+        android:id="@+id/tvSum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_weight="0"
+        android:gravity="right"
+        android:maxWidth="80dp"
+        android:minWidth="80dp"
+        android:paddingRight="4dp"
+        android:text="sum"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:width="35dp"
+        tools:ignore="ObsoleteLayoutParam,HardcodedText" />
+
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@id/tvQty"
+        android:layout_weight="0"
+        android:ellipsize="end"
+        android:lines="1"
+        android:scrollHorizontally="true"
+        android:text="name"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        tools:ignore="ObsoleteLayoutParam,HardcodedText" />
+
+</RelativeLayout>

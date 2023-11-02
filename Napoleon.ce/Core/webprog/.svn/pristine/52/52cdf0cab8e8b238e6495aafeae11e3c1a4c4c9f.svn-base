@@ -1,0 +1,67 @@
+<template>
+  <q-layout view="hHh Lpr fFf">
+    <q-header elevated>
+      <q-toolbar class="toolbar">
+        <div class="col-1"/>
+        <q-toolbar-title class="col-10" style="font-weight: 500;">{{ $t("appTitle") }}</q-toolbar-title>
+
+        <q-btn-dropdown class="col-1"
+          flat :label="locale" no-caps>
+          <q-list>
+            <q-item
+              v-for="opt in locales"
+              clickable
+              v-close-popup
+              @click="$i18n.locale = opt.value"
+              :key="opt.value">
+              <q-item-section>
+                <q-item-label>{{ opt.label }}</q-item-label>
+              </q-item-section>
+            </q-item>
+          </q-list>
+        </q-btn-dropdown>
+      </q-toolbar>
+    </q-header>
+
+    <q-page-container>
+      <div class="row">
+        <div class="col-10 col-sm-8 col-md-4 col-lg-3 col-xl-3 q-ml-auto q-mr-auto" >
+          <router-view/>
+        </div>
+      </div>
+    </q-page-container>
+  </q-layout>
+
+</template>
+
+<script setup>
+import { computed } from "vue";
+import { useQuasar } from "quasar";
+
+
+const locale = computed(() => getLocaleLabel($q.lang.isoName))
+const $q = useQuasar();
+
+const locales = [
+  { value: "en-US", label: "En" },
+  { value: "ru", label: "Ru" },
+];
+
+function getLocaleLabel(key) {
+  var res = "";
+  if (key == "") {
+    key = $q.lang.isoName;
+  }
+  locales.every((loc) => {
+    if (loc.value === key) {
+      res = loc.label;
+      return false;
+    }
+    return true;
+  });
+
+  return res;
+}
+</script>
+
+<style scoped></style>

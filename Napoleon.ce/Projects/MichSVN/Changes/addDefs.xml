@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+        <object name="OrgMtx">
+            <sources>
+                <source name="SQTable" type="internal" />
+                <param name="readFilter">'"userid"=' + "'" + $user.id + "'"</param>
+            </sources>
+            <member name="primaryKey">"id,userid"</member>
+            <field name="id" type="string" />
+            <field name="userid" type="string" />
+            <field name="matrix" type="string" />
+        </object>
+	</objects>
+</serverDefs>

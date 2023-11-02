@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+   <meta http-equiv='X-UA-Compatible' content='IE=Edge' />
+   <title>User Location</title>
+
+   <style type="text/css">
+      body, html {
+         width: 100%;
+         height: 100%;
+         margin: 0;
+         padding: 0;
+         overflow: hidden;
+      }
+
+      #map {
+         height: 100%;
+      }
+   </style>
+
+   <script src="http://api-maps.yandex.ru/1.1/index.xml?key=ANzXmEoBAAAAkjQFPwIAQphddQGLBfkqE3qCI3Vo8OCM8yYAAAAAAAAAAACYpxbA0OaEdJRuAHC50onaXfYLBQ==&" type="text/javascript"></script>
+
+   <script type="text/javascript">
+      var map;
+      var markers = {};
+      var polylines = [];
+
+      function showInfo(pos) {
+         try {
+            var m = markers[pos];
+
+            if (m != null) {
+               m.openBalloon();
+               map.setCenter(m.getGeoPoint(), map.getZoom());
+            }
+         } catch (err) {
+            alert(err);
+            console.log(err);
+         }
+      }
+
+      function initialize() {
+         map = new YMaps.Map(YMaps.jQuery("#map")[0]);
+         map.addControl(new YMaps.TypeControl());
+         map.addControl(new YMaps.ToolBar());
+         map.addControl(new YMaps.Zoom());
+         map.addControl(new YMaps.MiniMap());
+         map.addControl(new YMaps.ScaleLine());
+         map.setCenter(new YMaps.GeoPoint(39.83032, 57.611453), 10)
+
+         loadData('{"points" : [{"agent" : {"id" : "5DC5662A02FC4C84A119E8BD8DA4ADCE", "name" : "Бровист Салова Варвара", "login" : "1111", "password" : "1111", "license" : "FALSE", "hidden" : 0, "srvFields" : {}}, "date" : 1653581241000, "longitude" : 39.8853, "latitude" : 57.63768, "speed" : 0, "isGSM" : 0, "userid" : "5DC5662A02FC4C84A119E8BD8DA4ADCE", "srvFields" : {}}, {"agent" : {"id" : "5DC5662A02FC4C84A119E8BD8DA4ADCE", "name" : "Бровист Салова Варвара", "login" : "1111", "password" : "1111", "license" : "FALSE", "hidden" : 0, "srvFields" : {}}, "date" : 1653581267000, "longitude" : 39.88536, "latitude" : 57.63665, "speed" : 0, "isGSM" : 0, "userid" : "5DC5662A02FC4C84A119E8BD8DA4ADCE", "srvFields" : {}}, {"agent" : {"id" : "5DC5662A02FC4C84A119E8BD8DA4ADCE", "name" : "Бровист Салова Варвара", "login" : "1111", "password" : "1111", "license" : "FALSE", "hidden" : 0, "srvFields" : {}}, "date" : 1653581278000, "longitude" : 39.88566, "latitude" : 57.63524, "speed" : 0, "isGSM" : 0, "userid" : "5DC5662A02FC4C84A119E8BD8DA4ADCE", "srvFields" : {}}, {"agent" : {"id" : "5DC5662A02FC4C84A119E8BD8DA4ADCE", "name" : "Бровист Салова Варвара", "login" : "1111", "password" : "1111", "license" : "FALSE", "hidden" : 0, "srvFields" : {}}, "date" : 1653581291000, "longitude" : 39.88398, "latitude" : 57.63433, "speed" : 0, "isGSM" : 0, "userid" : "5DC5662A02FC4C84A119E8BD8DA4ADCE", "srvFields" : {}}, {"agent" : {"id" : "5DC5662A02FC4C84A119E8BD8DA4ADCE", "name" : "Бровист Салова Варвара", "login" : "1111", "password" : "1111", "license" : "FALSE", "hidden" : 0, "srvFields" : {}}, "date" : 1653581309000, "longitude" : 39.88248, "latitude" : 57.63367, "speed" : 0, "isGSM" : 0, "userid" : "5DC5662A02FC4C84A119E8BD8DA4ADCE", "srvFields" : {}}, {"agent" : {"id" : "5DC5662A02FC4C84A119E8BD8DA4ADCE", "name" : "Бровист Салова Варвара", "login" : "1111", "password" : "1111", "license" : "FALSE", "hidden" : 0, "srvFields" : {}}, "date" : 1653581314000, "longitude" : 39.8816, "latitude" : 57.63288, "speed" : 0, "isGSM" : 0, "userid" : "5DC5662A02FC4C84A119E8BD8DA4ADCE", "srvFields" : {}}, {"agent" : {"id" : "5DC5662A02FC4C84A119E8BD8DA4ADCE", "name" : "Бровист Салова Варвара", "login" : "1111", "password" : "1111", "license" : "FALSE", "hidden" : 0, "srvFields" : {}}, "date" : 1653581321000, "longitude" : 39.87749, "latitude" : 57.63367, "speed" : 0, "isGSM" : 0, "userid" : "5DC5662A02FC4C84A119E8BD8DA4ADCE", "srvFields" : {}}, {"agent" : {"id" : "5DC5662A02FC4C84A119E8BD8DA4ADCE", "name" : "Бровист Салова Варвара", "login" : "1111", "password" : "1111", "license" : "FALSE", "hidden" : 0, "srvFields" : {}}, "date" : 1653581328000, "longitude" : 39.87567, "latitude" : 57.63382, "speed" : 0, "isGSM" : 0, "userid" : "5DC5662A02FC4C84A119E8BD8DA4ADCE", "srvFields" : {}}, {"agent" : {"id" : "5DC5662A02FC4C84A119E8BD8DA4ADCE", "name" : "Бровист Салова Варвара", "login" : "1111", "password" : "1111", "license" : "FALSE", "hidden" : 0, "srvFields" : {}}, "date" : 1653581344000, "longitude" : 39.87315, "latitude" : 57.63447, "speed" : 0, "isGSM" : 0, "userid" : "5DC5662A02FC4C84A119E8BD8DA4ADCE", "srvFields" : {}}, {"agent" : {"id" : "5DC5662A02FC4C84A119E8BD8DA4ADCE", "name" : "Бровист Салова Варвара", "login" : "1111", "password" : "1111", "license" : "FALSE", "hidden" : 0, "srvFields" : {}}, "date" : 1653581353000, "longitude" : 39.87222, "latitude" : 57.63321, "speed" : 0, "isGSM" : 0, "userid" : "5DC5662A02FC4C84A119E8BD8DA4ADCE", "srvFields" : {}}, {"agent" : {"id" : "5DC5662A02FC4C84A119E8BD8DA4ADCE", "name" : "Бровист Салова Варвара", "login" : "1111", "password" : "1111", "license" : "FALSE", "hidden" : 0, "srvFields" : {}}, "date" : 1653581363000, "longitude" : 39.87076, "latitude" : 57.63272, "speed" : 0, "isGSM" : 0, "userid" : "5DC5662A02FC4C84A119E8BD8DA4ADCE", "srvFields" : {}}, {"agent" : {"id" : "5DC5662A02FC4C84A119E8BD8DA4ADCE", "name" : "Бровист Салова Варвара", "login" : "1111", "password" : "1111", "license" : "FALSE", "hidden" : 0, "srvFields" : {}}, "date" : 1653581369000, "longitude" : 39.87028, "latitude" : 57.63164, "speed" : 0, "isGSM" : 0, "userid" : "5DC5662A02FC4C84A119E8BD8DA4ADCE", "srvFields" : {}}, {"agent" : {"id" : "5DC5662A02FC4C84A119E8BD8DA4ADCE", "name" : "Бровист Салова Варвара", "login" : "1111", "password" : "1111", "license" : "FALSE", "hidden" : 0, "srvFields" : {}}, "date" : 1653581375000, "longitude" : 39.86798, "latitude" : 57.63175, "speed" : 0, "isGSM" : 0, "userid" : "5DC5662A02FC4C84A119E8BD8DA4ADCE", "srvFields" : {}}, {"agent" : {"id" : "5DC5662A02FC4C84A119E8BD8DA4ADCE", "name" : "Бровист Салова Варвара", "login" : "1111", "password" : "1111", "license" : "FALSE", "hidden" : 0, "srvFields" : {}}, "date" : 1653581380000, "longitude" : 39.86589, "latitude" : 57.63194, "speed" : 0, "isGSM" : 0, "userid" : "5DC5662A02FC4C84A119E8BD8DA4ADCE", "srvFields" : {}}, {"agent" : {"id" : "5DC5662A02FC4C84A119E8BD8DA4ADCE", "name" : "Бровист Салова Варвара", "login" : "1111", "password" : "1111", "license" : "FALSE", "hidden" : 0, "srvFields" : {}}, "date" : 1653581385000, "longitude" : 39.86346, "latitude" : 57.63225, "speed" : 0, "isGSM" : 0, "userid" : "5DC5662A02FC4C84A119E8BD8DA4ADCE", "srvFields" : {}}, {"agent" : {"id" : "5DC5662A02FC4C84A119E8BD8DA4ADCE", "name" : "Бровист Салова Варвара", "login" : "1111", "password" : "1111", "license" : "FALSE", "hidden" : 0, "srvFields" : {}}, "date" : 1653581390000, "longitude" : 39.86159, "latitude" : 57.63247, "speed" : 0, "isGSM" : 0, "userid" : "5DC5662A02FC4C84A119E8BD8DA4ADCE", "srvFields" : {}}, {"agent" : {"id" : "5DC5662A02FC4C84A119E8BD8DA4ADCE", "name" : "Бровист Салова Варвара", "login" : "1111", "password" : "1111", "license" : "FALSE", "hidden" : 0, "srvFields" : {}}, "date" : 1653581397000, "longitude" : 39.85948, "latitude" : 57.63259, "speed" : 0, "isGSM" : 0, "userid" : "5DC5662A02FC4C84A119E8BD8DA4ADCE", "srvFields" : {}}, {"agent" : {"id" : "5DC5662A02FC4C84A119E8BD8DA4ADCE", "name" : "Бровист Салова Варвара", "login" : "1111", "password" : "1111", "license" : "FALSE", "hidden" : 0, "srvFields" : {}}, "date" : 1653581408000, "longitude" : 39.85938, "latitude" : 57.63151, "speed" : 0, "isGSM" : 0, "userid" : "5DC5662A02FC4C84A119E8BD8DA4ADCE", "srvFields" : {}}, {"agent" : {"id" : "5DC5662A02FC4C84A119E8BD8DA4ADCE", "name" : "Бровист Салова Варвара", "login" : "1111", "password" : "1111", "license" : "FALSE", "hidden" : 0, "srvFields" : {}}, "date" : 1653581413000, "longitude" : 39.85883, "latitude" : 57.6295, "speed" : 0, "isGSM" : 0, "userid" : "5DC5662A02FC4C84A119E8BD8DA4ADCE", "srvFields" : {}}, {"agent" : {"id" : "5DC5662A02FC4C84A119E8BD8DA4ADCE", "name" : "Бровист Салова Варвара", "login" : "1111", "password" : "1111", "license" : "FALSE", "hidden" : 0, "srvFields" : {}}, "date" : 1653581418000, "longitude" : 39.85864, "latitude" : 57.62827, "speed" : 0, "isGSM" : 0, "userid" : "5DC5662A02FC4C84A119E8BD8DA4ADCE", "srvFields" : {}}, {"agent" : {"id" : "5DC5662A02FC4C84A119E8BD8DA4ADCE", "name" : "Бровист Салова Варвара", "login" : "1111", "password" : "1111", "license" : "FALSE", "hidden" : 0, "srvFields" : {}}, "date" : 1653581584000, "longitude" : 39.8589, "latitude" : 57.62964, "speed" : 0, "isGSM" : 0, "userid" : "5DC5662A02FC4C84A119E8BD8DA4ADCE", "srvFields" : {}}], "stops" : [], "executed" : [{"task" : {"solution" : 5, "execrem" : "", "startexec" : 1653591922000, "finishexec" : 1653591937000, "taskid" : "E19A697EFCA14921B9D498C84EE98E42", "text" : "клиент", "start" : 1653555600000, "finish" : 1653559200000, "fio" : "600р", "phone" : "40мин", "rem" : 0, "client" : "Бровист", "address" : "Архитектура", "notify" : 0, "manager" : "", "date" : 1654801831945, "created" : 1653591748000, "latitude" : 57.64321, "longitude" : 39.95192, "sended" : -62135596800000, "agent" : {"id" : "5DC5662A02FC4C84A119E8BD8DA4ADCE", "name" : "Бровист Салова Варвара", "login" : "1111", "password" : "1111", "license" : "FALSE", "hidden" : 0, "srvFields" : {}}, "userid" : "5DC5662A02FC4C84A119E8BD8DA4ADCE", "org" : {"id" : "", "name" : "< не найден объект  код &quot;&quot; >", "address" : "", "agent" : "NULL", "longitude" : 0, "latitude" : 0, "type" : 0, "ido" : "", "color" : 0, "srvFields" : {}}, "id" : "", "timeZone" : 0, "serverTimeZone" : 0, "remark" : "", "srvFields" : {}}, "factAddress" : "", "idx" : 1, "date" : 1653555600000, "accuracy" : 100, "longitude" : 0, "latitude" : 0, "speed" : 0, "isNearest" : "FALSE"}], "pendings" : [], "stepoints" : [], "userlocation" : [], "distance" : 2841.53614063798}');
+      }
+
+      function drawRoute(points, bounds) {
+         var styleGPS = new YMaps.Style();
+         styleGPS.lineStyle = new YMaps.LineStyle();
+         styleGPS.lineStyle.strokeWidth = 4;
+         styleGPS.lineStyle.strokeColor = 'ff0000ff';
+         var styleGSM = new YMaps.Style();
+         styleGSM.lineStyle = new YMaps.LineStyle();
+         styleGSM.lineStyle.strokeWidth = 4;
+         styleGSM.lineStyle.strokeColor = 'b000b0ff';
+
+         var isGSM = null;
+         var routes = [];
+
+         points.forEach(function (p) {
+            if (isGSM == null || isGSM != p.isGSM) {
+               routes.push([]);
+               isGSM = p.isGSM;
+            }
+
+            routes[routes.length - 1].push(p);
+         });
+
+         routes.forEach(function (p) {
+            var path = [];
+            var color = p.isGSM != 0 ? styleGPS : styleGSM;
+
+            p.forEach(function (pp) {
+               var c = new YMaps.GeoPoint(pp.longitude, pp.latitude);
+               path.push(c);
+               bounds.add(c);
+            });
+
+            var route = new YMaps.Polyline(path);
+            route.setStyle(color);
+            map.addOverlay(route);
+            polylines.push(route);
+         });
+      }
+
+      function humanTime(min) {
+         return Math.round(min < 60) ? min + "&nbsp;мин." : Math.round(min / 60) + "&nbsp;ч.&nbsp;" + Math.round(min % 60) + "&nbsp;мин.";
+      }
+
+      function doStopDescr(obj) {
+         var result = "Остановка ";
+         var ds = new Date(obj.date);
+         var de = new Date(obj.endTime);
+         var dm = Math.round((de - ds) / (1000 * 60));
+         result += "<br>";
+         result += humanTime(dm);
+         result += "<br>";
+         result += obj.address;
+         return result;
+      }
+
+      function drawStops(stops, bounds) {
+         if (stops != null) {
+            stops.forEach(function (p) {
+               var point = new YMaps.GeoPoint(p.longitude, p.latitude);
+               bounds.add(point);
+               marker = new YMaps.Placemark(point);
+               marker.setIconContent("<font color='blue'><b>P" + p.idx + "</b></font>");
+               marker.description = doStopDescr(p);
+               map.addOverlay(marker);
+
+               markers[p.idx] = marker;
+            });
+         }
+      }
+
+      function taskSolutionToString(sol) {
+         var res = "Неопределена";
+
+         switch (sol) {
+            case 0:
+               res = "Непринята";
+               break;
+            case 1:
+               res = "Выполнена";
+               break;
+            case 2:
+               res = "Отклонена";
+               break;
+            case 4:
+               res = "Принятая";
+               break;
+            case 5:
+               res = "Выполняется";
+               break;
+         }
+
+         return res;
+      }
+
+      function doDocDescr(d) {
+         var res = d.task.client;
+         res += "<br>" + d.task.address;
+
+         return res;
+      }
+
+      function drawExecuted(docs, bounds) {
+         if (docs != null) {
+            docs.forEach(function (p) {
+               if (p.task.latitude != 0 && p.task.longitude != 0) {
+                  var point = new YMaps.GeoPoint(p.task.longitude, p.task.latitude);
+                  bounds.add(point);
+                  marker = new YMaps.Placemark(point, { style: "default#greenSmallPoint" });
+                  marker.setIconContent("<font color='green'><b>" + p.idx + "</b></font>");
+                  marker.description = doDocDescr(p);
+                  map.addOverlay(marker);
+
+                  markers[p.idx] = marker;
+               }
+            });
+         }
+      }
+
+      function doPendDescr(d) {
+         var res = "Задача:&nbsp;" + d.task.text;
+         res += "<br>адрес:&nbsp;" + d.task.address;
+
+         return res;
+      }
+
+      function drawPendings(docs, bounds) {
+         if (docs != null) {
+            docs.forEach(function (p) {
+               if (p.task.latitude != 0 && p.task.longitude != 0) {
+                  var point = new YMaps.GeoPoint(p.task.longitude, p.task.latitude);
+                  bounds.add(point);
+                  marker = new YMaps.Placemark(point, { style: "default#redSmallPoint" });
+                  marker.setIconContent("<font color='red'><b>" + p.idx + "</b></font>");
+                  marker.description = doPendDescr(p);
+                  map.addOverlay(marker);
+
+                  markers[p.idx] = marker;
+               }
+            });
+         }
+      }
+
+      function doStepPointsDescr(d) {
+         var dt = new Date(d.date);
+         var res = "время:&nbsp;" + dt.getHours() + ":" + dt.getMinutes();
+         res += "<br>скорость:&nbsp;" + Math.round(d.speed * 3.6) + "&nbsp;км/ч";
+
+         return res;
+      }
+
+      function drawStepPoints(steps, bounds) {
+         if (steps != null) {
+            steps.forEach(function (p) {
+               var point = new YMaps.GeoPoint(p.longitude, p.latitude);
+               bounds.add(point);
+               marker = new YMaps.Placemark(point, { style: "default#blueSmallPoint" });
+               marker.setIconContent("<font color='blue'><b>" + p.idx + "</b></font>");
+               marker.description = doStepPointsDescr(p);
+               map.addOverlay(marker);
+            });
+         }
+      }
+
+      function drawUserLocation(docs, bounds) {
+         docs.forEach(function (p) {
+            var point = new YMaps.GeoPoint(p.location.longitude, p.location.latitude);
+            bounds.add(point);
+            marker = new YMaps.Placemark(point);
+            marker.setIconContent("<font color='green'><b>" + p.pos + "</b></font>");
+            marker.description = p.location.agent.name;
+            map.addOverlay(marker);
+
+            markers[p.pos] = marker;
+         });
+
+         map.setCenter(bounds.getCenter());
+         map.setBounds(bounds);
+      }
+
+      function hasData(data) {
+         return data != null &&
+            (data.points != null && data.points.length > 0) ||
+            (data.stops != null && data.stops.lenght > 0) ||
+            (data.executed != null && data.executed.length > 0) ||
+            (data.pendings != null && data.pendings.length > 0) ||
+            (data.stepoints != null && data.stepoints.lenght > 0) ||
+            (data.userlocation != null && data.userlocation.length > 0);
+      }
+
+      function loadData(json) {
+         try {
+            var data = JSON.parse(json)
+            var bounds = new YMaps.GeoCollectionBounds();
+
+            if (hasData(data)) {
+               if (data.points != null)
+                  drawRoute(data.points, bounds);
+
+               if (data.stops != null)
+                  drawStops(data.stops, bounds);
+
+               if (data.executed != null)
+                  drawExecuted(data.executed, bounds);
+
+               if (data.pendings != null)
+                  drawPendings(data.pendings, bounds);
+
+               if (data.stepoints != null)
+                  drawStepPoints(data.stepoints, bounds);
+
+               if (data.stepoints != null)
+                  drawUserLocation(data.userlocation, bounds);
+
+               if (bounds._empty == 0) {
+                  map.setCenter(bounds.getCenter());
+                  map.setBounds(bounds);
+               }
+            } else {
+               document.getElementById('map').style.display = 'none';
+               document.write('Нет данных');
+            }
+         } catch (err) {
+            console.log(err);
+         }
+      }
+   </script>
+</head>
+
+<body onload="initialize()">
+   <div id="map"></div>
+</body>
+</html>

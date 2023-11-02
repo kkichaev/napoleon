@@ -1,0 +1,153 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+  <objects>
+
+    <object name="AgentRoute">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"userid,date"</member>
+
+      <field name="userid" type="string" execOn="Put">$user.id</field>
+      <field name="date" type="timestamp" />
+      <field name="changed" type="timestamp" />
+
+      <field name="items" type="collection">
+        <data>
+          <object name="AgentRouteItem">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+            <field name="id" type="string"/>
+            <field name="isNew" type="number" />
+            <field name="task" type="string" />
+          </object>
+        </data>
+      </field>
+    </object>
+
+    <object name="ManagerRoute">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"userid,date"</member>
+
+      <field name="userid" type="string" />
+      <field name="date" type="timestamp" />
+      <field name="changed" type="timestamp" />
+      <field name="approve" type="timestamp" />
+
+      <field name="items" type="collection">
+        <data>
+          <object name="AgentRouteItem">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+            <field name="id" type="string"/>
+            <field name="isNew" type="number" />
+            <field name="task" type="string" />
+            <field name="taskId" type="string" />
+          </object>
+        </data>
+      </field>
+    </object>
+
+    <object name="WorkTime">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"userid,id,start"</member>
+      <field name="userid" type="string" execOn="Put">$user.id</field>
+      <field name="id" type="string" />
+      <field name="start" type="timestamp" />
+      <field name="stop" type="timestamp" />
+    </object>
+
+    <object name="ItemGroups">
+      <sources>
+        <source name="SQTable" type="internal">
+            <param name="readFilter">'"id" in (select "id" from "ItemGroupsAssign" where "userid"=' + "'" + $user.id + "')"</param>
+        </source>
+      </sources>
+
+      <member name="primaryKey">"id"</member>
+      <field name="id" type="string" />
+      <field name="name" type="string" />
+      <field name="userid" type="string" />
+      <field name="items" type="collection">
+        <data>
+          <object name="Item">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+            <field name="id" type="string"/>
+          </object>
+        </data>
+      </field>
+    </object>
+
+    <object name="ItemGroupsAssign">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+      <member name="primaryKey">"userid,id"</member>
+      <field name="id" type="string" />
+      <field name="userid" type="string" />
+    </object>
+
+    <object name="CommonFolders">
+      <sources>
+        <source name="DBFFolderSet">
+          <param name="userTable">"FOLDERS"</param>
+          <param name="commonTable">"FOLDERS"</param>
+        </source>
+      </sources>
+
+      <field name="id" type="number" key="true" data="rowid" />
+      <field name="fid" type="string" data="id" width="40" />
+      <field name="level" type="number" width="9" />
+      <field name="name" type="string" width="60" />
+      <field name="userid" type="string" hidden="put" />
+    </object>
+
+    <object name="HiddenFolders">
+      <sources>
+        <source name="SQTable" type="internal">
+          <param name="readFilter">'"userid" = ' + "'" + $user.id + "'"</param>
+        </source>
+      </sources>
+      <member name="primaryKey">"userid,id"</member>
+      <field name="id" type="string" />
+      <field name="userid" type="string" />
+    </object>
+
+    <modify dest="CommonManagerFolders" src="CommonFolders">
+      <remove>
+        <field name="fid" />
+      </remove>
+      <change>
+        <field name="id" type="string" width="100" />
+      </change>
+    </modify>
+
+    <modify src="Folder">
+      <change>
+        <sources>
+          <source name="FolderConstructor">
+            <param name="commonFolders">"CommonFolders"</param>
+            <param name="hiddenFolders">"HiddenFolders"</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="Price">
+      <change>
+        <field name="fid" type="string" data="folder" hidden="false" />
+      </change>
+    </modify>
+  </objects>
+</serverDefs>

@@ -1,0 +1,21 @@
+include ':app'
+
+include ':network'
+project(':network').projectDir = new File('..\\modules\\network\\')
+
+include ':json'
+project(':json').projectDir = new File('..\\modules\\json\\')
+
+include ':tradebase'
+project(':tradebase').projectDir = new File('..\\modules\\tradebase\\')
+
+include ':mpchart'
+project(':mpchart').projectDir = new File('..\\modules\\mpchart\\')
+
+include ':itext'
+project(':itext').projectDir = new File('..\\modules\\itext\\')
+
+include ':camera'
+project(':camera').projectDir = new File('..\\modules\\camera\\')
+
+rootProject.name = "AutoCat"

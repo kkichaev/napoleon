@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:key="preferenceScreen">
+    <Preference
+        android:key="contacts"
+        android:title="@string/contacts"
+        android:layout="@layout/preference_item_layout" />
+    <Preference
+        android:key="contact_groups"
+        android:title="@string/contact_groups"
+        android:layout="@layout/preference_item_layout" />
+    <Preference
+        android:key="projects"
+        android:title="@string/task_project"
+        android:layout="@layout/preference_item_layout" />
+    <Preference
+        android:key="categories"
+        android:title="@string/task_category"
+        android:layout="@layout/preference_item_layout" />
+    <Preference
+        android:key="markers"
+        android:title="@string/settings_Markers"
+        android:layout="@layout/preference_item_layout" />
+    <Preference
+        android:key="emps"
+        android:title="@string/title_emp"
+        android:layout="@layout/preference_item_layout" />
+    <Preference
+        android:key="del_canceled"
+        android:title="@string/del_canceled"
+        android:layout="@layout/preference_item_layout" />
+</PreferenceScreen>

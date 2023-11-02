@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.gesture.GestureOverlayView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/gestures"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gestureStrokeType="single"
+    android:eventsInterceptionEnabled="true"
+    android:orientation="vertical"
+    android:gestureColor="#00000000"
+    android:uncertainGestureColor="#00000000">
+<LinearLayout
+  	android:layout_height="fill_parent" 
+  	android:layout_width="fill_parent" 
+  	android:orientation="vertical" 
+  	android:background="@color/white">
+  	
+    <LinearLayout android:layout_width="fill_parent" 
+    	android:id="@+id/linearLayout1" 
+    	android:layout_height="wrap_content" 
+    	android:background="@color/blue">
+    	
+        <TextView android:paddingRight="5dp" 
+        	android:paddingLeft="5dp" 
+        	android:id="@+id/tvPriceName" 
+        	android:layout_height="wrap_content" 
+        	android:minLines="2" 
+        	android:layout_width="fill_parent" 
+        	android:textColor="#000000" 
+        	android:text="PriceName" 
+        	android:layout_weight="0" 
+        	android:background="@color/white" 
+        	android:paddingTop="10dp" 
+        	android:layout_marginBottom="2dp" />
+    </LinearLayout>
+    
+    <LinearLayout android:layout_width="fill_parent" 
+    	android:id="@+id/linearLayout2" 
+    	android:layout_height="wrap_content" 
+    	android:orientation="horizontal" 
+    	android:layout_weight="1" 
+    	android:padding="3dp">
+    	
+        <TableLayout android:id="@+id/tableLayout2" 
+        	android:layout_width="wrap_content" 
+        	android:layout_height="fill_parent" 
+        	android:layout_weight="1" 
+        	android:stretchColumns="*">
+        	
+            <TableRow android:id="@+id/tableRow4" 
+            	android:layout_width="wrap_content" 
+            	android:layout_height="wrap_content">
+            	
+                <TextView android:id="@+id/textView1" 
+                	android:layout_height="wrap_content" 
+                	android:layout_width="wrap_content" 
+                	android:textColor="@color/black" 
+                	android:text="на складе" />
+                	
+                <TextView android:layout_height="wrap_content" 
+                	android:layout_width="wrap_content" 
+                	android:textColor="@color/black" 
+                	android:text="tvQty" 
+                	android:id="@+id/tvQty" 
+                	android:gravity="right" />
+            </TableRow>
+            
+            <TableRow android:id="@+id/tableRow4" 
+            	android:layout_width="wrap_content" 
+            	android:layout_height="wrap_content">
+            	
+                <TextView android:id="@+id/textView1" 
+                	android:layout_height="wrap_content" 
+                	android:layout_width="wrap_content" 
+                	android:textColor="@color/black" 
+                	android:text="цена" />
+                	
+                <TextView android:layout_height="wrap_content" 
+                	android:layout_width="wrap_content" 
+                	android:textColor="@color/black" 
+                	android:textSize="16dp"
+                	android:text="tvCost" 
+                	android:id="@+id/tvCost" 
+                	android:gravity="right" />
+            </TableRow>
+            
+            <TableRow android:id="@+id/tableRow4" 
+            	android:layout_width="wrap_content" 
+            	android:layout_height="wrap_content">
+            	
+                <TextView
+                    android:id="@+id/tvDiscountLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="скидка,%"
+                    android:textColor="@color/black" />
+                	
+                <TextView android:layout_height="wrap_content" 
+                	android:layout_width="wrap_content" 
+                	android:textColor="@color/blue" 
+                	android:textSize="16dp"
+                	android:text="tvDiscount" 
+                	android:id="@+id/tvDiscount" 
+                	android:gravity="right" />
+            </TableRow>
+
+            <TableRow android:id="@+id/tableRow4" 
+            	android:layout_width="wrap_content" 
+            	android:layout_height="wrap_content">
+            	
+                <TextView android:id="@+id/textView1" 
+                	android:layout_height="wrap_content" 
+                	android:layout_width="wrap_content" 
+                	android:textColor="@color/black" 
+                	android:text="цена ск." />
+                	
+                <TextView android:layout_height="wrap_content" 
+                	android:layout_width="wrap_content" 
+                	android:textColor="@color/black" 
+                	android:textSize="16dp"
+                	android:text="tvPrice" 
+                	android:id="@+id/tvPrice" 
+                	android:gravity="right" />
+            </TableRow>
+            
+            <TableRow android:id="@+id/tableRow4" 
+            	android:layout_width="wrap_content" 
+            	android:layout_height="wrap_content">
+            	
+                <TextView android:id="@+id/textView1" 
+                	android:layout_height="wrap_content" 
+                	android:layout_width="wrap_content" 
+                	android:textColor="@color/black" 
+                	android:text="в упаковке" />
+                	
+                <TextView android:layout_height="wrap_content" 
+                	android:layout_width="wrap_content" 
+                	android:textColor="@color/black" 
+                	android:id="@+id/tvQtyInPack" 
+                	android:text="tvQtyInPack" 
+                	android:gravity="right" />
+            </TableRow>
+            
+            <TableRow android:id="@+id/tableRow4" 
+            	android:layout_width="wrap_content" 
+            	android:layout_height="wrap_content">
+            	
+                <TextView android:id="@+id/textView1" 
+                	android:layout_height="wrap_content" 
+                	android:layout_width="wrap_content" 
+                	android:textColor="@color/black" 
+                	android:text="сумма" />
+                	
+                <TextView android:layout_height="wrap_content" 
+                	android:layout_width="wrap_content" 
+                	android:textColor="@color/black" 
+                	android:id="@+id/tvSum" 
+                	android:gravity="right" 
+                	android:text="tvSum" 
+                	android:textStyle="bold" />
+            </TableRow>
+        </TableLayout>
+        
+        <TableLayout android:id="@+id/tableLayout3" 
+        	android:layout_width="wrap_content" 
+        	android:layout_height="fill_parent" 
+        	android:layout_weight="1" 
+        	android:stretchColumns="1" 
+        	android:paddingLeft="3dp">
+        	
+            <TableRow android:id="@+id/trRest" 
+            	android:layout_width="wrap_content" 
+            	android:layout_height="wrap_content"
+            	android:visibility="gone">
+            	
+                <TextView android:id="@+id/textView2" 
+                	android:layout_width="wrap_content" 
+                	android:layout_height="wrap_content" 
+                	android:textColor="@color/black" 
+                	android:text="в точке" 
+                	android:paddingRight="7dp" />
+                	
+                <EditText android:layout_height="wrap_content" 
+                	android:layout_width="wrap_content" 
+                	android:text="0" 
+                	android:id="@+id/edRest" />
+            </TableRow>
+            
+            <TableRow android:id="@+id/tableRow5" 
+            	android:layout_width="wrap_content" 
+            	android:layout_height="wrap_content">
+            	
+                <TextView android:id="@+id/textView2" 
+                	android:layout_width="wrap_content" 
+                	android:layout_height="wrap_content" 
+                	android:textColor="@color/black" 
+                	android:text="заказ" 
+                	android:paddingRight="7dp" />
+                	
+                <EditText android:layout_height="wrap_content" 
+                	android:layout_width="wrap_content" 
+                	android:text="0" 
+                	android:id="@+id/edCount" />
+            </TableRow>
+            
+            <TableRow
+                android:id="@+id/tableRow4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone" >
+            	
+                <TextView android:id="@+id/textView2" 
+                	android:layout_gravity="center_vertical"
+                	android:layout_width="wrap_content" 
+                	android:layout_height="wrap_content" 
+                	android:textColor="@color/black" 
+                	android:text="ед.изм" 
+                	android:paddingRight="7dp" />
+                	
+				<Spinner android:layout_height="wrap_content" 
+					android:id="@+id/spUnits" android:layout_width="fill_parent"></Spinner>			
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="visible" >
+            	
+                <CheckBox android:layout_width="wrap_content" 
+                	android:layout_height="wrap_content" 
+                	android:checked="false"
+                	android:layout_span="2" 
+                	android:id="@+id/cbPackets" 
+                	android:textColor="@color/black" 
+                	android:text="упаковками" />
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
+	
+	<com.grsoft.napoleon.StripedLinearLayout 
+		android:layout_width="fill_parent" 
+		android:layout_height="wrap_content" 
+		android:orientation="horizontal" 
+		android:id="@+id/llSilesHistory" />
+		
+	<LinearLayout android:layout_width="fill_parent" 
+		android:layout_height="wrap_content" 
+		android:background="@color/blue" 
+		android:id="@+id/llKeyboard">
+		
+		<TableLayout android:layout_width="fill_parent" 
+			android:id="@+id/tableLayout1" 
+			android:background="@color/white" 
+			android:layout_marginTop="2dp" 
+			android:layout_height="fill_parent" 
+			android:stretchColumns="*" 
+            android:shrinkColumns="*">
+			
+			<TableRow android:layout_height="wrap_content" 
+				android:id="@+id/tableRow1" 
+				android:layout_width="wrap_content">
+				
+				<ImageButton android:layout_height="wrap_content" 
+					android:layout_width="wrap_content" 
+					android:id="@+id/btn1" 
+					android:src="@drawable/k1" 
+					android:tag="1"/>
+					
+				<ImageButton android:layout_height="wrap_content" 
+					android:layout_width="wrap_content" 
+					android:id="@+id/btn2" 
+					android:tag="2" 
+					android:src="@drawable/k2"/>
+					
+				<ImageButton android:layout_height="wrap_content" 
+					android:layout_width="wrap_content" 
+					android:src="@drawable/k3" 
+					android:tag="3" 
+					android:id="@+id/btn3"/>
+				
+				<ImageButton android:layout_width="wrap_content" 
+                	android:layout_height="wrap_content" 
+                	android:id="@+id/btn4" 
+                	android:tag="4" 
+                	android:src="@drawable/k4"/>
+                	
+				<ImageButton android:layout_height="wrap_content" 
+					android:src="@drawable/k5" 
+					android:tag="5" 
+					android:id="@+id/btn5" 
+					android:layout_width="wrap_content"/>
+				<ImageButton 
+					android:visibility="gone"
+					android:layout_gravity="center_vertical|center_horizontal" 
+					android:layout_height="wrap_content" 
+					android:layout_width="wrap_content" 
+					android:id="@+id/btnMovePrev" 
+					android:src="@drawable/price_prev">
+				</ImageButton>
+			</TableRow>
+			
+			<TableRow android:layout_height="wrap_content" 
+				android:id="@+id/tableRow2" 
+				android:layout_width="wrap_content">
+				
+				<ImageButton android:layout_height="wrap_content" 
+					android:layout_width="wrap_content" 
+					android:tag="6" 
+					android:src="@drawable/k6" 
+					android:id="@+id/btn6"/>
+					
+				<ImageButton android:layout_height="wrap_content" 
+					android:layout_width="wrap_content" 
+					android:id="@+id/btn7" 
+					android:src="@drawable/k7" 
+					android:tag="7"/>
+					
+				<ImageButton android:layout_height="wrap_content" 
+					android:layout_width="wrap_content" 
+					android:tag="8" 
+					android:src="@drawable/k8" 
+					android:id="@+id/btn8"/>
+					
+				<ImageButton android:layout_height="wrap_content" 
+					android:layout_width="wrap_content" 
+					android:id="@+id/btn9" 
+					android:src="@drawable/k9" 
+					android:tag="9"/>
+					
+				<ImageButton android:layout_height="wrap_content" 
+					android:layout_width="wrap_content" 
+					android:src="@drawable/k0" 
+					android:tag="0" 
+					android:id="@+id/btn0"/>
+				<ImageButton
+					android:visibility="gone"
+					android:layout_gravity="center_vertical|center_horizontal" 
+					android:layout_height="wrap_content" 
+					android:layout_width="wrap_content" 
+					android:id="@+id/btnMoveNext" 
+					android:src="@drawable/price_next" />
+			</TableRow>
+			
+			<TableRow android:layout_height="wrap_content" 
+				android:id="@+id/tableRow3" 
+				android:layout_width="wrap_content">
+				
+				<ImageButton android:layout_width="wrap_content" 
+                	android:layout_height="wrap_content" 
+                	android:tag="7" 
+                	android:id="@+id/btnDel" 
+                	android:src="@drawable/del"/>
+                	
+				<ImageButton android:layout_height="wrap_content" 
+					android:layout_width="wrap_content" 
+					android:src="@drawable/zap" 
+					android:id="@+id/btnComma" 
+					android:tag=","/>
+					
+				<ImageButton android:layout_height="wrap_content" 
+					android:layout_width="wrap_content" 
+					android:id="@+id/btnOK" 
+					android:src="@drawable/ok" 
+					android:layout_span="4"/>
+			</TableRow>
+		</TableLayout>
+	</LinearLayout>
+</LinearLayout>
+</android.gesture.GestureOverlayView>

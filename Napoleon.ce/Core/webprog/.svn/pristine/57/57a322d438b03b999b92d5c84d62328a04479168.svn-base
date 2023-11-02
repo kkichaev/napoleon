@@ -1,0 +1,16 @@
+#!/usr/bin/sh
+
+echo "FROM python:webapp
+
+WORKDIR /home/ert
+
+COPY requirements.txt requirements.txt
+RUN prog/bin/pip install -r requirements.txt
+RUN prog/bin/pip install gunicorn
+
+RUN chown -R ert:ert ./
+" > dockf
+
+docker image rm python:req
+docker build --force-rm -f dockf -t python:req ./
+rm dockf

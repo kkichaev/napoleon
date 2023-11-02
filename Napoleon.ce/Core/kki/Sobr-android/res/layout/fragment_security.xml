@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/padding_16" >
+
+        <TextView
+            android:id="@+id/security_security_title"
+            style="@style/TextViewTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:text="@string/security_security" />
+
+        <Button
+            android:id="@+id/security_security_on_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top_2"
+            android:text="@string/security_security_on" />
+
+        <Button
+            android:id="@+id/security_security_wo_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top_2"
+            android:text="@string/security_security_wo" />
+
+        <Button
+            android:id="@+id/security_security_off_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top_2"
+            android:text="@string/security_security_off" />
+
+        <TextView
+            android:id="@+id/security_search_mode_title"
+            style="@style/TextViewTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/state_search_mode_title" />
+
+        <Button
+            android:id="@+id/security_search_mode_on_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top_2"
+            android:text="@string/state_search_mode_on_btn" />
+
+        <Button
+            android:id="@+id/security_search_mode_off_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top_2"
+            android:text="@string/state_search_mode_off_btn" />
+
+        <TextView
+            android:id="@+id/security_mic_title"
+            style="@style/TextViewTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/security_mic" />
+
+        <Button
+            android:id="@+id/security_mic_on_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top_2"
+            android:text="@string/security_mic_on" />
+
+        <TextView
+            android:id="@+id/security_engine_title"
+            style="@style/TextViewTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/security_engine" />
+
+        <Button
+            android:id="@+id/security_engine_lock_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top_2"
+            android:text="@string/security_engine_lock" />
+
+        <Button
+            android:id="@+id/security_engine_unlock_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top_2"
+            android:text="@string/security_engine_unlock" />
+
+        <TextView
+            android:id="@+id/security_doors_open_title"
+            style="@style/TextViewTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/security_doors" />
+
+        <Button
+            android:id="@+id/security_doors_open_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top_2"
+            android:text="@string/security_doors_open" />
+        
+        <TextView
+            android:id="@+id/security_cmd_911_title"
+            style="@style/TextViewTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/security_cmd_911_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top_2"
+            android:text=""
+            android:visibility="gone" />
+        
+        <TextView
+            android:id="@+id/sec_by_move_title"
+            style="@style/TextViewTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sec_by_move_title"
+            android:ellipsize="none"
+            android:scrollHorizontally="false"
+            android:visibility="gone" 
+            android:singleLine="false"/>
+
+        <Button
+            android:id="@+id/sec_on_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top_2"
+            android:text="@string/sec_on_title"
+            android:visibility="gone" />
+        
+        <TextView
+            android:id="@+id/sec_by_move_on_prompt"
+            style="@style/TextViewTitlePrompt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sec_by_move_on_prompt"
+            android:ellipsize="none"
+            android:visibility="gone"/>
+        
+        <Button
+            android:id="@+id/sec_by_hour_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top_2"
+            android:text="@string/sec_by_hour_title"
+            android:visibility="gone" />
+        
+        <TextView
+            android:id="@+id/sec_by_hour_prompt"
+            style="@style/TextViewTitlePrompt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sec_by_hour_prompt"
+            android:ellipsize="none"
+            android:visibility="gone"/>
+        
+         <Button
+            android:id="@+id/sec_off_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top_2"
+            android:text="@string/sec_off_title"
+            android:visibility="gone" />
+         
+         <TextView
+            android:id="@+id/sec_by_move_off_prompt"
+            style="@style/TextViewTitlePrompt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sec_by_move_off_prompt"
+            android:ellipsize="none"
+            android:visibility="gone"/>
+         
+         <Button
+            android:id="@+id/sec_set_time_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top_2"
+            android:text="@string/sec_set_time_title"
+            android:visibility="gone" />
+         
+         <TextView
+            android:id="@+id/sec_set_time_prompt"
+            style="@style/TextViewTitlePrompt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sec_set_time_prompt"
+            android:ellipsize="none"
+            android:visibility="gone"/>
+         
+         <Button
+            android:id="@+id/sec_range_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top_2"
+            android:text="@string/sec_range_title"
+            android:visibility="gone" />
+         
+         <TextView
+            android:id="@+id/sec_set_range_prompt"
+            style="@style/TextViewTitlePrompt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sec_set_range_prompt"
+            android:ellipsize="none"
+            android:visibility="gone"/>
+    </LinearLayout>
+
+</ScrollView>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/LinearLayout01"
+        style="?header"
+        android:layout_width="fill_parent">
+
+        <TextView
+            android:id="@+id/tvOrg"
+            style="?headerText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scrollHorizontally="true"
+            android:text="OrgName" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/NameTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:width="80dp"
+            android:background="@color/table_caption"
+            android:textColor="#000000"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/DateTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25"
+            android:background="@color/table_caption"
+            android:paddingLeft="7dp"
+            android:text="@string/date"
+            android:textColor="#000000"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/SumColumnTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25"
+            android:background="@color/table_caption"
+            android:gravity="right"
+            android:paddingRight="3dp"
+            android:text="@string/sum"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/lvDocs"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/white" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="fill_parent"
+        style="?footer">
+
+        <ImageButton
+            android:id="@+id/btnNewDoc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/newDoc"
+            android:src="@drawable/new_order"
+            style="?footerButton"/>
+
+        <ImageButton
+            android:id="@+id/btnSendDocList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="?footerButton"
+            android:contentDescription="@string/send"
+            android:src="@drawable/send"
+            android:visibility="gone" />
+    </LinearLayout>
+</LinearLayout>

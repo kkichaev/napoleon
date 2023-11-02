@@ -1,0 +1,50 @@
+/*
+ * Copyright (C), 2010, Гильдия Разработчиков
+ *
+ * Диалог с сообщением
+ *
+ * kki   04/11/2010   creating
+ */
+package com.grsoft.util;
+import com.grsoft.aceteam.R;
+
+import com.grsoft.aceteam.R;
+
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.text.Html;
+
+public class MessageBox
+{
+	public static void show(Context context, String title, String message, DialogInterface.OnDismissListener listener, boolean closeButton) {
+		AlertDialog ad = new AlertDialog.Builder(context).create();
+		ad.setTitle(title);
+		ad.setMessage(Html.fromHtml(message));
+		if(closeButton) {
+			ad.setButton(DialogInterface.BUTTON_NEUTRAL,
+					context.getString(android.R.string.ok), (DialogInterface.OnClickListener) null);
+		}
+		if(listener != null)
+			ad.setOnDismissListener(listener);
+		ad.show();
+	}
+
+	public static void show(Context context, String title, String message) {
+		show(context, title, message, null, false);
+	}
+
+	public static void show(Context context, String title, String message, boolean closeButton) {
+		show(context, title, message, null, closeButton);
+	}
+
+	public static void showError(Context context, String message, Exception exception) {
+		final String TITLE = context.getString(R.string.error);
+		final String MESSAGE = message == null ? exception.getMessage() : String.format("%s\n%s", message, exception.getMessage());
+		show(context, TITLE, MESSAGE);
+	}
+	
+	public static void show(Context context, int title, int message){
+		show(context, context.getString(title), context.getString(message));
+	}
+}

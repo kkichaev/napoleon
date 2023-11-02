@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:minWidth="500dp"
+    android:minHeight="250dp"
+    android:orientation="vertical" >
+
+    <Spinner
+        android:id="@+id/spDecision"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" 
+        android:entries="@array/decisionitems"/>
+
+    <EditText
+        android:id="@+id/edDecision"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:ems="10"
+        android:inputType="textMultiLine" 
+        android:gravity="left|top"
+        android:hint="@string/inputtext"
+        android:layout_weight="1">
+
+        <requestFocus />
+    </EditText>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/btnOK"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/ok" 
+            android:layout_weight="1"/>
+
+        <Button
+            android:id="@+id/btnCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cancel" />
+        
+        <Button
+            android:id="@+id/btnDel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/delete" 
+            android:visibility="gone"/>
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,19 @@
+#!/bin/bash
+for i in `find /proc -maxdepth 2 -mindepth 2 -name cmdline | xargs grep -sL xargs | xargs grep -sa grserver | sed -n "s|/proc/\([0-9]\+\)/\(.\+\)|\1|p"`
+do
+  echo "Kill $i"
+  kill $i
+done
+
+while true; do
+  st=`find /proc -maxdepth 2 -mindepth 2 -name cmdline | xargs grep -sL xargs | xargs grep -sa grserver | sed -n "s|/proc/\([0-9]\+\)/\(.\+\)|\1|p"`
+  if [ "$st" = "" ]; then
+    break
+  fi
+done
+
+for i in `find /proc -maxdepth 2 -mindepth 2 -name cmdline | xargs grep -sa grsmanager | sed -n "s|/proc/\([0-9]\+\)/\(.\+\)|\1|p"`
+do
+  kill $i
+  break
+done

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:paddingLeft="4dp"
+        android:id="@+id/tvDoc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        style="@style/OrderText"
+        android:text="TextView" />
+    <TextView
+        android:id="@+id/tvDate"
+        android:layout_width="@dimen/order_clmn_wdth"
+        android:paddingRight="4dp"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        style="@style/OrderText"
+        android:text="TextView" />
+    <TextView
+        android:paddingRight="4dp"
+        android:id="@+id/tvInfo"
+        android:layout_width="@dimen/order_clmn_wdth"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        style="@style/OrderText"
+        android:text="TextView" />
+</LinearLayout>

@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+   <meta http-equiv='X-UA-Compatible' content='IE=Edge' />
+   <title>User Location</title>
+
+   <style type="text/css">
+      body, html {
+         width: 100%;
+         height: 100%;
+         margin: 0;
+         padding: 0;
+         overflow: hidden;
+      }
+
+      #map {
+         height: 100%;
+      }
+   </style>
+
+   <script src="http://api-maps.yandex.ru/1.1/index.xml?key=ANzXmEoBAAAAkjQFPwIAQphddQGLBfkqE3qCI3Vo8OCM8yYAAAAAAAAAAACYpxbA0OaEdJRuAHC50onaXfYLBQ==&" type="text/javascript"></script> 
+
+   <script type="text/javascript">
+      var map;
+      var markers = {};
+
+      function showInfo(pos) {
+         try {
+            var m = markers[pos];
+            m.openBalloon();
+            map.setCenter(m.getGeoPoint(), map.getZoom());
+         } catch (err) {
+            console.log(err);
+         }
+      }
+
+      function initialize() {
+         map = new YMaps.Map(YMaps.jQuery("#map")[0]);
+         map.addControl(new YMaps.TypeControl());
+         map.addControl(new YMaps.ToolBar());
+         map.addControl(new YMaps.Zoom());
+         map.addControl(new YMaps.MiniMap());
+         map.addControl(new YMaps.ScaleLine());
+         map.setCenter(new YMaps.GeoPoint(39.83032, 57.611453), 10)
+
+         loadData('DATASECTION');
+      }
+
+      function loadData(data) {
+         try {
+            var points = JSON.parse(data)
+            var bounds = new YMaps.GeoCollectionBounds();
+
+            if (points != null) {
+               points.forEach(function (p) {
+                  var point = new YMaps.GeoPoint(p.location.longitude, p.location.latitude);
+                  bounds.add(point);
+                  marker = new YMaps.Placemark(point);
+                  marker.setIconContent("<font color='green'><b>" + p.pos + "</b></font>");
+                  marker.description = p.location.agent.name;
+                  map.addOverlay(marker);
+
+                  markers[p.pos] = marker;
+               });
+
+               map.setCenter(bounds.getCenter());
+               map.setBounds(bounds);
+            }
+         } catch (err) {
+            console.log(err);
+         }
+      }
+
+   </script>
+</head>
+
+<body onload="initialize()">
+   <div id="map"></div>
+</body>
+</html>

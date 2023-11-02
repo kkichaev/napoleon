@@ -1,0 +1,157 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+  <objects>
+    <object name="PricePhoto" sendLimit="300000" >
+      <sources>
+        <source name="DBFCatalogTable">
+          <param name="tableName">$object.table + $user.id</param>
+          <param name="catalog">"[PATH]"</param>
+          <param name="ordered">0</param>
+        </source>
+        <source name="DBFCatalogTable">
+          <param name="tableName">$object.altTable</param>
+          <param name="catalog">"[PATH]"</param>
+          <param name="ordered">0</param>
+        </source>
+      </sources>
+
+      <member name="table">"PF"</member>
+      <member name="altTable">"PRC_FOTO"</member>
+
+      <field name="items" type="collection">
+        <data>
+          <object name="PhotoPriceItem">
+            <sources>
+              <source name="DBFCatalogItemTable" />
+            </sources>
+            <field name="id" type="string" data="ID"/>
+          </object>
+        </data>
+      </field>
+      <field name="photo" type="file" data="PATH" />
+    </object>
+    
+    <object name="Incomes">
+      <sources>
+        <source name="DBFCatalogTable">
+          <param name="tableName">"INCOM"</param>
+          <param name="filter">"[FOLDER] in $folder.fid"</param>
+          <param name="catalog">"date"</param>
+          <param name="ordered">0</param>
+        </source>
+      </sources>
+
+      <field name="date" type="date" />
+      <field name="items" type="collection">
+        <data>
+          <object name="IncomeItems">
+            <sources>
+              <source name="DBFCatalogItemTable" />
+            </sources>
+
+            <field name="id" type="string" />
+            <field name="fid" type="string" hidden="true" data="folder" />
+            <field name="folderID" type="number" execOn="Get">FolderID($object.fid)</field>
+            <field name="qty" type="number" />
+            <field name="remark" type="string" />
+          </object>
+        </data>
+      </field>
+    </object>
+
+    <!-- Pre selling data begin -->
+    <modify src="Org">
+      <add>
+        <field name="premium" type="number" prec="2" data="NACENKA" />
+        <field name="plan" type="number" prec="2" />
+        <field name="fact" type="number" prec="2" />
+        <field name="minPremium" type="number" prec="2" data="MIN_NAC" />
+        <field name="minOrder" type="number" prec="2" data="MIN_SUM" />
+        <field name="color" type="hex" />
+        <field name="dogovors" type="collection">
+          <data>
+            <object name="Dogovor">
+              <sources>
+                <source name="DBFTableSet">
+                  <param name="userTable">"D"</param>
+                  <param name="commonTable">"DOGOVORS"</param>
+                  <param name="filter">"[ID] = $parent.id"</param>
+                </source>
+              </sources>
+
+              <field name="name" type="string" />
+              <field name="number" type="string" />
+              <field name="from" type="date" />
+              <field name="till" type="date" />
+            </object>
+          </data>
+        </field>
+
+        <!--<field name="props" type="collection">
+          <data>
+            <object name="Properties">
+              <sources>
+                <source name="DBFTableSet">
+                  <param name="userTable">"PO"</param>
+                  <param name="commonTable">"PROPS"</param>
+                  <param name="filter">"[ID] = $parent.id"</param>
+                </source>
+              </sources>
+              <field name="name" type="string" />
+              <field name="value" type="string" />
+            </object>
+          </data>
+        </field>-->
+
+        <field name="folderDsc" type="collection">
+          <data>
+            <object name="OrgDiscountItem">
+              <sources>
+                <source name="DBFTableSet">
+                  <param name="userTable">"OFD"</param>
+                  <param name="commonTable">"ORGFD"</param>
+                  <param name="filter">"[ID] = $parent.id"</param>
+                </source>
+              </sources>
+
+              <field name="id" data="ID_I" type="string" />
+              <field name="discount" data="DISC" type="number" prec="2"/>
+            </object>
+          </data>
+        </field>
+      </add>
+    </modify>
+
+    <modify src="Price">
+      <add>
+        <field name="article" type="string" />
+        <field name="priceGroup" type="string" data="ID_PG" />
+      </add>
+    </modify>
+
+    <modify src="Order">
+      <add>
+        <field name="supplDate" type="date" data="DLVDATE" />
+        <field name="paySum" type="number" width="9" prec="2" />
+        <field name="dogNum" type="string" data="DOG" width="15" />
+      </add>
+    </modify>
+
+    <modify src="Visit">
+      <change>
+        <sources>
+          <source name="DBFTable">
+            <param name="tableName">$object.table + $user.id</param>
+          </source>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+      <add>
+        <event type="put">
+          <action name="WriteInternal">$object.type</action>
+          <action name="WriteToLog">$object.type;$object.date</action>
+        </event>
+      </add>
+    </modify>
+  </objects>
+</serverDefs>

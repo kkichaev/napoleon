@@ -1,0 +1,485 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1F5EFEDD253B5E6000606257 /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5EFEDC253B5E6000606257 /* BaseController.swift */; };
+		1F5EFEE3253B7A7900606257 /* Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5EFEE2253B7A7900606257 /* Actions.swift */; };
+		1F5EFEE7253C373800606257 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5EFEE6253C373800606257 /* MainViewController.swift */; };
+		1F5EFEEF253C9F4E00606257 /* PriceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5EFEEE253C9F4E00606257 /* PriceController.swift */; };
+		1F5EFF4A253EE3B500606257 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5EFF49253EE3B500606257 /* Data.swift */; };
+		1F5EFF4D253F2FB800606257 /* PartnerSelectController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5EFF4C253F2FB500606257 /* PartnerSelectController.swift */; };
+		1F5EFF52253F633600606257 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5EFF51253F633500606257 /* ImageCache.swift */; };
+		1F5EFF552540182400606257 /* PriceDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5EFF542540182400606257 /* PriceDetailController.swift */; };
+		1F892C49254056DA003638B4 /* OrderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F892C48254056DA003638B4 /* OrderController.swift */; };
+		1F892C4D25409409003638B4 /* OrderDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F892C4C25409409003638B4 /* OrderDetailController.swift */; };
+		6A0904962531B92700869F39 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A0904952531B92700869F39 /* AppDelegate.swift */; };
+		6A0904982531B92700869F39 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A0904972531B92700869F39 /* SceneDelegate.swift */; };
+		6A09049D2531B92700869F39 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A09049B2531B92700869F39 /* Main.storyboard */; };
+		6A0904A02531B92700869F39 /* ServikoMobile.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6A09049E2531B92700869F39 /* ServikoMobile.xcdatamodeld */; };
+		6A0904A22531B93400869F39 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A0904A12531B93400869F39 /* Assets.xcassets */; };
+		6A0904A52531B93400869F39 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A0904A32531B93400869F39 /* LaunchScreen.storyboard */; };
+		6A0904B02531BA3100869F39 /* WSExchange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A0904AE2531BA3100869F39 /* WSExchange.swift */; };
+		6A0904B12531BA3100869F39 /* Objects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A0904AF2531BA3100869F39 /* Objects.swift */; };
+		6A296A232531C98000C78594 /* ProgData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A296A222531C98000C78594 /* ProgData.swift */; };
+		6A296A272531CE4E00C78594 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A296A262531CE4E00C78594 /* MainController.swift */; };
+		6A55AF7D25349735001D3255 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A55AF7C25349735001D3255 /* logo.png */; };
+		6A55AF802534A76B001D3255 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A55AF7F2534A76B001D3255 /* LoginController.swift */; };
+		6A55AFA92536010C001D3255 /* PriceTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A55AFA82536010C001D3255 /* PriceTree.swift */; };
+		6A55AFB125370367001D3255 /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A55AFAD25370367001D3255 /* home.png */; };
+		6A55AFB225370367001D3255 /* messages.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A55AFAE25370367001D3255 /* messages.png */; };
+		6A55AFB325370367001D3255 /* actions.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A55AFAF25370367001D3255 /* actions.png */; };
+		6A55AFB425370367001D3255 /* order.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A55AFB025370367001D3255 /* order.png */; };
+		6A55AFB72537038B001D3255 /* basket.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A55AFB62537038B001D3255 /* basket.png */; };
+		6AC9EA9F2542B72E00B46991 /* ActionDefController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC9EA9E2542B72E00B46991 /* ActionDefController.swift */; };
+		6AC9EAA22542C95F00B46991 /* ActionDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC9EAA12542C95F00B46991 /* ActionDetailController.swift */; };
+		6AC9EAB1254315E800B46991 /* BasketController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC9EAB0254315E800B46991 /* BasketController.swift */; };
+		6AF5B2BC25445E8A009F16A5 /* NotifyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF5B2BB25445E8A009F16A5 /* NotifyController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1F5EFEDC253B5E6000606257 /* BaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseController.swift; sourceTree = "<group>"; };
+		1F5EFEE2253B7A7900606257 /* Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Actions.swift; sourceTree = "<group>"; };
+		1F5EFEE6253C373800606257 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		1F5EFEEE253C9F4E00606257 /* PriceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceController.swift; sourceTree = "<group>"; };
+		1F5EFF49253EE3B500606257 /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		1F5EFF4C253F2FB500606257 /* PartnerSelectController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnerSelectController.swift; sourceTree = "<group>"; };
+		1F5EFF51253F633500606257 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
+		1F5EFF542540182400606257 /* PriceDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceDetailController.swift; sourceTree = "<group>"; };
+		1F892C48254056DA003638B4 /* OrderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderController.swift; sourceTree = "<group>"; };
+		1F892C4C25409409003638B4 /* OrderDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailController.swift; sourceTree = "<group>"; };
+		6A0904922531B92700869F39 /* ServikoMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ServikoMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6A0904952531B92700869F39 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		6A0904972531B92700869F39 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		6A09049C2531B92700869F39 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		6A09049F2531B92700869F39 /* ServikoMobile.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ServikoMobile.xcdatamodel; sourceTree = "<group>"; };
+		6A0904A12531B93400869F39 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		6A0904A42531B93400869F39 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		6A0904A62531B93400869F39 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6A0904AE2531BA3100869F39 /* WSExchange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WSExchange.swift; sourceTree = "<group>"; };
+		6A0904AF2531BA3100869F39 /* Objects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Objects.swift; sourceTree = "<group>"; };
+		6A296A222531C98000C78594 /* ProgData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgData.swift; sourceTree = "<group>"; };
+		6A296A262531CE4E00C78594 /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
+		6A55AF7C25349735001D3255 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		6A55AF7F2534A76B001D3255 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		6A55AFA82536010C001D3255 /* PriceTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceTree.swift; sourceTree = "<group>"; };
+		6A55AFAD25370367001D3255 /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
+		6A55AFAE25370367001D3255 /* messages.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = messages.png; sourceTree = "<group>"; };
+		6A55AFAF25370367001D3255 /* actions.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = actions.png; sourceTree = "<group>"; };
+		6A55AFB025370367001D3255 /* order.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = order.png; sourceTree = "<group>"; };
+		6A55AFB62537038B001D3255 /* basket.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = basket.png; sourceTree = "<group>"; };
+		6AC9EA9E2542B72E00B46991 /* ActionDefController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionDefController.swift; sourceTree = "<group>"; };
+		6AC9EAA12542C95F00B46991 /* ActionDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionDetailController.swift; sourceTree = "<group>"; };
+		6AC9EAB0254315E800B46991 /* BasketController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasketController.swift; sourceTree = "<group>"; };
+		6AF5B2B625443367009F16A5 /* ServikoMobile.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ServikoMobile.entitlements; sourceTree = "<group>"; };
+		6AF5B2BB25445E8A009F16A5 /* NotifyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotifyController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6A09048F2531B92700869F39 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6A0904892531B92700869F39 = {
+			isa = PBXGroup;
+			children = (
+				6A0904942531B92700869F39 /* ServikoMobile */,
+				6A0904932531B92700869F39 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		6A0904932531B92700869F39 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6A0904922531B92700869F39 /* ServikoMobile.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6A0904942531B92700869F39 /* ServikoMobile */ = {
+			isa = PBXGroup;
+			children = (
+				6AF5B2B625443367009F16A5 /* ServikoMobile.entitlements */,
+				6AC9EA9E2542B72E00B46991 /* ActionDefController.swift */,
+				6AC9EAA12542C95F00B46991 /* ActionDetailController.swift */,
+				1F5EFEE2253B7A7900606257 /* Actions.swift */,
+				6A0904952531B92700869F39 /* AppDelegate.swift */,
+				6A55AF7825349663001D3255 /* Arts */,
+				6A0904A12531B93400869F39 /* Assets.xcassets */,
+				1F5EFEDC253B5E6000606257 /* BaseController.swift */,
+				6AC9EAB0254315E800B46991 /* BasketController.swift */,
+				1F5EFF49253EE3B500606257 /* Data.swift */,
+				1F5EFF51253F633500606257 /* ImageCache.swift */,
+				6A0904A62531B93400869F39 /* Info.plist */,
+				6A0904A32531B93400869F39 /* LaunchScreen.storyboard */,
+				6A55AF7F2534A76B001D3255 /* LoginController.swift */,
+				6A09049B2531B92700869F39 /* Main.storyboard */,
+				6A296A262531CE4E00C78594 /* MainController.swift */,
+				1F5EFEE6253C373800606257 /* MainViewController.swift */,
+				6A0904AF2531BA3100869F39 /* Objects.swift */,
+				1F892C48254056DA003638B4 /* OrderController.swift */,
+				1F892C4C25409409003638B4 /* OrderDetailController.swift */,
+				1F5EFF4C253F2FB500606257 /* PartnerSelectController.swift */,
+				1F5EFEEE253C9F4E00606257 /* PriceController.swift */,
+				1F5EFF542540182400606257 /* PriceDetailController.swift */,
+				6A55AFA82536010C001D3255 /* PriceTree.swift */,
+				6A296A222531C98000C78594 /* ProgData.swift */,
+				6A0904972531B92700869F39 /* SceneDelegate.swift */,
+				6A09049E2531B92700869F39 /* ServikoMobile.xcdatamodeld */,
+				6A0904AE2531BA3100869F39 /* WSExchange.swift */,
+				6AF5B2BB25445E8A009F16A5 /* NotifyController.swift */,
+			);
+			path = ServikoMobile;
+			sourceTree = "<group>";
+		};
+		6A55AF7825349663001D3255 /* Arts */ = {
+			isa = PBXGroup;
+			children = (
+				6A55AFB62537038B001D3255 /* basket.png */,
+				6A55AFAF25370367001D3255 /* actions.png */,
+				6A55AFAD25370367001D3255 /* home.png */,
+				6A55AFAE25370367001D3255 /* messages.png */,
+				6A55AFB025370367001D3255 /* order.png */,
+				6A55AF7C25349735001D3255 /* logo.png */,
+			);
+			path = Arts;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6A0904912531B92700869F39 /* ServikoMobile */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6A0904A92531B93400869F39 /* Build configuration list for PBXNativeTarget "ServikoMobile" */;
+			buildPhases = (
+				6A09048E2531B92700869F39 /* Sources */,
+				6A09048F2531B92700869F39 /* Frameworks */,
+				6A0904902531B92700869F39 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ServikoMobile;
+			productName = ServikoMobile;
+			productReference = 6A0904922531B92700869F39 /* ServikoMobile.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6A09048A2531B92700869F39 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1200;
+				LastUpgradeCheck = 1210;
+				TargetAttributes = {
+					6A0904912531B92700869F39 = {
+						CreatedOnToolsVersion = 12.0.1;
+					};
+				};
+			};
+			buildConfigurationList = 6A09048D2531B92700869F39 /* Build configuration list for PBXProject "ServikoMobile" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 6A0904892531B92700869F39;
+			productRefGroup = 6A0904932531B92700869F39 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6A0904912531B92700869F39 /* ServikoMobile */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6A0904902531B92700869F39 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6A55AFB425370367001D3255 /* order.png in Resources */,
+				6A55AFB325370367001D3255 /* actions.png in Resources */,
+				6A55AF7D25349735001D3255 /* logo.png in Resources */,
+				6A55AFB225370367001D3255 /* messages.png in Resources */,
+				6A55AFB125370367001D3255 /* home.png in Resources */,
+				6A0904A52531B93400869F39 /* LaunchScreen.storyboard in Resources */,
+				6A55AFB72537038B001D3255 /* basket.png in Resources */,
+				6A0904A22531B93400869F39 /* Assets.xcassets in Resources */,
+				6A09049D2531B92700869F39 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6A09048E2531B92700869F39 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1F5EFF4D253F2FB800606257 /* PartnerSelectController.swift in Sources */,
+				6AF5B2BC25445E8A009F16A5 /* NotifyController.swift in Sources */,
+				6A55AFA92536010C001D3255 /* PriceTree.swift in Sources */,
+				1F5EFF52253F633600606257 /* ImageCache.swift in Sources */,
+				1F892C4D25409409003638B4 /* OrderDetailController.swift in Sources */,
+				6A296A272531CE4E00C78594 /* MainController.swift in Sources */,
+				6A0904A02531B92700869F39 /* ServikoMobile.xcdatamodeld in Sources */,
+				1F5EFEEF253C9F4E00606257 /* PriceController.swift in Sources */,
+				1F5EFEE7253C373800606257 /* MainViewController.swift in Sources */,
+				6AC9EAA22542C95F00B46991 /* ActionDetailController.swift in Sources */,
+				6A0904962531B92700869F39 /* AppDelegate.swift in Sources */,
+				1F5EFEDD253B5E6000606257 /* BaseController.swift in Sources */,
+				1F5EFF4A253EE3B500606257 /* Data.swift in Sources */,
+				1F5EFEE3253B7A7900606257 /* Actions.swift in Sources */,
+				6A296A232531C98000C78594 /* ProgData.swift in Sources */,
+				1F892C49254056DA003638B4 /* OrderController.swift in Sources */,
+				6A0904B02531BA3100869F39 /* WSExchange.swift in Sources */,
+				1F5EFF552540182400606257 /* PriceDetailController.swift in Sources */,
+				6AC9EAB1254315E800B46991 /* BasketController.swift in Sources */,
+				6A55AF802534A76B001D3255 /* LoginController.swift in Sources */,
+				6AC9EA9F2542B72E00B46991 /* ActionDefController.swift in Sources */,
+				6A0904B12531BA3100869F39 /* Objects.swift in Sources */,
+				6A0904982531B92700869F39 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		6A09049B2531B92700869F39 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6A09049C2531B92700869F39 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		6A0904A32531B93400869F39 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6A0904A42531B93400869F39 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		6A0904A72531B93400869F39 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		6A0904A82531B93400869F39 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		6A0904AA2531B93400869F39 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ServikoMobile/ServikoMobile.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 23;
+				DEVELOPMENT_TEAM = L5XD9PAWVT;
+				INFOPLIST_FILE = ServikoMobile/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.serviko.mobile;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "";
+			};
+			name = Debug;
+		};
+		6A0904AB2531B93400869F39 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ServikoMobile/ServikoMobile.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 23;
+				DEVELOPMENT_TEAM = L5XD9PAWVT;
+				INFOPLIST_FILE = ServikoMobile/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.serviko.mobile;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6A09048D2531B92700869F39 /* Build configuration list for PBXProject "ServikoMobile" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6A0904A72531B93400869F39 /* Debug */,
+				6A0904A82531B93400869F39 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6A0904A92531B93400869F39 /* Build configuration list for PBXNativeTarget "ServikoMobile" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6A0904AA2531B93400869F39 /* Debug */,
+				6A0904AB2531B93400869F39 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		6A09049E2531B92700869F39 /* ServikoMobile.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				6A09049F2531B92700869F39 /* ServikoMobile.xcdatamodel */,
+			);
+			currentVersion = 6A09049F2531B92700869F39 /* ServikoMobile.xcdatamodel */;
+			path = ServikoMobile.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 6A09048A2531B92700869F39 /* Project object */;
+}

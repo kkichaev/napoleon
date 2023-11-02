@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.gesture.GestureOverlayView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/gestures"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gestureStrokeType="single"
+    android:eventsInterceptionEnabled="true"
+    android:orientation="vertical"
+    android:gestureColor="#00000000"
+    android:uncertainGestureColor="#00000000">
+    
+<LinearLayout
+	android:layout_height="fill_parent" 
+	android:layout_width="fill_parent"
+	android:orientation="vertical">
+	
+	<ScrollView android:layout_height="wrap_content"
+		android:id="@+id/svScroll"
+		android:layout_width="fill_parent"
+		android:layout_weight="1">
+		<LinearLayout android:layout_width="fill_parent"
+			android:layout_height="wrap_content" 
+			android:orientation="vertical">
+			
+			<LinearLayout android:layout_weight="1"
+				android:id="@+id/LinearLayout02" 
+				android:layout_height="wrap_content"
+				android:layout_width="fill_parent" 
+				android:orientation="vertical" 
+				android:paddingLeft="3dp" 
+				android:paddingRight="3dp">
+				
+				<LinearLayout android:id="@+id/linearLayout1"
+					android:layout_height="wrap_content" 
+					android:background="@color/white"
+					android:layout_width="fill_parent" 
+					android:orientation="horizontal">
+					
+					<LinearLayout android:layout_marginBottom="2dp"
+						android:id="@+id/linearLayout2" 
+						android:layout_height="fill_parent"
+						android:layout_width="fill_parent">
+						
+						<CheckBox android:layout_height="wrap_content"
+							android:layout_width="wrap_content" 
+							android:id="@+id/cbClearDB"
+							android:text="Очистить базу при приеме"/>
+					</LinearLayout>
+				</LinearLayout>
+				
+				<LinearLayout android:id="@+id/LinearLayout03"
+					android:layout_height="wrap_content" 
+					android:paddingTop="2dp"
+					android:layout_width="fill_parent" 
+					android:orientation="horizontal">
+					
+					<CheckBox android:checked="true" 
+					    android:layout_height="wrap_content"
+						android:layout_width="wrap_content" 
+						android:id="@+id/cbGenData"
+						android:text="Основные данные"/>
+					
+					<CheckBox android:checked="true" 
+					    android:layout_height="wrap_content"
+						android:layout_width="wrap_content" 
+						android:id="@+id/cbRemains"
+						android:text="остатки &gt; 0"/>
+				</LinearLayout>
+				
+				<CheckBox android:checked="true" 
+				    android:layout_height="wrap_content"
+					android:layout_width="wrap_content" 
+					android:id="@+id/cbDocs"
+					android:text="Документы (заявки, мерч.)"/>
+				
+				<CheckBox android:layout_height="wrap_content"
+					android:layout_width="wrap_content" 
+					android:id="@+id/cbVisit"
+					android:text="Фотоотчеты (посещения)"/>
+				
+				<CheckBox android:layout_height="wrap_content"
+					android:layout_width="wrap_content" 
+					android:id="@+id/cbPresent"
+					android:text="Презентация"/>
+				
+				<CheckBox android:layout_height="wrap_content"
+					android:layout_width="wrap_content" 
+					android:id="@+id/cbCost"
+					android:text="Цены"/>
+
+				<TableLayout android:layout_width="fill_parent"
+    				android:layout_height="wrap_content"
+    				android:stretchColumns="1">
+					
+					<TableRow>
+						<CheckBox
+						    android:id="@+id/cbOrdQuery"
+						    android:layout_width="wrap_content"
+						    android:layout_height="wrap_content"
+						    android:text="Заказать заявки" />
+	
+						<EditText
+						    android:id="@+id/edDate"
+						    android:layout_width="wrap_content"
+						    android:layout_height="wrap_content"
+						    android:layout_weight="1"
+						    android:inputType="none" 
+						    android:layout_marginLeft="10dp" 
+							android:layout_marginRight="10dp" />
+					</TableRow>
+					
+					<TableRow>
+						<CheckBox
+						    android:id="@+id/cbRetQuery"
+						    android:layout_width="wrap_content"
+						    android:layout_height="wrap_content"
+						    android:text="Заказать возвраты" />
+	
+						<EditText
+						    android:id="@+id/edRetDate"
+						    android:layout_width="wrap_content"
+						    android:layout_height="wrap_content"
+						    android:layout_weight="1"
+						    android:inputType="none" 
+						    android:layout_marginLeft="10dp" 
+							android:layout_marginRight="10dp" />
+					</TableRow>
+				</TableLayout>
+				
+				<CheckBox android:layout_height="wrap_content"
+					android:layout_width="wrap_content" 
+					android:id="@+id/cbDebt"
+					android:text="Отгрузки и долги" 
+					android:layout_marginTop="20dp"/>
+				
+				<LinearLayout android:id="@+id/linearLayout3"
+					android:layout_height="fill_parent" 
+					android:layout_width="fill_parent">
+					
+					<LinearLayout android:id="@+id/linearLayout4"
+						android:layout_height="fill_parent" 
+						android:layout_width="fill_parent" 
+						android:layout_marginTop="2dp">
+						
+						<CheckBox android:layout_height="wrap_content"
+							android:layout_width="wrap_content" 
+							android:id="@+id/cbRecreateStory"
+							android:text="Восстановить историю заказов"/>
+					</LinearLayout>
+				</LinearLayout>
+			</LinearLayout>
+		</LinearLayout>
+	</ScrollView>
+	
+	<LinearLayout
+				android:id="@+id/LinearLayout01" 
+				android:layout_height="wrap_content"
+				android:layout_width="fill_parent">
+		
+				<Button android:layout_weight="1" 
+				    android:layout_height="wrap_content"
+					android:layout_width="wrap_content" 
+					android:text="Настройки"
+					android:id="@+id/btnSettings"/>
+				<Button android:layout_weight="2" 
+				    android:layout_height="wrap_content"
+					android:layout_width="wrap_content" 
+					android:text="Обновить"
+					android:id="@+id/btnUpdate"/>
+	</LinearLayout>
+</LinearLayout>
+</android.gesture.GestureOverlayView>

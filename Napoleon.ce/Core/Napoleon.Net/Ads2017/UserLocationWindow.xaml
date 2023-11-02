@@ -1,0 +1,65 @@
+﻿<RibbonWindow x:Class="Ads2017.UserLocationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:Ads2017"
+        xmlns:p = "clr-namespace:Ads2017.Properties"
+        Title="{x:Static p:Resources.agents_in_field}"
+        Height="700" 
+        Width="900"
+        Icon="napoleon.ico">
+
+   <RibbonWindow.CommandBindings>
+      <CommandBinding Command="local:AdsCommands.Refresh" Executed="RefreshExecuted"/>
+   </RibbonWindow.CommandBindings>
+
+   <Grid>
+      <Grid.RowDefinitions>
+         <RowDefinition Height="Auto"/>
+         <RowDefinition Height="*"/>
+      </Grid.RowDefinitions>
+
+      <Ribbon Grid.Row="0" SelectedIndex="0">
+         <Ribbon.ApplicationMenu>
+            <RibbonApplicationMenu Visibility="Collapsed"/>
+         </Ribbon.ApplicationMenu>
+
+         <RibbonTab Header="{Binding Source={x:Static p:Resources.operation}}" >
+            <RibbonGroup>
+               <RibbonButton 
+                        Margin="0,15,0,0"
+                        x:Name="btnRefresh" 
+                        LargeImageSource="Images\refresh.png" 
+                        Label="{Binding Source={x:Static p:Resources.refresh}}" 
+                        KeyTip="F5" 
+                        Command="local:AdsCommands.Refresh"
+                        ToolTipTitle ="{Binding Source={x:Static p:Resources.refresh_hint}}"
+                        ToolTipDescription="{Binding Source={x:Static p:Resources.refresh_description}}"/>
+            </RibbonGroup>
+
+            <RibbonGroup>
+               <RibbonComboBox Label="{Binding Source={x:Static p:Resources.map}}" 
+                            SelectionBoxWidth="100" Height="20" 
+                            HorizontalContentAlignment="Center"
+                            Margin="0,15,0,0">
+
+                  <RibbonGallery Name="rgMaps" >
+                     <RibbonGalleryCategory Name="rgcMaps"/>
+                  </RibbonGallery>
+
+               </RibbonComboBox>
+            </RibbonGroup>
+         </RibbonTab>
+      </Ribbon>
+
+      <Grid Grid.Row="1">
+         <Grid.ColumnDefinitions>
+            <ColumnDefinition  Width="*"/>
+            <ColumnDefinition  Width="300"/>
+         </Grid.ColumnDefinitions>
+
+         <WebBrowser Grid.Column="0" x:Name="browser"/>
+         <local:ListView Grid.Column="1" x:Name="list"/>
+         <GridSplitter Grid.Column="0" Width="5"  VerticalAlignment="Stretch"  />
+      </Grid>
+   </Grid>
+</RibbonWindow>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/list_selector" >
+
+    <TextView
+        android:id="@+id/tvOrder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:gravity="right"
+        android:paddingRight="5dp"
+        android:text="No"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:width="30sp"
+        tools:ignore="HardcodedText" />
+
+    <Button
+        android:id="@+id/btnName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="left"
+        tools:ignore="HardcodedText"
+        android:text="btnName" />
+    
+    <TextView
+        android:id="@+id/tvLimit"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:gravity="right"
+        android:background="@drawable/qty_back"
+        android:paddingLeft="3dp"
+        android:paddingRight="10dp"
+        android:text="tvLimit"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:width="60dp"
+        tools:ignore="HardcodedText" >
+     </TextView>
+        
+    <TextView
+        android:id="@+id/tvQty"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:background="@drawable/qty_back"
+        android:gravity="right"
+        android:paddingLeft="3dp"
+        android:paddingRight="10dp"
+        android:text="tvQty"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:width="70dp"
+        tools:ignore="HardcodedText" >
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/tvCost"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:gravity="right"
+        android:background="@drawable/qty_back"
+        android:paddingLeft="3dp"
+        android:paddingRight="10dp"
+        android:text="tvCost"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:width="80dp"
+        tools:ignore="HardcodedText" >
+    </TextView>
+</LinearLayout>

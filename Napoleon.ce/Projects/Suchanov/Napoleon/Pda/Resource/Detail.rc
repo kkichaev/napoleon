@@ -1,0 +1,168 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "NapoleonRes.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "resdefce.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Russian resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_RUS)
+#ifdef _WIN32
+LANGUAGE LANG_RUSSIAN, SUBLANG_DEFAULT
+#pragma code_page(1251)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ORDER_DETAIL DIALOG  0, 0, 186, 108
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Параметры заказа"
+FONT 8, "MS Shell Dlg"
+BEGIN
+
+    CONTROL         "",IDC_ORDER_DATE,"SysDateTimePick32",DTS_RIGHTALIGN | WS_TABSTOP,36,2,43,15
+    CONTROL         "",IDC_ORDER_TIME,"SysDateTimePick32",DTS_RIGHTALIGN | DTS_UPDOWN | DTS_APPCANPARSE | WS_TABSTOP | 0x8,110,2,43,15
+    LTEXT           "Дата",IDC_STATIC,16,5,18,8
+    LTEXT           "время",IDC_STATIC,87,5,21,8
+    CONTROL         "",IDC_PAY_DATE,"SysDateTimePick32",DTS_RIGHTALIGN | WS_TABSTOP,36,17,43,15
+    CONTROL         "",IDC_PAY_TIME,"SysDateTimePick32",DTS_RIGHTALIGN | DTS_UPDOWN | DTS_APPCANPARSE | WS_TABSTOP | 0x8,110,17,43,15
+    LTEXT           "Оплата",IDC_STATIC,9,20,26,8
+    LTEXT           "лимит",IDC_STATIC,87,20,21,8
+    COMBOBOX        IDC_SUPPL,36,34,56,60,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "От кого",IDC_STATIC,7,35,28,8
+    COMBOBOX        IDC_COST_TYPE,36,47,56,60,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Цена",IDC_STATIC,17,49,18,8
+    COMBOBOX        IDC_BANK,36,60,56,60,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Банк",IDC_STATIC,18,63,17,8
+    COMBOBOX        IDC_SPEC_CND,36,73,56,60,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Спец.усл.",IDC_STATIC,1,75,34,8
+    CONTROL         "Тема Б",IDC_TOPIC_B,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,101,35,38,10
+    CONTROL         "Б/скидки",IDC_DISCOUNT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,101,48,47,10
+    EDITTEXT        IDC_DISCOUNT_VALUE,101,73,55,12,WS_TABSTOP
+
+    PUSHBUTTON      "Отмена",IDCANCEL,0,94,50,14
+    PUSHBUTTON      "OK",IDOK,52,94,50,14
+END
+
+IDD_DETAIL_PAGE2 DIALOG  0, 0, 186, 90
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Параметры заказа"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    EDITTEXT        IDC_REMARK,2,2,182,15,ES_MULTILINE | ES_AUTOVSCROLL | ES_AUTOHSCROLL | ES_WANTRETURN
+
+    PUSHBUTTON      "Отмена",IDCANCEL,0,76,50,14
+    PUSHBUTTON      "OK",IDOK,52,76,50,14
+END
+
+
+IDD_ORG_DOCS_ADD DIALOG  0, 0, 120, 134
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_SYSMENU
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Static",IDC_ORG_TITLE,0,3,120,10
+    LTEXT           "ADDRESS",IDC_ADDRESS_LABEL,0,3,120,10
+    CONTROL         "",IDC_CONTACTS,"SysListView32",LVS_ALIGNLEFT | LVS_OWNERDATA | WS_TABSTOP | LVS_OWNERDRAWFIXED,0,10,120,110
+    CONTROL         "",IDC_TABLE,"SysListView32",LVS_ALIGNLEFT | LVS_OWNERDATA | WS_TABSTOP | LVS_OWNERDRAWFIXED,0,10,120,110
+END
+
+IDD_ORG_DOCS_ADD SHMENUBAR DISCARDABLE
+BEGIN
+    IDR_MAIN_FRAME, 
+    4,
+
+    0, IDC_BACK, TBSTATE_ENABLED, TBSTYLE_BUTTON | TBSTYLE_AUTOSIZE, 0, IDC_BACK, 1,
+    16, IDC_ADD, TBSTATE_ENABLED, TBSTYLE_BUTTON | TBSTYLE_AUTOSIZE, 0, IDC_ADD, 0,
+    I_IMAGENONE, IDC_VIEW_TYPE, TBSTATE_ENABLED, TBSTYLE_DROPDOWN | TBSTYLE_AUTOSIZE, IDC_VIEW_TYPE_CAP, IDC_VIEW_TYPE, NOMENU,
+    I_IMAGENONE, IDC_AGENT, TBSTATE_ENABLED, TBSTYLE_DROPDOWN | TBSTYLE_AUTOSIZE, IDC_AGENT, IDC_AGENT, NOMENU,
+END
+
+IDD_DELIVERY_ADD SHMENUBAR DISCARDABLE
+BEGIN
+    IDR_MAIN_FRAME, 
+    2,
+
+    0, IDC_BACK, TBSTATE_ENABLED, TBSTYLE_BUTTON | TBSTYLE_AUTOSIZE, 0, IDC_BACK, 1,
+    19, IDC_DETAIL, TBSTATE_ENABLED, TBSTYLE_BUTTON | TBSTYLE_AUTOSIZE, 0, IDC_DETAIL, 0,
+END
+
+
+IDC_KEYVALUE DIALOG  0, 0, 186, 108
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Параметры накладной"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    CONTROL "",IDC_TABLE,"SysListView32",LVS_ALIGNLEFT | LVS_OWNERDATA | WS_TABSTOP | LVS_OWNERDRAWFIXED,0,0,120,110
+
+    DEFPUSHBUTTON   "Закрыть",IDOK,136,94,50,14
+END
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "NapoleonRes.\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""resdefce.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_ORDER_DETAIL, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 90
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // Russian resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

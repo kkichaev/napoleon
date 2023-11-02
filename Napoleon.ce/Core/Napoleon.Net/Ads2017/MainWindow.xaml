@@ -1,0 +1,225 @@
+﻿<RibbonWindow
+    x:Class="Ads2017.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:Ads2017" 
+    xmlns:p = "clr-namespace:Ads2017.Properties"
+    Title="{x:Static p:Resources.programm_name}" 
+    Height="1000" Width="1200"
+    WindowState="Maximized"
+    Icon="napoleon.ico"
+    Closing="RibbonWindow_Closing">
+
+   <RibbonWindow.CommandBindings>
+      <CommandBinding Command="{x:Static local:AdsCommands.Refresh}" Executed="RefreshExecuted"/>
+      <CommandBinding Command="{x:Static local:AdsCommands.Setting}" Executed="SettingExecuted"/>
+      <CommandBinding Command="{x:Static local:AdsCommands.Delete}" Executed="DeleteExecuted" CanExecute="CanDeleteExecuted"/>
+      <CommandBinding Command="{x:Static local:AdsCommands.Paste}" Executed="PasteExecuted" CanExecute="CanPasteExecuted"/>
+      <CommandBinding Command="{x:Static local:AdsCommands.Copy}" Executed="CopyExecuted" CanExecute="CanCopyExecuted"/>
+      <CommandBinding Command="{x:Static local:AdsCommands.Cut}" Executed="CutExecuted" CanExecute="CanCutExecuted"/>
+      <CommandBinding Command="{x:Static local:AdsCommands.Journal}" Executed="JournalExecuted"/>
+      <CommandBinding Command="{x:Static local:AdsCommands.AgentsInFields}" Executed="AgentsInFieldsExecuted"/>
+      <CommandBinding Command="{x:Static local:AdsCommands.UserRoute}" Executed="UserRouteExecuted"/>
+      <CommandBinding Command="{x:Static local:AdsCommands.Distance}" Executed="DistanceExecuted"/>
+      <CommandBinding Command="{x:Static local:AdsCommands.UserOrder}" Executed="UserOrderExecuted"/>
+      <CommandBinding Command="{x:Static local:AdsCommands.Help}" Executed="HelpExecuted"/>
+      <CommandBinding Command="{x:Static local:AdsCommands.About}" Executed="AboutExecuted"/>
+      <CommandBinding Command="{x:Static local:AdsCommands.Users}" Executed="UsersExecuted"/>
+   </RibbonWindow.CommandBindings>
+
+   <Grid>
+      <Grid.RowDefinitions>
+         <RowDefinition Height="Auto"/>
+         <RowDefinition Height="*"/>
+      </Grid.RowDefinitions>
+
+      <Ribbon Grid.Row="0" SelectedIndex="0">
+         <Ribbon.ApplicationMenu >
+            <RibbonApplicationMenu SmallImageSource="Images\settings.png">
+               <RibbonApplicationMenuItem ImageSource="Images\settings.png" 
+                        Header="{Binding Source={x:Static p:Resources.settings}}"
+                        ToolTipTitle="{Binding Source={x:Static p:Resources.settings_hint}}"
+                        Command="local:AdsCommands.Setting"/>
+
+               <RibbonApplicationMenuItem ImageSource="Images\about.png" 
+                        Header="{Binding Source={x:Static p:Resources.about}}"
+                        ToolTipTitle="{Binding Source={x:Static p:Resources.about_hint}}"
+                        Command="local:AdsCommands.About"/>
+            </RibbonApplicationMenu>
+         </Ribbon.ApplicationMenu>
+
+         <Ribbon.HelpPaneContent>
+            <RibbonButton x:Name="HelpButton" 
+                    SmallImageSource="Images\help.png" 
+                    Command="local:AdsCommands.Help"
+                    KeyTip="F1"
+                    ToolTipTitle="{Binding Source={x:Static p:Resources.help_hint}}"
+                    ToolTipDescription="{Binding Source={x:Static p:Resources.help_description}}"/>
+         </Ribbon.HelpPaneContent>
+
+         <RibbonTab 
+                Header="{Binding Source={x:Static p:Resources.operation}}" 
+                KeyTip="H">
+
+            <RibbonGroup>
+               <RibbonButton
+                        Margin="0,15,0,0"
+                        x:Name="btnRefresh" 
+                        LargeImageSource="Images\refresh.png" 
+                        Label="{Binding Source={x:Static p:Resources.refresh}}" 
+                        KeyTip="F5" 
+                        Command="local:AdsCommands.Refresh"
+                        ToolTipTitle ="{Binding Source={x:Static p:Resources.refresh_hint}}"
+                        ToolTipDescription="{Binding Source={x:Static p:Resources.refresh_description}}"/>
+            </RibbonGroup>
+
+            <RibbonGroup>
+               <RibbonButton 
+                        Margin="0,15,0,0"
+                        Label="{Binding Source={x:Static p:Resources.put}}"
+                        LargeImageSource="Images\paste.png" 
+                        Command="local:AdsCommands.Paste"
+                        KeyTip="Ctrl+V"
+                        ToolTipTitle ="{Binding Source={x:Static p:Resources.put_hint}}"
+                        ToolTipDescription="{Binding Source={x:Static p:Resources.put_descrition}}"/>
+
+               <RibbonButton 
+                        Label="{Binding Source={x:Static p:Resources.copy}}"
+                        SmallImageSource="Images\copy16.png" 
+                        Command="local:AdsCommands.Copy"
+                        KeyTip="Ctrl+C"
+                        ToolTipTitle ="{Binding Source={x:Static p:Resources.copy_hint}}"
+                        ToolTipDescription="{Binding Source={x:Static p:Resources.copy_description}}"/>
+
+               <RibbonButton 
+                        Label="{Binding Source={x:Static p:Resources.cut}}"
+                        SmallImageSource="Images\cut16.png" 
+                        Command="local:AdsCommands.Cut"
+                        KeyTip="Ctrl+X"
+                        ToolTipTitle ="{Binding Source={x:Static p:Resources.cut_hint}}"
+                        ToolTipDescription="{Binding Source={x:Static p:Resources.cut_description}}"/>
+
+               <RibbonButton 
+                        Label="{Binding Source={x:Static p:Resources.del}}"
+                        SmallImageSource="Images\delete16.png" 
+                        Command="local:AdsCommands.Delete"
+                        KeyTip="Ctrl+D"
+                        ToolTipTitle ="{Binding Source={x:Static p:Resources.del_hint}}"
+                        ToolTipDescription="{Binding Source={x:Static p:Resources.del_description}}"/>
+            </RibbonGroup>
+
+            <RibbonGroup>
+               <RibbonButton 
+                        Margin="0,15,0,0"
+                        LargeImageSource="Images\taskjournal.png" 
+                        Label="{Binding Source={x:Static p:Resources.task_journal}}"
+                        Command="local:AdsCommands.Journal"
+                        KeyTip="Ctrl+J"
+                        ToolTipTitle ="{Binding Source={x:Static p:Resources.task_journal_hint}}"
+                        ToolTipDescription="{Binding Source={x:Static p:Resources.task_journal_descrition}}"/>
+
+               <RibbonButton 
+                        Margin="0,15,0,0"
+                        LargeImageSource="Images\agentsinfields.png" 
+                        Label="{Binding Source={x:Static p:Resources.agents_in_field}}"
+                        Command="local:AdsCommands.AgentsInFields"
+                        KeyTip="Ctrl+J"
+                        ToolTipTitle ="{Binding Source={x:Static p:Resources.agents_in_field_hint}}"
+                        ToolTipDescription="{Binding Source={x:Static p:Resources.agents_in_field_descrition}}"/>
+
+               <RibbonButton 
+                        Margin="0,15,0,0"
+                        LargeImageSource="Images\route.png" 
+                        Label="{Binding Source={x:Static p:Resources.route}}"
+                        Command="local:AdsCommands.UserRoute"
+                        KeyTip="Ctrl+J"
+                        ToolTipTitle ="{Binding Source={x:Static p:Resources.route_hint}}"
+                        ToolTipDescription="{Binding Source={x:Static p:Resources.route_description}}"/>
+
+               <RibbonButton 
+                        Margin="0,15,0,0"
+                        LargeImageSource="Images\distancereport.png" 
+                        Label="{Binding Source={x:Static p:Resources.mileage}}"
+                        Command="local:AdsCommands.Distance"
+                        KeyTip="Ctrl+K"
+                        ToolTipTitle ="{Binding Source={x:Static p:Resources.mileage_hint}}"
+                        ToolTipDescription="{Binding Source={x:Static p:Resources.mileage_description}}"/>
+
+               <RibbonButton 
+                        Margin="0,15,0,0"
+                        LargeImageSource="Images\userorders.png" 
+                        Label="{Binding Source={x:Static p:Resources.orders}}"
+                        Command="local:AdsCommands.UserOrder"
+                        KeyTip="Ctrl+U"
+                        ToolTipTitle ="{Binding Source={x:Static p:Resources.orders_hint}}"
+                        ToolTipDescription="{Binding Source={x:Static p:Resources.orders_description}}"/>
+            </RibbonGroup>
+         </RibbonTab>
+
+         <RibbonTab 
+                Header="{Binding Source={x:Static p:Resources.edit}}" 
+                KeyTip="H">
+
+            <RibbonGroup>
+               <RibbonButton
+                        Margin="0,15,0,0"
+                        x:Name="btnTemplate" 
+                        LargeImageSource="Images\template.png" 
+                        Label="{Binding Source={x:Static p:Resources.template}}" 
+                        KeyTip="F5" 
+                        ToolTipTitle ="{Binding Source={x:Static p:Resources.template_hint}}"
+                        ToolTipDescription="{Binding Source={x:Static p:Resources.template_description}}"
+                        Click="BtnTemplate_Click"/>
+               <RibbonButton
+                        Margin="0,15,0,0"
+                        x:Name="btnAdmin" 
+                        LargeImageSource="Images\admin.png" 
+                        Label="{Binding Source={x:Static p:Resources.management}}" 
+                        KeyTip="F5" 
+                        ToolTipTitle ="{Binding Source={x:Static p:Resources.management_hint}}"
+                        ToolTipDescription="{Binding Source={x:Static p:Resources.management_description}}"
+                        Click="BtnAdmin_Click"/>
+            </RibbonGroup>
+         </RibbonTab>
+      </Ribbon>
+
+      <Grid Grid.Row="1">
+
+         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="170"/>
+            <ColumnDefinition Width="*"/>
+         </Grid.ColumnDefinitions>
+
+         <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+               <RowDefinition Height="Auto"/>
+               <RowDefinition Height="Auto"/>
+               <RowDefinition/>
+               <RowDefinition Height="200"/>
+            </Grid.RowDefinitions>
+
+            <Grid  Grid.Row="0">
+               <Calendar x:Name ="calendar" 
+                        VerticalAlignment="Top" 
+                        SelectedDatesChanged="Calendar_SelectedDatesChanged" />
+            </Grid>
+
+            <TextBlock 
+               Grid.Row="1" Grid.Column="1"  
+               FontWeight="Bold"
+               Text="{Binding Source={x:Static p:Resources.all}}" 
+               VerticalAlignment="Center" 
+               TextDecorations="Underline" 
+               Foreground="Blue" 
+               MouseUp="ResetAgentSelection"
+               Padding="10,0,0,0"
+               Cursor="Hand"/>
+
+            <local:ListView x:Name="list" Grid.Row="2" Margin="10,0,0,0"/>
+            <local:BandProgres x:Name="progress"  Grid.Row="3"/>
+         </Grid>
+
+         <local:TimeLine x:Name="timeLine" Grid.Column="1" HourRowHeight="30"/>
+      </Grid>
+   </Grid>
+</RibbonWindow>

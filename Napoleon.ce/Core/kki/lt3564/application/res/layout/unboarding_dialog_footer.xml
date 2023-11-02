@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/unbord_diag_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_size_about"
+        android:padding="@dimen/univ_padding"
+        android:layout_margin="@dimen/univ_padding"
+        android:background="@drawable/unboarding_container"
+        android:layout_gravity="right|center_vertical"
+        android:text="@string/unboarding_addtasks"
+        android:textColor="@color/navigator_calendar_text_color"/>
+
+    <!--
+    <Button
+        android:id="@+id/unbord_diag_button"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:visibility="gone"
+        android:background="@drawable/selector_bg_btn_account"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_about"
+        android:layout_gravity="center"
+        android:textAllCaps="false"
+        android:layout_below="@+id/unbord_diag_text"
+        android:layout_marginBottom="@dimen/univ_padding_small"
+        android:layout_marginTop="@dimen/univ_padding_small"
+        android:layout_centerHorizontal="true"/>
+
+        -->
+</RelativeLayout>

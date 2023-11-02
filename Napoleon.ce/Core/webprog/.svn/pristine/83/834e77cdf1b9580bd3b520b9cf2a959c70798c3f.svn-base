@@ -1,0 +1,116 @@
+{
+  "_from": "vue-i18n@^9.3.0-beta.6",
+  "_id": "vue-i18n@9.3.0-beta.14-77e850b",
+  "_inBundle": false,
+  "_integrity": "sha512-Zjkzm7ZYhLfssuwSgJI9jq1agex7kPl7gEI18pw23+eWUisqy3q20lPP2xDFLmzhUYb3AoaDifj5z4U6+cvhHA==",
+  "_location": "/vue-i18n",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "range",
+    "registry": true,
+    "raw": "vue-i18n@^9.3.0-beta.6",
+    "name": "vue-i18n",
+    "escapedName": "vue-i18n",
+    "rawSpec": "^9.3.0-beta.6",
+    "saveSpec": null,
+    "fetchSpec": "^9.3.0-beta.6"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/vue-i18n/-/vue-i18n-9.3.0-beta.14-77e850b.tgz",
+  "_shasum": "2c981dcfc72bdd3fdd648598bdfa12fe21608861",
+  "_spec": "vue-i18n@^9.3.0-beta.6",
+  "_where": "/home/devteam/prog/webfront",
+  "author": {
+    "name": "kazuya kawaguchi",
+    "email": "kawakazu80@gmail.com"
+  },
+  "bugs": {
+    "url": "https://github.com/intlify/vue-i18n-next/issues"
+  },
+  "buildOptions": {
+    "name": "VueI18n",
+    "formats": [
+      "mjs",
+      "mjs-runtime",
+      "browser",
+      "browser-runtime",
+      "cjs",
+      "global",
+      "global-runtime"
+    ]
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "@intlify/core-base": "9.3.0-beta.14-77e850b",
+    "@intlify/shared": "9.3.0-beta.14-77e850b",
+    "@intlify/vue-devtools": "9.3.0-beta.14-77e850b",
+    "@vue/devtools-api": "^6.2.1"
+  },
+  "deprecated": false,
+  "description": "Internationalization plugin for Vue.js",
+  "devDependencies": {
+    "@intlify/devtools-if": "9.3.0-beta.14-77e850b"
+  },
+  "engines": {
+    "node": ">= 14"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/vue-i18n.d.ts",
+      "import": "./dist/vue-i18n.mjs",
+      "browser": "./dist/vue-i18n.esm-browser.js",
+      "node": {
+        "import": {
+          "production": "./dist/vue-i18n.node.mjs",
+          "development": "./dist/vue-i18n.mjs",
+          "default": "./dist/vue-i18n.mjs"
+        },
+        "require": {
+          "production": "./dist/vue-i18n.prod.cjs",
+          "development": "./dist/vue-i18n.cjs",
+          "default": "./index.js"
+        }
+      }
+    },
+    "./dist/*": "./dist/*",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "index.js",
+    "dist",
+    "vetur"
+  ],
+  "funding": "https://github.com/sponsors/kazupon",
+  "homepage": "https://github.com/intlify/vue-i18n-next/tree/master/packages/vue-i18n#readme",
+  "jsdelivr": "dist/vue-i18n.global.js",
+  "keywords": [
+    "i18n",
+    "internationalization",
+    "intlify",
+    "plugin",
+    "vue",
+    "vue.js"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "module": "dist/vue-i18n.mjs",
+  "name": "vue-i18n",
+  "peerDependencies": {
+    "vue": "^3.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/intlify/vue-i18n-next.git",
+    "directory": "packages/vue-i18n"
+  },
+  "sideEffects": false,
+  "types": "dist/vue-i18n.d.ts",
+  "unpkg": "dist/vue-i18n.global.js",
+  "version": "9.3.0-beta.14-77e850b",
+  "vetur": {
+    "tags": "vetur/tags.json",
+    "attributes": "vetur/attributes.json"
+  }
+}

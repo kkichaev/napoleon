@@ -1,0 +1,9 @@
+apply plugin: 'java'
+sourceCompatibility = JavaVersion.VERSION_1_6   //these two lines
+targetCompatibility = JavaVersion.VERSION_1_6   //are the only ones that matter
+sourceSets {
+    main.java.srcDirs = ['src']
+    main.resources.srcDirs = ['src']
+    test.java.srcDirs = ['tests/java']
+    test.resources.srcDirs = ['tests/resources']
+}

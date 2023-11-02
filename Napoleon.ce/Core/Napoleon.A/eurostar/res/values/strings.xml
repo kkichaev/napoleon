@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="send_bill">Отправить счёт</string>
+    <string name="wait_for_print_form">Формирование печатного документа&#x2026;</string>
+    <string name="send_email">Отправить на почту&#x2026;</string>
+    <string name="balance">Баланс</string>
+    <string name="offer_range_from">Период действия с:</string>
+    <string name="offer_range_to">по:</string>
+    <string name="items_from_folder_was_added">Были добавлены товары из папки \"%s\"</string>
+    <string name="delivery_type">Доставка</string>
+    
+    <string-array name="delivery_types" >
+        <item>Не выбран</item>
+        <item>Самовывоз</item>
+        <item>До Клиента</item>
+        <item>Силами перевозчика</item>
+    </string-array>
+    
+    <string name="delivery_address">Адрес доставки</string>
+    <string name="delivery_time_wishes">Желаемое время доставки</string>
+    <string name="from">с</string>
+    <string name="to">по</string>
+    <string name="carrier">Перевозчик</string>
+    <string name="carrier_get_item">Перевозчик забирает товар</string>
+    <string name="from_warehouse">С нашего склада</string>
+    <string name="by_address">По адресу</string>
+    <string name="zone_delivery">Зона доставки </string>
+    <string name="zone_delivery_dest">Зона доставки до перевозчика</string>
+    <string name="delivery_address_dest">Адрес доставки до получателя</string>
+    <string name="addition_delivery_info">Дополнительная информация по доставке</string>
+    <string name="delivery_address_to_carrier">Адрес доставки до перевозчика</string>
+    <string name="should_post_neccessary_fields">Необходимо заполнить обязательные поля</string>
+    <string name="firms">Компания</string>
+    <string name="paytime">График оплаты</string>
+    <string name="number_doc">Номер документа</string>
+    <string name="sklad">Склад</string>
+    <string name="kassa">Касса</string>
+    <string name="sklad_src">Склад\nотправитель</string>
+    <string name="sklad_dest">Склад\nполучатель</string>
+    <string name="cash_report">Остатки по кассам</string>
+    <string name="agreement">Соглашение</string>
+    <string name="bill_mail_theme">Счет от ООО “Евростар-Агро для %s</string>
+    <string name="pack_lbl">уп.</string>
+    <string name="statuses">Статусы</string>
+    <string name="podpor_tovara">Подбор товара</string>
+    <string name="select_carrier">Выберите перевозчика</string>
+    <string name="offer_mail_theme">Коммерческое предложение от ООО “Евростар-Агро для %s</string>
+    <string name="offer_dialog_title">Выберите действие</string>
+</resources>

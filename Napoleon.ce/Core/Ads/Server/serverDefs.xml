@@ -1,0 +1,477 @@
+﻿<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+   <objects>
+      <object name="Profession">
+         <sources>
+            <source name="SQTable" type="internal" />
+         </sources>
+         <member name="primaryKey">"id"</member>
+         <field name="id" type="string" />
+         <field name="name" type="string" />
+      </object>
+
+      <object name="Stuff">
+         <sources>
+            <source name="SQTable" type="internal" />
+         </sources>
+         <member name="primaryKey">"id"</member>
+         <field name="id" type="number" />
+         <field name="firstname" type="string" />
+         <field name="lastname"  type="string" />
+         <field name="middlename" type="string" />
+         <field name="address" type="string" />
+         <field name="phone" type="string" />
+         <field name="profession" type="string" />
+         <field name="rank" type="number" />
+      </object>
+
+      <object name="Agents">
+         <sources>
+            <source name="SQTable" type="internal" />
+         </sources>
+
+         <member name="primaryKey">"id"</member>
+
+         <field name="id" type="string" />
+         <field name="name" type="string" width="50" />
+         <field name="login" type="string" width="30" />
+         <field name="password" type="string" width="30" />
+         <field name="jobtype" type="number" />
+         <field name="prefix" type="string" />
+         
+         <field name="region" type="collection">
+            <data>
+               <object name="AgentDistrict">
+                  <sources>
+                     <source name="SQTable" type="internal" />
+                  </sources>
+                  <field name="id" type="string" />
+               </object>
+            </data>
+         </field>
+         
+         <field name="stuff" type="collection">
+            <data>
+               <object name="AgentStuff">
+                  <sources>
+                     <source name="SQTable" type="internal" />
+                  </sources>
+                  <field name="id" type="number" />
+               </object>
+            </data>
+         </field>
+
+         <field name="address" type="collection">
+            <data>
+               <object name="AgentAddress">
+                  <sources>
+                     <source name="SQTable" type="internal" />
+                  </sources>
+                  <field name="address" type="string" />
+                  <field name="longitude" type="number" prec="5" />
+                  <field name="latitude" type="number" prec="5" />
+               </object>
+            </data>
+         </field>
+      </object>
+
+      <object name="Division">
+         <sources>
+            <source name="SQTable" type="internal" />
+         </sources>
+
+         <member name="primaryKey">"id"</member>
+
+         <field name="id" type="number" />
+         <field name="name" type="string" />
+         <field name="description" type="string" />
+         <field name="cheif" type="string" />
+         <field name="agents" type="collection">
+            <data>
+               <object name="DivisionAgents">
+                  <sources>
+                     <source name="SQTable" type="internal" />
+                  </sources>
+                  <field name="id" type="string" />
+               </object>
+            </data>
+         </field>
+         <field name="parent" type="number" />
+      </object>
+
+      <object name="DivisionManager">
+         <sources>
+            <source name="SQTable" type="internal" />
+         </sources>
+
+         <member name="primaryKey">"login"</member>
+
+         <field name="division" type="number" />
+         <field name="login" type="string" />
+         <field name="password" type="string" />
+      </object>
+
+      <object name="District">
+         <sources>
+            <source name="SQTable" type="internal" />
+         </sources>
+         
+         <member name="primaryKey">"id"</member>
+         
+         <field name="id" type="string" />
+         <field name="name" type="string" />
+      </object>
+
+      <object name="Client">
+         <sources>
+            <source name="SQTable" type="internal" />
+         </sources>
+
+         <member name="primaryKey">"id"</member>
+         <field name="id" type="string" />
+         <field name="name" type="string" />
+         <field name="address" type="string" />
+         <field name="contacts" type="collection">
+            <data>
+               <object name="ClientContacts">
+                  <sources>
+                     <source name="SQTable" type="internal" />
+                  </sources>
+                  <field name="name" type="string" />
+                  <field name="phone" type="string" />
+               </object>
+            </data>
+         </field>
+      </object>
+
+      <object name="GPSPos">
+         <sources>
+            <!--
+            <source name="DBFTable">
+               <param name="tableName">"GPS" + $user.id</param>
+            </source>
+            -->
+            <source name="SQTable" type="internal" />
+         </sources>
+
+         <member name="primaryKey">"userid,date"</member>
+
+         <field name="userid" type="string" data="USER_ID" execOn="Put">$user.id</field>
+         <field name="date" type="timestamp" />
+         <field name="longitude" type="number" prec="5" />
+         <field name="latitude" type="number" prec="5" />
+         <field name="speed" type="number" prec="2" />
+         <field name="isGSM" type="number" />
+      </object>
+
+      <object name="UserLog">
+         <sources>
+            <source name="SQTable" type="internal" />
+         </sources>
+
+         <member name="primaryKey">"userid,date"</member>
+
+         <field name="userid" type="string" execOn="Put">$user.id</field>
+         <field name="date" type="timestamp" />
+         <field name="objType" type="string" />
+         <field name="objDate" type="timestamp" />
+         <field name="category" type="number" />
+         <field name="action" type="number" />
+         <field name="comments" type="string" />
+      </object>
+
+      <object name="Order">
+         <sources>
+            <source name="SQTable" type="internal">
+               <param name="readFilter">"userid = '" + $user.id + "' and params = 0"</param>
+            </source>
+         </sources>
+
+         <member name="primaryKey">"created"</member>
+         <field name="number" type="string" />
+         <field name="userid" type="string" />
+         <field name="created" type="timestamp" />
+         <field name="planbegin" type="timestamp" />
+         <field name="planend" type="timestamp" />
+         <field name="text" type="string" />
+         <field name="client" type="string" />
+         <field name="address" type="string" />
+         <field name="factbegin" type="timestamp" />
+         <field name="factend" type="timestamp" />
+         <field name="remark" type="string" />
+         <field name="params" type="number" />
+         <field name="latitude" type="number" prec="5" />
+         <field name="longitude" type="number" prec="5" />
+         <field name="sended" type="timestamp" data="S_DATE" execOn="Put">Now()</field>
+
+         <field name="items" type="collection">
+            <data>
+               <object name="OrderItem">
+                  <sources>
+                     <source name="SQTable" type="internal" />
+                  </sources>
+
+                  <field name="priceid" type="string"/>
+                  <field name="qty" type="number" prec="3" />
+               </object>
+            </data>
+         </field>
+         
+         <field name="cause" type="string" />
+         
+         <field name="wtypes" type="collection">
+            <data>
+               <object name="OrderWorkType">
+                  <sources>
+                     <source name="SQTable" type="internal" />
+                  </sources>
+                  <field name="id" type="string"/>
+               </object>
+            </data>
+         </field>
+      </object>
+
+      <object name="OrderDel">
+         <sources>
+            <source name="SQTable" type="internal">
+               <param name="readFilter">"userid = '" + $user.id + "' and params = 0"</param>
+            </source>
+         </sources>
+         
+         <member name="primaryKey">"created"</member>
+         <field name="created" type="timestamp" />
+         <field name="params" type="number" />
+         <field name="userid" type="string" />
+         
+         <events>
+            <event type="get">
+               <action name="OrderDelSended" />
+            </event>
+         </events>
+
+      </object>
+
+      <object name="Kladr">
+         <sources>
+            <source name="SQTable" type="internal">
+            </source>
+         </sources>
+
+         <member name="primaryKey">"code"</member>
+         <field name="code" type="string" />
+         <field name="name" type="string" />
+         <field name="socr" type="string" />
+      </object>
+
+      <object name="Street">
+         <sources>
+            <source name="SQTable" type="internal">
+            </source>
+         </sources>
+
+         <member name="primaryKey">"code"</member>
+         <field name="code" type="string" />
+         <field name="name" type="string" />
+         <field name="socr" type="string" />
+      </object>
+
+      <object name="UserOrder">
+         <sources>
+            <source name="SQTable" type="internal">
+            </source>
+         </sources>
+
+         <member name="primaryKey">"userid,created"</member>
+         <field name="number" type="string" />
+         <field name="userid" type="string" execOn="Put">$user.id</field>
+         <field name="created" type="timestamp" />
+         <field name="date" type="timestamp" />
+         <field name="remark" type="string" />
+         <field name="items" type="collection">
+            <data>
+               <object name="OrderItem">
+                  <sources>
+                     <source name="SQTable" type="internal" />
+                  </sources>
+
+                  <field name="priceid" type="string"/>
+                  <field name="qty" type="number" prec="3" />
+               </object>
+            </data>
+         </field>
+         <field name="city" type="string" />
+		   <field name="street" type="string" />
+		   <field name="house" type="string" />
+		   <field name="flat" type="string" />
+         <!--0-не прочитана, 1-помечена как прочитанная-->
+         <field name="unread" type="number" /> 
+         <field name="sended" type="timestamp" data="S_DATE" execOn="Put">Now()</field>  
+      </object>
+
+      <object name="Folders">
+         <sources>
+            <source name="SQTable" type="internal">
+            </source>
+         </sources>
+
+         <member name="primaryKey">"id"</member>
+         <field name="id" type="string" />
+         <field name="parent" type="string" />
+         <field name="type" type="number" />
+         <field name="name" type="string" />
+      </object>
+
+      <object name="Warehouse">
+         <sources>
+            <source name="SQTable" type="internal">
+            </source>
+         </sources>
+
+         <member name="primaryKey">"id"</member>
+         <field name="id" type="string" />
+         <field name="folder" type="string" />
+         <field name="name" type="string" />
+         <field name="cost" type="number" prec="2" />
+         <field name="qty" type="number" prec="3" />
+      </object>
+
+      <object name="MessageArchive">
+         <sources>
+            <source name="SQTable" type="internal" />
+         </sources>
+         <field name="userid" type="string" />
+         <field name="date" type="timestamp" />
+         <field name="message" type="string" />
+      </object>
+
+      <object name="Message" removeOnCommit="true" sendAlways="true">
+         <sources>
+            <source name="MessageTable">
+               <param name="fileName">$user.id + ".TXT"</param>
+            </source>
+         </sources>
+
+         <!--имена полей "зашиты" в функцию-->
+         <field name="date" type="timestamp" />
+         <field name="message" type="string" />
+
+         <events>
+            <event type="put">
+               <action name="ArchiveMessage">$object.message</action>
+            </event>
+         </events>
+      </object>
+
+      <object name="WorkDay">
+         <sources>
+            <source name="SQTable" type="internal" />
+         </sources>
+         <member name="primaryKey">"userid,date"</member>
+         <field name="userid" type="string" execOn="Put">$user.id</field>
+         <field name="date" type="timestamp" />
+         <field name="begin" type="timestamp" />
+         <field name="end" type="timestamp" />
+         <field name="distance" type="number" />
+      </object>
+
+      <object name="JobType">
+         <sources>
+            <source name="SQTable" type="internal" />
+         </sources>
+
+         <member name="primaryKey">"id"</member>
+         <field name="id" type="number" />
+         <field name="name" type="string" />
+         <field name="color" type="number" />
+      </object>
+
+	  <object name="Config">
+         <sources>
+            <source name="KeyValueTable">
+               <param name="fileName">"order.cfg"</param>
+            </source>
+         </sources>
+
+         <field name="key" type="string" />
+         <field name="value" type="string" />
+      </object>
+      
+      <object name="ServerConfig">
+         <sources>
+            <source name="SQTable" type="internal" >
+               <param name="readFilter">"userid is null or userid ='' or userid = '" + $user.id + "'"</param>
+            </source>
+         </sources>
+
+         <member name="primaryKey">"userid,key"</member>
+
+         <field name="userid" type="string" />
+         <field name="key" type="string" />
+         <field name="value" type="string" />
+      </object>
+
+      <object name="Schedule">
+         <sources>
+            <source name="SQTable" type="internal"/>
+         </sources>
+
+         <member name="primaryKey">"brigade,date"</member>
+         <field name="brigade" type="string" />
+         <field name="date" type="timestamp" />
+         <!-- Возможные коды статуса 0: работает, 1: в резерве, 2: нективна-->
+         <field name="status" type="number" />
+         <field name="districts" type="collection">
+            <data>
+               <object name="ScheduleDistrict">
+                  <sources>
+                     <source name="SQTable" type="internal" />
+                  </sources>
+                  <field name="district" type="string" />
+               </object>
+            </data>
+         </field>
+         <field name="address" type="string"/>
+         <field name="longitude" type="number" prec="5" />
+         <field name="latitude" type="number" prec="5" />
+      </object>
+      
+      <object name="WorkType">
+         <sources>
+            <source name="SQTable" type="internal" />
+         </sources>
+         <member name="primaryKey">"id"</member>
+         <field name="id" type="string" />
+         <field name="name" type="string" />
+      </object>
+
+      <modify dest="PDAOrder" src="Order" >
+      </modify>
+
+      <modify dest="PerformOrder" src="Order" >
+         <remove>
+            <field name="factbegin" />
+            <field name="factend" />
+            <field name="sended" />
+         </remove>
+      </modify>
+   </objects>
+   
+   
+   <actions>
+      <action name="OrderDelSended">
+         <do>
+            <put object="$source" sourceType="internal">$object.params = 1</put>
+         </do>
+      </action>
+
+      <action name="ArchiveMessage">
+         <params>
+            <param name="message" />
+         </params>
+         <do>
+            <put object="MessageArchive" sourceType="internal">$object.userid=$user.id;$object.date=Now();$object.message=message</put>
+         </do>
+      </action>
+
+   </actions>
+</serverDefs>

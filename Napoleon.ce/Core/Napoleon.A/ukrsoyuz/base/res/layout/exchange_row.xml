@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/list_selector" >
+
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:ellipsize="end"
+        android:lines="1"
+        android:paddingLeft="3dp"
+        android:scrollHorizontally="true"
+        android:text="tvName"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        tools:ignore="HardcodedText" >
+    </TextView>
+
+    <TextView
+        android:id="@+id/tvDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="right|center_vertical"
+        android:paddingLeft="3dp"
+        android:paddingRight="10dp"
+        android:text="tvDate"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:width="90sp"
+        tools:ignore="HardcodedText" >
+
+    </TextView>
+    
+    <TextView
+        android:id="@+id/tvQty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="right|center_vertical"
+        android:paddingLeft="3dp"
+        android:paddingRight="10dp"
+        android:text="tvQty"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:width="70sp"
+        tools:ignore="HardcodedText" >
+
+    </TextView>
+
+</LinearLayout>

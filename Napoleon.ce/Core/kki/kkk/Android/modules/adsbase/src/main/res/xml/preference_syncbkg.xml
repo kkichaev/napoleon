@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+    <ListPreference 
+        android:key="syncbkgstep"
+        android:title="@string/syncbkgperiod"
+        android:entries="@array/syncbkg_step"
+        android:entryValues="@array/syncbkg_step"
+        android:defaultValue="5"/>
+</PreferenceScreen>

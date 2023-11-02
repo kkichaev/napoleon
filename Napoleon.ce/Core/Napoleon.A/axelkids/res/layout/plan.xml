@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" 
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/plan_col1"
+            android:textColor="@color/black" 
+            android:layout_weight="0.6"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:text="@string/plan_col2" 
+            android:textColor="@color/black"
+            android:layout_weight="0.2"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_horizontal"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:text="@string/plan_col3"
+            android:textColor="@color/black"
+            android:layout_weight="0.2" 
+            android:layout_gravity="center_vertical"
+            android:gravity="center_horizontal"
+            android:textSize="18sp"/>
+
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+    </ListView>
+
+</LinearLayout>

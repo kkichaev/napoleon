@@ -1,0 +1,267 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+  <objects>
+    <object name="All_POD">
+      <sources>
+        <source name="DBFMaskReader">
+          <param name="tableName">"POD*"</param>
+        </source>
+      </sources>
+
+      <field name="created" type="timestamp" />
+      <field name="type" type="string" />
+    </object>
+    
+    <object name="ArchiveReturnNumbers">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"userid,created"</member>
+
+      <field name="userid" type="string" />
+      <field name="created" type="timestamp" />
+      <field name="number" type="string" />
+    </object>
+
+    <modify src="Org">
+      <add>
+        <field name="priceType" type="string" width="20" data="PRCTYPE" />
+      </add>
+    </modify>
+
+    <modify src="Returns$items">
+      <add>
+        <field name="uid" type="string" data="" />
+        <field name="cause" type="string" />
+        <field name="items" type="collection">
+          <data>
+            <object name="ReturnDlv">
+              <sources>
+                <source name="DBFCatalogItemTable"/>
+                <source name="SQTable" type="internal" />
+              </sources>
+
+              <field name="number" width="40" type="string" data="NUM_I"/>
+              <field name="date" type="date" data="DATE_I"/>
+              <field name="qty" type="number" prec="3" data="QTY_I"/>
+              <field name="cost" type="number" prec="2" data="COST_I"/>
+              <field name="docflag" width="1" type="number" execOn="Put">FirstItem($object)</field>
+            </object>
+          </data>
+        </field>
+        <member name="primaryKey">"uid"</member>
+      </add>
+    </modify>
+    <modify src="Returns">
+      <add>
+        <field name="retNumber" type="string" width="30" />
+        <event type="writeCommit">
+          <action name="CommitReturn" />
+        </event>
+      </add>
+    </modify>
+    <modify src="Order">
+      <add>
+        <field name="priceType" type="string" width="20" data="PRCTYPE" />
+        <field name="remark" type="string" width="200" />
+        <field name="inKG" type="number" width="1" />
+        <field name="outFocusGroup" type="number" width="1" data="OFG" />
+        <field name="openClient" type="number" width="1" data="OP_CLI" />
+        <field name="textClient" type="string" width="200" data="OP_REM" />
+      </add>
+      <remove>
+        <field name="prcType" />
+      </remove>
+    </modify>
+
+    <!--<modify src="Returns$items">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+      <add>
+        <field name="uid" type="string" data="" />
+        <field name="cause" type="string" />
+        <field name="items" type="collection">
+          <data>
+            <object name="ReturnDlv">
+              <sources>
+                <source name="DBFCatalogItemTable"/>
+                <source name="SQTable" type="internal" />
+              </sources>
+
+              <field name="number" width="40" type="string" data="NUM_I"/>
+              <field name="date" type="date" data="DATE_I"/>
+              <field name="qty" type="number" prec="3" data="QTY_I"/>
+              <field name="cost" type="number" prec="2" data="COST_I"/>
+              <field name="docflag" width="1" type="number" execOn="Put">FirstItem($object)</field>
+            </object>
+          </data>
+        </field>
+        <member name="primaryKey">"uid"</member>
+      </add>
+    </modify>
+    <modify src="Returns">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+      <add>
+        <field name="retNumber" type="string" width="30" />
+      </add>
+    </modify>
+    <modify src="Returns" dest="DBFReturns">
+      <change>
+        <sources>
+          <source name="DBFCatalogTable">
+            <param name="tableName">"VZT" + $user.id</param>
+            <param name="catalog">"id"</param>
+            <param name="ordered">1</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+    <modify src="DBFReturns$items">
+      <change>
+        <sources>
+          <source name="DBFCatalogItemTable"/>
+        </sources>
+      </change>
+    </modify>
+    <modify src="DBFReturns$items$items">
+      <change>
+        <sources>
+          <source name="DBFCatalogItemTable"/>
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="Order">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+      <add>
+        <field name="priceType" type="string" width="20" data="PRCTYPE" />
+        <field name="remark" type="string" width="200" />
+        <field name="inKG" type="number" width="1" />
+        <field name="outFocusGroup" type="number" width="1" data="OFG" />
+      </add>
+      <remove>
+        <field name="prcType" />
+      </remove>
+    </modify>
+    <modify src="Order" dest="DBFOrder">
+      <change>
+        <sources>
+          <source name="DBFCatalogTable">
+            <param name="tableName">"ORD" + $user.id</param>
+            <param name="catalog">"id"</param>
+            <param name="ordered">1</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+    <modify src="Order$items">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+    </modify>
+    <modify src="DBFOrder$items">
+      <change>
+        <sources>
+          <sources>
+            <source name="DBFCatalogItemTable"/>
+          </sources>
+        </sources>
+      </change>
+    </modify>
+    <modify src="Incass">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+    </modify>
+    <modify src="Incass" dest="DBFIncass">
+      <change>
+        <sources>
+          <source name="DBFCatalogTable">
+            <param name="tableName">"Incass" + $user.id</param>
+            <param name="catalog">"id"</param>
+            <param name="ordered">1</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+    -->
+    
+    <modify src="OrderProceeded">
+      <add>
+        <field name="status" type="number" />
+      </add>
+    </modify>
+
+    <modify src="Visit">
+      <change>
+        <sources>
+          <source name="DBFCatalogTable">
+            <param name="tableName">"VIZ" + $user.id</param>
+            <param name="catalog">"id"</param>
+            <param name="ordered">1</param>
+          </source>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+
+      <add>
+        <field name="script" type="string" width="50" />
+        <event type="put">
+          <action name="WriteInternal">$object.type</action>
+          <action name="WriteToLog">$object.type;$object.date</action>
+        </event>
+      </add>
+    </modify>
+
+    <modify src="Visit$items">
+      <change>
+        <sources>
+          <source name="DBFCatalogItemTable"/>
+          <source name="SQTable" type="internal" />
+        </sources>
+        <field name="date" type="timestamp" data="DATE_I" />
+        <field name="ordflag" width="1" type="number" execOn="Put">FirstItem($object)</field>
+      </change>
+    </modify>
+    <modify src="Price">
+      <add>
+        <field name="cantdiv" type="number" />
+        <field name="ordflt" type="number" />
+      </add>
+    </modify>
+    <modify src="OrderProceeded">
+      <add>
+        <field name="status" type="number" />
+      </add>
+    </modify>
+    <modify src="Order$items">
+      <add>
+        <field name="decl" type="number" />
+      </add>
+    </modify>
+  </objects>
+
+  <actions>
+    <action name="CommitReturn">
+      <do>
+        <runReport name="return_handler" />
+      </do>
+    </action>
+  </actions>
+</serverDefs>

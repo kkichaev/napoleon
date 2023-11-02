@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding="utf-8"?>
+<Wix xmlns='http://schemas.microsoft.com/wix/2006/wi'>
+  <Fragment Id='Folders'>
+    <Directory Id='TARGETDIR' Name='SourceDir'>
+      <Directory Id='ProgramFilesFolder' Name='PFiles'>
+        <Directory Id='GRSoft' Name='GRSoft'>
+          <Directory Id='_PRODUCT' Name='АДС Наполеон' >
+            <Directory Id='Update' Name='Update' />
+          </Directory>
+        </Directory>
+      </Directory>
+
+      <Directory Id="ProgramMenuFolder" Name="Programs">
+        <Directory Id="ProgramMenuDir" Name="АДС Наполеон">
+          <Component Id='ProgramMenuDir' Guid='6A926394-15E9-4eaf-9850-1B0C9E176EA6'>
+            <RemoveFolder Id='ProgramMenuDir' On='uninstall' />
+            <RegistryValue Root="HKMU" Key="Software\[Manufacturer]\[ProductName]" Type="string" Value="" KeyPath="yes" />
+          </Component>
+          <Directory Id="Docs" Name="Документация">
+            <Component Id='Docs' Guid='6198B561-CE8E-457e-93C8-ABAA7AA02383'>
+              <RemoveFolder Id='Docs' On='uninstall' />
+              <RegistryValue Root="HKCU" Key="Software\[Manufacturer]\[ProductName]" Type="string" Value="Docs" KeyPath="yes" />
+               <File Id='GRSOFT_URL' Name='Сайт разработчика.URL' DiskId='1' Source='Site_Napoleon.URL'  />
+               <File Id='KB_URL' Name='База знаний.URL' DiskId='1' Source='KB.URL' />
+            </Component>
+          </Directory>
+        </Directory>
+        <Directory Id='StartupFolder' Name='Start' />
+      </Directory>
+    </Directory>
+
+    <ComponentGroup Id='Docs'>
+      <ComponentRef Id='ProgramMenuDir'/>
+      <ComponentRef Id='Docs'/>
+    </ComponentGroup>
+  </Fragment>
+</Wix>

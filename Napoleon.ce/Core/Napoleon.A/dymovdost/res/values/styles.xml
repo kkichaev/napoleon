@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+    <style name="TitleRow" parent="@android:style/TextAppearance">
+        <item name="android:textSize">@dimen/bigTextSz</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    
+    <style name="TextRow" parent="@android:style/TextAppearance">
+        <item name="android:textSize">@dimen/normalTextSz</item>
+    </style>
+    
+    <style name="RowContainer">
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">10dp</item>
+    </style>
+</resources>

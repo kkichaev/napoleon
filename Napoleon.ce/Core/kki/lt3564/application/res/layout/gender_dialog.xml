@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/iv_img_container"
+                android:layout_width="@dimen/univ_ab_height"
+                android:layout_height="@dimen/univ_ab_height">
+
+                <ImageView
+                    android:id="@+id/image_view1"
+                    style="@style/mainSelectableItemBackground"
+                    android:layout_width="@dimen/univ_ab_height"
+                    android:layout_height="@dimen/univ_ab_height"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:src="@drawable/c_men"
+                    android:padding="@dimen/univ_padding" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                style="@style/mainSelectableItemBackground"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/univ_ab_height"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_toLeftOf="@+id/image_view"
+                android:layout_weight="1"
+                android:drawablePadding="@dimen/univ_padding_small"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:padding="@dimen/univ_padding_small"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/text_view1"
+                    style="@style/mainSelectableItemBackground"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/univ_ab_height"
+                    android:ellipsize="end"
+                    android:gravity="center_vertical"
+                    android:text="@string/gender_men"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/text_size_normalSP"
+                    android:singleLine="true" />
+
+            </LinearLayout>
+
+            <RadioButton
+                android:layout_width="@dimen/univ_ab_height"
+                android:layout_height="@dimen/univ_ab_height"
+                android:id="@+id/checkBox1"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true" />
+
+        </LinearLayout>
+
+        <View
+            style="@style/dividerSmall"
+            android:layout_margin="5dp"/>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/iv_img_container"
+                android:layout_width="@dimen/univ_ab_height"
+                android:layout_height="@dimen/univ_ab_height">
+
+                <ImageView
+                    android:id="@+id/image_view2"
+                    style="@style/mainSelectableItemBackground"
+                    android:layout_width="@dimen/univ_ab_height"
+                    android:layout_height="@dimen/univ_ab_height"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:src="@drawable/c_women"
+                    android:padding="@dimen/univ_padding" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                style="@style/mainSelectableItemBackground"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/univ_ab_height"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_toLeftOf="@+id/image_view"
+                android:layout_weight="1"
+                android:drawablePadding="@dimen/univ_padding_small"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:padding="@dimen/univ_padding_small"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/text_view2"
+                    style="@style/mainSelectableItemBackground"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/univ_ab_height"
+                    android:ellipsize="end"
+                    android:gravity="center_vertical"
+                    android:text="@string/gender_women"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/text_size_normalSP"
+                    android:singleLine="true" />
+
+            </LinearLayout>
+
+            <RadioButton
+                android:layout_width="@dimen/univ_ab_height"
+                android:layout_height="@dimen/univ_ab_height"
+                android:id="@+id/checkBox2"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true" />
+
+        </LinearLayout>
+
+        <View
+            style="@style/dividerSmall"
+            android:layout_margin="5dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/iv_img_container"
+                android:layout_width="@dimen/univ_ab_height"
+                android:layout_height="@dimen/univ_ab_height">
+
+                <ImageView
+                    android:id="@+id/image_view3"
+                    style="@style/mainSelectableItemBackground"
+                    android:layout_width="@dimen/univ_ab_height"
+                    android:layout_height="@dimen/univ_ab_height"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:src="@drawable/c_org"
+                    android:padding="@dimen/univ_padding" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                style="@style/mainSelectableItemBackground"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/univ_ab_height"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_toLeftOf="@+id/image_view"
+                android:layout_weight="1"
+                android:drawablePadding="@dimen/univ_padding_small"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:padding="@dimen/univ_padding_small"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/text_view3"
+                    style="@style/mainSelectableItemBackground"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/univ_ab_height"
+                    android:ellipsize="end"
+                    android:gravity="center_vertical"
+                    android:text="@string/gender_org"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/text_size_normalSP"
+                    android:singleLine="true" />
+
+            </LinearLayout>
+
+            <RadioButton
+                android:layout_width="@dimen/univ_ab_height"
+                android:layout_height="@dimen/univ_ab_height"
+                android:id="@+id/checkBox3"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true" />
+
+        </LinearLayout>
+
+        <View
+            style="@style/dividerSmall"
+            android:layout_margin="5dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/iv_img_container"
+                android:layout_width="@dimen/univ_ab_height"
+                android:layout_height="@dimen/univ_ab_height">
+
+                <ImageView
+                    android:id="@+id/image_view4"
+                    style="@style/mainSelectableItemBackground"
+                    android:layout_width="@dimen/univ_ab_height"
+                    android:layout_height="@dimen/univ_ab_height"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:src="@drawable/c_nobody"
+                    android:padding="@dimen/univ_padding" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                style="@style/mainSelectableItemBackground"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/univ_ab_height"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_toLeftOf="@+id/image_view"
+                android:layout_weight="1"
+                android:drawablePadding="@dimen/univ_padding_small"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:padding="@dimen/univ_padding_small"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/text_view4"
+                    style="@style/mainSelectableItemBackground"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/univ_ab_height"
+                    android:ellipsize="end"
+                    android:gravity="center_vertical"
+                    android:text="@string/gender_nobody"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/text_size_normalSP"
+                    android:singleLine="true" />
+
+            </LinearLayout>
+
+            <RadioButton
+                android:layout_width="@dimen/univ_ab_height"
+                android:layout_height="@dimen/univ_ab_height"
+                android:id="@+id/checkBox4"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

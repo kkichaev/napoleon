@@ -1,0 +1,363 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0"
+           targetNamespace="http://grsoft.ru/schemas/serverDefs.xsd"
+           xmlns="http://grsoft.ru/schemas/serverDefs.xsd" elementFormDefault="qualified">
+
+  <xs:element name="serverDefs">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="objects" minOccurs="1" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="common" type="CommonElementType" minOccurs="0" maxOccurs="1" />
+              <xs:element name="object" type="ObjectElementType" minOccurs="0" maxOccurs="unbounded"/>
+              <xs:element name="modify" type="ModifyElementType" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+
+        <xs:element name="feature" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="modify" type="ModifyElementType" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+            <xs:attribute name="expr" type="xs:string" use="required" />
+          </xs:complexType>
+        </xs:element>
+
+        <xs:element name="actions" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="action" type="ActionType" minOccurs="0" maxOccurs="unbounded" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+
+        <xs:element name="events" type="EventListType" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:complexType name="EventListType">
+    <xs:sequence>
+      <xs:element name="event" minOccurs="0" maxOccurs="unbounded" type="EventType" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="EventType">
+    <xs:sequence>
+      <xs:element name="action" minOccurs="1" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:simpleContent>
+            <xs:extension base="xs:string">
+              <xs:attribute name="name" type="xs:string" use="optional"/>
+            </xs:extension>
+          </xs:simpleContent>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+
+    <xs:attribute name="type" use="required" type="EventTypeNames" />
+  </xs:complexType>
+
+  <xs:simpleType name="EventTypeNames">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="login" />
+      <xs:enumeration value="failLogin" />
+      <xs:enumeration value="error" />
+      <xs:enumeration value="warning" />
+      <xs:enumeration value="get" />
+      <xs:enumeration value="put" />
+      <xs:enumeration value="userChange" />
+      <xs:enumeration value="writeCommit" />
+      <xs:enumeration value="beforePut" />
+      <xs:enumeration value="readCommit" />
+      <xs:enumeration value="resolveObjects" />
+      <xs:enumeration value="beforeRead" />
+      <xs:enumeration value="onLoad" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="ActionType">
+    <xs:sequence>
+      <xs:element name="params" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="param" minOccurs="1" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:simpleContent>
+                  <xs:extension base="xs:string">
+                    <xs:attribute name="name"  type="xs:string" use="optional"/>
+                  </xs:extension>
+                </xs:simpleContent>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="do" minOccurs="1" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="put" type="PutAction" maxOccurs="unbounded" minOccurs="0" />
+            <xs:element name="run" type="RunAction" maxOccurs="unbounded" minOccurs="0" />
+            <xs:element name="runReport" type="ReportAction" maxOccurs="unbounded" minOccurs="0" />
+            <xs:element name="execute" type="xs:string" maxOccurs="1" minOccurs="0" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+
+    <xs:attribute name="name" type="xs:string" use="required" />
+  </xs:complexType>
+
+  <xs:complexType name="RunAction">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="object" type="xs:string" use="required"/>
+        <xs:attribute name="startFolder" type="xs:string" use="optional" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="ReportAction">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="name" type="xs:string" use="required"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="PutAction">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="object" type="xs:string" use="required"/>
+        <xs:attribute name="sourceType" type="SourceKind" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="CommonElementType">
+    <xs:annotation>
+      <xs:documentation xml:lang="ru-ru">
+        Общие свойства объектов и полей, если свойство не определено в объявлении объекта, то оно вычисляется из общих свойств.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element name="object">
+        <xs:complexType>
+          <xs:all>
+            <xs:element ref="sources" />
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="field" minOccurs="0">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="data" type="xs:string" />
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+
+
+  <xs:element name="sources">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="source" type="SourceType" maxOccurs="unbounded" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:complexType name="SourceType">
+    <xs:sequence>
+      <xs:element name="param" maxOccurs="unbounded" minOccurs="0">
+        <xs:complexType>
+          <xs:simpleContent>
+            <xs:extension base="xs:string">
+              <xs:attribute name="name"  type="xs:string" use="optional"/>
+            </xs:extension>
+          </xs:simpleContent>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="name" type="xs:string" use="required" />
+    <xs:attribute name="type" type="SourceKind" use="optional" />
+  </xs:complexType>
+
+  <xs:complexType name="ElementReferenceType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="name"  type="xs:string" use="required"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="ObjectElementType">
+    <xs:sequence>
+      <xs:element ref="sources" minOccurs="0"/>
+      <xs:element name="member" type="MemberType" maxOccurs="unbounded" minOccurs="0" />
+      <xs:element name="memberArray" type="MemberType" maxOccurs="unbounded" minOccurs="0" />
+      <xs:element name="field" maxOccurs="unbounded" minOccurs="0" type="FieldElementType" />
+      <xs:element name="events" type="EventListType" minOccurs="0" maxOccurs="1"/>
+    </xs:sequence>
+    <xs:attribute name="name" type="xs:string" use="required" />
+    <xs:attribute name="alias" type="xs:string" use="optional" />
+    <xs:attribute name="removeOnCommit" type="xs:boolean" use="optional" />
+    <xs:attribute name="sendAlways" type="xs:boolean" use="optional" />
+    <xs:attribute name="sendLimit" type="xs:integer" use="optional" />
+    <xs:attribute name="feature" type="xs:string" use="optional" />
+    <xs:attribute name="tableName" type="xs:string" use="optional" />
+    <xs:attribute name="debug" type="xs:boolean" use="optional" />
+  </xs:complexType>
+
+  <xs:complexType name="MemberType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="name" type="xs:string" use="required" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="ModifyElementType">
+    <xs:sequence>
+      <xs:element name="add" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="source" type="SourceType" maxOccurs="unbounded" minOccurs="0" />
+            <xs:element name="member" type="MemberType" maxOccurs="unbounded" minOccurs="0" />
+            <xs:element name="memberArray" type="MemberType" maxOccurs="unbounded" minOccurs="0" />
+            <xs:element name="field" type="FieldElementType" maxOccurs="unbounded" minOccurs="0" />
+            <xs:element name="event" type="EventType" maxOccurs="unbounded" minOccurs="0" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="remove" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="member" type="ElementReferenceType" minOccurs="0" maxOccurs="unbounded" />
+            <xs:element name="field" type="ElementReferenceType" minOccurs="0" maxOccurs="unbounded" />
+            <xs:element name="event" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:simpleContent>
+                  <xs:extension base="xs:string">
+                    <xs:attribute name="type" type="EventTypeNames" use="required"/>
+                  </xs:extension>
+                </xs:simpleContent>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="change" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element ref="sources" minOccurs="0"/>
+            <xs:element name="member" type="MemberType" maxOccurs="unbounded" minOccurs="0" />
+            <xs:element name="field" type="FieldElementType" maxOccurs="unbounded" minOccurs="0" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="src" type="xs:string" use="required" />
+    <xs:attribute name="dest" type="xs:string" use="optional" />
+    <xs:attribute name="table" type="xs:string" use="optional" />
+    <xs:attribute name="sendLimit" type="xs:integer" use="optional" />
+    <xs:attribute name="removeOnCommit" type="xs:boolean" use="optional" />
+    <xs:attribute name="feature" type="xs:string" use="optional" />
+    <xs:attribute name="debug" type="xs:boolean" use="optional" />
+  </xs:complexType>
+
+  <xs:complexType name="FieldElementType" mixed="true">
+    <xs:choice>
+      <xs:element name="data" type="FieldDataType" minOccurs="0"/>
+    </xs:choice>
+
+    <xs:attribute name="name" type="xs:string" use="required" />
+
+    <xs:attribute name="type" type="FieldTypes" use="required" />
+
+    <xs:attribute name="data" type="xs:string" use="optional" />
+
+    <xs:attribute name="width" type="xs:integer" use="optional" />
+    <xs:attribute name="prec" type="xs:integer" use="optional" />
+    <xs:attribute name="format" type="xs:string" use="optional" />
+
+    <xs:attribute name="key" type="KeyAttribute" use="optional" />
+    <xs:attribute name="ref" type="xs:string" use="optional" />
+
+    <xs:attribute name="hidden" type="HiddenType" use="optional" />
+    <xs:attribute name="execOn" type="ExecMode" use="optional" />
+
+    <xs:attribute name="feature" type="xs:string" use="optional" />
+
+    <xs:attribute name="pass" type="xs:integer" use="optional" />
+
+    <xs:attribute name="src" type="xs:string" use="optional" />
+    <xs:attribute name="baseFolder" type="xs:string" use="optional" />
+    <xs:attribute name="flags" type="xs:string" use="optional" />
+  </xs:complexType>
+
+  <xs:element name="dataField" type="xs:string" />
+  <xs:element name="object" type="ObjectElementType" />
+  <xs:complexType name="FieldDataType">
+    <xs:choice>
+      <xs:element ref="dataField" />
+      <xs:element ref="object" />
+    </xs:choice>
+  </xs:complexType>
+
+  <xs:simpleType name="KeyAttribute">
+    <xs:union>
+      <xs:simpleType>
+        <xs:restriction base="xs:boolean" />
+      </xs:simpleType>
+      <xs:simpleType>
+        <xs:restriction base="xs:integer" />
+      </xs:simpleType>
+    </xs:union>
+  </xs:simpleType>
+
+  <xs:simpleType name="HiddenType">
+    <xs:union>
+      <xs:simpleType>
+        <xs:restriction base="xs:boolean" />
+      </xs:simpleType>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:pattern value="put" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:union>
+  </xs:simpleType>
+
+  <xs:simpleType name="ExecMode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Put" />
+      <xs:enumeration value="Get" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="FieldTypes">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="string" />
+      <xs:enumeration value="number" />
+      <xs:enumeration value="date" />
+      <xs:enumeration value="timestamp" />
+      <xs:enumeration value="time" />
+      <xs:enumeration value="collection" />
+      <xs:enumeration value="file" />
+      <xs:enumeration value="binary" />
+      <xs:enumeration value="hex" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="SourceKind">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="internal" />
+      <xs:enumeration value="any" />
+    </xs:restriction>
+  </xs:simpleType>
+
+</xs:schema>

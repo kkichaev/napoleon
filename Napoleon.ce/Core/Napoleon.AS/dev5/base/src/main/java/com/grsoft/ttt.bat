@@ -1,0 +1,1 @@
+sed -e 's/import com.grsoft.napmobile.base.R;/import com.grsoft.aceteam.R;/' %1

@@ -1,0 +1,35 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+   <objects>
+      <object name="Config">
+         <sources>
+            <source name="KeyValueTable">
+               <param name="fileName">"ord" + $user.id + ".cfg"</param>
+            </source>
+         </sources>
+
+         <field name="key" type="string" />
+         <field name="value" type="string" />
+      </object>
+
+      <modify src="Price">
+         <change>
+            <field name="color" type="hex" />
+         </change>
+      </modify>
+      
+      <modify src="Org">
+         <add>
+            <field name="stopMsg" type="string" data="STOP_MSG" />
+            <field name="debtMsg" type="string" data="DEBT_MSG" />
+         </add>
+      </modify>
+
+      <modify src="Order">
+          <change>
+         	<field name="firma" type="string" width="30" execOn="Put" feature="!SALES_MODULE">KeyValueReader("ord" + $user.id + ".cfg","Организация",$object.supplyer)</field>
+         	<field name="ctype" type="string" width="30" execOn="Put">KeyValueReader("ord" + $user.id + ".cfg","ВидЦены",$object.sumType)</field>
+         </change>
+      </modify>
+   </objects>
+</serverDefs>

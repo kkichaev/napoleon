@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:paddingBottom="10dp"
+    android:paddingLeft="3dp"
+    android:paddingRight="3dp"
+    android:paddingTop="10dp" >
+
+    <TableRow
+        android:id="@+id/tableRow1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginRight="10dp"
+            android:text="@string/time_update_gps" 
+            android:textSize="16sp"/>
+
+        <EditText
+            android:id="@+id/edFrec"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:ems="3"
+            android:text="1"
+            tools:ignore="HardcodedText,TextFields" />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginRight="10dp"
+            android:text="@string/lenght_to_change_distance" 
+            android:textSize="16sp"/>
+
+        <EditText
+            android:id="@+id/edDist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:ems="3"
+            android:text="100"
+            tools:ignore="HardcodedText,TextFields" />
+
+    </TableRow>
+
+       <CheckBox
+            android:id="@+id/cbComplexSalesHistory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/complete_story" />
+       
+       <CheckBox
+           android:id="@+id/cbSendDataInBackground"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="@string/background_send" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="10dp"
+            android:text="@string/interval" 
+            android:textSize="16sp"/>
+
+        <Spinner
+            android:id="@+id/spDataSendInterval"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:entries="@array/gps_send_interval" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="10dp"
+            android:text="@string/time_for_wait_gps" 
+            android:textSize="16sp"/>
+
+        <Spinner
+            android:id="@+id/spWaitGPSOnRecieve"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:entries="@array/gps_send_interval" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="10dp"
+            android:text="@string/gps_valid_in_org"
+            android:textSize="16sp" />
+
+        <Spinner
+            android:id="@+id/spGPSValidInOrg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:entries="@array/gps_valid_in_org_entries" />
+</LinearLayout>

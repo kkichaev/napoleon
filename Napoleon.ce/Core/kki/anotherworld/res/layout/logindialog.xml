@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/loginfon" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="280dp"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="40dp"
+        android:background="@drawable/loginfield"
+        android:paddingTop="25dp" >
+
+        <TextView
+            android:id="@+id/tvTitle"
+            style="@style/AppTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:text="@string/app_name" />
+
+        <EditText
+            android:id="@+id/edEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvTitle"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:hint="@string/email"
+            android:inputType="textEmailAddress"
+            android:gravity="center"
+            android:ellipsize="start"
+            android:background="@drawable/logininput"/>
+
+        <EditText
+            android:id="@+id/edPass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/edEmail"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:hint="@string/password"
+            android:inputType="textPassword" 
+            android:gravity="center"
+            android:ellipsize="start"
+            android:background="@drawable/logininput"/>
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/edPass"
+            android:layout_centerHorizontal="true"
+            android:text="@string/enter" 
+            android:layout_marginTop="5dp"
+            android:background="@drawable/login_selector"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:paddingBottom="15dp"
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/btnLogin" 
+            android:layout_centerHorizontal="true">
+
+            <TextView
+                android:id="@+id/tvForgotPassword"
+                style="@style/SmallCaptions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/forgotpassword" />
+
+            <TextView
+                style="@style/SmallCaptions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:text="/"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:id="@+id/tvRegister"
+                style="@style/SmallCaptions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/register" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

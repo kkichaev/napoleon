@@ -1,0 +1,124 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+  <objects>
+    <object name="OrdConfig">
+      <sources>
+        <source name="KeyValueTable">
+          <param name="fileName">"ord"+$user.id+".cfg"</param>
+        </source>
+        <source name="KeyValueTable">
+          <param name="fileName">"order.cfg"</param>
+        </source>
+      </sources>
+
+      <field name="key" type="string" />
+      <field name="value" type="string" />
+    </object>
+
+    <object name="Skalds">
+      <sources>
+        <source name="KeyValueDBFTable">
+          <param name="fileName">"SKLADS"</param>
+          <param name="key">"Склады"</param>
+          <param name="itemName">"NAME"</param>
+          <param name="itemKey">"ID"</param>
+        </source>
+      </sources>
+      <field name="key" type="string" />
+      <field name="value" type="string" />
+    </object>
+
+    <object name="Config">
+      <sources>
+        <source name="ObjectUnion">
+          <param>"OrdConfig"</param>
+          <param>"Skalds"</param>
+        </source>
+      </sources>
+      <field name="key" type="string" />
+      <field name="value" type="string" />
+    </object>
+
+    <object name="ReturnCause">
+      <sources>
+        <source name="DBFTable">
+          <param name="tableName">"RETCS"</param>
+        </source>
+      </sources>
+      <field name="name" type="string"/>
+    </object>
+
+    <modify src="Org">
+      <add>
+        <field name="stop" type="number" hidden="true" />
+        <field name="flags" type="number" execOn="Get">EncodeFlag($object.stop,2)</field>
+      </add>
+    </modify>
+
+    <modify src="Order">
+      <add>
+        <field name="whCode" type="string" width="20" data="ID_WH" />
+        <field name="invoiceType" type="number" width="1" data="INVTYPE" />
+        <field name="wparam" type="number" data="WPAR" />
+      </add>
+    </modify>
+
+    <modify src="Price">
+      <add>
+        <field name="whQty" type="collection">
+          <data>
+            <object name="QtyItem">
+              <sources>
+                <source name="Sequence">
+                  <param name="source">$parent.source</param>
+                </source>
+              </sources>
+              <field name="qty" type="number" prec="3" />
+            </object>
+          </data>
+        </field>
+        <field name="whUnit" type="string" width="20" data="UNIT" />
+      </add>
+    </modify>
+
+    <modify src="Delivery">
+      <add>
+        <field name="payDate" type="date" />
+      </add>
+    </modify>
+
+    <modify src="Returns">
+      <add>
+        <field name="whCode" type="string" data="SKLAD"  width="20"/>
+      </add>
+    </modify>
+
+    <modify src="Returns$items">
+      <add>
+        <field name="flags" type="number" />
+        <field name="comment" type="string" />
+        <field name="uid" type="string" data="" />
+        <field name="cause" type="string" />
+        <field name="items" type="collection">
+          <data>
+            <object name="ReturnDlv">
+              <sources>
+                <source name="DBFCatalogItemTable"/>
+                <source name="SQTable" type="internal" />
+              </sources>
+
+              <field name="number" width="40" type="string" data="NUM_I"/>
+              <field name="date" type="date" data="DATE_I"/>
+              <field name="qty" type="number" prec="3" data="QTY_I"/>
+              <field name="cost" type="number" prec="2" data="COST_I"/>
+              <field name="docflag" width="1" type="number" execOn="Put">FirstItem($object)</field>
+            </object>
+          </data>
+        </field>
+        <member name="primaryKey">"uid"</member>
+      </add>
+    </modify>
+
+
+  </objects>
+</serverDefs>

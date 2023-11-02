@@ -1,0 +1,126 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+    <object name="OrdConfig">
+      <sources>
+        <source name="KeyValueTable">
+          <param name="fileName">"ord"+$user.id+".cfg"</param>
+        </source>
+        <source name="KeyValueTable">
+          <param name="fileName">"order.cfg"</param>
+        </source>
+      </sources>
+
+      <field name="key" type="string" />
+      <field name="value" type="string" />
+    </object>
+
+    <object name="Skalds">
+      <sources>
+        <source name="KeyValueDBFTable">
+          <param name="fileName">"SKLADS"+$user.id</param>
+          <param name="key">"Склады"</param>
+          <param name="itemName">"NAME"</param>
+          <param name="itemKey">"ID"</param>
+        </source>
+        <source name="KeyValueDBFTable">
+          <param name="fileName">"SKLADS"</param>
+          <param name="key">"Склады"</param>
+          <param name="itemName">"NAME"</param>
+          <param name="itemKey">"ID"</param>
+        </source>
+      </sources>
+      <field name="key" type="string" />
+      <field name="value" type="string" />
+    </object>
+
+    <object name="Config">
+      <sources>
+        <source name="ObjectUnion">
+          <param>"OrdConfig"</param>
+          <param>"Skalds"</param>
+        </source>
+      </sources>
+      <field name="key" type="string" />
+      <field name="value" type="string" />
+    </object>
+  
+    <object name="Dover">
+      <sources>
+        <source name="DBFTable">
+          <param name="tableName">"DV"  + $user.id</param>
+        </source>
+      </sources>
+
+      <field name="number" type="string"/>
+      <field name="date" type="timestamp"/>
+      <field name="firm" type="number" />
+    </object>
+    
+    <modify src="Incass">
+      <add>
+        <field name="dvrnum" type="string" width="50" />
+        <field name="dvrdate" type="timestamp" />
+        <field name="firm" type="number" />
+        <field name="frm_name" type="string" width="30" execOn="Put">ConfigReader("Организация",$object.firm)</field>
+      </add>
+    </modify>
+    
+    <modify src="Org">
+      <add>
+        <field name="disc" type="number" prec="2" />
+        <field name="supplyer" type="number" data="SUPL"/>
+        <field name="mask" type="number" />
+      </add>
+    </modify>
+
+    <modify src="Price">
+      <add>
+        <field name="mask" type="number" />
+        <field name="whQty" type="collection">
+          <data>
+            <object name="QtyItem">
+              <sources>
+                <source name="Sequence">
+                  <param name="source">$parent.source</param>
+                </source>
+              </sources>
+              <field name="qty" type="number" prec="2" />
+            </object>
+          </data>
+        </field>
+        <field name="tqty" type="number" prec="3"/>
+        <field name="tdate" type="timestamp" />
+        <field name="disc" type="number" prec="2"/>
+        <field name="expdate" type="number"/>
+      </add>
+    </modify>
+
+    <modify src="Order">
+      <add>
+        <field name="disc" type="number" prec="2" />
+        <field name="zsum" type="number" prec="2" />
+        <field name="task" type="string" width="100" />
+        <field name="whCode" type="string" width="20" data="ID_WH" />
+      </add>
+    </modify>
+
+    <modify src="Delivery">
+      <add>
+        <field name="firm" type="number" />
+      </add>
+    </modify>
+
+    <modify src="PricePhoto">
+      <change>
+        <sources>
+          <source name="DBFCatalogTable">
+            <param name="tableName">"PRESENT"</param>
+            <param name="catalog">"[PATH]"</param>
+            <param name="ordered">0</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+  </objects>
+</serverDefs>

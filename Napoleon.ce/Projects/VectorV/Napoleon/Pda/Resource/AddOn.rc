@@ -1,0 +1,72 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "NapoleonRes.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "resdefce.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Russian resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_RUS)
+#ifdef _WIN32
+LANGUAGE LANG_RUSSIAN, SUBLANG_DEFAULT
+#pragma code_page(1251)
+#endif //_WIN32
+
+IDD_ENTER_QTY DIALOG  0, 0, 69, 75
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Значение"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    EDITTEXT        IDD_ENTER_VALUE,2,3,64,12,ES_AUTOHSCROLL | ES_NOHIDESEL
+    PUSHBUTTON      "7",IDC_DIG_7, 2,18,17,14
+    PUSHBUTTON      "8",IDC_DIG_8,18,18,17,14
+    PUSHBUTTON      "9",IDC_DIG_9,34,18,17,14
+
+    PUSHBUTTON      "4",IDC_DIG_4, 2,31,17,14
+    PUSHBUTTON      "5",IDC_DIG_5,18,31,17,14
+    PUSHBUTTON      "6",IDC_DIG_6,34,31,17,14
+
+    PUSHBUTTON      "1",IDC_DIG_1, 2,44,17,14
+    PUSHBUTTON      "2",IDC_DIG_2,18,44,17,14
+    PUSHBUTTON      "3",IDC_DIG_3,34,44,17,14
+
+    PUSHBUTTON      "0",IDC_DIG_0, 2,57,33,14
+    PUSHBUTTON      ".",IDC_DIG_PT,34,57,17,14
+
+    PUSHBUTTON      "<-",IDC_DIG_BS,50,18,17,14
+    PUSHBUTTON      "/-/",IDC_MINUS,50,31,17,14
+    PUSHBUTTON      "ОК",IDOK,50,44,17,27
+END
+
+#endif    // Russian resources
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "NapoleonRes.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""resdefce.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\0"
+END
+
+
+#endif    // APSTUDIO_INVOKED

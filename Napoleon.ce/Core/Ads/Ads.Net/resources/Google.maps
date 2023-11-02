@@ -1,0 +1,154 @@
+!name Google;
+-----------------------------------------------------------------------------------------------
+!beginmap orgaddress
+<!DOCTYPE html "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+<title>Google Maps JavaScript API Example</title>
+<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=AIzaSyAeWKxqpiIfDLaYF7uowGWL5RkerSgAj6k"
+type="text/javascript"></script>
+<script type="text/javascript">
+function initialize() {
+if (GBrowserIsCompatible()) {
+var map = new GMap2(document.getElementById("map_canvas"));
+map.setCenter(new GLatLng(##latitude##, ##longitude##), 13);
+map.addControl(new GLargeMapControl());
+map.addControl(new GOverviewMapControl());
+map.addControl(new GMapTypeControl());
+var marker = new GMarker(new GLatLng(##latitude##, ##longitude##));marker.openInfoWindowHtml("##name##");
+map.addOverlay(marker);
+}
+}
+</script>
+<style type="text/css">
+ body, html { width:100%; height:100%; margin:0; padding:0; overflow:hidden;}
+</style>
+</head>
+<body onload="initialize()" onunload="GUnload()">
+<div id="map_canvas" style="width: 100%; height:100%"></div>
+</body>
+</html>
+!endmap
+
+-----------------------------------------------------------------------------------------------
+!beginmap route
+<!DOCTYPE html "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+<title>Google Maps JavaScript API Example</title>
+<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=AIzaSyAeWKxqpiIfDLaYF7uowGWL5RkerSgAj6k"
+type="text/javascript"></script>
+<script type="text/javascript">
+function initialize() {
+if (GBrowserIsCompatible()) {
+var map = new GMap2(document.getElementById("map_canvas"));
+map.addControl(new GLargeMapControl());
+map.addControl(new GOverviewMapControl());
+map.addControl(new GMapTypeControl());
+map.setCenter(new GLatLng(0,0),0);
+var bounds = new GLatLngBounds();
+
+!var
+bounds.extend(new GLatLng(##latitude##, ##longitude##));
+var markerIcon = new GIcon(G_DEFAULT_ICON);
+markerIcon.image = "http://gmaps-samples.googlecode.com/svn/trunk/markers/green/marker##number##.png";
+markerOptions = { icon:markerIcon };
+
+var marker##number## = new GMarker(new GLatLng(##latitude##, ##longitude##), markerOptions);
+GEvent.addListener(marker##number##, "click", function() {marker##number##.openInfoWindowHtml("##name##");});
+map.addOverlay(marker##number##);
+!endvar
+
+map.setZoom(map.getBoundsZoomLevel(bounds));
+map.setCenter(bounds.getCenter());
+}}
+</script>
+<style type="text/css">
+ body, html { width:100%; height:100%; margin:0; padding:0; overflow:hidden;}
+</style>
+</head>
+<body onload="initialize()" onunload="GUnload()">
+<div id="map_canvas" style="width: 100%; height:100%"></div>
+</body>
+</html>
+
+!endmap
+
+-----------------------------------------------------------------------------------------------
+!beginmap traceroute
+!colorGPS=#ff0000;
+!colorGSM=#b000b0;
+<!DOCTYPE html "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+<title>Google Maps JavaScript API Example</title>
+<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=AIzaSyAeWKxqpiIfDLaYF7uowGWL5RkerSgAj6k"
+type="text/javascript"></script>
+<script type="text/javascript">
+function initialize() {
+if (GBrowserIsCompatible()) {
+var map = new GMap2(document.getElementById("map_canvas"));
+map.addControl(new GLargeMapControl());
+map.addControl(new GOverviewMapControl());
+map.addControl(new GMapTypeControl());
+map.setCenter(new GLatLng(0,0),0);
+var bounds = new GLatLngBounds();
+
+!var
+bounds.extend(new GLatLng(##latitude##, ##longitude##));
+var markerIcon = new GIcon(G_DEFAULT_ICON);
+markerIcon.image = "http://gmaps-samples.googlecode.com/svn/trunk/markers/green/marker##number##.png";
+markerOptions = { icon:markerIcon };
+
+var marker##number## = new GMarker(new GLatLng(##latitude##, ##longitude##), markerOptions);
+GEvent.addListener(marker##number##, "click", function() {
+marker##number##.openInfoWindowHtml("");
+});
+map.addOverlay(marker##number##);
+!endvar
+
+!var
+var pl##number## = new GPolyline([
+!cont
+new GLatLng(##latitude##, ##longitude##)
+!endcont
+], "##color##", 5, 1);
+map.addOverlay(pl##number##);
+bounds.extend(new GLatLng(##latitude##, ##longitude##));
+!endvar
+
+!var
+bounds.extend(new GLatLng(##latitude##, ##longitude##));
+var markerIcon = new GIcon(G_DEFAULT_ICON);
+markerIcon.image = "http://gmaps-samples.googlecode.com/svn/trunk/markers/blue/marker##number##.png";
+markerOptions = { icon:markerIcon };
+
+var marker##number## = new GMarker(new GLatLng(##latitude##, ##longitude##), markerOptions);
+GEvent.addListener(marker##number##, "click", function() {
+marker##number##.openInfoWindowHtml("##descr##");
+});
+map.addOverlay(marker##number##);
+!endvar
+
+map.setZoom(map.getBoundsZoomLevel(bounds));
+map.setCenter(bounds.getCenter());
+
+}
+}
+</script>
+<style type="text/css">
+ body, html { width:100%; height:100%; margin:0; padding:0; overflow:hidden;}
+</style>
+</head>
+<body onload="initialize()" onunload="GUnload()">
+<div id="map_canvas" style="width: 100%; height:100%"></div>
+</body>
+</html>
+
+!endmap

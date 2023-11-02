@@ -1,0 +1,89 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "NapoleonRes.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "resdefce.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Russian resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_RUS)
+#ifdef _WIN32
+LANGUAGE LANG_RUSSIAN, SUBLANG_DEFAULT
+#pragma code_page(1251)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialogs
+//
+
+
+IDD_INCASS DIALOG  0, 0, 120, 134
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_SYSMENU
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Static",IDC_ORG_TITLE,0,3,120,10
+    LTEXT           "Дата",IDC_DATE_LABEL,2,19,18,8
+    CONTROL         "",IDC_ORDER_DATE,"SysDateTimePick32",DTS_RIGHTALIGN | WS_TABSTOP,21,18,40,12
+
+    LTEXT           "Сумма",IDC_SUM_LABEL,65,19,25,8
+    EDITTEXT        IDC_SUM,92,18,35,12,ES_AUTOHSCROLL
+
+    EDITTEXT        IDC_REMARK,0,32,159,31,ES_MULTILINE | ES_AUTOVSCROLL | ES_AUTOHSCROLL | ES_WANTRETURN
+
+    PUSHBUTTON      "1",IDC_DIG_1,66,30,14,12
+    PUSHBUTTON      "2",IDC_DIG_2,79,30,14,12
+    PUSHBUTTON      "3",IDC_DIG_3,92,30,14,12
+    PUSHBUTTON      "4",IDC_DIG_4,66,41,14,12
+    PUSHBUTTON      "5",IDC_DIG_5,79,41,14,12
+    PUSHBUTTON      "6",IDC_DIG_6,92,41,14,12
+    PUSHBUTTON      "7",IDC_DIG_7,66,52,14,12
+    PUSHBUTTON      "8",IDC_DIG_8,79,52,14,12
+    PUSHBUTTON      "9",IDC_DIG_9,92,52,14,12
+    PUSHBUTTON      ".",IDC_DIG_PT,66,63,14,12
+    PUSHBUTTON      "0",IDC_DIG_0,79,63,14,12
+    PUSHBUTTON      "<-",IDC_DIG_BS,92,63,14,12
+
+END
+
+IDD_INCASS SHMENUBAR DISCARDABLE
+BEGIN
+    IDR_MAIN_FRAME, 
+    2,
+
+    0, IDC_BACK, TBSTATE_ENABLED, TBSTYLE_BUTTON | TBSTYLE_AUTOSIZE, 0, IDC_BACK, 1,
+    1, IDC_SEND, TBSTATE_ENABLED, TBSTYLE_BUTTON | TBSTYLE_AUTOSIZE, 0, IDC_SEND, 1,
+END
+
+#endif    // Russian resources
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "NapoleonRes.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""resdefce.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\0"
+END
+
+
+#endif    // APSTUDIO_INVOKED

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" >
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        tools:ignore="ContentDescription"
+        android:src="@drawable/folder" />
+
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="0dip"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textSize="18sp"
+        android:padding="5dp"
+        android:textColor="@color/black"
+        tools:ignore="HardcodedText"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/tvQty"
+        android:textSize="18sp"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:padding="5dp"
+        android:width="90dp"
+        android:gravity="right"
+        android:textColor="@color/black"
+        android:background="@color/white"
+        tools:ignore="HardcodedText"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/tvFactQty"
+        android:textSize="18sp"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:padding="5dp"
+        android:width="90dp"
+        android:gravity="right"
+        android:textColor="@color/black"
+        android:background="@color/white"
+        tools:ignore="HardcodedText"
+        android:text="TextView" />
+    
+</LinearLayout>

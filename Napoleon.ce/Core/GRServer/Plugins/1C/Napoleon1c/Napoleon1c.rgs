@@ -1,0 +1,26 @@
+HKCR
+{
+	AddIn.Napoleon1C.1 = s 'Napoleon1C Class'
+	{
+		CLSID = s '{916E8093-6C4E-49CD-9F0D-233CE08AAEC6}'
+	}
+	AddIn.Napoleon1C = s 'Napoleon1C Class'
+	{
+		CLSID = s '{916E8093-6C4E-49CD-9F0D-233CE08AAEC6}'
+		CurVer = s 'AddIn.Napoleon1C.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {916E8093-6C4E-49CD-9F0D-233CE08AAEC6} = s 'Napoleon1C Class'
+		{
+			ProgID = s 'AddIn.Napoleon1C.1'
+			VersionIndependentProgID = s 'AddIn.Napoleon1C'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			'TypeLib' = s '{61462706-E54E-4F3F-9910-1D5EF0C807B8}'
+		}
+	}
+}

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/list_selector"
+    android:gravity="right"
+    android:orientation="horizontal" >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@color/white"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/tvNumber"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="tvNumber"
+            android:textColor="@color/black"
+            android:textSize="18dp"
+            android:width="75dp"
+            tools:ignore="HardcodedText" >
+        </TextView>
+
+        <TextView
+            android:id="@+id/tvSumDoc"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="tvSumDoc"
+            android:textColor="@color/black"
+            android:textSize="18dp"
+            android:width="75dp" >
+        </TextView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dip"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@color/white"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/tvDate"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="tvDate"
+            android:textColor="@color/black"
+            android:textSize="18dp" >
+        </TextView>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvSum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:text="tvSum"
+        android:textColor="@color/black"
+        android:textSize="18dp"
+        android:width="90dp" >
+    </TextView>
+
+</LinearLayout>

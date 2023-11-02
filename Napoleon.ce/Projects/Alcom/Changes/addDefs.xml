@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+   <objects>
+      <modify src="Order">
+         <change>
+            <member name="table">"ZAK"</member>
+         </change>
+      </modify>
+      <modify src="Order$items">
+         <change>
+            <field name="discount" type="number" prec="1" data="DSC_I" />
+         </change>
+      </modify>
+   </objects>
+</serverDefs>

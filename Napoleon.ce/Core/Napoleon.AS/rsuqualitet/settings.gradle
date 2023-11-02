@@ -1,0 +1,18 @@
+include ':app'
+include ':adsbase'
+project(':adsbase').projectDir = new File('..\\modules\\adsbase\\')
+
+include ':json'
+project(':json').projectDir = new File('..\\modules\\json\\')
+
+include ':network'
+project(':network').projectDir = new File('..\\modules\\network\\')
+
+include ':mpchart'
+project(':mpchart').projectDir = new File('..\\modules\\mpchart\\')
+
+include ':itext'
+project(':itext').projectDir = new File('..\\modules\\itext\\')
+
+include ':tradebase'
+project(':tradebase').projectDir = new File('..\\modules\\tradebase\\')

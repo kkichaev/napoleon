@@ -1,0 +1,60 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+  <objects>
+    <object name="PriceMaxDiscount">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"PDSC"</param>
+          <param name="commonTable">"PRCPDSC"</param>
+        </source>
+      </sources>
+
+      <field name="id" type="string" />
+      <field name="discount" type="number" prec="2" />
+    </object>
+
+    <object name="FolderDiscount">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"FDSC"</param>
+          <param name="commonTable">"FLDDSC"</param>
+        </source>
+      </sources>
+
+      <field name="id" type="string" />
+      <field name="discount" type="number" prec="2" />
+      <field name="folderID" type="number" execOn="Get">FolderID($object.id)</field>
+    </object>
+
+    <modify src="Order">
+      <add>
+        <field name="deliveryType" type="string" width="20" data="DLV" />
+        <field name="discount" type="string" width="20" />
+      </add>
+    </modify>
+    <modify src="Order$items">
+      <add>
+        <field name="discount" type="string" width="20" data="DSC_I" />
+        <field name="costWOD" type="number" prec="2" data="COST_WO" />
+        <field name="costOrg" type="number" prec="2" />
+        <field name="addDiscount" type="string" width="20" data="A_DSC_I" />
+        <field name="usePriceCost" type="number" width="1" data="PRC_COST" />
+        <field name="dscValue" type="number" prec="2" data="" />
+        <field name="addDscValue" type="number" prec="2" data="" />
+      </add>
+    </modify>
+    <modify src="Org">
+      <add>
+        <field name="stopMsg" type="string" />
+        <field name="blockMsg" type="string" />
+        <field name="nodisc" type="number"/>
+      </add>
+    </modify>
+    <modify src="Price">
+      <add>
+        <field name="minQty" type="number" prec="3"/>
+        <field name="nodisc" type="number"/>
+      </add>
+    </modify>
+  </objects>
+</serverDefs>

@@ -1,0 +1,98 @@
+{
+  "_from": "@intlify/vue-devtools@9.3.0-beta.14-77e850b",
+  "_id": "@intlify/vue-devtools@9.3.0-beta.14-77e850b",
+  "_inBundle": false,
+  "_integrity": "sha512-QRznXFfu9UldQmE4kWj5VbfSFzT4y2Zh5xD9L2AJ8J/bhlLzbncMHDb3BOL6Xzczv5K6LhYDLdoVvW1n+z4tpA==",
+  "_location": "/@intlify/vue-devtools",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "@intlify/vue-devtools@9.3.0-beta.14-77e850b",
+    "name": "@intlify/vue-devtools",
+    "escapedName": "@intlify%2fvue-devtools",
+    "scope": "@intlify",
+    "rawSpec": "9.3.0-beta.14-77e850b",
+    "saveSpec": null,
+    "fetchSpec": "9.3.0-beta.14-77e850b"
+  },
+  "_requiredBy": [
+    "/@intlify/core-base",
+    "/vue-i18n"
+  ],
+  "_resolved": "https://registry.npmjs.org/@intlify/vue-devtools/-/vue-devtools-9.3.0-beta.14-77e850b.tgz",
+  "_shasum": "7b32670c17c4d2930a4cc1a5e62780227cc6c856",
+  "_spec": "@intlify/vue-devtools@9.3.0-beta.14-77e850b",
+  "_where": "/home/devteam/prog/webfront/node_modules/vue-i18n",
+  "author": {
+    "name": "kazuya kawaguchi",
+    "email": "kawakazu80@gmail.com"
+  },
+  "bugs": {
+    "url": "https://github.com/intlify/vue-i18n-next/issues"
+  },
+  "buildOptions": {
+    "name": "IntlifyVueDevtools",
+    "formats": [
+      "mjs",
+      "cjs"
+    ]
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "@intlify/core-base": "9.3.0-beta.14-77e850b",
+    "@intlify/shared": "9.3.0-beta.14-77e850b"
+  },
+  "deprecated": false,
+  "description": "@intlify/vue-devtools",
+  "engines": {
+    "node": ">= 14"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/vue-devtools.d.ts",
+      "import": "./dist/vue-devtools.mjs",
+      "node": {
+        "import": {
+          "production": "./dist/vue-devtools.prod.cjs",
+          "development": "./dist/vue-devtools.mjs",
+          "default": "./dist/vue-devtools.mjs"
+        },
+        "require": {
+          "production": "./dist/vue-devtools.prod.cjs",
+          "development": "./dist/vue-devtools.cjs",
+          "default": "./index.js"
+        }
+      }
+    },
+    "./dist/*": "./dist/*",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "index.js",
+    "dist"
+  ],
+  "funding": "https://github.com/sponsors/kazupon",
+  "homepage": "https://github.com/intlify/vue-i18n-next/tree/master/packages/vue-devtools#readme",
+  "keywords": [
+    "i18n",
+    "internationalization",
+    "intlify",
+    "vue-devtools"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "module": "dist/vue-devtools.mjs",
+  "name": "@intlify/vue-devtools",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/intlify/vue-i18n-next.git",
+    "directory": "packages/vue-devtools"
+  },
+  "sideEffects": false,
+  "types": "dist/vue-devtools.d.ts",
+  "version": "9.3.0-beta.14-77e850b"
+}

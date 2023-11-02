@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:fillViewport="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:textSize="18sp"
+        android:fontFamily="@font/montserrat"
+        android:textStyle="bold"
+        android:gravity="center_horizontal"
+        android:textColor="@color/colorPrimary"
+        android:text="@string/delivery_date" />
+
+    <CalendarView
+        android:id="@+id/cvDeliveryDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+         />
+
+    <EditText
+        android:layout_margin="8dp"
+        android:id="@+id/edRemark"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="@string/remark"
+        android:inputType="textMultiLine"
+        android:minLines="2" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="4dp"
+            style="@style/BasketDialogButton"
+            android:id="@+id/btnCancel"
+            android:paddingLeft="0dp"
+            android:paddingRight="0dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="@android:string/cancel" />
+
+        <Button
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="8dp"
+            style="@style/BasketDialogButton"
+            android:paddingLeft="0dp"
+            android:paddingRight="0dp"
+            android:id="@+id/btnOK"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="@android:string/ok" />
+    </LinearLayout>
+
+</LinearLayout>
+</ScrollView>

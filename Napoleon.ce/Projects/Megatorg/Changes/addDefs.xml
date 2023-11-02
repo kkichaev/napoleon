@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+    <modify src="Org">
+      <add>
+        <field name="prcType" type="string" />
+      </add>
+    </modify>
+    <modify src="AgentPrefix">
+      <add>
+        <field name="prefixAdd" data="PFA_ADD" type="string" />
+      </add>
+    </modify>
+    <modify src="Sales">
+      <add>
+        <field name="cash"  type="number" width="1" execOn="Put">DecodeFlag($object.params, 2, "", "1")</field>
+      </add>
+    </modify>
+  </objects>
+</serverDefs>

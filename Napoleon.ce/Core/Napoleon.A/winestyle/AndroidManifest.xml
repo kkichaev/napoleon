@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<manifest 
+    xmlns:android="http://schemas.android.com/apk/res/android" 
+    android:versionCode="1" 
+    android:versionName="@string/version" 
+    package="com.grsoft.napoleon">
+    
+	<uses-sdk android:minSdkVersion="14"/>
+      
+    <uses-permission android:name="android.permission.INTERNET"/>  
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-feature android:name="android.hardware.camera"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    
+    
+    <!-- Camera features. I think it can bring an installation problem 
+    	
+ 		<uses-feature android:name="android.hardware.camera.autofocus" />  
+ 		-->
+ 	
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+ 	
+    <application 
+        android:debuggable="true" 
+        android:icon="@drawable/pictograms" 
+        android:label="@string/app_name" 
+        android:name="com.grsoft.napoleon.NapoleonApp"
+        android:theme="@style/Napoleon">
+    
+    	<receiver 
+    	    android:enabled="true" 
+    	    android:permission="android.permission.RECEIVE_BOOT_COMPLETED" 
+    	    android:name="com.grsoft.util.BootUpReceiver">
+
+        	<intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <category android:name="android.intent.category.DEFAULT" />
+        	</intent-filter>
+		</receiver>
+    	
+    	<activity android:label="@string/app_name" 
+    	    android:launchMode="singleTask" 
+    	    android:name="com.grsoft.napoleon.MainEx">
+        	
+        	<intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+		
+		<uses-library android:name="android.test.runner"/>
+		
+		<activity android:name="com.grsoft.napoleon.Configuration"/>
+		<activity android:configChanges="keyboardHidden|orientation" android:name="com.grsoft.napoleon.UpdateDB"/>
+		<activity android:name="com.grsoft.napoleon.VisitEdit"/>
+		<activity android:name="com.grsoft.napoleon.Documents"/>
+		<activity android:name="com.grsoft.napoleon.CreateOrder"/>
+		<activity android:name="Warehouse"/>
+		<activity android:name="com.grsoft.napoleon.PriceCount"/>
+		<activity android:name="OrderDetail"/>
+		<activity android:name="DeliveryDetail"/>
+		<activity android:name="VisitEdit"/>
+		<activity android:name="CameraPreview"/>
+		<activity android:name="DocList"/>
+		<activity android:name="Messages"/>
+		<activity android:name="RemnantsDetail"/>
+		<activity android:name="Setting" android:configChanges="keyboardHidden|orientation"/>
+		<activity android:name="PhotoSetting"/>
+		<activity android:name="BehaviorSetting"/>
+		<activity android:name="GpsSetting"/>
+		<service android:name="com.grsoft.util.NapoleonService"/>
+		<activity android:name="OrderDeliveryDetail"/>
+		<activity android:name="PricePresentation" android:noHistory="true"/>
+		<activity android:name="Presentation"/>
+		<activity android:name="WarehouseSetting"></activity>
+		
+		<receiver android:name="com.grsoft.util.SystemActionReciever" 
+ 			android:permission="android.permission.RECEIVE_BOOT_COMPLETED">
+ 		
+			<intent-filter>
+				<action android:name="android.location.PROVIDERS_CHANGED"/>
+				<action android:name="android.intent.action.TIME_SET"/>
+				<action android:name="android.intent.action.BOOT_COMPLETED"/>
+				<action android:name="android.intent.action.ACTION_SHUTDOWN"/>
+				<category android:name="android.intent.category.DEFAULT" />
+			</intent-filter>
+		</receiver>
+		
+		<activity android:name=".CrashReport"></activity>
+		<activity android:name="PotenzialOrg"></activity>
+		<activity android:name="TaskForm"></activity>
+		<activity android:name="UpdateDBEx"></activity>
+		<activity android:name="CalendarActivity"/>
+		<service android:name="com.grsoft.util.ReportService"/>
+		         <activity android:name="com.grsoft.network.BaseSimpleActivity" android:configChanges="keyboard|keyboardHidden|orientation"/>
+         <activity android:name="com.grsoft.napoleon.GPSGatherEdit" android:configChanges="keyboard|keyboardHidden|orientation"/>
+         <activity android:name="com.grsoft.napoleon.MoneyProxyForm" android:configChanges="keyboard|keyboardHidden|orientation"/>
+         <activity android:name="com.grsoft.napoleon.OrgTaskList" android:configChanges="keyboard|keyboardHidden|orientation"/>
+         <activity android:name="com.grsoft.napoleon.UpdateDBW" android:configChanges="keyboard|keyboardHidden|orientation"/>
+         <activity android:name="com.grsoft.napoleon.BehaviorSettingW" android:configChanges="keyboard|keyboardHidden|orientation"/>
+         <activity android:name="com.grsoft.napoleon.WarehouseSettingW" android:configChanges="keyboard|keyboardHidden|orientation"/>
+         <activity android:name="com.grsoft.napoleon.CreateReturn" android:configChanges="keyboard|keyboardHidden|orientation"/>
+         <activity android:name="com.grsoft.napoleon.PresentationFolderW" android:configChanges="keyboard|keyboardHidden|orientation"/>
+         <activity android:name="com.grsoft.napoleon.PresentationFolder" android:configChanges="keyboard|keyboardHidden|orientation"/>
+         <activity android:name="com.grsoft.napoleon.PriceCountW" android:configChanges="keyboard|keyboardHidden|orientation"/>
+         <activity android:name="com.grsoft.napoleon.QuestAnswer" android:configChanges="keyboard|keyboardHidden|orientation"/>
+         <activity android:name="com.grsoft.napoleon.QuestionWebView" android:configChanges="keyboard|keyboardHidden|orientation"/>
+         <activity android:name="com.grsoft.napoleon.ReportList" android:configChanges="keyboard|keyboardHidden|orientation"/>
+         <activity android:name="com.grsoft.napoleon.ReportParams" android:configChanges="keyboard|keyboardHidden|orientation"/>
+         <activity android:name="com.grsoft.napoleon.ReportView" android:configChanges="keyboard|keyboardHidden|orientation"/>
+         <activity android:name="com.grsoft.script.ScriptEdit" android:configChanges="keyboard|keyboardHidden|orientation"/>
+         <activity android:name="com.grsoft.napoleon.ScriptsList" android:configChanges="keyboard|keyboardHidden|orientation"/>
+         <activity android:name="com.grsoft.napoleon.DocumentsBase" android:configChanges="keyboard|keyboardHidden|orientation"/>
+         <activity android:name="com.grsoft.napoleon.DocumentsW" android:configChanges="keyboard|keyboardHidden|orientation"/>
+         <activity android:name="com.grsoft.napoleon.TaskDocList" android:configChanges="keyboard|keyboardHidden|orientation"/>
+         <activity android:name="com.grsoft.napoleon.FocusItemEditor" android:configChanges="keyboard|keyboardHidden|orientation"/>
+         <activity android:name="com.grsoft.napoleon.IncassEdit" android:configChanges="keyboard|keyboardHidden|orientation"/>
+         <activity android:name="com.grsoft.napoleon.IncassDebDistrEdit" android:configChanges="keyboard|keyboardHidden|orientation"/>
+         <activity android:name="com.grsoft.napoleon.Napoleon" android:configChanges="keyboard|keyboardHidden|orientation"/>
+         <activity android:name="com.grsoft.napoleon.ReturnDetail" android:configChanges="keyboard|keyboardHidden|orientation"/>
+         <activity android:name="com.grsoft.napoleon.WarehouseNewW" android:configChanges="keyboard|keyboardHidden|orientation"/>
+         <activity android:name="com.grsoft.napoleon.WarehouseNew" android:configChanges="keyboard|keyboardHidden|orientation"/>
+         <activity android:name="com.grsoft.napoleon.WhatNews" android:configChanges="keyboard|keyboardHidden|orientation"/>
+         <activity android:name="com.grsoft.napoleon.PricePresentationFolder" android:configChanges="keyboard|keyboardHidden|orientation"/>
+         <service android:name="com.grsoft.util.NapoleonServiceW"/>
+		 <activity android:name="com.grsoft.napoleon.DistribEdit" android:configChanges="keyboard|keyboardHidden|orientation"/>
+		 <activity android:name="com.grsoft.napoleon.MapActivity" android:configChanges="keyboard|keyboardHidden|orientation"/>
+		 <activity android:name="com.grsoft.napoleon.Main" android:configChanges="keyboard|keyboardHidden|orientation"/>
+         <activity android:name="com.grsoft.napoleon.DMPEdit" android:configChanges="keyboard|keyboardHidden|orientation"/>
+         <activity android:name="com.grsoft.napoleon.DMPItemsList" android:configChanges="keyboard|keyboardHidden|orientation"/>
+         <activity android:name="com.grsoft.napoleon.DMPItemEdit" android:configChanges="keyboard|keyboardHidden|orientation"/>
+         
+         <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.grsoft.napoleon.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            
+          <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/providers_path"/>
+      </provider>
+    
+</application>
+
+    <instrumentation android:label="All Tests" android:name="com.grsoft.tests.NapoleonInstrumentationTestRunner" android:targetPackage="grsoft.napoleon"/>
+<supports-screens android:resizeable="true"/>
+<uses-sdk android:minSdkVersion="4"/>
+<uses-permission android:name="android.permission.CALL_PHONE"/>
+</manifest>

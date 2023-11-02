@@ -1,0 +1,229 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+    <object name="City">
+      <sources>
+        <source name="SQTable" type="internal">
+          <param name="readFilter">'"userid"=' + "'" + $user.id + "'"</param>
+        </source>
+      </sources>
+      <member name="primaryKey">"userid,id"</member>
+      
+      <field name="items" type="collection">
+        <data>
+          <object name="CityItem">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+            <field name="name" type="string"/>
+            <field name="pos" type="number" />
+          </object>
+        </data>
+      </field>
+      
+      <field name="id" type="string" />
+      <field name="name" type="string" />
+      <field name="userid" type="string" execOn="Put">$user.id</field>
+    </object>
+    
+    <object name="OrgType">
+      <sources>
+        <source name="SQTable" type="internal"/>
+      </sources>
+      <member name="primaryKey">"id"</member>
+      
+      <field name="items" type="collection">
+        <data>
+          <object name="OrgTypeItem">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+            <field name="id" type="string"/>
+            <field name="name" type="string"/>
+          </object>
+        </data>
+      </field>
+      
+      <field name="id" type="string" />
+      <field name="name" type="string" />
+    </object>
+    
+    <object name="VisitType">
+      <sources>
+        <source name="SQTable" type="internal"/>
+      </sources>
+      <member name="primaryKey">"id"</member>
+      
+      <field name="id" type="string" />
+      <field name="name" type="string" />
+    </object>
+    
+    <object name="TypeTP">
+      <sources>
+        <source name="SQTable" type="internal"/>
+      </sources>
+      <member name="primaryKey">"id"</member>
+      
+      <field name="id" type="string" />
+      <field name="name" type="string" />
+    </object>
+    
+    <object name="OrgDistrib">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"userid,created"</member>
+      <memberArray name="index">"created"</memberArray>
+
+      <field name="userid" type="string" data="USER_ID" execOn="Put">$user.id</field>
+      <field name="timeZone" type="number" />
+      <field name="serverTimeZone" type="number" data="S_TZ" execOn="Put" feature="USE_TIMEZONE">ServerTimeZone()</field>
+      <field name="created" type="timestamp" data="CREATED"/>
+      <field name="date" type="date" data="DATE" />
+      <field name="id" width="55" type="string" />
+      <field name="numberho" type="string" />
+      <field name="remark" type="string" />
+      <field name="sended" type="timestamp" data="" execOn="Put">Now()</field>
+      <field name="longitude" type="number" prec="5" />
+      <field name="latitude" type="number" prec="5" />
+
+      <field name="items" type="collection">
+        <data>
+          <object name="OrgDistribItem">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+
+            <field name="id" type="string"/>
+            <field name="qty" type="number" prec="3" />
+            <field name="cost" type="number" prec="2" />
+          </object>
+        </data>
+      </field>
+      <events>
+        <event type="put">
+          <action name="WriteInternal">$object.type</action>
+          <action name="WriteToLog">$object.type;$object.created</action>
+        </event>
+      </events>
+    </object>
+    
+    <modify src="Org">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal">
+            <param name="readFilter">'"userid="' + "'" $user.id + "'"</param>
+          </source>
+        </sources>
+                
+        <member name="primaryKey">"id"</member>
+      </change>
+      
+      <add>
+        <field name="typeID" type="string"/>
+        <field name="categID" type="string"/>
+        <field name="visitTypeID" type="string"/>
+        <field name="freq" type="string"/>
+        <field name="nameTP" type="string"/>
+        <field name="typeTPID" type="string"/>
+      </add>
+    </modify>
+      
+    <modify src="Org" dest="CommonOrgs">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+                
+        <member name="primaryKey">"id"</member>
+      </change>
+      
+      <add>
+        <field name="typeID" type="string"/>
+        <field name="categID" type="string"/>
+        <field name="visitTypeID" type="string"/>
+        <field name="freq" type="string"/>
+        <field name="nameTP" type="string"/>
+        <field name="typeTPID" type="string"/>
+      </add>
+    </modify>
+    
+    <modify src="PotenzialOrg">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+      
+      <add>
+        <field name="typeID" type="string"/>
+        <field name="categID" type="string"/>
+        <field name="visitTypeID" type="string"/>
+        <field name="freq" type="string"/>
+        <field name="nameTP" type="string"/>
+        <field name="typeTPID" type="string"/>
+      </add>
+    </modify>
+      
+    <modify src="OrgRemnants">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+    </modify>
+    
+    <modify src="Folder">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+    </modify>
+    
+    <modify src="Price">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal">
+            <param name="readFilter">
+              'rem = 0'
+            </param>
+          </source>
+        </sources>
+      </change>
+      <add>
+        <member name="primaryKey">id</member>
+        <field name="rem" type="number"/>
+        <field name="own" type="number"/>
+        <field name="pos" type="number"/>
+      </add>
+    </modify>
+    
+    <modify src="ManagerPrice" table="Price">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal">
+            <param name="readFilter">
+              'rem = 0'
+            </param>
+          </source>
+        </sources>
+      </change>
+      <add>
+        <member name="primaryKey">id</member>
+        <field name="rem" type="number"/>
+        <field name="own" type="number"/>
+        <field name="pos" type="number"/>
+      </add>
+    </modify>
+
+    <modify src="Agents">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+    </modify>
+	</objects>
+</serverDefs>

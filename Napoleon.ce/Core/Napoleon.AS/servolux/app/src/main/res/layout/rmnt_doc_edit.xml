@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/LinearLayout01"
+        android:layout_width="fill_parent"
+        style="?header">
+
+        <TextView
+            android:id="@+id/tvOrg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scrollHorizontally="true"
+            android:text="OrgName"
+            style="?headerText" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:background="@color/black"
+            android:orientation="horizontal"
+            tools:ignore="NestedWeights" >
+
+            <TextView
+                android:id="@+id/tvBrand"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                style="@style/RemnantsHead"
+                android:paddingLeft="3dp"
+                android:width="@dimen/brand_width"
+            	android:text="@string/brand"
+                tools:ignore="HardcodedText" >
+
+            </TextView>
+            
+        <TextView
+            android:id="@+id/tvPrefix"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+            style="@style/RemnantsHead"
+        		android:layout_marginLeft="1dp"
+                android:paddingLeft="3dp"
+                android:width="@dimen/prefix_width"
+            	android:text="@string/prefix"
+                tools:ignore="HardcodedText"
+			 />
+            
+            <TextView
+                android:id="@+id/tvName"
+                android:layout_width="0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+        		android:layout_marginLeft="1dp"
+                style="@style/RemnantsHead"
+                android:paddingLeft="3dp"
+                android:text="@string/caption"
+                tools:ignore="NestedWeights" >
+
+            </TextView>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <TextView
+	                    android:id="@+id/tvQtyTitle"
+                    style="@style/RemnantsHead"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                		android:paddingLeft="2dp"
+                		android:paddingRight="2dp"
+		                tools:ignore="HardcodedText"
+                        android:text="Остатки по местам продаж" />
+                <LinearLayout
+                    android:id="@+id/llRestQty"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+	                    android:id="@+id/tvWhQty"
+		                android:layout_marginLeft="1dp"
+		                android:layout_marginTop="1dp"
+		                android:paddingRight="2dp"
+                        style="@style/RemnantsHead"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                		android:gravity="center_horizontal"
+		                tools:ignore="HardcodedText"
+		                android:width="@dimen/rmnt_item"
+                        android:text="Склад" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="1dp"
+                android:paddingLeft="2dp"
+                android:paddingRight="2dp"
+                style="@style/RemnantsHead"
+                tools:ignore="HardcodedText"
+                android:text="Итого"
+                android:width="60dp">
+            </TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:paddingLeft="2dp"
+                android:paddingRight="2dp"
+                android:layout_marginLeft="1dp"
+                tools:ignore="HardcodedText"
+                android:text="Приход\nдата ТТН"
+                style="@style/RemnantsHead"
+                android:width="80dp">
+            </TextView>
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/lvItems"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/white" >
+        </ListView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="fill_parent"
+        style="?footer"
+        >
+        
+        
+        <ImageButton
+            android:id="@+id/btnSend"
+            style="?footerButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/send"
+            tools:ignore="ContentDescription" >
+
+        </ImageButton>
+    </LinearLayout>
+</LinearLayout>

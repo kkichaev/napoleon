@@ -1,0 +1,185 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+  <objects>
+    <object name="AFProjects">
+      <sources>
+        <source name="DBFTable">
+          <param name="tableName">$object.table + $user.id</param>
+        </source>
+        <source name="DBFTable">
+          <param>$object.altTable</param>
+        </source>
+      </sources>
+
+      <member name="table">"PRJ"</member>
+      <member name="altTable">"Projects"</member>
+
+      <field name="id" type="string" width="55" />
+      <field name="name" type="string" width="100" />
+    </object>
+
+    <object name="OrdConfig">
+      <sources>
+        <source name="KeyValueTable">
+          <param name="fileName">"ord"+$user.id+".cfg"</param>
+        </source>
+        <source name="KeyValueTable">
+          <param name="fileName">"order.cfg"</param>
+        </source>
+      </sources>
+
+      <field name="key" type="string" />
+      <field name="value" type="string" />
+    </object>
+
+    <object name="Sklads">
+      <sources>
+        <source name="KeyValueDBFTable">
+          <param name="fileName">"SKLADS"+$user.id</param>
+          <param name="key">"Склады"</param>
+          <param name="itemName">"NAME"</param>
+          <param name="itemKey">"ID"</param>
+        </source>
+        <source name="KeyValueDBFTable">
+          <param name="fileName">"SKLADS"</param>
+          <param name="key">"Склады"</param>
+          <param name="itemName">"NAME"</param>
+          <param name="itemKey">"ID"</param>
+        </source>
+      </sources>
+
+      <field name="key" type="string" />
+      <field name="value" type="string" />
+    </object>
+
+    <object name="Config">
+      <sources>
+        <source name="ObjectUnion">
+          <param>"OrdConfig"</param>
+          <param>"Sklads"</param>
+        </source>
+      </sources>
+
+      <field name="key" type="string" />
+      <field name="value" type="string" />
+    </object>
+
+    <object name="WorkTime">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"userid,id,start"</member>
+      <field name="userid" type="string" execOn="Put">$user.id</field>
+      <field name="id" type="string" />
+      <field name="start" type="timestamp" />
+      <field name="stop" type="timestamp" />
+    </object>
+
+
+    <object name="RejectCause">
+      <sources>
+        <source name="SQTable" type="internal" >
+          <param name="readFilter">"rem=0"</param>
+        </source>
+      </sources>
+
+      <member name="primaryKey">"id"</member>
+
+      <field name="id" type="string" />
+      <field name="text" type="string" />
+      <field name="rem" type="number" />
+    </object>
+
+    <modify src="Org">
+      <add>
+        <field name="stop" type="number" hidden="true" />
+        <field name="flags" type="number" execOn="Get">EncodeFlag($object.stop,2)</field>
+        <field name="minSum" type="number" prec="2"/>
+        <field name="priceLevel" type="string" data="LVL"/>
+
+        <field name="dogovors" type="collection">
+          <data>
+            <object name="OrgDogovor">
+              <sources>
+                <source name="DBFTableSet">
+                  <param name="userTable">"DG"</param>
+                  <param name="commonTable">"DOGOVORS"</param>
+                  <param name="filter">"[ID] = $parent.id"</param>
+                </source>
+              </sources>
+              <field name="id" type="string" data="ID_D" />
+              <field name="name" type="string" />
+            </object>
+          </data>
+        </field>
+      </add>
+    </modify>
+
+    <modify src="Price">
+      <add>
+        <field name="level" type="string" data="LVL"/>
+
+        <field name="whQty" type="collection">
+          <data>
+            <object name="QtyItem">
+              <sources>
+                <source name="Sequence">
+                  <param name="source">$parent.source</param>
+                  <param name="startIndex">2</param>
+                </source>
+              </sources>
+              <field name="qty" type="number" prec="3" />
+            </object>
+          </data>
+        </field>
+        <field name="units" type="collection">
+          <data>
+            <object name="Units">
+              <sources>
+                <source name="DBFTableSet">
+                  <param name="userTable">"WU"</param>
+                  <param name="commonTable">"WUNITS"</param>
+                  <param name="filter">"[ID] = $parent.id"</param>
+                </source>
+              </sources>
+
+              <field name="name" type="string" width="100" />
+              <field name="inPack" type="number" prec="3" />
+              <field name="id" type="string" width="30" data="ID_UNIT" />
+            </object>
+          </data>
+        </field>
+      </add>
+    </modify>
+
+    <modify src="Order">
+      <add>
+        <field name="whCode" type="string" width="20" data="ID_WH" />
+        <field name="dogovor" type="string" width="20" data="DG" />
+        <field name="dover" type="number" />
+      </add>
+    </modify>
+
+    <modify src="Order$items">
+      <add>
+        <field name="unitId" type="string" width="30" data="ID_UNIT" />
+        <field name="project" type="string" width="50" data="ID_PRJ" />
+      </add>
+    </modify>
+
+    <modify src="Org">
+      <add>
+        <field name="due" type="number" prec="2" />
+        <field name="postdue" type="number" prec="2" data="PDUE"/>
+      </add>
+    </modify>
+
+    <modify src="ScriptDoc$items">
+      <add>
+        <field name="cause" type="string" />
+      </add>
+    </modify>
+
+  </objects>
+</serverDefs>

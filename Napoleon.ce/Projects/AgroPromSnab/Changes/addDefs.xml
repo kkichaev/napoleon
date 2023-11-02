@@ -1,0 +1,75 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+    <!--<object name="Config" feature="WH_QTY">
+      <sources>
+        <source name="ObjectUnion">
+          <param>"OrdConfig"</param>
+        </source>
+      </sources>
+
+      <field name="key" type="string" />
+      <field name="value" type="string" />
+    </object>
+
+    <object name="Sklad">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"SKLADS"</param>
+          <param name="commonTable">"SKLADS"</param>
+        </source>
+      </sources>
+
+      <field name="id" type="string" />
+      <field name="name" type="string" />
+      <field name="index" type="number" />
+      <field name="userid" type="string" />
+      <field name="agent" type="string" execOn="Get">$user.id</field>
+    </object>-->
+    
+    <modify src="Org">
+      <add>
+        <field name="info" type="string" />
+        <field name="priceDsc" type="collection">
+          <data>
+            <object name="OrgDiscountItem">
+              <sources>
+                <source name="DBFTableSet">
+                  <param name="userTable">"OPD"</param>
+                  <param name="commonTable">"ORGPD"</param>
+                  <param name="filter">"[ID] = $parent.id"</param>
+                </source>
+              </sources>
+
+              <field name="id" data="ID_I" type="string" />
+              <field name="discount" data="DISC" type="number" prec="2"/>
+            </object>
+          </data>
+        </field>
+
+        <field name="folderDsc" type="collection">
+          <data>
+            <object name="OrgDiscountItem">
+              <sources>
+                <source name="DBFTableSet">
+                  <param name="userTable">"OFD"</param>
+                  <param name="commonTable">"ORGFD"</param>
+                  <param name="filter">"[ID] = $parent.id"</param>
+                </source>
+              </sources>
+
+              <field name="id" data="ID_I" type="string" />
+              <field name="discount" data="DISC" type="number" prec="2"/>
+            </object>
+          </data>
+        </field>
+      </add>
+    </modify>
+
+    <modify src="Price">
+      <add>
+        <field name="minCost" type="number" prec="2" />
+      </add>
+    </modify>          
+	</objects>
+</serverDefs>

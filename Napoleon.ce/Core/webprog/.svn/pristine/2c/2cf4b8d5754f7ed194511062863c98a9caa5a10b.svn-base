@@ -1,0 +1,35 @@
+import { defineStore } from 'pinia'
+import { registerUser } from "src/backend/backend";
+
+export const useBackendStore = defineStore('backend', {
+  state: () => ({
+    errorCode: 0,
+    errorMessage: '',
+    loading: false
+  }),
+
+  actions: {
+    registerUser(data){
+      this.loading = true
+      registerUser({ email: data.email, name: data.name, password: data.passowrd}).then((response) => {
+        console.log("https://aceteam.app/api/users - success : ", response);
+        regSuccess.value = true
+        this.errorCode = 0
+        this.errorMessage = ''
+      })
+      .catch((error) => {
+        if(error.response.data.data == undefined){
+          this.errorMessage = error.response.statusText
+          this.errorCode = error.response.status
+        }else{
+          this.errorMessage = error.response.data.data.message
+          this.errorCode = error.response.data.data.response
+        }
+      }).finally(()=>this.loading = false);
+    },
+    clearError(){
+      this.errorCode = 0
+      this.errorMessage = ''
+    }
+  }
+})

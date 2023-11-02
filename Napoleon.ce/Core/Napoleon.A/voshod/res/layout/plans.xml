@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.gesture.GestureOverlayView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/gestures"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gestureStrokeType="single"
+    android:eventsInterceptionEnabled="true"
+    android:orientation="vertical"
+    android:gestureColor="#00000000"
+    android:uncertainGestureColor="#00000000">
+	<LinearLayout
+	  android:layout_width="fill_parent"
+	  android:layout_height="fill_parent" android:orientation="vertical">
+	    
+		<LinearLayout android:id="@+id/LinearLayout04" 
+			android:layout_width="fill_parent" 
+			android:layout_height="wrap_content"
+			android:layout_weight="0" 
+			android:background="@color/black">
+			
+			<TextView android:id="@+id/NameTitle" 
+				android:layout_width="wrap_content" 
+				android:layout_height="wrap_content" 
+				android:textColor="#000000" 
+				android:text="Название" 
+				android:layout_weight="1" 
+				android:padding="3dp" 
+				android:background="@color/table_caption"  />
+				
+			<TextView android:id="@+id/DateTitle" 
+				android:layout_width="wrap_content" 
+				android:layout_height="wrap_content" 
+				android:textColor="#000000" 
+				android:text="План/Факт" 
+				android:padding="3dp" 
+				android:background="@color/table_caption" 
+				android:layout_marginLeft="1dp" />
+				
+			<TextView android:id="@+id/SumColumnTitle" 
+				android:layout_width="wrap_content" 
+				android:layout_height="wrap_content" 
+				android:textColor="#000000" 
+				android:text="Дата/%" 
+				android:gravity="right"
+				android:padding="3dp"
+				android:minWidth="85dp" 
+				android:background="@color/table_caption" 
+				android:layout_marginLeft="1dp"/>
+		</LinearLayout>
+		
+	    <ListView android:layout_height="wrap_content" 
+	    	android:layout_width="fill_parent" 
+	    	android:layout_weight="1" 
+	    	android:id="@+id/lvPlans" 
+	    	android:background="@color/white" 
+	    	android:clickable="false" />
+
+	</LinearLayout>
+</android.gesture.GestureOverlayView>

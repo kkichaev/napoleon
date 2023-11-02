@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="@dimen/preview_sz"
+        android:layout_height="@dimen/preview_sz"
+        android:src="@drawable/coming_soon"
+        tools:srcCompat="@drawable/coming_soon" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="name"
+            style="@style/PriceText"
+            />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.serviko.view.TextViewCrossOut
+                android:id="@+id/tvCost"
+                style="@style/PriceText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="cost" />
+
+            <TextView
+                android:id="@+id/tvActCost"
+                style="@style/PriceActText"
+                android:layout_marginLeft="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="cost" />
+        </LinearLayout>
+
+        <com.serviko.view.PriceQtyPickerOld
+            android:id="@+id/pqQty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:snp_orientation="horizontal"
+            app:snp_value_ems="4"
+            app:snp_value_text_color="@color/black"
+            app:snp_value_text_size="18sp" />
+
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+	    <modify src="Delivery">
+	        <add>
+	            <field name="payDate" type="date" />
+	        </add>
+	    </modify>
+	    <modify src="Monitoring$items">
+	        <add>
+	            <field name="cost" type="number" prec="2"/>
+	        </add>
+	    </modify>
+	</objects>
+</serverDefs>

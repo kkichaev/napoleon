@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+
+    <string name="app_name">Napoleon</string>
+
+    <string-array name="gps_send_interval">
+        <item>10</item>
+        <item>20</item>
+        <item>30</item>
+        <item>40</item>
+        <item>50</item>
+        <item>60</item>
+        <item>70</item>
+        <item>80</item>
+        <item>90</item>
+        <item>100</item>
+        <item>110</item>
+        <item>120</item>    
+    </string-array>
+    <string-array name="warehouse_column_values">
+        <item>Yox</item>
+        <item>Anbardaki miqdar</item>
+        <item>Sifarişdəki miqdar</item>
+        <item>Qiymət</item>
+        <item>Sifarişin cəm  məbləği</item>
+        <item>Miqdar prays/Sifariş</item>
+        <item>Məbləğ /Sifarişdəki cəm məbləqi</item>
+    </string-array>
+    <string-array name="wh_find_choices">
+        <item>Ad</item>
+        <item>Kod</item>
+    </string-array>
+    <string-array name="print_src">
+        <item>HP</item>
+        <item>Samsung</item>
+    </string-array>
+    <string-array name="DiscountItems">
+        <item>endirim</item>
+        <item>Ticarət əlavəsi</item>
+    </string-array>
+    <string-array name="on_line_items">
+        <item>IP 1</item>
+        <item>IP 2</item>
+        <item>yox</item>
+    </string-array>
+    <string-array name="presentation_column_values">
+        <item>Avto</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+    </string-array>
+    <string-array name="day_to_del_visit">
+        <item>7</item>
+        <item>15</item>
+        <item>30</item>
+        <item>60</item>
+        <item>120</item>
+        <item>360</item>
+    </string-array>
+    <string-array name="months_to_recreate">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
+
+    <string name="day_of_week_2">B.e</string>
+    <string name="day_of_week_3">Ç.a</string>
+    <string name="day_of_week_4">Çər.</string>
+    <string name="day_of_week_5">C.a.</string>
+    <string name="day_of_week_6">C.</string>
+    <string name="day_of_week_7">Ş.</string>
+    <string name="day_of_week_1">B.</string>
+    <string name="copy_doesnt_allow">Sənədin nüsxələnməsinə icazə verilmiyib</string>
+    <string name="init_camera_error">Kameranın inisializasiyası vaxtı səhv, mümkündür çünkü bu aparatda ya  kamera yoxdur və ya işləmir.</string>
+    <string name="close">Bağlamaq</string>
+    <string name="id">kod</string>
+    <string name="cost_changing">Qiymətin dəyişikliyi</string>
+    <string name="check_for_valid_number">Sayın daxil etməsinin düzgünlüyünü yoxlayın</string>
+    <string name="date_filter">filtr c %1$d.%2$d.%3$d по %4$d.%5$d.%6$d</string>
+    <string name="docs">Sənədlər</string>
+    <string name="send">Göndərmək</string>
+    <string name="delete">Silmək</string>
+    <string name="filter_by_date">Filtr tarixə görə</string>
+    <string name="ok">Ok</string>
+    <string name="cancel">Ləğv</string>
+    <string name="gpscoord_is_old">Son çəkilən koordinatlar köhnəlmiş hesab edilir, düyməsini basın \" koordinatı çıxartmaq \" yeniləmə üçün”</string>
+    <string name="wait_connection_gps">Gözləyin, GPS-a qoşulma gedir …</string>
+    <string name="remark">Qeyd</string>
+    <string name="save">Saxlamaq</string>
+    <string name="alert">Diqqət</string>
+    <string name="client_in_stop_list">Müştəri stop-listədir!</string>
+    <string name="order_cant_processing">Sifariş emal edilməmiş ola bilər.</string>
+    <string name="inform">Məlumat</string>
+    <string name="allow_crete_doc_without_gps">Koordinatların alınması vaxtı sona yetdi, siz mövqeyin quraşdırılması olmadan sənədi yarada bilərsiniz..</string>
+    <string name="gps_received">"Koordinatlar müvəffəqiyyətlə alınmışdır,siz sənədi yarada bilərsiniz"</string>
+    <string name="new_doc">Yeni sənəd</string>
+    <string name="note">Qeyd</string>
+    <string name="action">Hərəkət</string>
+    <string name="open_folder">Qovluğu açmaq</string>
+    <string name="comment">Şərh</string>
+    <string name="error">Səhv</string>
+    <string name="error_processing">Keçirmənin səhvi</string>
+    <string name="doc_save_error">Sənəd tamamilə saxlanılmamışdır</string>
+    <string name="doc_process_succs">Sənəd müvəffəqiyyətlə keçirilmişdir</string>
+    <string name="question">Sual</string>
+    <string name="ask_to_resend">Sənəd emal edilmişdir.Onu yenidən göndərmək  istəyirsiniz?</string>
+    <string name="yes">Bəli</string>
+    <string name="no">Yox</string>
+    <string name="value">Məna</string>
+    <string name="check_input">Sayın daxil etməsinin düzgünlüyünü yoxlayın</string>
+    <string name="delete_all">Hamsını silmək</string>
+    <string name="delete_by_date">Bir tarix ərzində silmək</string>
+    <string name="confirm">Təsdiq</string>
+    <string name="delete_all_messages">Bütün qəbul edilmiş mesajlar silmək?</string>
+    <string name="date">Tarix</string>
+    <string name="caption">Ad</string>
+    <string name="edit">Dəyişdirmək</string>
+    <string name="visit">Ziyarət</string>
+    <string name="doc_list">Sənədlərin siyahısı</string>
+    <string name="msg_list">Mesajların siyahısı</string>
+    <string name="price_list">Prays-list</string>
+    <string name="setting">Tənzinləmə</string>
+    <string name="recieve_remains">Qalıqların qəbulu</string>
+    <string name="sync">Sinxronlaşdırma</string>
+    <string name="add_org">Təşkilat əlavə etmək</string>
+    <string name="about">Proqram haqqında</string>
+    <string name="exit">Çıxış</string>
+    <string name="menu">Menyu</string>
+    <string name="ask_to_exit">Proqramdan çıxış üçün Menyuda- &gt;. Çıxışı seçin.</string>
+    <string name="check_updating">Proqramın yenilənmələrinin yoxlanılması.</string>
+    <string name="order_required_price">Fokus malını sifariş edin!</string>
+    <string name="required_price_ordered">Fokus malı sifariş edilmişdir</string>
+    <string name="need_to_order_all_required_price">Bütün fokus malını sifariş etmək lazımdır!</string>
+    <string name="necessary">Lazımdır!</string>
+    <string name="add">Əlavə etmək</string>
+    <string name="lines">Sətirlər</string>
+    <string name="shortlatitude">ş</string>
+    <string name="shortlongitude">d</string>
+    <string name="ask_to_valid_data">Məlumat azdır,bütün lazımlı məlumatın daxil olduğnu, yoxlayın</string>
+    <string name="impossible_get_gps">Koordinatları təyin etmək  mümkün deyil</string>
+    <string name="gps_recieved_succs">Cari koordinatlar müvəffəqiyyətlə alınmışdır.</string>
+    <string name="wait_for_current_location">Cari koordinatların alınması gedir …</string>
+    <string name="new_contact">Yeni əlaqə</string>
+    <string name="cost">Qiymət</string>
+    <string name="warning">Xəbərdarlıq</string>
+    <string name="qty_has_been_reduced">Sifarişdə miqdar azaldılmışdır</string>
+    <string name="select_price">Malı seçin</string>
+    <string name="all_question_should_been_processed">Bütün suallara cavab vermək lazımdır</string>
+    <string name="general">Ümumilər</string>
+    <string name="photo">Foto</string>
+    <string name="network">Şəbəkə</string>
+    <string name="price">Prays</string>
+    <string name="settings">Tənzinləmələr</string>
+    <string name="input_password">Parolu daxil edin</string>
+    <string name="save_setting">Tənzinləmələri saxlamaq</string>
+    <string name="load_setting">Tənzinləmələri hesab etmək</string>
+    <string name="export_base">Bazanı ixrac etmək</string>
+    <string name="file_save_succs">Fayl müvəffəqiyyətlə saxlanmışdır</string>
+    <string name="file_save_error">Faylın saxlanılması vaxtı səhv</string>
+    <string name="setting_has_been_read_succs">Tənzinləmələr  müvəffəqiyyətlə oxunmuşdur</string>
+    <string name="setting_load_error">Tənzinləmələrin yükləməsi vaxtı səhv</string>
+    <string name="sync_end_traffic">"Sinxronlaşdırma \nTrafik başa çatmışdır: "</string>
+    <string name="kB">" Kb"</string>
+    <string name="recieved_error">Qəbul vaxtı səhv</string>
+    <string name="use_sync_later">Sinxronlaşdırmanı yerinə yetirmək mümkün deyil. &lt;br&gt; Zəhmət olmasa,2 dəqiqə sonra əməliyyatı təkrarlayın....</string>
+    <string name="over_limit_photo">Bir zirayətə şəkillərin limiti ötülmüşdür</string>
+    <string name="all_price">Bütün prays</string>
+    <string name="input_qty">Miqdarı daxil edin</string>
+    <string name="disable_zero_filter">Sıfır mövqeyli filtrin sondürülməsi</string>
+    <string name="enable_zero_filter">Sıfır mövqeyli filtrlər</string>
+    <string name="show_folder">Qovluqları göstərmək</string>
+    <string name="show_price">Malı göstərmək</string>
+    <string name="setting_clmns">Sütunların tənzinləməsi</string>
+    <string name="select_matrix">Matrisi seçin</string>
+    <string name="price_loading">Prays yüklənir…</string>
+    <string name="sum">Məbləğ</string>
+    <string name="doc_error">Sənədin səhvi</string>
+    <string name="ask_to_delete_doc">Sənədi silmək?</string>
+    <string name="doc_not_sent">DİQQƏT! Sənəd kompüterə çatdırılmamışdır. Silmək?</string>
+    <string name="processing_error">Emal vaxtı səhv</string>
+    <string name="answers">Cavablar</string>
+    <string name="name">Ad</string>
+    <string name="title">Ad</string>
+    <string name="qty">Miqdar</string>
+    <string name="wait">Gözləyin</string>
+    <string name="table_is_creating">Cədvəlin qurulması gedir</string>
+    <string name="server_isnot_responded">Serverdən təsdiq etmə yoxdur</string>
+    <string name="message_input">Sizə mesaj var!</string>
+    <string name="base_updating">Məlumat bazasının yenilənməsi</string>
+    <string name="wait_for_server_answer">Serverdən cavabın gözlənməsi</string>
+    <string name="save_to_base">Məlumat bazasına yazılma</string>
+    <string name="data_sending">Serverə məlumatların göndərilməsi</string>
+    <string name="wait_form_server_answer">Serverdən cavabın alınması</string>
+    <string name="wait_for_send_gps">GPS-koordinatların göndərilməsi</string>
+    <string name="remains_data_updated">Qalıqlar üzrə məlumatlar yenilənmişdir</string>
+    <string name="scripts_isnot_found">Kontragent üçün mümkün ssenari yoxdur</string>
+    <string name="select_variant">Variantı seçin</string>
+    <string name="doc_type">Sənədin tipi</string>
+    <string name="select_for_open">Napoleonu açmaq üçün,seçin.</string>
+    <string name="message">İsmarıc</string>
+    <string name="on">Qoşulmuşdur</string>
+    <string name="off">Söndürülmüşdür</string>
+    <string name="charge">Qüvvə ehtiyatı</string>
+    <string name="report_sending">Hesabatın göndərilməsi</string>
+    <string name="progress">irəliləmə…</string>
+    <string name="sent_succs">Göndərilmə müvəffəqiyyətlə başa çatmışdır!</string>
+    <string name="send_error">Hesabatın göndərilməsi vaxtı səhv</string>
+    <string name="send_error_try_later">Göndərilmə vaxtı səhv oldu, sonra cəht edin..</string>
+    <string name="waiting">Gözləmə</string>
+    <string name="please_wait">Zəhmət olmasa,gözləyin …</string>
+    <string name="vibration">Vibrasiya</string>
+    <string name="rotate_screen">Ekranın döngəsi</string>
+    <string name="autostart">Avtostart</string>
+    <string name="service">Servis</string>
+    <string name="print">Çap</string>
+    <string name="script_off">Ssenari söndürülmüşdür</string>
+    <string name="remove_visit_older">Daha köhnə ziyarətləri silmək</string>
+    <string name="docs_for_period">Sənədlər ərzində,ay</string>
+    <string name="ip">IP</string>
+    <string name="ip2">IP 2</string>
+    <string name="port">Port</string>
+    <string name="login">Loqin</string>
+    <string name="passw">"Parol"</string>
+    <string name="on_line_ip">On-Line IP</string>
+    <string name="send_report">Hesabatı göndərmək</string>
+    <string name="send_report_and_base">Hesabatı və bazanı göndərmək</string>
+    <string name="comment_for_crash">Səhvə mətn şərhi:</string>
+    <string name="org_name">Təşkilatın adı</string>
+    <string name="set_period">Dövrü təyin edin</string>
+    <string name="contractor">Kotragent</string>
+    <string name="by_date_created">tarixə görə yaradılmalar</string>
+    <string name="begin">başladı</string>
+    <string name="end">son</string>
+    <string name="time_update_gps">Sorğu zamanı,san.</string>
+    <string name="lenght_to_change_distance">Distansiyanın dəyişikliyi, m.</string>
+    <string name="background_send">Fon ötürülməsi</string>
+    <string name="interval">İnterval, dəq.</string>
+    <string name="time_for_wait_gps">Koord gözlənilməsi.,san.</string>
+    <string name="packing">Qablaşdırmalar</string>
+    <string name="shipped">Yükü boşaltma.</string>
+    <string name="order_to_target_price">Fokus malını sifariş edin!</string>
+    <string name="fio">SAA</string>
+    <string name="phone">Telefon</string>
+    <string name="camera_resolution">Kameranın icazəsi</string>
+    <string name="autofocus">Avtofokus</string>
+    <string name="safe_photo_on_sdcard">Ziyarətlərin fotosunu yaddaş kartında saxlamaq.</string>
+    <string name="use_inner_app_for_photo">Android əlavəsiylə şəkil çəkmək</string>
+    <string name="address">Ünvan</string>
+    <string name="get_gps_coord">Koordinatları təyin etmək</string>
+    <string name="unknown">məlum deyil</string>
+    <string name="contacts">Əlaqələr</string>
+    <string name="columns">Sütunlar</string>
+    <string name="clear_base">Qəbul zamanı bazanı təmizləmək</string>
+    <string name="gen_data">Əsas məlumatlar</string>
+    <string name="remains_la_zero">qalıqlar &gt; 0</string>
+    <string name="gen_docs">Sənədlər (sifarişlər, merç.)</string>
+    <string name="photo_visit">Fotohesabat (ziyarətlər)</string>
+    <string name="presents">Nümayiş</string>
+    <string name="costs">Qiymətlər</string>
+    <string name="shipped_and_debts">Yükü boşaltmalar və borclar</string>
+    <string name="recreate_order">Sifarişləri bərpa etmək, mes</string>
+    <string name="update">Yeniləmək</string>
+    <string name="cause">Səbəb</string>
+    <string name="clmn_2">Sütün 2</string>
+    <string name="clmn_3">Sütün 3</string>
+    <string name="code_sku">Malın kodu</string>
+    <string name="check_remains">Qalıqları yoxlamaq</string>
+    <string name="complete_story">Mürəkkəb satış tarixi</string>
+    <string name="show_packs_in_order">Sifarişdə qablaşdırmalarla göstərmək</string>
+    <string name="sht">əd</string>
+    <string name="kg">kg</string>
+    <string name="delay">möhlət</string>
+    <string name="incas_doc_title">ödəniş</string>
+    <string name="order_doc_title">Sifarişlər</string>
+    <string name="debt_doc_title">Borclar</string>
+    <string name="visit_doc_title">Ziyarətlər</string>
+    <string name="remains_doc_title">Qalıqlar</string>
+    <string name="Version">Versiya:</string>
+    <string name="phone">Telefon</string>
+    <string name="phone1">Telefon:</string>
+    <string name="site">Sayt:</string>
+    <string name="checkNew">Yeniləmələri yoxlamaq</string>
+    <string name="selectDocType">Sənədin tipinin seçimi</string>
+    <string name="organization">Təşkilat</string>
+    <string name="sum1">Məbləğ</string>
+    <string name="newDoc">Yeni sənədi yaratmaq</string>
+    <string name="gpsStatus">Status GPS</string>
+    <string name="dateSample">01/01/2012</string>
+    <string name="digit">Rəqəm</string>
+    <string name="onWh">anbarda</string>
+    <string name="inPack">qabda</string>
+    <string name="orgRest">nöqtədə</string>
+    <string name="orderQty">sifariş</string>
+    <string name="crash1">Proqramın işində gözlənilməyən səhv oldu.</string>
+    <string name="crash2">Səhv haqqında hesabatın faylı yaddaş kartındadır /Napoleon/crash.log</string>
+    <string name="copy">surəti</string>
+    <string name="skip">sıçramaq</string>
+    <string name="export">ixrac</string>
+    <string name="import_str">İdxal</string>
+    <string name="view">Review</string>
+    <string name="matrix">matris</string>
+    <string name="show_price">qiymət göstər</string>
+    <string name="go_folder_to">Bu məhsul ilə qovluğa dön</string>
+    <string name="return_doc_title">Returns</string>
+    <string name="task_doc_title">Tapşırıqlar</string>
+    <string name="stock_doc_title">Alınmış məhsulların siyahısı</string>
+</resources>

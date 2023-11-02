@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<style name="mainListViewStyle">
+		<item name="android:background">@android:color/white</item>
+	</style>
+
+	<style name="valueTextView" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/value_color</item>
+    </style> 
+	<style name="calendarDayTextView" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">16sp</item>
+    </style> 
+
+	<style name="calendarDayOfWeekTextView" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+    </style> 
+    
+    <style name="linkTextView" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/link_color</item>
+        <item name="android:textStyle">bold</item>
+    </style> 
+    
+    <style name="spinnerItem" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:background">@color/white</item>
+    </style> 
+    
+    <dimen name="report_date_width">80dp</dimen>
+
+    <style name="SettingTextView" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="SettingTextViewEx" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">16sp</item>
+    </style>
+    <style name="NapoleonBarTheme" parent="@android:style/Widget.Holo.Light.ActionBar"></style>
+
+    <style name="NapoleonImageButton" parent="@android:style/Widget.ImageButton"></style>
+
+    <style name="NapoleonListView" parent="@android:style/Widget.Holo.ListView"></style>
+
+    <style name="Header">
+        <item name="android:background">@color/footer</item>
+        <item name="android:paddingBottom">@dimen/header_padding_bottom</item>
+        <item name="android:paddingTop">@dimen/header_padding_top</item>
+        <item name="android:paddingLeft">@dimen/header_padding_left</item>
+        <item name="android:paddingRight">@dimen/header_padding_left</item>
+        <item name="android:minHeight">@dimen/header_height</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="HeaderText">
+        <item name="android:textColor">@drawable/header_button_selector</item>
+        <item name="android:textSize">@dimen/header_text_sz</item>
+	</style>
+
+    <style name="Footer">
+        <item name="android:background">@color/footer</item>
+        <item name="android:paddingLeft">@dimen/footer_left_padding</item>
+        <item name="android:paddingRight">@dimen/footer_left_padding</item>
+        <item name="android:layout_height">@dimen/footer_height</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="FooterText">
+        <item name="android:textColor">@color/footer_text</item>
+        <item name="android:textSize">@dimen/footer_text_sz</item>
+    </style>
+
+    <style name="FooterButton">
+        <item name="android:layout_marginRight">@dimen/footer_v_spacing</item>
+        <item name="android:background">@null</item>
+    </style>
+
+    <style name="HeaderButton">
+        <item name="android:background">@null</item>
+    </style>
+
+    <style name="NapoleonActionButton" parent="@android:style/Widget.Holo.ActionButton"></style>
+
+    <style name="NapoleonOverflowButton" parent="@android:style/Widget.Holo.ActionButton.Overflow">
+        <item name="android:src">@drawable/menu3dot</item>
+    </style>
+
+    <style name="NapoleonActionBarTab" parent="@android:style/Widget.Holo.ActionBar.TabView"></style>
+
+    <style name="NapoleonActionBar" parent="@android:style/Widget.Holo.ActionBar">
+        <item name="android:titleTextStyle">@style/NapoleonActionBarTextStile</item>
+    </style>
+
+    <style name="NapoleonActionBarTextStile" parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Title"></style>
+
+    <style name="FindPanel">
+        <item name="android:background">@color/white</item>
+        <item name="android:paddingLeft">3dp</item>
+        <item name="android:paddingRight">3dp</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="TextButton">
+        <item name="android:textSize">@dimen/text_button_textSize</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_marginTop">@dimen/text_button_marginTop</item>
+        <item name="android:layout_marginBottom">@dimen/text_button_marginBottom</item>
+        <item name="android:background">@drawable/button_shape</item>
+    </style>
+
+    <style name="TextButtonInv">
+        <item name="android:textSize">@dimen/text_button_textSize</item>
+        <item name="android:textColor">@color/blue</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_marginTop">@dimen/text_button_marginTop</item>
+        <item name="android:layout_marginBottom">@dimen/text_button_marginBottom</item>
+        <item name="android:background">@drawable/button_shape_inv</item>
+    </style>
+</resources>

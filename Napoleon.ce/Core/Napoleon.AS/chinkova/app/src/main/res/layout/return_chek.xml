@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/llHeader"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        style="?header">
+
+        <TextView
+            style="?headerText"
+            android:text="@string/organization"
+            android:id="@+id/tvOrg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvChekInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="0dip"
+        android:layout_weight="1"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:text="tvChekInfo" />
+
+    <TextView
+        android:id="@+id/tvInfo"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="" />
+
+
+    <LinearLayout
+        android:id="@+id/llTaskBar"
+        android:layout_width="match_parent"
+        style="?footer">
+    <ImageButton
+            android:id="@+id/btnSend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="?footerButton"
+            android:src="@drawable/send"
+            tools:ignore="ContentDescription" />
+
+		<ImageButton
+            android:id="@+id/btnQR"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="?footerButton"
+            android:src="@drawable/qr_code"
+            tools:ignore="ContentDescription" />
+
+		<ImageButton
+		    android:id="@+id/btnDelete"
+            style="?footerButton"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:src="@drawable/money_back_2" />
+        
+    </LinearLayout>
+</LinearLayout>

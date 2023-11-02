@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:f="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+    <com.daimajia.swipe.SwipeLayout
+        android:id="@+id/task_swipe_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <!-- Bottom View Start-->
+        <FrameLayout
+            android:id="@+id/bottom_task_wrapper_right2"
+            android:layout_width="match_parent"
+            android:weightSum="1"
+            android:layout_height="match_parent"
+            android:background="@color/finish_color">
+
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/apply"
+                android:gravity="center"
+                android:paddingLeft="15dp"
+                android:layout_gravity="center_vertical|left" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/bottom_task_wrapper_right"
+            android:layout_width="match_parent"
+            android:weightSum="1"
+            android:layout_height="match_parent"
+            android:background="@color/profile_button_buy_color">
+
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/calendar_today_white"
+                android:gravity="center"
+                android:paddingRight="15dp"
+                android:layout_gravity="center_vertical|right" />
+
+        </FrameLayout>
+
+        <!-- Bottom View End-->
+
+        <!-- Surface View Start -->
+
+        <LinearLayout
+            android:id="@+id/main_task_info_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:clickable="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:id="@+id/iv_task_status"
+                    android:layout_width="@dimen/univ_ab_height"
+                    android:layout_height="@dimen/univ_ab_height"
+                    android:paddingLeft="@dimen/univ_padding"
+                    android:paddingBottom="@dimen/univ_padding"
+                    android:paddingTop="@dimen/univ_padding"
+                    android:paddingRight="@dimen/univ_padding_small"
+                    android:src="@drawable/status0" />
+
+                <RelativeLayout
+                    android:id="@+id/img_user_container"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginRight="8dp">
+
+                    <ImageView
+                        android:id="@+id/img_user"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:padding="1dp"/>
+
+                    <ImageView
+                        android:id="@+id/img_user_custom"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:visibility="gone"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/img_user_two_container"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="8dp"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:id="@+id/img_user_two"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:padding="1dp"
+                        android:visibility="gone"/>
+
+                    <ImageView
+                        android:id="@+id/img_user_custom_two"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:visibility="gone"/>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/task_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="42dp"
+                android:orientation="vertical"
+                android:layout_gravity="center_vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/text_name"
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/text_size_normal"
+                        android:layout_marginRight="10dp"
+                        android:scrollHorizontally="true"
+                        android:layout_marginTop="7.5dp"
+                        android:layout_weight="1"/>
+
+                    <ImageView
+                        android:id="@+id/img_focus"
+                        android:layout_width="@dimen/univ_ab_height"
+                        android:layout_height="@dimen/univ_ab_height"
+                        android:paddingLeft="@dimen/univ_padding"
+                        android:paddingBottom="@dimen/univ_padding"
+                        android:paddingTop="@dimen/univ_padding"
+                        android:paddingRight="@dimen/univ_padding_small"
+                        android:src="@drawable/focus_active" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginRight="10dp">
+
+                    <com.ashberrysoft.leadertask.views.FlowLayout
+                        android:id="@+id/categories_flow_layout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="2dp"
+                        android:paddingLeft="@dimen/univ_padding_tiny"
+                        android:paddingRight="@dimen/univ_padding_small"
+                        f:horizontalSpacing="@dimen/univ_padding_small"
+                        f:orientation="horizontal"
+                        f:verticalSpacing="@dimen/univ_padding_small" />
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:id="@+id/info_flow_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:paddingBottom="@dimen/univ_padding_small"
+                    android:layout_marginRight="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="12dp"
+                        android:orientation="horizontal"
+                        android:layout_gravity="center_vertical|right"
+                        android:gravity="center_vertical|right"
+                        android:layout_marginRight="3dp">
+
+                        <TextView
+                            android:id="@+id/text_user"
+                            style="@style/tvnTv"/>
+
+                        <ImageView
+                            android:id="@+id/img_term"
+                            style="@style/tvnIv"
+                            android:src="@drawable/term_orange_tiny" />
+
+                        <TextView
+                            android:id="@+id/text_term"
+                            style="@style/tvnTv"/>
+
+
+                        <ImageView
+                            android:id="@+id/img_term_customer"
+                            style="@style/tvnIv"
+                            android:src="@drawable/term_red_small" />
+
+                        <TextView
+                            android:id="@+id/text_term_customer"
+                            style="@style/tvnTv" />
+
+                        <ImageView
+                            android:id="@+id/attached_files"
+                            style="@style/tvnIv"
+                            android:src="@drawable/attached_files"/>
+
+                        <ImageView
+                            android:id="@+id/img_comments_text"
+                            style="@style/tvnIv"
+                            android:src="@drawable/comment_task" />
+
+                        <ImageView
+                            android:id="@+id/img_messages"
+                            style="@style/tvnIv"
+                            android:src="@drawable/message_task" />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+       <!-- Surface View End -->
+    </com.daimajia.swipe.SwipeLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/properties_color_divider2"></FrameLayout>
+
+</LinearLayout>

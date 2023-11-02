@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding="windows-1251"?>
+<Wix xmlns='http://schemas.microsoft.com/wix/2006/wi'>
+  <Fragment Id='Common'>
+    <PropertyRef Id="NETFRAMEWORK20" />
+
+    <Property Id="ReqDotNet" Value="2.0" />
+
+    <DirectoryRef Id='_PRODUCT' >
+      <!--<Component Id='UpdateComponents' Guid='4D65B916-3C6E-42be-ACB5-6844E3134E63'>
+           <File Id='GRUpdate_exe' Name='GRUpdate.exe' DiskId='1' Source='GRUpdate.exe' KeyPath='yes'/>
+         </Component>-->
+      <Component Id='GRPacket' Guid='ED2FBA20-5759-480d-B988-56E942C71514'>
+        <File Id='GRPacket_dll' Name='GRPacket.dll' DiskId='1' Source='GRPacket.dll' KeyPath='yes'/>
+      </Component>
+    </DirectoryRef>
+    <UI>
+      <Dialog Id="DotNetWarningDlg" Width="284" Height="73" Title="Отсутствует Microsoft .Net [ReqDotNet]" NoMinimize="yes">
+        <Control Id="Text" Type="Text" X="38" Y="8" Width="240" Height="40" TabSkip="no">
+          <Text>ВНИМАНИЕ! На компьютере отсутствует Microsoft .Net [ReqDotNet] часть компонентов комплекса будет недоступна</Text>
+        </Control>
+        <Control Id="OK" Type="PushButton" X="114" Y="52" Width="56" Height="17" Default="yes"  Cancel="yes" Text="OK">
+          <Publish Event="EndDialog" Value="Return">1</Publish>
+        </Control>
+      </Dialog>
+
+      <InstallUISequence>
+        <Show Dialog="DotNetWarningDlg" After="AppSearch" Overridable="yes" >
+          <![CDATA[Not(Installed OR NETFRAMEWORK20)]]>
+        </Show>
+      </InstallUISequence>
+    </UI>
+  </Fragment>
+</Wix>

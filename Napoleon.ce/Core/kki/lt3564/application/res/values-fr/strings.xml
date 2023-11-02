@@ -1,0 +1,610 @@
+<resources>
+    <string name="l_password">Le mot de passe</string>
+    <string name="l_input">S\'identifier</string>
+    <string name="l_create_account">Créer le profil</string>
+    <string name="message_auth_going">En train d\'autorisation...</string>
+    <string name="error_account_expired">Cette fonction n\'est disponible qu\'en version payée</string>
+    <string name="error_account_frozen">Le profil est bloqué</string>
+    <string name="error_internet_access">Il n\'y a pas d\'accès à l\'Internet</string>
+    <string name="error_login">Entrez le nom d\'utilisateur</string>
+    <string name="error_password">Entrez le mot de passe</string>
+    <string name="error_server">L\'operation n\'a pas réussie:</string>
+    <string name="error_wrong_auth">Le nom d\'utilisateur ou le mot de passe n\'est pas correct</string>
+    <string name="error_wrong_serv">La connection au serveur ne réussit pas</string>
+    <string name="error_comment">Entrez le commentaire</string>
+    <string name="error_empty_task_title">Entrez le nom de la tâche</string>
+    <string name="correct_server">Serveur est disponible à travail</string>
+    <string name="error_wrong_answer_from_server">La réponse du serveur n\'est pas correcte</string>
+    <string name="error_wrong_answer_from_server_incorrect_root_container_title">La réponse du serveur n\'est pas correcte. Le nom du conteneur radical n\'est pas correct: on a espéré %1$s, mais on a reçu %2$s</string>
+    <string name="error_wrong_answer_from_server_absent_error_code_tag">La réponse du serveur n\'est pas correcte. Il manque de la balise error_code</string>
+    <string name="error_xml_pull_parser">Erreur pendant l\'analyse syntaxique d\'XML. %1$s</string>
+    <string name="error_unknown_type">Erreur. %1$s</string>
+    <string name="error_code">Code d\'erreur</string>
+    <string name="error_ssl_handshake">Ne peux pas vérifier le certificat de conformité</string>
+    <string name="error_standard_version">Vous avez la version standarde</string>
+    <string name="error_standard_version_during_synchronization">La Synchronisation n\'est disponible qu\'à la version Experte</string>
+    <string name="error_end_emp_limit">La limite du nombre d\'utilisateurs en organisation est excédée</string>
+    <string name="settings_user">Utilisateur</string>
+    <string name="settings_change_user">Utilisateur courant:</string>
+    <string name="settings_change_user_title">Succéder l\'utilisateur</string>
+    <string name="settings_clean_data">Supprimer toutes les données. Les données seront restaurées du serveur pendant la synchronisation</string>
+    <string name="settings_clean_data_title">Vider les données</string>
+    <string name="settings_basic">Généralités</string>
+    <string name="settings_theme_dark">Noir</string>
+    <string name="settings_theme_light">Blanc</string>
+    <string name="settings_theme_title">Thème</string>
+    <string name="settings_mode_phone">Téléphone</string>
+    <string name="settings_mode_table">Tablette</string>
+    <string name="settings_mode_title">L\'orientation portrait</string>
+    <string name="settings_reminder_off">Désactivés</string>
+    <string name="settings_reminder_on">Activé</string>
+    <string name="settings_reminder_title">Rappels</string>
+    <string name="settings_about_programm">Sur le logiciel</string>
+    <string name="txt_just_no">Annuler</string>
+    <string name="txt_just_yes">Oui</string>
+    <string name="settings_confirmation">Confirmation</string>
+    <string name="settings_clean_base"> Êtes-vous sûr que vous voulez supprimer les données locales et perdre tous les changements récents ?</string>
+    <string name="settings_logout"> Êtes-vous sûr que vous voulez succéder l\'utilisateur ?</string>
+    <string name="settings_site">Ouvrur site web</string>
+    <string name="settings_community">Сommunauté</string>
+    <string name="title_message">Discussion</string>
+    <string name="title_view">Revue</string>
+    <string name="title_edit">Edition</string>
+    <string name="task_new">Nouvelle tâche</string>
+    <string name="task">Propriété de la tâche</string>
+    <string name="task_comment">Écrivez la note...</string>
+    <string name="task_connection">Relations:</string>
+    <string name="task_instruct">Affecter à</string>
+    <string name="task_assign">Affecter à</string>
+    <string name="task_set_term">Choisir le délai</string>
+    <string name="task_performer_email">E-mail d\'exécuteur</string>
+    <string name="task_status">Statut</string>
+    <string name="task_performer">Exécuteur: </string>
+    <string name="txt_status_icon">Icône du statut de la tâche</string>
+    <string name="txt_collapse_icon">Icône de découverte / de la clôture de l\'arbre des tâches</string>
+    <string name="txt_project_icon">Icône du projet de la tâche</string>
+    <string name="connection_clear_mark">x</string>
+    <string name="task_project">Projets</string>
+    <string name="task_category">Libellées</string>
+    <string name="task_contact">Contacts</string>
+    <string name="prompt_task_title">Prononcez le nom de la tâche...</string>
+    <string name="prompt_task_comment">Pronocez le nom du commentaire...</string>
+    <string name="term">Délai:&#160;</string>
+    <string name="title_today_screen">Aujourd\'hui: %s</string>
+    <string name="task_today">Aujourd\'hui</string>
+    <string name="task_yesterday">Hier</string>
+    <string name="task_tomorrow">Demain</string>
+    <string name="task_msg">Message</string>
+    <string name="task_inbox">Non classé</string>
+    <string name="task_i">Moi</string>
+    <string name="task_review">Revue</string>
+    <string name="menu_subtasks">Sous-tâches</string>
+    <string name="menu_term">Remettre le délai</string>
+    <string name="menu_assign">Affecter à</string>
+    <string name="menu_re_assign">Réaffecter</string>
+    <string name="menu_dell">Supprimer</string>
+    <string name="menu_properties">Propriétés</string>
+    <string name="confirm_delete_title">Confirmation</string>
+    <string name="confirm_delete_text">Êtes-vous sûr que vous voulez supprimer la tâche ?</string>
+    <string name="menu_settings">Réglages</string>
+    <string name="menu_synchronize">Synchroniser</string>
+    <string name="synchronize_start">Synchronisation est en train</string>
+    <string name="synchronize_end">Synchronisation est finie</string>
+    <string name="menu_show_hide_make_task">Afficher/cacher les tâches réalisées</string>
+    <string name="menu_show_make_task">Afficher les tâches réalisées</string>
+    <string name="menu_hide_make_task">Cacher les tâches réalisées</string>
+    <string name="subtasks_empty">Il n\'y a pas de tâches</string>
+    <string name="btn_ok">Ok</string>
+    <string name="btn_cancel">Annuler</string>
+    <string name="menu_help">Aide</string>
+    <string name="menu_select_date">Choisir le délai</string>
+    <string name="menu_add_task">Ajouter une tâche</string>
+    <string name="menu_save_task">Sauvegarder</string>
+    <string name="notification_title">Rappel</string>
+    <string name="notifications">Rappels</string>
+    <string name="task_term">Délai</string>
+    <string name="btn_9_hours_using_12_hours_format">09:00 AM</string>
+    <string name="btn_18_hours_using_12_hours_format">06:00 PM</string>
+    <string name="btn_9_hours_using_24_hours_format">09:00</string>
+    <string name="btn_18_hours_using_24_hours_format">18:00</string>
+    <string name="btn_minus_30_minutes">-30 minutes</string>
+    <string name="btn_minus_one_day">-1 jour</string>
+    <string name="btn_plus_30_minutes">+30 minutes</string>
+    <string name="btn_plus_one_day">+1 jour</string>
+    <string name="btn_select_date">Choisir</string>
+    <string name="btn_select_time">Choisir</string>
+    <string name="btn_today">Aujourd\'hui</string>
+    <string name="btn_tomorrow">Demain</string>
+    <string name="btn_without_term">Sans délai</string>
+    <string name="btn_without_time">Sans temps</string>
+    <string name="sm_input">Non classé</string>
+    <string name="sm_categories">Libellées</string>
+    <string name="sm_projects">Projets</string>
+    <string name="sm_available_me">Projets accessibles</string>
+    <string name="sm_instruct_i">J\'ai affecté</string>
+    <string name="sm_instruct_me">Je suis chargé de</string>
+    <string name="task_not_begin">Non commencé</string>
+    <string name="task_completed">Accompli</string>
+    <string name="note">Note</string>
+    <string name="task_in_work">En course</string>
+    <string name="task_ready">Fait</string>
+    <string name="task_paused">En attente</string>
+    <string name="task_cancelled">Annulée</string>
+    <string name="task_rejected">Rejetée</string>
+    <string name="task_refine">Affiner</string>
+
+    <string-array name="months_full">
+        <item>Janvier</item>
+        <item>Février</item>
+        <item>Mars</item>
+        <item>Avril</item>
+        <item>Mai</item>
+        <item>Juin</item>
+        <item>Juillet</item>
+        <item>Août</item>
+        <item>Septembre</item>
+        <item>Octobre</item>
+        <item>Novembre</item>
+        <item>Décembre</item>
+    </string-array>
+    <string name="Monday">Lundi</string>
+    <string name="Tuesday">Mardi</string>
+    <string name="Wednesday">Mercredi</string>
+    <string name="Thursday">Jeudi</string>
+    <string name="Friday">Vendredi</string>
+    <string name="Saturday">Samedi</string>
+    <string name="Sunday">Dimanche</string>
+    <string name="Mo">Lu</string>
+    <string name="Tu">Ma</string>
+    <string name="We">Me</string>
+    <string name="Th">Je</string>
+    <string name="Fr">Ve</string>
+    <string name="Sa">Sa</string>
+    <string name="Su">Di</string>
+
+    <!-- @since 2014-03-11 -->
+    <string name="blocking_process">Traitement des données est en course...</string>
+    <string name="unit_bytes">&#160;octet</string>
+    <string name="unit_Kbytes">&#160;Ko</string>
+    <string name="unit_Mbytes">&#160;Mo</string>
+    <string name="btn_add">Ajouter</string>
+    <string name="t_start_convertation">Conversion du fichier en mp3 est commencée</string>
+    <string name="t_start_download_file">Téléchargement du fichier est commencé</string>
+    <string name="t_error_camera">On n\'a pas réussi de faire marcher la caméra</string>
+    <string name="t_error_external_storage">Il faut installer la carte-mémoire</string>
+    <string name="t_error_file_saving">On n\'a pas réussi de sauvegarder le fichier</string>
+    <string name="t_error_free_space_needed">L\'espace ne suffit pas</string>
+    <string name="t_error_can_record_ones">Il n\'est possible d\'enregister qu\'un fichier par une fois</string>
+    <string name="t_error_file_not_exist">Le fichier n\'existe pas</string>
+    <string name="t_error_feature_name">On a choisi un nom inacceptable</string>
+    <string name="t_error_performer_not_unique">Le participant choisi est déjà ajouté</string>
+    <string name="d_error_title">Attention</string>
+    <string name="d_audio_record_title">Audio</string>
+    <string name="d_project_remove_title">Élimination du projet</string>
+    <string name="d_project_remove_message">Êtes-vous sûr que vous voulez supprimer le projet et toutes les tâches dedans ?</string>
+    <string name="d_performer_remove_title">Élimination du participant</string>
+    <string name="d_performer_remove_message">Êtes-vous sûr que vous voulez supprimer le participant ?</string>
+    <string name="d_category_remove_title">Élimination de la libellée</string>
+    <string name="d_category_remove_message">Êtes-vous sûr que vous voulez supprimer la libellée ?</string>
+    <string name="what_to_use">Que utiliser ?</string>
+    <string name="reg_email">Email</string>
+    <string name="reg_name">Nom</string>
+    <string name="reg_create_acc">Créer le profil</string>
+    <string name="reg_rules">En vous enregistrant vouz accpetez Termes et conditions et la Politique de la confidentialité</string>
+    <string name="reg_complete">Enregistrement est réussi</string>
+    <string name="reg_fill_email">Entrez votre email</string>
+    <string name="reg_fill_name">Entrez votre nom</string>
+    <string name="reg_fill_pass">Entrez votre mot de passe</string>
+    <string name="menu_marker">Couleur</string>
+    <string name="m_add_from_camera">Caméra</string>
+    <string name="m_add_from_gallery">De la galerie</string>
+    <string name="m_add_audio">Audio</string>
+    <string name="m_go_left">Remettre à gauche</string>
+    <string name="m_go_right">Remettre à droite</string>
+    <string name="m_go_up">Remettre en haut</string>
+    <string name="m_go_down">Remettre en bas</string>
+    <string name="title_chooser_image">Choisir l\'image</string>
+    <string name="project_new">Nouveau projet</string>
+    <string name="project_add">Ajouter un projet</string>
+    <string name="project_properties">Propriétés du projet</string>
+    <string name="project_close">Fermer le projet</string>
+    <string name="project_show_subproj_tasks">Afficher les tâches de sous-projets</string>
+    <string name="project_show_in_navi">Montrer à Navigateuer</string>
+    <string name="project_favorite">Favori</string>
+    <string name="project_access">L\'accès</string>
+    <string name="project_add_performer">Ajouter participants au projet</string>
+    <string name="feature_name">Nom</string>
+    <string name="feature_comment">Commentaire</string>
+    <string name="category_new">Nouvelle libellée</string>
+    <string name="category_properties">Propriété de la libellée</string>
+    <string name="by_default">Par défaut</string>
+    <string name="task_no_projects">Sans projet</string>
+    <string name="task_no_categories">Sans libellée</string>
+    <string name="task_file_exist">&#160;(n\'est pas téléchargé)</string>
+    <string name="d_remove_file_title">Élimination du fichier</string>
+    <string name="d_remove_file_message">Êtes-vous sûr que vous voulez supprimer le fichier de la tâche ?</string>
+    <string name="title_chooser_open">Ouvrir le fichier</string>
+    <string name="error_user_exist">Un utilisateur avec tel email est déjà enregistré. Si c\'est votre email - restaurez le mot de passe.</string>
+    <string name="error_format_email">Le format d\'email entré n\'est pas correct</string>
+    <string name="error_file_not_downloaded">Le fichier n\'est pas encore téléchargé à serveur</string>
+    <string name="settings_private_office">Espace personnel</string>
+    <string name="settings_support">Écrire à soutien technique</string>
+    <string name="settings_blog">Notre blogue</string>
+    <string name="settings_facebook">Nous à Facebook</string>
+    <string name="settings_vkontakte">Nous à Vkontakte</string>
+    <string name="settings_twitter">Nous à Twitter</string>
+    <string name="settings_youtube">Nous à Youtube</string>
+    <string name="settings_autosync">Synchronisation</string>
+    <string name="settings_autosync_dialog_title">Temps de la synchronisation</string>
+    <string name="settings_autosync_m2">Chaque 2 minutes</string>
+    <string name="settings_autosync_m15">Chaque 15 minutes</string>
+    <string name="settings_autosync_m30">Chaque 30 minutes</string>
+    <string name="settings_autosync_m60">Chaque heure</string>
+    <string name="settings_autosync_off">Manuellement</string>
+    <string name="settings_calendar">Сalendrier à Navigateur</string>
+    <string name="settings_calendar_on">Activé</string>
+    <string name="settings_calendar_off">Désactivé</string>
+    <string name="settings_basic_data">Données</string>
+    <string name="settings_strikethru_tasks">Rayer les tâches accomplies</string>
+    <string name="settings_strikethru_on">Activé</string>
+    <string name="settings_strikethru_off">Désactivé</string>
+
+    <!-- @since 2014-06-19 -->
+    <string name="title_emp">Personnel</string>
+    <string name="d_emp_remove_title">Élimination du personnel</string>
+    <string name="d_emp_remove_message">Êtes-vous sûr que vous voulez supprimer l\'employé ?</string>
+    <string name="emp_display_as">Afficher comme</string>
+    <string name="emp_name_on_server">Nom d\'utilisateur de LeaderTask</string>
+    <string name="emp_new">Nouveau employé</string>
+    <string name="emp_properties">Les propriété de l\'employé</string>
+    <string name="t_error_not_all_information">Il faut ramplir tous les champs</string>
+
+    <!-- @since 2014-06-27 -->
+    <string-array name="days_of_week_short">
+        <item>Lu</item>
+        <item>Ma</item>
+        <item>Me</item>
+        <item>Je</item>
+        <item>Ve</item>
+        <item>Sa</item>
+        <item>Di</item>
+    </string-array>
+    <string-array name="lang_task_recurrence_weeks">
+        <item>Premier</item>
+        <item>Deuxième</item>
+        <item>Troisième</item>
+        <item>Quatrième</item>
+        <item>Dernier</item>
+    </string-array>
+
+    <string name="lang_task_after_day">Jour</string>
+    <string name="lang_task_after_week">Semaine</string>
+    <string name="lang_task_after_month">Mois</string>
+    <string name="lang_task_after_year">An</string>
+    <string name="lang_task_recurrence_daily">Quotidiennement</string>
+    <string name="lang_task_recurrence_in">Chaque</string>
+    <string name="lang_task_recurrence_weekly">hebdomadairement</string>
+    <string name="lang_task_recurrence_every_w">Chaque</string>
+    <string name="lang_task_recurrence_w_every">semain, à</string>
+    <string name="lang_task_recurrence_monthly">mensuellement</string>
+    <string name="lang_task_recurrence_every_m">Chaque</string>
+    <string name="lang_task_recurrence_m_every">mois</string>
+    <string name="lang_task_recurrence_m_every_d">date</string>
+    <string name="lang_task_recurrence_yearly">Annuellement</string>
+    <string name="lang_task_recurrence_every_y">Chaque</string>
+
+    <!-- @since 2014 09 30 -->
+    <string name="settings_language">Langue</string>
+    <string name="settings_on_status">Appui à statut</string>
+    <string name="settings_Markers">Couleurs</string>
+    <string name="settings_Labels">Libellées</string>
+
+    <string name="d_title_marker_remove">Élimination de la couleur</string>
+    <string name="d_title_label_remove">Élimination de la libellée</string>
+    <string name="d_title_pick_an_image_source">Choisissez la source de l\'image</string>
+
+    <string name="d_message_marker_remove">Êtes-vous sûr que vous voulez supprimer la couleur ?</string>
+    <string name="d_message_label_remove">Êtes-vous sûr que vous voulez supprimer la libellée ?</string>
+
+    <string name="lang_system">Du système</string>
+    <string name="expired">En retard</string>
+
+    <string name="default_task_name">Nom de la tâche</string>
+    <string name="default_marker">Couleur</string>
+    <string name="default_project">Projet</string>
+    <string name="default_category">Libellée</string>
+    <string name="default_label">Libellée</string>
+
+    <string name="on_status_none">Rien</string>
+    <string name="on_status_finish">Accomplir</string>
+    <string name="on_status_select">Choisir</string>
+
+    <string name="marker_new">Nouvelle couleur</string>
+    <string name="marker_properties">Propriété de la couleur</string>
+    <string name="marker_color_text">La couleur de lettres</string>
+    <string name="marker_color_background">La couleur du fond</string>
+    <string name="marker_all_caps">Tous majuscules</string>
+
+    <string name="label_new">Nouvelle libellée</string>
+    <string name="label_properties">Propriété de la libellée</string>
+    <string name="label_color">Mettre en couleur</string>
+
+    <string name="task_label">Libellées</string>
+
+    <string name="t_error_no_auth">L\'utilisateur n\'est pas autorisé</string>
+    <string name="t_error_same_process_not_stop">L\'operation précédent n\'est pas finie</string>
+    <string name="t_error_no_app_to_handle">Le logiciel pour traiter la demande n\'est pas trouvé</string>
+    <string name="t_task_input">La tâche est ajouté à Non classé</string>
+    <string name="t_error_file_was_not_uploaded">Le fichier n\'etait pas téléchargé à serveur</string>
+
+    <string-array name="media_sources">
+        <item>Caméra</item>
+        <item>Galerie</item>
+    </string-array>
+
+    <string name="exception_unknown">Erreur inconnue</string>
+    <string name="exception_ssl">Ne peux pas vérifier le certificat de conformité</string>
+    <string name="exception_sqlite">Erreur du travail avec la base de données</string>
+    <string name="exception_server">Erreur de l\'accès à serveur</string>
+    <string name="exception_parsing_request">Erreur pendant envoyer la demande</string>
+    <string name="exception_parsing_response">Erreur pendant recevoir la réponse à la demande</string>
+    <string name="exception_parsing_overall">Erreur pendant parcing de donnée</string>
+    <string name="exception_reset_links">Erreur pendant recalcul de relations de tâches</string>
+    <string name="exception_file_dowloading">Téléchargement n\'est pas réussi</string>
+    <string name="exception_test">Erreur de test</string>
+
+    <string name="error_need_confirm_registration">Il faut confirmer l\'enregistrement</string>
+    <string name="reg_fill_pass_is_too_short">Le mot de passe est trop court</string>
+    <string name="reg_fill_email_name">Entrez vos données d\'enregistrement</string>
+    <string name="alternative_reg">Ou créer un profil en utilisant:</string>
+    <string name="confirm_registration_text">Nous avons envoyé un message spécial à votre email. Cliquez la référence `Confirmer l\'enregistrement` dedans. </string>
+    <string name="confirm_registration_name">Confirmer l\'enregistrement ! </string>
+    <string name="error_timeout">Serveur ne répond pas.</string>
+    <string name="task_files">Ajouter un fichier</string>
+    <string name="onbackpressed_save">Sauvegarder les changements par le bouton Arière</string>
+    <string name="menu_dont_save_task">Ne sauvegarder pas</string>
+    <string name="pull_to_refresh_pull_label">tirez</string>
+    <string name="pull_to_refresh_release_label">détendez</string>
+    <string name="pull_to_refresh_refreshing_label">actualisation</string>
+    <string name="synchronization_updated">Synchroniser</string>
+    <string name="task_today_lib">Aujourd\'hui</string>
+    <string name="task_yesterday_lib">Hier</string>
+    <string name="task_before_lib">Avant-hier</string>
+    <string name="follow_the_link">Suivre le lien</string>
+    <string name="copy_link">Copier le lien</string>
+    <string name="task_not_found">La tâche n\'est pas trouvée</string>
+    <string name="saved_clipboard">Sauvegardé à presse-papiers</string>
+    <string name="back">Arrière</string>
+    <string name="error_api_disabled">On ne sutient plus cette fonction. S\'il vous plaît, actualisez le logiciel.</string>
+    <string name="error_account_blocked">Le profil est bloqué</string>
+    <string name="no_space_left_on_device">Il n\'y a pas d\'espace sur l\'appareil</string>
+    <string name="select_date">Choisir la date</string>
+    <string name="select_time">Choisir le temps</string>
+    <string name="settings_vibration">Vibration</string>
+    <string name="settings_standart_sound">Bruit standard</string>
+    <string name="task_unread">Non lu</string>
+    <string name="settings_unread_show">Afficher</string>
+    <string name="settings_unread_dont_show">N\'afficher pas</string>
+    <string name="settings_unread_in_navigator">Point non lus à Navigateur</string>
+    <string name="order_by_default">Sans classement</string>
+    <string name="order_by_term">Classer par délai</string>
+    <string name="order_by_marker">Classer par couleur</string>
+    <string name="already_registered">Déjà enregistré ?</string>
+    <string name="forgot_password">Avez-vous oublié le mot de passe ?</string>
+    <string name="synchronization_now">Synchronisation...</string>
+    <string name="never">Jamais</string>
+    <string name="updated">Actualisé</string>
+    <string name="license">Licence</string>
+    <string name="account">Profil et licence</string>
+    <string name="free">S\'écoulée</string>
+    <string name="to_premium">Acheter</string>
+    <string name="premium_gones">s\'écoule</string>
+    <string name="business_gones">s\'écoule</string>
+    <string name="extend">Prolonger</string>
+    <string name="days">jours</string>
+    <string name="settings_show_categories_in_navigator">Afficher les libellées à Navigateur</string>
+    <string name="not_follow">Ne pas suivre à projet</string>
+    <string name="settings_task_count_in_navigator">Afficher le nombre total de tâches à Navigateur</string>
+    <string name="intro_slide1_text">TOUTES LES TÂCHES TOUJOURS AVEC TOI</string>
+    <string name="intro_slide1_subtext">À n\'importe quel appareil</string>
+    <string name="intro_slide2_text">SYNCHRONISATION AVEC LES APPAREILS </string>
+    <string name="intro_slide2_subtext">Tout est toujours à portée de la main </string>
+    <string name="intro_slide3_text">DIVISION DE TÂCHES AUX PROJETS </string>
+    <string name="intro_slide3_subtext">Classement commode de tâches </string>
+    <string name="intro_slide4_text">DÉLÉGATION DE TÂCHES AUX EMPLOYÉS</string>
+    <string name="intro_slide4_subtext">Déléguer les tâches est très simple</string>
+    <string name="intro_slide5_text">L\'ACCÈS MÊME SANS INTERNET </string>
+    <string name="intro_slide5_subtext">L\'accès aux tâches n\'importe où </string>
+    <string name="intro_slide6_text">TOUTES LES TÂCHES ARBORESCENT </string>
+    <string name="intro_slide6_subtext">À chaque niveaux de tâches </string>
+    <string name="intro_slide7_text">CALENDRIER, LIBELLÉES, PRIORITÉS</string>
+    <string name="intro_slide7_subtext">Et beaucoup de plus...</string>
+    <string name="intro_start">Commencer</string>
+    <string name="intro_forward">Suivant</string>
+    <string name="settings_inbox_in_navigator">Cacher Non classé vide</string>
+    <string name="settings_navigator">Navigateur</string>
+    <string name="intro">Tour virtuel</string>
+    <string name="intro_prev">Arrière</string>
+    <string name="contact_groups">Les groupes de contacts</string>
+    <string name="contacts">Contacts</string>
+    <string name="d_contact_group_remove_title">Élimination de le groupe de contacts</string>
+    <string name="d_contact_group_remove_message">Êtes-vous sûr que vous voulez supprimer le groupe de contacts ?</string>
+    <string name="d_contact_remove_title">Élimination du contact</string>
+    <string name="d_contact_remove_message">Êtes-vous sûr que vous voulez supprimer le contact ?</string>
+    <string name="contacts_group_new">Nouveau groupe de contacts</string>
+    <string name="contacts_group_properties">Propriété du groupe de contacts</string>
+    <string name="contacts_group_add_performer">Ajouter un participant au groupe</string>
+    <string name="contact_new">Nouveau contact</string>
+    <string name="contact_properties">Propriétés du contact</string>
+    <string name="contact_last_name">Nom</string>
+    <string name="contact_name">Prénom</string>
+    <string name="contact_sername">Patronyme</string>
+    <string name="contact_group">Groupe</string>
+    <string name="contact_details">Particularités</string>
+    <string name="contact_post">Position</string>
+    <string name="contact_org">Le nom d\'organisation</string>
+    <string name="contact_connection">Moyens de liaison</string>
+    <string name="contact_birthday">Anniversaire</string>
+    <string name="contact_home_adress">Adresse résidentielle</string>
+    <string name="contact_work_adress">Adresse de travail</string>
+    <string name="add_comment">Env.</string>
+    <string name="order_by_name">Classer par le nom</string>
+    <string name="not_change_status">Ne pas changer le statut</string>
+    <string name="rework_dialog_title">Exécuteur a accompi cette tâche, pour qu\'il voie ce message, changez le statut de la tâche.</string>
+    <string name="display_project_subtasks">Afficher les tâches de sous-projets</string>
+    <string name="take_on_exec">Se charger de la tâche</string>
+    <string name="dell_communication">Supprimer le moyen communicatif</string>
+    <string name="d_communication_remove_message">Êtes-vous sûr que vous voulez supprimer le moyen communicatif ?</string>
+    <string name="project_add_communication">Ajouter le moyen communicatif</string>
+    <string name="comm_phone">Téléphone</string>
+    <string name="comm_email">Email</string>
+    <string name="comm_msg">Messager</string>
+    <string name="comm_www">Site web</string>
+    <string name="gender_men">Masculin</string>
+    <string name="gender_women">Féminin</string>
+    <string name="gender_org">Organisation</string>
+    <string name="gender_nobody">N\'est pas noté</string>
+    <string name="address_country">Pays</string>
+    <string name="address_region">Région / province</string>
+    <string name="address_city">Cité</string>
+    <string name="address_street">Maison, rue</string>
+    <string name="address_index">Code postal</string>
+    <string name="copy">Copier</string>
+    <string name="d_remove_file_message_contact">Êtes-vous sûr que vous voulez supprimer le fichier du contact ?</string>
+    <string name="search">Chercher</string>
+    <string name="pass_at_start">Mot de passe à démarrage</string>
+    <string name="term_repeat">Répétition</string>
+    <string-array name="repeat_main_chooser">
+        <item>Ne pas répéter</item>
+        <item>Qotidiennement</item>
+        <item>Hebdomadairement</item>
+        <item>Mensuellement</item>
+        <item>Annuellement</item>
+    </string-array>
+    <string-array name="repeat_day_year_chooser">
+        <item>Jour</item>
+                 <item>Semaine</item>
+                 <item>Mois</item>
+                 <item>An</item>
+    </string-array>
+    <string-array name="repeat_month_chooser">
+        <item>Chaque</item>
+        <item>Premier</item>
+        <item>Deuxième</item>
+        <item>Troisième</item>
+        <item>Quatrième</item>
+        <item>Dernier</item>
+    </string-array>
+    <string name="foto_del">Supprimer le photo</string>
+    <string name="foto_set">Installer le photo</string>
+    <string name="choose">Choisir</string>
+    <string name="choosen">Choisi:</string>
+    <string name="confirm_delete_text_mass">Êtes-vous sûr que vous voulez supprimer les tâches choisies?</string>
+    <string name="add_checked_tasks">S\'il vous plaît, choisissez les tâches</string>
+    <string name="set_as_read">Marquer lus</string>
+    <string name="choose_new_file">Choisir le fond</string>
+    <string name="cut">Couper</string>
+    <string name="paste">Insérer</string>
+    <string name="task_added">La tâche est ajoutée</string>
+    <string name="new_assignment">Nouvelle charge !</string>
+    <string name="l_login">Votre nom d\'utilisateur</string>
+    <string name="properties_enter_comment">Entrez le message...</string>
+    <string name="properties_сomments">Commentaires</string>
+    <string name="account_license_expires">Licence s\'ecoule:</string>
+    <string name="account_license_org">Organisation:</string>
+    <string name="account_license_director">Propriétaire de la licence:</string>
+    <string name="account_license_spase_server">Espace occupé à serveur:</string>
+    <string name="account_profile">Profil</string>
+    <string name="account_change">Changer le photo</string>
+    <string name="account_password">Changer le mot de passe</string>
+    <string name="account_exit">Sortir</string>
+    <string name="account_old_password">Entrer le mot de passe courrent</string>
+    <string name="account_new_password">Entrer le nouveau mot de passe</string>
+    <string name="account_new_password_again">Répétez nouveau mot de passe</string>
+    <string name="follow">Suivre au projet</string>
+    <string name="leave_project">Quitter le projet</string>
+    <string name="unboarding_addtasks">Commencer le travail par créer la liste de tâches</string>
+    <string name="settings_sound">Effets acoustique</string>
+    <string name="data_loading">Loading, please wait...</string>
+    <string name="task_create">La date de la création de la tâche -</string>
+    <string name="support_chat">Parler avec le soutien techniqueЧат</string>
+    <string name="support_log">Envoyer l\'information pour gérer les problèmes</string>
+    <string name="sort_by_color">Classer par la couleur</string>
+    <string name="sort_by_term">Classer par le délai</string>
+    <string name="sort_by_date_creation">Classer par la date de la création</string>
+    <string name="connection_string">Barre de connexion</string>
+    <string name="connection_settings">Réglages de connexion</string>
+    <string name="connection_add_str_sync_adress">Entrez l\'adresse</string>
+    <string name="search_not_elements">On n\'a trouvé rien</string>
+    <string name="done">Accompli</string>
+    <string name="pre_notify">Avant événement (minutes):</string>
+    <string name="add_emp">Ajouter un employé</string>
+    <string name="unboarding_dialog_members">Il faut ajouter un employé pour lui donner l’accès au projet.</string>
+    <string name="unboarding_dialog_projects">Créez vos projets ! Projets peuvent avoir des sous-projets de n’importe quel niveau.</string>
+    <string name="unboarding_dialog_performer">Il faut d’abord ajouter un employé pour lui affecter une tâche.</string>
+    <string name="unboarding_dialog_categories">Créez vos libellées ! Par example, \’Important\’, \’Urgent\’, \'VIP-client\' etc. Ça vous permettra de grouper les tâches par les catégories signifiées. Une tâche peut avoir un nombre des libellées. Les libellées peuvent être en structure arborescent.</string>
+    <string name="unboarding_dialog_markers">Ajoutez les couleurs. À l’aide de couleurs vous pourrez mettre les tâches en couleur dont vous avez besoin. Par example rouge pour les tâches importantes et bleu pour les rencontres. Dans la liste de tâches vous pouvez classer les tâches par leur couleur.</string>
+    <string name="unboarding_default_marker1">Grenouille</string>
+    <string name="unboarding_default_marker2">Santé</string>
+    <string name="unboarding_default_marker3">Rencontre</string>
+    <string name="unboarding_default_marker4">Essentiel</string>
+    <string name="unboarding_default_marker5">Occupations ménagères</string>
+    <string name="unboarding_default_category1">Important !</string>
+    <string name="unboarding_default_category2">Urgent !</string>
+    <string name="unboarding_default_category3">Attention !</string>
+    <string name="del_project">Supprimer le projet</string>
+    <string name="preview_slide1_text">Salut, </string>
+    <string name="preview_slide1_subtext">Etes-vous pret a accomplir plus des taches chaque jour ? \n Reglons vous LeaderTask.</string>
+    <string name="preview_slide2_text">Choisissez les projets pret de la liste</string>
+    <string name="preview_slide2_check2">Business</string>
+    <string name="preview_slide2_check3">Famille</string>
+    <string name="preview_slide2_check4">Voyages</string>
+    <string name="preview_slide2_check5">Hobby</string>
+    <string name="preview_slide3_text">Inviter les employes</string>
+    <string name="preview_slide3_subtext">Saisissez l\'E-mail de vos employes</string>
+    <string name="preview_slide3_edit_hint">Saisissez l\'E-mail de l\'employe</string>
+    <string name="preview_slide3_no_emps">Je n\'ai pas des employes, je suis seul</string>
+    <string name="preview_slide4_text">Ecrivez la charge pour votre employe</string>
+    <string name="preview_slide4_subtext">La tache est en train de delegation a l\'employe</string>
+    <string name="preview_slide4_task">Tache</string>
+    <string name="preview_slide4_choose">Choisissez l\'employe</string>
+    <string name="preview_slide5_text">Qu\'est ce qu\'il faut faire aujourd\'hui ?</string>
+    <string name="preview_slide5_subtext">Saisissez la tache pour aujourd\'hui</string>
+    <string name="preview_slide5_footer">Ne tenez tous a la tete - ecrivez dans la liste !</string>
+    <string name="preview_slide6_text">Quelle tache voulez-vous repeter chaque jour ?</string>
+    <string name="preview_slide6_everyday">Chaque jour</string>
+    <string name="preview_slide7_text">Merci pour l\'attention, maintenant vous etes pret a commencer le travaille dans LeaderTask !</string>
+    <string name="preview_add">Inviter le reglage</string>
+    <string name="preview_cansel">Finir le reglage</string>
+    <string name="market">Marche LeaderTask</string>
+    <string name="training_courses">Courses de formation</string>
+    <string name="open">Ouvrir</string>
+    <string name="market_name1">Cours video sur la gestion de l\'heure</string>
+    <string name="market_subname1">Passez le cours de base sur la gestion de l\'heure</string>
+    <string name="market_name2">Livre electronique \'Secrets de la gestion de l\'heure\'</string>
+    <string name="market_subname2">\'Secrets de la gestion de l\'heure\' - livre electronique avec les outils-techniques precis pour la gestion de vos taches plus efficace.</string>
+    <string name="market_name3">Cours video \'Turbo Gestion de l\'heure\'</string>
+    <string name="market_subname3">Cours video \'Turbo Gestion de l\'heure\' est fabrique pour ceux qui veut apprendre gerer l\'heur vite. Dans le cours tous les principes principaux sont accumules, on a raconte COMMENT est ce qu\'on peut les appliquer ici et maintenant.</string>
+    <string name="market_name4">Base des conceils outils</string>
+    <string name="market_subname4">Livre electronique avec plus que 2600 conceils outils. Base des conceils outils - c\'est un ecrin d\'information pratique outille , il travaile a augmenter votre efficacite !</string>
+    <string name="market_name5">Methodologies principales de Gestion de l\'heure en 60 minutes</string>
+    <string name="market_subname5">Manuel pratique sur l\'application pratique de trois systeme de gestion de l\'heure</string>
+    <string name="app_rate_title">Qualifiez LeaderTask</string>
+    <string name="app_rate_text">Si vous trouvez bien d\'outiliser LeaderTask, s\'il vous plait, qualifiez notre logiciel.</string>
+    <string name="app_rate_rate">Qualifier</string>
+    <string name="app_rate_later">Plus tard</string>
+    <string name="app_rate_no">Non, merci</string>
+    <string name="add_categoty">Ajouter une étiquette</string>
+    <string name="add_color">Ajoutez de la couleur</string>
+    <string name="add_task">Ajout de tâches</string>
+    <string name="add_task_bot">À la fin de la liste</string>
+    <string name="add_task_top">Vers le haut de la liste</string>
+    <string name="author">Автор</string>
+    <string name="confirm_leave_project">Voulez-vous vraiment quitter le projet?</string>
+    <string name="error_no_email_facebook">Pour vous inscrire, vous devez spécifier votre E-mail dans les paramètres de votre compte Facebook</string>
+    <string name="link_ok">http://ok.ru/leadertask/</string>
+    <string name="link_plus_google">http://plus.google.com/+leadertask/posts/</string>
+    <string name="notification_task_done">Task completed</string>
+    <string name="notification_new_comment">A new message</string>
+    <string name="notification_new_comments">New messages to the task</string>
+</resources>

@@ -1,0 +1,13 @@
+PRAGMA foreign_keys = ON;
+PRAGMA synchronous = 0;
+delete from `GPSPos` where date < (11644041600 - 3600 * 24 * 60 + strftime('%s','now'))  * 10000000;
+delete from `Order` where created < (11644041600 - 3600 * 24 * 60 + strftime('%s','now'))  * 10000000;
+delete from `Sales` where created < (11644041600 - 3600 * 24 * 60 + strftime('%s','now'))  * 10000000;
+delete from `Pko` where created < (11644041600 - 3600 * 24 * 60 + strftime('%s','now'))  * 10000000;
+delete from `OrgRemnants` where date < (11644041600 - 3600 * 24 * 60 + strftime('%s','now'))  * 10000000;
+delete from `UserLog` where date < (11644041600 - 3600 * 24 * 60 + strftime('%s','now'))  * 10000000;
+delete from `Visit` where date < (11644041600 - 3600 * 24 * 60 + strftime('%s','now'))  * 10000000;
+delete from `Incass` where date < (11644041600 - 3600 * 24 * 60 + strftime('%s','now'))  * 10000000;
+delete from `Returns` where date < (11644041600 - 3600 * 24 * 60 + strftime('%s','now'))  * 10000000;
+PRAGMA temp_store = 1;
+vacuum;

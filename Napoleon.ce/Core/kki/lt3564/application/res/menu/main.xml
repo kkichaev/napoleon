@@ -1,0 +1,28 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:balloonberry="http://schemas.android.com/apk/res-auto"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/action_today"
+        android:title="@string/task_today_lib"
+        android:orderInCategory="100"
+        app:showAsAction="ifRoom"/>
+<!--
+    <group android:checkableBehavior="single">
+        <item android:id="@+id/action_day_view"
+            android:title="@string/calendar_1_day"
+            android:orderInCategory="100"
+            android:checked="true"
+            app:showAsAction="never"/>
+
+        <item android:id="@+id/action_three_day_view"
+            android:title="@string/calendar_3_day"
+            android:orderInCategory="100"
+            app:showAsAction="never"/>
+
+        <item android:id="@+id/action_week_view"
+            android:title="@string/calendar_7_day"
+            android:orderInCategory="100"
+            app:showAsAction="never"/>
+    </group>
+    -->
+</menu>

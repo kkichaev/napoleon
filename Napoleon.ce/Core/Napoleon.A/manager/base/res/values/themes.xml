@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="ManagerTheme" parent="@android:style/Theme.Holo.Light">
+        <item name="android:windowBackground">@color/appBackground</item>
+        <item name="android:colorBackground">@color/appBackground</item>
+        <item name="android:textColor">@color/defaultTextColor</item>
+        <item name="android:windowNoTitle">false</item>
+        <item name="android:icon">@android:color/transparent</item>
+        <item name="android:actionBarStyle">@style/ActionBarStyle</item>
+    </style>
+
+    <style name="ManagerTheme.NoShadow">
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <style name="ActionBarStyle" parent="@android:style/Widget.Holo.Light.ActionBar">
+        <item name="android:titleTextStyle">@style/HoloTitleText</item>
+        <item name="android:background">@color/actionbar</item>
+    </style>
+
+    <style name="HoloTitleText" parent="android:TextAppearance.Holo">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">22sp</item>
+    </style>
+
+</resources>

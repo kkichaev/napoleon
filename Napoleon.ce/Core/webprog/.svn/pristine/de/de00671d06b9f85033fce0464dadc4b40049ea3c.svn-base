@@ -1,0 +1,29 @@
+#!/usr/bin/sh
+
+echo "FROM python:req
+
+WORKDIR /home/ert
+
+COPY app app
+COPY migrations migrations
+COPY webapp.py config.py ./
+
+ENV FLASK_APP webapp.py
+
+RUN chown -R ert:ert app/ migrations/ webapp.py config.py
+USER ert
+
+#RUN printf '#!/bin/bash\\\nsource prog/bin/activate' >> prog/start_prog
+RUN printf '#!/bin/bash\\\nsource prog/bin/activate\\\nflask db upgrade\\\nflask populate_data\\\nexec gunicorn -b :9000 --access-logfile - --error-logfile - webapp:app' >> prog/start_prog
+
+RUN chmod +x prog/start_prog
+CMD prog/start_prog
+#CMD /bin/bash
+" > dockf
+docker build --force-rm -f dockf -t webapp ./
+
+docker rm webapp
+docker image rm webapp
+docker build --force-rm -f dockf -t webapp ./
+rm dockf
+docker create --env-file .env --name webapp -it --network host webapp

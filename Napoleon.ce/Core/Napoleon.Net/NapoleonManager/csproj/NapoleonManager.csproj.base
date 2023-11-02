@@ -1,0 +1,1088 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{30D08BD6-1FFD-4D3F-BF0A-29D0A5291F67}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties.v3</AppDesignerFolder>
+    <RootNamespace>GRSoft.NapoleonManager</RootNamespace>
+    <AssemblyName>NapoleonManager</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ApplicationIcon>napoleon.ico</ApplicationIcon>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;PRESENTATION_EDITOR;ORG_STOP_EDITOR;SCRIPT_DOC;DneprLakomstva;SCRIPT_DOC;QUESTION;QUESTION_REPORT;STD_QUESTION_REPORT;QUESTION_IN_SCRIPTS;USE_ONLY_ORDER_IN_SUM;SELECT_ORG_LOCATION;AGENT_DISPLAY_ONLY_NAME;SQL_ORG_ROUTE;COPY_AGENT_ROUTE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;Stepup;AGENT_ORG_TASK</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AckName.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AckName.Designer.cs">
+      <DependentUpon>AckName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChangePassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChangePassword.Designer.cs">
+      <DependentUpon>ChangePassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CheckAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CheckAdmin.Designer.cs">
+      <DependentUpon>CheckAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Config.cs" />
+    <Compile Include="ConfigHistory.cs" />
+    <Compile Include="ConfigKeyItems.cs" />
+    <Compile Include="AnswerOverview.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AnswerOverview.Designer.cs">
+      <DependentUpon>AnswerOverview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dbf\DBFBase.cs" />
+    <Compile Include="Dbf\DBFException.cs" />
+    <Compile Include="Dbf\DBFField.cs" />
+    <Compile Include="Dbf\DBFHeader.cs" />
+    <Compile Include="Dbf\DBFReader.cs" />
+    <Compile Include="Dbf\DBFUtils.cs" />
+    <Compile Include="Dbf\DBFValue.cs" />
+    <Compile Include="Dbf\DBFWriter.cs" />
+    <Compile Include="DecoratorFactory.cs" />
+    <Compile Include="Entries.cs" />
+    <Compile Include="FmApproveMsg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FmApproveMsg.Designer.cs">
+      <DependentUpon>FmApproveMsg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FmCopyRoute.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FmCopyRoute.Designer.cs">
+      <DependentUpon>FmCopyRoute.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms.v3\FmExportPhoto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FmExportPhoto.Impl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms.v3\FmExportPhoto.Designer.cs">
+      <DependentUpon>FmExportPhoto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FmRouteApproval.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FmRouteApproval.Designer.cs">
+      <DependentUpon>FmRouteApproval.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FmUserLocation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FmUserLocation.Designer.cs">
+      <DependentUpon>FmUserLocation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.Impl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modules\Monitoring\MonitoringConurentRep.cs" />
+    <Compile Include="Modules\Monitoring\MonitoringOurRep.cs" />
+    <Compile Include="Modules\Monitoring\MonitoringReports.cs" />
+    <Compile Include="OrgLocation.cs" />
+    <Compile Include="Forms.v3\FmAgentTask.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FmAgentTask.Impl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms.v3\FmAgentTask.Designer.cs">
+      <DependentUpon>FmAgentTask.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FmAgentTaskEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FmAgentTaskEdit.designer.cs">
+      <DependentUpon>FmAgentTaskEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms.v3\FmAgentTaskList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FmAgentTaskList.Impl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms.v3\FmAgentTaskList.Designer.cs">
+      <DependentUpon>FmAgentTaskList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms.v3\FmCoverArea.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FmCoverArea.Impl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms.v3\FmCoverArea.Designer.cs">
+      <DependentUpon>FmCoverArea.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FmGPSReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FmGPSReport.Designer.cs">
+      <DependentUpon>FmGPSReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FmPhotoRateReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FmPhotoRateReport.Designer.cs">
+      <DependentUpon>FmPhotoRateReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms.v3\FmPricePhoto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FmPricePhoto.Impl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms.v3\FmPricePhoto.Designer.cs">
+      <DependentUpon>FmPricePhoto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FmPriceSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FmPriceSetting.Designer.cs">
+      <DependentUpon>FmPriceSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FmPtnzlOrgEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FmPtnzlOrgEdit.Designer.cs">
+      <DependentUpon>FmPtnzlOrgEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FocusedBase.cs" />
+    <Compile Include="FocusedItemsEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FocusedItemsEditor.Designer.cs">
+      <DependentUpon>FocusedItemsEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Monitoring\MonitoringItems.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modules\Monitoring\MonitoringItems.Designer.cs">
+      <DependentUpon>MonitoringItems.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Monitoring\MonReportParams.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modules\Monitoring\MonReportParams.Designer.cs">
+      <DependentUpon>MonReportParams.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\OrgStop\FmStopOrgList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modules\OrgStop\FmStopOrgList.Designer.cs">
+      <DependentUpon>FmStopOrgList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Quest\EdDataSet.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\Quest\EdDataSet.Designer.cs">
+      <DependentUpon>EdDataSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Quest\FmCateg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modules\Quest\FmCateg.Designer.cs">
+      <DependentUpon>FmCateg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Quest\FmEditCateg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modules\Quest\FmEditCateg.Designer.cs">
+      <DependentUpon>FmEditCateg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Quest\FmEditProducer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modules\Quest\FmEditProducer.Designer.cs">
+      <DependentUpon>FmEditProducer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Quest\FmManagerQuestionary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modules\Quest\FmProducer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modules\Quest\FmProducer.Designer.cs">
+      <DependentUpon>FmProducer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Quest\FmQuestionReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modules\Quest\FmQuestionReport.Designer.cs">
+      <DependentUpon>FmQuestionReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportResult.cs" />
+    <Compile Include="Reports\Html\RouteReport.cs" />
+    <Compile Include="ReturnOverview.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReturnOverview.Designer.cs">
+      <DependentUpon>ReturnOverview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms.v3\DivisionChief.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DivisionChief.Impl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms.v3\DivisionChief.Designer.cs">
+      <DependentUpon>DivisionChief.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DivisionSummary.cs" />
+    <Compile Include="FmAgentOrgTask.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FmAgentOrgTask.Designer.cs">
+      <DependentUpon>FmAgentOrgTask.cs</DependentUpon>
+    </Compile>
+    <Compile Include="fmAutoCoef.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fmAutoCoef.Designer.cs">
+      <DependentUpon>fmAutoCoef.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms.v3\FmCensus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FmCensus.Impl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms.v3\FmCensus.Designer.cs">
+      <DependentUpon>FmCensus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms.v3\FmColorEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FmColorEditor.Impl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms.v3\FmColorEditor.Designer.cs">
+      <DependentUpon>FmColorEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FmDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FmMessageHistory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FmMessageHistory.Designer.cs">
+      <DependentUpon>FmMessageHistory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FmOrdersReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FmOrdersReport.Designer.cs">
+      <DependentUpon>FmOrdersReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms.v3\FmPrice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FmPrice.Impl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms.v3\FmPrice.Designer.cs">
+      <DependentUpon>FmPrice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms.v3\FmScriptDesigner.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FmScriptDesigner.Impl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms.v3\FmScriptDesigner.Designer.cs">
+      <DependentUpon>FmScriptDesigner.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms.v3\FmScriptEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FmScriptEdit.Impl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms.v3\FmScriptEdit.Designer.cs">
+      <DependentUpon>FmScriptEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FmSelectSKU.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FmSelectSKU.Designer.cs">
+      <DependentUpon>FmSelectSKU.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FmSetOrgColor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FmSetOrgColor.Designer.cs">
+      <DependentUpon>FmSetOrgColor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FmSVTask.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FmSVTask.Designer.cs">
+      <DependentUpon>FmSVTask.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FmTaskAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FmTaskAdd.Designer.cs">
+      <DependentUpon>FmTaskAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FocusedGroupEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FocusedGroupEditor.designer.cs">
+      <DependentUpon>FocusedGroupEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Maps\MapEngine.cs" />
+    <Compile Include="OrderDetailRepr.cs" />
+    <Compile Include="OrderOverview.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OrderOverview.Designer.cs">
+      <DependentUpon>OrderOverview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OVDivision.cs" />
+    <Compile Include="RemnantsOverview.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RemnantsOverview.Designer.cs">
+      <DependentUpon>RemnantsOverview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\ClientCard.cs" />
+    <Compile Include="Reports\Excel\Excel.cs" />
+    <Compile Include="Reports\Excel\ExcelOrderReport.cs" />
+    <Compile Include="Reports\Excel\ExcelRouteReport.cs" />
+    <Compile Include="Reports\Html\HTMLIncassReport.cs" />
+    <Compile Include="Reports\Html\HTMLOrderReport.cs" />
+    <Compile Include="Reports\IReportFactory.cs" />
+    <Compile Include="FmTask.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FmTask.Designer.cs">
+      <DependentUpon>FmTask.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\OrderReport.cs" />
+    <Compile Include="Reports\ReportData.cs" />
+    <Compile Include="Reports\ReportTypes.cs" />
+    <Compile Include="ScriptDocuments.cs" />
+    <Compile Include="ScriptDocuments.Init.cs" />
+    <Compile Include="ScriptOverview.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ScriptOverview.Designer.cs">
+      <DependentUpon>ScriptOverview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SelectOrgLocation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelectOrgLocation.Designer.cs">
+      <DependentUpon>SelectOrgLocation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TreeViewMS.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UILib\DatePeriodView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UILib\DatePeriodView.Designer.cs">
+      <DependentUpon>DatePeriodView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\ArticlesTreeConstructor.cs" />
+    <Compile Include="Utils\ArticlesTreeConstructorWithCondition.cs" />
+    <Compile Include="Utils\BaseFormSetting.cs" />
+    <Compile Include="Utils\BindingList\AggregateBindingListView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Utils\BindingList\BindingListView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Utils\BindingList\CompositeItemFilter.cs" />
+    <Compile Include="Utils\BindingList\IItemFilter.cs" />
+    <Compile Include="Utils\BindingList\INotifyingEditableObject.cs" />
+    <Compile Include="Utils\BindingList\InvalidSourceListException.cs" />
+    <Compile Include="Utils\BindingList\MultiSourceIndexList.cs" />
+    <Compile Include="Utils\BindingList\ObjectView.cs" />
+    <Compile Include="Utils\BindingList\ProvidedViewPropertyDescriptor.cs" />
+    <Compile Include="Utils\Coordutils.cs" />
+    <Compile Include="CurrentUser.cs" />
+    <Compile Include="Utils\DataUtils.cs" />
+    <Compile Include="DivisionForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DivisionForm.Designer.cs">
+      <DependentUpon>DivisionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DivisionList.cs" />
+    <Compile Include="Forms.v3\Divisions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Divisions.Impl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms.v3\Divisions.Designer.cs">
+      <DependentUpon>Divisions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FmAddrShow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FmAddrShow.Designer.cs">
+      <DependentUpon>FmAddrShow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FmConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FmConfig.Designer.cs">
+      <DependentUpon>FmConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms.v3\FmDetailBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FmDetailBase.Impl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms.v3\FmDetailBase.Designer.cs">
+      <DependentUpon>FmDetailBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms.v3\FmMatrixDesigner.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FmMatrixDesigner.Impl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms.v3\FmMatrixDesigner.Designer.cs">
+      <DependentUpon>FmMatrixDesigner.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FmMessage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FmMessage.Designer.cs">
+      <DependentUpon>FmMessage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms.v3\FmRoute.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FmRoute.Impl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms.v3\FmRoute.Designer.cs">
+      <DependentUpon>FmRoute.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FmSelectContrAgent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FmSelectContrAgent.Designer.cs">
+      <DependentUpon>FmSelectContrAgent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FmViewPhoto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FmViewPhoto.Designer.cs">
+      <DependentUpon>FmViewPhoto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FmWait.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FmWait.Designer.cs">
+      <DependentUpon>FmWait.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FmWelcome.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FmWelcome.Designer.cs">
+      <DependentUpon>FmWelcome.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Html\HtmlReport.cs" />
+    <Compile Include="Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms.v3\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms.v3\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Objects.cs" />
+    <Compile Include="OpenLink.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties.v3\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AckName.resx">
+      <DependentUpon>AckName.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChangePassword.resx">
+      <DependentUpon>ChangePassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CheckAdmin.resx">
+      <DependentUpon>CheckAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AnswerOverview.resx">
+      <DependentUpon>AnswerOverview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms.v3\FmAgentTask.resx">
+      <DependentUpon>FmAgentTask.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FmAgentTaskEdit.resx">
+      <DependentUpon>FmAgentTaskEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms.v3\FmAgentTaskList.resx">
+      <DependentUpon>FmAgentTaskList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FmApproveMsg.resx">
+      <DependentUpon>FmApproveMsg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FmCopyRoute.resx">
+      <DependentUpon>FmCopyRoute.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms.v3\FmCoverArea.resx">
+      <DependentUpon>FmCoverArea.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms.v3\FmExportPhoto.resx">
+      <DependentUpon>FmExportPhoto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FmGPSReport.resx">
+      <DependentUpon>FmGPSReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FmPhotoRateReport.resx">
+      <DependentUpon>FmPhotoRateReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms.v3\FmPricePhoto.resx">
+      <DependentUpon>FmPricePhoto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FmPriceSetting.resx">
+      <DependentUpon>FmPriceSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FmPtnzlOrgEdit.resx">
+      <DependentUpon>FmPtnzlOrgEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FmRouteApproval.resx">
+      <DependentUpon>FmRouteApproval.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FmUserLocation.resx">
+      <DependentUpon>FmUserLocation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FocusedItemsEditor.resx">
+      <DependentUpon>FocusedItemsEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Monitoring\MonitoringItems.resx">
+      <DependentUpon>MonitoringItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Monitoring\MonReportParams.resx">
+      <DependentUpon>MonReportParams.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\OrgStop\FmStopOrgList.resx">
+      <DependentUpon>FmStopOrgList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Quest\EdDataSet.resx">
+      <DependentUpon>EdDataSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Quest\FmCateg.resx">
+      <DependentUpon>FmCateg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Quest\FmEditCateg.resx">
+      <DependentUpon>FmEditCateg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Quest\FmEditProducer.resx">
+      <DependentUpon>FmEditProducer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Quest\FmProducer.resx">
+      <DependentUpon>FmProducer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Quest\FmQuestionReport.resx">
+      <DependentUpon>FmQuestionReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReturnOverview.resx">
+      <DependentUpon>ReturnOverview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms.v3\DivisionChief.resx">
+      <DependentUpon>DivisionChief.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DivisionForm.resx">
+      <DependentUpon>DivisionForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms.v3\Divisions.resx">
+      <DependentUpon>Divisions.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FmAddrShow.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FmAddrShow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FmAgentOrgTask.resx">
+      <DependentUpon>FmAgentOrgTask.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fmAutoCoef.resx">
+      <DependentUpon>fmAutoCoef.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms.v3\FmCensus.resx">
+      <DependentUpon>FmCensus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms.v3\FmColorEditor.resx">
+      <DependentUpon>FmColorEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FmConfig.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FmConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms.v3\FmDetailBase.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FmDetailBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms.v3\FmMatrixDesigner.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FmMatrixDesigner.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FmMessage.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FmMessage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FmMessageHistory.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FmMessageHistory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FmOrdersReport.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FmOrdersReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms.v3\FmPrice.resx">
+      <DependentUpon>FmPrice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms.v3\FmRoute.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FmRoute.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms.v3\FmScriptDesigner.resx">
+      <DependentUpon>FmScriptDesigner.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms.v3\FmScriptEdit.resx">
+      <DependentUpon>FmScriptEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FmSelectContrAgent.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FmSelectContrAgent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FmSelectSKU.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FmSelectSKU.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FmSetOrgColor.resx">
+      <DependentUpon>FmSetOrgColor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FmSVTask.resx">
+      <DependentUpon>FmSVTask.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FmTaskAdd.resx">
+      <DependentUpon>FmTaskAdd.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FmViewPhoto.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FmViewPhoto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FmWait.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FmWait.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FmWelcome.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FmWelcome.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FocusedGroupEditor.resx">
+      <DependentUpon>FocusedGroupEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms.v3\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OrderOverview.resx">
+      <DependentUpon>OrderOverview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties.v3\Resources.resx">
+      <CustomToolNamespace>GRSoft.NapoleonManager.Properties</CustomToolNamespace>
+      <LogicalName>GRSoft.NapoleonManager.Properties.Resources.resources</LogicalName>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RemnantsOverview.resx">
+      <DependentUpon>RemnantsOverview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms.v3\Route.resx">
+      <DependentUpon>Route.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScriptOverview.resx">
+      <DependentUpon>ScriptOverview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectAgents.resx">
+      <DependentUpon>SelectAgents.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FmTask.resx">
+      <DependentUpon>FmTask.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectOrgLocation.resx">
+      <DependentUpon>SelectOrgLocation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UILib\DatePeriodView.resx">
+      <DependentUpon>DatePeriodView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserForm.resx">
+      <DependentUpon>UserForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Plans\FmPlan.resx">
+      <DependentUpon>FmPlan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Plans\FmPlanEdit.resx">
+      <DependentUpon>FmPlanEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Quest\EdBoolean.resx">
+      <DependentUpon>EdBoolean.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Quest\EdList.resx">
+      <DependentUpon>EdList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Quest\EdNumber.resx">
+      <DependentUpon>EdNumber.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Quest\EdTxt.resx">
+      <DependentUpon>EdTxt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms.v3\FmQuestEdit.resx">
+      <DependentUpon>FmQuestEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms.v3\FmQuestionary.resx">
+      <DependentUpon>FmQuestionary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Quest\FmQuestItemEdit.resx">
+      <DependentUpon>FmQuestItemEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utils\ViewException.resx">
+      <DependentUpon>ViewException.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Include="Properties.v3\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties.v3\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties.v3\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Forms.v3\Route.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Route.Impl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms.v3\Route.Designer.cs">
+      <DependentUpon>Route.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SelectAgents.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelectAgents.Designer.cs">
+      <DependentUpon>SelectAgents.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\DialogUtil.cs" />
+    <Compile Include="Utils\FinderTreeNodesInList.cs" />
+    <Compile Include="Utils\FolderTree.cs" />
+    <Compile Include="Utils\IDecorator.cs" />
+    <Compile Include="Utils\ProgressImage.cs" />
+    <Compile Include="Utils\StringUtil.cs" />
+    <Compile Include="UILib\TreeGridCell.cs" />
+    <Compile Include="UILib\TreeGridEvents.cs" />
+    <Compile Include="UILib\TreeGridNode.cs" />
+    <Compile Include="UILib\TreeGridNodeCollection.cs" />
+    <Compile Include="UILib\TreeGridView.cs" />
+    <Compile Include="UserForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserForm.Designer.cs">
+      <DependentUpon>UserForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\Comparator.cs" />
+    <Compile Include="Utils\TreeSearch.cs" />
+    <Compile Include="Utils\ViewException.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utils\ViewException.Designer.cs">
+      <DependentUpon>ViewException.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\WeekDay.cs" />
+    <Compile Include="Modules\Plans\FmPlan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modules\Plans\FmPlan.Designer.cs">
+      <DependentUpon>FmPlan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Plans\FmPlanEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modules\Plans\FmPlanEdit.Designer.cs">
+      <DependentUpon>FmPlanEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Quest\EdBoolean.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\Quest\EdBoolean.Designer.cs">
+      <DependentUpon>EdBoolean.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Quest\EdList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\Quest\EdList.Designer.cs">
+      <DependentUpon>EdList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Quest\EdNumber.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\Quest\EdNumber.Designer.cs">
+      <DependentUpon>EdNumber.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Quest\EdTxt.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\Quest\EdTxt.Designer.cs">
+      <DependentUpon>EdTxt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms.v3\FmQuestEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modules\Quest\FmQuestEdit.Impl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms.v3\FmQuestEdit.Designer.cs">
+      <DependentUpon>FmQuestEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms.v3\FmQuestionary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modules\Quest\FmQuestionary.Impl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms.v3\FmQuestionary.Designer.cs">
+      <DependentUpon>FmQuestionary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Quest\FmQuestItemEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modules\Quest\FmQuestItemEdit.Designer.cs">
+      <DependentUpon>FmQuestItemEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Quest\IQuestItem.cs" />
+    <Compile Include="Utils\WinInetInterop.cs" />
+    <Compile Include="VisitQueueItem.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GRPacket\GRPacket.csproj">
+      <Project>{3F426035-2A5E-48F3-81B1-17F94986F7ED}</Project>
+      <Name>GRPacket</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources.v3\minus.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources.v3\plus.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources.v3\edit-clear-4.png" />
+    <None Include="Resources.v3\Google.maps" />
+    <None Include="Resources.v3\Openstreet.maps" />
+    <None Include="Resources.v3\Yandex.maps" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="napoleon.ico" />
+    <None Include="Resources.v3\quest_doc.png" />
+    <None Include="Resources.v3\copy.png" />
+    <None Include="Resources.v3\htmlView.png" />
+    <None Include="Resources.v3\journal-new.png" />
+    <None Include="Resources.v3\abiword-3.png" />
+    <None Include="Resources.v3\emblem-documents.png" />
+    <None Include="Resources.v3\accessorieseditor.png" />
+    <None Include="Resources.v3\importpotorgl.png" />
+    <None Include="Resources.v3\maporg.png" />
+    <None Include="Resources.v3\defects_doc.png" />
+    <None Include="Resources.v3\print.png" />
+    <None Include="Resources.v3\draw-blend.png" />
+    <None Include="Resources.v3\bookmarks-organize.png" />
+    <None Include="Resources.v3\qty2report.png" />
+    <None Include="Resources.v3\bonus_doc.png" />
+    <None Include="Resources.v3\actchk.png" />
+    <None Include="Resources.v3\document-print.png" />
+    <None Include="Resources.v3\go-next-4.png" />
+    <None Include="Resources.v3\go-previous-4.png" />
+    <None Include="Resources.v3\checkbox.png" />
+    <None Include="Resources.v3\object-rotate-left-3.png" />
+    <None Include="Resources.v3\object-rotate-right-3.png" />
+    <None Include="Resources.v3\document-export-4.png" />
+    <None Include="Resources.v3\help.png" />
+    <None Include="Resources.v3\edit-find-user.png" />
+    <Content Include="Resources.v3\script_doc.png" />
+    <None Include="Resources.v3\view-list-tree-2.png" />
+    <None Include="Resources.v3\taskdoc.png" />
+    <None Include="Resources.v3\wsorder.png" />
+    <None Include="Resources.v3\view-calendar-timeline.png" />
+    <None Include="Resources.v3\go-down-search.png" />
+    <None Include="Resources.v3\go-up-search.png" />
+    <None Include="Resources.v3\go-up-4.png" />
+    <None Include="Resources.v3\software-update-current.png" />
+    <None Include="Resources.v3\view-refresh-6.png" />
+    <None Include="Resources.v3\view-refresh-3.png" />
+    <None Include="Resources.v3\refresh_3.png" />
+    <None Include="Resources.v3\refresh.png" />
+    <None Include="Resources.v3\dialog-cancel.png" />
+    <None Include="Resources.v3\document-sign.png" />
+    <None Include="Resources.v3\collaps.png" />
+    <None Include="Resources.v3\monitor_doc.png" />
+    <None Include="Resources.v3\ca_del.png" />
+    <None Include="Resources.v3\ca_add.png" />
+    <None Include="Resources.v3\add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Variants\Agama\" />
+    <Folder Include="Variants\Alecon\" />
+    <Folder Include="Variants\Alians.sp\" />
+    <Folder Include="Variants\Apisun\" />
+    <Folder Include="Variants\Ardis\" />
+    <Folder Include="Variants\AutoHit\" />
+    <Folder Include="Variants\Avalon\" />
+    <Folder Include="Variants\BastionNeva\" />
+    <Folder Include="Variants\Bozhko\" />
+    <Folder Include="Variants\BTL\" />
+    <Folder Include="Variants\Chuguevec\" />
+    <Folder Include="Variants\ClassicSpb\" />
+    <Folder Include="Variants\CottonClub\" />
+    <Folder Include="Variants\Demetra\" />
+    <Folder Include="Variants\DneprLakomstva\" />
+    <Folder Include="Variants\GoldenShelf\" />
+    <Folder Include="Variants\Halygov\" />
+    <Folder Include="Variants\Kovalchuk\" />
+    <Folder Include="Variants\MasloDom\" />
+    <Folder Include="Variants\MasterTrade\" />
+    <Folder Include="Variants\Master\" />
+    <Folder Include="Variants\Metelica\" />
+    <Folder Include="Variants\Michailova.O\" />
+    <Folder Include="Variants\Narzan\" />
+    <Folder Include="Variants\Perfume\" />
+    <Folder Include="Variants\Prodo\" />
+    <Folder Include="Variants\Servolux\" />
+    <Folder Include="Variants\SilverWorld\" />
+    <Folder Include="Variants\StepUp\" />
+    <Folder Include="Variants\SunnyBec\" />
+    <Folder Include="Variants\SVIMMC\" />
+    <Folder Include="Variants\TcarGrad\" />
+    <Folder Include="Variants\TDLider\" />
+    <Folder Include="Variants\Vinoteka\" />
+    <Folder Include="Variants\VladHleb\" />
+    <Folder Include="Variants\Vyatich\" />
+    <Folder Include="Variants\Yudincev\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

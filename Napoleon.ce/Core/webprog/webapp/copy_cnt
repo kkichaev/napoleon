@@ -1,0 +1,5 @@
+rm webapp.tar.gz
+docker save webapp | gzip > webapp.tar.gz
+#scp webapp.tar.gz ert@aceteam.app:/srv/napoleon/dockers/
+scp webapp.tar.gz ert@napmobile.ru:/srv/napoleon/dockers/
+#scp webapp.tar.gz devteam@dev.aceteam.app:/home/devteam/prog/

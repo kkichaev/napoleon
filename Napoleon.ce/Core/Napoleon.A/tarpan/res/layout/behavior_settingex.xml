@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <ScrollView
+        android:id="@+id/svScroll"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:keepScreenOn="true"
+        tools:ignore="UselessParent" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <CheckBox
+                android:id="@+id/cbVibrate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/vibration" />
+
+            <CheckBox
+                android:id="@+id/cbAllowRotateScreen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/rotate_screen" />
+
+            <CheckBox
+                android:id="@+id/cbAutostart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/autostart" />
+
+            <CheckBox
+                android:id="@+id/cbAutostartAsService"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/service" />
+
+            <LinearLayout
+                android:id="@+id/llPrintSource"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/print"
+                    style="@style/SettingTextViewEx"/>
+
+                <Spinner
+                    android:id="@+id/spPrintSrc"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:entries="@array/print_src" />
+            </LinearLayout>
+
+            <CheckBox
+                android:id="@+id/cbScriptOff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/script_off" />
+
+            <CheckBox
+                android:id="@+id/cbVisitToDel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/remove_visit_older" />
+
+            <Spinner
+                android:id="@+id/spVisitToDel"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/day_to_del_visit" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/docs_for_period"
+                style="@style/SettingTextViewEx"/>
+
+            <Spinner
+                android:id="@+id/spMonthRecreate"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/months_to_recreate" />
+            
+            <CheckBox
+                android:id="@+id/cbRemnants"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/remains_doc_title" />
+
+            <CheckBox
+                android:id="@+id/cbAddOrg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/add_org" />
+            
+            <CheckBox
+                android:id="@+id/cbBuh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/buh" 
+                android:visibility="gone"/>
+            
+            <TextView
+                android:id="@+id/tvPrezentPath"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/prezent_path_hint"
+                style="@style/SettingTextViewEx" 
+                android:visibility="gone"/>
+            
+            <EditText
+                android:id="@+id/edPrezentPath"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/prezent_path_hint" 
+                android:visibility="gone"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/SettingTextViewEx"
+                android:text="@string/Clients_and_goods" />
+
+            <Spinner
+                android:id="@+id/spClientsAndGoods"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" 
+                android:entries="@array/clients_and_goods"/>
+
+            <CheckBox
+                android:id="@+id/cbKeepAway"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/keep_away_in_order" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

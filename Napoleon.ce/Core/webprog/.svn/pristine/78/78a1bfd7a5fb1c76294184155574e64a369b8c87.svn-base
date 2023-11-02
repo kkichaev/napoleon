@@ -1,0 +1,67 @@
+export default{
+  appTitle : "Ace team",
+
+  login :{
+    title : "Log in",
+    emailLabel : "Enter e-mail",
+    passwordLabel : "Enter password",
+    savePassword : "Remember me",
+    enter : "Log in",
+    reqistration: "Registration",
+    supportEmail: "Technical support",
+    forgotPassword: "Forgot password?",
+    error: "Пользователь не определен!"
+  },
+  confirm : {
+    title : "Email confirmation",
+  },
+  register:{
+    title: "Project registration",
+    nameLabel : "Enter name",
+    surnameLabel: "Enter last name",
+    passwordConfirmLabel: "Repeat password",
+    registerAction: "Registration",
+    autorization: "Log in",
+    servername: "Server name"
+  },
+  prjreg: {
+    title: "Project registration",
+    countryLabel: "Выберите страну регистрации",
+    next: "Продолжить",
+    selectCountry: "Выберите страну регистрации",
+    currency: "валюта:",
+    autoCurrencySelection: "Валюта выбирается автоматически",
+    personalAgree: "согласие на обработку",
+    personal: "персональных данных",
+    offerAgree: "согласие с договором",
+    offer: "публичной оферты"
+  },
+
+  field_is_required: 'Please fill out the field!',
+
+  countries:{
+    AZE: "Азербайджан",
+    ARM: "Армения",
+    BLR: "Белоруссия",
+    BGR: "Болгария",
+    GEO: "Грузия",
+    ISR: "Израиль",
+    IND: "Индия",
+    KAZ: "Казахстан",
+    KGZ: "Киргизия",
+    MDA: "Молдавия",
+    MNG: "Монголия",
+    ARE: "ОАЭ",
+    KOR: "Республика_Корея",
+    RUS: "Россия",
+    ROU: "Румыния",
+    SRB: "Сербия",
+    TJK: "Таджикистан",
+    TKM: "Туркменистан",
+    TUR: "Турция",
+    UZB: "Узбекистан",
+    UKR: "Украина"
+  },
+
+
+}

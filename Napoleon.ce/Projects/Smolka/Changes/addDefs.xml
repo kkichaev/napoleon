@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+    <modify src="PricePhoto">
+      <change>
+        <sources>
+          <source name="DBFCatalogTable">
+            <param name="tableName">"PHOTO"</param>
+            <param name="catalog">"[PATH]"</param>
+            <param name="ordered">0</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+	</objects>
+</serverDefs>

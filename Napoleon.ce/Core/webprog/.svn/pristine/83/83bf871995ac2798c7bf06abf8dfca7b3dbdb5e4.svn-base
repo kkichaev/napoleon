@@ -1,0 +1,69 @@
+{
+  "_from": "stack-trace@^1.0.0-pre2",
+  "_id": "stack-trace@1.0.0-pre2",
+  "_inBundle": false,
+  "_integrity": "sha512-2ztBJRek8IVofG9DBJqdy2N5kulaacX30Nz7xmkYF6ale9WBVmIy6mFBchvGX7Vx/MyjBhx+Rcxqrj+dbOnQ6A==",
+  "_location": "/stack-trace",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "range",
+    "registry": true,
+    "raw": "stack-trace@^1.0.0-pre2",
+    "name": "stack-trace",
+    "escapedName": "stack-trace",
+    "rawSpec": "^1.0.0-pre2",
+    "saveSpec": null,
+    "fetchSpec": "^1.0.0-pre2"
+  },
+  "_requiredBy": [
+    "/@quasar/render-ssr-error"
+  ],
+  "_resolved": "https://registry.npmjs.org/stack-trace/-/stack-trace-1.0.0-pre2.tgz",
+  "_shasum": "46a83a79f1b287807e9aaafc6a5dd8bcde626f9c",
+  "_spec": "stack-trace@^1.0.0-pre2",
+  "_where": "/home/devteam/prog/webfront/node_modules/@quasar/render-ssr-error",
+  "author": {
+    "name": "Felix Geisendörfer",
+    "email": "felix@debuggable.com",
+    "url": "http://debuggable.com/"
+  },
+  "bugs": {
+    "url": "https://github.com/felixge/node-stack-trace/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "Get v8 stack traces as an array of CallSite objects.",
+  "devDependencies": {
+    "@babel/preset-env": "^7.14.1",
+    "babel-jest": "^26.6.3",
+    "jest": "^26.6.3",
+    "long-stack-traces": "0.1.2"
+  },
+  "engines": {
+    "node": ">=16"
+  },
+  "exports": {
+    ".": "./index.js",
+    "./package.json": "./package.json"
+  },
+  "homepage": "https://github.com/felixge/node-stack-trace",
+  "jest": {
+    "testEnvironment": "node",
+    "transform": {
+      "^.+\\.js$": "babel-jest"
+    }
+  },
+  "license": "MIT",
+  "main": "index.js",
+  "name": "stack-trace",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/felixge/node-stack-trace.git"
+  },
+  "scripts": {
+    "release": "git push && git push --tags && npm publish",
+    "test": "jest"
+  },
+  "type": "module",
+  "version": "1.0.0-pre2"
+}

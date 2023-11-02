@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+   <style name="Theme" parent="android:style/Theme.Holo.Light">
+      <item name="android:dialogTheme">@style/Dialog</item>
+      <item name="android:textViewStyle">@style/TextView</item>
+   </style>
+    
+   <style name="Dialog" parent="android:style/Theme.Holo.Light.Dialog">
+      <item name="android:windowNoTitle">true</item>
+      <item name="android:textViewStyle">@style/TextView</item>
+   </style>
+
+   <style name="TextView" parent="@android:style/Widget.TextView">
+      <item name="android:textSize">18sp</item>
+   </style>
+       
+   <style name="mainTextViewSyle" parent="android:style/Widget.TextView">
+      <item name="android:textColor">@color/black</item>
+      <item name="android:textSize">22sp</item>
+   </style>
+   
+   <style name="panelTextView" parent="android:style/Widget.TextView">
+       <item name="android:textColor">@color/paneltext</item>
+       <item name="android:textSize">@dimen/panelTextSize</item>
+   </style>
+   
+   <style name="tableTextView" parent="android:style/Widget.TextView">
+       <item name="android:textColor">@color/tabletext</item>
+       <item name="android:textSize">@dimen/tableTextSize</item>
+       <item name="android:paddingRight">@dimen/tableClmnSpacing</item>
+   </style>
+   
+   <style name="tableLinkTextView" parent="android:style/Widget.TextView">
+       <item name="android:textColor">@color/tablelink</item>
+       <item name="android:textSize">@dimen/tableLinkTextSize</item>
+       <item name="android:paddingRight">@dimen/tableClmnSpacing</item>
+       <item name="text_underline">true</item>
+   </style>
+</resources>

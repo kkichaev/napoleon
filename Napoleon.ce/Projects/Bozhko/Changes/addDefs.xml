@@ -1,0 +1,47 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+  <objects>
+    <object name="AgentSalesPlan">
+      <sources>
+        <source name="SQTable" type="internal">
+          <param name="readFilter">'"userid"=' + "'" + $user.id + "' and " + 
+          '"dateStart" &lt;= ToDate("' + FormatDate(Now(),"DD.MM.YYYY") + '") and ' +
+          '"dateEnd" &gt;= ToDate("' + FormatDate(Now(),"DD.MM.YYYY") + '")'</param>
+        </source>
+      </sources>
+      <member name="primaryKey">"userid,dateStart"</member>
+      <field name="items" type="collection">
+        <data>
+          <object name="PlanItem">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+            <field name="id" type="string" width="30"/>
+            <field name="qty" type="number" prec="3" />
+          </object>
+        </data>
+      </field>
+      <field name="dateStart" type="date" />
+      <field name="dateEnd" type="date" />
+      <field name="name" type="string" />
+      <field name="userid" type="string" width="20" />
+    </object>
+    
+    <modify src="Order">
+      <add>
+        <field name="firmCode" type="string" width="20" />
+        <field name="costCode" type="string" width="20" />
+      </add>
+    </modify>
+    <modify src="Incass">
+      <add>
+        <field name="firmCode" type="string" width="20" />
+      </add>
+    </modify>
+    <modify src="Price">
+      <add>
+        <field name="unitName" type="string" width="20" />
+      </add>
+    </modify>
+  </objects>
+</serverDefs>

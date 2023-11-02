@@ -1,0 +1,184 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+	    <object name="Incass">
+	      <sources>
+	        <source name="DBFCatalogTable">
+	          <param name="tableName">$object.table + $user.id</param>
+	          <param name="catalog">"id"</param>
+	          <param name="ordered">1</param>
+	        </source>
+	        <source name="SQTable" type="internal" />
+	      </sources>
+	
+	      <member name="table">"PKO"</member>
+	      <member name="primaryKey">"userid,created"</member>
+	
+	      <field name="id" type="string" width="120" />
+	      <field name="sum" type="number" prec="2" />
+	      <field name="created" type="timestamp" />
+	      <field name="date" type="date" />
+	      <field name="remark" type="string" width="100" />
+	      <field name="userid" type="string" execOn="Put">$user.id</field>
+	
+	      <field name="items" type="collection">
+	        <data>
+	          <object name="DocPayItem">
+	            <sources>
+	              <source name="DBFCatalogItemTable"/>
+	              <source name="SQTable" type="internal" />
+	            </sources>
+	
+	            <field name="number" width="20" type="string" data="NUM_I"/>
+	            <field name="date" type="date" data="DATE_I" />
+	            <field name="sum" type="number" data="SUM_I" width="10" prec="2" />
+	            <field name="ordflag" width="1" type="number" execOn="Put">FirstItem($object)</field>
+	          </object>
+	        </data>
+	      </field>
+	      <events>
+	        <event type="put">
+	          <action name="WriteInternal">$object.type</action>
+	          <action name="WriteToLog">$object.type;$object.created</action>
+	        </event>
+	      </events>
+	    </object>
+
+    <object name="AgentPlan">
+      <sources>
+        <source name="SQTable" type="internal">
+          <param name="readFilter">
+            '"userid"=' + "'" + $user.id + "' and " +
+            '"begin" &lt;= ToDate("' + FormatDate(Now(),"DD.MM.YYYY") + '") and ' +
+            '"end" &gt;= ToDate("' + FormatDate(Now(),"DD.MM.YYYY") + '")'
+          </param>
+        </source>
+      </sources>
+
+      <member name="primaryKey">"userid,begin"</member>
+
+      <field name="userid" type="string" />
+      <field name="begin" type="date" />
+      <field name="end" type="date" />
+
+      <field name="groups" type="collection">
+        <data>
+          <object name="AgemtPlanGroups">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+            <field name="id" type="string" />
+            <field name="type" type="number"/>
+            <field name="valueSum" type="number" prec="2" />
+            <field name="valueQty" type="number" prec="3" />
+          </object>
+        </data>
+      </field>
+    </object>
+
+    <!--<object name="Plan">
+         <sources>
+            <source name="DBFTableSet">
+               <param name="userTable">"PLN"</param>
+               <param name="commonTable">"PLAN"</param>
+               <param name="catalog">"idplan;items;1"</param>
+            </source>
+         </sources>
+         
+         <member name="table">"PLN"</member>
+          
+         <field name="idplan" type="string" data="IDP"/>
+         <field name="name" type="string" />
+         <field name="labels" type="file" data="LBL" />
+         <field name="background" type="hex" data="BG"/>
+         
+         <field name="items" type="collection">
+            <data>
+               <object name="PlanItem">
+                  <field name="caption" type="string" data="CAP"/>
+                  <field name="color" type="hex" data="COL" />
+                  <field name="values" type="file" data="VAL" />
+               </object>
+            </data>
+         </field>
+      </object>-->
+      
+	    <object name="Bonus">
+         <sources>
+            <source name="DBFCatalogTable">
+               <param name="tableName">$object.table + $user.id</param>
+               <param name="catalog">"id"</param>
+               <param name="ordered">1</param>
+            </source>
+            <source name="SQTable" type="internal" />
+         </sources>
+
+         <member name="table">"BNS"</member>
+         <member name="primaryKey">"userid,created"</member>
+
+         <field name="userid" type="string" data="USER_ID" execOn="Put">$user.id</field>
+         <field name="created" type="timestamp" data="CREATED"/>
+         <field name="doc_id" type="string" width="30" execOn="Put">$user.id + $object.created</field>
+         <field name="crdate" type="date" data="DATE" execOn="Put">$object.created</field>
+         <field name="date" type="date" data="DLV_DATE" />
+         <field name="id" width="20" type="string" />
+         <field name="dlvCode" width="20" type="string" data="ID_DLV" />
+         <field name="remark" type="string" />
+         <field name="dogovor" type="string" width="20" data="DOG" />
+         <field name="suplCode" type="string" width="15" data="FIRM" />
+         <field name="otg" type="number" prec="0" execOn="Put">DecodeFlag($object.params, 8, "", "1")</field>
+
+         <field name="items" type="collection">
+            <data>
+               <object name="OrderItem">
+                  <sources>
+                     <source name="DBFCatalogItemTable"/>
+                     <source name="SQTable" type="internal" />
+                  </sources>
+
+                  <field name="id" width="20" type="string" data="ID_I"/>
+                  <field name="qty" type="number" prec="3" />
+                  <field name="ordflag" width="1" type="number" execOn="Put">FirstItem($object)</field>
+               </object>
+            </data>
+         </field>
+
+         <events>
+            <event type="put">
+               <action name="WriteInternal">$object.type</action>
+            </event>
+         </events>
+      </object>
+
+	    <modify src="Order$items">
+			<add>
+				<field name="discount" type="number" prec="2" />
+			</add>
+		</modify>
+		
+		<modify src="Returns$items">
+	      	<add>
+	        	<field name="cause" type="string" width="50" />
+            <field name="dlvDate" type="date" data="DLVDATE" />
+            <field name="dlvNumber" type="string" width="20" data="DLV_NUM" />
+          </add>
+    	</modify>
+    	
+    	<modify src="Org">
+    	    <add>
+            <field name="firm" type="number" width="10" />
+	        	<field name="debt" type="number" prec="2" />
+	        	<field name="stop" type="number" />
+              	<field name="flags" type="number" execOn="Get">EncodeFlag($object.stop,2)</field>
+              	<field name="minOrder" type="number" prec="2" data="MIN_SUM" />
+	      	</add>
+    	</modify>
+		
+    	<modify src="Monitoring$items">
+	        <add>
+	            <field name="cost" type="number" prec="2"/>
+	        </add>
+	    </modify>
+    		
+    </objects>
+</serverDefs>

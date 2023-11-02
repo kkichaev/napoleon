@@ -1,0 +1,41 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+	    <object name="NoDiscountPrice">
+	         <sources>
+	            <source name="SQTable" type="internal" />
+	         </sources>
+
+        	 <member name="primaryKey">"id"</member>
+	         <field name="id" type="string" />
+	    </object>
+	    	    
+	    <modify src="Order">
+	        <add>
+	            <field name="bonus" type="number" width="1" execOn="Put">DecodeFlag($object.params, 4, "", "1")</field>
+              <field name="discount" type="number" prec="2" data="ODSC"/>
+	        </add>
+	    </modify>
+	  <modify src="Order$items">
+         <add>
+ 			<field name="discount" type="number" prec="2" />
+         </add>
+         </modify>         
+	    <modify src="Delivery">
+	        <add>
+	            <field name="payDate" type="date" />
+	        </add>
+	    </modify>
+        <modify src="Org">
+            <add>
+                <field name="license" type="timestamp" />
+                <field name="color" type="hex" />
+            </add>
+        </modify>
+        <modify src="Price">
+            <add>
+                <field name="minCost" type="number" prec="2" />
+            </add>
+        </modify>
+     </objects>
+</serverDefs>

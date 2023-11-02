@@ -1,0 +1,93 @@
+{
+  "_from": "@intlify/shared@9.3.0-beta.14-77e850b",
+  "_id": "@intlify/shared@9.3.0-beta.14-77e850b",
+  "_inBundle": false,
+  "_integrity": "sha512-aHZYRM0sJN+YSUnoC5Dv4L1TFYtP23kdTkrK5cHSEqUbI5UXc8FbnXPal0lJliMhO0ED7Ic7aEOeQX84BM3xCQ==",
+  "_location": "/@intlify/devtools-if/@intlify/shared",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "@intlify/shared@9.3.0-beta.14-77e850b",
+    "name": "@intlify/shared",
+    "escapedName": "@intlify%2fshared",
+    "scope": "@intlify",
+    "rawSpec": "9.3.0-beta.14-77e850b",
+    "saveSpec": null,
+    "fetchSpec": "9.3.0-beta.14-77e850b"
+  },
+  "_requiredBy": [
+    "/@intlify/devtools-if"
+  ],
+  "_resolved": "https://registry.npmjs.org/@intlify/shared/-/shared-9.3.0-beta.14-77e850b.tgz",
+  "_shasum": "af2cb0bd209f835876881bc7dbb93b2514e3e274",
+  "_spec": "@intlify/shared@9.3.0-beta.14-77e850b",
+  "_where": "/home/devteam/prog/webfront/node_modules/@intlify/devtools-if",
+  "author": {
+    "name": "kazuya kawaguchi",
+    "email": "kawakazu80@gmail.com"
+  },
+  "bugs": {
+    "url": "https://github.com/intlify/vue-i18n-next/issues"
+  },
+  "buildOptions": {
+    "name": "IntlifyShared",
+    "formats": [
+      "mjs",
+      "cjs"
+    ]
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "@intlify/shared",
+  "engines": {
+    "node": ">= 14"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/shared.d.ts",
+      "import": "./dist/shared.mjs",
+      "node": {
+        "import": {
+          "production": "./dist/shared.prod.cjs",
+          "development": "./dist/shared.mjs",
+          "default": "./dist/shared.mjs"
+        },
+        "require": {
+          "production": "./dist/shared.prod.cjs",
+          "development": "./dist/shared.cjs",
+          "default": "./index.js"
+        }
+      }
+    },
+    "./dist/*": "./dist/*",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "index.js",
+    "dist"
+  ],
+  "funding": "https://github.com/sponsors/kazupon",
+  "homepage": "https://github.com/intlify/vue-i18n-next/tree/master/packages/shared#readme",
+  "keywords": [
+    "i18n",
+    "internationalization",
+    "intlify",
+    "utitlity"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "module": "dist/shared.mjs",
+  "name": "@intlify/shared",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/intlify/vue-i18n-next.git",
+    "directory": "packages/shared"
+  },
+  "sideEffects": false,
+  "types": "dist/shared.d.ts",
+  "version": "9.3.0-beta.14-77e850b"
+}

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical" 
+  android:layout_width="fill_parent" 
+  android:layout_height="wrap_content" 
+  android:background="@drawable/list_selector">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:orientation="horizontal" >
+        
+        <ImageView android:layout_height="wrap_content" 
+            android:layout_width="wrap_content" 
+            android:src="@drawable/icon" 
+            android:id="@+id/ivStatus" 
+            android:paddingLeft="10dp" 
+            android:paddingRight="10dp" 
+            android:paddingTop="5dp" 
+            android:paddingBottom="5dp" />
+    	<TextView android:layout_width="wrap_content" 
+    	    android:layout_height="wrap_content" 
+    	    android:textColor="@color/black" 
+    	    android:id="@+id/tvName" 
+    	    android:layout_weight="1" 
+    	    android:text="Name" 
+    	    android:lines="1" 
+    	    android:ellipsize="end" 
+    	    android:scrollHorizontally="true" 
+    	    android:paddingRight="5dp" 
+    	    android:width="140dp" 
+    	    android:textSize="17sp" 
+    	    android:layout_gravity="center_vertical" />
+    	<TextView android:layout_width="wrap_content" 
+    	    android:layout_height="wrap_content" 
+    	    android:textColor="@color/black" 
+    	    android:layout_weight="1" 
+    	    android:text="Data" 
+    	    android:id="@+id/tvDate" 
+    	    android:width="80dp" 
+    	    android:textSize="17sp" 
+    	    android:layout_gravity="center_vertical"/>
+    	<TextView android:layout_width="wrap_content" 
+    	    android:layout_height="wrap_content" 
+    	    android:textColor="@color/black" 
+    	    android:id="@+id/tvSum" 
+    	    android:layout_weight="1" 
+    	    android:text="Sum" 
+    	    android:width="70dp" 
+    	    android:gravity="right" 
+    	    android:paddingRight="3dp" 
+    	    android:textSize="17sp" 
+    	    android:layout_gravity="center_vertical" />
+    	
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="tvAddress" 
+        android:textSize="17dp" 
+        android:textColor="@color/black"/>
+    
+</LinearLayout>

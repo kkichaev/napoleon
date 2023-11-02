@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <CheckBox
+        android:id="@+id/cbHO"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ho_best" />
+
+    <CheckBox
+        android:id="@+id/cbShowcase"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/showcase_best" />
+
+    <CheckBox
+        android:id="@+id/cbCorpBlock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/corp_block" />
+
+    <CheckBox
+        android:id="@+id/cbPOSM"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/posm" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="8dp"
+        android:textColor="@color/black"
+        android:text="@string/action" />
+
+    <Spinner
+        android:id="@+id/spAction"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:paddingLeft="8dp"
+        android:textColor="@color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ki_part" />
+
+    <Spinner
+        android:id="@+id/spKiPart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/part_values" />
+
+    <TextView
+        android:paddingLeft="8dp"
+        android:textColor="@color/black"
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/part_pf" />
+
+    <Spinner
+        android:id="@+id/spPfPart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/part_values" />
+
+</LinearLayout>

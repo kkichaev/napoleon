@@ -1,0 +1,148 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "NapoleonRes.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "resdefce.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Russian resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_RUS)
+#ifdef _WIN32
+LANGUAGE LANG_RUSSIAN, SUBLANG_DEFAULT
+#pragma code_page(1251)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_QTY DIALOG  0, 0, 150, 124
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Введите количество"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Название",IDC_ITEM_NAME,2,1,138,20
+
+    LTEXT           "остаток",IDC_REST_LABEL,2,22,40,10
+    RTEXT           "остаток",IDC_REST,31,22,40,10
+
+    RTEXT           "в точке",IDC_REMNANTS_LABEL,52,22,35,10
+    EDITTEXT        IDD_REMNANTS_QTY,90,20,38,12,ES_AUTOHSCROLL | ES_NOHIDESEL
+
+    LTEXT           "цена",IDC_COST_LABEL,2,33,29,10
+    RTEXT           "цена",IDC_COST,31,33,40,10
+
+    LTEXT           "цена ск",IDC_COST_DSC_LABEL,2,44,29,10
+    RTEXT           "цена",IDC_COST_DSC,31,44,40,10,SS_NOTIFY
+
+    LTEXT           "сумма",IDC_SUM_LABEL,71,44,21,10
+    LTEXT           "сумма",IDC_SUM,96,44,46,10
+
+    LTEXT           "в упак.",IDC_INPACK_LABEL,2,55,29,10
+    RTEXT           "в упак.",IDC_INPACK,31,55,40,10
+
+    CONTROL         "упаковками",IDC_PACK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,95,55,53,10
+
+    LTEXT           "вес",IDC_WEIGHT_LABEL,2,66,29,10
+    RTEXT           "вес",IDC_WEIGHT,31,66,40,10
+
+    RTEXT           "мин.отг.",IDC_MIN_LOAD_LABEL,64,66,40,8
+    LTEXT           "в упак.",IDC_MIN_LOAD,96,66,46,8
+
+    LTEXT           "заказ",IDC_QTY_LABEL,71,33,21,10
+    EDITTEXT        IDC_QTY,95,31,38,12,ES_AUTOHSCROLL | ES_NOHIDESEL
+
+    LTEXT           "мест",IDC_PLACE_LABEL,2,77,16,10
+    RTEXT           "цена",IDC_PLACE,20,77,19,10
+    LTEXT           "доп.",IDC_ADD_LABEL,42,77,16,10
+    RTEXT           "цена",IDC_ADD_QTY,59,77,12,10
+
+    PUSHBUTTON      "1",IDC_DIG_1,  90, 75,14,12
+    PUSHBUTTON      "2",IDC_DIG_2,  103,75,14,12
+    PUSHBUTTON      "3",IDC_DIG_3,  116,75,14,12
+    PUSHBUTTON      "0",IDC_DIG_0,  129,75,14,12
+    PUSHBUTTON      "4",IDC_DIG_4,  90, 86,14,12
+    PUSHBUTTON      "5",IDC_DIG_5,  103,86,14,12
+    PUSHBUTTON      "6",IDC_DIG_6,  116,86,14,12
+    PUSHBUTTON      ".",IDC_DIG_PT, 129,86,14,12
+    PUSHBUTTON      "7",IDC_DIG_7,  90, 97,14,12
+    PUSHBUTTON      "8",IDC_DIG_8,  103,97,14,12
+    PUSHBUTTON      "9",IDC_DIG_9,  116,97,14,12
+    PUSHBUTTON      "<-",IDC_DIG_BS,129,97,14,12
+
+    LTEXT           "история продаж",IDC_SALES_HIST,2,103,58,8,SS_NOTIFY
+    LTEXT           "Static",IDC_PREV_QTY,2,112,79,32
+
+    PUSHBUTTON      "Отмена",IDCANCEL,2,86,36,14
+    PUSHBUTTON      "ОК",IDOK,39,86,36,14
+
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "NapoleonRes.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""resdefce.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_QTY, DIALOG
+    BEGIN
+        RIGHTMARGIN, 139
+        BOTTOMMARGIN, 100
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // Russian resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

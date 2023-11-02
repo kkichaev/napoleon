@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/coming_soon"
+        tools:srcCompat="@drawable/coming_soon" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:paddingLeft="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.serviko.view.TextViewCrossOut
+                android:id="@+id/tvCost"
+                style="@style/PriceText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="cost"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvActCost"
+                style="@style/PriceActText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="cost"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvName"
+            style="@style/PriceText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="name" />
+
+        <com.serviko.view.PriceQtyPickerOld
+            android:id="@+id/pqQty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:snp_orientation="horizontal"
+            app:snp_value_ems="4"
+            app:snp_value_text_color="@color/black"
+            app:snp_value_text_size="18sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:id="@+id/tvSum"
+            android:layout_gravity="top"
+            style="@style/BasketRowSumText"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="9000.00 H" />
+
+        <ImageButton
+            android:id="@+id/btnRemove"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:background="?android:selectableItemBackground"
+            android:paddingBottom="5dp"
+            android:visibility="gone"
+            app:srcCompat="@drawable/ic_remove_shopping_cart_black_24dp" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

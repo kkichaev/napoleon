@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="7dp" >
+
+        <TableLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:stretchColumns="1" >
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="10dp"
+                    android:text="@string/price_qty_title"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/edQty"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"/>
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/trColumn2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="10dp"
+                    android:text="@string/clmn_2"
+                    android:textSize="16sp" />
+
+                <Spinner
+                    android:id="@+id/spColumn2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/warehouse_column_values" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/trColumn3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="3dp"
+                    android:text="@string/clmn_3"
+                    android:textSize="16sp" />
+
+                <Spinner
+                    android:id="@+id/spColumn3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/warehouse_column_values" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/trItemID"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="3dp"
+                    android:text=""
+                    android:textSize="16sp" />
+
+                <CheckBox
+                    android:id="@+id/cbItemID"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/code_sku" />
+            </TableRow>
+        </TableLayout>
+
+        <CheckBox
+            android:id="@+id/checkPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="@string/check_remains"
+            android:visibility="gone"/>
+
+        <CheckBox
+            android:id="@+id/cbComplexSalesHistory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/complete_story"
+            android:visibility="gone"/>
+
+        <CheckBox
+            android:id="@+id/cbPackView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/show_packs_in_order"
+            android:visibility="gone"/>
+
+        <CheckBox
+            android:id="@+id/cbPriceMover"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/use_price_mover" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/nav_type"
+            android:textSize="16sp" />
+
+        <Spinner
+            android:id="@+id/spNavType"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/nav_type_items" />
+
+        <CheckBox
+            android:id="@+id/cbUseUpdatePrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/active_update_price"
+            android:visibility="gone" />
+
+        <Spinner
+            android:id="@+id/spUpdatePriceInBg"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/gps_send_interval"
+            android:visibility="gone" />
+
+        <CheckBox
+            android:id="@+id/cbPriceImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Show_present_in_price"
+            android:visibility="gone"/>
+
+        <Spinner
+            android:id="@+id/spPriceImagePos"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" 
+            android:entries="@array/price_image_pos"
+            android:visibility="gone"/>
+
+        <CheckBox
+            android:id="@+id/cbShowDailySales"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Show_daily_sales"
+            android:visibility="gone"/>
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp" 
+            android:text="@string/price_level" />
+        
+        <Spinner
+            android:id="@+id/spPriceLevelCount"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/price_level_items" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp" 
+            android:text="@string/count_lines" />
+        
+        <Spinner
+            android:id="@+id/spLinesCount"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/count_lines_entries" />
+    </LinearLayout>
+
+</ScrollView>

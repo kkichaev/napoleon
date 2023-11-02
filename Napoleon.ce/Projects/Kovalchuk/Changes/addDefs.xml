@@ -1,0 +1,61 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+	    <object name="OrgStop">
+	        <sources>
+	            <source name="SQTable" type="internal" />
+	        </sources>
+	        
+            <member name="primaryKey">"id"</member>
+            <field name="id" type="string" />
+	    </object>
+       
+        <object name="DlvRpt">
+            <sources>
+               <source name="DBFTable">
+                  <param name="tableName">"DLVRPT"</param>
+                  <param name="filter">"[userid] = $user.id"</param>
+               </source>
+            </sources>
+           
+            <field name="userid" type="string" />
+            <field name="encode" type="string" />
+            <field name="report" type="file" data="PATH" />
+        </object>
+       
+	    <modify src="Delivery">
+	        <add>
+	            <field name="payDate" type="date" />
+	        </add>
+	    </modify>
+	    <modify src="Org">
+	        <add>
+	            <field name="payType" type="string" width="20"/>
+                <field name="suppl" type="number" />
+	        </add>
+	    </modify>
+	    <modify src="Order">
+	        <add>
+	            <field name="payType" type="string" width="20"/>
+	        </add>
+	    </modify>
+	    <modify src="Order$items">
+	        <add>
+	            <field name="qty2" type="number" prec="3" />
+	        </add>
+	    </modify>
+        
+        <modify src="Monitoring$items">
+            <add>
+                <field name="cost" type="number" prec="2"/>
+            </add>
+        </modify>
+    
+        <modify src="Returns">
+            <add>
+                <field name="firma" type="string" width="30" execOn="Put" feature="!SALES_MODULE &amp; !HAVE_CONFIG_READER">KeyValueReader("order.cfg","Организация",$object.supplyer)</field>
+                <field name="firma" type="string" width="30" execOn="Put" feature="!SALES_MODULE &amp; HAVE_CONFIG_READER">ConfigReader("Организация",$object.supplyer)</field>
+            </add>
+        </modify>
+	</objects>
+</serverDefs>

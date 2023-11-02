@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" 
+    android:background="@color/white">
+    
+    <ScrollView android:layout_width="fill_parent"
+    	android:layout_height="fill_parent">
+    	
+    <LinearLayout android:layout_width="fill_parent"
+    	android:layout_height="fill_parent"
+    	android:orientation="vertical" >
+    	
+	    <TextView
+	        android:id="@+id/tvName"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="TextView"
+	        android:textColor="@color/black" 
+	        android:paddingLeft="3dp"/>
+	
+	    <TextView
+	        android:id="@+id/tvType"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="TextView" 
+	        android:textColor="@color/black" 
+	        android:paddingLeft="3dp"/>
+	
+	    <TableLayout
+	        android:id="@+id/tableLayout1"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content" >
+	
+	        <TableRow
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content" >
+	
+	            <TextView
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:text="Параметр 1" 
+	                android:textColor="@color/black" 
+	                android:paddingLeft="3dp" 
+	                android:paddingRight="3dp"/>
+	
+	            <EditText
+	                android:id="@+id/edP1"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content" 
+	                android:layout_weight="1" 
+	                android:layout_marginRight="3dp" />
+	
+	        </TableRow>
+	
+	        <TableRow
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content" >
+	
+	            <TextView
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:text="Параметр 2" 
+	                android:textColor="@color/black" 
+	                android:paddingLeft="3dp" 
+	                android:paddingRight="3dp" />
+	
+	            <EditText
+	                android:id="@+id/edP2"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content" 
+	                android:layout_weight="1" 
+	                android:layout_marginRight="3dp" />
+	
+	        </TableRow>
+	
+	        <TableRow
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content" >
+	
+	            <TextView
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:text="Параметр 3" 
+	                android:textColor="@color/black" 
+	                android:paddingLeft="3dp" 
+	                android:paddingRight="3dp" />
+	
+	            <EditText
+	                android:id="@+id/edP3"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content" 
+	                android:layout_weight="1" 
+	                android:layout_marginRight="3dp"/>
+	
+	        </TableRow>
+	
+	        <TableRow
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content" >
+	
+	            <TextView
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:text="Параметр 4" 
+	                android:textColor="@color/black" 
+	                android:paddingLeft="3dp" 
+	                android:paddingRight="3dp"/>
+	
+	            <EditText
+	                android:id="@+id/edP4"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content" 
+	                android:layout_weight="1" 
+	                android:layout_marginRight="3dp"/>
+	
+	        </TableRow>
+	        
+	        <TableRow
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content" >
+	
+	            <TextView
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:text="Параметр 5" 
+	                android:textColor="@color/black" 
+	                android:paddingLeft="3dp" 
+	                android:paddingRight="3dp"/>
+	
+	            <EditText
+	                android:id="@+id/edP5"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content" 
+	                android:layout_weight="1" 
+	                android:layout_marginRight="3dp"/>
+	
+	        </TableRow>
+	        
+	       <TableRow
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content" >
+	
+	            <TextView
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:text="Параметр 6" 
+	                android:textColor="@color/black" 
+	                android:paddingLeft="3dp" 
+	                android:paddingRight="3dp"/>
+	
+	            <EditText
+	                android:id="@+id/edP6"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content" 
+	                android:layout_weight="1" 
+	                android:layout_marginRight="3dp"/>
+	
+	        </TableRow>
+	        
+	        <TableRow
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content" >
+	
+	            <TextView
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:text="Параметр 7" 
+	                android:textColor="@color/black" 
+	                android:paddingLeft="3dp" 
+	                android:paddingRight="3dp"/>
+	
+	            <EditText
+	                android:id="@+id/edP7"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content" 
+	                android:layout_weight="1" 
+	                android:layout_marginRight="3dp"/>
+	
+	        </TableRow>
+	       
+	        <TableRow
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content" >
+	
+	            <TextView
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:text="Параметр 8" 
+	                android:textColor="@color/black" 
+	                android:paddingLeft="3dp" 
+	                android:paddingRight="3dp"/>
+	
+	            <EditText
+	                android:id="@+id/edP8"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content" 
+	                android:layout_weight="1" 
+	                android:layout_marginRight="3dp"/>
+	
+	        </TableRow>
+	        
+	        <TableRow
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content" >
+	
+	            <TextView
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:text="Параметр 9" 
+	                android:textColor="@color/black" 
+	                android:paddingLeft="3dp" 
+	                android:paddingRight="3dp"/>
+	
+	            <EditText
+	                android:id="@+id/edP9"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content" 
+	                android:layout_weight="1" 
+	                android:layout_marginRight="3dp"/>
+	
+	        </TableRow>
+	        
+	        <TableRow
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content" >
+	
+	            <TextView
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:text="Параметр 10" 
+	                android:textColor="@color/black" 
+	                android:paddingLeft="3dp" 
+	                android:paddingRight="3dp"/>
+	
+	            <EditText
+	                android:id="@+id/edP10"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content" 
+	                android:layout_weight="1" 
+	                android:layout_marginRight="3dp"/>
+	
+	        </TableRow>
+	        
+	        
+	    </TableLayout>
+	
+	    <Button
+	        android:id="@+id/btnSave"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="Сохранить" 
+	        android:layout_gravity="center_horizontal" 
+	        android:layout_marginTop="10dp"/>
+	</LinearLayout>
+	</ScrollView>
+</LinearLayout>

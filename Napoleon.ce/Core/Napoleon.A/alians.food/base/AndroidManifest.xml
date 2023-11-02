@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.grsoft.napoleon"
+    android:versionCode="1"
+    android:versionName="@string/version" >
+
+    <supports-screens android:resizeable="true" />
+
+    <uses-sdk android:minSdkVersion="4" />
+
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature android:name="android.hardware.camera" />
+
+    <!--
+         Camera features. I think it can bring an installation problem 
+    	
+ 		<uses-feature android:name="android.hardware.camera.autofocus" />  
+    -->
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <application
+        android:name=".NapoleonApp"
+        android:debuggable="true"
+        android:icon="@drawable/pictograms"
+        android:label="@string/app_name" >
+        <receiver
+            android:name="com.grsoft.util.BootUpReceiver"
+            android:enabled="true"
+            android:permission="android.permission.RECEIVE_BOOT_COMPLETED" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name="com.grsoft.napoleon.NapoleonEx"
+            android:label="@string/app_name"
+            android:launchMode="singleTask" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <uses-library android:name="android.test.runner" />
+
+        <activity android:name="com.grsoft.napoleon.Configuration" />
+        <activity
+            android:name="com.grsoft.napoleon.UpdateDB"
+            android:configChanges="keyboardHidden|orientation" />
+        <activity android:name="com.grsoft.napoleon.VisitEdit" />
+        <activity android:name="com.grsoft.napoleon.Cuments" />
+        <activity android:name="com.grsoft.napoleon.CreateOrder" />
+        <activity android:name="Warehouse" />
+        <activity android:name="com.grsoft.napoleon.PriceCount" />
+        <activity android:name="OrderDetail" />
+        <activity android:name="DeliveryDetail" />
+        <activity android:name="CameraPreview" />
+        <activity android:name="DocList" />
+        <activity android:name="Messages" />
+        <activity android:name="RemnantsDetail" />
+        <activity
+            android:name="Setting"
+            android:configChanges="keyboardHidden|orientation" />
+        <activity android:name="PhotoSetting" />
+        <activity android:name="BehaviorSetting" />
+        <activity android:name="GpsSetting" />
+
+        <service android:name="com.grsoft.util.NapoleonService" />
+
+        <activity android:name="OrderDeliveryDetail" />
+        <activity
+            android:name="PricePresentation"
+            android:noHistory="true" />
+        <activity android:name="Presentation" />
+        <activity android:name="WarehouseSetting" >
+        </activity>
+
+        <receiver
+            android:name="com.grsoft.util.SystemActionReciever"
+            android:permission="android.permission.RECEIVE_BOOT_COMPLETED" >
+            <intent-filter>
+                <action android:name="android.location.PROVIDERS_CHANGED" />
+                <action android:name="android.intent.action.TIME_SET" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.ACTION_SHUTDOWN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
+
+        <activity android:name=".CrashReport" >
+        </activity>
+        <activity android:name=".PotenzialOrg" >
+        </activity>
+        <activity android:name=".TaskForm" >
+        </activity>
+        <activity android:name=".FocusItemEditor" >
+        </activity>
+        <activity android:name="com.grsoft.script.ScriptEdit" >
+        </activity>
+        <activity android:name="com.grsoft.napoleon.QuestAnswer" >
+        </activity>
+        <activity android:name="com.grsoft.napoleon.QuestionWebView" >
+        </activity>
+        <activity android:name="com.grsoft.napoleon.ReturnDetail" >
+        </activity>
+        <activity android:name="com.grsoft.napoleon.CreateReturn" >
+        </activity>
+        <activity android:name="UpdateDBPrint" >
+        </activity>
+        <activity android:name=".CreateSales" >
+        </activity>
+        <activity android:name=".SalesDetail" >
+        </activity>
+        <activity android:name=".PkoInfo" >
+        </activity>
+        <activity android:name="DocumentsEx" >
+        </activity>
+        <activity android:name=".PaInfo" >
+        </activity>
+        <activity android:name="DocumentsPrint" >
+        </activity>
+        <activity android:name="VanRestReport" >
+        </activity>
+        <activity
+            android:name="WarehouseNew"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        <activity android:name="CalendarActivity" />
+
+        <service android:name="com.grsoft.util.ReportService" />
+
+        <activity android:name="com.grosft.napoleon.modules.checknetwork.Checker" />
+        <activity
+            android:name="com.grsoft.napoleon.UpdateDBEx"
+            android:configChanges="keyboardHidden|orientation" />
+        <activity android:name="CreateSalesEx" >
+        </activity>
+        <activity android:name="IncassEditEx" >
+        </activity>
+        <activity android:name="DebetView" />
+        <activity android:name="CreateReturnEx" >
+        </activity>
+        <activity android:name="WSOrderList" >
+        </activity>
+        <activity android:name="WSOrderDetail" />
+        <activity android:name="ISReturnDetail" />
+        <activity
+            android:name="WarehouseEx"
+            android:configChanges="keyboardHidden|orientation" >
+        </activity>
+        <activity
+            android:name="DocListEx"
+            android:configChanges="keyboardHidden|orientation" />
+        <activity android:name="ArchIncassEdit" >
+        </activity>
+        <activity android:name="SalesDetailEx" >
+        </activity>
+        <activity
+            android:name="OrderDetailEx"
+            android:configChanges="keyboard|keyboardHidden|orientation" />
+        <activity
+            android:name="ArchCreateReturn"
+            android:configChanges="keyboard|keyboardHidden|orientation" />
+        <activity
+            android:name="ArchCreateSales"
+            android:configChanges="keyboard|keyboardHidden|orientation" />
+        <activity
+            android:name="ArchSalesDetail"
+            android:configChanges="keyboard|keyboardHidden|orientation" />
+    </application>
+
+    <instrumentation
+        android:name="com.grsoft.tests.NapoleonInstrumentationTestRunner"
+        android:label="All Tests"
+        android:targetPackage="grsoft.napoleon" />
+
+</manifest>

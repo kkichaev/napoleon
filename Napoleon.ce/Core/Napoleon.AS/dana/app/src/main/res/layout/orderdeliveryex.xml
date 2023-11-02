@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        style="?header"
+        android:layout_width="fill_parent">
+
+        <TextView
+            android:id="@+id/tvOrg"
+            style="?headerText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scrollHorizontally="true"
+            android:text="OrgName" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/LinearLayout02"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/LinearLayout04"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:background="@color/black"
+            tools:ignore="NestedWeights">
+
+            <TextView
+                android:id="@+id/TextView01"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/table_caption"
+                android:paddingLeft="3dp"
+                android:text="@string/caption"
+                android:textColor="@color/black"
+                tools:ignore="NestedWeights" />
+
+            <TextView
+                android:id="@+id/TextView02"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:background="@color/table_caption"
+                android:gravity="right"
+                android:minWidth="65dp"
+                android:paddingLeft="2dp"
+                android:paddingRight="2dp"
+                android:text="@string/qty"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/UnloadTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:background="@color/table_caption"
+                android:gravity="right"
+                android:minWidth="65dp"
+                android:paddingLeft="2dp"
+                android:text="@string/shipped"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/SumColumnTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:background="@color/table_caption"
+                android:gravity="right"
+                android:minWidth="80dp"
+                android:paddingRight="3dp"
+                android:text="@string/sum"
+                android:textColor="@color/black" />
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/lvItems"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@color/white" />
+
+        <ListView
+            android:id="@+id/lvActions"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="fill_parent"
+        style="?footer" >
+
+        <ImageButton
+            android:id="@+id/btnAddItems"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/new_order"
+            style="?footerButton" />
+
+        <ImageButton
+            android:id="@+id/btnEditOrder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/orderedit"
+            style="?footerButton"  />
+
+        <ImageButton
+            android:id="@+id/btnLines"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/line_2"
+            style="?footerButton" />
+
+        <ImageButton
+            android:id="@+id/btnSend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/send"
+            style="?footerButton"  />
+
+        <TextView
+            android:id="@+id/tvTotalSum"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="right"
+            android:text="@string/sum"
+            style="?footerText"/>
+    </LinearLayout>
+
+</LinearLayout>

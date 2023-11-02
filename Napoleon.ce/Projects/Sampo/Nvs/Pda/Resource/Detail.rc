@@ -1,0 +1,79 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "NapoleonRes.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "resdefce.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Russian resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_RUS)
+#ifdef _WIN32
+LANGUAGE LANG_RUSSIAN, SUBLANG_DEFAULT
+#pragma code_page(1251)
+#endif //_WIN32
+
+IDD_ORDER_DETAIL DIALOG  0, 0, 186, 90
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Параметры заказа"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    CONTROL         "",IDC_ORDER_DATE,"SysDateTimePick32",DTS_RIGHTALIGN | WS_TABSTOP,29,2,56,15
+    CONTROL         "",IDC_ORDER_TIME,"SysDateTimePick32",DTS_RIGHTALIGN | DTS_UPDOWN | DTS_APPCANPARSE | WS_TABSTOP | 0x8,30,16,55,15
+
+    EDITTEXT        IDC_REMARK,2,32,182,44,ES_MULTILINE | ES_AUTOVSCROLL | ES_AUTOHSCROLL | ES_WANTRETURN
+    DEFPUSHBUTTON   "OK",IDOK,136,76,50,14
+    PUSHBUTTON      "Отмена",IDCANCEL,0,76,50,14
+    LTEXT           "Дата",-1,8,6,18,8
+    LTEXT           "Время",-1,5,19,21,8
+END
+
+IDD_DELIVERY_DETAIL DIALOG  0, 0, 186, 90
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Параметры накладной"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    EDITTEXT        IDC_DOC_NUMBER,34,6,50,12, ES_AUTOHSCROLL | WS_TABSTOP | NOT WS_BORDER
+    CONTROL         "",IDC_ORDER_DATE,"SysDateTimePick32",DTS_RIGHTALIGN | WS_TABSTOP,109,3,50,15
+
+    COMBOBOX        IDC_COST_TYPE,36,19,100,80,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Цена",IDC_STATIC,8,21,18,8
+
+    EDITTEXT        IDC_REMARK,2,32,182,44,ES_MULTILINE | ES_AUTOVSCROLL | ES_AUTOHSCROLL | ES_WANTRETURN
+    DEFPUSHBUTTON   "OK",IDOK,136,76,50,14
+    PUSHBUTTON      "Отмена",IDCANCEL,0,76,50,14
+    LTEXT           "№ док.",-1,1,6,30,8
+    LTEXT           "Дата",-1,88,6,18,8
+END
+
+#endif    // Russian resources
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "NapoleonRes.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""resdefce.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\0"
+END
+
+
+#endif    // APSTUDIO_INVOKED

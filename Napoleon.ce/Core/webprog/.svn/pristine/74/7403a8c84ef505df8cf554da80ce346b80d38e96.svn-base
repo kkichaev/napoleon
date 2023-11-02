@@ -1,0 +1,23 @@
+import { onMounted } from 'vue'
+import { useBackendStore } from 'src/stores/backend'
+import { useRouter } from 'vue-router'
+import { isAuth } from '../backend/backend'
+
+export function useGuard (){
+  const router = useRouter()
+  const store = useBackendStore()
+
+  onMounted( async function (){
+    if (!store.isAuth)
+      if ( store.isAuth === undefined){
+        await isAuth()
+          .then((responce)=>{
+            store.isAuth = true
+            router.push({ name: router.name })
+          })
+          .catch((error)=>{router.push({ name: 'Login' })})
+
+      }else
+        router.push({ name: 'Login' })
+  })
+}

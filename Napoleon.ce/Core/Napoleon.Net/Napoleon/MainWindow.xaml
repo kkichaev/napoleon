@@ -1,0 +1,262 @@
+﻿<RibbonWindow x:Class="Napoleon.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:Napoleon"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    Title="MainWindow" 
+    Height="850" 
+    Width="1425"
+    Loaded="RibbonWindow_Loaded"
+    Icon="Images\napoleon.ico">
+
+    <RibbonWindow.CommandBindings>
+        <CommandBinding Command="{x:Static local:NapoleonCommands.Refresh}" Executed="RefreshExecuted"/>
+        <CommandBinding Command="{x:Static local:NapoleonCommands.Setting}" Executed="SettingExecuted"/>
+        <CommandBinding Command="{x:Static local:NapoleonCommands.ReturnCauseEditor}" Executed="RetCauseExecuted"/>
+    </RibbonWindow.CommandBindings>
+    
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="20"/>
+            </Grid.RowDefinitions>
+
+            <Ribbon Grid.Row="0" SelectedIndex="0">
+                <Ribbon.ApplicationMenu >
+                    <RibbonApplicationMenu SmallImageSource="Images\settings.png">
+                        <RibbonApplicationMenuItem ImageSource="Images\settings.png" 
+                            Header="Настройки"
+                            ToolTipTitle="Настройки программы (Ctrl+Q)"
+                            Command="local:NapoleonCommands.Setting"/>
+                        <RibbonApplicationMenuItem ImageSource="Images\settings.png" 
+                            Header="Редактор причин возврата"
+                            ToolTipTitle="Редактор причин возврата(Ctrl+R)"
+                            Command="local:NapoleonCommands.ReturnCauseEditor"/>
+                    </RibbonApplicationMenu>
+                </Ribbon.ApplicationMenu>
+
+                <RibbonTab 
+                    Header="Управление" 
+                    KeyTip="H">
+
+                    <RibbonGroup>
+                        <RibbonButton
+                            x:Name="btnRefresh" 
+                            LargeImageSource="Images\refresh.png" 
+                            Label="Обновить" 
+                            KeyTip="F5" 
+                            Command="local:NapoleonCommands.Refresh"
+                            ToolTipTitle ="Обновить (F5)"
+                            ToolTipDescription="Загрузить данные с сервера"/>
+                    </RibbonGroup>
+
+                    <RibbonGroup>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            
+                            <Label Grid.Column="0"   Content="Дата" FontSize="10"/>
+                            <DatePicker Grid.Column="1"  x:Name="datePicker" SelectedDateChanged="DatePicker_SelectedDateChanged"/>
+                        </Grid>
+                    </RibbonGroup>
+
+                    <RibbonGroup>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Grid.Column="0"   Content="Поиск" FontSize="10"/>
+                            <TextBox Grid.Column="1"  x:Name="tbSearch" Width="200" TextChanged="TbSearch_TextChanged"/>
+
+                            <RibbonButton
+                                Grid.Column="2"
+                                x:Name="btnSearchClear" 
+                                SmallImageSource="Images\clear.png" 
+                                Click="BtnSearchClear_Click"
+                                ToolTip ="Очисить поиск"/>
+                        </Grid>
+                    </RibbonGroup>
+
+                    <RibbonGroup>
+                        <RibbonButton
+                            x:Name="btnOrderJournal" 
+                            LargeImageSource="Images\orderjournal.png" 
+                            Label="Журнал заявок" 
+                            ToolTipTitle ="Журнал завок"
+                            ToolTipDescription="Открыть журнал заявок"
+                            Click="BtnOrderJournal_Click"/>
+
+                        <RibbonButton
+                            x:Name="btnRetDocsJournal" 
+                            LargeImageSource="Images\retdocsjournal.png" 
+                            Label="Журнал возвратов" 
+                            ToolTipTitle ="Журнал возвратов"
+                            ToolTipDescription="Открыть журнал заявок на возврат" Click="btnRetDocsJournal_Click"
+                            />
+                        
+                        <RibbonButton
+                            x:Name="btnOrgWindow" 
+                            LargeImageSource="Images\users.png" 
+                            Label="Контрагенты" 
+                            ToolTipTitle ="Контрагенты"
+                            ToolTipDescription="Открыть полный список контрагентов"
+                            Click="BtnOrgWindow_Click"/>
+                    </RibbonGroup>
+                    <RibbonGroup>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Content="Фабрика" Grid.Column="0" FontSize="10" />
+                            <ComboBox x:Name="cbFactory" Width="220" Grid.Column="1" SelectionChanged="cbFactory_SelectionChanged"/>
+                        </Grid>
+                    </RibbonGroup>
+
+                </RibbonTab>
+            </Ribbon>
+
+            <DataGrid 
+                Grid.Row="1" 
+                Grid.Column="0" 
+                Grid.ColumnSpan="2" 
+                x:Name="grid" 
+                AutoGenerateColumns="False" 
+                IsReadOnly="True">
+
+                <DataGrid.ColumnHeaderStyle>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="ContentTemplate">
+                            <Setter.Value>
+                                <DataTemplate>
+                                    <TextBlock TextWrapping="Wrap" Text="{Binding}"></TextBlock>
+                                </DataTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </DataGrid.ColumnHeaderStyle>
+
+                <DataGrid.Resources>
+                    <Style TargetType="DataGridRow">
+                        <EventSetter Event="MouseDoubleClick" Handler="Row_DoubleClick"/>
+                    </Style>
+                    <DataGridLength x:Key="WeekColmnWidth">24</DataGridLength>
+                </DataGrid.Resources>
+                <DataGrid.ContextMenu>
+                    <RibbonContextMenu>
+                        <MenuItem Header="Заявка на возврат" Command="{Binding}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}" />
+                    </RibbonContextMenu>
+                </DataGrid.ContextMenu>
+
+                <DataGrid.Columns>
+                    <!--
+                    <DataGridTextColumn Header="Сеть" x:Name="Column1" Binding="{Binding Net}" Width="50"/>
+                    -->
+                    <DataGridTextColumn Header="Контрагент" x:Name="Column2" Binding="{Binding OrgName}" Width="*"/>
+                    <DataGridTextColumn Header="АдресДоставки" x:Name="Column3" Binding="{Binding OrgAddress}" Width="*"/>
+                    <DataGridTextColumn Header="КОД ТП осн." x:Name="Column4" Binding="{Binding TPCode}" Width="50"/>
+                    <!--<DataGridTextColumn Header="пн" x:Name="Column5" Binding="{Binding Mon}" Width="{StaticResource  WeekColmnWidth}"/>
+                    <DataGridTextColumn Header="вт" x:Name="Column6" Binding="{Binding Tue}" Width="{StaticResource  WeekColmnWidth}"/>
+                    <DataGridTextColumn Header="ср" x:Name="Column7" Binding="{Binding Wed}" Width="{StaticResource  WeekColmnWidth}"/>
+                    <DataGridTextColumn Header="чт" x:Name="Column8" Binding="{Binding Thu}" Width="{StaticResource  WeekColmnWidth}"/>
+                    <DataGridTextColumn Header="пт" x:Name="Column9" Binding="{Binding Fri}" Width="{StaticResource  WeekColmnWidth}"/>
+                    <DataGridTextColumn Header="сб" x:Name="Column10" Binding="{Binding Sat}" Width="{StaticResource  WeekColmnWidth}"/>
+                    <DataGridTextColumn Header="вс" x:Name="Column11" Binding="{Binding Sun}" Width="{StaticResource  WeekColmnWidth}"/>-->
+                    <DataGridTextColumn Header="последняя реализация, руб" x:Name="Column12" Binding="{Binding LastDlvSum}" Width="120"/>
+                    <!--<DataGridTextColumn Header="последняя реализация, кг" x:Name="Column13" Binding="{Binding LastDlvWeight}" Width="120"/>-->
+                    <DataGridTextColumn Header="дата, ТТН" x:Name="Column14" Binding="{Binding DateTTN}" Width="70"/>
+                    <!--<DataGridTextColumn Header="ДЗ 1" x:Name="Column15" Binding="{Binding DZ1}" Width="40"/>
+                    <DataGridTextColumn Header="ДЗ 2" x:Name="Column16" Binding="{Binding DZ2}" Width="40"/>
+                    <DataGridTextColumn Header="ДЗ 3" x:Name="Column17" Binding="{Binding DZ3}" Width="40"/>-->
+                    <DataGridTextColumn Header="Продано, руб" x:Name="Column18" Binding="{Binding LastOrderSum}" Width="80"/>
+                    <!--<DataGridTextColumn Header="Продано, кг" x:Name="Column19" Binding="{Binding LastOrderWeight}" Width="80"/>-->
+                    <DataGridTextColumn Header="комментарий" x:Name="Column20" Binding="{Binding Remark}" Width="90"/>
+                    <DataGridTextColumn Header="содер разг." x:Name="Column21" Binding="{Binding Text}" Width="90"/>
+                    <DataGridTextColumn Header="время звонка" x:Name="Column22" Binding="{Binding CellTime}" Width="80"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <StackPanel 
+                Grid.Row="2"  
+                HorizontalAlignment="Left" 
+                Orientation="Horizontal">
+                <!--
+                <Grid Width="{Binding ElementName=Column1,Path=ActualWidth}">
+                    <TextBlock Margin="10,0,0,0" Text=""></TextBlock>
+                </Grid>
+                -->
+                <Grid Width="{Binding ElementName=Column2,Path=ActualWidth}">
+                    <TextBlock Text="" Margin="10,0,0,0"></TextBlock>
+                </Grid>
+                <Grid Width="{Binding ElementName=Column3,Path=ActualWidth}">
+                    <TextBlock Text="Итоги" Margin="10,0,0,0"></TextBlock>
+                </Grid>
+                <Grid Width="{Binding ElementName=Column4,Path=ActualWidth}">
+                    <TextBlock Text="" Margin="10,0,0,0"></TextBlock>
+                </Grid>
+                <Grid Width="{Binding ElementName=Column5,Path=ActualWidth}">
+                    <TextBlock Text="" Margin="10,0,0,0"></TextBlock>
+                </Grid>
+                <Grid Width="{Binding ElementName=Column6,Path=ActualWidth}">
+                    <TextBlock Text="" Margin="10,0,0,0"></TextBlock>
+                </Grid>
+                <Grid Width="{Binding ElementName=Column7,Path=ActualWidth}">
+                    <TextBlock Text="" Margin="10,0,0,0"></TextBlock>
+                </Grid>
+                <Grid Width="{Binding ElementName=Column8,Path=ActualWidth}">
+                    <TextBlock Text="" Margin="10,0,0,0"></TextBlock>
+                </Grid>
+                <Grid Width="{Binding ElementName=Column9,Path=ActualWidth}">
+                    <TextBlock Text="" Margin="10,0,0,0"></TextBlock>
+                </Grid>
+                <Grid Width="{Binding ElementName=Column10,Path=ActualWidth}">
+                    <TextBlock Text="" Margin="10,0,0,0"></TextBlock>
+                </Grid>
+                <Grid Width="{Binding ElementName=Column11,Path=ActualWidth}">
+                    <TextBlock Text="" Margin="10,0,0,0"></TextBlock>
+                </Grid>
+                <Grid Width="{Binding ElementName=Column12,Path=ActualWidth}">
+                    <TextBlock Text="{Binding Path=ResDlvSum, RelativeSource={RelativeSource AncestorType=RibbonWindow}}" Margin="10,0,0,0"></TextBlock>
+                </Grid>
+                <Grid Width="{Binding ElementName=Column13,Path=ActualWidth}">
+                    <TextBlock Text="{Binding Path=ResDlvWeight, RelativeSource={RelativeSource AncestorType=RibbonWindow}}" Margin="10,0,0,0"></TextBlock>
+                </Grid>
+                <Grid Width="{Binding ElementName=Column14,Path=ActualWidth}">
+                    <TextBlock Text="" Margin="10,0,0,0"></TextBlock>
+                </Grid>
+                <Grid Width="{Binding ElementName=Column15,Path=ActualWidth}">
+                    <TextBlock Text="" Margin="10,0,0,0"></TextBlock>
+                </Grid>
+                <Grid Width="{Binding ElementName=Column16,Path=ActualWidth}">
+                    <TextBlock Text="" Margin="10,0,0,0"></TextBlock>
+                </Grid>
+                <Grid Width="{Binding ElementName=Column17,Path=ActualWidth}">
+                    <TextBlock Text="" Margin="10,0,0,0"></TextBlock>
+                </Grid>
+                <Grid Width="{Binding ElementName=Column18,Path=ActualWidth}">
+                    <TextBlock Text="{Binding Path=ResOrderSum, RelativeSource={RelativeSource AncestorType=RibbonWindow}}" Margin="10,0,0,0"></TextBlock>
+                </Grid>
+                <Grid Width="{Binding ElementName=Column19,Path=ActualWidth}">
+                    <TextBlock Text="{Binding Path=ResOrderWeight, RelativeSource={RelativeSource AncestorType=RibbonWindow}}" Margin="10,0,0,0"></TextBlock>
+                </Grid>
+                <Grid Width="{Binding ElementName=Column20,Path=ActualWidth}">
+                    <TextBlock Text="" Margin="10,0,0,0"></TextBlock>
+                </Grid>
+                <Grid Width="{Binding ElementName=Column21,Path=ActualWidth}">
+                    <TextBlock Text="" Margin="10,0,0,0"></TextBlock>
+                </Grid>
+                <Grid Width="{Binding ElementName=Column22,Path=ActualWidth}">
+                    <TextBlock Text="" Margin="10,0,0,0"></TextBlock>
+                </Grid>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</RibbonWindow>

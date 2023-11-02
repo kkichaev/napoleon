@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+ 	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" 
+	android:orientation="horizontal" 
+	android:layout_height="fill_parent" 
+	android:id="@+id/llPriceRow"
+	android:background="@drawable/list_selector">
+	
+	<TextView android:layout_height="wrap_content" 
+		android:textColor="@color/black" 
+		android:id="@+id/tvPriceItemName" 
+		android:text="PriceItem" 
+		android:layout_weight="1"
+		android:layout_width="wrap_content" 
+		android:textSize="18dp"></TextView>
+		
+</LinearLayout>

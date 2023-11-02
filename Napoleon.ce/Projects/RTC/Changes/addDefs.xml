@@ -1,0 +1,118 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+  <objects>
+    <modify src="Org">
+      <add>
+        <field name="fldDsc" type="collection">
+          <data>
+            <object name="FldDsc">
+              <sources>
+                <source name="DBFTableSet">
+                  <param name="userTable">"OFD"</param>
+                  <param name="commonTable">"OFD_DSC"</param>
+                  <param name="filter">"[ID] = $parent.id"</param>
+                </source>
+              </sources>
+              <field name="id" type="string" data="ID_I" />
+              <field name="folderID" type="number" execOn="Get">FolderID($object.id)</field>
+              <field name="discount" type="number" prec="2" data="DSC" />
+            </object>
+          </data>
+        </field>
+
+        <field name="prcCost" type="collection">
+          <data>
+            <object name="FldDsc">
+              <sources>
+                <source name="DBFTableSet">
+                  <param name="userTable">"OPC"</param>
+                  <param name="commonTable">"OPC_DSC"</param>
+                  <param name="filter">"[ID] = $parent.id"</param>
+                </source>
+              </sources>
+              <field name="id" type="string" data="ID_I" />
+              <field name="cost" type="number" prec="2" />
+            </object>
+          </data>
+        </field>
+
+        <field name="firm" type="number" />
+      </add>
+    </modify>
+    <modify src="Price">
+      <change>
+        <field name="top" type="number" />
+        <field name="color" type="hex" />
+      </change>
+    </modify>
+
+    <modify src="Order">
+      <add>
+        <field name="payType" type="string" />
+        <field name="pickup" type="number" width="1" />
+        <field name="actionID" type="number" data="AID" />
+        <field name="dlgGroupID" type="string" data="GID" width="10"/>
+      </add>
+    </modify>
+
+    <modify src="Incass">
+      <add>
+        <field name="firma" type="string" width="30" execOn="Put">ConfigReader("Организация",$object.supplyer)</field>
+      </add>
+    </modify>
+
+    <object name="ActionFolder">
+      <sources>
+        <source name="DBFTable">
+          <param name="tableName">$object.table + $user.id</param>
+        </source>
+        <source name="DBFTable">
+          <param>$object.altTable</param>
+        </source>
+      </sources>
+
+      <member name="table">"AF"</member>
+      <member name="altTable">"AFOLDER"</member>
+
+      <field name="id" type="number" />
+      <field name="level" type="number" />
+      <field name="name" type="string"/>
+    </object>
+
+    <object name="Action">
+      <sources>
+        <source name="DBFTable">
+          <param name="tableName">$object.table + $user.id</param>
+        </source>
+        <source name="DBFTable">
+          <param>$object.altTable</param>
+        </source>
+      </sources>
+
+      <member name="table">"AC"</member>
+      <member name="altTable">"ACTION"</member>
+
+      <field name="id" type="string" />
+      <field name="name" type="string"/>
+      <field name="folderID" type="number" data="FID"/>
+    </object>
+
+    <object name="DlvGroup">
+      <sources>
+        <source name="DBFTable">
+          <param name="tableName">$object.table + $user.id</param>
+        </source>
+        <source name="DBFTable">
+          <param>$object.altTable</param>
+        </source>
+      </sources>
+
+      <member name="table">"DG"</member>
+      <member name="altTable">"DGROUP"</member>
+
+      <field name="id" type="string" />
+      <field name="name" type="string"/>
+      <field name="whCode" type="string"/>
+    </object>
+  </objects>
+</serverDefs>

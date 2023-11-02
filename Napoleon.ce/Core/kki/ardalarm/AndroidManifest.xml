@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.ksoft.ardalarm"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="18" />
+    
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="com.ksoft.ardalarm.MainActivity"
+            android:label="@string/app_name" 
+            android:configChanges="keyboard|keyboardHidden|orientation">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
+        <activity android:name="Alarm" 
+            android:configChanges="keyboard|keyboardHidden|orientation"/>
+        <activity android:name="TimerView" 
+            android:configChanges="keyboard|keyboardHidden|orientation"/>
+        <receiver android:name="com.ksoft.ardalarm.AlarmRcv"/>
+        <activity android:name="com.ksoft.ardalarm.Setting"
+            android:configChanges="keyboard|keyboardHidden|orientation">
+            <intent-filter>
+                <action android:name="com.kasoft.ardalarm.OPEN_SETTING"/>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <service android:name="com.ksoft.ardalarm.SoundPlay"/>
+        <service android:name="com.ksoft.ardalarm.TimerSrv"/>
+        <service android:name="com.ksoft.ardalarm.ArdruinoExcahge"/>
+        
+        <activity android:name="CreateAlarm"
+            android:configChanges="keyboard|keyboardHidden|orientation">
+            <intent-filter>
+                <action android:name="com.ksoft.ardalarm.CreateAlarm" />
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

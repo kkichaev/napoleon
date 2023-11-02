@@ -1,0 +1,113 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+  <objects>
+    <object name="ContractMatrix">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"CMX"</param>
+          <param name="commonTable">"CTMTX"</param>
+          <param name="catalog">"name;items;0"</param>
+        </source>
+      </sources>
+      <field name="items" type="collection">
+        <data>
+          <object name="MatrixItem">
+            <field name="id" type="string" width="40" />
+          </object>
+        </data>
+      </field>
+      <field name="name" type="string" width="30" />
+    </object>
+
+    <object name="OrgContracts">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"OMX"</param>
+          <param name="commonTable">""</param>
+        </source>
+      </sources>
+
+      <field name="name" type="string" width="100" />
+      <field name="id" type="string" width="55" />
+    </object>
+
+    <object name="Merch">
+      <sources>
+        <source name="DBFCatalogTable">
+          <param name="tableName">$object.table + $user.id</param>
+          <param name="catalog">"id"</param>
+          <param name="ordered">1</param>
+        </source>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="table">"MRC"</member>
+      <member name="primaryKey">"userid,date"</member>
+      <memberArray name="index">"date"</memberArray>
+
+      <field name="userid" type="string" data="USER_ID" execOn="Put">$user.id</field>
+      <field name="date" type="timestamp" data="NUM"/>
+      <field name="created" type="timestamp" />
+      <field name="timeZone" type="number" />
+      <field name="serverTimeZone" type="number" data="S_TZ" execOn="Put" feature="USE_TIMEZONE">ServerTimeZone()</field>
+      <field name="sended" type="timestamp" data="S_DATE" execOn="Put">Now()</field>
+      <field name="id" width="55" type="string" />
+      <field name="remark" type="string" />
+      <field name="items" type="collection">
+        <data>
+          <object name="OrgRemnantsItem">
+            <sources>
+              <source name="DBFCatalogItemTable"/>
+              <source name="SQTable" type="internal" />
+            </sources>
+
+            <field name="id" width="40" type="string" data="ID_I"/>
+            <field name="qty" type="number" prec="3" />
+            <field name="bestBefore" type="date" data="BEST_I" />
+            <field name="ordflag" width="1" type="number" execOn="Put">FirstItem($object)</field>
+            <field name="manufactoring" type="date" data="MAN_I" />
+            <field name="expDay" type="number" data="EXP"/>
+            <field name="remark" width="200" type="string" data="REM_I"/>
+
+          </object>
+        </data>
+      </field>
+
+      <field name="latitude" type="number" prec="4" />
+      <field name="longitude" type="number" prec="4" />
+      <field name="stltime" type="number" />
+
+      <events>
+        <event type="put">
+          <action name="WriteInternal">$object.type</action>
+          <action name="WriteToLog">$object.type;$object.date</action>
+        </event>
+      </events>
+    </object>
+    <modify src="Org">
+      <add>
+        <field name="matrix" type="collection">
+          <data>
+            <object name="Item">
+              <sources>
+                <source name="DBFTableSet">
+                  <param name="userTable">"OMX"</param>
+                  <param name="commonTable">""</param>
+                  <param name="filter">"[ID] = $parent.id"</param>
+                </source>
+              </sources>
+
+              <field name="name" type="string" width="100" />
+            </object>
+          </data>
+        </field>
+      </add>
+    </modify>
+    
+    <modify src="Price">
+      <change>
+        <field name="color" type="hex" />
+      </change>
+    </modify>
+  </objects>
+</serverDefs>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+        <com.ashberrysoft.leadertask.modern.view.CustomSwitchPreference
+            android:key="is_need_password"
+            android:title="@string/pass_at_start" />
+        <com.ashberrysoft.leadertask.modern.view.CustomSwitchPreference
+            android:key="is_need_pin"
+            android:title="@string/pin_at_start" />
+        <com.ashberrysoft.leadertask.modern.view.CustomSwitchPreference
+            android:key="is_need_finger"
+            android:title="@string/finger_at_start" />
+</PreferenceScreen>

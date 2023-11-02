@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Napoleon</string>
+    <string-array name="gps_send_interval">
+        <item>1</item>
+        <item>5</item>
+        <item>10</item>
+        <item>20</item>
+        <item>30</item>
+        <item>40</item>
+        <item>50</item>
+        <item>60</item>
+        <item>70</item>
+        <item>80</item>
+        <item>90</item>
+        <item>100</item>
+        <item>110</item>
+        <item>120</item>
+    </string-array>
+    
+    <string-array name="warehouse_column_values">
+    	<item>Нет</item>
+    	<item>Кол-Во на складе</item>
+    	<item>Кол-во в заявке</item> 
+    	<item>Цена</item>
+    	<item>Сумма в заявке</item>
+    	<item>Кол-во прайс/Заказ</item>
+    	<item>Цена/Сумма в заказе</item>
+    	<item>Кол-во прайс (вложенность)</item>
+    	</string-array>
+    <string-array name="wh_find_choices">
+        <item>Название</item>
+        <item>Код</item>
+    </string-array>
+    
+    <string-array name="print_src">
+        <item>HP</item>
+        <item>Samsung</item>
+    </string-array>
+
+    <string-array name="DiscountItems">
+	<item>скидка</item>
+	<item>наценка</item>
+    </string-array>
+    <string-array name="on_line_items">
+        <item >IP 1</item>
+        <item >IP 2</item>
+        <item >нет</item>
+    </string-array>
+    
+    <string-array name="presentation_column_values">
+        <item>Авто</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+    </string-array>
+    
+    <string-array name="day_to_del_visit">
+        <item>7</item>
+        <item>15</item>
+        <item>30</item>
+        <item>60</item>
+        <item>120</item>
+        <item>360</item>
+    </string-array>
+    
+    <string-array name="months_to_recreate">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
+    <string-array name="nav_type_items">
+        <item>Классический</item>
+        <item>Новый</item>
+    </string-array>
+    <string name="copy_doesnt_allow">Копирование документа не разрешено</string>
+    <string name="init_camera_error">Ошибка при инициализации камеры, возможно камера на данном аппарате отсутствует или не работает.</string>
+    <string name="id">код</string>
+    <string name="cost_changing">Изменение цены</string>
+    <string name="check_for_valid_number">Проверьте правильность ввода числа</string>
+    <string name="date_filter">фильтр c %1$d.%2$d.%3$d по %4$d.%5$d.%6$d</string>
+    <string name="docs">Документы</string>
+    <string name="send">Отправить</string>
+    <string name="filter_by_date">Фильтр по дате</string>
+    <string name="gpscoord_is_old">Последние снятые координаты считаются устаревшими, нажмите кнопку \"снять координаты\" для обновления"</string>
+    <string name="remark">Заметка</string>
+    <string name="client_in_stop_list">Клиент находится в стоп-листе!</string>
+    <string name="order_cant_processing">Заявка может быть не обработана.</string>
+    <string name="inform">Контактная информация</string>
+    <string name="allow_crete_doc_without_gps">Время получения координат истекло, вы можете создать документ без установки позиции.</string>
+    <string name="gps_received">"Координаты получены успешно, вы можете создать документ "</string>
+    <string name="new_doc">Новый документ</string>
+    <string name="note">Примечание</string>
+    <string name="action">Действие</string>
+    <string name="open">Открыть</string>
+    <string name="error">Ошибка</string>
+    <string name="error_processing">Ошибка проведения</string>
+    <string name="doc_save_error">Документ сохранен не полностью</string>
+    <string name="doc_process_succs">Документ успешно проведен</string>
+    <string name="question">Вопрос</string>
+    <string name="ask_to_resend">Документ обработан. Хотите передать его еще раз?</string>
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
+    <string name="value">Значение</string>
+    <string name="input_value">Введите значение</string>
+    <string name="check_input">Проверьте правильность ввода числа</string>
+    <string name="delete_all">Удалить все</string>
+    <string name="delete_by_date">Удалить за дату</string>
+    <string name="confirm">Подтверждение</string>
+    <string name="delete_all_messages">Удалить все принятые сообщения?</string>
+    <string name="caption">Название</string>
+    <string name="visit">Посещение</string>
+    <string name="doc_list">Список документов</string>
+    <string name="msg_list">Список сообщений</string>
+    <string name="price_list">Прайс-лист</string>
+    <string name="setting">Настройка</string>
+    <string name="recieve_remains">Прием остатков</string>
+    <string name="sync">Синхронизация</string>
+    <string name="add_org">Добавить организацию</string>
+    <string name="about">О программе</string>
+    <string name="exit">Выход</string>
+    <string name="menu">Меню</string>
+    <string name="ask_to_exit">Для выхода из программы выберите Меню -> Выход.</string>
+    <string name="order_required_price">Закажите фокусный товар!</string>
+    <string name="required_price_ordered">Фокусный товар заказан</string>
+    <string name="need_to_order_all_required_price">Необходимо заказать весь фокусный товар!</string>
+    <string name="necessary">Необходимо!</string>
+    <string name="add">Добавить</string>
+    <string name="lines">Строки</string>
+    <string name="shortlatitude">ш</string>
+    <string name="shortlongitude">д</string>
+    <string name="ask_to_valid_data">Недостаточно данных, проверьте все ли необходимые данные введены</string>
+    <string name="impossible_get_gps">Невозможно снять координаты.</string>
+    <string name="gps_recieved_succs">Текущие координаты получены успешно.</string>
+    <string name="wait_for_current_location">Идет получение текущих координат…</string>
+    <string name="new_contact">Новый контакт</string>
+    <string name="cost1">цена</string>
+    <string name="warning">Предупреждение</string>
+    <string name="qty_has_been_reduced">Количество в заказе уменьшено</string>
+    <string name="select_price">Выберите товар</string>
+    <string name="select_folder">Выбрать</string>
+    <string name="general">Общие</string>
+    <string name="photo">Фото</string>
+    <string name="network">Сеть</string>
+    <string name="price">Прайс</string>
+    <string name="settings">Настройки</string>
+    <string name="input_password">Введите пароль</string>
+    <string name="save_setting">Сохранить настройки</string>
+    <string name="load_setting">Считать настройки</string>
+    <string name="export_base">Экспортировать базу</string>
+    <string name="import_base">Восстановить базу</string>
+    <string name="file_save_succs">Файл сохранен успешно</string>
+    <string name="file_save_error">Ошибка при сохранении файла</string>
+    <string name="setting_has_been_read_succs">Настройки прочитаны успешно</string>
+    <string name="setting_load_error">Ошибка при загрузке настроек</string>
+    <string name="sync_end_traffic">"Синхронизация завершена\nТрафик: "</string>
+    <string name="kB">" кБ"</string>
+    <string name="recieved_error">Ошибка при приеме</string>
+    <string name="use_sync_later">Невозможно выполинть синхронизацию. &lt;br>Пожалуйста, повторите операцию через 2 минуты....</string>
+    <string name="over_limit_photo">Превышен лимит фотографий на одно посещение</string>
+    <string name="all_price">Весь прайс</string>
+    <string name="input_qty">Введите количество</string>
+    <string name="disable_zero_filter">Отключить фильтр нулевых позиций</string>
+    <string name="enable_zero_filter">Фильтр нулевых позиций</string>
+    <string name="show_folder">Показать папки</string>
+    <string name="show_price">Показать товар</string>
+    <string name="setting_clmns">Настройка колонок</string>
+    <string name="select_matrix">Выберите матрицу</string>
+    <string name="price_loading">Прайс загружается…</string>
+    <string name="sum">Сумма</string>
+    <string name="doc_error">Ошибка документа</string>
+    <string name="ask_to_delete_doc">Удалить документ?</string>
+    <string name="doc_not_sent">ВНИМАНИЕ! Документ не передан на компьютер, удалить?</string>
+    <string name="processing_error">Ошибка при обработке</string>
+    <string name="answers">Ответы</string>
+    <string name="title">Наименование</string>
+    <string name="wait">Подождите</string>
+    <string name="table_is_creating">Идет построение таблицы</string>
+    <string name="server_isnot_responded">Нет подтверждения от сервера</string>
+    <string name="remains_data_updated">Данные по остаткам обновлены</string>
+    <string name="scripts_isnot_found">Нет доступных сценариев для контрагента</string>
+    <string name="select_variant">Выберите вариант</string>
+    <string name="doc_type">Тип документа</string>
+    <string name="select_for_open">Выберите, чтобы открыть Наполеон.</string>
+    <string name="waiting">Ожидание</string>
+    <string name="vibration">Вибрация</string>
+    <string name="rotate_screen">Поворот экрана</string>
+    <string name="autostart">Автостарт</string>
+    <string name="service">Сервис</string>
+    <string name="print">Печать</string>
+    <string name="script_off">Сценарий отключен</string>
+    <string name="remove_visit_older">Удалять посещения старше</string>
+    <string name="docs_for_period">Документы за период, мес</string>
+    <string name="on_line_ip">On-Line IP</string>
+    <string name="org_name">Имя организации</string>
+    <string name="set_period">Установите период</string>
+    <string name="contractor">Контрагент</string>
+    <string name="by_date_created">по дате создания</string>
+    <string name="by_item">по товару</string>
+    <string name="all">&lt;все&gt;</string>
+    <string name="begin">начало</string>
+    <string name="end">конец</string>
+    <string name="background_send">Фоновая передача</string>
+    <string name="interval">Интервал, мин.</string>
+    <string name="time_for_wait_gps">Ожидание коорд., сек.</string>
+    <string name="packing">Упак.</string>
+    <string name="shipped">Отгр.</string>
+    <string name="order_to_target_price">Закажите фокусный товар!</string>
+    <string name="fio">ФИО</string>
+    <string name="phone">Телефон</string>
+    <string name="camera_resolution">Разрешение камеры</string>
+    <string name="autofocus">Автофокус</string>
+    <string name="safe_photo_on_sdcard">Сохранять фото посещений на карте памяти</string>
+    <string name="use_inner_app_for_photo">Фотографировать  приложением андроид</string>
+    <string name="get_gps_coord">Снять координаты</string>
+    <string name="unknown">неизвестно</string>
+    <string name="contacts">Контакты</string>
+    <string name="columns">Колонки</string>
+    <string name="clear_base">Очистить базу при приеме</string>
+    <string name="gen_data">Основные данные</string>
+    <string name="remains_la_zero">остатки > 0</string>
+    <string name="gen_docs">Документы (заявки, мерч.)</string>
+    <string name="photo_visit">Фотоотчеты (посещения)</string>
+    <string name="presents">Презентация</string>
+    <string name="costs">Цены</string>
+    <string name="shipped_and_debts">Отгрузки и долги</string>
+    <string name="recreate_order">Восстановить заявки, мес</string>
+    <string name="update">Обновить</string>
+    <string name="cause">Причина</string>
+    <string name="clmn_2">Колонка 2</string>
+    <string name="clmn_3">Колонка 3</string>
+    <string name="code_sku">Код товара</string>
+    <string name="check_remains">Проверять остатки</string>
+    <string name="complete_story">Сложная история продаж</string>
+    <string name="show_packs_in_order">Показывать упаковками в заявке</string>
+    <string name="use_price_mover">Движение по прайсу в карточке товара</string>
+
+    <string name="sht">шт</string>
+    <string name="kg">кг</string>
+    <string name="delay">отсрочка</string>
+    <string name="selectDocType">Выбор типа документа</string>
+    <string name="organization">Организация</string>
+    <string name="sum1">Сумма</string>
+    <string name="newDoc">Создать новый документ</string>
+    <string name="gpsStatus">Статус GPS</string>
+    <string name="dateSample">01/01/2012</string>
+    <string name="digit">Цифра</string>
+    <string name="onWh">Остаток</string>
+    <string name="inPack">Упаковка</string>
+    <string name="orgRest">в точке</string>
+    <string name="orderQty">Заказ</string>
+    <string name="time">Время</string>
+    <string name="cash">Наличные</string>
+    <string name="firm">Фирма</string>
+    <string name="order_comment_hint">Комментарий к заявке</string>
+    <string name="copy">Копировать</string>
+    <string name="skip">Пропустить</string>
+    <string name="matrix">Матрица</string>
+    <string name="go_folder_to">Перейти в папку с этим товаром</string>
+    <string name="nav_type">Тип навигации</string>
+    <string name="gpsOffTitle">GPS выключен</string>
+    <string name="gpsOffMessage">Необходимо включить определение координат GPS в настройках.</string>
+    <string name="autoorder">Автозаказ</string>
+    <string name="regular_order">Обычный заказ</string> 
+    <string name="remnants_not_found">Нет остатков на текущую дату</string>
+    <string name="admin_login">admin</string>
+    <string name="cant_send_part_script">Для отправки сценария пройдите все пункты</string>
+    <string name="message_to_task">Введите сообщение для задачи</string>  
+    <string name="gpsValue">GPS</string>
+    <string name="stock_doc_title">Ассортимент</string>
+    <string name="question_doc_title">Анкеты</string>
+    <string name="visit_cause">Причина</string>
+    <string name="cant_send_empty_doc_str">Нельзя отправить пустой документ</string>
+    <string name="manual">В ручную</string>
+    <string name="automatic">Автоматически</string>
+    <string name="clear_sums">Очистить суммы</string>
+    <string name="select_folder_title">Выберите папку</string>
+    <string name="prezent_path_hint">Путь к папке с презентацией</string>
+    
+    <string-array name="doc_sum_by_period">
+        <item>Все</item>
+        <item>Месяц</item>
+        <item>День</item>
+    </string-array>
+    
+    <string name="doc_sum_by_period_title">Выберите период</string>
+    <string name="show_on_map">Показать на карте</string>
+    <string name="pack_lbl">уп.</string>
+    <string name="assortiment_matrix_title">&lt;Активный ассортимент&gt;</string>
+    <string name="gps_valid_in_org">Помнить координаты, мин</string>
+    <string-array name="gps_valid_in_org_entries">
+        <item>1</item>
+        <item>5</item>
+        <item>10</item>
+        <item>15</item>
+        <item>20</item>
+        <item>25</item>
+        <item>30</item>
+    </string-array>
+	<string name="active_update_price">Использовать фоновую синхронизацию остатков</string>
+    <string name="select_date">Выберите дату</string>
+    <string name="orgcoord_title">Координаты</string>
+    <string name="coord_has_got">Координаты документа -  %1$.2f, %2$.2f</string>
+    <string name="cur_acc">Точность координат: &lt;b&gt;%d м.&lt;/b&gt;</string>
+    <string name="satinfo">Найденых спутников: &lt;b&gt;%d&lt;/b&gt;</string>
+    <string name="request_accurace">Требуемая точность: %d м.</string>
+    <string name="wait_coord">Идет получение координат, подождите&#8230;</string>
+    <string name="has_uncomplete_scripts">Невозможно сделать синхронизацию, пока есть незаконченные сценарии</string>
+    <string name="price_level">Вложенность прайса</string>    
+    <string-array name="price_level_items">
+        <item>Все</item>
+        <item>1 уровень</item>
+        <item>2 уровень</item>
+        <item>3 уровень</item>
+        <item>4 уровень</item>
+        <item>5 уровень</item>
+    </string-array>
+    <string name="report_list">Внешние отчеты</string>
+	<string name="avail_reports">Доступные отчеты</string>
+	<string name="report_date">Дата отчета</string>
+	<string name="rep_req_date">Дата запроса</string>
+	<string name="date_start">Начало\nпериода</string>
+	<string name="date_end">Конец\nпериода</string>
+	<string name="cagent">Контрагент</string>
+    <string name="search_org_hint">Поиск контрагента&#8230;</string>
+	<string name="date_select_hint">Нажмите для выбора даты</string>
+	<string name="org_select_hint">Нажмите для выбора контрагента</string>
+	<string name="gps_permission_dissallow">Запрещено определение координат</string>
+	<string name="gps_permission_explain">Неоходимо разрешить определение координат в настройках</string>
+	<string name="select_action">Выберите действие</string>
+	<string name="replace">Заменить</string>
+    <string name="visit_title">Фотоотчет</string>
+    <string name="update_hint">Обмен данными с сервером</string>
+    <string name="column_stroke">Колонки/Строки</string>
+    <string name="result">Результат</string>
+    <string name="Show_folders">Показывать папки</string>
+    <string name="Show_price_names">Показывать название товаров</string>
+    <string name="select_filter">Выберите фильтр</string>
+     <string name="filters">Фильтры</string>
+    <string-array name="filter_items">
+        <item>Нулевые остатки</item>
+        <item>Нулевые цены</item>
+    </string-array>
+    <string name="Day_of_week">День недели</string>
+    <string name="Clients_of">Клиентов</string>
+    <string name="Show_present_in_price">Показывать презентацию в карточке товара</string>
+    <string-array name="price_image_pos">
+        <item>Вверху</item>
+        <item>По центру</item>
+    </string-array>
+    <string name="Show_daily_sales">Отображать продажи по группам</string>
+    <string name="Org_change">Сменить клиента</string>
+    <string name="Clients_and_goods">Клиенты и товары</string>
+    <string-array name="clients_and_goods">
+        <item>Показывать старые</item>
+        <item>Показывать только загруженные</item>
+    </string-array>
+    <string name="task_title">Задачи</string>
+    <string name="task_sended">Задача уже передана</string>
+    <string name="delivery">Доставка</string>
+    <string name="keep_away_in_order">Не выключать экран во время заказа</string>
+    <string name="cant_change_org">Не могу изменить контрагента - документ отправлен.</string>
+    <string name="price_filter_list">Фильтр по товарам</string>
+    <string name="items">Товары</string>
+    <string name="order_report">Отчет о продажах</string>
+    <string name="dlv_doc_list">Отгрузки</string>
+    <string name="costinfo">Остаток: &lt;b>%1$s&lt;/b>&lt;br>Цена: &lt;b>%2$s&lt;/b></string>
+    <string name="orderdetail_title">Заказ</string>
+    <string name="orderdeliverydetail_title">Накладная</string>
+    <string name="please_wait">Пожалуйста, подождите…</string>
+
+    <string name="day_of_week_2">ПН</string>
+    <string name="day_of_week_3">ВТ</string>
+    <string name="day_of_week_4">СР</string>
+    <string name="day_of_week_5">ЧТ</string>
+    <string name="day_of_week_6">ПТ</string>
+    <string name="day_of_week_7">СБ</string>
+    <string name="day_of_week_1">ВС</string>
+    <string name="wait_connection_gps">Подождите идет подключение к GPS…</string>
+    <string name="in_processeng">в обработке</string>
+    <string name="sent">отправлен</string>
+    <string name="cant_connect_server">Невозможно подключиться к серверу, проверьте сетевое соединение.</string>
+    <string name="cant_write_object">Ошибка при записи</string>
+    <string name="wait_for_sending">Подождите, идет отправка объекта на сервер</string>
+    <string name="wait_for_connecting">Соединение с сервером…</string>
+    <string name="register_on_server">Регистрация на сервере</string>
+    <string name="sending_data">Отправка данных на сервер</string>
+    <string name="reciving_data">Получение ответа от сервера</string>
+    <string name="server_not_approved">Нет подтверждения от сервера</string>
+    <string name="address">Адрес</string>
+    <string name="close">Закрыть</string>
+    <string name="message_input">Вам сообщение!</string>
+    <string name="date">Дата</string>
+    <string name="message">Сообщение</string>
+    <string name="ip">IP</string>
+    <string name="ip2">IP 2</string>
+    <string name="port">Порт</string>
+    <string name="login">Логин</string>
+    <string name="passw">"Пароль"</string>
+    <string name="save">Сохранить</string>
+    <string name="export">Экспорт</string>
+    <string name="import_str">Импорт</string>
+    <string name="edit">Изменить</string>
+    <string name="delete">Удалить</string>
+    <string name="Version">Версия:</string>
+    <string name="phone1">Телефон:</string>
+    <string name="site">Сайт:</string>
+    <string name="checkNew">Проверить обновление</string>
+    <string name="check_updating">Проверка обновлений программы.</string>
+    <string name="update_not_found">Обновлений не найдено</string>
+    <string name="base_updating">Обновление базы данных</string>
+    <string name="wait_for_server_answer">Ожидание ответа от сервера</string>
+    <string name="save_to_base">Запись в базу данных</string>
+    <string name="data_sending">Отправка данных на сервер</string>
+    <string name="wait_form_server_answer">Получение ответа от сервера</string>
+    <string name="wait_for_send_gps">Отправка данных GPS координат</string>
+    <string name="remember">Запомнить</string>
+    <string name="all_question_should_been_processed">Необходимо ответить на все вопросы</string>
+    <string name="crash1">В работе программы произошла непредвиденная ошибка.</string>
+    <string name="crash2">Файл отчета об ошибке находится на карте памяти /Napoleon/crash.log</string>
+    <string name="send_report">Отправить отчет</string>
+    <string name="send_report_and_base">Отправить отчет и базу</string>
+    <string name="comment_for_crash">Текстовый комментарий к ошибке:</string>
+    <string name="report_sending">Отправка отчета</string>
+    <string name="progress">прогресс…</string>
+    <string name="sent_succs">Отправка завершена успешно!</string>
+    <string name="send_error">Ошибка при отправке отчета.</string>
+    <string name="send_error_try_later">При отправке произошла ошибка, попробуйте позже.</string>
+    <string name="incas_doc_title">Инкассация</string>
+    <string name="order_doc_title">Заявки</string>
+    <string name="debt_doc_title">Долги</string>
+    <string name="visit_doc_title">Посещения</string>
+    <string name="remains_doc_title">Остатки</string>
+    <string name="return_doc_title">Возвраты</string>
+    <string name="sales_doc_title">Продажи</string>
+    <string name="task_doc_title">Задачи</string>
+    <string name="quest_doc_title">Анкеты</string>
+    <string name="name">Наименование</string>
+    <string name="qty">Кол-во</string>
+    <string name="cost">Цена</string>
+    <string name="comment">Комментарий</string>
+    <string name="itogo">Итого</string>
+    <string name="What_news">Что нового?</string>
+    <string name="satellites">"спутники: "</string>
+    <string name="accuracy">"точность: "</string>
+    <string name="not_signal">нет сигнала</string>
+    <string name="on">Включен</string>
+    <string name="off">Выключен</string>
+    <string name="charge">заряд</string>
+    <string name="cancel">Отмена</string>
+    <string name="ok">ОК</string>
+    <string name="project_name">Проект:</string>
+    <string name="time_update_gps">Время опроса, сек.</string> 
+    <string name="lenght_to_change_distance">Изменение дистанции, м.</string>
+    <string name="alert">Внимание</string>
+    <string name="askToDelVisitMsg">"Документ без фотографий будет удален, удалить?"</string>
+    <string name="view">Просмотр</string>
+    <string name="script_doc_title">Сценарий</string>
+    <string name="stack_info">Стек:</string>
+    <string name="sync_process_success">Синхронизация прошла успешно</string>
+    <string name="sklad">Склад</string></resources>

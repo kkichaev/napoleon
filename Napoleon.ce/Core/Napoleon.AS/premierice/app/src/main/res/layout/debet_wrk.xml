@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:theme="@style/Theme.AppCompat.Light">
+
+    <LinearLayout
+        android:id="@+id/LinearLayout01"
+        style="?header"
+        android:layout_width="fill_parent">
+
+        <TextView
+            android:id="@+id/tvOrg"
+            style="?headerText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scrollHorizontally="true"
+            android:text="OrgName" />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/edRemark"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:hint="Комментарий по задолженности"
+        android:gravity="left|top"
+        android:inputType="text"
+        android:text="" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        style="?footer"
+        android:layout_width="fill_parent">
+
+        <ImageButton
+            android:id="@+id/btnSend"
+            style="?footerButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/send" />
+    </LinearLayout>
+
+</LinearLayout>

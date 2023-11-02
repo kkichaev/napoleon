@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+ 	xmlns:android="http://schemas.android.com/apk/res/android"
+ 	android:layout_height="fill_parent" 
+ 	android:layout_width="fill_parent" 
+ 	android:background="#FFFFFF" 
+ 	android:orientation="vertical">
+ 	
+	<TextView android:layout_height="wrap_content" 
+		android:layout_weight="0" 
+		android:layout_width="fill_parent" 
+		android:text="Имя организации" 
+        android:paddingLeft="2dp"
+		android:textStyle="bold" 
+		android:textColor="#0000FF" 
+		android:textSize="20sp" android:id="@+id/tvOrgName" 
+		android:scrollHorizontally="true"></TextView>
+
+	<LinearLayout android:id="@+id/LinearLayout02" 
+		android:layout_height="wrap_content" 
+	    android:padding="2dp"
+		android:orientation="horizontal" 
+		android:layout_width="fill_parent">
+	
+		<TextView android:id="@+id/TextView01" 
+			android:layout_width="wrap_content" 
+			android:layout_height="wrap_content"
+			android:textColor="#000000" 
+             android:textSize="16sp"
+			android:text="Дата:" 
+			android:layout_weight="1"></TextView>
+		
+		<TextView android:layout_width="wrap_content" 
+			android:layout_height="wrap_content" 
+			android:textColor="#000000" 
+             android:textSize="16sp"
+			android:text="25.11.2010" 
+			android:layout_weight="1" 
+			android:id="@+id/tvDate" 
+			android:layout_marginLeft="5dp" 
+			android:layout_marginRight="5dp" 
+			android:textStyle="bold"></TextView>
+	</LinearLayout>
+	
+   <TableLayout android:layout_width="fill_parent" 
+    	android:stretchColumns="1"
+    	android:layout_height="wrap_content" 
+    	android:layout_weight="0">
+	
+       <TableRow  
+       		android:visibility="gone"
+	    	android:padding="2dp"
+        	android:layout_width="wrap_content" 
+        	android:layout_height="wrap_content">
+			
+			<TextView android:id="@+id/TextView04" 
+				android:layout_height="wrap_content" 
+				android:textColor="#000000" 
+				android:text="Цена" 
+				android:layout_marginLeft="5dp" 
+				android:layout_marginRight="5dp" android:layout_width="wrap_content" 
+				android:layout_gravity="center_vertical"></TextView>	
+			<Spinner android:layout_height="wrap_content" 
+				android:layout_weight="1" android:id="@+id/spPrices" android:layout_width="fill_parent"></Spinner>
+		</TableRow>
+
+       <LinearLayout
+	    	android:paddingLeft="2dp"
+		android:paddingTop="10dp"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content" >
+
+           <TextView
+               android:id="@+id/TextView02"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="@string/time_from"
+               android:textSize="16sp"
+               android:textColor="#000000" />
+           
+           <TextView
+           android:id="@+id/tvTimeFrom"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginLeft="5dp"
+           android:layout_marginRight="5dp"
+               android:textSize="16sp"
+           android:text="00:00"
+           android:textColor="#000000"
+           android:textStyle="bold" />
+
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:paddingLeft="5dp"
+               android:textSize="16sp"
+           	android:text="по"
+               android:textColor="#000000" />
+           
+           <TextView
+               android:textSize="16sp"
+           android:id="@+id/tvTimeTill"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginLeft="5dp"
+           android:layout_marginRight="5dp"
+           android:text="00:00"
+           android:textColor="#000000"
+           android:textStyle="bold" />
+           
+       </LinearLayout>
+
+       
+		
+	</TableLayout>
+
+   <TextView
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_weight="0"
+       android:paddingLeft="2dp"
+       android:paddingTop="10dp"
+       android:text="@string/order_contact"
+       android:textColor="@color/black"
+       android:textSize="16sp" />
+
+   <Spinner
+       android:id="@+id/spContact"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_weight="0" />
+	
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_weight="0"
+    android:paddingLeft="2dp"
+    android:paddingTop="10dp"
+    android:text="@string/dlv_adr"
+    android:textColor="@color/black"
+    android:textSize="16sp" />
+
+   <Spinner
+       android:id="@+id/spDlvAdr"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_weight="0" />
+      
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:paddingLeft="2dp"
+		android:paddingTop="10dp"
+               android:text="@string/comment"
+               android:textColor="#000000"
+               android:textSize="16sp" />
+
+   		<EditText android:layout_weight="1" 
+			android:layout_height="0dip" 
+               android:paddingLeft="2dp"
+		android:paddingTop="10dp"
+			android:layout_width="fill_parent" 
+			android:id="@+id/edCreateOrderNotes" 
+			android:gravity="top|left" android:minLines="2"></EditText>
+
+</LinearLayout>

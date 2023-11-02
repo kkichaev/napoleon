@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/list_selector" >
+
+    <ImageView
+        android:id="@+id/ivSelected"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center"
+        android:src="@drawable/checked"
+        />
+
+    <ImageView
+        android:id="@+id/ivFolder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10sp"
+        android:src="@drawable/folder"
+        tools:ignore="ContentDescription" >
+    </ImageView>
+
+    <TextView
+        tools:text="This is a folder"
+        android:id="@+id/tvName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:text="@+id/TextView01"
+        android:textColor="@color/black"
+        android:textSize="22sp" >
+    </TextView>
+
+</LinearLayout>

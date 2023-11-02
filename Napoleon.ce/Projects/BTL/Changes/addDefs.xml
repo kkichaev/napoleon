@@ -1,0 +1,103 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+   <objects>
+      <!--Населенный пункт-->
+      <object name="Region">
+         <sources>
+            <source name="SQTable" type="internal" />
+         </sources>
+
+         <member name="primaryKey">"id"</member>
+
+         <field name="id" type="string"/>
+         <field name="name" type="string"/>
+         <field name="code" type="string"/>
+         <field name="region1" type="string"/>
+         <field name="region2" type="string"/>
+      </object>
+
+      <!--Район-->
+      <object name="Region1">
+         <sources>
+            <source name="SQTable" type="internal" />
+         </sources>
+
+         <member name="primaryKey">"id"</member>
+
+         <field name="id" type="string"/>
+         <field name="name" type="string"/>
+         <field name="code" type="string"/>
+         <field name="region2" type="string"/>
+      </object>
+
+      <!--Область-->
+      <object name="Region2">
+         <sources>
+            <source name="SQTable" type="internal" />
+         </sources>
+
+         <member name="primaryKey">"id"</member>
+
+         <field name="id" type="string"/>
+         <field name="name" type="string"/>
+         <field name="code" type="string"/>
+      </object>
+
+      <object name="Category">
+         <sources>
+            <source name="SQTable" type="internal" />
+         </sources>
+
+         <member name="primaryKey">"id"</member>
+
+         <field name="id" type="string"/>
+         <field name="name" type="string"/>
+      </object>
+
+      <object name="Producer">
+         <sources>
+            <source name="SQTable" type="internal" />
+         </sources>
+
+         <member name="primaryKey">"id"</member>
+
+         <field name="id" type="string"/>
+         <field name="name" type="string"/>
+      </object>
+      
+      <modify src="OrgFolder$items">
+         <change>
+            <field name="name" type="string" data="ID_I" width="32"/>
+         </change>
+      </modify>
+      
+      <modify src="PotenzialOrg">
+         <add>
+            <field name="region" type="string"/>
+         </add>
+      </modify>
+      
+      <modify src="Visit$items">
+          <add>
+      		<field name="caption" type="string"/>        
+          </add>
+      </modify>
+      
+      <modify src="Answer">
+          <add>
+              <field name="superid" type="string"/>
+          </add>
+      </modify>
+      
+      <modify src="Visit">
+          <add>
+              <field name="superid" type="string"/>
+          </add>
+      </modify>
+      <modify src="Question$items">
+         <add>
+            <field name="optional" type="number" />
+         </add>
+      </modify>
+   </objects>
+</serverDefs>

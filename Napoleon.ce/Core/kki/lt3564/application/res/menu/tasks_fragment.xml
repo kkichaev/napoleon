@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/show_hide_make_task"
+        app:showAsAction="never"
+        android:title="@string/menu_show_hide_make_task"/>
+    <item
+        android:id="@+id/sort_color"
+        app:showAsAction="never"
+        android:title="@string/sort_by_color"/>
+    <item
+        android:id="@+id/sort_date"
+        app:showAsAction="never"
+        android:title="@string/sort_by_term"/>
+    <item
+        android:id="@+id/sort_date_creation"
+        app:showAsAction="never"
+        android:title="@string/sort_by_date_creation"/>
+
+    <item
+        android:id="@+id/follow_project"
+        app:showAsAction="never"
+        android:title="@string/follow"/>
+
+    <item
+        android:id="@+id/leave_project"
+        app:showAsAction="never"
+        android:title="@string/leave_project"/>
+
+    <item android:id="@+id/change_category"
+          android:title="@string/change_category"
+          app:showAsAction="never"/>
+
+    <item android:id="@+id/search_tasks"
+        android:title="@string/search"
+        android:icon="@drawable/abc_ic_search_api_material"
+        app:showAsAction="always"/>
+
+    <item android:id="@+id/share_project"
+          android:title="@string/project_access"
+          android:icon="@drawable/c_org_white"
+          app:showAsAction="always"/>
+
+    <item android:id="@+id/del_project"
+          android:title="@string/del_project"
+          app:showAsAction="never"/>
+
+    <item android:id="@+id/del_category"
+          android:title="@string/del_category"
+          app:showAsAction="never"/>
+    <item android:id="@+id/multitask_mode"
+        android:title="@string/multi_mode"
+        app:showAsAction="never"/>
+
+</menu>

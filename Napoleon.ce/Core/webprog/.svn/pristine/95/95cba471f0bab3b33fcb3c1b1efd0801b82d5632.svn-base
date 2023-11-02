@@ -1,0 +1,70 @@
+<template>
+  <q-layout view="hHh Lpr fFf">
+    <q-header elevated>
+      <q-toolbar class="toolbar">
+        <q-toolbar-title>{{ $t('appTitle') }}</q-toolbar-title>
+
+        <q-space/>
+
+        <q-btn-dropdown
+          flat
+          :label="locale"
+          no-caps>
+
+          <q-list>
+            <q-item
+              v-for="opt in locales"
+              clickable
+              v-close-popup
+              @click="setLocale(opt.value)"
+              :key="opt.value">
+
+              <q-item-section>
+                <q-item-label>{{ opt.label }}</q-item-label>
+              </q-item-section>
+            </q-item>
+          </q-list>
+        </q-btn-dropdown>
+      </q-toolbar>
+    </q-header>
+
+    <q-page-container>
+      <router-view />
+    </q-page-container>
+  </q-layout>
+</template>
+
+<script setup>
+  import { computed } from 'vue'
+  import { useI18n } from 'vue-i18n'
+
+  const useI18nfun =  useI18n({ useScope: 'global' })
+  const locale = computed(()=>getLocaleLabel(useI18nfun.locale.value))
+
+  const locales = [
+    { value: 'en-US', label: 'En' },
+    { value: 'ru', label: 'Ru' }
+  ]
+
+  function getLocaleLabel(key){
+    var res = ''
+    locales.every((loc)=>{
+        if (loc.value === key) {
+          res = loc.label
+          return false
+        }
+        return true
+      }
+    )
+    return res
+  }
+
+  function setLocale(key){
+    useI18nfun.locale.value = key
+  }
+
+</script>
+
+<style scoped>
+
+</style>

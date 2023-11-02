@@ -1,0 +1,1599 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/"
+		xmlns:soap12bind="http://schemas.xmlsoap.org/wsdl/soap12/"
+		xmlns:soapbind="http://schemas.xmlsoap.org/wsdl/soap/"
+		xmlns:tns="ASFMobileTrade"
+		xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"
+		xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+		xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+		xmlns:xsd1="ASFMobileTrade"
+		name="ASFMobileTrade"
+		targetNamespace="ASFMobileTrade">
+	<types>
+		<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+				xmlns:xs1="ASFMobileTrade"
+				targetNamespace="ASFMobileTrade"
+				attributeFormDefault="unqualified"
+				elementFormDefault="qualified">
+			<xs:complexType name="ДанныеКонтактнойИнформации">
+				<xs:sequence>
+					<xs:element name="Контакт"
+							type="xs:string"/>
+					<xs:element name="ТипКонтакта"
+							type="tns:ТипыКонтактнойИнформации"/>
+					<xs:element name="Контрагент"
+							type="xs:string"/>
+					<xs:element name="ТорговляПоЛицензии"
+							type="xs:boolean"/>
+					<xs:element name="СвязанныйКонтрагент"
+							type="xs:string"/>
+					<xs:element name="СвязанныйКонтрагентТорговляПоЛицензии"
+							type="xs:boolean"/>
+					<xs:element name="Адрес"
+							type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ДанныеКонтрагента">
+				<xs:sequence>
+					<xs:element name="Идентификатор"
+							type="xs:string"/>
+					<xs:element name="АдресДоставки"
+							type="xs:string"
+							nillable="true"/>
+					<xs:element name="ТорговляПоЛицензии"
+							type="xs:boolean"/>
+					<xs:element name="Наименование"
+							type="xs:string"/>
+					<xs:element name="ТорговыеПредставители"
+							type="tns:ТорговыйПредставитель"
+							minOccurs="0"
+							maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ДанныеКонтрагента_v2">
+				<xs:sequence>
+					<xs:element name="Идентификатор"
+							type="xs:string"/>
+					<xs:element name="АдресДоставки"
+							type="xs:string"
+							nillable="true"/>
+					<xs:element name="ТорговляПоЛицензии"
+							type="xs:boolean"/>
+					<xs:element name="Наименование"
+							type="xs:string"/>
+					<xs:element name="ТорговыеПредставители"
+							type="tns:ТорговыйПредставитель"
+							minOccurs="0"
+							maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ДанныеОЗадолженности">
+				<xs:sequence>
+					<xs:element name="НомерДокумента"
+							type="xs:string"/>
+					<xs:element name="СуммаДокумента"
+							type="xs:float"/>
+					<xs:element name="ОстатокДолга"
+							type="xs:float"/>
+					<xs:element name="ДатаОплаты"
+							type="xs:date"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ЕдиницаИзмерения">
+				<xs:sequence>
+					<xs:element name="Идентификатор"
+							type="xs:string"/>
+					<xs:element name="Наименование"
+							type="xs:string"/>
+					<xs:element name="Коэффициент"
+							type="xs:float"
+							nillable="true"
+							minOccurs="0"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ЗаказКлиента">
+				<xs:sequence>
+					<xs:element name="Идентификатор"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="Дата"
+							type="xs:dateTime"
+							minOccurs="0"/>
+					<xs:element name="ДатаОтгрузки"
+							type="xs:dateTime"
+							minOccurs="0"/>
+					<xs:element name="Товары"
+							type="tns:ЗаказКлиентаТовары"
+							minOccurs="0"
+							maxOccurs="unbounded"/>
+					<xs:element name="Комментарий"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ЗаказКлиентаВозвращаемый">
+				<xs:sequence>
+					<xs:element name="Представление"
+							type="xs:string"/>
+					<xs:element name="Дата"
+							type="xs:dateTime"
+							minOccurs="0"/>
+					<xs:element name="Номер"
+							type="xs:string"
+							minOccurs="0"/>
+					<xs:element name="ДатаОтгрузки"
+							type="xs:date"
+							minOccurs="0"/>
+					<xs:element name="Товары"
+							type="tns:ЗаказКлиентаТовары_v2"
+							minOccurs="0"
+							maxOccurs="unbounded"/>
+					<xs:element name="СтатусЗаказа"
+							type="xs:string"
+							minOccurs="0"/>
+					<xs:element name="Комментарий"
+							type="xs:string"
+							minOccurs="0"/>
+					<xs:element name="СостояниеЗаказа"
+							type="xs:int"
+							minOccurs="0"/>
+					<xs:element name="Задолженность"
+							type="xs:float"
+							nillable="true"
+							minOccurs="0"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ЗаказКлиентаТовары">
+				<xs:sequence>
+					<xs:element name="Номенклатура"
+							type="xs:string"/>
+					<xs:element name="Количество"
+							type="xs:float"/>
+					<xs:element name="Цена"
+							type="xs:float"
+							nillable="true"
+							minOccurs="0"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ЗаказКлиентаТовары_v2">
+				<xs:sequence>
+					<xs:element name="Номенклатура"
+							type="xs:string"/>
+					<xs:element name="ФактКоличество"
+							type="xs:float"/>
+					<xs:element name="ЗаказаноКоличество"
+							type="xs:float"/>
+					<xs:element name="ФактСумма"
+							type="xs:float"/>
+					<xs:element name="ЗаказаноСумма"
+							type="xs:float"/>
+					<xs:element name="НоменклатураПредставление"
+							type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="Контракт">
+				<xs:sequence>
+					<xs:element name="Код"
+							type="xs:string"/>
+					<xs:element name="Наименование"
+							type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="МассивЗаказов">
+				<xs:sequence>
+					<xs:element name="Значение"
+							type="tns:ЗаказКлиента"
+							nillable="true"
+							minOccurs="0"
+							maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="МассивСтрок">
+				<xs:sequence>
+					<xs:element name="Значение"
+							type="xs:string"
+							minOccurs="0"
+							maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="Номенклатура">
+				<xs:sequence>
+					<xs:element name="Родитель"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="ЭтоГруппа"
+							type="xs:boolean"/>
+					<xs:element name="Идентификатор"
+							type="xs:string"/>
+					<xs:element name="Код"
+							type="xs:string"/>
+					<xs:element name="Наименование"
+							type="xs:string"/>
+					<xs:element name="Остаток"
+							type="xs:float"
+							minOccurs="0"/>
+					<xs:element name="Цена"
+							type="xs:float"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="Скидка"
+							type="xs:float"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="Кратность"
+							type="xs:int"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="Коэффициент"
+							type="xs:int"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="АлкогольнаяПродукция"
+							type="xs:boolean"/>
+					<xs:element name="ЕстьОграниченияПоБюджету"
+							type="xs:boolean"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="Номенклатура_v2">
+				<xs:sequence>
+					<xs:element name="Родитель"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="ЭтоГруппа"
+							type="xs:boolean"/>
+					<xs:element name="Идентификатор"
+							type="xs:string"/>
+					<xs:element name="Код"
+							type="xs:string"/>
+					<xs:element name="Наименование"
+							type="xs:string"/>
+					<xs:element name="Остаток"
+							type="xs:float"
+							minOccurs="0"/>
+					<xs:element name="Цена"
+							type="xs:float"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="Скидка"
+							type="xs:float"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="Кратность"
+							type="xs:int"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="Коэффициент"
+							type="xs:int"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="АлкогольнаяПродукция"
+							type="xs:boolean"/>
+					<xs:element name="ЕстьОграниченияПоБюджету"
+							type="xs:boolean"/>
+					<xs:element name="КодКонтракта"
+							type="xs:string"
+							nillable="true"/>
+					<xs:element name="ХарактеристикиНоменклатуры"
+							type="tns:ХарактеристикаНоменклатуры"
+							nillable="true"
+							minOccurs="0"
+							maxOccurs="unbounded"/>
+					<xs:element name="Объем"
+							type="xs:float"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="Производитель"
+							type="xs:string"
+							nillable="true"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="НоменклатураАкций">
+				<xs:sequence>
+					<xs:element name="Код"/>
+					<xs:element name="Значение"
+							type="xs:float"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ПравилаАкций">
+				<xs:sequence>
+					<xs:element name="ИдентификаторТовара"
+							type="xs:string"/>
+					<xs:element name="Скидка"
+							type="xs:float"
+							nillable="true"/>
+					<xs:element name="ИдентификаторУсловия"
+							type="xs:string"/>
+					<xs:element name="ЭтоПодарок"
+							type="xs:boolean"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ПравилаАкций_v2">
+				<xs:sequence>
+					<xs:element name="ИдентификаторТовара"
+							type="xs:string"/>
+					<xs:element name="Скидка"
+							type="xs:float"
+							nillable="true"/>
+					<xs:element name="ИдентификаторУсловия"
+							type="xs:string"/>
+					<xs:element name="ЭтоПодарок"
+							type="xs:boolean"/>
+					<xs:element name="Ранжирование"
+							type="xs:int"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="РезультатЗапросаАдресаКонтрагента">
+				<xs:sequence>
+					<xs:element name="ОписаниеОшибки"
+							type="xs:string"/>
+					<xs:element name="Результат"
+							type="xs:boolean"/>
+					<xs:element name="Адрес"
+							type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="РезультатЗапросаЗадолженностиКонтрагента">
+				<xs:sequence>
+					<xs:element name="ОписаниеОшибки"
+							type="xs:string"/>
+					<xs:element name="Результат"
+							type="xs:boolean"/>
+					<xs:element name="МассивРезультатов"
+							type="tns:ДанныеОЗадолженности"
+							minOccurs="0"
+							maxOccurs="unbounded"/>
+					<xs:element name="РезультатПроверкиАвторизации"
+							type="tns:СтруктураВозврата"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="РезультатЗапросаКодаПодтверждения">
+				<xs:sequence>
+					<xs:element name="ОписаниеОшибки"
+							type="xs:string"/>
+					<xs:element name="Результат"
+							type="xs:boolean"/>
+					<xs:element name="КодПодтверждения"
+							type="xs:int"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="РезультатЗапросаКонтактнойИнформации">
+				<xs:sequence>
+					<xs:element name="ОписаниеОшибки"
+							type="xs:string"/>
+					<xs:element name="Результат"
+							type="xs:boolean"/>
+					<xs:element name="СписокКонтактнойИнформации"
+							type="tns:ДанныеКонтактнойИнформации"
+							minOccurs="0"
+							maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="РезультатЗапросаНоменклатуры">
+				<xs:sequence>
+					<xs:element name="ОписаниеОшибки"
+							type="xs:string"/>
+					<xs:element name="Результат"
+							type="xs:boolean"/>
+					<xs:element name="Товары"
+							type="tns:Номенклатура"
+							minOccurs="0"
+							maxOccurs="unbounded"/>
+					<xs:element name="РезультатПроверкиАвторизации"
+							type="tns:СтруктураВозврата"/>
+					<xs:element name="ВремяВыполнения"
+							type="xs:int"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="РезультатЗапросаНоменклатуры_v2">
+				<xs:sequence>
+					<xs:element name="ОписаниеОшибки"
+							type="xs:string"/>
+					<xs:element name="Результат"
+							type="xs:boolean"/>
+					<xs:element name="Товары"
+							type="tns:Номенклатура"
+							minOccurs="0"
+							maxOccurs="unbounded"/>
+					<xs:element name="РезультатПроверкиАвторизации"
+							type="tns:СтруктураВозврата"/>
+					<xs:element name="ВремяВыполнения"
+							type="xs:int"/>
+					<xs:element name="ПравилаАкций"
+							type="tns:ПравилаАкций"
+							minOccurs="0"
+							maxOccurs="unbounded"/>
+					<xs:element name="УсловияАкций"
+							type="tns:УсловиеСрабатыванияСкидки"
+							minOccurs="0"
+							maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="РезультатЗапросаНоменклатуры_v3">
+				<xs:sequence>
+					<xs:element name="ОписаниеОшибки"
+							type="xs:string"/>
+					<xs:element name="Результат"
+							type="xs:boolean"/>
+					<xs:element name="Контракты"
+							type="tns:Контракт"
+							minOccurs="0"
+							maxOccurs="unbounded"/>
+					<xs:element name="Товары"
+							type="tns:Номенклатура_v2"
+							minOccurs="0"
+							maxOccurs="unbounded"/>
+					<xs:element name="РезультатПроверкиАвторизации"
+							type="tns:СтруктураВозврата"/>
+					<xs:element name="ВремяВыполнения"
+							type="xs:int"/>
+					<xs:element name="ПравилаАкций"
+							type="tns:ПравилаАкций_v2"
+							minOccurs="0"
+							maxOccurs="unbounded"/>
+					<xs:element name="УсловияАкций"
+							type="tns:УсловиеСрабатыванияСкидки"
+							minOccurs="0"
+							maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="РезультатОтправкиЗаказов">
+				<xs:sequence>
+					<xs:element name="ОписаниеОшибки"
+							type="xs:string"/>
+					<xs:element name="Результат"
+							type="xs:boolean"/>
+					<xs:element name="РезультатПроверкиАвторизации"
+							type="tns:СтруктураВозврата"/>
+					<xs:element name="МассивРезультатов"
+							type="tns:СтруктураВозврата"
+							minOccurs="0"
+							maxOccurs="unbounded"/>
+					<xs:element name="КоличествоОтправленных"
+							type="xs:int"/>
+					<xs:element name="КоличествоПропущенных"
+							type="xs:int"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="РезультатПолученияЗаказов">
+				<xs:sequence>
+					<xs:element name="ОписаниеОшибки"
+							type="xs:string"/>
+					<xs:element name="Результат"
+							type="xs:boolean"/>
+					<xs:element name="МассивЗаказов"
+							type="tns:ЗаказКлиента"
+							minOccurs="0"
+							maxOccurs="unbounded"/>
+					<xs:element name="КоличествоПолученных"
+							type="xs:int"/>
+					<xs:element name="КоличествоПропущенных"
+							type="xs:int"/>
+					<xs:element name="МассивНеобработанныхЗаказов"
+							type="xs:string"
+							minOccurs="0"
+							maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="РезультатПолученияЗаказов_v2">
+				<xs:sequence>
+					<xs:element name="ОписаниеОшибки"
+							type="xs:string"/>
+					<xs:element name="Результат"
+							type="xs:boolean"/>
+					<xs:element name="МассивЗаказов"
+							type="tns:ЗаказКлиентаВозвращаемый"
+							minOccurs="0"
+							maxOccurs="unbounded"/>
+					<xs:element name="КоличествоПолученных"
+							type="xs:int"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="РезультатПроверкиАвторизации">
+				<xs:sequence>
+					<xs:element name="МассивРезультатов"
+							type="tns:СтруктураВозврата"
+							minOccurs="0"
+							maxOccurs="unbounded"/>
+					<xs:element name="ЕстьНекорректныйКонтрагент"
+							type="xs:boolean"/>
+					<xs:element name="КоличествоАвторизированныхПользователей"
+							type="xs:int"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="РезультатПроверкиОбновления">
+				<xs:sequence>
+					<xs:element name="ОписаниеОшибки"
+							type="xs:string"/>
+					<xs:element name="Результат"
+							type="xs:boolean"/>
+					<xs:element name="ЕстьОбновление"
+							type="xs:boolean"/>
+					<xs:element name="ЕстьКритичноеОбновление"
+							type="xs:boolean"/>
+					<xs:element name="Версия"
+							type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:simpleType name="СтатусыЗаказов">
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Загружен"/>
+					<xs:enumeration value="Отклонен"/>
+					<xs:enumeration value="Подтвержден"/>
+					<xs:enumeration value="ПодтвержденСКорректировками"/>
+					<xs:enumeration value="ЧастичноСобран"/>
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:complexType name="СтруктураВозврата">
+				<xs:sequence>
+					<xs:element name="ОписаниеОшибки"
+							type="xs:string"/>
+					<xs:element name="Результат"
+							type="xs:boolean"/>
+					<xs:element name="Объект"
+							type="xs:string"
+							minOccurs="0"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="СтруктураВозврата_v2">
+				<xs:sequence>
+					<xs:element name="ОписаниеОшибки"
+							type="xs:string"/>
+					<xs:element name="Результат"
+							type="xs:boolean"/>
+					<xs:element name="ДанныеКонтрагентов"
+							type="tns:ДанныеКонтрагента"
+							minOccurs="0"
+							maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="СтруктураВозврата_v3">
+				<xs:sequence>
+					<xs:element name="ОписаниеОшибки"
+							type="xs:string"/>
+					<xs:element name="Результат"
+							type="xs:boolean"/>
+					<xs:element name="ДанныеКонтрагентов"
+							type="tns:ДанныеКонтрагента_v2"
+							minOccurs="0"
+							maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:simpleType name="ТипыКонтактнойИнформации">
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="АдресЭлектроннойПочты"/>
+					<xs:enumeration value="Телефон"/>
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:complexType name="ТорговыйПредставитель">
+				<xs:sequence>
+					<xs:element name="КодКонтракта"
+							type="xs:string"/>
+					<xs:element name="ФИО"
+							type="xs:string"/>
+					<xs:element name="НомерТелефона"
+							type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="УсловиеСрабатыванияСкидки">
+				<xs:sequence>
+					<xs:element name="ИдентификаторУсловияСрабатыванияСкидки"
+							type="xs:string"/>
+					<xs:element name="УсловиеСрабатыванияСкидкиПредставление"
+							type="xs:string"
+							nillable="true"/>
+					<xs:element name="ИдентификаторРодителя"
+							type="xs:string"
+							nillable="true"/>
+					<xs:element name="ИдентификаторНоменклатуры"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"
+							maxOccurs="unbounded"/>
+					<xs:element name="УсловиеПредоставленияСкидки"
+							type="xs:string"
+							nillable="true"/>
+					<xs:element name="ЕдиницаИзмеренияУсловий"
+							type="xs:string"
+							nillable="true"/>
+					<xs:element name="ВидСравнения"
+							type="xs:string"
+							nillable="true"/>
+					<xs:element name="ВидОбъединенияУсловий"
+							type="xs:string"
+							nillable="true"/>
+					<xs:element name="Количество"
+							type="xs:float"
+							nillable="true"/>
+					<xs:element name="НомерСтупени"
+							type="xs:integer"
+							nillable="true"/>
+					<xs:element name="ПометкаУдаления"
+							type="xs:boolean"/>
+					<xs:element name="ЭтоГруппа"
+							type="xs:boolean"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ХарактеристикаНоменклатуры">
+				<xs:sequence>
+					<xs:element name="Наименование"
+							type="xs:string"/>
+					<xs:element name="Значение"
+							type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="ОтправитьЗаказы">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ИдентификаторыЗаказов"
+								type="tns:МассивЗаказов"/>
+						<xs:element name="ИдентификаторКонтрагента"
+								type="xs:string"/>
+						<xs:element name="ИдентификаторПриложения"
+								type="xs:string"/>
+						<xs:element name="ИдентификаторУстройства"
+								type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ОтправитьЗаказыResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="return"
+								type="tns:СтруктураВозврата"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ОтправитьСообщение">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Контакт"
+								type="xs:string"/>
+						<xs:element name="ТипКонтакта"
+								type="xs:int"/>
+						<xs:element name="Тема"
+								type="xs:string"/>
+						<xs:element name="ТекстСообщения"
+								type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ОтправитьСообщениеResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="return"
+								type="tns:СтруктураВозврата"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ПодтвердитьКодПодтверждения">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Контакт"
+								type="xs:string"/>
+						<xs:element name="ИдентификаторПриложения"
+								type="xs:string"/>
+						<xs:element name="ИдентификаторУстройства"
+								type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ПодтвердитьКодПодтвержденияResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="return"
+								type="tns:СтруктураВозврата_v2"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ПодтвердитьКодПодтверждения_v3">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Контакт"
+								type="xs:string"/>
+						<xs:element name="ИдентификаторПриложения"
+								type="xs:string"/>
+						<xs:element name="ИдентификаторУстройства"
+								type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ПодтвердитьКодПодтверждения_v3Response">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="return"
+								type="tns:СтруктураВозврата_v3"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ПолучитьАдресКонтрагента">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ИдентификаторКонтрагента"
+								type="xs:string"/>
+						<xs:element name="ИдентификаторПриложения"
+								type="xs:string"/>
+						<xs:element name="ИдентификаторУстройства"
+								type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ПолучитьАдресКонтрагентаResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="return"
+								type="tns:РезультатЗапросаАдресаКонтрагента"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ПолучитьЗадолженностьКонтрагента">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ИдентификаторКонтрагента"
+								type="xs:string"/>
+						<xs:element name="ИдентификаторПриложения"
+								type="xs:string"/>
+						<xs:element name="ИдентификаторУстройства"
+								type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ПолучитьЗадолженностьКонтрагентаResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="return"
+								type="tns:РезультатЗапросаЗадолженностиКонтрагента"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ПолучитьЗаказы">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ИдентификаторКонтрагента"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="ИдентификаторПриложения"
+								type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ПолучитьЗаказыResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="return"
+								type="tns:РезультатПолученияЗаказов"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ПолучитьЗаказы_v2">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ИдентификаторКонтрагента"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="ИдентификаторПриложения"
+								type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ПолучитьЗаказы_v2Response">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="return"
+								type="tns:РезультатПолученияЗаказов_v2"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ПолучитьКодПодтверждения">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Контакт"
+								type="xs:string"/>
+						<xs:element name="ИдентификаторПриложения"
+								type="xs:string"/>
+						<xs:element name="ИдентификаторУстройства"
+								type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ПолучитьКодПодтвержденияResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="return"
+								type="tns:РезультатЗапросаКодаПодтверждения"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ПолучитьКонтактнуюИнформацию">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ИНН"
+								type="xs:string"/>
+						<xs:element name="КПП"
+								type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ПолучитьКонтактнуюИнформациюResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="return"
+								type="tns:РезультатЗапросаКонтактнойИнформации"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ПолучитьНоменклатуру">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ИдентификаторКонтрагента"
+								type="xs:string"/>
+						<xs:element name="ИдентификаторыНоменклатур"
+								type="tns:МассивСтрок"
+								nillable="true"/>
+						<xs:element name="ИдентификаторПриложения"
+								type="xs:string"/>
+						<xs:element name="ИдентификаторУстройства"
+								type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ПолучитьНоменклатуруResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="return"
+								type="tns:РезультатЗапросаНоменклатуры"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ПолучитьНоменклатуру_v2">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ИдентификаторКонтрагента"
+								type="xs:string"/>
+						<xs:element name="ИдентификаторыНоменклатур"
+								type="tns:МассивСтрок"
+								nillable="true"/>
+						<xs:element name="ИдентификаторПриложения"
+								type="xs:string"/>
+						<xs:element name="ИдентификаторУстройства"
+								type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ПолучитьНоменклатуру_v2Response">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="return"
+								type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ПолучитьНоменклатуру_v3">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ИдентификаторКонтрагента"
+								type="xs:string"/>
+						<xs:element name="ИдентификаторыНоменклатур"
+								type="tns:МассивСтрок"
+								nillable="true"/>
+						<xs:element name="ИдентификаторПриложения"
+								type="xs:string"/>
+						<xs:element name="ИдентификаторУстройства"
+								type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ПолучитьНоменклатуру_v3Response">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="return"
+								type="tns:РезультатЗапросаНоменклатуры_v3"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ПроверитьАвторизацию">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ИдентификаторыКонтрагентов"
+								type="tns:МассивСтрок"/>
+						<xs:element name="ИдентификаторПриложения"
+								type="xs:string"/>
+						<xs:element name="ИдентификаторУстройства"
+								type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ПроверитьАвторизациюResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="return"
+								type="tns:РезультатПроверкиАвторизации"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ПроверитьАвторизацию_v2">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ИдентификаторыКонтрагентов"
+								type="tns:МассивСтрок"/>
+						<xs:element name="ИдентификаторПриложения"
+								type="xs:string"/>
+						<xs:element name="ИдентификаторУстройства"
+								type="xs:string"/>
+						<xs:element name="ТипУстройства"
+								type="xs:int"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ПроверитьАвторизацию_v2Response">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="return"
+								type="tns:РезультатПроверкиАвторизации"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ПроверитьОбновление">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ВерсияКонфигурации"
+								type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ПроверитьОбновлениеResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="return"
+								type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ПроверитьСоединение">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Приветствие"
+								type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ПроверитьСоединениеResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="return"
+								type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ПолучитьКодПодтверждения_v2">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Контакт"
+								type="xs:string"/>
+						<xs:element name="ИдентификаторПриложения"
+								type="xs:string"/>
+						<xs:element name="ИдентификаторУстройства"
+								type="xs:string"/>
+						<xs:element name="СпособОтправкиКода"
+								type="xs:int"/>
+						<xs:element name="ВерсияПриложения"
+								type="xs:int"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ПолучитьКодПодтверждения_v2Response">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="return"
+								type="tns:РезультатЗапросаКодаПодтверждения"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:schema>
+	</types>
+	<message name="ОтправитьЗаказыRequestMessage">
+		<part name="parameters"
+				element="tns:ОтправитьЗаказы"/>
+	</message>
+	<message name="ОтправитьЗаказыResponseMessage">
+		<part name="parameters"
+				element="tns:ОтправитьЗаказыResponse"/>
+	</message>
+	<message name="ОтправитьСообщениеRequestMessage">
+		<part name="parameters"
+				element="tns:ОтправитьСообщение"/>
+	</message>
+	<message name="ОтправитьСообщениеResponseMessage">
+		<part name="parameters"
+				element="tns:ОтправитьСообщениеResponse"/>
+	</message>
+	<message name="ПодтвердитьКодПодтвержденияRequestMessage">
+		<part name="parameters"
+				element="tns:ПодтвердитьКодПодтверждения"/>
+	</message>
+	<message name="ПодтвердитьКодПодтвержденияResponseMessage">
+		<part name="parameters"
+				element="tns:ПодтвердитьКодПодтвержденияResponse"/>
+	</message>
+	<message name="ПодтвердитьКодПодтверждения_v3RequestMessage">
+		<part name="parameters"
+				element="tns:ПодтвердитьКодПодтверждения_v3"/>
+	</message>
+	<message name="ПодтвердитьКодПодтверждения_v3ResponseMessage">
+		<part name="parameters"
+				element="tns:ПодтвердитьКодПодтверждения_v3Response"/>
+	</message>
+	<message name="ПолучитьАдресКонтрагентаRequestMessage">
+		<part name="parameters"
+				element="tns:ПолучитьАдресКонтрагента"/>
+	</message>
+	<message name="ПолучитьАдресКонтрагентаResponseMessage">
+		<part name="parameters"
+				element="tns:ПолучитьАдресКонтрагентаResponse"/>
+	</message>
+	<message name="ПолучитьЗадолженностьКонтрагентаRequestMessage">
+		<part name="parameters"
+				element="tns:ПолучитьЗадолженностьКонтрагента"/>
+	</message>
+	<message name="ПолучитьЗадолженностьКонтрагентаResponseMessage">
+		<part name="parameters"
+				element="tns:ПолучитьЗадолженностьКонтрагентаResponse"/>
+	</message>
+	<message name="ПолучитьЗаказыRequestMessage">
+		<part name="parameters"
+				element="tns:ПолучитьЗаказы"/>
+	</message>
+	<message name="ПолучитьЗаказыResponseMessage">
+		<part name="parameters"
+				element="tns:ПолучитьЗаказыResponse"/>
+	</message>
+	<message name="ПолучитьЗаказы_v2RequestMessage">
+		<part name="parameters"
+				element="tns:ПолучитьЗаказы_v2"/>
+	</message>
+	<message name="ПолучитьЗаказы_v2ResponseMessage">
+		<part name="parameters"
+				element="tns:ПолучитьЗаказы_v2Response"/>
+	</message>
+	<message name="ПолучитьКодПодтвержденияRequestMessage">
+		<part name="parameters"
+				element="tns:ПолучитьКодПодтверждения"/>
+	</message>
+	<message name="ПолучитьКодПодтвержденияResponseMessage">
+		<part name="parameters"
+				element="tns:ПолучитьКодПодтвержденияResponse"/>
+	</message>
+	<message name="ПолучитьКонтактнуюИнформациюRequestMessage">
+		<part name="parameters"
+				element="tns:ПолучитьКонтактнуюИнформацию"/>
+	</message>
+	<message name="ПолучитьКонтактнуюИнформациюResponseMessage">
+		<part name="parameters"
+				element="tns:ПолучитьКонтактнуюИнформациюResponse"/>
+	</message>
+	<message name="ПолучитьНоменклатуруRequestMessage">
+		<part name="parameters"
+				element="tns:ПолучитьНоменклатуру"/>
+	</message>
+	<message name="ПолучитьНоменклатуруResponseMessage">
+		<part name="parameters"
+				element="tns:ПолучитьНоменклатуруResponse"/>
+	</message>
+	<message name="ПолучитьНоменклатуру_v2RequestMessage">
+		<part name="parameters"
+				element="tns:ПолучитьНоменклатуру_v2"/>
+	</message>
+	<message name="ПолучитьНоменклатуру_v2ResponseMessage">
+		<part name="parameters"
+				element="tns:ПолучитьНоменклатуру_v2Response"/>
+	</message>
+	<message name="ПолучитьНоменклатуру_v3RequestMessage">
+		<part name="parameters"
+				element="tns:ПолучитьНоменклатуру_v3"/>
+	</message>
+	<message name="ПолучитьНоменклатуру_v3ResponseMessage">
+		<part name="parameters"
+				element="tns:ПолучитьНоменклатуру_v3Response"/>
+	</message>
+	<message name="ПроверитьАвторизациюRequestMessage">
+		<part name="parameters"
+				element="tns:ПроверитьАвторизацию"/>
+	</message>
+	<message name="ПроверитьАвторизациюResponseMessage">
+		<part name="parameters"
+				element="tns:ПроверитьАвторизациюResponse"/>
+	</message>
+	<message name="ПроверитьАвторизацию_v2RequestMessage">
+		<part name="parameters"
+				element="tns:ПроверитьАвторизацию_v2"/>
+	</message>
+	<message name="ПроверитьАвторизацию_v2ResponseMessage">
+		<part name="parameters"
+				element="tns:ПроверитьАвторизацию_v2Response"/>
+	</message>
+	<message name="ПроверитьОбновлениеRequestMessage">
+		<part name="parameters"
+				element="tns:ПроверитьОбновление"/>
+	</message>
+	<message name="ПроверитьОбновлениеResponseMessage">
+		<part name="parameters"
+				element="tns:ПроверитьОбновлениеResponse"/>
+	</message>
+	<message name="ПроверитьСоединениеRequestMessage">
+		<part name="parameters"
+				element="tns:ПроверитьСоединение"/>
+	</message>
+	<message name="ПроверитьСоединениеResponseMessage">
+		<part name="parameters"
+				element="tns:ПроверитьСоединениеResponse"/>
+	</message>
+	<message name="ПолучитьКодПодтверждения_v2RequestMessage">
+		<part name="parameters"
+				element="tns:ПолучитьКодПодтверждения_v2"/>
+	</message>
+	<message name="ПолучитьКодПодтверждения_v2ResponseMessage">
+		<part name="parameters"
+				element="tns:ПолучитьКодПодтверждения_v2Response"/>
+	</message>
+	<portType name="ASFMobileTradePortType">
+		<operation name="ОтправитьЗаказы">
+			<input message="tns:ОтправитьЗаказыRequestMessage"/>
+			<output message="tns:ОтправитьЗаказыResponseMessage"/>
+		</operation>
+		<operation name="ОтправитьСообщение">
+			<input message="tns:ОтправитьСообщениеRequestMessage"/>
+			<output message="tns:ОтправитьСообщениеResponseMessage"/>
+		</operation>
+		<operation name="ПодтвердитьКодПодтверждения">
+			<input message="tns:ПодтвердитьКодПодтвержденияRequestMessage"/>
+			<output message="tns:ПодтвердитьКодПодтвержденияResponseMessage"/>
+		</operation>
+		<operation name="ПодтвердитьКодПодтверждения_v3">
+			<input message="tns:ПодтвердитьКодПодтверждения_v3RequestMessage"/>
+			<output message="tns:ПодтвердитьКодПодтверждения_v3ResponseMessage"/>
+		</operation>
+		<operation name="ПолучитьАдресКонтрагента">
+			<input message="tns:ПолучитьАдресКонтрагентаRequestMessage"/>
+			<output message="tns:ПолучитьАдресКонтрагентаResponseMessage"/>
+		</operation>
+		<operation name="ПолучитьЗадолженностьКонтрагента">
+			<input message="tns:ПолучитьЗадолженностьКонтрагентаRequestMessage"/>
+			<output message="tns:ПолучитьЗадолженностьКонтрагентаResponseMessage"/>
+		</operation>
+		<operation name="ПолучитьЗаказы">
+			<input message="tns:ПолучитьЗаказыRequestMessage"/>
+			<output message="tns:ПолучитьЗаказыResponseMessage"/>
+		</operation>
+		<operation name="ПолучитьЗаказы_v2">
+			<input message="tns:ПолучитьЗаказы_v2RequestMessage"/>
+			<output message="tns:ПолучитьЗаказы_v2ResponseMessage"/>
+		</operation>
+		<operation name="ПолучитьКодПодтверждения">
+			<input message="tns:ПолучитьКодПодтвержденияRequestMessage"/>
+			<output message="tns:ПолучитьКодПодтвержденияResponseMessage"/>
+		</operation>
+		<operation name="ПолучитьКонтактнуюИнформацию">
+			<input message="tns:ПолучитьКонтактнуюИнформациюRequestMessage"/>
+			<output message="tns:ПолучитьКонтактнуюИнформациюResponseMessage"/>
+		</operation>
+		<operation name="ПолучитьНоменклатуру">
+			<input message="tns:ПолучитьНоменклатуруRequestMessage"/>
+			<output message="tns:ПолучитьНоменклатуруResponseMessage"/>
+		</operation>
+		<operation name="ПолучитьНоменклатуру_v2">
+			<input message="tns:ПолучитьНоменклатуру_v2RequestMessage"/>
+			<output message="tns:ПолучитьНоменклатуру_v2ResponseMessage"/>
+		</operation>
+		<operation name="ПолучитьНоменклатуру_v3">
+			<input message="tns:ПолучитьНоменклатуру_v3RequestMessage"/>
+			<output message="tns:ПолучитьНоменклатуру_v3ResponseMessage"/>
+		</operation>
+		<operation name="ПроверитьАвторизацию">
+			<input message="tns:ПроверитьАвторизациюRequestMessage"/>
+			<output message="tns:ПроверитьАвторизациюResponseMessage"/>
+		</operation>
+		<operation name="ПроверитьАвторизацию_v2">
+			<input message="tns:ПроверитьАвторизацию_v2RequestMessage"/>
+			<output message="tns:ПроверитьАвторизацию_v2ResponseMessage"/>
+		</operation>
+		<operation name="ПроверитьОбновление">
+			<input message="tns:ПроверитьОбновлениеRequestMessage"/>
+			<output message="tns:ПроверитьОбновлениеResponseMessage"/>
+		</operation>
+		<operation name="ПроверитьСоединение">
+			<input message="tns:ПроверитьСоединениеRequestMessage"/>
+			<output message="tns:ПроверитьСоединениеResponseMessage"/>
+		</operation>
+		<operation name="ПолучитьКодПодтверждения_v2">
+			<input message="tns:ПолучитьКодПодтверждения_v2RequestMessage"/>
+			<output message="tns:ПолучитьКодПодтверждения_v2ResponseMessage"/>
+		</operation>
+	</portType>
+	<binding name="ASFMobileTradeSoapBinding"
+			type="tns:ASFMobileTradePortType">
+		<soapbind:binding style="document"
+				transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="ОтправитьЗаказы">
+			<soapbind:operation style="document"
+					soapAction="ASFMobileTrade#ASFMobileTrade:ОтправитьЗаказы"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="ОтправитьСообщение">
+			<soapbind:operation style="document"
+					soapAction="ASFMobileTrade#ASFMobileTrade:ОтправитьСообщение"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="ПодтвердитьКодПодтверждения">
+			<soapbind:operation style="document"
+					soapAction="ASFMobileTrade#ASFMobileTrade:ПодтвердитьКодПодтверждения"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="ПодтвердитьКодПодтверждения_v3">
+			<soapbind:operation style="document"
+					soapAction="ASFMobileTrade#ASFMobileTrade:ПодтвердитьКодПодтверждения_v3"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="ПолучитьАдресКонтрагента">
+			<soapbind:operation style="document"
+					soapAction="ASFMobileTrade#ASFMobileTrade:ПолучитьАдресКонтрагента"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="ПолучитьЗадолженностьКонтрагента">
+			<soapbind:operation style="document"
+					soapAction="ASFMobileTrade#ASFMobileTrade:ПолучитьЗадолженностьКонтрагента"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="ПолучитьЗаказы">
+			<soapbind:operation style="document"
+					soapAction="ASFMobileTrade#ASFMobileTrade:ПолучитьЗаказы"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="ПолучитьЗаказы_v2">
+			<soapbind:operation style="document"
+					soapAction="ASFMobileTrade#ASFMobileTrade:ПолучитьЗаказы_v2"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="ПолучитьКодПодтверждения">
+			<soapbind:operation style="document"
+					soapAction="ASFMobileTrade#ASFMobileTrade:ПолучитьКодПодтверждения"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="ПолучитьКонтактнуюИнформацию">
+			<soapbind:operation style="document"
+					soapAction="ASFMobileTrade#ASFMobileTrade:ПолучитьКонтактнуюИнформацию"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="ПолучитьНоменклатуру">
+			<soapbind:operation style="document"
+					soapAction="ASFMobileTrade#ASFMobileTrade:ПолучитьНоменклатуру"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="ПолучитьНоменклатуру_v2">
+			<soapbind:operation style="document"
+					soapAction="ASFMobileTrade#ASFMobileTrade:ПолучитьНоменклатуру_v2"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="ПолучитьНоменклатуру_v3">
+			<soapbind:operation style="document"
+					soapAction="ASFMobileTrade#ASFMobileTrade:ПолучитьНоменклатуру_v3"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="ПроверитьАвторизацию">
+			<soapbind:operation style="document"
+					soapAction="ASFMobileTrade#ASFMobileTrade:ПроверитьАвторизацию"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="ПроверитьАвторизацию_v2">
+			<soapbind:operation style="document"
+					soapAction="ASFMobileTrade#ASFMobileTrade:ПроверитьАвторизацию_v2"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="ПроверитьОбновление">
+			<soapbind:operation style="document"
+					soapAction="ASFMobileTrade#ASFMobileTrade:ПроверитьОбновление"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="ПроверитьСоединение">
+			<soapbind:operation style="document"
+					soapAction="ASFMobileTrade#ASFMobileTrade:ПроверитьСоединение"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="ПолучитьКодПодтверждения_v2">
+			<soapbind:operation style="document"
+					soapAction="ASFMobileTrade#ASFMobileTrade:ПолучитьКодПодтверждения_v2"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+	</binding>
+	<binding name="ASFMobileTradeSoap12Binding"
+			type="tns:ASFMobileTradePortType">
+		<soap12bind:binding style="document"
+				transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="ОтправитьЗаказы">
+			<soap12bind:operation style="document"
+					soapAction="ASFMobileTrade#ASFMobileTrade:ОтправитьЗаказы"/>
+			<input>
+				<soap12bind:body use="literal"/>
+			</input>
+			<output>
+				<soap12bind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="ОтправитьСообщение">
+			<soap12bind:operation style="document"
+					soapAction="ASFMobileTrade#ASFMobileTrade:ОтправитьСообщение"/>
+			<input>
+				<soap12bind:body use="literal"/>
+			</input>
+			<output>
+				<soap12bind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="ПодтвердитьКодПодтверждения">
+			<soap12bind:operation style="document"
+					soapAction="ASFMobileTrade#ASFMobileTrade:ПодтвердитьКодПодтверждения"/>
+			<input>
+				<soap12bind:body use="literal"/>
+			</input>
+			<output>
+				<soap12bind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="ПодтвердитьКодПодтверждения_v3">
+			<soap12bind:operation style="document"
+					soapAction="ASFMobileTrade#ASFMobileTrade:ПодтвердитьКодПодтверждения_v3"/>
+			<input>
+				<soap12bind:body use="literal"/>
+			</input>
+			<output>
+				<soap12bind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="ПолучитьАдресКонтрагента">
+			<soap12bind:operation style="document"
+					soapAction="ASFMobileTrade#ASFMobileTrade:ПолучитьАдресКонтрагента"/>
+			<input>
+				<soap12bind:body use="literal"/>
+			</input>
+			<output>
+				<soap12bind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="ПолучитьЗадолженностьКонтрагента">
+			<soap12bind:operation style="document"
+					soapAction="ASFMobileTrade#ASFMobileTrade:ПолучитьЗадолженностьКонтрагента"/>
+			<input>
+				<soap12bind:body use="literal"/>
+			</input>
+			<output>
+				<soap12bind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="ПолучитьЗаказы">
+			<soap12bind:operation style="document"
+					soapAction="ASFMobileTrade#ASFMobileTrade:ПолучитьЗаказы"/>
+			<input>
+				<soap12bind:body use="literal"/>
+			</input>
+			<output>
+				<soap12bind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="ПолучитьЗаказы_v2">
+			<soap12bind:operation style="document"
+					soapAction="ASFMobileTrade#ASFMobileTrade:ПолучитьЗаказы_v2"/>
+			<input>
+				<soap12bind:body use="literal"/>
+			</input>
+			<output>
+				<soap12bind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="ПолучитьКодПодтверждения">
+			<soap12bind:operation style="document"
+					soapAction="ASFMobileTrade#ASFMobileTrade:ПолучитьКодПодтверждения"/>
+			<input>
+				<soap12bind:body use="literal"/>
+			</input>
+			<output>
+				<soap12bind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="ПолучитьКонтактнуюИнформацию">
+			<soap12bind:operation style="document"
+					soapAction="ASFMobileTrade#ASFMobileTrade:ПолучитьКонтактнуюИнформацию"/>
+			<input>
+				<soap12bind:body use="literal"/>
+			</input>
+			<output>
+				<soap12bind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="ПолучитьНоменклатуру">
+			<soap12bind:operation style="document"
+					soapAction="ASFMobileTrade#ASFMobileTrade:ПолучитьНоменклатуру"/>
+			<input>
+				<soap12bind:body use="literal"/>
+			</input>
+			<output>
+				<soap12bind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="ПолучитьНоменклатуру_v2">
+			<soap12bind:operation style="document"
+					soapAction="ASFMobileTrade#ASFMobileTrade:ПолучитьНоменклатуру_v2"/>
+			<input>
+				<soap12bind:body use="literal"/>
+			</input>
+			<output>
+				<soap12bind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="ПолучитьНоменклатуру_v3">
+			<soap12bind:operation style="document"
+					soapAction="ASFMobileTrade#ASFMobileTrade:ПолучитьНоменклатуру_v3"/>
+			<input>
+				<soap12bind:body use="literal"/>
+			</input>
+			<output>
+				<soap12bind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="ПроверитьАвторизацию">
+			<soap12bind:operation style="document"
+					soapAction="ASFMobileTrade#ASFMobileTrade:ПроверитьАвторизацию"/>
+			<input>
+				<soap12bind:body use="literal"/>
+			</input>
+			<output>
+				<soap12bind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="ПроверитьАвторизацию_v2">
+			<soap12bind:operation style="document"
+					soapAction="ASFMobileTrade#ASFMobileTrade:ПроверитьАвторизацию_v2"/>
+			<input>
+				<soap12bind:body use="literal"/>
+			</input>
+			<output>
+				<soap12bind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="ПроверитьОбновление">
+			<soap12bind:operation style="document"
+					soapAction="ASFMobileTrade#ASFMobileTrade:ПроверитьОбновление"/>
+			<input>
+				<soap12bind:body use="literal"/>
+			</input>
+			<output>
+				<soap12bind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="ПроверитьСоединение">
+			<soap12bind:operation style="document"
+					soapAction="ASFMobileTrade#ASFMobileTrade:ПроверитьСоединение"/>
+			<input>
+				<soap12bind:body use="literal"/>
+			</input>
+			<output>
+				<soap12bind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="ПолучитьКодПодтверждения_v2">
+			<soap12bind:operation style="document"
+					soapAction="ASFMobileTrade#ASFMobileTrade:ПолучитьКодПодтверждения_v2"/>
+			<input>
+				<soap12bind:body use="literal"/>
+			</input>
+			<output>
+				<soap12bind:body use="literal"/>
+			</output>
+		</operation>
+	</binding>
+	<service name="ASFMobileTrade">
+		<port name="ASFMobileTradeSoap"
+				binding="tns:ASFMobileTradeSoapBinding">
+			<documentation> 
+				<wsi:Claim xmlns:wsi="http://ws-i.org/schemas/conformanceClaim/"
+						conformsTo="http://ws-i.org/profiles/basic/1.1"/>
+			</documentation>
+			<soapbind:address location="https://tst.serviko.ru/DISTR_13/ws/ASFMobileTrade"/>
+		</port>
+		<port name="ASFMobileTradeSoap12"
+				binding="tns:ASFMobileTradeSoap12Binding">
+			<soap12bind:address location="https://tst.serviko.ru/DISTR_13/ws/ASFMobileTrade"/>
+		</port>
+	</service>
+</definitions>

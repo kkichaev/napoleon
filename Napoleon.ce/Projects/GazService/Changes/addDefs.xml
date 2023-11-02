@@ -1,0 +1,146 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+   <objects>
+       
+	 <object name="Counter">
+         <sources>
+            <source name="SQTable" type="internal" />
+         </sources>
+         <member name="primaryKey">"name"</member>
+         <field name="name" type="string" />
+      </object>
+
+      <object name="Certificate">
+         <sources>
+            <source name="SQTable" type="internal" />
+         </sources>
+         
+         <member name="primaryKey">"number,userid"</member>
+         
+         <field name="number" type="string" />
+         <field name="userid" type="string" />
+         <field name="assigned" type="timestamp" execOn="Put">Now()</field>
+         <field name="writeof" type="number" />
+      </object>
+      
+      <object name="Protocol">
+         <sources>
+            <source name="SQTable" type="internal" />
+         </sources>
+         
+         <member name="primaryKey">"number,userid"</member>
+        
+         <field name="number" type="string" />
+         <field name="userid" type="string" />
+         <field name="assigned" type="timestamp" execOn="Put">Now()</field>
+         <field name="writeof" type="number" />
+      </object>
+      
+      <object name="Pause">
+          <sources>
+            <source name="SQTable" type="internal" />
+         </sources>
+         <member name="primaryKey">"pause,userid"</member>
+         
+         <field name="userid" type="string" execOn="Put">$user.id</field>
+         <field name="pause" type="timestamp" />
+         <field name="plat" type="number" prec="5"/>
+         <field name="plong" type="number" prec="5"/>
+         <field name="resume" type="timestamp" prec="5"/>
+         <field name="rlat" type="number" prec="5"/>
+         <field name="rlong" type="number" prec="5"/>
+      </object>
+      
+      <modify dest="CertificateUsed" src="Certificate">
+          <change>
+              <field name="userid" type="string" execOn="Put">$user.id</field>
+              <field name="writeof" type="number" execOn="Put">1</field>
+          </change>
+      </modify>
+
+     <modify src="Message">
+       <change>
+         <sources>
+           <source name="SQTable" type="internal">
+             <param name="readFilter">"userid = '" + $user.id + "'"</param>
+           </source>
+         </sources>
+       </change>
+       <add>
+         <field name="date" type="timestamp" execOn="Put">Now()</field>
+         <field name="userid" type="string" execOn="Put">$user.id</field>
+       </add>
+     </modify>
+     
+     <modify src="Config">
+       <change>
+         <sources>
+           <source name="SQTable" type="internal" />
+         </sources>
+       </change>
+     </modify>
+
+     <modify dest="ProtocolUsed" src="Protocol">
+          <change>
+              <field name="userid" type="string" execOn="Put">$user.id</field>    
+              <field name="writeof" type="number" execOn="Put">1</field>
+          </change>
+      </modify>
+      
+      <modify src="UserOrder">
+          <add>
+              <field name="worktype" type="number"/>
+              <field name="contact" type="string"/>
+              <field name="counter" type="string"/>
+              <field name="numctr" type="string"/>
+              <field name="protocol" type="string"/>
+              <field name="certificate" type="string"/>
+              <field name="datactr" type="number" prec="3"/>
+              <field name="phone" type="string"/>
+              <field name="latitude" type="number" prec="5" />
+         	  <field name="longitude" type="number" prec="5" />
+          </add>
+      </modify>
+      
+      <modify src="Order">
+          <add>
+              <field name="counter" type="string"/>
+              <field name="numctr" type="string"/>
+              <field name="protocol" type="string"/>
+              <field name="certificate" type="string"/>
+              <field name="datactr" type="number" prec="1"/>
+          </add>
+      </modify>
+       
+      <modify dest="ClientPrev" src="Client" >
+        <change>
+            <field name="id" type="number" />
+        </change>
+      </modify>
+
+      <modify dest="PDAOrderPrev" src="Order" >
+        <change>
+            <field name="client" type="number" />
+        </change>
+      </modify>
+      
+      <modify dest="OrderPrev" src="Order" >
+        <change>
+            <field name="client" type="number" />
+        </change>
+      </modify>
+      
+      <modify src="Client" >
+        <add>
+          <field name="valid" type="timestamp" /> 
+        </add>
+        <change>
+          <sources>
+            <source name="SQTable" type="internal">
+              <param name="readFilter">"valid / 10000000 - 11644473600 > datediff(ss, '1970/01/01', CURRENT_TIMESTAMP) - 7*24*3600"</param>
+            </source>
+          </sources>
+        </change>
+      </modify>
+   </objects>
+</serverDefs>

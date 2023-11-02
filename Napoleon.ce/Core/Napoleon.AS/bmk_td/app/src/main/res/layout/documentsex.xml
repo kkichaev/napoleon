@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/llHeader"
+        style="?header"
+        android:layout_width="match_parent"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvOrgInfo"
+            style="?headerText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/organization" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/NameTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:width="80dp"
+            android:background="@color/table_caption"
+            android:textColor="#000000"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/DateTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25"
+            android:background="@color/table_caption"
+            android:paddingLeft="7dp"
+            android:text="@string/date"
+            android:textColor="#000000"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/SumColumnTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25"
+            android:background="@color/table_caption"
+            android:gravity="right"
+            android:paddingRight="3dp"
+            android:text="@string/sum"
+            android:textColor="#000000"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/lvDocs"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/white" />
+
+    <LinearLayout
+        android:id="@+id/llTaskBar"
+        style="?footer"
+        android:layout_width="match_parent">
+
+        <ImageButton
+            android:id="@+id/btnDocFilter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="7dp"
+            android:contentDescription="@string/selectDocType"
+            android:src="@drawable/icon"
+			style="?footerButton"/>
+
+        <ImageButton
+            android:id="@+id/btnNewDoc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="7dp"
+            android:contentDescription="@string/newDoc"
+            android:src="@drawable/new_order"
+			style="?footerButton"/>
+
+        <ImageButton
+            android:id="@+id/btnGpsStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="7dp"
+            android:contentDescription="@string/gpsStatus"
+            android:src="@drawable/gpsno"
+			style="?footerButton"/>
+
+        <ImageButton
+            android:id="@+id/btnTaskAlert"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="7dp"
+            android:contentDescription="@string/send"
+            android:src="@drawable/task_alert"
+            android:visibility="gone"
+			style="?footerButton"/>
+
+        <ImageButton
+            android:id="@+id/btnSendDocList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="7dp"
+            android:contentDescription="@string/send"
+            android:src="@drawable/send"
+            android:visibility="gone"
+			style="?footerButton"/>
+
+        <ImageButton
+            android:id="@+id/btnFind"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="7dp"
+            android:src="@drawable/find"
+			style="?footerButton"/>
+
+        <TextView
+            android:id="@+id/tvTotalSum"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="right"
+            android:text="@string/sum"
+			style="?footerText"/>
+    </LinearLayout>
+</LinearLayout>

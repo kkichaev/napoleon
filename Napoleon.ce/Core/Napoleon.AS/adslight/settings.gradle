@@ -1,0 +1,12 @@
+include ':app'
+include ':adsbase'
+project(':adsbase').projectDir = new File('..\\modules\\adsbase\\')
+
+include ':network'
+project(':network').projectDir = new File('..\\modules\\network\\')
+
+include ':documents'
+project(':documents').projectDir = new File('..\\modules\\documents\\')
+
+include ':json'
+project(':json').projectDir = new File('..\\modules\\json\\')

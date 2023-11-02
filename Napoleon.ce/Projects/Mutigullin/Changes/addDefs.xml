@@ -1,0 +1,38 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+  <objects>
+    <object name="NetOrg">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"NOR"</param>
+          <param name="commonTable">"NET_ORG"</param>
+        </source>
+      </sources>
+      <field name="id" type="string" />
+      <field name="name" type="string" />
+
+      <field name="items" type="collection">
+        <data>
+          <object name="Items">
+            <sources>
+              <source name="DBFTableSet">
+                <param name="userTable">"NET_IT"</param>
+                <param name="commonTable">"NET_ITEMS"</param>
+                <param name="filter">"[ID] = $parent.id"</param>
+              </source>
+            </sources>
+
+            <field name="idSrc" type="string" width="55"  />
+            <field name="idNet" type="string" width="55"  />
+          </object>
+        </data>
+      </field>
+    </object>
+    <modify src="Org">
+      <add>
+        <field name="idNet" type="string" />
+        <field name="balance" type="string" />
+      </add>
+    </modify>
+  </objects>
+</serverDefs>

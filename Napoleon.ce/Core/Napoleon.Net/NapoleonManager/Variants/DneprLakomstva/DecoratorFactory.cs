@@ -1,0 +1,57 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+using GRSoft.NapoleonManager.Utils;
+using System.Windows.Forms;
+using System.ComponentModel;
+using System.Reflection;
+using GRSoft.Network;
+using System.Threading;
+using GRSoft.NapoleonManager.Properties;
+
+namespace GRSoft.NapoleonManager
+{
+   class DecoratorFactory
+   {
+      public static IDecorator GetDecorator(Form form)
+      { 
+         Type formType = form.GetType();
+
+         if (formType == typeof(MainForm))
+            return new MainFormDecorator((MainForm)form);
+
+         return new EmptyDecorator();
+      }
+   }
+
+   class MainFormDecorator : IDecorator
+   {
+      MainForm form;
+
+      public MainFormDecorator(MainForm form)
+      {
+         this.form = form;
+
+         ToolStripButton button = new System.Windows.Forms.ToolStripButton();
+         button.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+         button.Image = Properties.Resources.incass_doc;
+         button.ImageTransparentColor = System.Drawing.Color.Magenta;
+         button.Name = "rttReport";
+         button.Size = new System.Drawing.Size(23, 22);
+         button.Text = "Отчет о сданных ДС";
+         button.Click += new System.EventHandler((o, e) => 
+         {
+            IncRptDlg rpt = new IncRptDlg();
+            rpt.datePeriodView1.Start = form.GetBeginDateForSelection();
+            rpt.datePeriodView1.Finish = form.GetRangeEndDate();
+            rpt.Show();
+         });
+
+         form.tsbConfig.Items.Add(button);
+      }
+
+      public void AdjustForm() { }
+
+      public bool ExecFunction(FunctionArgsType args) { return false; }
+   }
+}

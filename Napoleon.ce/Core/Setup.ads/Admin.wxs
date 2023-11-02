@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding="windows-1251"?>
+<Wix xmlns='http://schemas.microsoft.com/wix/2006/wi'>
+  <Fragment Id='Admin'>
+    <Feature Id='Admin' Title='АДС Администратор' Description='Программа управления работой комплекса' Level='1' Display='5'
+             ConfigurableDirectory='_PRODUCT' Absent='allow'>
+      <ComponentRef Id='AdminComponents' />
+      <ComponentRef Id='AdminDocs' />
+      <ComponentRef Id='GRPacket' />
+      <ComponentGroupRef Id='Docs' />
+      <Condition Level='10000'>
+        <![CDATA[Not(Installed OR NETFRAMEWORK20)]]>
+      </Condition>
+    </Feature>
+
+    <DirectoryRef Id='_PRODUCT' >
+      <Component Id='AdminComponents' Guid='1F4C7ACE-BFD5-4cbb-9C92-EBB939EDE082'>
+        <File Id='NapoleonAdmin_exe' Name='NapoleonAdmin.exe' DiskId='1' Source='NapoleonAdmin.exe' KeyPath='yes'>
+          <Shortcut Id='NapoleonAdmin_exe' Directory='ProgramMenuDir' Name='Администратор'
+                    Description='Администрирование АСМТ Наполеон' WorkingDirectory='_PRODUCT' Advertise='yes'/>
+        </File>
+      </Component>
+      <Component Id='AdminDocs' Guid='EE715605-ADB2-4241-97C4-CD5776700019'>
+        <File Id='AdminDoc' Name='Admin.pdf' DiskId='1' Source='Admin.pdf' KeyPath='yes'>
+          <Shortcut Id='AdminDoc' Directory='Docs' Name='Администратор'
+                    Description='Руководство по администрированию комплекса АСМТ Наполеон' Advertise='yes'/>
+        </File>
+      </Component>
+    </DirectoryRef>
+  </Fragment>
+</Wix>

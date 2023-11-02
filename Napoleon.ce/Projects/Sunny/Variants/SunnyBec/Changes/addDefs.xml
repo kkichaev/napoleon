@@ -1,0 +1,46 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+  <objects>
+    <object name="WorkTime">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"userid,id,start"</member>
+      <field name="userid" type="string" execOn="Put">$user.id</field>
+      <field name="id" type="string" />
+      <field name="start" type="timestamp" />
+      <field name="stop" type="timestamp" />
+    </object>
+
+    <object name="ItemGroups">
+      <sources>
+        <source name="SQTable" type="internal">
+          <param name="readFilter">'"userid"=' + "'" + $user.id + "'"</param>
+        </source>
+      </sources>
+
+      <member name="primaryKey">"id"</member>
+      <field name="id" type="string" />
+      <field name="name" type="string" />
+      <field name="userid" type="string" />
+      
+      <field name="items" type="collection">
+        <data>
+          <object name="Item">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+            <field name="id" type="string"/>
+          </object>
+        </data>
+      </field>
+    </object>
+
+    <modify name="Price">
+      <change>
+        <field name="fid" type="string" data="folder" hidden="false" />
+      </change>
+    </modify>
+  </objects>
+</serverDefs>

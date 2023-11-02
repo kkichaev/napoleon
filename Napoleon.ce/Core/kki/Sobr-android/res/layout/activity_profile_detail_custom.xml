@@ -1,0 +1,745 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_holo_light"
+    android:orientation="vertical" >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/padding_16" >
+
+            <TextView
+                android:id="@+id/profile_program_car_remote_title"
+                style="@style/TextViewTitleProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:text="@string/profile_program_car_pult" />
+
+            <Button
+                android:id="@+id/profile_program_car_remote"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_top_2"
+                android:text="@string/profile_program_car_remote_button" />
+
+            <TextView
+                android:id="@+id/profile_program_keys_title"
+                style="@style/TextViewTitleProfile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="marquee"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
+                android:text="@string/profile_program_keys" />
+
+            <Button
+                android:id="@+id/profile_program_keys"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_top_2"
+                android:text="@string/profile_program_keys_button" />
+
+            <TextView
+                android:id="@+id/profile_program_label_1_title"
+                style="@style/TextViewTitleProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/profile_program_label_1" />
+
+            <Button
+                android:id="@+id/profile_program_label_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_top_2"
+                android:text="@string/profile_program_label_1_button" />
+
+            <TextView
+                android:id="@+id/profile_program_label_2_title"
+                style="@style/TextViewTitleProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/profile_program_label_2" />
+
+            <Button
+                android:id="@+id/profile_program_label_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_top_2"
+                android:text="@string/profile_program_label_2_button" />
+
+            <TextView
+                android:id="@+id/profile_program_label_3_title"
+                style="@style/TextViewTitleProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/profile_program_label_3" />
+
+            <Button
+                android:id="@+id/profile_program_label_3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/margin_top_2"
+                android:text="@string/profile_program_label_3_button" />
+
+            <TextView
+                android:id="@+id/profile_daily_mode_title"
+                style="@style/TextViewTitleProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/profile_user_enable_daily_mode_title"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/profile_daily_mode"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/margin_top_2"
+                android:text="@string/profile_user_enable_button"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/profile_weekly_mode_title"
+                style="@style/TextViewTitleProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/profile_user_enable_weekly_mode_title"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/profile_weekly_mode"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/margin_top_2"
+                android:text="@string/profile_user_enable_button"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/work_mode_title"
+                style="@style/TextViewTitleProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/work_mode_title"
+                android:visibility="gone" />
+
+            <Spinner
+                android:id="@+id/work_mode_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/work_mode_entries"
+                android:prompt="@string/work_mode_title"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/work_schedule_title"
+                style="@style/TextViewTitleProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/work_schedule_title"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/work_schedule_btn"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/margin_top_2"
+                android:text="@string/profile_user_set_communication_time"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/work_schedule_prompt"
+                style="@style/TextViewTitlePrompt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/work_schedule_prompt"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/freq_conn_title"
+                style="@style/TextViewTitleProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/freq_conn_title"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/freq_conn_btn"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/margin_top_2"
+                android:text="@string/profile_user_set_communication_time"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/freq_conn_prompt"
+                style="@style/TextViewTitlePrompt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/freq_conn_prompt"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/time_zone_title"
+                style="@style/TextViewTitleProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/time_zone_title"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/time_zone_btn"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/margin_top_2"
+                android:text="@string/profile_user_set_communication_time"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/profile_communication_time_title"
+                style="@style/TextViewTitleProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/profile_user_communication_time_title"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/profile_communication_time"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/margin_top_2"
+                android:text="@string/profile_user_set_communication_time"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/profile_communication_time_prompt"
+                style="@style/TextViewTitlePrompt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/communication_time_ptompt"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/fifth_phone_number_title"
+                style="@style/TextViewTitleProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/fifth_phone_number"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/fifth_phone_number_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone" >
+
+                <EditText
+                    android:id="@+id/fifth_phone_number_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_top_2"
+                    android:layout_weight="1"
+                    android:hint="@string/fifth_phone_number_hint"
+                    android:inputType="phone"
+                    android:maxLength="15"
+                    android:singleLine="true"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <Button
+                    android:id="@+id/fifth_phone_number_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/send" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/fifth_phone_number_prompt"
+                style="@style/TextViewTitlePrompt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/fifth_number_prompt"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/milage_title"
+                style="@style/TextViewTitleProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/milage_title"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/milage_btn"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/margin_top_2"
+                android:text="@string/milage_write"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/milage_prompt"
+                style="@style/TextViewTitlePrompt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/milage_prompt"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/millage_know_title"
+                style="@style/TextViewTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/millage_real_title"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/millage_know_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_top_2"
+                android:text="@string/getknow"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/resend_input_sms_title"
+                style="@style/TextViewTitleProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/resend_input_sms_title"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/resend_input_sms_btn"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/margin_top_2"
+                android:text="@string/resend_input_sms_title"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/resend_input_sms_prompt"
+                style="@style/TextViewTitlePrompt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/resend_input_sms_prompt"
+                android:visibility="gone" />
+
+            <!--
+            <TextView
+                style="@style/TextViewTitleProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/profile_user_phone_status_title" />
+
+            <Spinner
+                android:id="@+id/phone_status_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/entries_phone_status"
+                android:prompt="@string/profile_user_phone_status_title" />
+            -->
+
+            <TextView
+                android:id="@+id/command_123_title"
+                style="@style/TextViewTitleProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/profile_user_command_123_title" />
+
+            <Spinner
+                android:id="@+id/command_123_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/entries_command_123"
+                android:prompt="@string/profile_user_command_123_title" />
+
+            <EditText
+                android:id="@+id/command_123_custom_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:hint="@string/profile_user_custom_title_hint"
+                android:inputType="text|textCapWords"
+                android:singleLine="true"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:visibility="gone" />
+
+            <EditText
+                android:id="@+id/command_123_custom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:hint="@string/profile_user_custom_hint"
+                android:inputType="text|textCapWords"
+                android:singleLine="true"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/command_456_title"
+                style="@style/TextViewTitleProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/profile_user_command_456_title" />
+
+            <Spinner
+                android:id="@+id/command_456_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/entries_command_456"
+                android:prompt="@string/profile_user_command_456_title" />
+
+            <EditText
+                android:id="@+id/command_456_custom_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:hint="@string/profile_user_custom_title_hint"
+                android:inputType="text|textCapWords"
+                android:singleLine="true"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/command_789_title"
+                style="@style/TextViewTitleProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/profile_user_command_789_title" />
+
+            <Spinner
+                android:id="@+id/command_789_spinner"
+                style="@style/SpinnerLight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/entries_command_789"
+                android:prompt="@string/profile_user_command_789_title" />
+
+            <EditText
+                android:id="@+id/command_789_custom_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:hint="@string/profile_user_custom_title_hint"
+                android:inputType="text|textCapWords"
+                android:singleLine="true"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/command_666_title"
+                style="@style/TextViewTitleProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/profile_user_command_666_title"
+                android:visibility="gone" />
+
+            <Spinner
+                android:id="@+id/command_666_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/entries_command_666"
+                android:prompt="@string/profile_user_command_666_title"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/command_777_title"
+                style="@style/TextViewTitleProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/profile_user_command_777_title" />
+
+            <Spinner
+                android:id="@+id/command_777_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/entries_command_777"
+                android:prompt="@string/profile_user_command_777_title" />
+
+            <EditText
+                android:id="@+id/command_777_custom_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:hint="@string/profile_user_custom_title_hint"
+                android:inputType="text|textCapWords"
+                android:singleLine="true"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:visibility="gone" />
+
+            <EditText
+                android:id="@+id/command_777_custom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:hint="@string/profile_user_custom_hint"
+                android:inputType="text|textCapWords"
+                android:singleLine="true"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/command_999_title"
+                style="@style/TextViewTitleProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/profile_user_command_999_title"
+                android:visibility="gone" />
+
+            <Spinner
+                android:id="@+id/command_999_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/entries_command_999"
+                android:prompt="@string/profile_user_command_999_title"
+                android:visibility="gone" />
+
+            <EditText
+                android:id="@+id/command_999_custom_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:hint="@string/profile_user_custom_title_hint"
+                android:inputType="text|textCapWords"
+                android:singleLine="true"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:visibility="gone" />
+
+            <EditText
+                android:id="@+id/command_999_custom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:hint="@string/profile_user_custom_hint"
+                android:inputType="text|textCapWords"
+                android:singleLine="true"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/command_09_title"
+                style="@style/TextViewTitleProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/profile_user_command_09_title" />
+
+            <Spinner
+                android:id="@+id/command_09_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/entries_command_09"
+                android:prompt="@string/profile_user_command_09_title" />
+
+            <TextView
+                android:id="@+id/command_911_title"
+                style="@style/TextViewTitleProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/profile_user_command_911_title" />
+
+            <Spinner
+                android:id="@+id/command_911_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/entries_command_911"
+                android:prompt="@string/profile_user_command_911_title" />
+
+            <EditText
+                android:id="@+id/command_911_custom_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:hint="@string/profile_user_custom_title_hint"
+                android:inputType="text|textCapWords"
+                android:singleLine="true"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:visibility="gone" />
+
+            <EditText
+                android:id="@+id/command_911_custom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:hint="@string/profile_user_custom_hint"
+                android:inputType="text|textCapWords"
+                android:singleLine="true"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:visibility="gone" />
+
+            <CheckBox
+                android:id="@+id/ind_profile_gps_receiver_cbx"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="@string/profile_user_gps_receiver_cbx" />
+
+            <CheckBox
+                android:id="@+id/ind_profile_report_on_the_move_cbx"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="@string/profile_user_report_on_the_move_cbx" />
+
+            <CheckBox
+                android:id="@+id/ind_profile_shock_sensor_cbx"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="@string/profile_user_shock_sensor_cbx" />
+
+            <CheckBox
+                android:id="@+id/ind_profile_presence_of_an_immobilizer_cbx"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="@string/profile_user_presence_of_an_immobilizer_cbx" />
+
+            <CheckBox
+                android:id="@+id/preheater_cbx"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="@string/preheater_title"
+                android:visibility="gone" />
+
+            <CheckBox
+                android:id="@+id/ch1_cbx"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="@string/ch1"
+                android:visibility="gone" />
+
+            <EditText
+                android:id="@+id/ch1_cmd_ed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:hint="@string/cmdAbc_hint"
+                android:inputType="text|textCapWords"
+                android:singleLine="true"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:visibility="gone" />
+
+            <EditText
+                android:id="@+id/ch1_key_ed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:hint="@string/keyAbc_hint"
+                android:inputType="text|textCapWords"
+                android:singleLine="true"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:visibility="gone" />
+
+            <CheckBox
+                android:id="@+id/ch2_cbx"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="@string/ch2"
+                android:visibility="gone" />
+
+            <EditText
+                android:id="@+id/ch2_cmd_ed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:hint="@string/cmdAbc_hint"
+                android:inputType="text|textCapWords"
+                android:singleLine="true"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:visibility="gone" />
+
+            <EditText
+                android:id="@+id/ch2_key_ed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:hint="@string/keyAbc_hint"
+                android:inputType="text|textCapWords"
+                android:singleLine="true"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:visibility="gone" />
+
+            <CheckBox
+                android:id="@+id/ch3_cbx"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="@string/ch3"
+                android:visibility="gone" />
+
+            <EditText
+                android:id="@+id/ch3_cmd_ed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:hint="@string/cmdAbc_hint"
+                android:inputType="text|textCapWords"
+                android:singleLine="true"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:visibility="gone" />
+
+            <EditText
+                android:id="@+id/ch3_key_ed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:hint="@string/keyAbc_hint"
+                android:inputType="text|textCapWords"
+                android:singleLine="true"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:visibility="gone" />
+
+            <CheckBox
+                android:id="@+id/ch4_cbx"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="@string/ch4"
+                android:visibility="gone" />
+
+            <EditText
+                android:id="@+id/ch4_cmd_ed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:hint="@string/cmdAbc_hint"
+                android:inputType="text|textCapWords"
+                android:singleLine="true"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:visibility="gone" />
+
+            <EditText
+                android:id="@+id/ch4_key_ed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:hint="@string/keyAbc_hint"
+                android:inputType="text|textCapWords"
+                android:singleLine="true"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:visibility="gone" />
+            
+            <CheckBox
+                android:id="@+id/cbAlarm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="@string/alarm"
+                android:visibility="gone" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

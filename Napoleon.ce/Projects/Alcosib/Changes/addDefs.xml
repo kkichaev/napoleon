@@ -1,0 +1,117 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+  <objects>
+    <object name="OrgMatrix">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"OMx"</param>
+          <param name="commonTable">"OrgMtx"</param>
+          <param name="catalog">"name;items;0"</param>
+        </source>
+      </sources>
+      <field name="items" type="collection">
+        <data>
+          <object name="OrgMatrixItem">
+            <field name="id" type="string" width="20" />
+            <field name="cost" type="number" width="9" prec="2" />
+          </object>
+        </data>
+      </field>
+      <field name="name" type="string" width="30" />
+    </object>
+
+    <object name="OrdConfig">
+      <sources>
+        <source name="KeyValueTable">
+          <param name="fileName">"order.cfg"</param>
+        </source>
+      </sources>
+
+      <field name="key" type="string" />
+      <field name="value" type="string" />
+    </object>
+
+    <object name="Sklads">
+      <sources>
+        <source name="KeyValueDBFTable">
+          <param name="fileName">"SKLADS"</param>
+          <param name="key">"Склады"</param>
+          <param name="itemName">"NAME"</param>
+          <param name="itemKey">"ID"</param>
+        </source>
+      </sources>
+
+      <field name="key" type="string" />
+      <field name="value" type="string" />
+    </object>
+
+    <object name="Config">
+      <sources>
+        <source name="ObjectUnion">
+          <param>"OrdConfig"</param>
+          <param>"Sklads"</param>
+        </source>
+      </sources>
+
+      <field name="key" type="string" />
+      <field name="value" type="string" />
+    </object>
+
+    <modify src="Price">
+      <add>
+        <field name="whQty" type="collection">
+          <data>
+            <object name="QtyItem">
+              <sources>
+                <source name="Sequence">
+                  <param name="source">$parent.source</param>
+                  <param name="startIndex">2</param>
+                </source>
+              </sources>
+              <field name="qty" type="number" prec="3" />
+              <field name="minCost" type="number" prec="2" />
+            </object>
+          </data>
+        </field>
+        <field name="cubature" data="cub" type="number" prec="5" />
+        <field name="minCost" type="number" prec="2" />
+      </add>
+    </modify>
+    <modify src="Order">
+      <add>
+        <field name="whCode" type="string" width="20" data="ID_WH" />
+        <field name="payRemark" type="string" data="PAY_REM" />
+        <field name="retail" type="number" width="1" />
+        <field name="payType" type="string" width="30"/>
+      </add>
+    </modify>
+    <modify src="Delivery">
+      <add>
+        <field name="payDate" type="date" date="PAY_DATE" />
+      </add>
+    </modify>
+
+    <modify src="Org">
+      <add>
+        <field name="matrix" type="string" />
+        <field name="folders" type="collection">
+          <data>
+            <object name="OrgFolders">
+              <sources>
+                <source name="DBFTableSet">
+                  <param name="userTable">"OFL"</param>
+                  <param name="commonTable">"ORGOFL"</param>
+                  <param name="filter">"[ID] = $parent.id"</param>
+                </source>
+              </sources>
+
+              <field name="id" type="string" data="ID"/>
+              <field name="fid" type="string" data="ID_I"/>
+              <field name="folderID" type="number" execOn="Get">FolderID($object.fid)</field>
+            </object>
+          </data>
+        </field>
+      </add>
+    </modify>
+  </objects>
+</serverDefs>

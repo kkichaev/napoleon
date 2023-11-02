@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="right"
+                android:gravity="right"
+    android:background="@color/navigator_calendar_bg">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center">
+
+    <LinearLayout
+        android:id="@+id/container_calendar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/date_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/date_to_left"
+            style="@style/cDateSelector"
+            android:src="@drawable/left_arrow" />
+
+        <TextView
+            android:id="@+id/date_value"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:gravity="center"
+            android:textColor="@color/navigator_calendar_text_color" />
+
+        <ImageView
+            android:id="@+id/date_to_right"
+            style="@style/cDateSelector"
+            android:src="@drawable/right_arrow" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/days_of_week"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/cDateItemPadding" >
+
+        <TextView
+            style="@style/cDaysOfWeek"
+            android:text="@string/Mo" />
+
+        <TextView
+            style="@style/cDaysOfWeek"
+            android:text="@string/Tu" />
+
+        <TextView
+            style="@style/cDaysOfWeek"
+            android:text="@string/We" />
+
+        <TextView
+            style="@style/cDaysOfWeek"
+            android:text="@string/Th" />
+
+        <TextView
+            style="@style/cDaysOfWeek"
+            android:text="@string/Fr" />
+
+        <TextView
+            style="@style/cDaysOfWeek2"
+            android:text="@string/Sa" />
+
+        <TextView
+            style="@style/cDaysOfWeek3"
+            android:text="@string/Su" />
+    </LinearLayout>
+
+    <ViewFlipper
+        android:id="@+id/view_flipper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <com.ashberrysoft.leadertask.views.CalendarDatesRowsView
+            android:id="@+id/dates_rows_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <com.ashberrysoft.leadertask.views.CalendarDatesRowsView
+            android:id="@+id/dates_rows_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </ViewFlipper>
+
+    </LinearLayout>
+
+    </RelativeLayout>
+</RelativeLayout>

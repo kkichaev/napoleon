@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/padding_16" >
+
+        <TextView
+            android:id="@+id/device_engine_title"
+            style="@style/TextViewTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:text="@string/device_engine_title"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/device_engine_start_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top_2"
+            android:text="@string/device_engine_start_btn"
+            android:visibility="visible" />
+        
+        <TextView
+            android:id="@+id/find_on_parking_title"
+            style="@style/TextViewTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/find_on_parking_title"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/find_on_parking_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top_2"
+            android:text="@string/on"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/device_timer_title"
+            style="@style/TextViewTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/device_timer_title"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/device_timer_set_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top_2"
+            android:text="@string/device_timer_set_btn"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/device_preheater_title"
+            style="@style/TextViewTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/device_preheater_title"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/device_preheater_on"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top_2"
+            android:text="@string/device_preheater_on"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/device_preheater_off"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top_2"
+            android:text="@string/device_preheater_off"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/device_siren_on_title"
+            style="@style/TextViewTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/device_siren_on_title"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/device_siren_on_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top_2"
+            android:text="@string/device_siren_on_btn"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/device_gate_title"
+            style="@style/TextViewTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/device_gate_title"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/device_gate_open_close_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top_2"
+            android:text="@string/device_gate_open_close_btn"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/device_heater_title"
+            style="@style/TextViewTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/device_heater_title"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/device_heater_on_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top_2"
+            android:text="@string/device_heater_on_btn"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/device_heater_off_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top_2"
+            android:text="@string/device_heater_off_btn"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/device_cmd_123_user_title"
+            style="@style/TextViewTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/device_cmd_123_user_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top_2"
+            android:text=""
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/device_cmd_456_user_title"
+            style="@style/TextViewTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/device_cmd_456_user_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top_2"
+            android:text=""
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/device_cmd_789_user_title"
+            style="@style/TextViewTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/device_cmd_789_user_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top_2"
+            android:text=""
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/device_cmd_777_user_title"
+            style="@style/TextViewTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/device_cmd_777_user_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top_2"
+            android:text=""
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/device_cmd_999_user_title"
+            style="@style/TextViewTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/device_cmd_999_user_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top_2"
+            android:text=""
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/device_executionunit_title"
+            style="@style/TextViewTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/device_executionunit_title"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/device_executionunit_on_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top_2"
+            android:text="@string/device_executionunit_on"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/device_executionunit_off_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top_2"
+            android:text="@string/device_executionunit_off"
+            android:visibility="visible" />
+        
+        <TextView
+            android:id="@+id/startpreheater_title"
+            style="@style/TextViewTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/startpreheater"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/startpreheater_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top_2"
+            android:text="@string/onoff"
+            android:visibility="gone" />
+        
+        <TextView
+            android:id="@+id/ch1_title"
+            style="@style/TextViewTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/cmdAbc_hint"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/ch1_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top_2"
+            android:text="@string/keyAbc_hint"
+            android:visibility="gone" />
+        
+        <TextView
+            android:id="@+id/ch2_title"
+            style="@style/TextViewTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/cmdAbc_hint"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/ch2_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top_2"
+            android:text="@string/keyAbc_hint"
+            android:visibility="gone" />
+        
+        <TextView
+            android:id="@+id/ch3_title"
+            style="@style/TextViewTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/cmdAbc_hint"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/ch3_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top_2"
+            android:text="@string/keyAbc_hint"
+            android:visibility="gone" />
+        
+        <TextView
+            android:id="@+id/ch4_title"
+            style="@style/TextViewTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/cmdAbc_hint"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/ch4_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top_2"
+            android:text="@string/keyAbc_hint"
+            android:visibility="gone" />
+        
+        <TextView
+             android:id="@+id/tvAlarmTitle"
+             style="@style/TextViewTitleProfile"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:text="@string/alarm" 
+             android:visibility="gone" />
+        
+        <Button
+            android:id="@+id/btnAlarm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top_2"
+            android:text="@string/on"
+            android:visibility="gone" />
+    </LinearLayout>
+
+</ScrollView>

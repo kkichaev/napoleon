@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.329
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeviceEmu", "DeviceEmu.csproj", "{469791B6-35D0-4F04-8693-D7DF45F8E352}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuakomoleEmu", "..\GuakomoleEmu\GuakomoleEmu.csproj", "{40FDD347-FACE-449A-8F07-F9CF6BA94F12}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{469791B6-35D0-4F04-8693-D7DF45F8E352}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{469791B6-35D0-4F04-8693-D7DF45F8E352}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{469791B6-35D0-4F04-8693-D7DF45F8E352}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{469791B6-35D0-4F04-8693-D7DF45F8E352}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40FDD347-FACE-449A-8F07-F9CF6BA94F12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40FDD347-FACE-449A-8F07-F9CF6BA94F12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40FDD347-FACE-449A-8F07-F9CF6BA94F12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40FDD347-FACE-449A-8F07-F9CF6BA94F12}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5DFBC807-9B9D-4EEF-833F-861B92F1A691}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+	<TextView
+		android:text="Документ"
+		android:textColor="#000000"
+        android:textSize="@dimen/row_font"
+		android:padding="4sp"
+		android:background="@color/footer" 
+		android:layout_height="wrap_content" 
+		android:layout_width="fill_parent" 
+		android:id="@+id/tvDocInfo" />
+
+	<TextView
+	    android:id="@+id/textView1"
+	    android:text="Комментарий"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    />
+
+	<LinearLayout
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content" >
+
+	    <EditText
+	        android:id="@+id/edRemark"
+	        android:layout_width="0dip"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="1"
+	        android:ems="10" />
+
+	    <CheckBox
+	        android:id="@+id/cbInWork"
+	        android:paddingRight="5dp"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="В работе" />
+
+	</LinearLayout>
+	
+    <ListView
+        android:id="@android:id/list"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@color/white" >
+
+    </ListView>
+
+</LinearLayout>

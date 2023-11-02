@@ -1,0 +1,694 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+   <objects>
+      <object name="AgentPrefix">
+         <sources>
+            <source name="DBFTable">
+               <param name="tableName">"USERS"</param>
+            </source>
+         </sources>
+
+         <field name="id" type="string" width="20" />
+         <field name="login" type="string" width="30" />
+         <field name="password" type="string" width="30" />
+         <field name="prefix" type="string" data="PFA" />
+      </object>
+      
+      <object name="Org">
+         <sources>
+            <source name="DBFTableSet">
+               <param name="userTable">"O"</param>
+               <param name="commonTable">"ORGS"</param>
+            </source>
+         </sources>
+
+         <field name="id" type="string" />
+         <field name="name" type="string" />
+         <field name="address" type="string" />
+         <field name="color" type="number" execOn="Get">GetColor($object.id,"org","face",0)</field>
+         <field name="contacts" type="collection">
+            <data>
+               <object name="Contact">
+                  <sources>
+                     <source name="DBFTableSet">
+                        <param name="userTable">"C"</param>
+                        <param name="commonTable">"CONTACTS"</param>
+                        <param name="filter">"[ID] = $parent.id"</param>
+                     </source>
+                  </sources>
+
+                  <field name="name" data="FIO" type="string" />
+                  <field name="phone" type="string" />
+               </object>
+            </data>
+         </field>
+         <field name="dogovors" type="collection">
+            <data>
+               <object name="Dogovor">
+                  <sources>
+                     <source name="DBFTableSet">
+                        <param name="userTable">"DOG"</param>
+                        <param name="commonTable">"DOGOVORS"</param>
+                        <param name="filter">"[ID] = $parent.id AND [NAME] in $AllowedDogovors.name"</param>
+                        <!--<param name="filter">"[ID] = $parent.id"</param>-->
+                     </source>
+                  </sources>
+
+                  <field name="name" type="string" />
+                  <field name="number" data="NUM" type="string" />
+                  <field name="ctype" type="string" />
+                  <field name="firm" type="string" />
+               </object>
+            </data>
+         </field>
+         <field name="closed" type="collection">
+            <data>
+               <object name="Close">
+                  <sources>
+                     <source name="DBFTableSet">
+                        <param name="userTable">"CLS"</param>
+                        <param name="commonTable">"CLOSE"</param>
+                        <param name="filter">"[ID] = $parent.id"</param>
+                     </source>
+                  </sources>
+                  <field name="firm" type="string" />
+               </object>
+            </data>
+         </field>
+         <field name="ido" type="string" />
+         <field name="longitude" type="number" prec="5" data="LONG" />
+         <field name="latitude" type="number" prec="5" data="LAT" />
+         <field name="type" type="number" />
+         <field name="userid" type="string" />
+      </object>
+
+      <object name="Discount">
+         <sources>
+            <source name="DiscountTable">
+               <param name="tableName">"D" + $user.id</param>
+            </source>
+         </sources>
+
+         <field name="id" type="string" data="IDO" />
+         <field name="dogovor" type="string" />
+
+         <field name="items" type="collection">
+            <data>
+               <object name="DiscountItem">
+                  <field name="discount" type="number" prec="2" />
+                  <field name="qty" type="number" prec="3" />
+                  <field name="sum" type="number" prec="2" />
+
+                  <field name="items" type="collection">
+                     <data>
+                        <object name="DiscountPriceItem">
+                           <field name="index" type="number" />
+                        </object>
+                     </data>
+                  </field>
+               </object>
+            </data>
+         </field>
+      </object>
+
+      <object name="Returns">
+         <sources>
+            <source name="DBFCatalogTable">
+               <param name="tableName">$object.table + $user.id</param>
+               <param name="catalog">"id"</param>
+               <param name="ordered">1</param>
+            </source>
+         </sources>
+
+         <member name="table">"VZT"</member>
+         <member name="primaryKey">"userid,created"</member>
+
+         <field name="userid" type="string" data="USER_ID" execOn="Put">$user.id</field>
+         <field name="created" type="timestamp" data="CREATED"/>
+         <field name="doc_id" type="string" width="30" execOn="Put">$user.id + $object.created</field>
+         <field name="dlv_date" type="date" data="DLV_DATE" execOn="Put">$object.date</field>
+         <field name="doc_date" type="date" data="DATE" execOn="Put">$object.created</field>
+         <field name="retNum" type="string" width="20" data="NUM" />
+         <field name="id" width="20" type="string" />
+         <field name="fiscal" type="number" prec="0" execOn="Put">DecodeFlag($object.params, 2, "1", "")</field>
+         <field name="remark" type="string" />
+         <field name="dogovor" type="string" width="20" data="DOG" />
+         <field name="suplCode" type="string" width="15" data="FIRM" />
+
+         <field name="items" type="collection">
+            <data>
+               <object name="OrderItem">
+                  <sources>
+                     <source name="DBFCatalogItemTable"/>
+                     <source name="SQTable" type="internal" />
+                  </sources>
+
+                  <field name="id" width="20" type="string" data="ID_I"/>
+                  <field name="qty" type="number" prec="3" />
+                  <field name="ordflag" width="1" type="number" execOn="Put">FirstItem($object)</field>
+               </object>
+            </data>
+         </field>
+
+      </object>
+
+      <object name="Bonus">
+         <sources>
+            <source name="DBFCatalogTable">
+               <param name="tableName">$object.table + $user.id</param>
+               <param name="catalog">"id"</param>
+               <param name="ordered">1</param>
+            </source>
+         </sources>
+
+         <member name="table">"BNS"</member>
+         <member name="primaryKey">"userid,created"</member>
+
+         <field name="userid" type="string" data="USER_ID" execOn="Put">$user.id</field>
+         <field name="created" type="timestamp" data="CREATED"/>
+         <field name="doc_id" type="string" width="30" execOn="Put">$user.id + $object.created</field>
+         <field name="crdate" type="date" data="DATE" execOn="Put">$object.created</field>
+         <field name="date" type="date" data="DLV_DATE" />
+         <field name="id" width="20" type="string" />
+         <field name="dlvCode" width="20" type="string" data="ID_DLV" />
+         <field name="remark" type="string" />
+         <field name="dogovor" type="string" width="20" data="DOG" />
+         <field name="suplCode" type="string" width="15" data="FIRM" />
+         <field name="otg" type="number" prec="0" execOn="Put">DecodeFlag($object.params, 8, "", "1")</field>
+
+         <field name="items" type="collection">
+            <data>
+               <object name="OrderItem">
+                  <sources>
+                     <source name="DBFCatalogItemTable"/>
+                     <source name="SQTable" type="internal" />
+                  </sources>
+
+                  <field name="id" width="20" type="string" data="ID_I"/>
+                  <field name="qty" type="number" prec="3" />
+                  <field name="ordflag" width="1" type="number" execOn="Put">FirstItem($object)</field>
+               </object>
+            </data>
+         </field>
+
+      </object>
+
+      <object name="Order">
+         <sources>
+            <source name="DBFCatalogTable">
+               <param name="tableName">$object.table + $user.id</param>
+               <param name="catalog">"id"</param>
+               <param name="ordered">1</param>
+            </source>
+            <source name="SQTable" type="internal" />
+         </sources>
+
+         <member name="table">"ORD"</member>
+         <member name="primaryKey">"userid,created"</member>
+
+         <field name="userid" type="string" data="USER_ID" execOn="Put">$user.id</field>
+         <field name="created" type="timestamp" data="CREATED,NUM"/>
+         <field name="doc_id" type="string" width="30" execOn="Put">$user.id + $object.created</field>
+         <field name="dlvdate" type="date" data="DATE" execOn="Put">$object.created</field>
+         <field name="sdate" type="timestamp" width="20" execOn="Put">Now()</field>
+         <field name="date" type="date" data="DLV_DATE" />
+         <field name="delay" type="number" prec="0" />
+         <field name="paydate" type="date" data="PAY_DATE" execOn="Put">AdjustDate($object.date,$object.delay,"day")</field>
+         <field name="id" width="20" type="string" />
+         <field name="dlvCode" width="20" type="string" data="ID_DLV" />
+         <field name="remark" type="string" />
+         <field name="items" type="collection">
+            <data>
+               <object name="OrderItem">
+                  <sources>
+                     <source name="DBFCatalogItemTable"/>
+                     <source name="SQTable" type="internal" />
+                  </sources>
+
+                  <field name="id" width="20" type="string" data="ID_I"/>
+                  <field name="qty" type="number" prec="3" />
+                  <field name="cost" type="number" prec="2" />
+                  <field name="ordflag" width="1" type="number" execOn="Put">FirstItem($object)</field>
+               </object>
+            </data>
+         </field>
+
+
+         <!--
+         <field name="ctype" type="string" width="30" execOn="Put">KeyValueReader("order.cfg","ВидЦены",$object.sumType)</field>
+         -->
+         
+         <field name="dogovor" type="string" width="20" data="DOG" />
+         <field name="suplCode" type="string" width="15" data="FIRM" />
+
+         <field name="rem2" type="string" />
+         <field name="fiscal" type="number" prec="0" execOn="Put">DecodeFlag($object.params, 2, "1", "")</field>
+         <field name="out_plan" type="number" prec="0" execOn="Put">DecodeFlag($object.params, 4, "", "1")</field>
+         <field name="otg" type="number" prec="0" execOn="Put">DecodeFlag($object.params, 8, "", "1")</field>
+
+         <field name="latitude" type="number" prec="4" />
+         <field name="longitude" type="number" prec="4" />
+
+         <events>
+            <event type="put">
+               <!--<action name="WriteOrder" /> !-->
+               <action name="RunBat" />
+               <action name="WriteInternal">$object.type</action>
+               <action name="WriteToLog">$object.type;$object.created</action>
+            </event>
+         </events>
+      </object>
+
+      <object name="OrdConfig">
+         <sources>
+            <source name="KeyValueTable">
+               <param name="fileName">"order.cfg"</param>
+            </source>
+         </sources>
+
+         <field name="key" type="string" />
+         <field name="value" type="string" />
+      </object>
+
+      <object name="Firm">
+         <sources>
+            <source name="DBFTable">
+               <param name="tableName">"FIRMS"</param>
+            </source>
+         </sources>
+
+         <field name="id" type="string" />
+         <field name="name" type="string" />
+
+         <field name="address" type="string" />
+         <field name="phone" type="string" />
+         <field name="inn" type="string" />
+         <field name="bank" type="string" />
+         <field name="factAddress" type="string" data="ADDRESS1" />
+         <field name="buh" type="string" />
+         <field name="chief" type="string" data="CHIF"/>
+
+      </object>
+
+      <object name="FirmsConfig">
+         <sources>
+            <source name="KeyValueDBFTable">
+               <param name="fileName">"FIRMS"</param>
+               <param name="key">"Организация"</param>
+               <param name="itemName">"NAME"</param>
+               <param name="itemKey">"ID"</param>
+            </source>
+         </sources>
+
+         <field name="key" type="string" />
+         <field name="value" type="string" />
+      </object>
+
+      <object name="Config">
+         <sources>
+            <source name="ObjectUnion">
+               <param>"OrdConfig"</param>
+               <param>"FirmsConfig"</param>
+            </source>
+         </sources>
+
+         <field name="key" type="string" />
+         <field name="value" type="string" />
+      </object>
+
+      <!-- передается на КПК -->
+      <object name="Folder">
+         <sources>
+            <!-- 
+               DBFFolderSet - обязательные поля у объекта level & fid & id & name
+            -->
+            <source name="DBFFolderSet">
+               <param name="userTable">"F"</param>
+               <param name="commonTable">"FOLDERS"</param>
+               
+               <param name="parentField">"PARENT"</param>
+               <param name="childField">"fid"</param>
+               <param name="rowidField">"id"</param>
+               
+            </source>
+         </sources>
+
+         <field name="id" type="number" key="true" data="rowid" />
+         <field name="fid" type="string" data="id" />
+         <field name="level" type="number" />
+         <field name="name" type="string" />
+         <field name="userid" type="string" />
+      </object>
+
+      <!-- передается в NapoleonManager -->
+      <object name="ManagerFolder">
+         <sources>
+            <source name="DBFFolderSet">
+               <param name="userTable">"F"</param>
+               <param name="commonTable">"FOLDERS"</param>
+               <param name="parentField">"PARENT"</param>
+               <param name="childField">"id"</param>
+            </source>
+         </sources>
+
+         <field name="id" type="string" width="15" />
+         <field name="level" type="number" prec="0" data="" />
+         <field name="name" type="string" width="60" />
+         <field name="userid" type="string" data="" />
+      </object>
+
+      <object name="ManagerPrice">
+         <sources>
+            <source name="DBFTableSet">
+               <param name="userTable">"W"</param>
+               <param name="commonTable">"WAREHOUS"</param>
+            </source>
+         </sources>
+
+         <field name="id" type="string" />
+         <field name="fid" type="string" data="folder" />
+         <field name="folderID" type="number" execOn="Get">FolderID($object.fid)</field>
+         <field name="qtyInPack" type="number" prec="3" data="inpack" />
+         <field name="name" type="string" />
+         <field name="qty" type="number" prec="3" />
+         <field name="weight" type="number" prec="3" />
+         <field name="color" type="number" execOn="Get">GetColor($object.id,"price","face",0)</field>
+         <field name="cost" type="collection">
+            <data>
+               <object name="CostItem">
+                  <sources>
+                     <source name="Sequence">
+                        <param name="source">$parent.source</param>
+                     </source>
+                  </sources>
+                  <field name="cost" type="number" prec="2" />
+               </object>
+            </data>
+         </field>
+      </object>
+
+      <object name="Price">
+         <sources>
+            <!-- таблица со включенным фильтром qty > 0  выключать/включать SetFilter(False/True) -->
+            <source name="DBFPriceTable">
+               <param name="userTable">"W"</param>
+               <param name="commonTable">"WAREHOUS"</param>
+               <param name="filter">"[folder] in $folder.fid"</param>
+            </source>
+         </sources>
+
+         <field name="id" type="string" />
+         <field name="fid" type="string" data="folder" hidden="true" />
+         <field name="folderID" type="number" execOn="Get">FolderID($object.fid)</field>
+         <field name="unitName" type="string" width="20" data="unit" />
+         <field name="qtyInPack" type="number" prec="3" data="inpack" />
+         <field name="name" type="string" />
+         <field name="qty" type="number" prec="3" />
+         <field name="weight" type="number" prec="3" />
+         <field name="color" type="number" execOn="Get">GetColor($object.id,"price","face",0)</field>
+         <field name="cost" type="collection">
+            <data>
+               <object name="CostItem">
+                  <sources>
+                     <source name="Sequence">
+                        <param name="source">$parent.source</param>
+                     </source>
+                  </sources>
+                  <field name="cost" type="number" prec="2" />
+               </object>
+            </data>
+         </field>
+         <field name="minCost" type="number" prec="2" />
+      </object>
+
+      <object name="Cost">
+         <sources>
+            <!-- 
+            читает данные по ценам. Внутрь функции зашит фильтр по товарам - 
+            выгружаются цены только на товары доступные агенту. (LoadObject(L"Price"))
+            -->
+            <source name="DBFCostReader">
+               <param name="cost">"COSTS"</param>
+               <param name="costType">"CTYPE"</param>
+            </source>
+         </sources>
+
+         <field name="data" type="binary" />
+      </object>
+
+      <object name="Plan">
+         <sources>
+            <source name="DBFTableSet">
+               <param name="userTable">"PLN"</param>
+               <param name="commonTable">"PLANS"</param>
+            </source>
+         </sources>
+
+         <field name="date" type="timestamp" />
+         <field name="name" type="string" data="OBJECT" />
+         <field name="plan" type="number" prec="2" />
+         <field name="fact" type="number" prec="2" />
+         <field name="userid" type="string" />
+      </object>
+
+      <object name="AllowedDogovors">
+         <sources>
+            <source name="SQTable" type="internal">
+               <param name="readFilter">"userid = '" + $user.id + "'"</param>
+            </source>
+         </sources>
+
+         <member name="primaryKey">"userid,name"</member>
+
+         <field name="name" type="string" />
+         <field name="userid" type="string" />
+      </object>
+
+      <object name="FirmDogovor">
+         <sources>
+            <source name="DBFCatalogTable">
+               <param name="tableName">"DOG" + $user.id</param>
+               <param name="catalog">"[FIRM]"</param>
+               <param name="ordered">0</param>
+            </source>
+            <source name="DBFCatalogTable">
+               <param name="tableName">"DOGOVORS"</param>
+               <param name="catalog">"[FIRM]"</param>
+               <param name="ordered">0</param>
+            </source>
+         </sources>
+
+         <field name="firm" type="string" />
+         <field name="items" type="collection">
+            <data>
+               <object name="DogovorItem">
+                  <sources>
+                     <source name="DBFCatalogItemTable">
+                        <param name="unique">"FIRM,NAME"</param>
+                     </source>
+                  </sources>
+                  
+                  <field name="id" type="string" data="NAME" />
+               </object>
+            </data>
+         </field>
+      </object>
+      
+      <object name="Delivery">
+         <sources>
+            <source name="DBFTableSet">
+               <param name="userTable">"DLV"</param>
+               <param name="commonTable">"DELIVERY"</param>
+               <param name="catalog">"number;items;0"</param>
+               <param name="filter">"[id] in $Org.id AND ([DOG_NAME] = '' OR [DOG_NAME] in $AllowedDogovors.name)"</param>
+            </source>
+         </sources>
+
+         <member name="table">"DLV"</member>
+
+         <field name="items" type="collection">
+            <data>
+               <object name="DeliveryItem">
+                  <field name="id" type="string" data="ID_I"/>
+                  <field name="qty" type="number" />
+                  <field name="sum" type="number" prec="2" data="SUMM" />
+               </object>
+            </data>
+         </field>
+         <field name="id" type="string" />
+         <field name="number" type="string" data="NUM" />
+         <field name="date" type="date" />
+         <field name="created" type="timestamp" />
+         <field name="userid" type="string" />
+         <field name="supplyer" type="string" data="FIRM" />
+         <field name="fiscal" type="number" prec="1" />
+         <field name="dogId" type="string" data="DOG_ID" />
+         <field name="dogName" type="string" data="DOG_NAME" />
+      </object>
+
+      <object name="Payment">
+         <sources>
+            <source name="DBFTable">
+               <param name="tableName">$object.table + $user.id</param>
+            </source>
+            <source name="DBFTable">
+               <param>$object.altTable</param>
+               <param name="filter">"[id] in $Org.id AND ([DOG_NAME] = '' OR [DOG_NAME] in $AllowedDogovors.name)"</param>
+            </source>
+         </sources>
+
+         <member name="table">"SALDO"</member>
+         <member name="altTable">"SALDO"</member>
+
+         <field name="id" type="string" />
+         <field name="sum" type="number" prec="2" />
+         <field name="number" type="string" data="DOC_NUM" />
+         <field name="date" type="date" />
+         <field name="supplyer" type="string" data="FIRM" />
+         <field name="fiscal" type="number" prec="1" />
+         <field name="dogId" type="string" data="DOG_ID" />
+         <field name="dogName" type="string" data="DOG_NAME" />
+      </object>
+      
+      <!-- Инкассаторы -->
+      <object name="Balance">
+         <sources>
+            <source name="1C-Source" />
+         </sources>
+
+         <field name="id" type="string" />
+         <field name="startDate" type="date" />
+      </object>
+
+      <!--<object name="Otgruzka">
+         <sources>
+            <source name="DBFTableSet">
+               <param name="userTable">"DLV"</param>
+               <param name="commonTable">"DELIVERY"</param>
+               <param name="catalog">"number;items;0"</param>
+               <param name="filter">"[id] in $Org.id"</param>
+            </source>
+         </sources>
+
+         <field name="items" type="collection">
+            <data>
+               <object name="DeliveryItem">
+                  <field name="id" type="string" data="ID_I"/>
+                  <field name="qty" type="number" />
+                  <field name="sum" type="number" prec="2" data="SUMM" />
+               </object>
+            </data>
+         </field>
+         <field name="id" type="string" />
+         <field name="number" type="string" data="NUM" />
+         <field name="date" type="date" />
+         <field name="supplyer" type="string" data="FIRM" />
+         <field name="fiscal" type="number" prec="1" />
+         <field name="dogId" type="string" data="DOG_ID" />
+         <field name="type" type="string" data="DOC_TYPE" />
+      </object>-->
+      <object name="Otgruzka">
+         <sources>
+            <source name="DBFTableSet">
+               <param name="userTable">"OTG"</param>
+               <param name="commonTable">"OTG"</param>
+               <param name="catalog">"number;items;0"</param>
+               <param name="filter">"[id] in $Org.id"</param>
+            </source>
+         </sources>
+
+         <field name="items" type="collection">
+            <data>
+               <object name="DeliveryItem">
+                  <field name="id" type="string" data="ID_I"/>
+                  <field name="qty" type="number" />
+                  <field name="sum" type="number" prec="2" data="SUM" />
+               </object>
+            </data>
+         </field>
+         <field name="id" type="string" />
+         <field name="number" type="string" data="NUM" />
+         <field name="date" type="date" />
+         <field name="supplyer" type="string" data="FIRM" />
+         <field name="fiscal" type="number" prec="1" />
+         <field name="dogId" type="string" data="DOG_ID" />
+         <field name="type" type="string" data="DOC_TYPE" />
+      </object>
+
+      <object name="Oplata">
+         <sources>
+            <source name="DBFTable">
+               <param name="tableName">$object.table + $user.id</param>
+            </source>
+            <source name="DBFTable">
+               <param name="tableName">$object.altTable</param>
+               <param name="filter">"[id] in $Org.id"</param>
+            </source>
+         </sources>
+
+         <member name="table">"SALDO"</member>
+         <member name="altTable">"SALDO"</member>
+
+         <field name="id" type="string" />
+         <field name="date" type="date" />
+         <field name="sum" type="number" prec="2" />
+         <field name="supplyer" type="string" data="FIRM" />
+         <field name="number" type="string" data="DOC_NUM" />
+         <field name="fiscal" type="number" prec="1" />
+         <field name="dogId" type="string" data="DOG_ID" />
+      </object>
+
+      <object name="PayProceeded" removeOnCommit="true" sendAlways="true">
+         <sources>
+            <source name="DBFTable">
+               <param name="tableName">"PDN" + $user.id</param>
+            </source>
+         </sources>
+
+         <!--имена полей "зашиты" в функцию-->
+         <field name="created" type="timestamp" />
+         <field name="remark" type="string" />
+         <field name="status" type="number" />
+      </object>
+      
+      <object name="PKO">
+         <sources>
+            <source name="DBFCatalogTable">
+               <param name="tableName">$object.table + $user.id</param>
+               <param name="catalog">"id"</param>
+               <param name="ordered">1</param>
+            </source>
+            <source name="SQTable" type="internal" />
+         </sources>
+
+         <member name="table">"PKO"</member>
+         <member name="primaryKey">"userid,created"</member>
+
+         <field name="userid" type="string" data="USER_ID" execOn="Put">$user.id</field>
+         <field name="created" type="timestamp" data="CREATED"/>
+         <field name="dogId" type="string" width="30" data="DOG_ID" />
+         <field name="supplyer" type="string" width="15" data="FIRM" />
+         <field name="doc_id" type="string" width="30" execOn="Put">$user.id + $object.created</field>
+
+         <field name="sended" type="timestamp" width="20" execOn="Put">Now()</field>
+         <field name="fiscal" type="number" width="1"/>
+
+         <field name="id" width="20" type="string" />
+
+         <field name="number" width="20" type="string" data="DOC_NUM"/>
+         <field name="date" width="20" type="date" data="DOC_DATE"/>
+         <field name="sum" type="number" prec="2" />
+
+         <field name="latitude" type="number" prec="5" />
+         <field name="longitude" type="number" prec="5" />
+
+         <events>
+            <event type="put">
+               <!--<action name="WriteOrder" /> !-->
+               <action name="WriteInternal">$object.type</action>
+               <action name="WriteToLog">$object.type;$object.created</action>
+            </event>
+         </events>
+      </object>
+   </objects>
+</serverDefs>

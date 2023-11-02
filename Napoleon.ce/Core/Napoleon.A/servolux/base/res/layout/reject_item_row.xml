@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" >
+    
+        <TextView
+            style="@style/ActCell"
+            android:id="@+id/tvIncome"
+			tools:ignore="HardcodedText,NestedWeights"
+            android:text="Дата прихода"
+             />
+
+        <TextView
+            style="@style/ActCell"
+            android:id="@+id/tvMfr"
+			tools:ignore="HardcodedText,NestedWeights"
+            android:text="Дата производства"
+            />
+
+        <TextView
+            style="@style/ActCell"
+            android:id="@+id/tvExpired"
+			tools:ignore="HardcodedText,NestedWeights"
+            android:text="Срок по"
+            />
+        
+        <TextView
+            style="@style/ActCell"
+            android:id="@+id/tvQtyIncome"
+			tools:ignore="HardcodedText,NestedWeights"
+            android:text="Кол-во прихода"
+            />
+
+        <TextView
+            style="@style/ActCell"
+            android:id="@+id/tvRemark"
+            android:layout_width="0dip"
+            android:layout_weight="1"
+			tools:ignore="HardcodedText,NestedWeights"
+            android:text="Комментарий"
+            />
+        
+        <TextView
+            style="@style/ActCell"
+            android:id="@+id/tvQty"
+            android:text="@string/qty"
+            />
+</LinearLayout>

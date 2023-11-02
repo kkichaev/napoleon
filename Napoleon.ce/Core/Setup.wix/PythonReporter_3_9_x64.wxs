@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding="windows-1251"?>
+<Wix xmlns='http://schemas.microsoft.com/wix/2006/wi'>
+  <Fragment Id='PythonReporter'>
+    <Feature Id='PythonReporter_x64' Title='модуль Python' Description='Python для отчетов'
+              Absent='allow' ConfigurableDirectory='_PRODUCT' Level='1' >
+      <ComponentRef Id='PythonFiles'/>
+      <ComponentGroupRef Id='PythonLibFiles'/>
+    </Feature>
+
+    <DirectoryRef Id='_PRODUCT' >
+      <Component Id='PythonFiles' Guid='603fa9f3-3619-47f1-a451-196ef571facd'>
+        <File Id='python39_dll' Name='python39.dll' DiskId='1' Source='python39.dll' />
+        <File Id='reporter_dll' Name='Reporter_x64.dll' DiskId='1' Source='Reporter_x64.dll' />
+        <File Id='vcruntime140_dll' Name='vcruntime140.dll' DiskId='1' Source='vcruntime140.dll' />
+        <File Id='msvcp140_dll' Name='msvcp140.dll' DiskId='1' Source='msvcp140.dll' />
+      </Component>
+    </DirectoryRef>
+  </Fragment>
+</Wix>

@@ -1,0 +1,202 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+  <objects>
+    <object name="OrgPriceColor">
+      <sources>
+        <source name="DBFTable">
+          <param name="tableName">"PCLR" + $user.id</param>
+        </source>
+        <source name="DBFTable">
+          <param name="tableName">"PRC_COLOR"</param>
+          <param name="filter">"[ido] in $Org.ido"</param>
+        </source>
+      </sources>
+      <field name="ido" type="string" />
+      <field name="id" type="string" data="ID_I" />
+      <field name="color" type="hex" />
+    </object>
+    
+    <object name="OrgDogovor">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"DG"</param>
+          <param name="commonTable">"DOGOVORS"</param>
+          <param name="filter">"[IDO] in $Org.ido"</param>
+        </source>
+      </sources>
+      <field name="id" type="string" />
+      <field name="name" type="string" />
+      <field name="ido" type="string" />
+      
+      <field name="fldDsc" type="collection">
+        <data>
+          <object name="OrgDiscountItem">
+            <sources>
+              <source name="DBFTableSet">
+                <param name="userTable">"DSC"</param>
+                <param name="commonTable">"DSCS"</param>
+                <param name="filter">"[ID] = $parent.id"</param>
+              </source>
+            </sources>
+
+            <field name="discount" type="number" prec="2" />
+            <field name="fid" type="string" data="ID_F" />
+          </object>
+        </data>
+      </field>
+
+      <field name="price" type="collection">
+        <data>
+          <object name="OrgDiscountItem">
+            <sources>
+              <source name="DBFTableSet">
+                <param name="userTable">"PRC"</param>
+                <param name="commonTable">"PRCCOST"</param>
+                <param name="filter">"[ID] = $parent.id"</param>
+              </source>
+            </sources>
+
+            <field name="cost" type="number" prec="2" />
+            <field name="id" type="string" data="ID_I" />
+          </object>
+        </data>
+      </field>
+
+      <field name="disabled" type="collection">
+        <data>
+          <object name="OrgDisabledItem">
+            <sources>
+              <source name="DBFTableSet">
+                <param name="userTable">"DZB"</param>
+                <param name="commonTable">"DZBL"</param>
+                <param name="filter">"[ID] = $parent.id"</param>
+              </source>
+            </sources>
+
+            <field name="fid" type="string" data="ID_F" />
+          </object>
+        </data>
+      </field>
+    </object>
+    
+    <object name="OrdConfig">
+      <sources>
+        <source name="KeyValueTable">
+          <param name="fileName">"ord"+$user.id+".cfg"</param>
+        </source>
+        <source name="KeyValueTable">
+          <param name="fileName">"order.cfg"</param>
+        </source>
+      </sources>
+
+      <field name="key" type="string" />
+      <field name="value" type="string" />
+    </object>
+
+    <object name="Sklads">
+      <sources>
+        <source name="KeyValueDBFTable">
+          <param name="fileName">"SKL" + $user.id</param>
+          <param name="key">"СкладыNew"</param>
+          <param name="itemName">"NAME"</param>
+          <param name="itemKey">"ID"</param>
+        </source>
+        <source name="KeyValueDBFTable">
+          <param name="fileName">"SKLADS"</param>
+          <param name="key">"СкладыNew"</param>
+          <param name="itemName">"NAME"</param>
+          <param name="itemKey">"ID"</param>
+        </source>
+      </sources>
+
+      <field name="key" type="string" />
+      <field name="value" type="string" />
+    </object>
+
+    <object name="Config">
+      <sources>
+        <source name="ObjectUnion">
+          <param>"OrdConfig"</param>
+          <param>"Sklads"</param>
+        </source>
+      </sources>
+
+      <field name="key" type="string" />
+      <field name="value" type="string" />
+    </object>
+
+    <modify src="Price">
+      <change>
+        <field name="barcode" type="string" />
+        <field name="nesting" type="string" />
+        <field name="whQty" type="collection">
+          <data>
+            <object name="PriceQty">
+              <sources>
+                <source name="Sequence">
+                  <param name="source">$parent.source</param>
+                </source>
+              </sources>
+              <field name="qty" type="number" prec="2" />
+            </object>
+          </data>
+        </field>
+      </change>
+    </modify>
+
+    <modify src="Order">
+      <add>
+        <field name="whCode" type="string" width="50" data="ID_WH" />
+        <field name="whIndex" type="number" />
+        <field name="dogovor" type="string" width="20" data="ID_DG" />
+      </add>
+    </modify>
+
+    <modify src="Incass">
+      <add>
+        <field name="dogovor" type="string" width="20" data="ID_DG" />
+      </add>
+    </modify>
+
+    <modify src="Org">
+      <add>
+        <field name="ido" type="string" />
+      </add>
+    </modify>
+
+    <modify src="Delivery">
+      <change>
+        <sources>
+          <source name="DBFTableSet">
+            <param name="userTable">"DLV"</param>
+            <param name="commonTable">"DELIVERY"</param>
+            <param name="catalog">"number,id;items;1"</param>
+            <param name="filter">"[id] in $Org.id"</param>
+          </source>
+        </sources>
+      </change>
+      <add>
+        <field name="dogovor" type="string" width="20" data="ID_DG" />
+      </add>
+    </modify>
+
+    <modify src="Payment">
+      <change>
+        <sources>
+          <source name="DBFTable">
+            <param name="tableName">$object.table + $user.id</param>
+          </source>
+          <source name="DBFTable">
+            <param>$object.altTable</param>
+            <param name="filter">"[id] in $Org.id"</param>
+          </source>
+        </sources>
+      </change>
+      <add>
+        <field name="dogovor" type="string" width="20" data="ID_DG" />
+      </add>
+    </modify>
+    
+    <!-- old objects -->
+  </objects>
+</serverDefs>

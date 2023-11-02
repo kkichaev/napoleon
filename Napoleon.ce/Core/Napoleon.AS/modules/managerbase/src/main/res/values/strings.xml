@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Manager</string>
+    <string name="managerTitle">Manager</string>
+    
+    <!-- Menu values -->
+    <string name="action_settings">Настройки</string>
+    <string name="action_showabout">О программе</string>
+    <string name="action_exit">Выход</string>
+
+    <string name="km">км</string>
+    
+    <string name="columnNameHeader">ФИО</string>
+    <string name="columnPhoneHeader">Телефон</string>
+    <string name="columnVisitsHeader">Визиты</string>
+    <string name="columnOrdersHeader">Заказы</string>
+    <string name="columnSumHeader">Сумма</string>
+    <string name="columnDateHeader">Синхронизация</string>
+    <string name="columnProgressHeader">Прогресс</string>
+    
+    <string name="close">Закрыть</string>
+    <string name="refreshButtonDesc">Обновить</string>    
+    <string name="ip">IP</string>
+    <string name="ip2">IP 2</string>
+    <string name="port">Порт</string>
+    <string name="login">Логин</string>
+    <string name="passw">" Пароль"</string>
+    <string name="export">Экспорт</string>
+    <string name="import_str">Импорт</string>
+    <string name="export_base">Экспортировать базу</string>
+    <string name="save_setting">Сохранить настройки</string>
+    <string name="load_setting">Считать настройки</string>
+    <string name="ok">ОК</string>
+    <string name="cancel">Отмена</string>
+    <string name="inform">Информация</string>
+
+    <string name="file_save_succs">Файл сохранен успешно</string>
+    <string name="file_save_error">Ошибка при сохранении файла</string>
+    <string name="setting_has_been_read_succs">Настройки прочитаны успешно</string>
+    <string name="setting_load_error">Ошибка при загрузке настроек</string>
+
+    <string name="use_sync_later">Невозможно выполинть синхронизацию. &lt;br>Пожалуйста, повторите операцию через 2 минуты....</string>
+    <string name="sync_end_traffic">"Синхронизация завершена\nТрафик: "</string>
+    <string name="sync">Синхронизация</string>
+    <string name="calendar">Каледнарь</string>
+    <string name="kB">" кБ"</string>
+    <string name="recieved_error">Ошибка при приеме</string>
+    <string name="base_updating">Обновление базы данных</string>
+    <string name="wait_for_server_answer">Ожидание ответа от сервера</string>
+    <string name="save_to_base">Запись в базу данных</string>
+    <string name="data_sending">Отправка данных на сервер</string>
+    <string name="wait_form_server_answer">Получение ответа от сервера</string>
+    
+    <string name="please_wait">Подождите, пожалуйста</string>
+    <string name="license_till">Лицензия до</string>
+    <string name="demo_license">Демо-режим</string>
+    <string name="save_success">Данные сохранены</string>
+    <string name="save_fail">Ошибка при сохранении данных</string>
+    
+<string-array name="period_spinner">
+    <item>День</item>
+    <item>Неделя</item>
+    <item>Месяц</item>
+    <item>Период</item>
+</string-array>
+    <string name="clear_base">Очистить базу</string>
+    <string name="division">отдел</string>
+    <string name="км">км</string>
+    <string name="docs">док-ты</string>
+    <string name="sum">сумма</string>
+    <string name="percent">%</string>
+    <string name="select_date">Выберите дату</string>
+    <string name="editors">Редакторы</string>
+    <string name="rating_action_title">Оценка действий ТП</string>
+    <string name="input_name">Введите наименование</string>
+    <string name="new_parameter">Новый параметр</string>
+    <string name="visit_dlg_title">Данные о посещении</string>
+    <string name="dist">дист</string>
+    <string name="visit">виз</string>
+    <string name="order">зак</string>
+    <string name="run_napoleon">Запустить Наполеон</string>
+    <string name="write_message">Написать сообщение&#8230;</string>
+    <string name="write_message_to">Написать сообщение %s</string>
+    <string name="send">Отправить</string>
+    <string name="history">История</string>
+    <string name="message_sended">Сообщение отправлено</string>
+    <string name="doclist">Документы %s</string>
+    <string name="userlog">Лог действий</string>
+    <string name="messagehistoryofagent">История сообщений агента: %s</string>
+    <string name="demo_count_limit">Ограничение демо-версии следующее подключение возможно через %s</string>
+    <string name="license_open">Лицензия</string>
+    <string name="licenses">Лиценизии</string>
+    <string name="answer_doc_title">Анкета</string>
+    <string name="incass_doc_title">Инкассация</string>
+    <string name="sales_doc_title">Продажа</string>
+    <string name="script_doc_title">Сценарий</string>
+    <string name="return_doc_title">Возврат</string>
+    <string name="visit_doc_title">Посещение</string>
+    <string name="not_visited_doc_title">Не посетил</string>
+    <string name="task_menu">Задачи</string>
+    <string name="task_from">Задача с</string>
+    <string name="task_till">по</string>
+    <string name="begin_text">Начало</string>
+    <string name="end_text">Окончание</string>
+    <string name="text">Текст</string>
+    <string name="tasks_from">Задачи с</string>
+    <string name="task_descr">Описание</string>
+    <string name="write_error">Ошибка при записи. Повторить?</string>
+    <string name="no_agent_selected">Не выбран агент</string>
+    <string name="works">Дела</string>
+    <string name="story_activity">Лента активности</string>
+    <string name="drawer_open">Открыть</string>
+    <string name="drawer_close">Закрыть</string>
+    <string name="chat">Чат</string>
+    <string name="reports">Отчеты</string>
+    <string name="agents_in_fields">Агенты в полях</string>
+    <string name="about">О программе</string>
+    <string name="user_actions">Действия сотрудника</string>
+    <string name="leaders_sell">Лидеры продаж</string>
+    <string name="leaders_sell_desc">Рейтинг топовых товаров (формируется на основе заказов)</string>
+    <string name="routes">Маршруты</string>
+    <string name="routes_desc">План/факт/результат (День, текущая неделя, текущий месяц)</string>
+    <string name="orders_sum">Сумма заказов</string>
+    <string name="orders_sum_desc">По торговым представителям (День, текущая неделя, текущий месяц)</string>
+    <string name="akb">АКБ</string>
+    <string name="akb_desc">Среди всех торовых точек или по маршруту</string>
+    <string name="users_locations">Агенты в полях</string>
+    <string name="all">Все</string>
+    <string name="week">Неделя</string>
+    <string name="month">Месяц</string>
+    <string name="select_range">период (день, неделя , месяц)</string>
+    <string name="topsel">Лидеры продаж</string>
+    <string name="day">День</string>
+    <string name="maptype">Тип карты</string>
+    
+    <string-array name="mapTypeNames">
+        <item>OpenStreetMap</item>
+        <item>Яндекс</item>
+    </string-array>
+    
+    <string-array name="mapTypeValues">
+        <item>openstreet</item>
+        <item>yandex</item>
+    </string-array>
+    <string name="agents">Агенты</string>
+    
+    <string-array name="akbTypes">
+        <item>Всех точек</item>
+        <item>По маршруту</item>
+    </string-array>
+    
+    <string name="permission_dlg_text">Для полноценной работы Мобильного менеджера необходимо больше разрешений.
+		Пожалуйста дайте их в настройках устройства</string>
+	<string name="today">сегодня</string>
+	<string name="yesterday">вчера</string>
+	<string name="clear_db">Очистить базу</string>
+	<string name="copy_db">Копировать базу</string>
+	<string name="base_deleted">База удалена!</string>
+	<string name="audit">Аудит</string>
+	<string name="select_org">Выберите торговую точку</string>
+	<string name="select_agent">Выберите агента</string>
+	<string name="input_org_name">Введите название точки</string>
+    <string name="input_org_address">Введите адрес точки</string>
+    <string name="select_action">Выберите действие</string>	
+    <string name="open">Открыть</string>
+    <string name="need_to_select_agent">Необходимо выбрать агента</string>
+    <string name="attachment_title">Вложение</string>
+    <string name="orgs">Организации</string>
+    <string name="select_for_open">Нажмите что бы открыть Manager</string>
+    <string name="routePoints">Точки маршрута   </string>
+
+    <string name="gps_permission_dissallow">Запрещено определение координат</string>
+	<string name="gps_permission_explain">Неоходимо разрешить определение координат в настройках</string>
+    <string name="settings">Настройки</string>
+    <string name="gpsOffTitle">GPS выключен</string>
+    <string name="gpsOffMessage">Необходимо включить определение координат GPS в настройках.</string>
+    <string name="gpsWait">Идет определение GPS координат...</string>
+    	
+</resources>

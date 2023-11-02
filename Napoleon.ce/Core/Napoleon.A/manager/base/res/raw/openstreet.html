@@ -1,0 +1,216 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+   <meta name="viewport" content="width=device-width,height=device-height, user-scalable=no"/>
+   
+   <title>User Location</title>
+
+   <style type="text/css">
+      body, html {
+         width: 100%;
+         height: 100%;
+         margin: 0;
+         padding: 0;
+         overflow: hidden;
+      }
+
+      #map {
+         height: 100%;
+      }
+   </style>
+
+   <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAjuQiUAlecbUWCdh1QCnZzrWq37EPqPE0&callback=initialize" async defer></script>
+
+   <script type="text/javascript">
+      var map;
+      var infowindow = null;
+      var polylines = [];
+
+      function initialize() {
+         var mapTypeIds = [];
+
+         for(var type in google.maps.MapTypeId) {
+            mapTypeIds.push(google.maps.MapTypeId[type]);
+         }
+
+         mapTypeIds.push("OSM");
+
+         map = new google.maps.Map(document.getElementById("map"),{
+            center: new google.maps.LatLng({ lat: 57.611453, lng: 39.83032 }),
+            zoom: 13,
+            mapTypeId: "OSM",
+            mapTypeControlOptions: { mapTypeIds: mapTypeIds }
+         });
+
+         map.mapTypes.set("OSM", new google.maps.ImageMapType({
+            getTileUrl: function (coord, zoom) { return "http://tile.openstreetmap.org/" + zoom + "/" + coord.x + "/" + coord.y + ".png"; },
+            tileSize: new google.maps.Size(256, 256),
+            name: "OpenStreetMap",
+            maxZoom: 18
+         }));
+         
+         if (!loadData('DATASECTION')){
+        	 document.getElementById("map").style.visibility='hidden';
+             document.getElementById("info").style.visibility='visible';
+   	  	 }
+      }
+     
+      function drawRoute(points, bounds) {
+         var isGSM = null;
+         var routes = [];
+
+         points.forEach(function (p) {
+            if (isGSM == null || isGSM != p.isGSM) {
+               routes.push([]);
+               isGSM = p.isGSM;
+            }
+
+            routes[routes.length - 1].push(p);
+         });
+
+         routes.forEach(function (p) {
+            var path = [];
+            var color = "#0000ff";
+
+            p.forEach(function (pp) {
+               var c = new google.maps.LatLng(pp.latitude, pp.longitude);
+               path.push(c);
+               bounds.extend(c);
+            });
+
+            var route = new google.maps.Polyline({
+               path: path,
+               icons: [{ icon: { path: 'M -1,2 0,-1 1,2 0,1' }, offset: '50%', repeat: '150px' }],
+               strokeColor: color,
+               strokeWeight: 5,
+               strokeOpacity: 1
+            });
+
+            route.setMap(map);
+            polylines.push(route);
+         });
+      }
+
+      function drawExecuted(docs, bounds) {
+         docs.forEach(function (p) {
+            var c = new google.maps.LatLng(p.latitude, p.longitude);
+            bounds.extend(c);
+            var marker = new google.maps.Marker({
+               position: c,
+               icon: "http://grsoft.ru/markers/green/marker" + p.idx + ".png",
+               map: map,
+               info: p,
+            });
+
+            marker.addListener('click', function (e) {
+               if (infowindow != null)
+                  infowindow.close();
+
+               infowindow = new google.maps.InfoWindow({
+                  content: '<b>' + this.info.org.name + '</b><br><i>' + this.info.org.address + '</>',
+               });
+
+               infowindow.open(map, this);
+            });
+         });
+      }
+
+      function drawRoutePoint(points, bounds) {
+         points.forEach(function (p) {
+            var c = new google.maps.LatLng(p.latitude, p.longitude);
+            bounds.extend(c);
+            var marker = new google.maps.Marker({
+               position: c,
+               icon: "http://grsoft.ru/markers/blue/marker" + p.idx + ".png",
+               map: map,
+               info: p.title,
+            });
+
+            marker.addListener('click', function (e) {
+               if (infowindow != null)
+                  infowindow.close();
+
+               infowindow = new google.maps.InfoWindow({
+                  content: this.info,
+               });
+
+               infowindow.open(map, this);
+            });
+         });
+      }
+      
+      function drawAgentsInFields(docs, bounds) {
+          if (docs != null) {
+             docs.forEach(function (p) {
+            	 var c = new google.maps.LatLng(p.latitude, p.longitude);
+                 bounds.extend(c);
+                 var marker = new google.maps.Marker({
+                    position: c,
+                    icon: "http://grsoft.ru/markers/blue/marker" + p.idx + ".png",
+                    map: map,
+                    info: p,
+                 });
+
+                 marker.addListener('click', function (e) {
+                    if (infowindow != null)
+                       infowindow.close();
+
+                    infowindow = new google.maps.InfoWindow({
+                       content: this.info.agent.name,
+                    });
+
+                    infowindow.open(map, this);
+                 });
+             });
+          }
+       }
+
+      function loadData(json) {
+    	 result = false;
+         try {
+            polylines.forEach(function (p) { p.setMap(null); })
+
+            var data = JSON.parse(json)
+            var bounds = new google.maps.LatLngBounds();
+
+            if (data != null) {
+               if (data.points != null && data.points.length > 0){
+                  drawRoute(data.points, bounds);
+                  result = true;
+               }
+
+               if (data.executed != null && data.executed.length > 0){
+                  drawExecuted(data.executed, bounds);
+                  result = true;
+               }
+               
+               if (data.routePoints != null && data.routePoints.length > 0){
+                  drawRoutePoint(data.routePoints, bounds);
+                  result = true;
+               }
+
+               if (data.agentsinfields != null && data.agentsinfields.length > 0){
+            	   drawAgentsInFields(data.agentsinfields, bounds);
+            	   result = true;
+               }
+
+               if (!bounds.isEmpty()) {
+                  map.setCenter(bounds.getCenter());
+                  map.fitBounds(bounds);
+               }
+            }
+         } catch (err) {
+            console.log(err);
+         }
+         
+         return result;
+      }
+   </script>
+</head>
+
+<body>
+   <div id="map"></div>
+   <div id='info' style='position: absolute;left: 50%;top: 50%;transform: translateX(-50%) translateY(-50%);visibility: hidden'><font color='gray'>Нет данных о перемещении агента</font></div>
+</body>
+</html>

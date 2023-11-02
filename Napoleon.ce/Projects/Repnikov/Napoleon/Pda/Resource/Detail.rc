@@ -1,0 +1,121 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "NapoleonRes.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "resdefce.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Russian resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_RUS)
+#ifdef _WIN32
+LANGUAGE LANG_RUSSIAN, SUBLANG_DEFAULT
+#pragma code_page(1251)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ORDER_DETAIL DIALOG  0, 0, 186, 108
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Параметры заказа"
+FONT 8, "MS Shell Dlg"
+BEGIN
+
+    CONTROL         "",IDC_ORDER_DATE,"SysDateTimePick32",DTS_RIGHTALIGN | WS_TABSTOP,36,2,43,15
+    CONTROL         "",IDC_ORDER_TIME,"SysDateTimePick32",DTS_RIGHTALIGN | DTS_UPDOWN | DTS_APPCANPARSE | WS_TABSTOP | 0x8,110,2,43,15
+
+    LTEXT           "Дата",-1,8,5,18,8
+    LTEXT           "Время",-1,85,5,21,8
+    COMBOBOX        IDC_COST_TYPE,36,19,100,80,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Цена",IDC_STATIC,8,21,18,8
+
+    COMBOBOX        IDC_WAREHOUSE,36,32,100,80,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Склад",IDC_STATIC,8,34,25,8
+
+    LTEXT           "Торг.точка",IDC_UNIT_TEXT_LABEL,2,45,40,8
+    LTEXT           "",IDC_UNIT_TEXT,2,55,40,16
+    CONTROL         "",IDC_UNIT_LIST,"SysListView32",LVS_ALIGNLEFT | WS_TABSTOP | LVS_OWNERDRAWFIXED | WS_BORDER ,43,15,110,87
+
+    EDITTEXT        IDC_REMARK,2,72,182,44,ES_MULTILINE | ES_AUTOVSCROLL | ES_AUTOHSCROLL | ES_WANTRETURN
+
+    DEFPUSHBUTTON   "OK",IDOK,136,76,50,14
+    PUSHBUTTON      "Отмена",IDCANCEL,0,76,50,14
+
+END
+
+IDD_ORG_DOCS_ADD DIALOG  0, 0, 120, 134
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_SYSMENU
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Static",IDC_ORG_TITLE,0,3,120,10
+    CONTROL         "",IDC_TABLE,"SysListView32",LVS_ALIGNLEFT | LVS_OWNERDATA | WS_TABSTOP | LVS_OWNERDRAWFIXED,0,10,120,110
+END
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "NapoleonRes.\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""resdefce.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_ORDER_DETAIL, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 90
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // Russian resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

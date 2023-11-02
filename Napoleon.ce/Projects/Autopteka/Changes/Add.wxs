@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding="windows-1251"?>
+<Wix xmlns='http://schemas.microsoft.com/wix/2006/wi'>
+   <Fragment Id='Add'>
+      <FeatureRef Id='Server'>
+         <ComponentRef Id='AddServerComponents' />
+      </FeatureRef>
+
+      <DirectoryRef Id='_PRODUCT' >
+         <Component Id='AddServerComponents' Guid='17CA81F3-069F-4845-844D-2664BA8B1FBF'>
+            <File Id='AddDefsXml' DiskId='1' Source='addDefs.xml' Name='addDefs.xml'/>
+         </Component>
+      </DirectoryRef>
+   </Fragment>
+</Wix>

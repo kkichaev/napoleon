@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding="windows-1251"?>
+<Wix xmlns='http://schemas.microsoft.com/wix/2006/wi'>
+  <Fragment Id='ComSrv'>
+    <Feature Id='ComSrv' Title='COM-объект' Description='COM объект для сервера'
+             Absent='allow' ConfigurableDirectory='_PRODUCT' Level='1' >
+      <ComponentRef Id='ComGRServer' />
+      <ComponentRef Id='ComGRServerDocs' />
+      <ComponentGroupRef Id='Docs' />
+    </Feature>
+
+    <DirectoryRef Id='_PRODUCT' >
+      <Component Id='ComGRServer' Guid='A4734870-B72D-4126-B694-A6E42EC58CF3'>
+        <File Id='ComGRServer_dll' DiskId='1' Source='ComGRServer.dll' Name='ComGRServer.dll' KeyPath='yes'>
+          <TypeLib Id='31785177-6B2B-4A0C-B49C-FD1F13A7C00B' Language='0' Advertise='yes' >
+            <Class Id='5DC08783-F6AA-42DA-A677-312193D7E989' Context='InprocServer32' Programmable='yes' ThreadingModel='apartment' >
+              <ProgId Id='GRSoft.Server.1'>
+                <ProgId Id='GRSoft.Server' />
+              </ProgId>
+            </Class>
+          </TypeLib>
+        </File>
+         <!--<File Id='ComGRServer_x64_dll' DiskId='1' Source='ComGRServer_x64.dll' Name='ComGRServer_x64.dll'>
+            <TypeLib Id='31785177-6B2B-4A0C-B49C-FD1F13A7C00B' Language='0' Advertise='yes' >
+               <Class Id='5DC08783-F6AA-42DA-A677-312193D7E989' Context='InprocServer32' Programmable='yes' ThreadingModel='apartment' >
+                  <ProgId Id='GRSoft.Server.1'>
+                     <ProgId Id='GRSoft.Server' />
+                  </ProgId>
+               </Class>
+            </TypeLib>
+         </File>-->
+      </Component>
+      <Component Id='ComGRServerDocs' Guid='A93059DE-94FE-4e29-ABFB-ECF7C2991107'>
+        <File Id='ComGRServer_pdf' DiskId='1' Source='ComGRServer.pdf' Name='ComGRServer.pdf' KeyPath='yes'>
+          <Shortcut Id="ComGRServerDoc" Directory="Docs" Name="COM GRServer" Description="COM-объект GRServer: Руководство программиста" Advertise="yes" />
+        </File>
+      </Component>
+    </DirectoryRef>
+  </Fragment>
+</Wix>

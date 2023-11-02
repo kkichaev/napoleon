@@ -1,0 +1,26 @@
+HKCR
+{
+	GRSoft.Server.1 = s 'Server Class'
+	{
+		CLSID = s '{5DC08783-F6AA-42DA-A677-312193D7E989}'
+	}
+	GRSoft.Server = s 'Server Class'
+	{
+		CLSID = s '{5DC08783-F6AA-42DA-A677-312193D7E989}'
+		CurVer = s 'GRSoft.Server.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {5DC08783-F6AA-42DA-A677-312193D7E989} = s 'Server Class'
+		{
+			ProgID = s 'GRSoft.Server.1'
+			VersionIndependentProgID = s 'GRSoft.Server'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			'TypeLib' = s '{31785177-6B2B-4A0C-B49C-FD1F13A7C00B}'
+		}
+	}
+}

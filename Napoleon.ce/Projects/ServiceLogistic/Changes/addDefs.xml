@@ -1,0 +1,46 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+    <object name="OrgAsmMatrix">
+      <sources>
+        <source name="SQTable" type="internal">
+          <param name="readFilter">'"userid"=' + "'" + $user.id + "'"</param>
+        </source>
+      </sources>
+
+      <member name="primaryKey">"userid,id"</member>
+      <field name="userid" type="string" />
+      <field name="id" type="string" />
+    </object>
+
+    <modify src="Order">
+      <add>
+        <field name="retdoc" type="number" width="1" />
+        <field name="writeoff" type="number" width="1" />
+        <field name="avgtime" type="number" />
+      </add>
+    </modify>
+
+    <modify src="Org">
+      <add>
+        <field name="sortOrder" type="number" data="rowid" />
+        <field name="matrix" type="collection">
+          <data>
+            <object name="OrgMatrix">
+                <sources>
+                  <source name="DBFTableSet">
+                      <param name="userTable">"OMX"</param>
+                      <param name="commonTable">"ORGMTX"</param>
+                      <param name="filter">"[ID] = $parent.id"</param>
+                  </source>
+                </sources>
+
+                <field name="id" data="ID_I" type="string" />
+            </object>
+          </data>
+        </field>
+      </add>
+    </modify>
+
+  </objects>
+</serverDefs>

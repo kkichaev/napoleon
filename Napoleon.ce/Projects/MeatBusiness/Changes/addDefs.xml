@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+    <object name="SchFactNumber" removeOnCommit="true" sendAlways="true">
+      <sources>
+        <source name="DBFTable">
+          <param name="tableName">"SFN" + $user.id</param>
+        </source>
+      </sources>
+
+      <!--имена полей "зашиты" в функцию-->
+      <field name="created" type="timestamp" />
+      <field name="number" type="string" />
+    </object>
+
+    <modify src="Sales">
+      <add>
+        <field name="schFactNumber" type="string" width="50" data="SCH_NUM" />
+      </add>
+    </modify>
+
+  </objects>
+</serverDefs>

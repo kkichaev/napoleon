@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+    
+    
+    <LinearLayout
+        android:id="@+id/LinearLayout01"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:background="@color/footer"
+        android:paddingBottom="10dp"
+        android:paddingTop="5dp" >
+
+        <TextView
+            android:id="@+id/tvOrg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scrollHorizontally="true"
+            android:text="OrgName"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+           	 />
+    </LinearLayout>
+
+   <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0" >
+	    <TextView
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+            android:textColor="@color/black"
+	        android:paddingLeft="4dp"
+	        android:paddingRight="4dp"
+            android:textSize="18sp"
+	        android:text="@string/sum" />
+
+	    <EditText
+	        android:id="@+id/edSum"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:ems="5" >
+
+	        <requestFocus />
+	    </EditText>
+	    <TextView
+            android:id="@+id/tvDvrDate"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_gravity="center_horizontal|center_vertical"
+	        android:paddingLeft="8dp"
+	        android:text="12/12/2014"
+	        android:textColor="@color/blue"
+	        android:textSize="18sp" />
+	</LinearLayout>
+    <EditText
+           android:id="@+id/edDvrNum"
+           android:ems="12"
+           android:layout_gravity="right"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content" />
+   
+	<LinearLayout  
+		android:background="@color/table_caption" 
+		android:layout_width="fill_parent" 
+		android:layout_height="wrap_content">
+	    	    		
+		<TextView
+		    android:id="@+id/NameTitle"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:background="@color/table_caption"
+		    android:text="@string/date_number"
+		    android:textColor="#000000"
+		    android:textSize="16sp"
+		    android:width="100dp" />
+			
+		<TextView android:id="@+id/DateTitle" 
+		    android:visibility="gone"
+			android:layout_width="wrap_content" 
+			android:layout_height="wrap_content" 
+			android:textColor="#000000" 
+			android:text="@string/date" 
+			android:paddingLeft="3dp" 
+			android:background="@color/table_caption" 
+			android:textSize="16sp"/>
+		
+		<TextView android:id="@+id/SumColumnTitle" 
+		    android:visibility="gone"
+			android:layout_width="wrap_content" 
+			android:layout_height="wrap_content" 
+			android:textColor="#000000" 
+			android:text="@string/sum" 
+			android:gravity="right" 
+			android:background="@color/table_caption" 
+			android:paddingRight="3dp" 
+	           android:textSize="16sp"/>
+					
+		<TextView android:id="@+id/DebtColumnTitle" 
+			android:layout_width="0dip" 
+			android:layout_height="wrap_content"
+			android:layout_weight="1" 
+			android:textColor="#000000" 
+			android:text="Долг/Сумма"
+			android:layout_gravity="center_horizontal" 
+			android:gravity="center_horizontal" 
+			android:background="@color/table_caption" 
+			android:paddingRight="3dp" 
+	           android:textSize="16sp"/>
+		
+		<TextView android:id="@+id/Overhead" 
+			android:layout_width="wrap_content" 
+			android:layout_height="wrap_content" 
+			android:textColor="#000000" 
+			android:text="Просрочка/\nОтсрочка" 
+			android:gravity="right" 
+			android:background="@color/table_caption" 
+			android:paddingRight="3dp" 
+	           android:textSize="16sp"/>
+	</LinearLayout>
+         
+    <ListView
+        android:id="@+id/lvItems"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@color/white" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/footer"
+        android:orientation="horizontal"
+        android:padding="7dp" >
+
+        <ImageButton
+            android:id="@+id/btnSend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="7dp"
+            android:src="@drawable/send"
+            />
+    </LinearLayout>
+</LinearLayout>

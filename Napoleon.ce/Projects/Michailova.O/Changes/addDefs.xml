@@ -1,0 +1,134 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+  <objects>
+    <object name="OffTakeCoeff">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"id"</member>
+      <field name="id" type="string" />
+      <field name="coef" type="number" prec="2" />
+    </object>
+
+    <object name="FolderOffTakeCoeff">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"id"</member>
+      <field name="id" type="string" />
+      <field name="coef" type="number" prec="2" />
+    </object>
+    
+    <object name="OrgMatrix">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"MO"</param>
+          <param name="commonTable">"MOMTX"</param>
+        </source>
+      </sources>
+
+      <field name="name" type="string" width="30" />
+      <field name="id" type="string" width="30" />
+      <field name="userid" type="string" width="30" hidden="put" />
+    </object>
+    
+    <object name="OrgType">
+      <sources>
+        <source name="SQTable" type="internal">
+          <param name="readFilter">"rem=0"</param>
+        </source>
+      </sources>
+      
+      <member name="primaryKey">"id"</member>
+      
+      <field name="items" type="collection">
+        <data>
+          <object name="OrgTypeItem">
+            <sources>
+              <source name="SQTable" type="internal"/>
+            </sources>
+            <field name="id" type="string" width="40" />
+          </object>
+        </data>
+      </field>
+      
+      <field name="id" type="string" />
+      <field name="name" type="string"/>
+      <field name="rem" type="number"/>
+      <field name="matrix" type="string"/>
+    </object>
+    
+    <object name="OrgDistrict">
+      <sources>
+        <source name="SQTable" type="internal">
+          <param name="readFilter">'"userid" = ' + "'" + $user.id + "'"</param>
+        </source>
+      </sources>
+      
+      <member name="primaryKey">"id,userid"</member>
+      <field name="id" type="string" />
+      <field name="userid" type="string"/>
+      <field name="rejret" type="number"/>
+    </object>
+    
+    <object name="OrgTypeMatrix">
+      <sources>
+        <source name="SQLQuery">
+          <param name="stmt">
+            "select [orgtype$items].[id] as id, [matrix] as matrix from [orgtype], [orgtype$items] where [orgtype].[id]=[orgtype$items].[OrgType$id]"
+          </param>
+        </source>
+      </sources>
+      <field name="id" type="string" />
+      <field name="matrix" type="string" />
+    </object>
+    
+    <modify src="Org">
+      <add>
+        <field name="matrix" type="collection">
+          <data>
+            <object name="OrgMatrix">
+              <sources>
+                <source name="DBFTableSet">
+                  <param name="userTable">"MO"</param>
+                  <param name="commonTable">"MOMTX"</param>
+                  <param name="filter">"[ID] = $parent.id"</param>
+                </source>
+              </sources>
+
+              <field name="name" type="string" width="30" />
+            </object>
+          </data>
+        </field>
+      </add>
+    </modify>
+    <modify src="CommonMatrix">
+      <add>
+        <field name="common" type="number" />
+      </add>
+    </modify>
+    <modify src="Matrix">
+      <change>
+        <sources>
+          <source name="DBFTableSet">
+            <param name="userTable">"Mtx"</param>
+            <param name="commonTable">"Matrix"</param>
+            <param name="catalog">"name;items;0"</param>
+          </source>
+        </sources>
+      </change>
+      <add>
+        <field name="common" type="number" />
+      </add>
+    </modify>
+    
+    <modify src="Order$items">
+      <add>
+        <field name="rekzak" type="number" prec="3" />
+      </add>
+    </modify>
+
+  </objects>
+</serverDefs>

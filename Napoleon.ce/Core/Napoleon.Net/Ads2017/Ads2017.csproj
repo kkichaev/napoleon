@@ -1,0 +1,553 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4F894BC3-AD7F-4744-88BB-2F2103BA48F6}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Ads2017</RootNamespace>
+    <AssemblyName>Ads2017</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>napoleon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Controls.Ribbon" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="AboutWindow.xaml.cs">
+      <DependentUpon>AboutWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AdminLoginWindow.xaml.cs">
+      <DependentUpon>AdminLoginWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DivisionsEdit.xaml.cs">
+      <DependentUpon>DivisionsEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\ReportHelper.cs" />
+    <Compile Include="ObjectReportData.cs" />
+    <Compile Include="Properties\Resources.en-US.Designer.cs">
+      <DependentUpon>Resources.en-US.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="SelectDivisionAgents.xaml.cs">
+      <DependentUpon>SelectDivisionAgents.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TemplateWindow.xaml.cs">
+      <DependentUpon>TemplateWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\AdsCommands.cs" />
+    <Compile Include="Helpers\FormatHelper.cs" />
+    <Compile Include="Utils\ManagerHelper.cs" />
+    <Compile Include="Utils\TaskTicketFactory.cs" />
+    <Compile Include="Utils\TemplateData.cs" />
+    <Compile Include="View\AgentItemView.xaml.cs">
+      <DependentUpon>AgentItemView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\BandProgres.xaml.cs">
+      <DependentUpon>BandProgres.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\BandProgressItem.xaml.cs">
+      <DependentUpon>BandProgressItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\CollectionHelper.cs" />
+    <Compile Include="Utils\Comparator.cs" />
+    <Compile Include="Helpers\ConnectionHelper.cs" />
+    <Compile Include="Utils\Constants.cs" />
+    <Compile Include="Utils\Coordutils.cs" />
+    <Compile Include="Utils\CopyBuffer.cs" />
+    <Compile Include="DistanceWindow.xaml.cs">
+      <DependentUpon>DistanceWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ITaskTicket.cs" />
+    <Compile Include="View\JournalItem.cs" />
+    <Compile Include="Utils\JSon.cs" />
+    <Compile Include="Maps\MapData.cs" />
+    <Compile Include="Maps\MapHelper.cs" />
+    <Compile Include="Maps\MapObjects.cs" />
+    <Compile Include="MessageHistoryWindow.xaml.cs">
+      <DependentUpon>MessageHistoryWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageWindow.xaml.cs">
+      <DependentUpon>MessageWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Objects.Display.cs" />
+    <Compile Include="Utils\OpenLink.cs" />
+    <Compile Include="PhotoWindow.xaml.cs">
+      <DependentUpon>PhotoWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\Route.cs" />
+    <Compile Include="Utils\StringUtil.cs" />
+    <Compile Include="Helpers\TaskAttachmentHelper.cs" />
+    <Compile Include="Helpers\TaskHelper.cs" />
+    <Compile Include="Helpers\TaskInfo.cs" />
+    <Compile Include="TaskJournalWindow.xaml.cs">
+      <DependentUpon>TaskJournalWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TaskJournalPanel.xaml.cs">
+      <DependentUpon>TaskJournalPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TaskJournalView.xaml.cs">
+      <DependentUpon>TaskJournalView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\IListViewItem.cs" />
+    <Compile Include="View\TaskPointTicket.xaml.cs">
+      <DependentUpon>TaskPointTicket.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TimeLineControl\TicketDeleteHandlerParam.cs" />
+    <Compile Include="Utils\StdDialog.cs" />
+    <Compile Include="Objects.cs" />
+    <Compile Include="SettingWindow.xaml.cs">
+      <DependentUpon>SettingWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TaskWindow.xaml.cs">
+      <DependentUpon>TaskWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TaskStopTicket.xaml.cs">
+      <DependentUpon>TaskStopTicket.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TimeControl.xaml.cs">
+      <DependentUpon>TimeControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TimeLineControl\TicketGrid.xaml.cs">
+      <DependentUpon>TicketGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TimeLineControl\TicketPanel.cs" />
+    <Compile Include="TimeLineControl\TaskLabel.cs" />
+    <Compile Include="TimeLineControl\Ticket.xaml.cs">
+      <DependentUpon>Ticket.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TimeLineControl\TicketStack.xaml.cs">
+      <DependentUpon>TicketStack.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TimeLineControl\Time.cs" />
+    <Compile Include="TimeLineControl\TimeCell.xaml.cs">
+      <DependentUpon>TimeCell.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TimeLineControl\TimeColumnHeader.xaml.cs">
+      <DependentUpon>TimeColumnHeader.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TimeLineControl\TimeColumnHeaderCell.xaml.cs">
+      <DependentUpon>TimeColumnHeaderCell.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TimeLineControl\TimeHeaderPanel.cs" />
+    <Compile Include="TimeLineControl\TimeLine.xaml.cs">
+      <DependentUpon>TimeLine.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TimeLineControl\TimePanelHeaderCell.xaml.cs">
+      <DependentUpon>TimePanelHeaderCell.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TimeLineControl\TimeTypeConverter.cs" />
+    <Compile Include="Helpers\MapControlHelper.cs" />
+    <Compile Include="Utils\UpdateCollection.cs" />
+    <Compile Include="Utils\UpdateProcess.cs" />
+    <Compile Include="UserLocationWindow.xaml.cs">
+      <DependentUpon>UserLocationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TransparentButton.cs" />
+    <Compile Include="View\UserOrderPanel.xaml.cs">
+      <DependentUpon>UserOrderPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserOrderView.xaml.cs">
+      <DependentUpon>UserOrderView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserOrderWindow.xaml.cs">
+      <DependentUpon>UserOrderWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserRouteWindow.xaml.cs">
+      <DependentUpon>UserRouteWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UsersWindow.xaml.cs">
+      <DependentUpon>UsersWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ListView.xaml.cs">
+      <DependentUpon>ListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TextBoxPopup.xaml.cs">
+      <DependentUpon>TextBoxPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserLocationTicket.xaml.cs">
+      <DependentUpon>UserLocationTicket.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VisitQueueItem.cs" />
+    <Compile Include="WaitWindow.xaml.cs">
+      <DependentUpon>WaitWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\WeekDay.cs" />
+    <Page Include="AboutWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AdminLoginWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DivisionsEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SelectDivisionAgents.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TemplateWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AgentItemView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\BandProgres.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="View\BandProgressItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DistanceWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="MessageHistoryWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MessageWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PhotoWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SettingWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Strings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TaskJournalWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\TaskJournalPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TaskJournalView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TaskPointTicket.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TaskWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TaskStopTicket.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TimeControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TimeLineControl\Ticket.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TimeLineControl\TicketGrid.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TimeLineControl\TicketStack.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TimeLineControl\TimeCell.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TimeLineControl\TimeColumnHeader.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TimeLineControl\TimeColumnHeaderCell.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TimeLineControl\TimeLine.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TimeLineControl\TimePanelHeaderCell.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserLocationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UserOrderPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UserOrderView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserOrderWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserRouteWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UsersWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TextBoxPopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UserLocationTicket.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WaitWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.en-US.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.en-US.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\view-refresh-6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GRPacket\GRPacket.csproj">
+      <Project>{3f426035-2a5e-48f3-81b1-17f94986f7ed}</Project>
+      <Name>GRPacket</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\edit-user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\family.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\kmenuedit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\paste.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\copy.png" />
+    <Resource Include="Images\cut.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\refresh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\agentsinfields.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\about.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="napoleon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\add.png" />
+    <Resource Include="Images\save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\users.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\copy16.png" />
+    <Resource Include="Images\cut16.png" />
+    <Resource Include="Images\delete16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\distancereport.png" />
+    <Resource Include="Images\route.png" />
+    <Resource Include="Images\userorders.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\browser.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\taskjournal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="favicon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\favicon.ico" />
+    <Resource Include="Images\message.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="MapsWeb\Google.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="MapsWeb\Openstreet.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="MapsWeb\Yandex.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\photo_stub.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\loadphoto.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\notify.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\clear.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\attachment.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Report\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\add-blue.png" />
+    <Resource Include="Images\remove-blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\excel.png" />
+    <Resource Include="Images\template.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\admin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="MapsWeb\Empty.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\folder.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

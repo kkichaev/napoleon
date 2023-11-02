@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+   <meta name="viewport" content="width=device-width,height=device-height, user-scalable=no"/>
+   
+   <title>Yandex Map</title>
+
+   <style type="text/css">
+      body, html {
+         width: 100%;
+         height: 100%;
+         margin: 0;
+         padding: 0;
+         overflow: hidden;
+      }
+
+      #map {
+         height: 100%;
+      }
+   </style>
+
+   <script src="http://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+
+   <script type="text/javascript">
+   	  ymaps.ready(initialize);
+   
+      var map;
+
+      function initialize() {
+    	  map = new ymaps.Map("map", {
+              center: [57.611453, 39.83032],
+              zoom: 10
+          }, {
+              searchControlProvider: 'yandex#search'
+          });
+
+          data = 'DATASECTION'
+          console.log('json data:');
+          console.log(data);
+          
+    	  if (!loadData(data)){
+    		  map = document.getElementById("map");
+    		  map.innerHTML = "<div style='position: absolute;left: 50%;top: 50%;transform: translateX(-50%) translateY(-50%);'><font color='gray'>Нет данных о перемещении агента</font></div>";
+    	  }
+      }
+
+      function drawRoute(points) {
+         var isGSM = null;
+         var routes = [];
+
+         points.forEach(function (p) {
+            if (isGSM == null || isGSM != p.isGSM) {
+               routes.push([]);
+               isGSM = p.isGSM;
+            }
+
+            routes[routes.length - 1].push(p);
+         });
+
+         routes.forEach(function (p) {
+            var path = [];
+
+            p.forEach(function (pp) {
+               path.push([pp.latitude, pp.longitude]);
+            });
+
+            var route = new ymaps.Polyline(path,{},{strokeColor: "#0000ff", strokeWidth: 3});
+            map.geoObjects.add(route);
+         });
+      }
+
+      function drawExecuted(docs) {
+         if (docs != null) {
+            docs.forEach(function (p) {
+               marker = new ymaps.Placemark([p.latitude, p.longitude], 
+            		   {iconContent: "<font color='blue'><b>" + p.idx + "</b></font>",
+            	        balloonContent: p.org.name + "<br>" + p.org.address},
+            		   {preset: "islands#dotCircleIcon", iconColor: 'blue'});
+               map.geoObjects.add(marker);
+            });
+         }
+      }
+      
+      function drawAgentsInFields(docs) {
+          if (docs != null) {
+             docs.forEach(function (p) {
+                marker = new ymaps.Placemark([p.latitude, p.longitude], 
+             		   {iconContent: "<font color='blue'><b>" + p.idx + "</b></font>",
+             	        balloonContent: p.agent.name},
+             		   {preset: "islands#dotCircleIcon", iconColor: 'blue'});
+                map.geoObjects.add(marker);
+             });
+          }
+       }
+
+      function loadData(json) {
+    	 result = false
+    	 
+         try {
+            var data = JSON.parse(json)
+
+            if (data != null) {
+               if (data.points != null && data.points.length > 0){
+                  drawRoute(data.points);
+                  result = true;
+               }
+
+               if (data.executed != null && data.executed.length > 0){
+                  drawExecuted(data.executed);
+                  result = true;
+               }
+               
+               if (data.agentsinfields != null && data.agentsinfields.length > 0){
+            	   drawAgentsInFields(data.agentsinfields);
+            	   result = true;
+               }
+               
+               map.setBounds(map.geoObjects.getBounds(),{checkZoomRange:true}).then(function(){ if(map.getZoom() > 10) map.setZoom(10);});
+            }
+         } catch (err) {
+            console.log(err);
+         }
+         
+         return result;
+      }
+   </script>
+</head>
+
+<body>
+   <div id="map"></div>
+</body>
+</html>

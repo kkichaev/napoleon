@@ -1,0 +1,633 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+  <objects>
+    <object name="TrdPromo">
+      <sources>
+        <source name="SQTable" type="internal">
+          <param name="readFilter">
+            '"start" &lt;= ToDate("' + FormatDate(Now(),"DD.MM.YYYY") + '") and ' +
+            '"end" &gt;= ToDate("' + FormatDate(Now(),"DD.MM.YYYY") + '") and ("userid" is null or "userid"=' + "''" + ' or "userid"=' + "'" + $user.id + "')"
+          </param>
+        </source>
+      </sources>
+
+      <member name="primaryKey">"id"</member>
+      <field name="id" type="number" />
+      <field name="name" type="string" />
+      <field name="start" type="date" />
+      <field name="end" type="date" />
+      <field name="userid" type="string" />
+
+      <field name="orgs" type="collection">
+        <data>
+          <object name="PromoOrg">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+
+            <field name="rel" type="number" />
+            <!-- Тип связи 0 = все, 1 = группа, 2 = клиент -->
+            <field name="code" type="string" />
+          </object>
+        </data>
+      </field>
+
+      <field name="items" type="collection">
+        <data>
+          <object name="PromoItems">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+            <member name="primaryKey">"id"</member>
+
+            <field name="id" type="number" />
+            <field name="name" type="string" />
+
+            <field name="val" type="number" prec="2" />
+            <!-- 0 = цена, 1 = процент скидки -->
+            <field name="valType" type="number" />
+            <!-- проверять ассортимент: 0 = нет, 1 = да -->
+            <field name="valCnd" type="number" />
+            <!-- объект проверки: 0 = количество, 1 = сумма -->
+            <field name="valSbj" type="number" />
+            <field name="start" type="number" prec="2" />
+            <field name="end" type="number" prec="2" />
+
+            <field name="items" type="collection">
+              <data>
+                <object name="PromoItemRng">
+                  <sources>
+                    <source name="SQTable" type="internal" />
+                  </sources>
+
+                  <field name="id" type="string" />
+                  <field name="idMfr" type="string" />
+                  <field name="idOwr" type="string" />
+                  <field name="idCat" type="string" />
+                  <field name="cost" type="number" prec="2" />
+                </object>
+              </data>
+            </field>
+          </object>
+        </data>
+      </field>
+    </object>
+
+    <object name="PriceFilterMask">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"id"</member>
+      <field name="id" type="number" />
+      <field name="name" type="string" />
+    </object>
+
+    <object name="Actions" sendAlways="true">
+      <sources>
+        <source name="SQTable" type="internal">
+          <param name="readFilter">
+            '"start" &lt;= ToDate("' + FormatDate(Now(),"DD.MM.YYYY") + '") and ' +
+            '"finish" &gt;= ToDate("' + FormatDate(Now(),"DD.MM.YYYY") + '")'
+          </param>
+        </source>
+      </sources>
+
+      <member name="primaryKey">"id"</member>
+
+      <field name="id" type="string" />
+      <field name="name" type="string" />
+      <field name="descr" type="string" />
+      <field name="start" type="date" />
+      <field name="finish" type="date" />
+
+      <field name="files" type="collection">
+        <data>
+          <object name="ActionFilesInfo" tableName="ActionFiles">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+
+            <field name="file" type="string" />
+          </object>
+        </data>
+      </field>
+
+      <field name="items" type="collection">
+        <data>
+          <object name="ActionItem">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+
+            <field name="id" type="string" />
+            <field name="cost" type="number" prec="2" />
+            <field name="qty" type="number" prec="3" />
+          </object>
+        </data>
+      </field>
+    </object>
+
+    <object name="Gift">
+      <sources>
+        <source name="SQTable" type="internal">
+          <param name="readFilter">
+            '"start" &lt;= ToDate("' + FormatDate(Now(),"DD.MM.YYYY") + '") and ' +
+            '"finish" &gt;= ToDate("' + FormatDate(Now(),"DD.MM.YYYY") + '")'
+          </param>
+        </source>
+      </sources>
+
+      <member name="primaryKey">"giftid"</member>
+
+      <field name="giftid" type="string" />
+      <field name="id" type="string" />
+      <field name="id_i" type="string" />
+      <field name="descr" type="string" />
+      <field name="start" type="date" />
+      <field name="finish" type="date" />
+      <field name="qty" type="number" prec="3" />
+
+      <field name="items" type="collection">
+        <data>
+          <object name="GiftItem">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+
+            <field name="id" type="string" />
+          </object>
+        </data>
+      </field>
+    </object>
+
+    <object name="ActionFiles" sendLimit="3000000">
+      <sources>
+        <source name="SQTable" type="internal"/>
+      </sources>
+
+      <field name="Actions$id" type="string" />
+      <field name="file" type="string" />
+      <field name="data" type="file" src="file" />
+    </object>
+
+    <!--<object name="ManagerFolder" tableName="Folder">
+      <sources>
+        <source name="SQLFolder" type="internal">
+          <param name="parentField">"parent"</param>
+          <param name="childField">"fid"</param>
+          <param name="stmt">
+            "if exists(select TOP(1) * from [Folder] where [userid] = '" + $user.id + "')
+            SELECT * FROM [Folder] where [userid] = '" + $user.id + "'
+            else
+            SELECT * FROM [Folder] where [userid] is null"
+          </param>
+        </source>
+      </sources>
+
+      <field name="userid" type="string" execOn="Put">$user.id</field>
+      <field name="fid" type="string" width="15" />
+      <field name="parent" type="string" width="15" />
+      <field name="name" type="string" width="60" />
+      <field name="level" type="number" width="9" />
+      <field name="id" type="string" execOn="Get">$object.fid</field>
+    </object>-->
+
+    <object name="Regions">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"id"</member>
+      <field name="id" type="string" />
+      <field name="name" type="string" />
+    </object>
+
+    <object name="Cites">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"id"</member>
+      <field name="id" type="string" />
+      <field name="name" type="string" />
+      <field name="idr" type="string" />
+    </object>
+
+    <object name="Manufacturers">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"id"</member>
+      <field name="id" type="string" />
+      <field name="name" type="string" />
+      <field name="markup" type="number" prec="2" />
+      <field name="expenses" type="number" prec="2" />
+    </object>
+
+    <object name="Discs">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <field name="id" type="string" />
+      <field name="type" type="number" />
+      <field name="relation" type="number" />
+
+      <field name="idItem" type="string" />
+      <field name="idMfr" type="string" />
+      <field name="idOwr" type="string" />
+      <field name="maxdisc" type="number" prec="2" />
+      <field name="mindisc" type="number"/>
+    </object>
+
+
+    <modify src="Agents" feature="!TEST">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="Org">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal">
+            <param name="readFilter">"userid = '" + $user.id + "'"</param>
+          </source>
+        </sources>
+      </change>
+      <add>
+        <member name="primaryKey">"userid,id"</member>
+        <field name="stop" type="number" hidden="true" />
+        <field name="balance" type="number" prec="2" />
+        <field name="discount" type="number" prec="2" />
+        <field name="limit" type="number" prec="2" />
+        <field name="flags" type="number" execOn="Get" >EncodeFlag($object.stop,2)</field>
+        <field name="mfr" type="string"/>
+        <field name="cid" type="string"/>
+        <field name="pidx" type="number"/>
+
+        <field name="groups" type="collection">
+          <data>
+            <object name="OrgGroups">
+              <sources>
+                <source name="SQTable" type="internal" />
+              </sources>
+              <field name="id" type="string" />
+            </object>
+          </data>
+        </field>
+      </add>
+    </modify>
+
+    <modify src="Org$contacts">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="CommonOrgs">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="CommonMatrix">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+      <add>
+        <member name="primaryKey">"name"</member>
+        <field name="userid" type="string" />
+      </add>
+    </modify>
+    <modify src="CommonMatrix$items">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="Matrix">
+      <change>
+        <sources>
+          <source name="SQLQuery">
+            <param name="stmt">
+              "select cm.name as name, i.id as id
+              from (CommonMatrix as cm inner join [CommonMatrix$items] as i on cm.name = i.[CommonMatrix$name])
+              inner join AgentMatrix as am on cm.name = am.name
+              where am.userid = '"+$user.id+"'"
+            </param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+    <modify src="Matrix$items">
+      <change>
+        <sources>
+          <source name="SQLQuery">
+            <param name="keyFields">"name"</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="ManagerFolder">
+      <change>
+        <sources>
+          <source name="SQLFolder" type="internal">
+            <param name="parentField">"parent"</param>
+            <param name="childField">"fid"</param>
+            <param name="stmt">
+              "if exists(select TOP(1) * from [Folder] where [userid] = '" + $user.id + "')
+              SELECT * FROM [Folder] where [userid] = '" + $user.id + "'
+              else
+              SELECT * FROM [Folder] where [userid] is null"
+            </param>
+          </source>
+        </sources>
+      </change>
+      <add>
+        <field name="fid" type="string" width="15" />
+        <field name="id" type="string" execOn="Get">$object.fid</field>
+      </add>
+    </modify>
+
+
+    <modify src="Folder">
+      <change>
+        <sources>
+          <source name="SQLFolder" type="internal">
+            <param name="parentField">"parent"</param>
+            <param name="childField">"fid"</param>
+            <param name="rowidField">"id"</param>
+            <param name="stmt">
+              "if exists(select TOP(1) * from [Folder] where [userid] = '" + $user.id + "')
+              SELECT * FROM [Folder] where [userid] = '" + $user.id + "'
+              else
+              SELECT * FROM [Folder] where [userid] is null"
+            </param>
+          </source>
+        </sources>
+        <field name="id" type="number" />
+        <field name="fid" type="string" width="15" />
+        <field name="userid" type="string" />
+      </change>
+      <add>
+        <field name="parent" type="string" width="15" />
+      </add>
+    </modify>
+
+    <modify src="Price">
+      <change>
+        <sources>
+          <source name="SQLQuery">
+            <param name="stmt">
+              "SELECT Price.id as id, folder, inpack, name, qty, [weight], cost, isNew, isHit, idMfr, filterMask, idCat, idOwr
+              FROM Price, PriceCost where Price.id = PriceCost.id ORDER BY Price.id, PriceCost.Num"
+            </param>
+          </source>
+        </sources>
+      </change>
+      <add>
+        <field name="isNew" type="number" />
+        <field name="isHit" type="number" />
+        <field name="idMfr" type="string" />
+        <field name="idOwr" type="string" />
+        <field name="idCat" type="string" />
+        <field name="filterMask" type="number" />
+      </add>
+    </modify>
+
+    <modify src="Price$cost">
+      <change>
+        <sources>
+          <source name="SQLQuery">
+            <param name="keyFields">"id"</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="ManagerPrice">
+      <change>
+        <sources>
+          <source name="SQLQuery">
+            <param name="stmt">
+              "SELECT Price.id as id, folder, inpack, name, qty, [weight], cost
+              FROM Price, PriceCost where Price.id = PriceCost.id ORDER BY Price.id, PriceCost.Num"
+            </param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="Config">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+        <field name="value" type="string" width="4000" />
+      </change>
+    </modify>
+
+    <modify src="Order">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+      <add>
+        <field name="discount" type="number" prec="2"/>
+        <field name="plan" type="number" prec="2"/>
+        <field name="ship" type="string" />
+        <field name="pay" type="string" />
+        <field name="city" type="string" />
+
+        <event type="put">
+          <action name="WriteToLog">$object.type;$object.created</action>
+        </event>
+      </add>
+    </modify>
+
+    <modify src="Order$items">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+      <add>
+        <field name="maxdisc" type="number" prec="2" />
+        <field name="disc" type="number" prec="2" />
+        <field name="idTrd" type="number" />
+        <field name="priceCost" type="number" prec="2" />
+      </add>
+    </modify>
+
+    <modify src="OrderProceeded">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal">
+            <param name="readFilter">'"userid"=' + "'" + $user.id + "'"</param>
+          </source>
+        </sources>
+      </change>
+      <add>
+        <field name="userid" type="string" />
+      </add>
+    </modify>
+
+    <modify src="OrderCommitted">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+
+      <add>
+        <member name="primaryKey">"userid,created"</member>
+        <field name="userid" type="string" />
+      </add>
+    </modify>
+
+    <modify src="OrgRemnants">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+      <remove>
+        <event name="put" />
+      </remove>
+    </modify>
+
+    <modify src="Incass">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+      <remove>
+        <event name="put" />
+      </remove>
+    </modify>
+
+    <modify src="Delivery">
+      <change>
+        <sources>
+          <source name="SQLQuery">
+            <param name="stmt">
+              "select id, number, date, payDate, qty, sum, sumd, id_i from Deliveries where userid = '" + $user.id + "'"
+            </param>
+          </source>
+        </sources>
+        <field name="number" type="string"  />
+      </change>
+    </modify>
+
+    <modify src="Delivery$items">
+      <change>
+        <sources>
+          <source name="SQLQuery">
+            <param name="keyFields">"number"</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="Payment">
+      <change>
+        <sources>
+          <source name="SQLQuery">
+            <param name="stmt">
+              "select id, number, date, sum from Payments where userid = '" + $user.id + "'"
+            </param>
+          </source>
+        </sources>
+        <field name="number" type="string"  />
+      </change>
+    </modify>
+
+
+    <modify src="MessageArchive">
+      <change>
+        <field name="message" type="string" width="4000"/>
+      </change>
+    </modify>
+
+    <modify src="Message">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal">
+            <param name="readFilter">'"userid" = ' + "'" + $user.id + "'"</param>
+          </source>
+        </sources>
+        <field name="message" type="string" width="4000"/>
+      </change>
+      <add>
+        <field name="date" type="timestamp" execOn="Put">Now()</field>
+        <field name="userid" type="string" execOn="Put">$user.id</field>
+      </add>
+    </modify>
+
+    <modify src="PricePhoto">
+      <add>
+        <field name="crc" type="string" width="16" />
+      </add>
+    </modify>
+
+    <modify src="PricePhoto" dest="UpdCrc">
+      <remove>
+        <field name="photo" />
+      </remove>
+    </modify>
+
+
+    <modify src="Delivery">
+      <change>
+        <sources>
+          <source name="SQLQuery">
+            <param name="stmt">
+              "select id, number, date, payDate, qty, sum, sumd, id_i from Deliveries where userid = '" + $user.id + "'"
+            </param>
+          </source>
+        </sources>
+        <field name="number" type="string"  />
+      </change>
+    </modify>
+
+    <modify src="Delivery$items">
+      <change>
+        <sources>
+          <source name="SQLQuery">
+            <param name="keyFields">"number"</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="Payment">
+      <change>
+        <sources>
+          <source name="SQLQuery">
+            <param name="stmt">
+              "select id, number, date, sum from Payments where userid = '" + $user.id + "'"
+            </param>
+          </source>
+        </sources>
+        <field name="number" type="string"  />
+      </change>
+    </modify>
+
+  </objects>
+</serverDefs>

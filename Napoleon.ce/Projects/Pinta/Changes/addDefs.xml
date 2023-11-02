@@ -1,0 +1,71 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+    <object name="GoodsDiscount">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"_NoT"</param>
+          <param name="commonTable">"DISCOUNTS"</param>
+          <param name="catalog">"id;items;0"</param>
+          <param name="filter">"[id] in $Org.id"</param>
+        </source>
+      </sources>
+      <field name="start" type="date" />
+      <field name="end" type="date" />
+      <field name="id" type="string" />
+      <field name="org" type="string" />
+      <field name="items" type="collection">
+        <data>
+          <object>
+            <field name="id" type="string" data="ID_I" />
+            <field name="cost" type="number" prec="2" />
+          </object>
+        </data>
+      </field>
+    </object>
+    
+    <modify src="Org">
+      <add>
+        <field name="dogovors" type="collection">
+          <data>
+            <object name="Item">
+              <sources>
+                <source name="DBFTableSet">
+                  <param name="userTable">"DG"</param>
+                  <param name="commonTable">"DOGOVORS"</param>
+                  <param name="filter">"[ID] = $parent.id"</param>
+                </source>
+              </sources>
+
+              <field name="name" type="string" width="100" />
+              <field name="costype" type="number" />
+              <field name="id" type="string" width="55" data="ID_DG" />
+              <field name="idOrg" type="string" width="55" data="ID_ORG" />
+            </object>
+          </data>
+        </field>
+      </add>
+    </modify>
+    <modify src="Order">
+      <add>
+        <field name="dogovor" data="ID_DG" type="string" width="55" />
+      </add>
+    </modify>
+    <modify src="Incass">
+      <add>
+        <field name="dogovor" data="ID_DG" type="string" width="55" />
+      </add>
+    </modify>
+    <modify src="Delivery">
+      <add>
+        <field name="firma" type="string" />
+      </add>
+    </modify>
+    
+    <modify src="Payment">
+      <add>
+        <field name="firma" type="string" />
+      </add>
+    </modify>
+  </objects>
+</serverDefs>

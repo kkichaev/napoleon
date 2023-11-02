@@ -1,0 +1,71 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowContentTransitions">true</item>
+    </style>
+
+    <style name="ButtonTheme" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:layout_marginLeft">5dp</item>
+        <item name="android:layout_marginTop">0dp</item>
+    </style>
+
+    <style name="ResultButton" parent="ButtonTheme">
+        <item name="android:colorBackground">@drawable/button_bkg</item>
+        <item name="android:textColor">@color/green</item>
+    </style>
+
+    <style name="NumberButton" parent="ButtonTheme">
+        <item name="android:colorBackground">@drawable/button_bkg</item>
+    </style>
+
+    <style name="OperButton" parent="ButtonTheme">
+        <item name="android:textColor">@color/navy</item>
+    </style>
+
+    <style name="RemButton" parent="ButtonTheme">
+        <item name="android:textColor">@color/darkmagenta</item>
+    </style>
+
+    <style name="RemRichButton" parent="RemButton">
+        <item name="android:textColor">@color/darkmagenta</item>
+        <item name="topTextColor">@color/darkmagenta</item>
+        <item name="mainTextColor">@color/darkmagenta</item>
+        <item name="topTextSize">@dimen/rich_top_btn_txt_sz</item>
+        <item name="mainTextSize">@dimen/rich_center_btn_txt_sz</item>
+    </style>
+
+    <style name="AngleButton" parent="ButtonTheme">
+        <item name="android:textColor">@color/angles</item>
+    </style>
+
+    <style name="StateButtonTheme" parent="@android:style/Widget.TextView">
+        <item name="topTextSize">@dimen/top_btn_txt_sz</item>
+        <item name="mainTextSize">@dimen/center_btn_txt_sz</item>
+        <item name="topTextColor">@color/black</item>
+        <item name="mainTextColor">@color/black</item>
+        <item name="android:layout_marginLeft">5dp</item>
+        <item name="android:layout_marginTop">5dp</item>
+    </style>
+
+    <style name="AngleStateButton" parent="ButtonTheme">
+        <item name="mainTextColor">@color/angles</item>
+        <item name="topTextColor">@color/teal</item>
+    </style>
+
+    <style name="Widget.App.Button.OutlinedButton.IconOnly" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="iconPadding">0dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:paddingLeft">12dp</item>
+        <item name="android:paddingRight">12dp</item>
+        <item name="android:minWidth">48dp</item>
+        <item name="android:minHeight">48dp</item>
+    </style>
+</resources>

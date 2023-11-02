@@ -1,0 +1,169 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+    <object name="CheckInvoice">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"PIN"</param>
+          <param name="commonTable">"PINVOICE"</param>
+          <param name="catalog">"number;items;1"</param>
+        </source>
+      </sources>
+
+      <field name="items" type="collection">
+        <data>
+          <object name="Item">
+            <field name="code" type="string" data="ID_I"/>
+          </object>
+        </data>
+      </field>
+      <field name="number" type="string" />
+      <field name="date" type="date" />
+      <field name="name" type="string" />
+      <field name="userid" type="string" />
+    </object>
+
+    <object name="Income">
+      <sources>
+        <source name="DBFCatalogTable">
+          <param name="tableName">"Income" + $user.id</param>
+          <param name="catalog">"id"</param>
+          <param name="ordered">1</param>
+        </source>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"userid,created"</member>
+      <memberArray name="index">"created"</memberArray>
+
+      <field name="created" type="timestamp" />
+      <field name="timeZone" type="number" />
+      <field name="serverTimeZone" type="number" data="S_TZ" execOn="Put" feature="USE_TIMEZONE">ServerTimeZone()</field>
+      <field name="userid" type="string" execOn="Put">$user.id</field>
+      <field name="id" type="string" width="55" />
+      <field name="date" type="date" />
+      <field name="number" type="string" width="55" />
+      <field name="sended" type="timestamp" data="S_DATE" execOn="Put">Now()</field>
+      <field name="sum" type="number" prec="2" />
+      <field name="remark" type="string" width="100" />
+      <field name="latitude" type="number" prec="5" />
+      <field name="longitude" type="number" prec="5" />
+      <field name="stltime" type="number" />
+
+      <field name="items" type="collection">
+        <data>
+          <object name="Item">
+            <sources>
+              <source name="DBFCatalogItemTable"/>
+              <source name="SQTable" type="internal" />
+            </sources>
+
+            <field name="code" type="string" />
+            <field name="have" type="number" width="1"/>
+            <field name="incomeCode" type="string" data="CODE_I" />
+            <field name="ordflag" width="1" type="number" execOn="Put">FirstItem($object)</field>
+          </object>
+        </data>
+      </field>
+
+      <events>
+        <event type="put">
+          <action name="WriteInternal">$object.type</action>
+          <action name="WriteToLog">$object.type;$object.created</action>
+        </event>
+      </events>
+    </object>
+
+    <object name="OutDoc">
+      <sources>
+        <source name="DBFCatalogTable">
+          <param name="tableName">"GSD" + $user.id</param>
+          <param name="catalog">"id"</param>
+          <param name="ordered">1</param>
+        </source>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"userid,created"</member>
+      <memberArray name="index">"created"</memberArray>
+
+      <field name="created" type="timestamp" />
+      <field name="timeZone" type="number" />
+      <field name="serverTimeZone" type="number" data="S_TZ" execOn="Put" feature="USE_TIMEZONE">ServerTimeZone()</field>
+      <field name="userid" type="string" execOn="Put">$user.id</field>
+      <field name="id" type="string" width="55" />
+      <field name="date" type="date" />
+      <field name="sended" type="timestamp" data="S_DATE" execOn="Put">Now()</field>
+      <field name="sum" type="number" prec="2" />
+      <field name="remark" type="string" width="100" />
+      <field name="latitude" type="number" prec="5" />
+      <field name="longitude" type="number" prec="5" />
+      <field name="stltime" type="number" />
+
+      <field name="number" type="string" data="NUM" width="20" />
+
+      <field name="items" type="collection">
+        <data>
+          <object name="Item">
+            <sources>
+              <source name="DBFCatalogItemTable"/>
+              <source name="SQTable" type="internal" />
+            </sources>
+
+            <field name="barcodes" type="collection">
+              <data>
+                <object name="ScanData">
+                  <sources>
+                    <source name="DBFCatalogItemTable"/>
+                    <source name="SQTable" type="internal" />
+                  </sources>
+
+                  <field name="code" type="string" />
+                  <field name="docflag" width="1" type="number" execOn="Put">FirstItem($object)</field>
+                </object>
+              </data>
+            </field>
+
+            <field name="id" width="40" type="string" data="ID_I"/>
+            <field name="qty" type="number" prec="3"  />
+            <field name="inputQty" type="number" prec="3" data="I_QTY" />
+            <field name="packQty" type="number" prec="3" />
+            <field name="inputPackQty" type="number" prec="3" data="P_QTY" />
+            <field name="boxQty" type="number" prec="3" />
+            <field name="inputBoxQty" type="number" prec="3" data="B_QTY" />
+            <field name="ordflag" width="1" type="number" execOn="Put">FirstItem($object)</field>
+          </object>
+        </data>
+      </field>
+
+      <events>
+        <event type="put">
+          <action name="WriteInternal">$object.type</action>
+          <action name="WriteToLog">$object.type;$object.created</action>
+        </event>
+      </events>
+    </object>
+
+    <modify src="Delivery$items">
+      <add>
+        <field name="packQty" type="number" prec="3" data="PACK_QTY" />
+        <field name="boxQty" type="number" prec="3" data="BOX_QTY" />
+      </add>
+    </modify>
+    
+    <modify src="Price">
+      <change>
+        <sources>
+          <source name="DBFTable">
+            <param name="tableName">"W" + $user.id</param>
+          </source>
+        </sources>
+
+        <field name="barcode" type="string" />
+        <field name="mrc" type="number" prec ="2" />
+        <field name="bcBox" type="string" />
+        <field name="boxInPack" type="number" data="BXINPACK" prec="3" />
+      </change>
+    </modify>
+  </objects>
+</serverDefs>

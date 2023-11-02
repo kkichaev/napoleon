@@ -1,0 +1,311 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+  <objects>
+    <object name="Target">
+      <sources>
+        <source name="DBFCatalogTable">
+          <param name="tableName">$object.table + $user.id</param>
+          <param name="catalog">"id"</param>
+          <param name="ordered">1</param>
+        </source>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="table">"TRG"</member>
+      <member name="primaryKey">"userid,created"</member>
+
+      <field name="userid" type="string" data="USER_ID" execOn="Put">$user.id</field>
+      <field name="created" type="timestamp" />
+      <field name="date" type="date" />
+      <field name="timeZone" type="number" />
+      <field name="serverTimeZone" type="number" data="S_TZ" execOn="Put" features="USE_TIMEZONE">ServerTimeZone()</field>
+      <field name="sended" type="timestamp" data="S_DATE" execOn="Put">Now()</field>
+      <field name="id" width="30" type="string" />
+      <field name="latitude" type="number" prec="4" />
+      <field name="longitude" type="number" prec="4" />
+      <field name="closed" type="number" />
+      <field name="remark" type="string" />
+
+      <events>
+        <event type="put">
+          <action name="WriteInternal">$object.type</action>
+          <action name="WriteToLog">$object.type;$object.date</action>
+        </event>
+      </events>
+    </object>
+
+    <object name="Cost">
+      <sources>
+        <source name="DBFCostReader">
+          <param name="cost">"CS" + $user.id</param>
+          <param name="costType">"O" + $user.id</param>
+        </source>
+      </sources>
+
+      <field name="data" type="binary" />
+    </object>
+
+    <object name="OrgMatrix">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"FTX"</param>
+          <param name="commonTable">"FMATRIX"</param>
+          <param name="catalog">"id;items;0"</param>
+        </source>
+      </sources>
+
+      <field name="id" type="string" />
+
+      <field name="items" type="collection">
+        <data>
+          <object name="Item">
+            <field name="id" type="string" data="ID_I" />
+            <field name="offtake" type="number" prec="2"/>
+          </object>
+        </data>
+      </field>
+    </object>
+
+    <object name="OrdConfig">
+      <sources>
+        <source name="KeyValueTable">
+          <param name="fileName">"ord"+$user.id+".cfg"</param>
+        </source>
+        <source name="KeyValueTable">
+          <param name="fileName">"order.cfg"</param>
+        </source>
+      </sources>
+
+      <field name="key" type="string" />
+      <field name="value" type="string" />
+    </object>
+
+    <object name="Skalds">
+      <sources>
+        <source name="KeyValueDBFTable">
+          <param name="fileName">"SKLADS"+$user.id</param>
+          <param name="key">"Склады"</param>
+          <param name="itemName">"NAME"</param>
+          <param name="itemKey">"ID"</param>
+        </source>
+
+        <source name="KeyValueDBFTable">
+          <param name="fileName">"SKLADS"</param>
+          <param name="key">"Склады"</param>
+          <param name="itemName">"NAME"</param>
+          <param name="itemKey">"ID"</param>
+        </source>
+      </sources>
+
+      <field name="key" type="string" />
+      <field name="value" type="string" />
+    </object>
+
+    <object name="Config">
+      <sources>
+        <source name="ObjectUnion">
+          <param>"OrdConfig"</param>
+          <param>"Skalds"</param>
+        </source>
+      </sources>
+
+      <field name="key" type="string" />
+      <field name="value" type="string" />
+    </object>
+
+    <modify src="OrgTask">
+      <change>
+        <sources>
+          <source name="DBFCatalogTable">
+            <param name="tableName">"TASK" + $user.id</param>
+            <param name="catalog">"created"</param>
+            <param name="ordered">1</param>
+          </source>
+
+          <source name="SQTable" type="internal">
+            <param name="readFilter">'not "id" in (select "id" from "TaskDone$items" where "done"= 1) and "userid"=' + "'" + $user.id + "'"</param>
+          </source>
+        </sources>
+      </change>
+
+      <add>
+        <events>
+          <event type="put">
+            <action name="WriteInternal">$object.type</action>
+            <action name="WriteToLog">$object.type;$object.date</action>
+          </event>
+        </events>
+      </add>
+    </modify>
+
+    <modify src="TaskDone">
+      <change>
+        <sources>
+          <source name="DBFCatalogTable">
+            <param name="tableName">"TD" + $user.id</param>
+            <param name="catalog">"created"</param>
+            <param name="ordered">1</param>
+          </source>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+
+      <add>
+        <events>
+          <event type="put">
+            <action name="WriteInternal">$object.type</action>
+            <action name="WriteToLog">$object.type;$object.date</action>
+          </event>
+        </events>
+      </add>
+    </modify>
+    
+    <modify src="OrgFolder$items">
+      <change>
+        <field name="name" type="string" data="ID" width="100"/>
+      </change>
+    </modify>
+
+    <modify src="Order">
+      <add>
+        <field name="discOrd" type="number" prec="2" data="DISC"/>
+        <field name="whCode" type="string" width="30" />
+      </add>
+      <change>
+        <field name="id" width="100" type="string"/>
+        <field name="firma" type="string" width="30" execOn="Put">ConfigReader("Организация",$object.supplyer)</field>
+      </change>
+    </modify>
+
+    <modify src="Order$items">
+      <add>
+        <field name="discItem" type="number" prec="2" data="DISC_I"/>
+        <field name="ctype" data="CTYPE_I" type="string" width="30" execOn="Put">KeyValueReader("order.cfg","ВидЦены",$object.sumTypeItem)</field>
+      </add>
+    </modify>
+
+    <modify src="Incass">
+      <change>
+        <field name="id" width="100" type="string"/>
+      </change>
+    </modify>
+
+    <modify src="Sales">
+      <add>
+        <field name="discOrd" type="number" prec="2" data="DISC"/>
+      </add>
+      <change>
+        <field name="id" width="100" type="string"/>
+      </change>
+    </modify>
+
+    <modify src="Sales$items">
+      <add>
+        <field name="discItem" type="number" prec="2" data="DISC_I"/>
+        <field name="ctype" data="CTYPE_I" type="string" width="30" execOn="Put">KeyValueReader("order.cfg","ВидЦены",$object.sumTypeItem)</field>
+      </add>
+    </modify>
+
+    <modify src="Org">
+      <add>
+        <field name="fmtx" type="string" />
+      </add>
+    </modify>
+
+    <modify src="OrgRemnants">
+      <change>
+        <sources>
+          <source name="DBFCatalogTable">
+            <param name="tableName">$object.table + $user.id</param>
+            <param name="catalog">"id"</param>
+            <param name="ordered">1</param>
+          </source>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+      <add>
+        <event type="put">
+          <action name="WriteInternal">$object.type</action>
+          <action name="WriteToLog">$object.type;$object.date</action>
+        </event>
+      </add>
+    </modify>
+
+    <modify src="OrgRemnants">
+      <change>
+        <sources>
+          <source name="DBFCatalogTable">
+            <param name="tableName">$object.table + $user.id</param>
+            <param name="catalog">"id"</param>
+            <param name="ordered">1</param>
+          </source>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+      <add>
+        <event type="put">
+          <action name="WriteInternal">$object.type</action>
+          <action name="WriteToLog">$object.type;$object.date</action>
+        </event>
+      </add>
+    </modify>
+
+    <modify src="OrgRemnants$items">
+      <change>
+        <sources>
+          <sources>
+            <source name="DBFCatalogItemTable"/>
+            <source name="SQTable" type="internal" />
+          </sources>
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="Order" dest="LoadedOrders">
+      <change>
+        <sources>
+          <source name="DBFTableSet">
+            <param name="userTable">"LD_ORD"</param>
+            <param name="commonTable">"LD_ORDERS"</param>
+            <param name="catalog">"orderNumber;items;1"</param>
+            <param name="filter">"[id] in $Org.id"</param>
+          </source>
+        </sources>
+
+        <field name="items" type="collection">
+          <data>
+            <object name="Item">
+              <field name="id" type="string" data="ID_I"/>
+              <field name="qty" type="number" prec="3" />
+              <field name="cost" type="number" prec="2" />
+            </object>
+          </data>
+        </field>
+      </change>
+      <add>
+        <field name="orderNumber" type="string" data="NUM" />
+      </add>
+    </modify>
+
+    <modify src="Price">
+      <add>
+        <field name="minCost" type="number" prec="2" />
+        <field name="whQty" type="collection">
+          <data>
+            <object name="QtyItem">
+              <sources>
+                <source name="Sequence">
+                  <param name="source">$parent.source</param>
+                  <param name="startIndex">2</param>
+                </source>
+              </sources>
+
+              <field name="qty" type="number" prec="2" />
+            </object>
+          </data>
+        </field>
+      </add>
+    </modify>
+
+  </objects>
+</serverDefs>

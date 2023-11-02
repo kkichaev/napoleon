@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+   <objects>
+      <object name="AgentTask">
+         <sources>
+            <source name="SQTable" type="internal" />
+         </sources>
+
+         <member name="table">"TD"</member>
+         <member name="primaryKey">"userid,id,date"</member>
+
+         <field name="userid" type="string" data="USERID" execOn="Put">$user.id</field>
+         <field name="date" type="timestamp" data="created" />
+         <field name="appointDate" type="date" data="DATE" />
+         <field name="id" width="20" type="string" />
+         <field name="category" width="20" type="string" data="CATEG"/>
+         <field name="text" width="200" type="string"/>
+         <field name="done" type="number" wodth="1" prec="0" execOn="Put">DecodeFlag($object.flags, 1, "", "1")</field>
+      </object>
+      <object name="TaskCategory">
+         <sources>
+            <source name="DBFTable">
+               <param name="tableName">"TASKCAT"</param>
+            </source>
+         </sources>
+
+         <member name="primaryKey">"name"</member>
+         <field name="name" type="string" width="20" />
+      </object>
+      <object name="Order">
+         <sources>
+            <source name="DBFCatalogTable">
+               <param name="tableName">$object.table + $user.id</param>
+               <param name="catalog">"id"</param>
+               <param name="ordered">1</param>
+            </source>
+            <source name="SQTable" type="internal" />
+         </sources>
+
+         <member name="table">"PVO"</member>
+         <member name="primaryKey">"userid,created"</member>
+
+         <field name="userid" type="string" execOn="Put">$user.id</field>
+         <field name="created" type="timestamp" />
+         <field name="date" type="date" data="Дата" />
+         <field name="id" width="20" type="string" data="ИНН" />
+         <field name="remark" type="string" data="Прим" />
+         <field name="items" type="collection">
+            <data>
+               <object name="OrderItem">
+                  <sources>
+                     <source name="DBFCatalogItemTable"/>
+                     <source name="SQTable" type="internal" />
+                  </sources>
+
+                  <field name="id" width="30" type="string" data="НомНомер"/>
+                  <field name="qty" type="number" prec="3" data="Кол_во"/>
+                  <field name="cost" type="number" prec="2" data="СуммаЦен"/>
+                  <field name="ordflag" width="1" type="number" data="ТабНомер" execOn="Put">FirstItem($object)</field>
+               </object>
+            </data>
+         </field>
+
+         <field name="ctype" type="string" width="30" data="ВидЦены" execOn="Put">KeyValueReader("order.cfg","ВидЦены",$object.sumType)</field>
+         <field name="params" type="number" width="9" prec="0" data="" />
+         <field name="cash"  type="number" width="1" data="Нал" execOn="Put">DecodeFlag($object.params, 2, "", "1")</field>
+
+         <field name="latitude" type="number" prec="5" />
+         <field name="longitude" type="number" prec="5" />
+
+         <events>
+            <event type="put">
+               <!--<action name="WriteOrder" /> !-->
+               <action name="RunBat" />
+               <action name="WriteInternal">$object.type</action>
+               <action name="WriteToLog">$object.type;$object.created</action>
+            </event>
+         </events>
+      </object>
+   </objects>
+</serverDefs>

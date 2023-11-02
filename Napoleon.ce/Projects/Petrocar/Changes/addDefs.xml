@@ -1,0 +1,91 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+  <objects>
+    <object name="AgentPlan">
+      <sources>
+        <source name="SQTable" type="internal">
+          <param name="readFilter">
+            '"userid"=' + "'" + $user.id + "' and " +
+            '"begin" &lt;= ToDate("' + FormatDate(Now(),"DD.MM.YYYY") + '") and ' +
+            '"end" &gt;= ToDate("' + FormatDate(Now(),"DD.MM.YYYY") + '")'
+          </param>
+        </source>
+      </sources>
+
+      <member name="primaryKey">"userid,begin"</member>
+
+      <field name="userid" type="string" />
+      <field name="begin" type="timestamp" />
+      <field name="end" type="timestamp" />
+
+      <field name="groups" type="collection">
+        <data>
+          <object name="AgemtPlanGroups">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+            <field name="id" type="string" />
+            <field name="type" type="number"/>
+            <field name="valueSum" type="number" prec="2" />
+          </object>
+        </data>
+      </field>
+    </object>
+    
+    <object name="PCAgentMonthlyPlans">
+      <sources>
+        <source name="SQTable" type="internal">
+          <param name="readFilter">'"userid"=' + "'" + $user.id + "' and " + '"date" &gt;= ToDate(' + "'" + FormatDate(AdjustDate(Now(),-1,"month"),"DD.MM.YYYY") + "')" </param>
+        </source>
+      </sources>
+      <member name="primaryKey">"userid,date"</member>
+
+      <field name="date" type="date"/>
+      <field name="userid" type="string" />
+      
+      <field name="plan" type="number" prec="2" />
+      <field name="pdz" type="number" prec="2" />
+
+    </object>
+
+    <modify src="Org">
+      <add>
+        <field name="price" type="collection">
+          <data>
+            <object name="OrgPrice">
+              <sources>
+                <source name="DBFTableSet">
+                  <param name="userTable">"PDC"</param>
+                  <param name="commonTable">"ORGDSC"</param>
+                  <param name="filter">"[ID] = $parent.id"</param>
+                </source>
+              </sources>
+
+              <field name="cost" type="number" prec="2" />
+              <field name="id" type="string" width="55" data="ID_I" />
+            </object>
+          </data>
+        </field>
+      </add>
+    </modify>
+
+    <modify src="Order$items">
+      <add>
+        <field name="costName" type="string" width="50" />
+        <field name="action" type="number" width="1" />
+      </add>
+    </modify>
+
+    <modify src="Returns$items">
+      <change>
+        <sources>
+          <source name="DBFCatalogItemTable"/>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+      <add>
+        <field name="cause" type="string"  />
+      </add>
+    </modify>
+  </objects>
+</serverDefs>

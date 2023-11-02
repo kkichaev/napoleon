@@ -1,0 +1,1 @@
+#define IDD_DETAIL_PAGE3   20000

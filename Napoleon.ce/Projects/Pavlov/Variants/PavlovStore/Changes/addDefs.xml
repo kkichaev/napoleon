@@ -1,0 +1,83 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+   <objects>
+     <object name="Server">
+       <sources>
+         <source name="SQLQuery">
+           <param name="stmt">"select ip, name from Servers"</param>
+         </source>
+       </sources>
+       <field name="ip" type="string" />
+       <field name="name" type="string" />
+     </object>
+     
+     <object name="Price">
+       <sources>
+         <source name="SQLQuery">
+           <param name="stmt">
+             "select p.id, p.name, p.price as cost, pb.barcode as id_i
+             from Price as p, PriceBarCode as pb where p.id = pb.id and p.id in (select id from PriceBarCode where barcode = '$01' or barcode = LEFT('$01', 7))
+             union all
+             select p.id, p.name, p.price as cost, p.id as id_i from Price as p where p.id = '$01'"
+           </param>
+           <param name="debug" />
+         </source>
+       </sources>
+
+       <field name="id" type="string" />
+       <field name="name" type="string" />
+       <field name="cost" type="number" prec="2" />
+       <field name="items" type="collection">
+         <data>
+           <object name="StoreItem">
+             <sources>
+               <source name="SQLQuery">
+                 <param name="keyFields">"id"</param>
+               </source>
+             </sources>
+
+             <field name="barcode" type="string" data="id_i"/>
+           </object>
+         </data>
+       </field>
+     </object>
+     
+     <object name="StoreDoc">
+       <sources>
+         <source name="SQTable" type="internal" />
+       </sources>
+
+       <member name="primaryKey">"userid,created"</member>
+
+       <field name="userid" type="string" execOn="Put">$user.id</field>
+       <field name="created" type="timestamp"/>
+       <field name="items" type="collection">
+         <data>
+           <object name="StoreItem">
+             <sources>
+                <source name="SQTable" type="internal" />
+             </sources>
+
+             <field name="id" width="30" type="string" />
+             <field name="qty" type="number" prec="3" />
+             <field name="order" type="number" />
+           </object>
+         </data>
+       </field>
+
+       <events>
+         <event type="put">
+           <action name="WriteToLog">$object.type;$object.created</action>
+         </event>
+       </events>
+     </object>
+     
+     <modify src="Agents">
+       <change>
+         <sources>
+           <source name="SQTable" type="internal" />
+         </sources>
+       </change>
+     </modify>
+   </objects>
+</serverDefs>

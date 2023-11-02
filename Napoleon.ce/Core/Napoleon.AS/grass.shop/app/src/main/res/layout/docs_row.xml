@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="8dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <TextView
+        style="@style/DocListText"
+        android:id="@+id/number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="23"
+        android:ems="4"
+        android:textColor="@color/colorOnPrimary"
+        />
+
+    <TextView
+        style="@style/DocListText"
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text='23.08.2023'
+        android:layout_weight="1"
+        />
+
+    <TextView
+        style="@style/DocListText"
+        android:id="@+id/sum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="1 234.34"
+        />
+
+</LinearLayout>

@@ -1,0 +1,26 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+      <modify src="Org" >
+         <add>
+            <field name="stop" type="number" hidden="true" />
+            <field name="flags" type="number" execOn="Get">EncodeFlag($object.stop,2)</field>
+            <field name="info" type="string" width="250" />
+         </add>
+      </modify>
+      
+      <modify src="Delivery">
+      	<add>
+        	<field name="payDate" type="date" />
+      	</add>
+      </modify>
+      
+      <modify src="Order" >
+         <add>
+            <field name="debt" type="number" prec="2" />
+         </add>
+      </modify>
+      
+       <modify src="OrderProceeded" removeOnCommit="false"  />
+	</objects>
+</serverDefs>

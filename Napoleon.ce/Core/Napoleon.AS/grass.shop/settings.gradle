@@ -1,0 +1,15 @@
+include ':app'
+include ':camera'
+
+include ':base'
+project(':base').projectDir = new File('..\\dev5\\base\\')
+
+include ':json'
+project(':json').projectDir = new File('..\\dev5\\json\\')
+
+include ':mpchart'
+project(':mpchart').projectDir = new File('..\\dev5\\mpchart\\')
+
+include ':itext'
+project(':itext').projectDir = new File('..\\dev5\\itext\\')
+

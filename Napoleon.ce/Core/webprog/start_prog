@@ -1,0 +1,17 @@
+#!/bin/sh
+export DB_NAME=postgres
+export DB_USER=postgres
+export DB_PWD=1
+export WEB_APP_SOCK=/tmp/webapp.sock
+export PYTHONPATH="/home/ert/prog/python/lib/lib-dynload:/home/ert/prog/python/lib:/home/ert/prog/python/lib/site-packages"
+export PYTHONHOME="/home/ert/prog/python/lib"
+export GRS_FCGI_SOCK=/tmp/grsmanager.sock
+export GRS_PAGE_PREFIX=grs
+export GRS_CMD_SOCK=/tmp/grs_cmd.sock
+
+
+#./grserver --config-file /home/ert/clients/18535a8e959/config.ini
+echo "Starting wsgi - django"
+python/python3.11 webapp/wsgi_bjoern.py&
+./grsmanager
+

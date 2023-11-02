@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding="windows-1251"?>
+<Wix xmlns='http://schemas.microsoft.com/wix/2006/wi'>
+  <Fragment Id='Server'>
+    <Feature Id='Server' Title='Сервер приложения' Description='Сервер обмена с модулями системы' Level='1' Display='1'
+             ConfigurableDirectory='_PRODUCT' Absent='allow'>
+      <ComponentRef Id='ServerComponents' />
+      <ComponentRef Id='ServerDocs' />
+      <ComponentRef Id='FormatDocs' />
+      <ComponentRef Id='AddServerComponents' />
+      <ComponentGroupRef Id='Docs' />
+    </Feature>
+
+    <DirectoryRef Id='_PRODUCT' >
+      <Component Id='ServerComponents' Guid='48f090c3-d937-44e1-8753-3eb66c5864a8'>
+        <File Id='ServerExe' Name='GRServer_x64.exe' DiskId='1' Source='GRServer_x64.exe' KeyPath='yes' >
+          <Shortcut Id='ServerShc' Directory='StartupFolder' Name='GRServer' Arguments='--run-tray --config-file GRServer.ini'
+                    Description='Сервер АСМТ-Наполеон' WorkingDirectory='_PRODUCT' Advertise='yes' />
+        </File>
+         <File Id='ServerIni' Name='GRServer.ini' DiskId='1' Source='GRServer.ini'>
+            <Permission ChangePermission="yes" GenericAll="yes" User="Everyone" />
+         </File>
+        <File Id='ServerXml' DiskId='1' Source='serverDefs.xml' Name='serverDefs.xml'/>
+        <File Id='ServerFtr' Name='GRServer.ftr' DiskId='1' Source='GRServer.ftr'/>
+        <File Id='GRDBRestore' DiskId='1' Source='GRDBRestore.exe' Name='GRDBRestore.exe'/>
+      </Component>
+      <Component Id='ServerDocs' Guid='9CD65B7D-C4BA-4b59-9536-49230B83E389'>
+        <File Id='ServerDoc' Name='GRServer.pdf' DiskId='1' Source='GRServer.pdf' KeyPath='yes'>
+          <Shortcut Id='ServerDoc' Directory='Docs' Name='Сервер' Description='Описание сервера' Advertise='yes' />
+        </File>
+      </Component>
+      <Component Id='FormatDocs' Guid='857CEF11-DC5C-4d3d-AA5C-61FBB2E01A0B'>
+        <File Id='FormatsDoc' Name='Formats.pdf' DiskId='1' Source='Formats.pdf' KeyPath='yes'>
+          <Shortcut Id='FormatsDoc' Name='Formats' Directory='Docs' Description='Форматы обмена' Advertise='yes' />
+        </File>
+      </Component>
+    </DirectoryRef>
+  </Fragment>
+</Wix>

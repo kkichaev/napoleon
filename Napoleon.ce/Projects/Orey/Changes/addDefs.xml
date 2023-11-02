@@ -1,0 +1,244 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+  <objects>
+    <object name="BonusDef" tableName="BonusDefNew">
+      <sources>
+        <source name="SQTable" type="internal">
+          <param name="readFilter">'"start" &gt;= ToDate("' + FormatDate(AdjustDate(Now(),-7,"day"),"DD.MM.YYYY") + '")'</param>
+        </source>
+      </sources>
+        
+      <member name="primaryKey">"id"</member>
+
+      <field name="id" type="string" />
+      <field name="start" type="date" />
+      <field name="till" type="date" />
+      <field name="iditem" type="string" />
+      <field name="sum" type="number" prec="2"/>
+      <field name="type" type="number" />
+      <field name="qty" type="number" pres="3" />
+
+      <field name="items" type="collection">
+        <data>
+          <object name="BonusItem">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+            
+            <field name="id" type="string" />
+            <field name="qty" type="number" />
+          </object>
+        </data>
+      </field>
+    </object>
+
+    <object name="Dover">
+      <sources>
+        <source name="KeyValueDBFTable">
+          <param name="fileName">"DOV" + $user.id</param>
+          <param name="key">"Доверенность"</param>
+          <param name="itemName">"NAME"</param>
+          <param name="itemKey">"ID"</param>
+        </source>
+      </sources>
+
+      <field name="key" type="string" />
+      <field name="value" type="string" />
+    </object>
+
+    <object name="OrdConfig">
+      <sources>
+        <source name="KeyValueTable">
+          <param name="fileName">"ord"+$user.id+".cfg"</param>
+        </source>
+        <source name="KeyValueTable">
+          <param name="fileName">"order.cfg"</param>
+        </source>
+      </sources>
+
+      <field name="key" type="string" />
+      <field name="value" type="string" />
+    </object>
+
+    <object name="Config">
+      <sources>
+        <source name="ObjectUnion">
+          <param>"OrdConfig"</param>
+          <param>"Dover"</param>
+        </source>
+      </sources>
+
+      <field name="key" type="string" />
+      <field name="value" type="string" />
+    </object>
+
+    <object name="Plan">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"PLN"</param>
+          <param name="commonTable">"PLAN"</param>
+          <param name="catalog">"idplan;items;1"</param>
+        </source>
+      </sources>
+
+      <member name="table">"PLN"</member>
+
+      <field name="idplan" type="string" data="IDP"/>
+      <field name="name" type="string" />
+      <field name="labels" type="file" data="LBL" />
+      <field name="background" type="hex" data="BG"/>
+
+      <field name="items" type="collection">
+        <data>
+          <object name="PlanItem">
+            <field name="caption" type="string" data="CAP"/>
+            <field name="color" type="hex" data="COL" />
+            <field name="values" type="file" data="VAL" />
+          </object>
+        </data>
+      </field>
+    </object>
+
+    <object name="Incass">
+      <sources>
+        <source name="DBFCatalogTable">
+          <param name="tableName">$object.table + $user.id</param>
+          <param name="catalog">"id"</param>
+          <param name="ordered">1</param>
+        </source>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="table">"PKO"</member>
+      <member name="primaryKey">"userid,created"</member>
+
+      <field name="id" type="string" width="120" />
+      <field name="dover" type="string" width="20" />
+      <field name="iddog" type="string" width="120" />
+      <field name="sum" type="number" prec="2" />
+      <field name="created" type="timestamp" />
+      <field name="date" type="date" />
+      <field name="remark" type="string" width="100" />
+      <field name="userid" type="string" execOn="Put">$user.id</field>
+      <field name="firma" type="string" width="30" execOn="Put" >KeyValueReader("order.cfg","Организация",$object.supplyer)</field>
+      <field name="number" type="string" width="25" />
+
+      <field name="items" type="collection">
+        <data>
+          <object name="DocPayItem">
+            <sources>
+              <source name="DBFCatalogItemTable"/>
+              <source name="SQTable" type="internal" />
+            </sources>
+
+            <field name="number" width="20" type="string" data="NUM_I"/>
+            <field name="date" type="date" data="DATE_I" />
+            <field name="sum" type="number" data="SUM_I" width="10" prec="2" />
+            <field name="ordflag" width="1" type="number" execOn="Put">FirstItem($object)</field>
+          </object>
+        </data>
+      </field>
+      <events>
+        <event type="put">
+          <action name="WriteInternal">$object.type</action>
+          <action name="WriteToLog">$object.type;$object.created</action>
+        </event>
+      </events>
+    </object>
+    
+    <object name="Cost">
+      <sources>
+        <source name="DBFCostReader">
+          <param name="cost">"CS" + $user.id</param>
+          <param name="costType">"CTP" + $user.id</param>
+        </source>
+      </sources>
+      <field name="data" type="binary" />
+    </object>
+
+    <object name="PriceRest">
+      <sources>
+        <source name="DBFPriceTable">
+          <param name="userTable">"WAR"</param>
+          <param name="commonTable">"WARS"</param>
+          <param name="filter">"[folder] in $folder.fid"</param>
+        </source>
+      </sources>
+
+      <field name="id" type="string" />
+      <field name="fid" type="string" data="folder" hidden="true" />
+      <field name="folderID" type="number" execOn="Get">FolderID($object.fid)</field>
+      <field name="qty" type="number" prec="3" />
+    </object>
+
+    <object name="OrgInfo">
+      <sources>
+        <source name="DBFTable">
+          <param name="tableName">"OI" + $user.id</param>
+        </source>
+      </sources>
+
+      <field name="id" type="string" width="40" />
+      <field name="stop" type="number" hidden="true" />
+      <field name="flags" type="number" execOn="Get">EncodeFlag($object.stop,2)</field>
+      <field name="balance" type="number" prec="2" />
+      <field name="outDays" type="number" />
+    </object>
+
+    <object name="QtyEx">
+      <sources>
+        <source name="DBFTable">
+          <param name="tableName">"QTX" + $user.id</param>
+        </source>
+      </sources>
+
+      <field name="id" type="string" width="40" />
+      <field name="qty" type="number" prec="3" />
+    </object>
+    
+    <modify src="Delivery">
+      <add>
+        <field name="payDate" type="date" />
+      </add>
+    </modify>
+    
+    <modify src="Returns$items">
+      <add>
+        <field name="cause" width="50" type="string" />
+        <field name="dlvNum" width="50" type="string" data="D_NUM"/>
+        <field name="dlvDate" type="timestamp" data="D_DT"/>
+      </add>
+    </modify>
+    
+    <modify src="Order">
+      <add>
+        <field name="selfDlv" type="number" />
+		    <field name="a4" type="number" />
+        <field name="cert" type="number" />
+        <field name="quality" type="number" />
+      </add>
+    </modify>
+    
+    <modify src="OrderProceeded">
+      <add>
+        <field name="phone" type="string" />
+        <field name="forwarder" type="string" data="FWR" />
+      </add>
+    </modify>
+    
+    <modify src="Order" dest="Bonus" table="Bonus">
+      <change>
+        <member name="table">"BNS"</member>
+      </change>
+      <add>
+        <field name="order" type="timestamp" />
+        <field name="def" type="string" width="100" />
+      </add>
+      <remove>
+        <field name="focusedItems" />
+        <field name="focusedFolders" />
+      </remove>
+    </modify>
+    
+  </objects>
+</serverDefs>

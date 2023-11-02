@@ -1,0 +1,38 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+   <objects>
+      <modify src="Org">
+         <add>
+            <field name="endLicense" type="date" data="LIC_END" />
+
+            <field name="units" type="collection">
+               <data>
+                  <object name="Units">
+                     <sources>
+                        <source name="DBFTableSet">
+                           <param name="userTable">"units"</param>
+                           <param name="commonTable">"units"</param>
+                           <param name="filter">"[IDO] = $parent.id"</param>
+                        </source>
+                     </sources>
+                     <field name="id" type="number" />
+                     <field name="name" type="string" />
+                  </object>
+               </data>
+            </field>
+         </add>
+      </modify>
+
+      <modify src="Order">
+         <add>
+            <field name="unitCode" type="number" width="7" data="IDU" />
+         </add>
+      </modify>
+      
+      <modify src="Price">
+          <change>
+              <field name="color" type="hex" />
+          </change>
+      </modify>
+   </objects>
+</serverDefs>

@@ -1,0 +1,5 @@
+#!/usr/bin/sh
+docker save webfront | gzip > webfront.tar.gz
+#scp webfront.tar.gz ert@192.168.1.115:/home/ert
+scp webfront.tar.gz ert@aceteam.app:/srv/napoleon/dockers
+rm webfront.tar.gz

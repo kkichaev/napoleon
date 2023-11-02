@@ -1,0 +1,141 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+  <objects>
+    <object name="OrderProceeded" sendAlways="true">
+      <sources>
+        <source name="DBFTable">
+          <param name="tableName">"POD" + $user.id</param>
+        </source>
+      </sources>
+
+      <field name="created" type="timestamp" />
+      <field name="remark" type="string" />
+      <field name="type" type="string" />
+      <field name="approved" type="number" data="APR"/>
+    </object>
+
+    <object name="Update">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"UPD"</param>
+          <param name="commonTable">"UPDATE"</param>
+          <param name="catalog">"name;items;0"</param>
+        </source>
+      </sources>
+      <field name="name" type="string" />
+
+      <field name="items" type="collection">
+        <data>
+          <object name="UpdateItem">
+            <!--  
+                       1 - очистить базу при приеме
+                       2 - основные данные param 0 - > 0
+                       3 - документы
+                       4 - фотоотчеты
+                       5 - презентация
+                       6 - отгрузки и долги
+                       7 - восстановить заявки param - число месяцев
+                   -->
+            <field name="id" type="number"/>
+            <field name="param" type="number"></field>
+          </object>
+        </data>
+      </field>
+    </object>
+
+    <object name="DlvQuery">
+      <sources>
+        <source name="DBFTable">
+          <param name="tableName">"QRY" + $user.id</param>
+        </source>
+      </sources>
+
+      <field name="id" type="string" />
+      <field name="begin" type="timestamp" />
+      <field name="end" type="timestamp" />
+    </object>
+
+    <object name="DeliveryDay">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"DDLV"</param>
+          <param name="commonTable">"DDDLV"</param>
+          <param name="catalog">"number;items;1"</param>
+          <param name="filter">"[id] in $Org.id"</param>
+        </source>
+      </sources>
+
+      <member name="table">"DDLV"</member>
+
+      <field name="items" type="collection">
+        <data>
+          <object name="DeliveryItem">
+            <field name="id" type="string" data="ID_I"/>
+            <field name="qty" type="number" prec="3" />
+            <field name="sum" type="number" prec="2" />
+            <field name="taxSum" type="number" prec="2" data="TAX_I" feature="SALES_MODULE" />
+          </object>
+        </data>
+      </field>
+
+      <field name="id" type="string" />
+      <field name="sumD" type="number" prec="2" />
+      <field name="number" type="string" data="NUM" />
+      <field name="supplyercode" type="string" data="FIRMA" feature="SALES_MODULE" />
+      <field name="date" type="date" />
+      <field name="created" type="timestamp" />
+      <field name="userid" type="string" />
+      <field name="payDate" type="date" />
+      <field name="color" type="hex" />
+    </object>
+
+    <object name="OrdFlag">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"OFL"</param>
+          <param name="commonTable">"ORDFLAG"</param>
+        </source>
+      </sources>
+
+      <field name="id" type="string" />
+      <field name="name" type="string" />
+    </object>
+    <modify src="Delivery">
+      <add>
+        <field name="payDate" type="date" />
+        <field name="color" type="hex" />
+      </add>
+    </modify>
+
+    <modify src="Org">
+      <add>
+        <field name="stopMsg" type="string" />
+        <field name="info" type="string" />
+      </add>
+      <change>
+        <field name="color" type="hex" />
+      </change>
+    </modify>
+
+    <modify src="Order">
+      <add>
+        <field name="buh" type="number" />
+        <field name="date2" type="timestamp" />
+        <field name="customFlags" type="string" data="CFL" />
+      </add>
+      <change>
+        <field name="date" type="timestamp" />
+      </change>
+    </modify>
+
+    <modify src="Price">
+      <add>
+        <field name="pack" type="number" />
+        <field name="descr" type="string" />
+      </add>
+      <change>
+        <field name="color" type="hex" />
+      </change>
+    </modify>
+  </objects>
+</serverDefs>

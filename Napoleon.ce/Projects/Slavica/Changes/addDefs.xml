@@ -1,0 +1,183 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+      <object name="Reports" removeOnCommit="true" >
+          <sources>
+            <source name="DBFTable">
+              <param name="tableName">"REP" + $user.id</param>
+            </source>
+          </sources>
+
+          <field name="encode" type="string" />
+          <field name="report" type="file" />
+          <field name="name" type="string" />
+        </object>
+
+  
+        <object name="OrdConfig">
+         <sources>
+            <source name="KeyValueTable">
+               <param name="fileName">"order.cfg"</param>
+            </source>
+         </sources>
+
+         <field name="key" type="string" />
+         <field name="value" type="string" />
+      </object>
+      
+      <object name="Sklads">
+         <sources>
+            <source name="KeyValueDBFTable">
+               <param name="fileName">"SKL"+$user.id</param>
+               <param name="key">"Склады"</param>
+               <param name="itemName">"NAME"</param>
+               <param name="itemKey">"ID"</param>
+            </source>
+         
+            <source name="KeyValueDBFTable">
+              <param name="fileName">"SKLADS"</param>
+              <param name="key">"Склады"</param>
+              <param name="itemName">"NAME"</param>
+              <param name="itemKey">"ID"</param>
+            </source>
+        </sources>
+        
+         <field name="key" type="string" />
+         <field name="value" type="string" />
+      </object>
+      
+      <object name="Sklads2">
+         <sources>
+            <source name="KeyValueDBFTable">
+               <param name="fileName">"SKLADS2"</param>
+               <param name="key">"Склады2"</param>
+               <param name="itemName">"NAME"</param>
+               <param name="itemKey">"ID"</param>
+            </source>
+         </sources>
+
+         <field name="key" type="string" />
+         <field name="value" type="string" />
+      </object>
+      
+      <object name="Config">
+         <sources>
+            <source name="ObjectUnion">
+               <param>"OrdConfig"</param>
+               <param>"Sklads"</param>
+               <param>"Sklads2"</param>
+            </source>
+         </sources>
+
+         <field name="key" type="string" />
+         <field name="value" type="string" />
+      </object>
+
+      <object name="Move">
+         <sources>
+            <source name="DBFCatalogTable">
+               <param name="tableName">$object.table + $user.id</param>
+               <param name="catalog">"id"</param>
+               <param name="ordered">1</param>
+            </source>
+            <source name="SQTable" type="internal" />
+         </sources>
+
+         <member name="table">"MVE"</member>
+         <member name="primaryKey">"userid,created"</member>
+
+         <field name="userid" type="string" data="USER_ID" execOn="Put">$user.id</field>
+         <field name="date" type="timestamp" />
+         <field name="created" type="timestamp" />
+         <field name="remark" type="string" />
+         <field name="sended" type="timestamp" data="S_DATE" execOn="Put">Now()</field>
+         <field name="id" width="30" type="string" />
+         <field name="src" width="30" type="string" />
+         <field name="dst" width="30" type="string" />
+         <field name="remark" width="200" type="string" />
+         <field name="items" type="collection">
+            <data>
+               <object name="MoveItem">
+                  <sources>
+                     <source name="DBFCatalogItemTable"/>
+                     <source name="SQTable" type="internal" />
+                  </sources>
+
+                  <field name="id" width="30" type="string" data="ID_I"/>
+                  <field name="qty" type="number" prec="3" />
+                  <field name="flags" type="number" prec="0" />
+                  <field name="ordflag" width="1" type="number" execOn="Put">FirstItem($object)</field>
+               </object>
+            </data>
+         </field>
+
+         <field name="latitude" type="number" prec="4" />
+         <field name="longitude" type="number" prec="4" />
+         <field name="frmsrc" type="string" width="30" execOn="Put">KeyValueReader("order.cfg","Организация",$object.fsrc)</field>
+         <field name="frmdst" type="string" width="30" execOn="Put">KeyValueReader("order.cfg","Организация",$object.fdst)</field>
+         <field name="ctype" type="string" width="30" execOn="Put">KeyValueReader("order.cfg","ВидЦены",$object.sumType)</field>
+         
+         <events>
+            <event type="put">
+               <action name="WriteInternal">$object.type</action>
+               <action name="WriteToLog">$object.type;$object.date</action>
+            </event>
+         </events>
+      </object>
+      
+      <modify src="Price">
+         <add>
+             <field name="whQty" type="collection">
+                <data>
+                   <object name="QtyItem">
+                      <sources>
+                        <source name="Sequence">
+                            <param name="source">$parent.source</param>
+                            <param name="startIndex">2</param>
+                        </source>
+                        </sources>
+                            <field name="qty" type="number" prec="3" />
+                        </object>
+                    </data>
+                </field>
+            </add>
+        </modify>
+        
+        <modify src="Order">
+            <add>
+                <field name="whCode" type="string" width="20" data="ID_WH" />
+                <field name="whCode2" type="string" width="20" data="ID_WH2" />
+            </add>
+         </modify>
+         
+        <modify src="Delivery">
+            <add>
+                <field name="payDate" type="date" /> 
+            </add>
+       </modify>
+       
+       <modify src="ManagerPrice">
+         <add>
+             <field name="whQty" type="collection">
+                <data>
+                   <object name="QtyItem">
+                      <sources>
+                        <source name="Sequence">
+                            <param name="source">$parent.source</param>
+                            <param name="startIndex">2</param>
+                        </source>
+                        </sources>
+                            <field name="qty" type="number" prec="3" />
+                        </object>
+                    </data>
+                </field>
+            </add>
+        </modify>
+        
+        <modify src="Org">
+            <add>
+              <field name="debt" type="number" prec="2" /> 
+            </add>
+        </modify>
+    </objects>
+</serverDefs>

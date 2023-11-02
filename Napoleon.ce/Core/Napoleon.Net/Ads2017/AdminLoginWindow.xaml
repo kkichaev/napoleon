@@ -1,0 +1,39 @@
+﻿<Window x:Class="Ads2017.AdminLoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:p="clr-namespace:Ads2017.Properties"
+        mc:Ignorable="d"
+        Title="{x:Static p:Resources.input_password}"
+        Height="300" 
+        Width="300"
+        WindowStartupLocation="CenterScreen"
+        Closing="Window_Closing"
+        PreviewKeyDown="Window_PreviewKeyDown">
+
+   <Window.Resources>
+      <p:Settings x:Key="Settings"/>
+   </Window.Resources>
+
+   <Grid 
+      Margin="5,0,5,5"
+      FocusManager.FocusedElement="{Binding ElementName=password}">
+
+      <Grid.RowDefinitions>
+         <RowDefinition Height="*"/>
+         <RowDefinition Height="30"/>
+      </Grid.RowDefinitions>
+
+      <StackPanel>
+         <Label Content="{Binding Source={x:Static p:Resources.password}}"/>
+         <PasswordBox x:Name="password"/>
+         <Label Content="{Binding Source={x:Static p:Resources.ip}}"/>
+         <TextBox x:Name="ip" Text="{Binding Source={StaticResource ResourceKey=Settings}, Path=Default.IP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+         <Label Content="{Binding Source={x:Static p:Resources.port}}"/>
+         <TextBox x:Name="port" Text="{Binding Source={StaticResource ResourceKey=Settings}, Path=Default.Port, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+      </StackPanel>
+
+      <Button x:Name="btnOK" Grid.Row="1" Content="{Binding Source={x:Static p:Resources.ok}}" Click="OK_Click"/>
+   </Grid>
+</Window>

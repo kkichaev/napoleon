@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+    <ListView
+        android:id="@+id/edit_list_view"
+        android:background="@color/login_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@null"
+        android:dividerHeight="0dp"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/linear_layout"/>
+
+    <RelativeLayout
+        android:id="@+id/save_task_footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/white"
+        android:visibility="gone"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true">
+
+        <Button
+            android:id="@+id/b_save_task"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/univ_ab_height"
+            android:minWidth="90dp"
+            android:text="@string/menu_save_task"
+            android:inputType="text|textCapSentences"
+            android:textColor="@color/navigator_text_color"
+            android:imeActionLabel="@string/menu_save_task"
+            android:imeOptions="actionDone"
+            android:padding="@dimen/univ_padding"
+            android:background="@drawable/selector_item"
+            android:textCursorDrawable="@null"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/login_background"/>
+
+        <RelativeLayout
+            android:id="@+id/cont_comment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:paddingRight="5dp">
+
+            <com.ashberrysoft.leadertask.views.CustomEditTextNew
+                android:id="@+id/comments_new"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:minHeight="48dp"
+                android:layout_marginBottom="3dp"
+                android:layout_marginTop="3dp"
+                android:layout_toLeftOf="@+id/add_comment"
+                android:background="@null"
+                android:hint="@string/properties_enter_comment"
+                android:inputType="textCapSentences|textMultiLine"
+                android:maxLines="3"
+                android:singleLine="false"
+                android:padding="@dimen/univ_padding"
+                android:textCursorDrawable="@null"/>
+
+            <Button
+                android:id="@+id/add_comment"
+                android:layout_width="70dp"
+                android:layout_height="40dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/selector_bg_btn_orange"
+                android:text="@string/add_comment"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_simple"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

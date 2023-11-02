@@ -1,0 +1,200 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+    <object name="Brands">
+      <sources>
+        <source name="SQLQuery">
+          <param name="stmt">"select distinct brand as name from [Org]"</param>
+        </source>
+      </sources>
+      <field name="name" type="string" />
+    </object>
+
+    <object name="Cities">
+      <sources>
+        <source name="SQLQuery">
+          <param name="stmt">"select distinct city as name from [Org]"</param>
+        </source>
+      </sources>
+      <field name="name" type="string" />
+    </object>
+
+    <object name="OrgFormat">
+      <sources>
+        <source name="SQLQuery">
+          <param name="stmt">"select distinct formatTT as name from [Org]"</param>
+        </source>
+      </sources>
+      <field name="name" type="string" />
+    </object>
+
+    <modify src="Org">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal">
+            <param name="readFilter">"userid='" + $user.id + "' and hidden = 0"</param>
+          </source>
+        </sources>
+          
+        <member name="primaryKey">"id"</member>
+      </change>
+            
+      <add>
+        <field name="formatTT" type="string" />
+        <field name="brand" type="string" />
+        <field name="city" type="string" />
+        <field name="address2" type="string" />
+        <field name="hidden" type="number" />
+      </add>
+    </modify>
+
+    <modify src="CommonOrgs">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal">
+            <param name="readFilter">"id is null or not id is null"</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+    
+    <modify src="Agents">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="ManagerFolder">
+      <change>
+        <sources>
+          <source name="SQLFolder" type="internal">
+            <param name="parentField">"parent"</param>
+            <param name="childField">"fid"</param>
+          </source>
+        </sources>
+      </change>
+      <add>
+        <member name="primaryKey">"fid"</member>
+        <field name="fid" type="string" width="50" />
+        <field name="id" type="string" execOn="Get">$object.fid</field>
+        <field name="parent" type="string" width="50" />
+        <field name="userid" type="string" />
+      </add>
+    </modify>
+
+    <modify src="Folder">
+      <change>
+        <sources>
+          <source name="SQLFolder" type="internal">
+            <param name="parentField">"parent"</param>
+            <param name="childField">"fid"</param>
+            <param name="rowidField">"id"</param>
+          </source>
+        </sources>
+        <field name="id" type="number" />
+        <field name="fid" type="string" width="50" />
+        <field name="name" type="string" />
+        <field name="userid" type="string" />
+      </change>
+      <add>
+        <member name="primaryKey">"fid"</member>
+        <field name="parent" type="string" width="50" />
+      </add>
+    </modify>
+
+    <modify src="Price">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal">
+            <param name="readFilter">"rem=0"</param>
+          </source>
+        </sources>
+      </change>
+      
+      <add>
+        <member name="primaryKey">"id"</member>
+        <field name="fid" type="string" width="50" />
+        <field name="rem" type="number"/>
+        
+        <field name="items" type="collection">
+          <data>
+            <object name="PriceItem">
+              <sources>
+                <source name="SQTable" type="internal" />
+              </sources>
+                  
+              <field name="id" type="string" />
+              <field name="qty" type="number" prec="3" />
+              <field name="cost" type="number" prec="2" />
+            </object>
+          </data>
+        </field>
+      </add>
+    </modify>
+
+    <modify src="ManagerPrice" table="Price">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal">
+            <param name="readFilter">"rem=0"</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="Matrix">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" >
+            <param name="readFilter">"rem=0 or rem is null"</param>
+          </source>
+        </sources>
+      </change>
+      <add>
+        <member name="primaryKey">"name"</member>
+        <field name="rem" type="number"/>
+      </add>
+    </modify>
+    
+    <modify src="Matrix$items">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+    </modify>
+    
+    <modify src="CommonMatrix" table="Matrix">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal">
+            <param name="readFilter">"rem=0 or rem is null"</param>
+          </source>
+        </sources>
+      </change>
+      <add>
+        <member name="primaryKey">"name"</member>
+        <field name="rem" type="number"/>
+      </add>
+    </modify>
+
+    <modify src="CommonMatrix$items">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+      <add>
+        <field name="order" type="number" />
+      </add>
+    </modify>
+
+    <modify src="OrgRemnants">
+      <add>
+        <field name="plan" type="number" />
+      </add>
+    </modify>
+  </objects>
+</serverDefs>

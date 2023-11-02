@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+       package="com.grsoft.napoleon" 
+       android:versionCode="1" 
+       android:versionName="@string/version">
+
+	<uses-permission android:name="android.permission.INTERNET"></uses-permission>  
+    <uses-permission android:name="android.permission.CAMERA"></uses-permission>
+    <uses-feature android:name="android.hardware.camera" />
+    
+    <!-- Camera features. I think it can bring an installation problem 
+    	
+ 		<uses-feature android:name="android.hardware.camera.autofocus" />  
+ 		-->
+ 	
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"></uses-permission>
+    <uses-permission android:name="android.permission.VIBRATE"></uses-permission>
+    <uses-permission android:name="android.permission.CALL_PHONE"></uses-permission>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    
+    <application android:debuggable="true" 
+    	android:icon="@drawable/pictograms" 
+    	android:label="@string/app_name" 
+    	android:name="com.grsoft.napoleon.NapoleonApp">
+
+		<receiver android:enabled="true" android:name="com.grsoft.util.BootUpReceiver"
+        	android:permission="android.permission.RECEIVE_BOOT_COMPLETED">
+
+        	<intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <category android:name="android.intent.category.DEFAULT" />
+        	</intent-filter>
+		</receiver>
+		
+		<activity android:label="@string/app_name" android:name="com.grsoft.napoleon.Napoleon">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+		
+		<uses-library android:name="android.test.runner"/>
+		
+		<activity android:name="com.grsoft.napoleon.Configuration"/>
+		<activity android:name="com.grsoft.napoleon.UpdateDB" android:configChanges="keyboardHidden|orientation"/>
+		<activity android:name="com.grsoft.napoleon.VisitEdit"/>
+		<activity android:name="com.grsoft.napoleon.Documents"/>
+		<activity android:name="com.grsoft.napoleon.CreateOrder"/>
+		<activity android:name="com.grsoft.napoleon.Warehouse"/>
+		<activity android:name="com.grsoft.napoleon.PriceCount"/>
+		<activity android:name="com.grsoft.napoleon.OrderDetail"/>
+		<activity android:name="com.grsoft.napoleon.DeliveryDetail"/>
+		<activity android:name="com.grsoft.napoleon.VisitEdit"/>
+		<activity android:name="com.grsoft.napoleon.CameraPreview"/>
+		<activity android:name="com.grsoft.napoleon.DocList"/>
+		<activity android:name="com.grsoft.napoleon.Messages"/>
+		<activity android:name="com.grsoft.napoleon.RemnantsDetail"/>
+		<activity android:name="com.grsoft.napoleon.Setting"/>
+		<activity android:name="com.grsoft.napoleon.PhotoSetting"/>
+		<activity android:name="com.grsoft.napoleon.BehaviorSetting"/>
+		<activity android:name="com.grsoft.napoleon.GpsSetting"/>
+		<service android:name="com.grsoft.util.NapoleonService"/>
+		<activity android:name="com.grsoft.napoleon.PricePresentation" android:noHistory="true"/>
+		<activity android:name="com.grsoft.napoleon.WarehouseSetting"></activity>
+		<activity android:name="com.grsoft.script.ScriptEdit"></activity>
+		<activity android:name="com.grsoft.napoleon.UpdateDBEx"></activity>
+		<activity android:name="com.grsoft.napoleon.PotenzialOrg"></activity>
+		<activity android:name="PotenzialOrgEx"></activity>
+
+    
+<activity android:name="CalendarActivity"/>
+	        <service android:name="com.grsoft.util.ReportService"/>
+
+</application>
+
+</manifest>

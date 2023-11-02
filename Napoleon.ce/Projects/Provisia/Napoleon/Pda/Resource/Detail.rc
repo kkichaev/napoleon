@@ -1,0 +1,116 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "NapoleonRes.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "resdefce.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Russian resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_RUS)
+#ifdef _WIN32
+LANGUAGE LANG_RUSSIAN, SUBLANG_DEFAULT
+#pragma code_page(1251)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ORDER_DETAIL DIALOG  0, 0, 160, 95
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Параметры заказа"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    //LTEXT           "Дата",-1,6,4,18,8
+    CONTROL         "",IDC_ORDER_DATE,"SysDateTimePick32",DTS_RIGHTALIGN | WS_TABSTOP,6,1,43,15
+
+    LTEXT           "Фирма",-1,52,4,22,8
+    COMBOBOX        IDC_SUPPL,75,3,84,66,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+
+    //LTEXT           "Фирма",-1,33,17,22,8
+    //COMBOBOX        IDC_SUPPL,58,16,101,66,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+
+    LTEXT           "Форма оплаты",-1,6,18,50,8
+    COMBOBOX        IDC_COST_TYPE,58,16,101,66,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+
+    CONTROL         "Сетевая цена",IDC_NET_COST,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,31,62,10
+
+    LTEXT           "Скидка",-1,70,32,26,8
+    EDITTEXT        IDC_DISCOUNT,99,30,60,14,ES_AUTOHSCROLL
+
+    CONTROL         "",IDC_ORDER_TIME,"SysDateTimePick32",DTS_RIGHTALIGN | DTS_UPDOWN | DTS_APPCANPARSE | WS_TABSTOP | 0x8,6,45,43,15
+    CONTROL         "до",IDC_TIME_START,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,57,47,23,10
+    CONTROL         "после",IDC_TIME_END,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,81,47,40,10
+
+    EDITTEXT        IDC_REMARK,0,61,159,31,ES_MULTILINE | ES_AUTOVSCROLL | ES_AUTOHSCROLL | ES_WANTRETURN
+    DEFPUSHBUTTON   "OK",IDOK,109,81,50,14
+    PUSHBUTTON      "Отмена",IDCANCEL,0,81,50,14
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "NapoleonRes.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""resdefce.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_ORDER_DETAIL, DIALOG
+    BEGIN
+        RIGHTMARGIN, 159
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // Russian resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

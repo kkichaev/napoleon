@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+		<modify src="Org">
+			<add>
+				<field name="whCode" type="string" data="WHCODE"/>
+			</add>
+		</modify>
+	</objects>
+</serverDefs>

@@ -1,0 +1,50 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+  <objects>
+    <modify src="Org" >
+      <add>
+        <field name="factAddress" type="string" data="ADDRESS1" />
+        <field name="baseOrg" type="string" data="IDO" />
+        <field name="dogovors" type="collection">
+          <data>
+            <object name="OrgDogovor">
+              <sources>
+                <source name="DBFTableSet">
+                  <param name="userTable">"DG"</param>
+                  <param name="commonTable">"DOGOVORS"</param>
+                  <param name="filter">"[ID] = $parent.id"</param>
+                </source>
+              </sources>
+              <field name="id" type="string" data="ID_D" />
+              <field name="name" type="string" />
+            </object>
+          </data>
+        </field>
+      </add>
+    </modify>
+
+    <modify dest="AgentsPda" src="Agents">
+      <add>
+        <field name="userid" type="string" execOn="Get">$user.id</field>
+      </add>
+    </modify>
+
+    <modify src="Sales" >
+      <change>
+        <field name="number" type="string" width="20" data="NUM" />
+        <field name="dogovor" type="string" width="30" data="DOG" />
+      </change>
+    </modify>
+
+    <modify src="Order">
+      <add>
+        <field name="supplCode" type="string" width="30" data="FIRMA" />
+        <field name="dogovor" type="string" width="30" data="DOG" />
+      </add>
+      <remove>
+        <field name="firmCode" />
+        <field name="firma" />
+      </remove>
+    </modify>
+  </objects>
+</serverDefs>

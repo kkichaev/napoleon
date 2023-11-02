@@ -1,0 +1,60 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+    <modify src="PricePhoto">
+      <change>
+        <sources>
+          <source name="DBFCatalogTable">
+            <param name="tableName">"PHOTOS"</param>
+            <param name="catalog">"[PATH]"</param>
+            <param name="ordered">0</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+
+    <!--
+    <modify src="Sales$items">
+      <add>
+        <field name="party" type="collection">
+          <data>
+            <object name="PartyQty">
+              <sources>
+                <source name="DBFCatalogItemTable"/>
+                <source name="SQTable" type="internal" />
+              </sources>
+
+              <field name="id" type="string" data="PRT_I"/>
+              <field name="qty" type="number" prec="3" data="QTY_I" />
+              <field name="docflag" width="1" type="number" execOn="Put">FirstItem($object)</field>
+            </object>
+          </data>
+        </field>
+        <field name="uid" type="string" />
+        <member name="primaryKey">"uid"</member>
+      </add>
+    </modify>
+
+    <modify src="Price">
+      <add>
+        <field name="party" type="collection">
+          <data>
+            <object name="Party">
+              <sources>
+                <source name="DBFTableSet">
+                  <param name="userTable">"PRT"</param>
+                  <param name="commonTable">"PARTIES"</param>
+                  <param name="filter">"[ID] = $parent.id"</param>
+                </source>
+              </sources>
+              <field name="name" type="string" />
+              <field name="qty" type="number" prec="3" />
+              <field name="id" type="string" data="ID_I" />
+            </object>
+          </data>
+        </field>
+      </add>
+    </modify>
+    -->
+  </objects>
+</serverDefs>

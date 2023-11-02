@@ -1,0 +1,88 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+    <object name="Route">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"RT"</param>
+          <param name="commonTable">"ROUTES"</param>
+          <param name="catalog">"barCode;items;1"</param>
+        </source>
+      </sources>
+
+      <field name="plomba" type="string" />
+      <field name="date" type="date" />
+      <field name="num" type="number" />
+      <field name="ord" type="number" data="ORDER" />
+      <field name="org" type="string" />
+      <field name="agent" type="string" />
+      <field name="adr" type="string" />
+      <field name="barCode" type="string" data="BC_ORG" />
+
+      <field name="items" type="collection">
+        <data>
+          <object name="DeliveryItem">
+
+            <field name="doc" type="string" />
+            <field name="num" type="number" data="BOX" />
+            <field name="sum" type="number" prec="2" />
+
+          </object>
+        </data>
+      </field>
+    </object>
+
+    <object name="Unload">
+      <sources>
+        <source name="DBFCatalogTable">
+          <param name="tableName">$object.table + $user.id</param>
+          <param name="catalog">"id"</param>
+          <param name="ordered">1</param>
+        </source>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="table">"ULD"</member>
+      <member name="primaryKey">"userid,created"</member>
+
+      <field name="userid" type="string" data="USER_ID" execOn="Put">$user.id</field>
+      <field name="created" type="timestamp" />
+      <field name="done" type="timestamp" />
+
+      <field name="date" type="date" />
+      <field name="barCode" type="string" data="BC_ORG" width="20" />
+
+      <field name="sended" type="timestamp" data="S_DATE" execOn="Put">Now()</field>
+      <field name="remark" type="string" />
+
+      <field name="latitude" type="number" prec="5" />
+      <field name="longitude" type="number" prec="5" />
+      <field name="latitudeEnd" type="number" prec="5" data="LAT_END" />
+      <field name="longitudeEnd" type="number" prec="5" data="LNG_END" />
+
+      <field name="items" type="collection">
+        <data>
+          <object name="OrderItem">
+            <sources>
+              <source name="DBFCatalogItemTable"/>
+              <source name="SQTable" type="internal" />
+            </sources>
+
+            <field name="barCode" width="20" type="string" data="BC_I"/>
+            
+            <field name="ordflag" width="1" type="number" execOn="Put">FirstItem($object)</field>
+          </object>
+        </data>
+      </field>
+
+
+      <events>
+        <event type="put">
+          <action name="WriteInternal">$object.type</action>
+          <action name="WriteToLog">$object.type;$object.created</action>
+        </event>
+      </events>
+    </object>
+
+  </objects>
+</serverDefs>

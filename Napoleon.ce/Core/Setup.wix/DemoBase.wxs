@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding="windows-1251"?>
+<Wix xmlns='http://schemas.microsoft.com/wix/2006/wi'>
+   <Fragment Id='DemoBase'>
+      <Feature Id='DemoBase' Title='Демо база' Description='Демо база для сервера' Absent='allow' ConfigurableDirectory='_PRODUCT' Level='1' >
+         <ComponentRef Id='DemoBase' />
+         <ComponentGroupRef Id="DemoExpFiles" /> 
+      </Feature>
+
+      <DirectoryRef Id='_PRODUCT' >
+         <Component Id='DemoBase' Guid='C168C94E-CDC4-427C-8E30-B161F26C3837'>
+            <File Id='GRServer_sdb' Name='GRServer.sdb' DiskId='1' Source='GRServer.sdb' KeyPath='yes'>
+               <Permission ChangePermission="yes" GenericAll="yes" User="Everyone" />
+            </File>
+         </Component>
+      </DirectoryRef>
+   </Fragment>
+</Wix>

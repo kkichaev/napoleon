@@ -1,0 +1,96 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "NapoleonRes.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "winres.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Russian resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_RUS)
+#ifdef _WIN32
+LANGUAGE LANG_RUSSIAN, SUBLANG_DEFAULT
+#pragma code_page(1251)
+#endif //_WIN32
+
+
+IDC_SUM DIALOG  0, 0, 72, 90
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Значение"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "вход",IDC_COST_LABEL,4,2,30,8
+    RTEXT           "", IDC_COST1,34,2,34,8
+
+    EDITTEXT        IDC_COST,4,12,64,12,ES_AUTOHSCROLL | ES_NOHIDESEL
+    PUSHBUTTON      "7",IDC_DIG_7, 4,28,17,14
+    PUSHBUTTON      "8",IDC_DIG_8,20,28,17,14
+    PUSHBUTTON      "9",IDC_DIG_9,36,28,17,14
+
+    PUSHBUTTON      "4",IDC_DIG_4, 4,41,17,14
+    PUSHBUTTON      "5",IDC_DIG_5,20,41,17,14
+    PUSHBUTTON      "6",IDC_DIG_6,36,41,17,14
+
+    PUSHBUTTON      "1",IDC_DIG_1, 4,54,17,14
+    PUSHBUTTON      "2",IDC_DIG_2,20,54,17,14
+    PUSHBUTTON      "3",IDC_DIG_3,36,54,17,14
+
+    PUSHBUTTON      "0",IDC_DIG_0, 4,67,33,14
+    PUSHBUTTON      ".",IDC_DIG_PT,36,67,17,14
+
+    PUSHBUTTON      "<-",IDC_DIG_BS,52,28,17,27
+    PUSHBUTTON      "ОК",      IDOK,52,54,17,27
+
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "dummy.\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""winres.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+#endif    // Russian resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

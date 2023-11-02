@@ -1,0 +1,24 @@
+include ':app'
+
+include ':network'
+project(':network').projectDir = new File('..\\modules\\network\\')
+
+include ':json'
+project(':json').projectDir = new File('..\\modules\\json\\')
+
+include ':documents'
+project(':documents').projectDir = new File('..\\modules\\documents\\')
+
+include ':tradebase'
+project(':tradebase').projectDir = new File('..\\modules\\tradebase\\')
+
+include ':mpchart'
+project(':mpchart').projectDir = new File('..\\modules\\mpchart\\')
+
+include ':itext'
+project(':itext').projectDir = new File('..\\modules\\itext\\')
+
+include ':delivery'
+project(':delivery').projectDir = new File('..\\modules\\delivery\\')
+
+include ':lib:camera'

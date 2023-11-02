@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding="windows-1251"?>
+<Wix xmlns='http://schemas.microsoft.com/wix/2006/wi'>
+  <Fragment Id='Server'>
+    <Feature Id='Server' Title='Сервер приложения' Description='Сервер обмена с модулями системы' Level='1' Display='1'
+             ConfigurableDirectory='_PRODUCT' Absent='allow'>
+      <ComponentRef Id='ServerComponents' />
+      <ComponentRef Id='ServerDocs' />
+      <ComponentGroupRef Id='Docs' />
+    </Feature>
+
+    <DirectoryRef Id='_PRODUCT' >
+      <Component Id='ServerComponents' Guid='6AF4765A-074F-40f3-815E-3FD77BD11129'>
+        <File Id='ServerExe' Name='GRServer.exe' DiskId='1' Source='GRServer.exe' KeyPath='yes' >
+          <Shortcut Id='ServerShc' Directory='StartupFolder' Name='GRServer' Arguments='--run-tray --config-file GRServer.ini'
+                    Description='Сервер АДС-Наполеон' WorkingDirectory='_PRODUCT' Advertise='yes' />
+        </File>
+         <File Id='ServerIni' Name='GRServer.ini' DiskId='1' Source='GRServer.ini'>
+            <Permission ChangePermission="yes" GenericAll="yes" User="Everyone" />
+         </File>
+        <File Id='ServerXml' DiskId='1' Source='serverDefs.xml' Name='serverDefs.xml'/>
+        <File Id='AddDefsXml' DiskId='1' Source='addDefs.xml' Name='addDefs.xml'/>
+        <File Id='ServerFtr' Name='GRServer.ftr' DiskId='1' Source='GRServer.ftr'/>
+        <File Id='GRServer_sdb' Name='GRServer.sdb' DiskId='1' Source='GRServer.ads.sdb'>
+            <Permission ChangePermission="yes" GenericAll="yes" User="Everyone" />
+        </File>
+      </Component>
+      <Component Id='ServerDocs' Guid='2E4E2B6C-1CB9-42ca-AE1B-AF56887DDAC9'>
+        <File Id='ServerDoc' Name='GRServer.pdf' DiskId='1' Source='GRServer.pdf' KeyPath='yes'>
+          <Shortcut Id='ServerDoc' Directory='Docs' Name='Сервер' Description='Описание сервера' Advertise='yes' />
+        </File>
+      </Component>
+    </DirectoryRef>
+  </Fragment>
+</Wix>

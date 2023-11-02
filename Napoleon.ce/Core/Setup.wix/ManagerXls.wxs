@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding="windows-1251"?>
+<Wix xmlns='http://schemas.microsoft.com/wix/2006/wi'>
+   <Fragment Id='ManagerXls'>
+		<DirectoryRef Id='_PRODUCT' >
+		  <Component Id='ExcelLibrary' Guid='160BAD0A-6FB4-4B7A-ACF4-5E138D3CD544'>
+			<File Id='ExcelLibrary_dll' Name='ExcelLibrary.dll' DiskId='1' Source='ExcelLibrary.dll' KeyPath='yes'/>
+		  </Component>
+		</DirectoryRef>
+   </Fragment>
+</Wix>

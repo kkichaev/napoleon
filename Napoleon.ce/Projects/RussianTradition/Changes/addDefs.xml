@@ -1,0 +1,197 @@
+﻿<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+   <objects>
+       <object name="Cost">
+         <sources>
+            <source name="DBFCostReader">
+               <param name="cost">"CS" + $user.id</param>
+               <param name="costType">"CT" + $user.id</param>
+            </source>
+         </sources>
+         <field name="data" type="binary" />
+      </object>
+       
+      <object name="AgentPrefix">
+         <sources>
+            <source name="DBFTable">
+               <param name="tableName">"USERS"</param>
+            </source>
+         </sources>
+
+         <field name="id" type="string" width="20" />
+         <field name="login" type="string" width="30" />
+         <field name="password" type="string" width="30" />
+         <field name="prefix" type="string" data="PFA" />
+         <field name="ser" type="string" /> 
+         <field name="number" type="string" />
+         <field name="region" type="string" />
+         <field name="data" type="timestamp" />
+         <field name="fullname" type="string" />
+      </object>
+      <object name="Sales">
+         <sources>
+            <source name="DBFCatalogTable">
+               <param name="tableName">$object.table + $user.id</param>
+               <param name="catalog">"id"</param>
+               <param name="ordered">1</param>
+            </source>
+            <source name="SQTable" type="internal" />
+         </sources>
+         
+         <member name="table">"SLS"</member>
+         <member name="primaryKey">"userid,created"</member>
+
+         <field name="userid" type="string" data="USER_ID" execOn="Put">$user.id</field>
+         <field name="created" type="timestamp" data="CREATED"/>
+         <field name="number" type="string" width="20" />
+         <field name="sended" type="timestamp" data="S_DATE" execOn="Put">Now()</field>
+         <field name="date" type="date" />
+         <field name="id" width="20" type="string" />
+         <field name="remark" type="string" />
+         <field name="items" type="collection">
+            <data>
+               <object name="SalesItem">
+                  <sources>
+                     <source name="DBFCatalogItemTable"/>
+                     <source name="SQTable" type="internal" />
+                  </sources>
+
+                  <field name="id" width="30" type="string" data="ID_I"/>
+                  <field name="qty" type="number" prec="3" />
+                  <field name="cost" type="number" prec="2" />
+                  <field name="sum" type="number" prec="2" data="" />
+                  <field name="date" type="date" data="DATA_I"/>
+                  <field name="taxSum" type="number" prec="2" data="TAX_I"  />
+                  <field name="ntd" type="string" width="50" />
+                  <field name="owner" type="string" data="" />
+                  <field name="flags" type="number" data="" />
+                  <field name="retFlag" type="number" data="RET_FLAG" execOn="Put">DecodeFlag($object.flags,9,"","1")</field>
+                  <field name="ordflag" width="1" type="number" execOn="Put">FirstItem($object)</field>
+               </object>
+            </data>
+         </field>
+
+         <field name="ctype" type="string" width="30" execOn="Put">KeyValueReader("order.cfg","ВидЦены",$object.sumType)</field>
+         <field name="supplyercode" type="string" width="20" data="FIRMA" />
+         <field name="params" type="number" width="9" prec="0" data="" />
+
+         <field name="latitude" type="number" prec="5" />
+         <field name="longitude" type="number" prec="5" />
+
+         <events>
+            <event type="put">
+               <action name="WriteInternal">$object.type</action>
+            </event>
+         </events>
+      </object>
+      <object name="Pko">
+         <sources>
+            <source name="DBFTable">
+               <param name="tableName">$object.table + $user.id</param>
+            </source>
+            <source name="SQTable" type="internal" />
+         </sources>
+         
+         <member name="table">"Pko"</member>
+         <member name="primaryKey">"userid,created"</member>
+
+		 <field name="userid" type="string" data="USER_ID" execOn="Put">$user.id</field>
+		 <field name="date" type="date" />
+         <field name="created" type="timestamp" data="CREATED"/>
+         <field name="number" type="string" width="20" />
+         <field name="sended" type="timestamp" data="S_DATE" execOn="Put">Now()</field>
+         <field name="id" width="20" type="string" />
+ 		 <field name="sales" type="timestamp" />
+         <field name="salesnumber" type="string" data="SLS_NUM" width="20" />
+         <field name="supplyercode" type="string" width="20" data="FIRMA" />
+         <field name="sum" type="number" prec="2" />  
+ 	     <field name="latitude" type="number" prec="5" />
+         <field name="longitude" type="number" prec="5" />
+
+         <events>
+            <event type="put">
+               <action name="WriteInternal">$object.type</action>
+            </event>
+         </events>
+	  </object>
+	  <object name="PA">
+         <sources>
+            <source name="DBFTable">
+               <param name="tableName">$object.table + $user.id</param>
+            </source>
+            <source name="SQTable" type="internal" />
+         </sources>
+         
+         <member name="table">"PA"</member>
+         <member name="primaryKey">"userid,created"</member>
+
+		 <field name="userid" type="string" data="USER_ID" execOn="Put">$user.id</field>
+         <field name="created" type="timestamp" data="CREATED"/>
+		 <field name="date" type="date" />
+         <field name="period" type="date" />
+         <field name="number" type="string" width="20" />
+         <field name="sended" type="timestamp" data="S_DATE" execOn="Put">Now()</field>
+         <field name="id" width="20" type="string" />
+         <field name="docnumber" type="string" data="" />
+         <field name="doccreated" type="timestamp" data="" />
+         <field name="sum" type="number" prec="2" />  
+ 	     <field name="latitude" type="number" prec="5" />
+         <field name="longitude" type="number" prec="5" />
+
+         <events>
+            <event type="put">
+               <action name="WriteInternal">$object.type</action>
+            </event>
+         </events>
+	  </object>
+
+	  <modify src="Order">
+	  	<change>
+	    	<field name="firmCode" type="string" width="20" data="FIRMA" />
+	    	<field name="costCode" type="string" width="20" />
+	    </change>
+	  </modify>
+	  <modify src="Sales">
+	  	<change>
+	    	<field name="costCode" type="string" width="20" />
+	    </change>
+	  </modify>
+	  <modify src="Org">
+	      <add>
+	         <field name="inn" type="string" />
+	         <field name="bank" type="string" />
+	         <field name="phone" type="string" />
+	         <field name="cost" type="string" />
+	      </add>
+      </modify>
+   
+      <modify src="Order">
+	      <add>
+	         <field name="firmCode" type="string" width="30" data="FIRMA" />
+	      </add>
+      </modify>
+
+   	  <modify src="Price">
+	   	  <add>
+	         <field name="party" type="collection">
+	            <data>
+	               <object name="Party">
+	                  <sources>
+	                     <source name="DBFTableSet">
+	                        <param name="userTable">"P"</param>
+	                        <param name="commonTable">"PARTY"</param>
+	                        <param name="filter">"[ID] = $parent.id"</param>
+	                     </source>
+	                  </sources>
+	
+	                  <field name="date" type="timestamp" />
+					  <field name="ntd" type="string" />
+					  <field name="qty" type="number" prec="3" />
+					  <field name="owner" type="string" data="POWNER" />
+	               </object>
+	            </data>
+	         </field>
+	   	  </add>
+      </modify>
+   </objects>
+</serverDefs>

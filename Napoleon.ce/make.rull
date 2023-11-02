@@ -1,0 +1,327 @@
+.PHONY: pda all server setup cab makecab libpda pdasetup wix features adsmgr server_x64 libpc_x64 comserver_x64 odbc_x64
+
+ifneq ($(VariantBase),)
+  ifeq ($(Variant),)
+    $(error "Set variant before")
+  endif
+
+  include Variants/$(Variant)/make.vars
+endif
+
+ifneq ($(findstring ADS, $(FEATURES)),)
+ NEW_CORE=1
+ NO_WIN_MOBILE=1
+endif
+
+MANAGER=manager
+ADMIN=admin
+
+SERVER_X64=1
+
+ifdef SERVER_X64
+  SERVER=server_x64
+  ODBC=odbc_x64
+  REPORTER=reporter_x64
+  LIBPC=libpc_x64
+  
+server:server_x64
+reporter:reporter_x64
+odbc:odbc_x64
+
+else
+  SERVER=server
+  ODBC=odbc
+  REPORTER=reporter
+  LIBPC=libpc
+endif
+
+ifneq ($(findstring VERSION_5, $(FEATURES)),)
+    MANAGER = manager5
+	ADMIN = admin5
+    FEATURES += VERSION_4
+endif
+
+# very strange.. but wiwhout dummy it don't works
+DUMMY=
+VS12=1
+ifneq ($(findstring USE_CURL, $(FEATURES)),)
+	ifneq ($(findstring VERSION_4, $(FEATURES)),)
+		VS14=1
+		PY_39=1
+	else
+		VS12=1
+	endif
+	USE_CURL=1
+endif
+
+ifneq ($(findstring AGENT_ORG_TASK, $(FEATURES)),)
+   ifeq ($(findstring PYTHON_REPORTER, $(FEATURES)),)
+      FEATURES+=PYTHON_REPORTER
+   endif
+endif
+
+ifneq ($(findstring PYTHON_REPORTER, $(FEATURES)),)
+   DYNAMIC_RT=1
+endif
+
+ifneq ($(findstring SHOW_OFF_TAKE, $(FEATURES)),)
+   ifeq ($(findstring ORG_REMNANTS, $(FEATURES)),)
+      FEATURES+=ORG_REMNANTS
+   endif
+endif
+
+ifneq ($(findstring NAPOLEON_APPS, $(FEATURES)),)
+   ifeq ($(findstring GPS_POS, $(FEATURES)),)
+      FEATURES+=GPS_POS
+   endif
+endif
+
+ifneq ($(findstring GPS_POS, $(FEATURES)),)
+   ifeq ($(findstring NAPOLEON_APPS, $(FEATURES)),)
+      FEATURES+=NAPOLEON_APPS
+   endif
+endif
+
+ifneq ($(findstring VAN_SELLING, $(FEATURES)),)
+   ifeq ($(findstring ORD_DLV_BIND, $(FEATURES)),)
+      FEATURES+=ORD_DLV_BIND
+   endif
+endif
+
+ADS_LIGHT=
+ifneq ($(findstring ADS_LIGHT, $(FEATURES)),)
+   ADS_LIGHT=1
+endif
+
+ifneq ($(findstring ORDER_ONLINE, $(FEATURES)),)
+   ifeq ($(findstring FIRMS_TABLE, $(FEATURES)),)
+      FEATURES+=FIRMS_TABLE
+   endif
+endif
+
+ifndef SETTINGS_PROJECT
+  SETTINGS_PROJECT=settings.mk
+endif
+
+PNAPOLEON=Napoleon.sql
+
+ifdef NEW_CORE
+  PCORE=$(NAPOLEON_CORE)
+  SERVER=GRServer
+  ifneq ($(findstring VERSION_5, $(FEATURES)),)
+     SRV_PATH=$(PCORE)/GRServer.v5
+  else
+     SRV_PATH=$(PCORE)
+  endif
+
+  all: install
+
+ifdef SERVER_X64
+   install: server_x64 $(ADMIN) $(MANAGER)
+else
+  ifneq ($(findstring ADS_LIGHT, $(FEATURES)),)
+    install: server admin adsmgr
+  else
+    ifdef NO_MANAGER
+      install: server admin
+    else
+      install: server admin $(MANAGER)
+    endif
+  endif
+endif
+
+ifneq ($(findstring OleDB, $(FEATURES)),)
+  server: oledb
+endif
+
+ifndef NO_WIN_MOBILE
+   install: cabpda
+endif
+
+ifneq ($(findstring NAPOLEON_APPS, $(FEATURES)),)
+  cabpda: apps
+endif
+
+ifneq ($(findstring PYTHON_REPORTER, $(FEATURES)),)
+  install: $(REPORTER)
+endif
+
+ifneq ($(findstring VAN_SELLING, $(FEATURES)),)
+  cabpda: nprinter
+endif
+
+ifneq ($(findstring ODBC_PLUGIN, $(FEATURES)),)
+   install: $(ODBC)
+endif
+
+  cabpda: pda setuppda updatepda installpda makecab
+
+  pda: dbpda libpda
+  updatepda: libpda
+
+  updatepc: libpc
+  admin: grpacket
+  manager: grpacket
+  manager5: grpacket
+  manager5test: grpacket
+  1cplugin: libpc
+else # NEW_CORE
+  PCORE=Core
+  SERVER=$(PNAPOLEON)
+  SRV_PATH=$(PCORE)/$(PNAPOLEON)
+
+  all: pda server setup
+
+  setuppc: setuppda libpc
+  cabpda: pda setuppda makecab
+  pda: libpda
+  server_x64 : libpc_x64
+endif # NEW_CORE
+
+server_x64 odbc_x64 libpc_x64 comserver_x64 reporter_x64 pgdriver_x64: X64=1
+server_x64 odbc_x64 libpc_x64 comserver_x64 reporter_x64 pgdriver_x64: X64_ADD=_x64
+
+server_x64 reporter_x64 comserver_x64 odbc_x64:libpc_x64
+
+features:
+	$(MAKE) -C../../$(PCORE) -f install.mk features
+
+pda:
+	$(MAKE) -C ../../$(PCORE)/$(PNAPOLEON) -f pda.mk pch
+	$(MAKE) -C ../../$(PCORE)/$(PNAPOLEON) -f pda.mk
+
+1cplugin:
+	$(MAKE) -C ../../$(SRV_PATH) -f 1cplugin.mk pch
+	$(MAKE) -C ../../$(SRV_PATH) -f 1cplugin.mk
+	$(MAKE) -C ../../$(SRV_PATH) -f napoleon1c.mk pch
+	$(MAKE) -C ../../$(SRV_PATH) -f napoleon1c.mk midl
+	$(MAKE) -C ../../$(SRV_PATH) -f napoleon1c.mk
+
+#
+# server make area
+#
+reporter reporter_x64: DYNAMIC_RT=1
+reporter_x64: $(LIBPC)
+	$(MAKE) -C ../../$(SRV_PATH) -f reporter.mk pch
+	$(MAKE) -C ../../$(SRV_PATH) -f reporter.mk
+server_x64:
+	$(MAKE) -C ../../$(SRV_PATH) -f server.mk pch
+	$(MAKE) -C ../../$(SRV_PATH) -f server.mk
+pgdriver_x64:
+	$(MAKE) -C ../../$(SRV_PATH) -f pgdriver.mk pch
+	$(MAKE) -C ../../$(SRV_PATH) -f pgdriver.mk
+libpc_x64:
+	$(MAKE) -C ../../$(SRV_PATH) -f libpc.mk pch
+	$(MAKE) -C ../../$(SRV_PATH) -f libpc.mk
+
+libpc:
+	$(MAKE) -C ../../$(SRV_PATH) -f libpc.mk pch
+	$(MAKE) -C ../../$(SRV_PATH) -f libpc.mk
+
+comserver comserver_x64: DYNAMIC_RT=
+comserver comserver_x64: VS14=1
+comserver comserver_x64: VS12=
+comserver:libpc
+comserver_x64:libpc_x64
+comserver_x64 comserver:
+	$(MAKE) -C ../../$(SRV_PATH) -f comserver.mk pch
+	$(MAKE) -C ../../$(SRV_PATH) -f comserver.mk midl
+	$(MAKE) -C ../../$(SRV_PATH) -f comserver.mk
+
+odbc_x64:
+	$(MAKE) -C ../../$(SRV_PATH) -f odbc.mk pch
+	$(MAKE) -C ../../$(SRV_PATH) -f odbc.mk
+#
+# server make area
+#
+
+manager5test:TEST=1
+
+
+mkupdate: libpc
+	$(MAKE) -C ../../$(PCORE) -f mkupdate.mk pch
+	$(MAKE) -C ../../$(PCORE) -f mkupdate.mk
+
+admin:
+	$(MAKE) -C ../../$(PCORE) -f admin.mk
+
+admin5:
+	$(MAKE) -C ../../$(PCORE) -f admin.v5.mk
+
+monitor:
+	$(MAKE) -C ../../$(PCORE) -f monitor.mk
+
+manager:
+	$(MAKE) -C ../../$(PCORE) -f manager.mk
+
+manager5:
+	$(MAKE) -C ../../$(PCORE) -f manager.v5.mk
+
+manager5test:
+	$(MAKE) -C ../../$(PCORE) -f manager.v5.mk
+
+adsmgr:
+	$(MAKE) -C ../../$(PCORE) -f ads2017.mk
+
+grpacket:
+	$(MAKE) -C ../../$(PCORE) -f grpacket.mk
+
+makecab:
+	$(MAKE) -C ../../$(PCORE)/$(PNAPOLEON) -f pda.mk cab
+
+updatepc:
+	$(MAKE) -C ../../$(PCORE) -f updatepc.mk pch
+	$(MAKE) -C ../../$(PCORE) -f updatepc.mk
+
+updatepda:
+	$(MAKE) -C ../../$(PCORE) -f updatepda.mk pch
+	$(MAKE) -C ../../$(PCORE) -f updatepda.mk
+
+libpda:
+	$(MAKE) -C ../../$(PCORE) -f libpda.mk pch
+	$(MAKE) -C ../../$(PCORE) -f libpda.mk
+
+dbpda:
+	$(MAKE) -C ../../$(PCORE) -f dbpda.mk pch
+	$(MAKE) -C ../../$(PCORE) -f dbpda.mk
+
+setuppda:
+	$(MAKE) -C ../../$(PCORE)/$(PNAPOLEON) -f setuppda.mk pch
+	$(MAKE) -C ../../$(PCORE)/$(PNAPOLEON) -f setuppda.mk
+
+ifdef ADS_LIGHT
+install:
+	$(MAKE) -C../../$(PCORE) -f install_ads.mk
+else
+install:
+	$(MAKE) -C../../$(PCORE) -f install.mk
+endif
+
+install_test:
+	$(MAKE) -C../../$(PCORE) -f install.mk
+
+installpda:
+	$(MAKE) -C../../$(PCORE) -f installpda.mk pch
+	$(MAKE) -C../../$(PCORE) -f installpda.mk
+
+setuppc:
+	$(MAKE) -C ../../$(PCORE)/$(PNAPOLEON) -f $(SETTINGS_PROJECT) pch
+	$(MAKE) -C ../../$(PCORE)/$(PNAPOLEON) -f $(SETTINGS_PROJECT)
+
+nprinter:
+	$(MAKE) -C../../$(PCORE) -f btwc.mk pch
+	$(MAKE) -C../../$(PCORE) -f btwc.mk
+	$(MAKE) -C../../$(PCORE) -f apdk.mk
+	$(MAKE) -C../../$(PCORE) -f nprinter.mk pch
+	$(MAKE) -C../../$(PCORE) -f nprinter.mk
+
+npldrv:
+	$(MAKE) -C ../../$(PCORE)/$(PNAPOLEON) -f drv.mk
+
+#ifdef APPS_NEW
+apps: libpda
+#else
+#apps: npldrv libpda
+#endif
+	$(MAKE) -C ../../$(PCORE)/$(PNAPOLEON) -f apps.mk pch
+	$(MAKE) -C ../../$(PCORE)/$(PNAPOLEON) -f apps.mk

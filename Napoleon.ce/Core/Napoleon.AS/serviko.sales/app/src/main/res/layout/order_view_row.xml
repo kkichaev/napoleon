@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_marginLeft="4dp"
+        android:id="@+id/tvName"
+        style="@style/OrderText"
+        android:minLines="2"
+        android:gravity="center_vertical"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        />
+
+    <TextView
+        android:layout_gravity="center_vertical"
+        android:id="@+id/tvQty"
+        android:layout_width="wrap_content"
+        style="@style/OrderText"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="4dp"
+        />
+    <TextView
+        android:id="@+id/tvSum"
+        android:layout_gravity="center_vertical"
+        android:gravity="right"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        style="@style/OrderText"
+        android:layout_marginRight="4dp"
+        />
+</LinearLayout>

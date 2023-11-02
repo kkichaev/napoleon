@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding="windows-1251"?>
+<Wix xmlns='http://schemas.microsoft.com/wix/2003/01/wi'>
+   <Fragment Id='Add'>
+      <Feature Id='Sbis' Title='Компоненты СБИС' Description='Компоненты для работы со СБИС' Level='1'
+               ConfigurableDirectory='_PRODUCT' Absent='allow'>
+         <ComponentRef Id='SbisComponents' />
+         <ComponentRef Id='SbisSrcComponents' />
+         <ComponentRef Id='OrdSyncComponents' />
+      </Feature>
+      <FeatureRef Id='Server'>
+         <ComponentRef Id='AddServerComponents' />
+      </FeatureRef>
+
+      <DirectoryRef Id='_PRODUCT' >
+         <Component Id='AddServerComponents' Guid='17CA81F3-069F-4845-844D-2664BA8B1FBF'>
+            <File Id='AddDefsXml' Name='addDefs.xml' DiskId='1' Source='addDefs.xml' LongName='addDefs.xml'/>
+         </Component>
+         <Directory Id='OrderSync' LongName='OrderSync' Name='OrdSync'>
+            <Component Id='OrdSyncComponents' Guid='FC0F3CDB-B630-41ec-9BB1-4B7C9F06C804'>
+               <File Id='OrderSync_exe' Name='OrdSync.exe' DiskId='1' Source='OrderSync.exe' LongName='OrderSync.exe'>
+                  <Shortcut Id='OrderSync_exe' Directory='ProgramMenuDir' Name='OrdSync' LongName='Синхронизация остатков'
+                            Description='Синхронизация базы СБИС с АСМТ "Наполеон"' WorkingDirectory='_PRODUCT'/>
+               </File>
+               <File Id='global_rs' Name='global.rs' DiskId='1' Source='global.rs'/>
+               <File Id='OrderSync_rs' Name='OrdSync.rs' DiskId='1' Source='OrderSync.rs' LongName='OrderSync.rs' />
+            </Component>
+         </Directory>
+         <Directory Id='Sbis' LongName='Файлы Сбис' Name='SbisFls'>
+            <Directory Id='SbisSrc' Name='Src'>
+               <Component Id='SbisSrcComponents' Guid='40A74460-9AED-4226-99F8-401A9C78E58D'>
+                  <File Id='copy_files_bat' Name='copy_fil.bat' DiskId='1' Source='copy_files.bat' LongName='copy_files.bat'/>
+                  <File Id='cppod_bat' Name='cppod.bat' DiskId='1' Source='cppod.bat'/>
+                  <File Id='DLV_dbf' Name='DLV.dbf' DiskId='1' Source='DLV.dbf'/>
+                  <File Id='NplCombine_exe' Name='NplComb.exe' DiskId='1' Source='NplCombine.exe' LongName='NplCombine.exe'/>
+                  <File Id='PAY_dbf' Name='PAY.dbf' DiskId='1' Source='PAY.dbf'/>
+                  <File Id='PD_dbf' Name='PD.dbf' DiskId='1' Source='PD.dbf'/>
+               </Component>
+            </Directory>
+            <Component Id='SbisComponents' Guid='52925058-AB1B-466c-AC30-777B316194E5'>
+               <File Id='Napoleon_prg' Name='Napoleon.prg' DiskId='1' Source='Napoleon.prg'/>
+               <File Id='order_dic' Name='order.dic' DiskId='1' Source='order.dic'/>
+               <File Id='Sbis_rso' Name='Sbis.rso' DiskId='1' Source='Sbis.rso'/>
+            </Component>
+         </Directory>
+      </DirectoryRef>
+   </Fragment>
+</Wix>

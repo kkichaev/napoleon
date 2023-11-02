@@ -1,0 +1,26 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+    <modify src="Agents">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+        <member name="primaryKey">"progid"</member>
+      </change>
+      <add>
+        <field name="userid" type="string" execOn="Get">$user.id</field>
+      </add>
+    </modify>
+    <modify src="Order">
+      <add>
+        <field name="matrix" type="string" width="50" />
+      </add>
+    </modify>
+    <modify src="Order$items">
+      <change>
+        <field name="id" width="100" type="string" data="ID_I"/>
+      </change>
+    </modify>
+ 	</objects>
+</serverDefs>

@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+  <objects>
+    <modify src="Order">
+      <add>
+        <field name="payType" type="string" />
+
+        <field name="consign" type="number" width="1" />
+        <field name="perech" type="number" width="1" />
+      </add>
+    </modify>
+    <modify src="Price">
+      <add>
+        <field name="maxDiscount" type="number" prec="2" data="MAX_DSC" />
+      </add>
+    </modify>
+    <modify src="Order$items">
+      <add>
+        <field name="discount" type="number" prec="2" />
+        <field name="costwd" type="number" prec="2" />
+      </add>
+    </modify>
+  </objects>
+</serverDefs>

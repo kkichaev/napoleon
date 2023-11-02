@@ -1,0 +1,125 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "NapoleonRes.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "resdefce.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Russian resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_RUS)
+#ifdef _WIN32
+LANGUAGE LANG_RUSSIAN, SUBLANG_DEFAULT
+#pragma code_page(1251)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_QTY DIALOG  0, 0, 139, 100
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Введите количество"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Название",IDC_ITEM_NAME,2,1,138,32
+    //LTEXT           "Название",IDC_REMARK,2,31,138,10
+
+    LTEXT           "заказ",IDC_QTY_LABEL,66,34,21,10
+    EDITTEXT        IDC_QTY,90,32,38,12,ES_AUTOHSCROLL | ES_NOHIDESEL
+
+    LTEXT           "на складе",IDC_REST_LABEL,2,34,40,10
+    RTEXT           "на складе",IDC_REST,21,34,50,10
+
+    LTEXT           "цена",IDC_COST_LABEL,2,45,29,10
+    RTEXT           "цена",IDC_COST,31,45,40,10,SS_NOTIFY
+
+#ifdef ORD_ITEM_DISCOUNT
+    LTEXT           "скид.,%",IDC_DISCOUNT,2,44,30,10
+    RTEXT           "нац.",IDC_DISCOUNT_VALUE,31,44,40,10,SS_NOTIFY
+#endif
+
+    LTEXT           "в упак.",IDC_INPACK_LABEL,2,56,29,10
+    RTEXT           "в упак.",IDC_INPACK,31,56,40,10
+
+    LTEXT           "сумма",IDC_SUM_LABEL,66,45,21,10
+    LTEXT           "сумма",IDC_SUM,91,45,46,10
+
+    CONTROL         "упаковками",IDC_PACK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,90,55,53,10
+
+    PUSHBUTTON      "Отмена",IDCANCEL,2,86,36,14
+    PUSHBUTTON      "ОК",IDOK,39,86,36,14
+
+#ifdef PRICE_MOVER
+    PUSHBUTTON      "^",IDC_PREV,76,86,15,15,BS_OWNERDRAW
+    PUSHBUTTON      "U",IDC_NEXT,92,86,15,15,BS_OWNERDRAW
+#endif
+
+    LTEXT           "история продаж",IDC_SALES_HIST,2,71,58,8,SS_NOTIFY
+    LTEXT           "Static",IDC_PREV_QTY,2,82,79,16
+
+    PUSHBUTTON      "1",IDC_DIG_1,90,66,14,12
+    PUSHBUTTON      "2",IDC_DIG_2,103,66,14,12
+    PUSHBUTTON      "3",IDC_DIG_3,116,66,14,12
+    PUSHBUTTON      "4",IDC_DIG_4,90,77,14,12
+    PUSHBUTTON      "5",IDC_DIG_5,103,77,14,12
+    PUSHBUTTON      "6",IDC_DIG_6,116,77,14,12
+    PUSHBUTTON      "7",IDC_DIG_7,90,88,14,12
+    PUSHBUTTON      "8",IDC_DIG_8,103,88,14,12
+    PUSHBUTTON      "9",IDC_DIG_9,116,88,14,12
+    PUSHBUTTON      ".",IDC_DIG_PT,90,99,14,12
+    PUSHBUTTON      "0",IDC_DIG_0,103,99,14,12
+    PUSHBUTTON      "<-",IDC_DIG_BS,116,99,14,12
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "NapoleonRes.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""resdefce.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+#endif    // Russian resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

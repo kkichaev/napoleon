@@ -1,0 +1,528 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/spinner_color"
+        android:layout_margin="@dimen/univ_padding_small"
+        android:orientation="vertical"
+        android:id="@+id/linearLayout4">
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/univ_ab_height"
+            android:paddingLeft="@dimen/univ_padding"
+            android:id="@+id/repeat_chooser_type"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@+id/linearLayout4"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true">
+
+        <RelativeLayout
+            android:id="@+id/container_type_repeat_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:isScrollContainer="false"
+            android:keepScreenOn="false"
+            android:nestedScrollingEnabled="false"
+            android:visibility="gone">
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="1dp"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/view">
+
+            </View>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="110dp"
+                android:orientation="vertical"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_toLeftOf="@+id/view"
+                android:layout_toStartOf="@+id/view"
+                android:gravity="center">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/text_view_main"
+                        android:layout_width="wrap_content"
+                        android:layout_height="22dp"
+                        android:text="@string/lang_task_recurrence_in"
+                        android:ellipsize="end"
+                        android:textSize="@dimen/text_size_normalSP"
+                        android:singleLine="true" />
+
+                    <NumberPicker
+                        android:id="@+id/repeat_chooser_left"
+                        android:layout_width="30dp"
+                        android:layout_height="110dp"
+                        android:layout_gravity="center_horizontal"
+                        android:scaleX="0.9"
+                        android:scaleY="0.9"
+                        android:descendantFocusability="blocksDescendants"/>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="110dp"
+                android:orientation="vertical"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_toRightOf="@+id/view"
+                android:layout_toEndOf="@+id/view"
+                android:gravity="center">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/spinner_color"
+                    android:layout_margin="@dimen/univ_padding_small"
+                    android:orientation="vertical">
+
+                    <Spinner
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/univ_ab_height"
+                        android:paddingLeft="@dimen/univ_padding"
+                        android:id="@+id/repeat_chooser_right"/>
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/container_type_repeat_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:isScrollContainer="false"
+                android:keepScreenOn="false"
+                android:nestedScrollingEnabled="false">
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="1dp"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/view">
+
+                </View>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="110dp"
+                    android:orientation="vertical"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_toLeftOf="@+id/view"
+                    android:layout_toStartOf="@+id/view"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="22dp"
+                        android:text="@string/lang_task_recurrence_every_w"
+                        android:ellipsize="end"
+                        android:textSize="@dimen/text_size_normalSP"
+                        android:singleLine="true" />
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="110dp"
+                    android:orientation="vertical"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_toRightOf="@+id/view"
+                    android:layout_toEndOf="@+id/view"
+                    android:gravity="center">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+
+                        <NumberPicker
+                            android:id="@+id/repeat_chooser_right_week"
+                            android:layout_width="30dp"
+                            android:layout_height="110dp"
+                            android:layout_gravity="center_horizontal"
+                            android:scaleX="0.9"
+                            android:scaleY="0.9"
+                            android:descendantFocusability="blocksDescendants"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="22dp"
+                            android:text="@string/lang_task_after_week"
+                            android:ellipsize="end"
+                            android:textSize="@dimen/text_size_normalSP"
+                            android:singleLine="true" />
+
+                    </LinearLayout>
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/univ_ab_height"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        android:id="@+id/checkbox1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Mo"
+                        android:layout_gravity="center"
+                        android:paddingRight="@dimen/univ_padding"/>
+
+                    <CheckBox
+                        android:id="@+id/checkbox2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Tu"
+                        android:layout_gravity="center"
+                        android:paddingRight="@dimen/univ_padding"/>
+
+                    <CheckBox
+                        android:id="@+id/checkbox3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/We"
+                        android:layout_gravity="center"
+                        android:paddingRight="@dimen/univ_padding"/>
+
+                    <CheckBox
+                        android:id="@+id/checkbox4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Th"
+                        android:layout_gravity="center"
+                        android:paddingRight="@dimen/univ_padding"/>
+
+                    <CheckBox
+                        android:id="@+id/checkbox5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Fr"
+                        android:layout_gravity="center"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/univ_padding_big_feature"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        android:id="@+id/checkbox6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Sa"
+                        android:layout_gravity="center"
+                        android:paddingRight="@dimen/univ_padding"/>
+
+                    <CheckBox
+                        android:id="@+id/checkbox7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Su"
+                        android:layout_gravity="center"/>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/container_type_repeat_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:isScrollContainer="false"
+            android:keepScreenOn="false"
+            android:nestedScrollingEnabled="false"
+            android:gravity="center"
+            android:visibility="gone">
+
+
+            <RelativeLayout
+                android:layout_width="140dp"
+                android:layout_height="110dp"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:id="@+id/relativeLayout">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/spinner_color"
+                    android:layout_margin="@dimen/univ_padding_small"
+                    android:orientation="vertical">
+
+                    <Spinner
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/univ_ab_height"
+                        android:paddingLeft="@dimen/univ_padding"
+                        android:id="@+id/repeat_chooser_right_month"/>
+
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="110dp"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_toRightOf="@+id/relativeLayout"
+                android:layout_toEndOf="@+id/relativeLayout">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/repeat_chooser_left_month_day_container_custom"
+                        android:visibility="gone">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@color/spinner_color"
+                            android:layout_margin="@dimen/univ_padding_small"
+                            android:orientation="vertical">
+
+                            <Spinner
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/univ_ab_height"
+                                android:paddingLeft="@dimen/univ_padding"
+                                android:id="@+id/repeat_chooser_right_month_day_of_week"/>
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <NumberPicker
+                        android:id="@+id/repeat_chooser_left_month"
+                        android:layout_width="30dp"
+                        android:layout_height="110dp"
+                        android:layout_gravity="center_horizontal"
+                        android:scaleX="0.9"
+                        android:scaleY="0.9"
+                        android:descendantFocusability="blocksDescendants"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="22dp"
+                        android:text="@string/lang_task_recurrence_m_every"
+                        android:ellipsize="end"
+                        android:textSize="@dimen/text_size_normalSP"
+                        android:singleLine="true" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/repeat_chooser_left_month_day_container"
+                        android:gravity="center_vertical"
+                        android:visibility="gone">
+
+                        <NumberPicker
+                            android:id="@+id/repeat_chooser_left_month_day"
+                            android:layout_width="30dp"
+                            android:layout_height="110dp"
+                            android:layout_gravity="center_horizontal"
+                            android:scaleX="0.9"
+                            android:scaleY="0.9"
+                            android:descendantFocusability="blocksDescendants"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="22dp"
+                            android:text="@string/lang_task_recurrence_m_every_d"
+                            android:ellipsize="end"
+                            android:textSize="@dimen/text_size_normalSP"
+                            android:singleLine="true" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/container_type_repeat_4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:isScrollContainer="false"
+            android:keepScreenOn="false"
+            android:nestedScrollingEnabled="false"
+            android:gravity="center"
+            android:visibility="gone">
+
+
+            <RelativeLayout
+                android:layout_width="130dp"
+                android:layout_height="110dp"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:id="@+id/relativeLayout">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/spinner_color"
+                    android:layout_marginLeft="@dimen/univ_padding_tiny"
+                    android:layout_marginBottom="@dimen/univ_padding_tiny"
+                    android:layout_marginTop="@dimen/univ_padding_tiny"
+                    android:orientation="vertical">
+
+                    <Spinner
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/univ_ab_height"
+                        android:paddingLeft="@dimen/univ_padding"
+                        android:id="@+id/repeat_chooser_right_year"/>
+
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="110dp"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_toRightOf="@+id/relativeLayout"
+                android:layout_toEndOf="@+id/relativeLayout">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/repeat_chooser_left_year_day_container_custom"
+                        android:visibility="gone">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@color/spinner_color"
+                            android:layout_margin="@dimen/univ_padding_tiny"
+                            android:orientation="vertical">
+
+                            <Spinner
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/univ_ab_height"
+                                android:paddingLeft="@dimen/univ_padding"
+                                android:id="@+id/repeat_chooser_right_year_day_of_week"/>
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/spinner_color"
+                        android:layout_margin="@dimen/univ_padding_tiny"
+                        android:orientation="vertical">
+
+                        <Spinner
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/univ_ab_height"
+                            android:paddingLeft="@dimen/univ_padding"
+                            android:id="@+id/repeat_chooser_left_year"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/repeat_chooser_left_year_day_container"
+                        android:gravity="center_vertical"
+                        android:visibility="gone">
+
+                        <NumberPicker
+                            android:id="@+id/repeat_chooser_left_year_day"
+                            android:layout_width="30dp"
+                            android:layout_height="97dp"
+                            android:layout_gravity="center_horizontal"
+                            android:scaleX="0.9"
+                            android:scaleY="0.9"
+                            android:descendantFocusability="blocksDescendants"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="22dp"
+                            android:text="@string/lang_task_recurrence_m_every_d"
+                            android:ellipsize="end"
+                            android:textSize="@dimen/text_size_normalSP"
+                            android:singleLine="true" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

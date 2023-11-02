@@ -1,0 +1,76 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+  <objects>
+    <object name="DistributionMatrix">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"id"</member>
+      <field name="id" type="string" />
+      <field name="items" type="collection">
+        <data>
+          <object name="Item">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+            <field name="id" type="string" />
+          </object>
+        </data>
+      </field>
+    </object>
+
+    <object name="OrgDistribution">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"userid,created"</member>
+      <field name="userid" type="string" data="USER_ID" execOn="Put">$user.id</field>
+      <field name="created" type="timestamp" />
+      <field name="timeZone" type="number" />
+      <field name="serverTimeZone" type="number" data="S_TZ" execOn="Put" features="USE_TIMEZONE">ServerTimeZone()</field>
+      <field name="sended" type="timestamp" data="S_DATE" execOn="Put">Now()</field>
+      <field name="date" type="date" />
+      <field name="id" width="30" type="string" />
+      <field name="remark" type="string" />
+      <field name="items" type="collection">
+        <data>
+          <object name="Item">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+            <field name="id" type="string" />
+          </object>
+        </data>
+      </field>
+    </object>
+
+    <modify src="Price">
+      <add>
+        <field name="units" type="collection">
+          <data>
+            <object name="Units">
+              <sources>
+                <source name="DBFTableSet">
+                  <param name="userTable">"WU"</param>
+                  <param name="commonTable">"WUNITS"</param>
+                  <param name="filter">"[ID_I] = $parent.id"</param>
+                </source>
+              </sources>
+              <field name="id" type="string" />
+              <field name="name" type="string" />
+              <field name="inpack" type="number" prec="3" />
+            </object>
+          </data>
+        </field>
+      </add>
+    </modify>
+    <modify src="Order$items">
+      <add>
+        <field name="unit" type="string" data="ID_WU" />
+        <field name="remark" type="string" data="REM_I" width="100" />
+      </add>
+    </modify>
+  </objects>
+</serverDefs>

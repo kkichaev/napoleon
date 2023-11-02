@@ -1,0 +1,174 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+  <objects>
+    <object name="Regions" >
+      <sources>
+        <source name="DBFTable">
+          <param name="tableName">"REGIONS"</param>
+        </source>
+      </sources>
+      <field name="id" type="string" />
+      <field name="name" type="string" />
+    </object>
+    <object name="OrdConfig">
+      <sources>
+        <source name="KeyValueTable">
+          <param name="fileName">"ord" + $user.id + ".cfg"</param>
+        </source>
+        <source name="KeyValueTable">
+          <param name="fileName">"order.cfg"</param>
+        </source>
+      </sources>
+
+      <field name="key" type="string" />
+      <field name="value" type="string" />
+    </object>
+    <object name="WhConfig">
+      <sources>
+        <source name="KeyValueDBFTable">
+          <param name="fileName">"SKLADS"</param>
+          <param name="key">"Склады"</param>
+          <param name="itemName">"NAME"</param>
+          <param name="itemKey">"ID"</param>
+        </source>
+      </sources>
+
+      <field name="key" type="string" />
+      <field name="value" type="string" />
+    </object>
+
+    <object name="Config">
+      <sources>
+        <source name="ObjectUnion">
+          <param>"OrdConfig"</param>
+          <param>"WhConfig"</param>
+        </source>
+      </sources>
+
+      <field name="key" type="string" />
+      <field name="value" type="string" />
+    </object>
+
+    <object name="Plan">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"PLN"</param>
+          <param name="commonTable">"PLAN"</param>
+          <param name="catalog">"idplan;items;1"</param>
+        </source>
+      </sources>
+
+      <member name="table">"PLN"</member>
+
+      <field name="idplan" type="string" data="IDP"/>
+      <field name="name" type="string" />
+      <field name="labels" type="file" data="LBL" />
+      <field name="background" type="hex" data="BG"/>
+
+      <field name="items" type="collection">
+        <data>
+          <object name="PlanItem">
+            <field name="caption" type="string" data="CAP"/>
+            <field name="color" type="hex" data="COL" />
+            <field name="values" type="file" data="VAL" />
+          </object>
+        </data>
+      </field>
+    </object>
+
+    <modify src="Order">
+      <add>
+        <field name="regCode" type="string" width="20" />
+        <field name="whCode" type="string" width="20" />
+        <field name="dogCode" type="string" width="20" />
+        <field name="consignee" type="string" width="20" data="ID_GPL" />
+        <field name="gprm" type="string" width="20" data="ID_GPR" />
+        <field name="payer" type="string" width="20" data="ID_PAY" />
+        <field name="executiveManager" type="string" width="20" data="IDAGENT" />
+
+        <field name="self"  type="number" width="1" execOn="Put">DecodeFlag($object.paramsex, 1, "", "1")</field>
+        <field name="pasp"  type="number" width="1" execOn="Put">DecodeFlag($object.paramsex, 2, "", "1")</field>
+        <field name="sert"  type="number" width="1" execOn="Put">DecodeFlag($object.paramsex, 4, "", "1")</field>
+        <field name="shema"  type="number" width="1" execOn="Put">DecodeFlag($object.paramsex, 8, "", "1")</field>
+        <field name="prdstv"  type="number" width="1" execOn="Put">DecodeFlag($object.paramsex, 16, "", "1")</field>
+        <field name="schet"  type="number" width="1" execOn="Put">DecodeFlag($object.paramsex, 32, "", "1")</field>
+      </add>
+    </modify>
+    <modify src="Order$items">
+      <add>
+        <field name="unit" type="string" width="20" data="ID_WU" />
+        <field name="discount" type="number" prec="2" />
+        <field name="prcDD" type="number" prec="2" />
+        <field name="sumDD" type="number" prec="2" />
+      </add>
+    </modify>
+    <modify src="Org">
+      <add>
+        <field name="limit" type="number" prec="2" />
+        <field name="region" type="string" />
+        <field name="dogovors" type="collection">
+          <data>
+            <object name="OrgDogovor">
+              <sources>
+                <source name="DBFTableSet">
+                  <param name="userTable">"DG"</param>
+                  <param name="commonTable">"DOGOVORS"</param>
+                  <param name="filter">"[ID] = $parent.id"</param>
+                </source>
+              </sources>
+              <field name="id" type="string" data="ID_D" />
+              <field name="name" type="string" />
+              <field name="limit" type="number" prec="2" />
+              <field name="costype" type="number" />
+            </object>
+          </data>
+        </field>
+      </add>
+    </modify>
+    <modify src="Price">
+      <add>
+        <field name="whQty" type="collection" feature="FIRMS_REST">
+          <data>
+            <object name="WHQty">
+              <sources>
+                <source name="Sequence">
+                  <param name="source">$parent.source</param>
+                  <param name="startIndex">1</param>
+                </source>
+              </sources>
+              <field name="qty" type="number" prec="3" />
+            </object>
+          </data>
+        </field>
+        <field name="units" type="collection">
+          <data>
+            <object name="Units">
+              <sources>
+                <source name="DBFTableSet">
+                  <param name="userTable">"WU"</param>
+                  <param name="commonTable">"WUNITS"</param>
+                  <param name="filter">"[ID_I] = $parent.id"</param>
+                </source>
+              </sources>
+              <field name="id" type="string" />
+              <field name="name" type="string" />
+              <field name="inpack" type="number" prec="3" />
+            </object>
+          </data>
+        </field>
+      </add>
+    </modify>
+    <modify src="Delivery">
+      <add>
+        <field name="exp" type="number" prec="2"/>
+        <field name="dogovor" type="string" data="ID_D"/>
+      </add>
+    </modify>
+    <modify src="Payment">
+      <add>
+        <field name="exp" type="number" prec="2"/>
+        <field name="dogovor" type="string" data="ID_D"/>
+      </add>
+    </modify>
+  </objects>
+</serverDefs>

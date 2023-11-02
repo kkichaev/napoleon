@@ -1,0 +1,73 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+   <objects>
+      <object name="ExecAgent">
+         <sources>
+            <source name="DBFTable">
+               <param name="tableName">"MGR"</param>
+            </source>
+         </sources>
+
+         <field name="id" type="string" width="20" />
+         <field name="name" type="string" width="50" />
+         <field name="userid" type="string" execOn="Get">$user.id</field>
+    </object>
+   
+   <modify src="Order">
+   	<add>
+   		<field name="dogId" type="string" width="25" />
+   	</add>
+   </modify>
+   	<modify src="Org">
+   		<add>
+         <field name="dogovors" type="collection">
+            <data>
+               <object name="OrgDogovor">
+                  <sources>
+                     <source name="DBFTableSet">
+                        <param name="userTable">"ODG"</param>
+                        <param name="commonTable">"DOGOVORS"</param>
+                        <param name="filter">"[ID] = $parent.id"</param>
+                     </source>
+                  </sources>
+
+                  <field name="name" type="string" />
+                  <field name="id" type="string" data="ID_D" />
+		         <field name="matrix" type="collection">
+		            <data>
+		               <object name="MatrixItem">
+		                  <sources>
+		                     <source name="DBFTableSet">
+		                        <param name="userTable">"DMX"</param>
+		                        <param name="commonTable">"Matrixes"</param>
+		                        <param name="filter">"[ID] = $parent.id"</param>
+		                     </source>
+		                  </sources>	
+		                  <field name="id" type="string" data="ID_I" />
+		               </object>
+		            </data>
+		         </field>
+            	</object>
+            </data>
+         </field>
+         <field name="costs" type="collection">
+            <data>
+               <object name="OrgCost">
+                  <sources>
+                     <source name="DBFTableSet">
+                        <param name="userTable">"OCT"</param>
+                        <param name="commonTable">"COSTS"</param>
+                        <param name="filter">"[ID] = $parent.id"</param>
+                     </source>
+                  </sources>
+
+                  <field name="cost" type="number" prec="2" />
+                  <field name="id" type="string" data="ID_I" />
+                  <field name="idDog" type="string" data="ID_DOG" />
+               </object>
+            </data>
+         </field>
+   		</add>
+   	</modify>
+   </objects>
+</serverDefs>

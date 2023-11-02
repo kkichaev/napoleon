@@ -1,0 +1,540 @@
+<resources>
+
+    <string name="app_name">Sobr</string>
+
+    <string name="sobr_assist_title">Интеренет-локация SOBR-Assist</string>
+    <string name="sobr_assist_small">Сервис доступен для зарегистрированных пользователей.</string>
+    <string name="sobr_assist_registration_link"><a href="http://location.sobr-a.ru/client-portal/?action=register">Регистрация</a></string>
+    <string name="sobr_assist_registration">Регистрация</string>
+    <string name="sobr_assist_login_hint">Login</string>
+    <string name="sobr_assist_password_hint">Password</string>
+    <string name="state_sobr_assist">SOBR-Assist</string>
+    <string name="sobr_assist_description">Пакет услуг SOBR-Assistance\r\nПолный функционал спутниковых систем.\r\nЕдиный круглосуточный диспетчерский центр - Центр Оперативного Реагирования.\r\nПрофессиональная защита автомобиля от угона.\r\nРеагирование в случае разбойного нападения на владельца.\r\nРозыск автомобиля в случае угона.\r\nТехническая помощь на дороге.\r\nЭвакуатор до места ремонта.\r\nПомощь при аварии.\r\nИнтернет-локация.</string>
+    <string name="sobr_assist_connect">Подключение к SOBR-Assistance</string>
+
+	<string name="tab_name_engine">Двигатель</string>
+    <string name="tab_name_device">Устройства</string>
+    <string name="tab_name_state">Состояние</string>
+    <string name="tab_name_security">Безопасность</string>
+    <string name="tab_name_settings">Настройки</string>
+
+    <string name="device_engine_title">Запуск</string>
+    <string name="device_engine_start_btn">Запустить двигатель</string>
+
+    <string name="device_preheater_title">Подогрев</string>
+    <string name="device_preheater_on">Включить подогреватель</string>
+    <string name="device_preheater_off">Выключить подогреватель</string>
+    
+    <string name="device_heater_title">Обогреватель</string>
+    <string name="device_heater_on_btn">Включить</string>
+    <string name="device_heater_off_btn">Выключить</string>
+
+    <string name="device_timer_title">Таймер</string>
+    <string name="device_timer_set_btn">Установить таймер</string>
+    
+    <string name="device_siren_on_title">Сирена</string>
+    <string name="device_siren_on_btn">Включить</string>
+    
+    <string name="device_gate_title">Ворота</string>
+    <string name="device_gate_open_close_btn">Открыть/Закрыть</string>
+    
+    <string name="device_cmd_456_btn">Включить</string>
+    <string name="device_cmd_789_btn">Выключить</string>
+    
+    <string name="device_executionunit_title">Исполнительное устройство</string>
+    <string name="device_executionunit_on">Включить</string>
+    <string name="device_executionunit_off">Выключить</string>
+
+    <string name="state_common">Общее</string>
+    <string name="state_common_balance">Проверить баланс</string>
+    <string name="state_common_info">Прослушать информацию</string>
+    <string name="state_common_info_sms">Получить сообщениe</string>
+    
+    <string name="state_search_mode_title">Режим «Поиск»</string>
+    <string name="state_search_mode_on_btn">Включить</string>
+    <string name="state_search_mode_off_btn">Выключить</string>
+
+    <string name="state_location">Местоположение</string>
+    <string name="state_location_map">Карта</string>
+    <string name="state_location_coordinates">Координаты</string>
+    <string name="state_location_link_to_website">www.m.sobr.ru</string>
+    <string name="state_report_move_btn">Отчет о перемещении</string>
+
+    <string name="state_service_mode">Режим \"Сервис\"</string>
+    <string name="state_service_mode_on">Включить</string>
+    <string name="state_service_mode_off">Выключить</string>
+    
+    <string name="state_infocall_dialog_posbtn">Позвонить</string>
+    <string name="state_infocall_dialog_msg">Позвоните системе и прослушайте информационное сообщение.</string>
+    <string name="state_infocall_dialog_msg_for_nobase_phone">После соединения с системой наберите на 
+        клавиатуре</string>
+
+    <string name="security_security">Режим охраны</string>
+    <string name="security_security_on">Включить</string>
+    <string name="security_security_wo">Включить без датчика ударов</string>
+    <string name="security_security_off">Выключить</string>
+
+    <string name="security_mic">Микрофон</string>
+    <string name="security_mic_on">Включить</string>
+    <string name="security_mic_dialog_message">После соединения с системой наберите на клавиатуре</string>
+    <string name="security_mic_dialog_message_end">007*</string>
+
+    <string name="security_engine">Двигатель</string>
+    <string name="security_engine_lock">Блокировать</string>
+    <string name="security_engine_unlock">Разблокировать</string>
+
+    <string name="security_doors">Двери</string>
+    <string name="security_doors_open">Открыть</string>
+
+    <string name="settings_profile">Профиль</string>
+    <string name="settings_profile_edit">Настройки</string>
+    <string name="settings_password">Пароль</string>
+    <string name="settings_password_set">Установить пароль</string>
+
+    <string name="settings_password_hint">Пароль</string>
+
+    <string name="profiles">Профили</string>
+    <string name="profiles_empty">Нет профилей.</string>
+    <string name="profiles_add">Добавить профиль</string>
+
+    <string name="profile_new">Новый профиль</string>
+    <string name="profile_name">Название профиля</string>
+    <string name="profile_phone_number">Номер телефона системы</string>
+    <string name="profile_password">Пароль</string>
+    <string name="profile_change_password">Сменить пароль</string>
+    <string name="profile_unlock_code">Код разблокировки двигателя</string>
+    <string name="profile_pin_code">PIN-код</string>
+    <string name="profile_base_phone_number">Номер основного телефона</string>
+    <string name="profile_second_phone_number">Номер второго телефона</string>
+    <string name="profile_third_phone_number">Номер третьего телефона</string>
+    <string name="profile_get_settings_info">Информация о настройках</string>
+    <string name="profile_max_balance">Порог баланса</string>
+    <string name="profile_get_balance_code">Код запроса баланса</string>
+    <string name="profile_program_car_pult">Программирование брелков</string>
+    <string name="profile_program_keys">Программирование ключей «Touch Memory»</string>
+    <string name="profile_program_label_1">Программирование метки №1</string>
+    <string name="profile_program_label_2">Программирование метки №2</string>
+    <string name="profile_program_label_3">Программирование метки №3</string>
+
+    <string name="profile_name_hint">"например, Mazda RX-3</string>
+    <string name="profile_phone_number_hint">например, +79991234567</string>
+    <string name="profile_password_hint">введите 5 цифр</string>
+    <string name="profile_unlock_code_hint">введите 3 цифры</string>
+    <string name="profile_pin_code_hint">введите 4 цифры</string>
+    <string name="profile_pin_code_on_start_hint">PIN-код при запуске приложения</string>
+    <string name="profile_show_pass_hint">Показать пароль</string>
+    <string name="profile_base_phone_number_hint">+ХХХХХХХХХХХ</string>
+    <string name="profile_second_phone_number_hint">+ХХХХХХХХХХХ</string>
+    <string name="profile_third_phone_number_hint">+ХХХХХХХХХХХ</string>
+    <string name="profile_max_balance_hint">сумма до 10 символов</string>
+    <string name="profile_get_balance_code_hint">например *100#</string>
+
+    <string name="profile_program_keys_button">Запрограммировать</string>
+    <string name="profile_program_label_1_button">Запрограммировать</string>
+    <string name="profile_program_label_2_button">Запрограммировать</string>
+    <string name="profile_program_label_3_button">Запрограммировать</string>
+    <string name="profile_program_car_remote_button">Запрограммировать</string>
+    <string name="profile_user_settings_button">Индивидуальные настройки</string>
+    <string name="profile_get_settings_info_button">Получить</string>
+    <string name="profile_save">Сохранить</string>
+    <string name="profile_delete">Удалить</string>
+    <string name="profile_dialog_chenge_pass_warning_text">
+        В течение 10 минут после смены пароля, необходимо отправить системе SMS с 
+        новым паролем – следующую настройку, или запросить информацию о настройках
+        </string>
+    <string name="profile_dialog_chenge_pass_warning_title">Внимание!</string>
+    <string name="profile_systemtype_title">Тип системы:</string>
+    
+    <string name="profile_user_confirm_btn">Ок</string>
+    <string name="profile_user_by_default_btn">По умолчанию</string>
+    <string name="profile_user_phone_status_title">Статус этого телефона</string>
+    <string name="profile_user_command_123_title">Команда 123:</string>
+    <string name="profile_user_command_456_title">Команда 456:</string>
+    <string name="profile_user_command_789_title">Команда 789:</string>
+    <string name="profile_user_command_666_title">Команда 666:</string>
+    <string name="profile_user_command_777_title">Команда 777:</string>
+    <string name="profile_user_command_999_title">Команда 999:</string>
+    <string name="profile_user_command_09_title">Команда 09:</string>
+    <string name="profile_user_command_911_title">Команда 911:</string>
+    
+    <string name="profile_user_gps_receiver_cbx">GPS-приемник</string>
+    <string name="profile_user_report_on_the_move_cbx">Отчет о перемещении</string>
+    <string name="profile_user_shock_sensor_cbx">Датчик ударов</string>
+    <string name="profile_user_presence_of_an_immobilizer_cbx">Наличие иммобилайзера (SOBR-IP 01 или SOBR-GSM 130)</string>
+    <string name="profile_user_custom_hint">Введите название кнопки</string>
+    <string name="profile_user_custom_title_hint">Введите название команды</string>
+    
+    <string name="profile_user_enable_daily_mode_title">Режим «Ежедневный»</string>
+    <string name="profile_user_enable_weekly_mode_title">Режим «Еженедельный»</string>
+    <string name="profile_user_enable_button">Включить</string>
+    
+    <string name="profile_user_communication_time_title">Время сеанса связи</string>
+    <string name="profile_user_set_communication_time">Установить</string>
+    
+    <string name="profile_pref_dialog_title_command_123">Команда 123:</string>
+	<string name="profile_pref_summary_command_123">Команда 123:</string>
+	<string name="profile_pref_title_command_123">Команда 123:</string>
+	
+	
+    <string name="profile_delete_message">Этот профиль будет удален.</string>
+    <string name="profile_invalid">Неверные данные</string>
+    
+    <string name="profile_dialog_old_password">Старый пароль</string>
+    <string name="profile_dialog_new_password">Новый пароль</string>
+    <string name="profile_dialog_new_password_confirm">подтвердите пароль</string>
+    <string name="profile_dialog_new_password_error">Ошибка ввода нового пароля</string>
+    
+    <string name="profile_dialog_old_pincode">Старый PIN-код</string>
+    <string name="profile_dialog_new_pincode">Новый PIN-код</string>
+    <string name="profile_dialog_new_pincode_confirm">подтвердите PIN-код</string>
+    <string name="profile_dialog_new_pincode_error">Ошибка ввода нового PIN-кода</string>
+    
+    <string name="profile_dialog_dailymode_message">Выходит на связь и присылает СМС 1 раз в сутки.</string>
+    <string name="profile_dialog_weeklymode_message">Выходит на связь через каждые 8 часов, присылает СМС 1 раз в неделю.</string>
+    
+    <string name="profile_toast_sysnumber_error">Ошибка: проверьте поле «Номер системы»</string>
+    <string name="profile_toast_password_error">Ошибка: проверьте поле «Пароль»</string>
+    <string name="profile_toast_unlockcode_error">Ошибка: проверьте поле «Код разблокировки двигателя»</string>
+    <string name="profile_toast_pincode_error">Ошибка: проверьте поле «PIN-код»</string>
+    <string name="profile_toast_basephonenumb_error">Ошибка: проверьте поле «Номер основного телефона»</string>
+    <string name="profile_toast_profilename_error">Ошибка: проверьте поле «Название профиля»</string>
+
+    <string name="password_dialog_pin_code">Введите PIN-код:</string>
+    <string name="password_dialog_pin_code_error">Ошибка: Неверный PIN-код</string>
+    
+    <string name="sms_sent">Отправлено</string>
+    <string name="sms_error">Ошибка</string>
+    
+    <string name="operation_error">Ошибка операции</string>
+    
+    <string name="changlog_dialog_message"></string>
+        
+    <string-array name="engine_timer_entries">
+        <item>Выключить</item>
+        <item>1 час</item>
+        <item>2 часа</item>
+        <item>3 часа</item>
+        <item>4 часа</item>
+        <item>5 часов</item>
+        <item>6 часов</item>
+    </string-array>
+    
+    <string-array name="state_report_on_move_entries">
+        <item>Выключить</item>
+        <item>1 минута</item>
+        <item>2 минуты</item>
+        <item>3 минуты</item>
+        <item>4 минуты</item>
+        <item>5 минут</item>
+        <item>6 минут</item>
+        <item>7 минут</item>
+        <item>8 минут</item>
+        <item>9 минут</item>
+        <item>10 минут</item>
+        <item>11 минут</item>
+        <item>12 минут</item>
+        <item>13 минут</item>
+        <item>14 минут</item>
+        <item>15 минут</item>
+        <item>16 минут</item>
+        <item>17 минут</item>
+        <item>18 минут</item>
+        <item>19 минут</item>
+        <item>20 минут</item>
+        <item>21 минут</item>
+        <item>22 минут</item>
+        <item>23 минут</item>
+        <item>24 минут</item>
+        <item>25 минут</item>
+        <item>26 минут</item>
+        <item>27 минут</item>
+        <item>28 минут</item>
+        <item>29 минут</item>
+        <item>30 минут</item>
+        <item>31 минут</item>
+        <item>32 минут</item>
+        <item>33 минут</item>
+        <item>34 минут</item>
+        <item>35 минут</item>
+        <item>36 минут</item>
+        <item>37 минут</item>
+        <item>38 минут</item>
+        <item>39 минут</item>
+        <item>40 минут</item>
+        <item>41 минут</item>
+        <item>42 минут</item>
+        <item>43 минут</item>
+        <item>44 минут</item>
+        <item>45 минут</item>
+        <item>46 минут</item>
+        <item>47 минут</item>
+        <item>48 минут</item>
+        <item>49 минут</item>
+        <item>50 минут</item>
+        <item>51 минут</item>
+        <item>52 минут</item>
+        <item>53 минут</item>
+        <item>54 минут</item>
+        <item>55 минут</item>
+        <item>56 минут</item>
+        <item>57 минут</item>
+        <item>58 минут</item>
+        <item>59 минут</item>
+        <item>60 минут</item>
+    </string-array>
+    
+    <string-array name="state_report_on_move_entries_gsm510">
+        <item>Выключить</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>15</item>
+        <item>20</item>
+        <item>30</item>
+        <item>45</item>
+        <item>60</item>
+    </string-array>
+    
+    <string-array name="entries_system_type">
+        <item>SOBR&#8211;GSM, SOBR-G12&#8211;20</item>
+        <item>DomOnline</item>
+        <item>Chip 01&#8211;03</item>
+        <item>G01&#8211;03</item>
+        <item>SOBR&#8211;Chip 11/12R/13</item>
+        <item>SOBR GSM&#8211;510</item>
+    </string-array>
+    
+    <string-array name="entries_phone_status">
+        <item>Основной</item>
+        <item>Не основной</item>
+    </string-array>
+    
+    <string-array name="entries_command_123">
+        <item>АДЗ</item>
+        <item>ППП</item>
+        <item>Сирена</item>
+        <item>Ворота</item>
+        <item>Своя команда</item>
+        <item>Нет</item>
+    </string-array>
+    
+    <string-array name="entries_command_123_1">
+        <item>АДЗ</item>
+        <item>ППП</item>
+        <item>Сирена</item>
+        <item>Своя команда</item>
+        <item>Нет</item>
+    </string-array>
+    
+    <string-array name="entries_command_123_2">
+        <item>Сирена</item>
+        <item>Ворота</item>
+        <item>Своя команда</item>
+        <item>Нет</item>
+    </string-array>
+    
+    <string-array name="entries_command_456">
+        <item>ППП</item>
+        <item>Сирена</item>
+        <item>Исполнительное устройство</item>
+        <item>Ворота</item>
+        <item>Своя команда</item>
+        <item>Нет</item>
+    </string-array>
+    
+    <string-array name="entries_command_456_1">
+        <item>ППП</item>
+        <item>Сирена</item>
+        <item>Исполнительное устройство</item>
+        <item>Своя команда</item>
+        <item>Нет</item>
+    </string-array>
+    
+    <string-array name="entries_command_456_2">
+        <item>Сирена</item>
+        <item>Исполнительное устройство</item>
+        <item>Ворота</item>
+        <item>Своя команда</item>
+        <item>Нет</item>
+    </string-array>
+    
+    <string-array name="entries_command_789">
+        <item>ППП</item>
+        <item>Исполнительное устройство</item>
+        <item>Своя команда</item>
+        <item>Нет</item>
+    </string-array>
+    
+    <string-array name="entries_command_789_1">
+        <item>Исполнительное устройство</item>
+        <item>Своя команда</item>
+        <item>Нет</item>
+    </string-array>
+    
+    <string-array name="entries_command_666">
+        <item>Блокировка</item>
+        <item>Включить режим «Поиск»</item>
+        <item>Нет</item>
+    </string-array>
+    
+    <string-array name="entries_command_777">
+        <item>Включить обогреватель</item>
+        <item>Ворота</item>
+        <item>Своя команда</item>
+        <item>Нет</item>
+    </string-array>
+    
+    <string-array name="entries_command_999">
+        <item>Отключить блокировку</item>
+        <item>Выключить обогреватель</item>
+        <item>Выключить режим «Поиск»</item>
+        <item>Своя команда</item>
+        <item>Нет</item>
+    </string-array>
+    
+    <string-array name="entries_command_999_1">
+        <item>Выключить обогреватель</item>
+        <item>Своя команда</item>
+        <item>Нет</item>
+    </string-array>
+    
+    <string-array name="entries_command_09">
+        <item>Звонок и SMS</item>
+        <item>Только звонок</item>
+        <item>Нет</item>
+    </string-array>
+    
+    <string-array name="entries_command_911">
+        <item>Отпирание дверей</item>
+        <item>Своя команда</item>
+        <item>Нет</item>
+    </string-array>
+
+    <string name="work_mode_title">Режим работы SOBR GSM-510</string>
+    <string-array name="work_mode_entries">
+        <item>Совместно с SOBR ATE-510</item>
+        <item>Самостоятельно</item>
+    </string-array>
+    <string name="time_zone_title">Часовой пояс</string>
+    <string-array name="time_zone_entries">
+        <item>GMT +0, значение по Гринвичу</item>
+		<item>GMT +1, Центральная Европа</item>
+		<item>GMT +2, Киев, Рига</item>
+		<item>GMT +3, Калининград, Минск</item>
+		<item>GMT +4, Москва</item>
+		<item>GMT +5, Ташкент</item>
+		<item>GMT +6, Екатеринбург, Алматы</item> 
+		<item>GMT +7, Новосибирск, Кемерово, Омск</item>
+		<item>GMT +8, Красноярск</item>
+		<item>GMT +9, Иркутск</item>
+		<item>GMT +10, Якутия</item>
+		<item>GMT +11, Владивосток, Хабаровск</item>
+		<item>GMT +12, Магадан</item>
+    </string-array>
+    <string name="freq_conn_title">Количество сеансов</string>
+    <string-array name="freq_conn_entries">
+        <item>1 раз в сутки</item>
+		<item>2 раза в сутки</item>
+		<item>Через 8 часов</item>
+		<item>Через 6 часов</item>
+	</string-array>	
+	
+    <string-array name="freq_conn_entries_chip111213">
+        <item>1 раз в сутки</item>
+		<item>2 раза в сутки</item>
+		<item>Через 8 часов</item>
+	</string-array>	
+	
+    <string name="work_schedule_title">Режим работы</string>
+    <string-array name="work_schedule_entries">
+        <item>Ежедневный</item>
+		<item>Еженедельный</item>
+		<item>Раз в 2 недели</item>
+		<item>Раз месяц</item>
+	</string-array>	
+	
+    <string name="fifth_phone_number">Номер пятого телефона</string>
+    <string name="fifth_phone_number_hint">+ХХХХХХХХХХХ</string>
+    <string name="send">Отправить</string>
+    <string name="milage_title">Начальный пробег</string>    
+	<string name="milage_write">Записать</string>
+	
+	<string name="resend_input_sms_title">Пересылать входящие SMS</string>
+	<string-array name="resend_input_sms_entries">
+        <item>0 – Не пересылать входящие SMS</item>
+		<item>1 – Пересылать SMS от неизвестных номеров</item>
+		<item>2 – Пересылать SMS от всех номеров кроме основного</item>
+	</string-array>
+	
+	<string name="millage_real_title">Пробег автомобиля</string>
+	<string name="getknow">Узнать</string>
+	<string name="on">Включить</string>
+	<string name="off">Выключить</string>
+	<string name="find_on_parking_title">Поиск на парковке</string>
+	<string name="preheater_title">Предпусковой подогреватель</string>
+	<string name="sec_by_move_title">Охрана по движению (Интеллектуальный поиск)</string>
+	<string name="sec_by_hour_title">Охрана по часам</string>
+	<string name="sec_on_title">Включить</string>
+	<string name="sec_off_title">Выключить</string>
+	<string name="sec_set_time_title">Установить часы</string>
+	<string name="sec_range_title">Интервал</string>
+	<string name="start">Начало</string>
+	<string name="finish">Окончание</string>
+	<string-array name="time_range_entries">
+	    <item>5</item>
+	    <item>10</item>
+	    <item>15</item>
+	    <item>20</item>
+	    <item>30</item>
+	    <item>45</item>
+	    <item>60</item>
+	    <item>90</item>
+	</string-array>
+	<string name="ch1">Канал 1</string>
+	<string name="ch2">Канал 2</string>
+	<string name="ch3">Канал 3</string>
+	<string name="ch4">Канал 4</string>
+	<string name="cmdAbc_hint">Команда \"Абвгд...\"</string>
+	<string name="keyAbc_hint">Клавиша \"Абвгд...\"</string>
+	<string name="ok">ОК</string>
+	<string name="searh_on_prompt">Выходит на связь и присылает СМС через каждые 15 минут</string>
+	<string name="communication_time_ptompt">Для работы в автономном режиме, время суток (местное), 
+	    когда устройство «просыпается» – на 5 минут регистрируется в сети GSM для ожидания SMS команд</string>
+	<string name="cancel">Отмена</string>
+	<string name="freq_conn_prompt">Для работы в автономном режиме. Устройство выходит на связь один раз 
+	    в установленное время суток и может выходить дополнительно через 12, или каждые 8 или 6 часов. 
+	    Внимание! Дополнительные сеансы сокращают срок службы батарей!</string>
+	<string name="work_schedule_prompt">Для работы в автономном режиме. Ежедневно или раз в несколько 
+	    дней устройство отправляет владельцу SMS с данными</string>  
+	<string name="work_schedule_prompt_type_33">Ежедневно или раз в несколько дней устройство отправляет владельцу SMS с данными. По умолчанию – первую неделю каждый день, затем каждую неделю</string>     
+	<string name="fifth_number_prompt">На этот номер телефона по запросу устройство высылает значение пробега автомобиля. Внесите номер основного телефона</string>
+	<string name="milage_prompt">Запрограммируйте значение пробега как на одометре автомобиля</string>
+	<string name="resend_input_sms_prompt">Устройство может пересылать на основной телефон все SMS поступившие на него с неизвестных номеров телефонов, а так же со второго – пятого</string>
+	<string name="sec_by_move_on_prompt">Режим охраны по движению. Устройство выйдет на связь и 
+	    пришлет СМС если охраняемый объект начнет движение. Если движение будет продолжаться, 
+	    устройство продолжит высылать СМС через установленный Интервал времени</string>
+	<string name="sec_by_move_off_prompt">Выключить режим охраны по движению, выключить режим охраны по часам</string>
+	<string name="sec_by_hour_prompt">Устройство может ежедневно автоматически включать и выключать режим охраны по движению в установленное время</string>
+	<string name="sec_set_time_prompt">Время включения и выключения режима охраны по часам</string>
+	<string name="sec_set_range_prompt">Тайм-аут датчика движения – интервал времени после окончания внеочередного сеанса связи (по срабатыванию датчика движения), в течение которого продолжающиеся срабатывания датчика игнорируются</string>
+	<string name="startpreheater">Предпусковой подогреватель</string>
+	<string name="onoff">Включить/Выключить</string> 
+	<string name="immtitlegem510">Наличие иммобилайзера (SOBR IP- 02)</string>
+	<string name="message">Сообщение</string>
+	<string name="freq_conn_prompt_type_33">Устройство выходит на связь один раз 
+	    в установленное время суток и может выходить дополнительно через 12, или каждые 8 часов. 
+	    Внимание! Дополнительные сеансы сокращают срок службы батарей!</string>
+	<string name="communication_time_ptompt_type33">Время суток (местное), 
+	    когда устройство «просыпается» – на 5 минут регистрируется в сети GSM для ожидания SMS команд.</string>
+	<string name="alarm">Будильник</string>
+	<string name="alarm_hint">Установить время прогрева двигателя (устройством автоматического запуска двигателя или предпусковым подогревателем - зависит от настроек системы при монтаже)</string>
+	<string name="commit_to_sms">Подтвердить отправку команды?</string>
+	<string name="yes">Да</string>        
+</resources>

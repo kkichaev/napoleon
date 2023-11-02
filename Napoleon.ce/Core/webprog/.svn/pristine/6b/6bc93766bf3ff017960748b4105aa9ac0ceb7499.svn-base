@@ -1,0 +1,72 @@
+<template>
+  <q-page padding >
+    <q-card class="card-login fixed-center"
+      flat>
+
+      <q-card-section class="form-title text-center">
+        Забыли пароль
+      </q-card-section>
+
+      <q-card-section class="text-center">
+        <q-form>
+          <q-input
+            label="Введите email"
+            filled
+          ></q-input>
+        </q-form>
+
+        <div class="text-center"
+          style="margin-top: 11px;"
+          v-if="mainStore.passwordRestore">
+
+          Инструкция по восстановлению отправлена на e-mail
+        </div>
+
+        <q-btn class="login-btn login-form-text"
+          no-caps
+          style="margin-top: 53px;"
+          @click="mainStore.passwordRestore = true">
+
+            Восстановить пароль
+        </q-btn>
+      </q-card-section>
+
+      <q-card-section
+        class="text-center">
+
+        <q-btn
+          flat
+          no-caps
+          class="login-form-text"
+          :to="{name: 'Confirm'}">
+
+          Авторизация
+        </q-btn>
+      </q-card-section>
+
+      <q-card-section
+        class="text-center"
+        style="margin-top: 192px;">
+
+        <q-btn
+          flat
+          no-caps
+          class="login-form-text">
+
+          <u>Написать в тех. поддержку</u>
+        </q-btn>
+
+      </q-card-section>
+    </q-card>
+  </q-page>
+</template>
+
+<script setup>
+  import { useMainStore } from 'src/stores/main-store';
+
+  const mainStore = useMainStore()
+</script>
+
+<style scoped>
+
+</style>

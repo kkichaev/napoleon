@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+
+{% block content %}
+{{_('Error while creating user:')}}
+{{ error }}
+{% endblock %}

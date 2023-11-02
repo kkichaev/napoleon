@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_height="fill_parent" 
+	android:layout_width="fill_parent"
+	android:layout_weight="1" android:background="@drawable/list_selector">
+    <ImageView 
+    	android:layout_width="wrap_content" 
+    	android:layout_height="wrap_content" 
+    	android:layout_marginRight="10sp" 
+    	android:src="@drawable/folder"
+		android:id="@+id/ivFolder"></ImageView>
+    <TextView 
+    	android:layout_width="wrap_content" 
+    	android:layout_height="wrap_content" 
+    	android:textColor="@color/black" 
+    	android:layout_weight="1" 
+    	android:textSize="16dp"
+    	android:layout_marginLeft="3dp" 
+    	android:id="@+id/tvName"/>
+	
+	<TextView 
+		android:layout_width="wrap_content" 
+		android:layout_height="wrap_content" 
+		android:id="@+id/tvDate" 
+		android:text="Date" 
+    	android:textSize="16dp"
+		android:textColor="@color/black" 
+		android:paddingLeft="7dp"/>
+		
+	<TextView android:layout_width="wrap_content" 
+		android:layout_height="wrap_content" 
+		android:text="Sum" 
+    	android:textSize="16dp"
+		android:id="@+id/tvSum"
+		android:gravity="right" 
+		android:textColor="@color/black" 
+		android:layout_marginRight="3dp" 
+		android:minWidth="90dp"/>
+</LinearLayout>

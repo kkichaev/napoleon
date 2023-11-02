@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+    <modify src="Order">
+      <change>
+	    <field name="remark" type="string" width="200" />
+        <field name="firma" type="string" width="200" execOn="Put" feature="!SALES_MODULE &amp; HAVE_CONFIG_READER">ConfigReader("Организация",$object.supplyer)</field>
+      </change>
+    </modify>
+	</objects>
+</serverDefs>

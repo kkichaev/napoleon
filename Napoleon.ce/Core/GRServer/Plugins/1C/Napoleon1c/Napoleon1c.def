@@ -1,0 +1,10 @@
+; Napoleon1c.def: объ€вл€ет параметры модул€.
+
+LIBRARY      "Napoleon1c.DLL"
+
+EXPORTS
+	DllCanUnloadNow		PRIVATE
+	DllGetClassObject	PRIVATE
+	DllRegisterServer	PRIVATE
+	DllUnregisterServer	PRIVATE
+	DllInstall		PRIVATE

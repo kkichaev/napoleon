@@ -1,0 +1,104 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+    <object name="OrdConfig">
+      <sources>
+        <source name="KeyValueTable">
+          <param name="fileName">"ord"+$user.id+".cfg"</param>
+        </source>
+        <source name="KeyValueTable">
+          <param name="fileName">"order.cfg"</param>
+        </source>
+      </sources>
+
+      <field name="key" type="string" />
+      <field name="value" type="string" />
+    </object>
+
+    <object name="Skalds">
+      <sources>
+        <source name="KeyValueDBFTable">
+          <param name="fileName">"SKLADS"+$user.id</param>
+          <param name="key">"Склады"</param>
+          <param name="itemName">"NAME"</param>
+          <param name="itemKey">"ID"</param>
+        </source>
+        <source name="KeyValueDBFTable">
+          <param name="fileName">"SKLADS"</param>
+          <param name="key">"Склады"</param>
+          <param name="itemName">"NAME"</param>
+          <param name="itemKey">"ID"</param>
+        </source>
+      </sources>
+
+      <field name="key" type="string" />
+      <field name="value" type="string" />
+    </object>
+
+    <object name="Config">
+      <sources>
+        <source name="ObjectUnion">
+          <param>"OrdConfig"</param>
+          <param>"Skalds"</param>
+        </source>
+      </sources>
+
+      <field name="key" type="string" />
+      <field name="value" type="string" />
+    </object>
+    
+    <modify src="Price">
+      <add>
+        <field name="base" type="number" />
+        <field name="changes" type="number" />
+        <field name="units" type="collection">
+          <data>
+            <object name="Units">
+              <sources>
+                <source name="DBFTableSet">
+                  <param name="userTable">"WU"</param>
+                  <param name="commonTable">"WUNITS"</param>
+                  <param name="filter">"[ID] = $parent.id"</param>
+                </source>
+              </sources>
+
+              <field name="name" type="string" width="100" />
+              <field name="inPack" type="number" prec="3" />
+              <field name="id" type="string" width="30" data="ID_UNIT" />
+            </object>
+          </data>
+        </field>
+        <field name="whQty" type="collection">
+          <data>
+            <object name="QtyItem">
+              <sources>
+                <source name="Sequence">
+                  <param name="source">$parent.source</param>
+                  <param name="startIndex">2</param>
+                </source>
+              </sources>
+
+              <field name="qty" type="number" prec="2" />
+            </object>
+          </data>
+        </field>
+      </add>
+    </modify>
+    <modify src="Org">
+      <change>
+        <field name="color" type="hex" />
+        <field name="whCode" type="string" width="30" />
+      </change>
+    </modify>
+    <modify src="Order">
+      <add>
+        <field name="whCode" type="string" width="30" />
+      </add>
+    </modify>
+    <modify src="Order$items">
+      <add>
+        <field name="unitId" type="string" width="30" data="ID_UNIT" />
+      </add>
+    </modify>
+  </objects>
+</serverDefs>

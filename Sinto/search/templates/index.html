@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+    
+    <link rel="stylesheet" href='https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css' >
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+
+    <title>Поиск</title>
+  </head>
+  <body>
+
+    <div class="container">
+    <div class="row">
+      <div class="col-md">
+        <h1>Поиск по базе товаров</h1>
+      </div>
+
+    </div>  
+    <div class="row">
+      <div class="col-md">
+      <form id="query">
+        <div class="mb-3">
+          <div class="form-group">
+          <input type="text" class="form-control" id="search" placeholder="Строка поиска" >
+        </div>
+          <!-- <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="showAll" checked="false">
+            <label class="from-check-label" for="showAll">Показать все (иначе только с рейтингом больше 0.5)</label>
+          </div> -->
+          <button type="submit" class="btn btn-primary">Поиск</button>
+        </div>
+    </form>
+    </div>
+    </div> 
+
+    <div class="row">
+      <div class="col-md">
+        <table id='result' width='100%'>
+          <thead>
+            <tr>
+                <th>Продавец</th>
+                <th>Производитель</th>
+                <th>Рейтинг</th>
+                <th>Ссылка</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+        </table>
+      </div>
+    </div>
+    </div>
+  </body>
+  <script>
+    var table;
+    var source;
+    function searching() {
+      var text = $("#search").val()
+      $.ajax({
+        url:'search/?q='+text,
+        error:function(q, err) {
+
+        },
+      }).done(function(data){
+        if(data.data) {
+          source = data.data
+          refreshData()
+        }
+      })
+    }
+
+    function refreshData() {
+      table.clear()
+      res = source
+      // res = []
+      // if(!$('#showAll').is(':checked')) {
+      //   source.forEach(element => {
+      //     if(element.rating > 0.5) {
+      //       res.push(element)
+      //     }
+      //   });
+      //   // console.log(res)
+      // } else {
+      //   res = source
+      // }
+      table.rows.add(res).draw()
+    }
+
+    $(document).ready(function(){
+        table = $('#result').DataTable({
+        paging : false,
+        searching: false,
+        order : [[2, 'desc']],
+        columns: [
+          {data:'seller', width:'15%'},
+          {data:'brand', width:'15%'},
+          {data:'rating', width:'10%'},
+          {render: function(data, type, row){
+            return "<a href='" + row.url + "'>" + row.model + "</a>"
+          }},
+        ],
+      });
+
+      $('#query').submit(function(event){
+          event.preventDefault()
+          searching()
+      })
+
+      // $('#showAll').on('click', function(){
+      //   refreshData()
+      // })
+    })
+  </script>
+</html>

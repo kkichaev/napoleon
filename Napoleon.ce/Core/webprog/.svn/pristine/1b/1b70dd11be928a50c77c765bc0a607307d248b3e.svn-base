@@ -1,0 +1,29 @@
+<template>
+  <q-page padding >
+    <q-card class="q-ml-auto q-mr-auto">
+      <h1>Confirm</h1>
+    </q-card>
+  </q-page>
+</template>
+
+<script setup>
+  import { onMounted } from 'vue'
+  import { useMainStore } from 'src/stores/main-store';
+  import { useRoute } from 'vue-router'
+  import { sendRegToken } from 'src/backend/backend'
+  import { useGuard } from 'src/components/guard'
+
+  const mainStore = useMainStore()
+  const router = useRoute()
+  const guard = useGuard()
+  onMounted(()=>{
+    console.log('mounted: ', router.query)
+
+    if (router.query.token != undefined)
+      sendRegToken(router.query.token)
+  })
+</script>
+
+<style scoped>
+
+</style>

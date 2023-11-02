@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <attr name="textSize" format="dimension" />
+
+    <declare-styleable name="NumberBox">
+        <attr name="textSize" />
+        <attr name="border" format="boolean" />
+        <attr name="value" format="integer" />
+    </declare-styleable>
+    <declare-styleable name="TextBox">
+        <attr name="textSize" />
+        <attr name="text" format="string" />
+    </declare-styleable>
+
+</resources>

@@ -1,0 +1,732 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "NapoleonRes.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "resdefce.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Russian resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_RUS)
+#ifdef _WIN32
+LANGUAGE LANG_RUSSIAN, SUBLANG_DEFAULT
+#pragma code_page(1251)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_APP                 ICON                    "Napoleon.ico"
+IDC_POWER               ICON                    "power.ico"
+IDC_POWER_GOOD          ICON                    "power1.ico"
+IDC_POWER_HALF          ICON                    "power2.ico"
+IDC_POWER_LOW           ICON                    "power3.ico"
+IDC_SEARCH_ORG          ICON                    "searchOrg.ico"
+IDC_BACK                ICON                    "back.ico"
+IDC_FIND                ICON                    "find.ico"
+IDD_ORG_INFO            ICON                    "info.ico"
+
+#ifdef GPS_POS
+IDC_GPS_TRACK           ICON                    "gps.ico"
+IDC_GSM_TRACK           ICON                    "gsm.ico"
+IDC_NONE                ICON                    "none.ico"
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+
+#ifdef Autopteka_van
+IDD_ORG_LIST MENU 
+BEGIN
+    POPUP "LocalMenu"
+    BEGIN
+        MENUITEM "&Продажа",                IDC_ADD
+        MENUITEM SEPARATOR
+        MENUITEM "&Удалить",                    IDC_DEL
+    END
+END
+//IDD_FLDORGS
+IDR_NEW_ORDER MENU 
+BEGIN
+    POPUP "LocalMenu"
+    BEGIN
+        MENUITEM "&Продажа",                IDC_ADD
+    END
+END
+#else
+IDD_ORG_LIST MENU 
+BEGIN
+    POPUP "LocalMenu"
+    BEGIN
+        MENUITEM "&Новый",                IDC_ADD
+        MENUITEM SEPARATOR
+        MENUITEM "&Удалить",                    IDC_DEL
+    END
+END
+//IDD_FLDORGS
+IDR_NEW_ORDER MENU 
+BEGIN
+    POPUP "LocalMenu"
+    BEGIN
+        MENUITEM "&Новый",                IDC_ADD
+    END
+END
+#endif
+
+
+//IDD_ORG_DOCS
+//IDD_INVOICE
+//IDD_ORDER_LIST
+IDR_ADD_REMOVE MENU 
+BEGIN
+    POPUP "LocalMenu"
+    BEGIN
+        MENUITEM "&Удалить",                    IDC_DEL
+        MENUITEM "&Изменить",                   IDC_EDIT
+    END
+END
+
+IDC_REPLACE_ADD_DEL MENU 
+BEGIN
+    POPUP "LocalMenu"
+    BEGIN
+        MENUITEM "&Заменить",                   IDC_REPLACE
+        MENUITEM "&Удалить",                    IDC_DEL
+        MENUITEM "&Изменить",                   IDC_EDIT
+    END
+END
+
+IDR_ADD_REMOVE_COPY MENU 
+BEGIN
+    POPUP "LocalMenu"
+    BEGIN
+        MENUITEM "&Удалить",                    IDC_DEL
+        MENUITEM "&Изменить",                   IDC_EDIT
+        MENUITEM "&Копировать",			IDC_COPY
+    END
+END
+
+IDD_SYNC MENU 
+BEGIN
+    POPUP "DelMenu"
+    BEGIN
+        MENUITEM "&Удалить пустые организации",   IDC_REMOVE_EMPTY_ORGS
+        MENUITEM "&Удалить старые заявки",        IDC_REMOVE_ORDERS
+        MENUITEM "&Удалить заявки и организации", IDC_DEL
+    END
+END
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDC_PHONE DIALOG  0, 0, 156, 129
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
+EXSTYLE 0x80000000L
+CAPTION "Телефон"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    EDITTEXT        IDC_TEXT,1,14,111,40,ES_AUTOVSCROLL|ES_MULTILINE|WS_BORDER
+    PUSHBUTTON      "Позвонить",IDC_CALL,2,86,60,14
+    PUSHBUTTON      "Отправить SMS",IDC_SMS,41,86,60,14
+END
+	
+//IDD_ORDER_LIST
+IDR_LIST_FORM DIALOG  0, 0, 120, 134
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_SYSMENU
+FONT 8, "MS Shell Dlg"
+BEGIN
+    CONTROL         "",IDC_TABLE,"SysListView32",LVS_ALIGNLEFT | LVS_OWNERDATA | WS_TABSTOP,0,7,120,110
+END
+
+//IDD_FLDORGS
+IDD_ORG_LIST DIALOG  0, 0, 120, 134
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_SYSMENU
+FONT 8, "MS Shell Dlg"
+BEGIN
+    EDITTEXT        IDC_FIND,0,0,69,14,ES_AUTOHSCROLL
+    //PUSHBUTTON      "Нов",IDC_NEW_SEARCH,69,0,22,14
+    LTEXT           "Нов",IDC_FIND_TEXT,95,3,14,8,NOT WS_VISIBLE
+
+    CONTROL         "",IDC_TABLE,"SysListView32",LVS_ALIGNLEFT | LVS_OWNERDATA | WS_TABSTOP | LVS_OWNERDRAWFIXED,0,7,120,110
+END
+
+
+IDD_ORG_DOCS DIALOG  0, 0, 120, 134
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_SYSMENU
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Static",IDC_ORG_TITLE,0,3,120,10
+    LTEXT           "ADDRESS",IDC_ADDRESS_LABEL,0,3,120,10
+    CONTROL         "",IDC_CONTACTS,"SysListView32",LVS_ALIGNLEFT | LVS_OWNERDATA | WS_TABSTOP | LVS_OWNERDRAWFIXED,0,10,120,110
+    CONTROL         "",IDC_TABLE,"SysListView32",LVS_ALIGNLEFT | LVS_OWNERDATA | WS_TABSTOP,0,10,120,110
+END
+
+//IDD_DELIVERY
+IDD_INVOICE DIALOG  0, 0, 120, 134
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_SYSMENU
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Static",IDC_ORG_TITLE,0,3,120,10
+    CONTROL         "",IDC_TABLE,"SysListView32",LVS_ALIGNLEFT | LVS_OWNERDATA | WS_TABSTOP,0,10,120,110
+END
+
+IDD_HIST DIALOG  0, 0, 186, 94
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "История продаж"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    CONTROL         "",IDC_HIST_LIST,"SysListView32",LVS_REPORT | LVS_ALIGNLEFT | LVS_OWNERDATA | WS_BORDER | WS_TABSTOP,7,0,172,87
+END
+
+IDD_REGISTER DIALOG  0, 0, 186, 90
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Регистрация"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,129,69,50,14
+    PUSHBUTTON      "Отмена",IDCANCEL,7,69,50,14
+    EDITTEXT        IDC_ANSWER,7,7,172,14,ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_RESPONSE,7,28,172,14,ES_AUTOHSCROLL | ES_NUMBER
+END
+
+IDD_SYNC DIALOG  0, 0, 158, 109
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Синхронизация"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    PUSHBUTTON      "Отмена",IDCANCEL,108,22,46,14
+    PUSHBUTTON      "Настройки",IDC_PREFERENCE,108,38,46,14
+    DEFPUSHBUTTON   "Начать",IDOK,108,54,46,14
+    PUSHBUTTON      "Очистка",IDC_DEL,108,70,46,14
+#ifdef Agama
+    PUSHBUTTON      "Вкл тел.",IDC_PHONE_ONOFF,108,86,46,14
+#endif
+
+    CONTROL         "Очистка базы при приеме",IDC_CLEAR_BASE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,11,101,10
+
+    CONTROL         "Прайс",IDC_RCV_PRICE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,22,32,10
+    COMBOBOX        IDC_PRICE_FILTER,39,21,65,47,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Заказы",IDC_SEND,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,33,101,10
+#ifdef VISIT_DOC
+    CONTROL         "Посещения",IDD_VISIT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,44,80,10
+#endif
+    CONTROL         "Отгрузки и долги",IDC_RCV_BALANCE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,55,85,10
+
+#ifdef COST_MANAGER
+    CONTROL         "Цены",IDC_COST,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,66,59,10
+    CONTROL         "Восстановить заявки",IDD_ORDER_LIST,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,77,95,10
+#ifdef GPS_POS
+    CONTROL         "Выгружать маршрут за",IDC_GPS_TRACK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,88,92,10
+    EDITTEXT        IDC_DAY_INTERVAL,18,99,20,12,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "дней",IDC_TEXT,39,100,20,8
+#endif
+    LTEXT           "",IDC_BASE_VERSION,4,110,151,16
+#else // COST_MANAGER
+    CONTROL         "Восстановить заявки",IDD_ORDER_LIST,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,66,95,10
+    CONTROL         "Фото товара",IDC_RCV_PHOTO,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,77,95,10
+#ifdef GPS_POS
+    CONTROL         "Выгружать маршрут за",IDC_GPS_TRACK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,88,92,10
+    EDITTEXT        IDC_DAY_INTERVAL,18,99,20,12,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "дней (0 - текущий маршрут)",IDC_TEXT,39,100,20,8
+#endif
+    LTEXT           "",IDC_BASE_VERSION,4,99,151,16
+#endif // COST_MANAGER
+
+END
+
+IDD_ADMPWD DIALOG  0, 0, 157, 77
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Введите пароль"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    EDITTEXT        IDC_PWD,7,7,143,14,ES_PASSWORD | ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,7,56,50,14
+END
+
+IDC_PRICE_PREFERENCE DIALOG  0, 0, 186, 104
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Колонка 2",IDC_LABEL2,2,6,37,8
+    COMBOBOX        IDC_COLUMN2,39,4,109,70,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Колонка 3",IDC_LABEL3,2,19,37,8
+    COMBOBOX        IDC_COLUMN3,39,17,109,69,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+
+    CONTROL         "Сортировка без регистра",IDC_SORT_NO_CASE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,39,31,115,10
+    CONTROL         "Остатки показ.упаковками",IDC_BOX_QTY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,39,42,115,10
+    CONTROL         "Выделять последний заказ",IDC_SEL_LAST_ORDER,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,39,53,109,10
+    CONTROL         "Проверка остатков товара",IDC_BLW_ZERO,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,39,64,108,10
+    CONTROL         "Сообщения при остатках < 0",IDC_ALERT_BLW,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,39,75,115,10
+
+#ifdef FIRM_DEFAULT
+    COMBOBOX        IDC_FIRMS,39,87,109,69,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    RTEXT           "Фирма",-1,2,89,35,8
+#endif
+
+    PUSHBUTTON      "Отмена",IDCANCEL,0,90,50,14
+    PUSHBUTTON      "OK",IDOK,55,90,50,14
+END
+
+IDC_NET_PREFERENCE_DIALOG DIALOG  0, 0, 186, 104
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    EDITTEXT        IDC_LOGIN,35,2,78,14,ES_AUTOHSCROLL
+    LTEXT           "логин",-1,12,5,20,8
+    EDITTEXT        IDC_PWD,35,17,78,14,ES_PASSWORD | ES_AUTOHSCROLL
+    LTEXT           "пароль",-1,7,19,25,8
+    EDITTEXT        IDC_IP,35,32,78,14,ES_AUTOHSCROLL
+    RTEXT           "IP 1",IDC_NET_PREFERENCE_DIALOG,3,33,30,8
+    EDITTEXT        IDC_IP2,35,47,78,14,ES_AUTOHSCROLL
+    RTEXT           "IP 2",-1,3,48,30,8
+    EDITTEXT        IDC_PORT,35,62,30,13,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "порт",-1,15,63,17,8
+    COMBOBOX        IDC_GPRS_GATE,67,62,78,69,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Запрос на отправку заказа",IDC_CONFIRM_SEND,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,35,76,108,10
+    CONTROL         "Не убирать с экрана",IDC_TOP_APP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,35,87,108,10
+
+    PUSHBUTTON      "Отмена",IDCANCEL,0,90,50,14
+    PUSHBUTTON      "OK",IDOK,55,90,50,14
+END
+
+IDC_UPDATE_DIALOG DIALOG  0, 0, 186, 104
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    COMBOBOX        IDC_UPDATE,2,16,145,70,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Обновление программы",IDC_LABEL2,2,6,86,8
+
+    PUSHBUTTON      "Отмена",IDCANCEL,0,90,50,14
+    PUSHBUTTON      "OK",IDOK,55,90,50,14
+END
+
+#ifdef Fusion
+#else
+IDD_ENTER_VALUE DIALOG  0, 0, 69, 86
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Значение"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    EDITTEXT        IDD_ENTER_VALUE,2,6,64,12,ES_AUTOHSCROLL | ES_NOHIDESEL
+
+    PUSHBUTTON      "7",IDC_DIG_7, 2,22,17,14
+    PUSHBUTTON      "8",IDC_DIG_8,18,22,17,14
+    PUSHBUTTON      "9",IDC_DIG_9,34,22,17,14
+
+    PUSHBUTTON      "4",IDC_DIG_4, 2,35,17,14
+    PUSHBUTTON      "5",IDC_DIG_5,18,35,17,14
+    PUSHBUTTON      "6",IDC_DIG_6,34,35,17,14
+
+    PUSHBUTTON      "1",IDC_DIG_1, 2,47,17,14
+    PUSHBUTTON      "2",IDC_DIG_2,18,47,17,14
+    PUSHBUTTON      "3",IDC_DIG_3,34,47,17,14
+
+    PUSHBUTTON      "0",IDC_DIG_0, 2,60,33,14
+    PUSHBUTTON      ".",IDC_DIG_PT,34,60,17,14
+
+    PUSHBUTTON      "<-",IDC_DIG_BS,50,22,17,27
+    PUSHBUTTON      "ОК", IDOK,50,47,17,27
+
+END
+#endif
+
+#ifdef GPS_POS
+IDC_GPS_PREFERENCE_DIALOG DIALOG  0, 0, 186, 104
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+   LTEXT           "GPS Порт",-1,3,9,68,8
+   COMBOBOX        IDC_COM_PORT,72,7,40,110,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
+   PUSHBUTTON      "Найти",IDC_FIND,114,7,40,14
+
+   LTEXT           "Хранить архив, дн.",-1,3,23,68,8
+   EDITTEXT        IDC_DAY_INTERVAL,72,21,30,12,ES_AUTOHSCROLL | ES_NUMBER
+
+   LTEXT           "Точность, м",-1,3,36,68,8
+   COMBOBOX        IDC_ACCURACY,72,34,30,50,CBS_DROPDOWN | WS_TABSTOP
+
+   LTEXT           "Интервал GPS, сек",-1,3,49,68,8
+   EDITTEXT        IDC_GPS_TIME,72,47,30,12,ES_NUMBER | WS_TABSTOP
+
+   //CONTROL         "Записывать маршрут",IDC_ROUTE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,25,22,120,10
+   //CONTROL         "Координаты перед заказом",IDC_ORDER_GPS_POS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,25,33,115,10
+   //CONTROL         "всегда снимать координаты",IDC_GPS_TRACK,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,25,46,115,10
+
+   //CONTROL         "каждые",IDC_GPS_TIME,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,25,59,40,10
+   //EDITTEXT        IDC_TIME_START,68,57,20,12,ES_AUTOHSCROLL | ES_NUMBER
+   //COMBOBOX        IDC_TIME_END,94,57,30,30,CBS_DROPDOWN | WS_TABSTOP
+
+   //LTEXT           "Хранить архив, дн.",-1,25,73,68,8
+   //EDITTEXT        IDC_DAY_INTERVAL,94,71,30,12,ES_AUTOHSCROLL | ES_NUMBER
+   //LTEXT           "Точность, м",-1,25,86,62,8
+   //COMBOBOX        IDC_ACCURACY,94,85,30,50,CBS_DROPDOWN | WS_TABSTOP
+
+   PUSHBUTTON      "Отмена",IDCANCEL,0,90,50,14
+   PUSHBUTTON      "OK",IDOK,55,90,50,14
+END
+
+IDD_WAIT_GPS DIALOG  0, 0, 120, 42
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Получение данных GPS"
+FONT 8, "MS Shell Dlg"
+BEGIN
+   CONTROL         "",IDD_WAIT_GPS,PROGRESS_CLASS,WS_TABSTOP,5,7,110,10
+   PUSHBUTTON      "Отмена",IDCANCEL,35,23,50,14
+END
+#endif
+
+#ifdef VAN_SELLING
+
+IDC_PRINT_PREFERENCE DIALOG  0, 0, 186, 104
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    RTEXT           "Число копий",-1,2,7,47,8
+    EDITTEXT        IDC_COPY,51,7,15,10,ES_AUTOHSCROLL
+    RTEXT           "Модель",-1,55,7,100,8
+    LISTBOX         IDC_MODEL_LIST, 5, 19, 150, 40, WS_TABSTOP | WS_VSCROLL
+    PUSHBUTTON      "Обновить",IDC_REFRESH,5,52,50,14
+    RTEXT           "Устройство",-1,55,55,100,8
+    LISTBOX         IDC_DEVICE_LIST, 5, 66, 150, 40, WS_TABSTOP
+    PUSHBUTTON      "Отмена",IDCANCEL,0,90,50,14
+    PUSHBUTTON      "OK",IDOK,55,90,50,14
+END
+
+IDD_BALANCE DIALOG  0, 0, 120, 134
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_SYSMENU
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Static",IDC_ORG_TITLE,0,3,120,10
+
+    CONTROL         "",IDC_ORDER_DATE,"SysDateTimePick32",DTS_RIGHTALIGN | WS_TABSTOP,39,14,50,10
+    RTEXT           "Дата",-1,2,14,36,8
+
+    EDITTEXT        IDC_DOC_NUMBER,39,25,50,10, ES_AUTOHSCROLL | WS_TABSTOP
+    RTEXT           "№ док.",-1,2,25,36,8
+
+    EDITTEXT        IDC_ORDER_SUM,39,36,50,10, ES_AUTOHSCROLL | WS_TABSTOP // | NOT WS_BORDER
+    RTEXT           "Сумма",-1,2,36,36,8
+
+    EDITTEXT        IDC_REMARK,2,45,182,44,ES_MULTILINE | ES_AUTOVSCROLL | ES_AUTOHSCROLL | ES_WANTRETURN
+END
+#endif
+
+#ifdef ORDER_ONLINE
+IDC_ONLINE_PREFERENCE DIALOG  0, 0, 186, 104
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+   CONTROL         "Передавать заявки On-Line",IDC_ORDER_ONLINE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,35,10,120,10
+
+   RTEXT           "IP адрес",-1,1,26,33,8
+   COMBOBOX        IDC_IP,35,24,80,110,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
+
+
+   PUSHBUTTON      "Отмена",IDCANCEL,0,90,50,14
+   PUSHBUTTON      "OK",IDOK,55,90,50,14
+END
+#endif
+
+#ifdef RCV_MESSAGE
+IDD_MESSAGE_LIST DIALOG  0, 0, 120, 134
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_SYSMENU
+FONT 8, "MS Shell Dlg"
+BEGIN
+    CONTROL         "",IDC_TABLE,"SysListView32",LVS_ALIGNLEFT | LVS_OWNERDATA | WS_TABSTOP | LVS_OWNERDRAWFIXED,0,7,120,110
+END
+
+IDC_MESSAGE DIALOG  0, 0, 156, 129
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
+EXSTYLE 0x80000000L
+CAPTION "Сообщение"
+FONT 8, "MS Shell Dlg"
+BEGIN
+   //EDITTEXT        IDC_TEXT,2,2,182,44,ES_MULTILINE | ES_AUTOVSCROLL | ES_WANTRETURN | WS_BORDER
+   //LTEXT "", IDC_TEXT,1,1,100,40,WS_BORDER|WS_VSCROLL
+   PUSHBUTTON      "OK",IDOK,55,90,50,14
+END
+
+#endif
+
+
+IDD_REMOVE_ORDERS DIALOG  0, 0, 186, 104
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Укажите дату для удаления заказов"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Дата",-1,12,5,20,8
+    CONTROL         "",IDC_ORDER_DATE,"SysDateTimePick32",DTS_RIGHTALIGN | WS_TABSTOP,40,2,46,15
+    PUSHBUTTON      "Отмена",IDCANCEL,2,86,38,14
+    DEFPUSHBUTTON   "ОК",IDOK,41,86,38,14
+END
+
+#ifdef VISIT_DOC
+IDD_VISIT MENU 
+BEGIN
+    POPUP "LocalMenu"
+    BEGIN
+        MENUITEM "&Посмотреть",                IDC_EDIT
+        MENUITEM "&Удалить",                   IDC_DEL
+    END
+END
+
+IDD_VISIT DIALOG  0, 0, 120, 134
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_SYSMENU
+FONT 8, "MS Shell Dlg"
+BEGIN
+#ifdef VISIT_CAUSE
+   RTEXT           "Причина",-1,2,6,30,8
+   COMBOBOX        IDC_CAUSE,33,4,78,47,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
+#else
+    LTEXT           "Посещение",-1,0,5,120,8
+#endif
+    EDITTEXT        IDC_REMARK,0,9,120,16,ES_MULTILINE  | ES_AUTOVSCROLL | WS_BORDER  | ES_WANTRETURN
+    CONTROL         "",IDC_TABLE,"SysListView32",LVS_ALIGNLEFT | LVS_ICON | LVS_NOSCROLL | LVS_SINGLESEL | WS_TABSTOP,0,120,120,26
+END
+
+IDD_PHOTO_PREFERENCE DIALOG  0, 0, 186, 104
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+   RTEXT           "Сохранять в",-1,2,6,50,8
+   COMBOBOX        IDC_PHOTO_FOLDER,54,4,78,47,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
+
+   RTEXT           "Качество",-1,2,20,50,8
+   COMBOBOX        IDC_PHOTO,54,18,78,47,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
+
+   RTEXT           "Высота",-1,2,34,50,8
+   EDITTEXT        IDC_HEIGHT,54,32,78,12,ES_NUMBER | WS_BORDER
+   RTEXT           "Ширина",-1,2,48,50,8
+   EDITTEXT        IDC_WIDTH,54,46,78,12,ES_NUMBER | WS_BORDER
+
+   PUSHBUTTON      "Отмена",IDCANCEL,0,90,50,14
+   PUSHBUTTON      "OK",IDOK,55,90,50,14
+END
+#endif
+
+#ifdef PROXY_DOC
+IDD_PROXY DIALOG  0, 0, 120, 134
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_SYSMENU
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Static",IDC_ORG_TITLE,0,3,120,10
+    LTEXT           "Дата",IDC_DATE_LABEL,2,4,18,8
+    CONTROL         "",IDC_ORDER_DATE,"SysDateTimePick32",DTS_RIGHTALIGN | WS_TABSTOP,21,1,40,12
+
+    LTEXT           "Сумма",IDC_SUM_LABEL,71,4,25,8
+    EDITTEXT        IDC_SUM,97,2,35,12,ES_AUTOHSCROLL
+
+    EDITTEXT        IDC_REMARK,0,19,159,31,ES_MULTILINE | ES_AUTOVSCROLL | ES_AUTOHSCROLL | ES_WANTRETURN
+END
+#endif
+
+#ifdef ORG_STOCK
+IDD_STOCK DIALOG  0, 0, 120, 134
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_SYSMENU
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Static",IDC_ORG_TITLE,0,3,120,10
+    CONTROL         "",IDC_TABLE,"SysListView32",LVS_ALIGNLEFT | LVS_OWNERDATA | WS_TABSTOP | LVS_OWNERDRAWFIXED,0,10,120,110
+END
+#endif
+
+#ifdef ORG_TASK
+IDC_TASK DIALOG  0, 0, 120, 134
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_SYSMENU
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "",IDC_ORG_TITLE,0,5,120,8
+    EDITTEXT        IDC_INFO,0,0,120,50,ES_MULTILINE  | ES_AUTOVSCROLL
+    EDITTEXT        IDC_INFO1,0,55,120,50,ES_MULTILINE  | ES_AUTOVSCROLL | ES_READONLY 
+END
+#endif
+
+#ifdef ORG_REMNANTS
+IDD_REMNANTS MENU 
+BEGIN
+    POPUP "LocalMenu"
+    BEGIN
+        MENUITEM "&Удалить",                    IDC_DEL
+    END
+END
+
+IDD_REMNANTS_QTY DIALOG  0, 0, 69, 87
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Значение"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    EDITTEXT        IDC_QTY,2,3,64,12,ES_AUTOHSCROLL | ES_NOHIDESEL
+    PUSHBUTTON      "7",IDC_DIG_7, 2,18,17,14
+    PUSHBUTTON      "8",IDC_DIG_8,18,18,17,14
+    PUSHBUTTON      "9",IDC_DIG_9,34,18,17,14
+
+    PUSHBUTTON      "4",IDC_DIG_4, 2,31,17,14
+    PUSHBUTTON      "5",IDC_DIG_5,18,31,17,14
+    PUSHBUTTON      "6",IDC_DIG_6,34,31,17,14
+
+    PUSHBUTTON      "1",IDC_DIG_1, 2,44,17,14
+    PUSHBUTTON      "2",IDC_DIG_2,18,44,17,14
+    PUSHBUTTON      "3",IDC_DIG_3,34,44,17,14
+
+    PUSHBUTTON      "0",IDC_DIG_0, 2,57,33,14
+    PUSHBUTTON      ".",IDC_DIG_PT,34,57,17,14
+
+    PUSHBUTTON      "<-",IDC_DIG_BS,50,18,17,14
+    PUSHBUTTON      "ОК",IDOK,50,31,17,40
+    CONTROL         "Наличие",IDC_REST,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,2,73,87,10
+END
+#endif
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "NapoleonRes.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""resdefce.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_RUS)\r\n"
+    "LANGUAGE 25, 1\r\n"
+    "#pragma code_page(1251)\r\n"
+    "#include ""NapoleonRes.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#endif\r\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+#ifdef NATIVE_CE
+IDB_TOOLBAR             BITMAP                  "toolbarce.bmp"
+#else
+IDB_TOOLBAR             BITMAP                  "toolbar.bmp"
+#endif
+IDB_FOLDER              BITMAP                  "folder.bmp"
+IDB_CHECKED             BITMAP                  "checked.bmp"
+IDB_FOLDER32            BITMAP                  "folder32.bmp"
+IDB_CHECKED32           BITMAP                  "checked32.bmp"
+IDB_QTY                 BITMAP                  "qtypics.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+#ifdef PROG_CLASS_NAME
+STRINGTABLE 
+BEGIN
+    IDR_MAIN_FRAME          PROG_CLASS_NAME
+END
+#else
+STRINGTABLE 
+BEGIN
+    IDR_MAIN_FRAME          "Наполеон"
+END
+#endif
+
+STRINGTABLE 
+BEGIN
+    IDD_ORG_LIST            "Работа"
+END
+
+STRINGTABLE 
+BEGIN
+    IDC_VIEW_TYPE           "Выбор типа документов"
+    IDC_VIEW_TYPE_CAP       "Накладные"
+    IDC_BACK                "Вернуться"
+    IDC_CLOSE               "Закрыть"
+    IDC_DETAIL              "Параметры заказа"
+    IDC_SEND                "Отправить заказ"
+    IDC_ORDER_SUM           "Сумма заказа"
+    IDC_NEXT                "Следующая группа"
+    IDC_PREV                "Предыдущая группа"
+    IDC_PRICE_NUM           "Код товара вкл/выкл"
+    IDC_PACKET_INPUT        "Подбор товара группой"
+END
+
+STRINGTABLE 
+BEGIN
+    IDC_PRICE_FILTER        "Скрывать нулевые позиции"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_OK                  "OK"
+    IDS_HELP                "Инфо"
+    IDS_ORG_LIST            "Список организаций"
+END
+
+STRINGTABLE 
+BEGIN
+    IDC_REMOVE_ORDERS       "Удалить заказы"
+END
+
+STRINGTABLE 
+BEGIN
+    IDC_ADD                 "Новый"
+END
+     
+STRINGTABLE 
+BEGIN
+    IDC_AUTO_ORDER           "Авто"
+    IDC_REPORTS              "Отчеты"
+    IDC_CONTACTS             "Список организаций"
+    IDC_CALENDAR             "Расписание"
+    IDC_SHOW_2_ROW           "Просмотр в одну/две строки"
+END
+
+#endif    // Russian resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_RUS)
+LANGUAGE 25, 1
+#pragma code_page(1251)
+#include "NapoleonRes.rc2"  // non-Microsoft Visual C++ edited resources
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

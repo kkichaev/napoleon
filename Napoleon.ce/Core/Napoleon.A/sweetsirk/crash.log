@@ -1,0 +1,21 @@
+data: 15.06.20 07:16
+project=SweetsIrk
+version=3.5.1.30
+build date=11.06.20 4:22 PM
+model=HUAWEI P8max
+android=6.0
+stack:
+java.lang.NullPointerException: Attempt to invoke virtual method 'java.lang.String com.grsoft.napoleon.documents.CreatableDocument.getId()' on a null object reference
+	at com.grsoft.napoleon.PriceCountEx.onCreate(PriceCountEx.java:38)
+	at android.app.Activity.performCreate(Activity.java:6367)
+	at android.app.Instrumentation.callActivityOnCreate(Instrumentation.java:1110)
+	at android.app.ActivityThread.performLaunchActivity(ActivityThread.java:2397)
+	at android.app.ActivityThread.handleLaunchActivity(ActivityThread.java:2504)
+	at android.app.ActivityThread.access$900(ActivityThread.java:165)
+	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:1368)
+	at android.os.Handler.dispatchMessage(Handler.java:102)
+	at android.os.Looper.loop(Looper.java:150)
+	at android.app.ActivityThread.main(ActivityThread.java:5546)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:792)
+	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:682)

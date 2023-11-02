@@ -1,0 +1,813 @@
+<resources>
+    <string name="l_password">Password</string>
+    <string name="l_input">Enter</string>
+    <string name="l_create_account">Create an account</string>
+    <string name="message_auth_going">Authorizing...</string>
+    <string name="error_account_expired">This feature is available only in the full version</string>
+    <string name="error_account_frozen">Account is blocked</string>
+    <string name="error_internet_access">There is no Internet access</string>
+    <string name="error_login">Enter login</string>
+    <string name="error_password">Enter password</string>
+    <string name="error_server">operation failed:</string>
+    <string name="error_wrong_auth">Invalid username or password</string>
+    <string name="error_wrong_serv">Connection to server is unavailable</string>
+    <string name="error_comment">Enter your comment</string>
+    <string name="error_empty_task_title">Enter the task name</string>
+    <string name="correct_server">The server is available</string>
+    <string name="error_wrong_answer_from_server">Wrong server response</string>
+    <string name="error_wrong_answer_from_server_incorrect_root_container_title">Wrong server response. Wrong root package name: expected %1$s, but received %2$s</string>
+    <string name="error_wrong_answer_from_server_absent_error_code_tag">Wrong server response. Missing tag error_code</string>
+    <string name="error_xml_pull_parser">XML parse error. %1$s</string>
+    <string name="error_unknown_type">Error. %1$s</string>
+    <string name="error_code">Error code</string>
+    <string name="error_ssl_handshake">Security certificate verification failed</string>
+    <string name="error_standard_version">Your version is "Standard"</string>
+    <string name="error_standard_version_during_synchronization">Synchronizing is available in the full version</string>
+    <string name="error_end_emp_limit">Exceeded limit of users in organization</string>
+    <string name="settings_user">User</string>
+    <string name="settings_change_user">Current user:</string>
+    <string name="settings_change_user_title">Change user</string>
+    <string name="settings_clean_data">Clean all local data. Data will be restored from server after synchronizing</string>
+    <string name="settings_clean_data_title">Clean data</string>
+    <string name="settings_basic">General</string>
+    <string name="settings_theme_dark">Dark</string>
+    <string name="settings_theme_light">Light</string>
+    <string name="settings_theme_title">Theme</string>
+    <string name="settings_mode_phone">Phone</string>
+    <string name="settings_mode_table">Tablet</string>
+    <string name="settings_mode_title">Portrait mode</string>
+    <string name="settings_reminder_off">Off</string>
+    <string name="settings_reminder_on">On</string>
+    <string name="settings_reminder_title">Reminders</string>
+    <string name="settings_about_program">About the app</string>
+    <string name="txt_just_no">Cancel</string>
+    <string name="txt_just_yes">Yes</string>
+    <string name="settings_confirmation">Accept</string>
+    <string name="settings_clean_base"> Are you sure you want to clean local data and lose all recent changes?</string>
+    <string name="settings_logout">Are you sure you want to quit and lose all recent changes?</string>
+    <string name="settings_site">Go to website</string>
+    <string name="settings_community">Community</string>
+    <string name="title_message">Discussion</string>
+    <string name="title_view">View</string>
+    <string name="title_edit">Edit</string>
+    <string name="task_new">New task</string>
+    <string name="task">Properties</string>
+    <string name="task_comment">Type a note...</string>
+    <string name="task_connection">Connections:</string>
+    <string name="task_instruct">Assign</string>
+    <string name="task_assign">Assign</string>
+    <string name="task_set_term">Set term</string>
+    <string name="task_performer_email">E-mail of the performer</string>
+    <string name="task_status">Status</string>
+    <string name="task_performer">Performer: </string>
+    <string name="txt_status_icon">Task status icon</string>
+    <string name="txt_collapse_icon">Opening / closing project tree-structure icon</string>
+    <string name="txt_project_icon">Task project icon</string>
+    <string name="connection_clear_mark">x</string>
+    <string name="task_project">Projects</string>
+    <string name="task_category">Tags</string>
+    <string name="task_contact">Contacts</string>
+    <string name="prompt_task_title">Say name of task...</string>
+    <string name="prompt_task_comment">Say name of comment...</string>
+    <string name="term">Term:&#160;</string>
+    <string name="title_today_screen">Today: %s</string>
+    <string name="task_today">Today</string>
+    <string name="task_yesterday">Yesterday</string>
+    <string name="task_tomorrow">Tomorrow</string>
+    <string name="task_msg">Message</string>
+    <string name="task_inbox">Unsorted</string>
+    <string name="task_i">Me</string>
+    <string name="task_review">Review</string>
+    <string name="menu_subtasks">Subtasks</string>
+    <string name="menu_term">Postpone date</string>
+    <string name="menu_assign">Assign</string>
+    <string name="menu_re_assign">Reassign</string>
+    <string name="menu_dell">Delete</string>
+    <string name="menu_properties">Properties</string>
+    <string name="confirm_delete_title">Confirmation</string>
+    <string name="confirm_delete_text">Are you sure you want to delete this task?</string>
+    <string name="menu_settings">Settings</string>
+    <string name="menu_synchronize">Synchronize</string>
+    <string name="synchronize_start">Synchronizing</string>
+    <string name="synchronize_end">Synchronization completed</string>
+    <string name="menu_show_hide_make_task">Show/hide completed tasks</string>
+    <string name="menu_show_make_task">Show completed tasks</string>
+    <string name="menu_hide_make_task">Hide completed tasks</string>
+    <string name="subtasks_empty">Subtasks missing</string>
+    <string name="btn_ok">Ok</string>
+    <string name="btn_cancel">Cancel</string>
+    <string name="menu_help">Help</string>
+    <string name="menu_select_date">Select the date</string>
+    <string name="menu_add_task">Add a task</string>
+    <string name="menu_save_task">Save</string>
+    <string name="notification_title">Reminder</string>
+    <string name="notifications">Reminders</string>
+    <string name="task_term">Date and reminder</string>
+    <string name="btn_9_hours_using_12_hours_format">09:00 AM</string>
+    <string name="btn_18_hours_using_12_hours_format">06:00 PM</string>
+    <string name="btn_9_hours_using_24_hours_format">09:00</string>
+    <string name="btn_18_hours_using_24_hours_format">18:00</string>
+    <string name="btn_minus_30_minutes">-30 minutes</string>
+    <string name="btn_minus_one_day">-1 day</string>
+    <string name="btn_plus_30_minutes">+30 minutes</string>
+    <string name="btn_plus_one_day">+1 day</string>
+    <string name="btn_select_date">Select</string>
+    <string name="btn_select_time">Select</string>
+    <string name="btn_today">Today</string>
+    <string name="btn_tomorrow">Tomorrow</string>
+    <string name="btn_without_term">No term</string>
+    <string name="btn_without_time">No time</string>
+    <string name="sm_input">Unsorted</string>
+    <string name="sm_categories">Tags</string>
+    <string name="sm_projects">Projects</string>
+    <string name="sm_available_me">Available to me</string>
+    <string name="sm_instruct_i">Assigned to</string>
+    <string name="sm_instruct_me">Assigned by</string>
+    <string name="task_not_begin">Not started</string>
+    <string name="task_completed">Completed</string>
+    <string name="note">Note</string>
+    <string name="task_in_work">In progress</string>
+    <string name="task_ready">Ready</string>
+    <string name="task_paused">Paused</string>
+    <string name="task_cancelled">Cancelled</string>
+    <string name="task_rejected">Rejected</string>
+    <string name="task_refine">Needs correction</string>
+
+    <string-array name="months_full">
+        <item>January</item>
+        <item>February</item>
+        <item>March</item>
+        <item>April</item>
+        <item>May</item>
+        <item>June</item>
+        <item>July</item>
+        <item>August</item>
+        <item>September</item>
+        <item>October</item>
+        <item>November</item>
+        <item>December</item>
+    </string-array>
+    <string name="Monday">Monday</string>
+    <string name="Tuesday">Tuesday</string>
+    <string name="Wednesday">Wednesday</string>
+    <string name="Thursday">Thursday</string>
+    <string name="Friday">Friday</string>
+    <string name="Saturday">Saturday</string>
+    <string name="Sunday">Sunday</string>
+    <string name="Mo">Mo</string>
+    <string name="Tu">Tu</string>
+    <string name="We">We</string>
+    <string name="Th">Th</string>
+    <string name="Fr">Fr</string>
+    <string name="Sa">Sa</string>
+    <string name="Su">Su</string>
+
+    <!-- @since 2014-03-11 -->
+    <string name="blocking_process">Data processing...</string>
+    <string name="unit_bytes">&#160;bytes</string>
+    <string name="unit_Kbytes">&#160;Kb</string>
+    <string name="unit_Mbytes">&#160;Mb</string>
+    <string name="btn_add">Add</string>
+    <string name="t_start_convertation">Converting file to MP3</string>
+    <string name="t_start_download_file">Downloading file</string>
+    <string name="t_error_camera">Camera failed to launch</string>
+    <string name="t_error_external_storage">Must set memory card</string>
+    <string name="t_error_file_saving">Failed to save file</string>
+    <string name="t_error_free_space_needed">Not enough storage</string>
+    <string name="t_error_can_record_ones">Recording one file for time is possible</string>
+    <string name="t_error_file_not_exist">This file doesn`t exist</string>
+    <string name="t_error_feature_name">Unauthorized name selected</string>
+    <string name="t_error_performer_not_unique">Selected participants have already been added</string>
+    <string name="d_error_title">Attention</string>
+    <string name="d_audio_record_title">Audio record</string>
+    <string name="d_project_remove_title">Deleting project</string>
+    <string name="d_project_remove_message">Are you sure you want to delete this project and all the tasks in it?</string>
+    <string name="d_performer_remove_title">Participant deleted</string>
+    <string name="d_performer_remove_message">Are you sure you want to delete this participant?</string>
+    <string name="d_category_remove_title">Deleting tag</string>
+    <string name="d_category_remove_message">Are you sure you want to delete this tag?</string>
+    <string name="what_to_use">What would you like to use?</string>
+    <string name="reg_email">Enter E-mail</string>
+    <string name="reg_name">Name</string>
+    <string name="reg_password">Enter password</string>
+    <string name="reg_create_acc">Create an account</string>
+    <string name="reg_complete">Registration successful</string>
+    <string name="reg_fill_email">Enter your E-mail</string>
+    <string name="reg_fill_name">Enter your name</string>
+    <string name="reg_fill_pass">Enter your password</string>
+    <string name="menu_marker">Color</string>
+    <string name="m_add_from_camera">Camera</string>
+    <string name="m_add_from_gallery">Gallery</string>
+    <string name="m_add_audio">Audio</string>
+    <string name="m_go_left">Move left</string>
+    <string name="m_go_right">Move right</string>
+    <string name="m_go_up">Move up</string>
+    <string name="m_go_down">Move down</string>
+    <string name="title_chooser_image">Select an image</string>
+    <string name="project_new">New project</string>
+    <string name="project_add">Add project</string>
+    <string name="project_properties">Project properties</string>
+    <string name="project_close">Close project</string>
+    <string name="project_show_subproj_tasks">Show tasks of subprojects</string>
+    <string name="project_show_in_navi">Show in the navigator</string>
+    <string name="project_favorite">Favorite</string>
+    <string name="project_access">Access</string>
+    <string name="project_add_performer">Add participants to the project</string>
+    <string name="feature_name">Name</string>
+    <string name="feature_comment">Comment</string>
+    <string name="category_new">New tag</string>
+    <string name="category_properties">Tag properties</string>
+    <string name="by_default">By default</string>
+    <string name="task_no_projects">No project</string>
+    <string name="task_no_categories">No tag</string>
+    <string name="task_file_exist">&#160;(not downloaded)</string>
+    <string name="d_remove_file_title">Deleting file</string>
+    <string name="d_remove_file_message">Are you sure you want to delete this file from the task?</string>
+    <string name="title_chooser_open">Open file</string>
+    <string name="error_user_exist">User with this E-mail already exists. If it is your E-mail please restore your password.</string>
+    <string name="error_format_email">Wrong E-mail form entered</string>
+    <string name="error_format_password">Wrong password form entered</string>
+    <string name="error_file_not_downloaded">File has not been loaded to server.</string>
+    <string name="settings_private_office">Personal account</string>
+    <string name="settings_support">Contact tech support</string>
+    <string name="settings_blog">Our blog</string>
+    <string name="settings_facebook">Facebook</string>
+    <string name="settings_vkontakte">Vkontakte</string>
+    <string name="settings_twitter">Twitter</string>
+    <string name="settings_youtube">Youtube</string>
+    <string name="settings_autosync">Syncronization</string>
+    <string name="settings_autosync_dialog_title">Syncronizing period</string>
+    <string name="settings_autosync_m2">Every 2 minutes</string>
+    <string name="settings_autosync_m15">Every 15 minutes</string>
+    <string name="settings_autosync_m30">Every 30 minutes</string>
+    <string name="settings_autosync_m60">Every hour</string>
+    <string name="settings_autosync_off">Manually</string>
+    <string name="settings_calendar">Calendar in the navigator</string>
+    <string name="settings_calendar_on">On</string>
+    <string name="settings_calendar_off">Off</string>
+    <string name="settings_basic_data">Data</string>
+    <string name="settings_strikethru_tasks">Cross out completed tasks</string>
+    <string name="settings_strikethru_on">On</string>
+    <string name="settings_strikethru_off">Off</string>
+
+    <!-- @since 2014-06-19 -->
+    <string name="title_emp">Staff</string>
+    <string name="d_emp_remove_title">Deleting employee</string>
+    <string name="d_emp_remove_message">Are you sure you want to delete this employee?</string>
+    <string name="emp_display_as">Show as</string>
+    <string name="emp_name_on_server">LeaderTask Login</string>
+    <string name="emp_new">New employee</string>
+    <string name="emp_properties">Employee properties</string>
+    <string name="t_error_not_all_information">Fill in all fields</string>
+
+    <!-- @since 2014-06-27 -->
+    <string-array name="days_of_week_short">
+        <item>Mo</item>
+        <item>Tu</item>
+        <item>We</item>
+        <item>Th</item>
+        <item>Fr</item>
+        <item>Sa</item>
+        <item>Su</item>
+    </string-array>
+    <string-array name="lang_task_recurrence_weeks">
+        <item>first</item>
+        <item>second</item>
+        <item>third</item>
+        <item>fourth</item>
+        <item>last one</item>
+    </string-array>
+
+    <string name="lang_task_after_day">Day</string>
+    <string name="lang_task_after_week">Week</string>
+    <string name="lang_task_after_month">Month</string>
+    <string name="lang_task_after_year">Year</string>
+    <string name="lang_task_recurrence_daily">Daily</string>
+    <string name="lang_task_recurrence_in">Every</string>
+    <string name="lang_task_recurrence_weekly">Weekly</string>
+    <string name="lang_task_recurrence_every_w">Every</string>
+    <string name="lang_task_recurrence_w_every">Week on</string>
+    <string name="lang_task_recurrence_monthly">Monthly</string>
+    <string name="lang_task_recurrence_every_m">Every</string>
+    <string name="lang_task_recurrence_m_every">Month</string>
+    <string name="lang_task_recurrence_m_every_d">Day</string>
+    <string name="lang_task_recurrence_yearly">Annualy</string>
+    <string name="lang_task_recurrence_every_y">Every</string>
+
+    <!-- @since 2014 09 30 -->
+    <string name="settings_language">Language</string>
+    <string name="settings_on_status">Status</string>
+    <string name="settings_Markers">Colors</string>
+    <string name="settings_Labels">Tags</string>
+
+    <string name="d_title_marker_remove">Deleting color</string>
+    <string name="d_title_label_remove">Deleting tag</string>
+    <string name="d_title_pick_an_image_source">Choose image source</string>
+
+    <string name="d_message_marker_remove">Are you sure you want to delete this color?</string>
+    <string name="d_message_label_remove">Are you sure you want to delete this tag?</string>
+
+    <string name="lang_system">System</string>
+    <string name="expired">Overdue</string>
+
+    <string name="default_task_name">Task name</string>
+    <string name="default_marker">Color</string>
+    <string name="default_project">Project</string>
+    <string name="default_category">Tag</string>
+    <string name="default_label">Shortcut</string>
+
+    <string name="on_status_none">None</string>
+    <string name="on_status_finish">Complete</string>
+    <string name="on_status_select">Select</string>
+
+    <string name="marker_new">New color</string>
+    <string name="marker_properties">Color properties</string>
+    <string name="marker_color_text">Letter color</string>
+    <string name="marker_color_background">Background color</string>
+    <string name="marker_all_caps">All capital</string>
+
+    <string name="label_new">New shortcut</string>
+    <string name="label_properties">Shortcut properties</string>
+    <string name="label_color">Color highlighting</string>
+
+    <string name="task_label">Shortcuts</string>
+
+    <string name="t_error_no_auth">User is not authorized</string>
+    <string name="t_error_same_process_not_stop">Previous operation is not over</string>
+    <string name="t_error_no_app_to_handle">App could not handle request.</string>
+    <string name="t_task_input">Task added to unsorted</string>
+    <string name="t_error_file_was_not_uploaded">File wasn`t loaded to server</string>
+
+    <string-array name="media_sources">
+        <item>Camera</item>
+        <item>Gallery</item>
+    </string-array>
+
+    <string name="exception_unknown">Unknown Error</string>
+    <string name="exception_ssl">Can`t verify security certificate</string>
+    <string name="exception_sqlite">Processing database error</string>
+    <string name="exception_server">Failed connecting to server</string>
+    <string name="exception_parsing_request">Failed sending request</string>
+    <string name="exception_parsing_response">Failed requested reply</string>
+    <string name="exception_parsing_overall">Failed parsing data</string>
+    <string name="exception_reset_links">Failed conversing tasks` links</string>
+    <string name="exception_file_dowloading">Loading failed</string>
+    <string name="exception_test">Test error</string>
+
+    <string name="error_need_confirm_registration">Please confirm registration</string>
+    <string name="reg_fill_pass_is_too_short">Password is too short</string>
+    <string name="reg_fill_email_name">Enter your registration data</string>
+    <string name="alternative_reg">Or create an account:</string>
+    <string name="confirm_registration_text">We have sent you a special email. This E-mail contains link to "Confirm your registration". </string>
+    <string name="confirm_registration_name">Please confirm your registration! </string>
+    <string name="error_timeout">Server isn`t responding.</string>
+    <string name="task_files">Attach a file</string>
+    <string name="onbackpressed_save">Save progress using the "Back" button</string>
+    <string name="menu_dont_save_task">Don`t save</string>
+    <string name="pull_to_refresh_pull_label">Swipe</string>
+    <string name="pull_to_refresh_release_label">Release</string>
+    <string name="pull_to_refresh_refreshing_label">Update</string>
+    <string name="synchronization_updated">Synchronize</string>
+    <string name="task_today_lib">Today</string>
+    <string name="task_yesterday_lib">Yesterday</string>
+    <string name="task_before_lib">The day before yesterday</string>
+    <string name="follow_the_link">Follow the link</string>
+    <string name="copy_link">Copy the link</string>
+    <string name="task_not_found">Task not found</string>
+    <string name="saved_clipboard">Saved in clipboard</string>
+    <string name="back">Back</string>
+    <string name="error_api_disabled">This function isn`t available anymore. Please update to the latest version.</string>
+    <string name="error_account_blocked">Account blocked</string>
+    <string name="no_space_left_on_device">Not enough storage</string>
+    <string name="select_date">Choose date</string>
+    <string name="select_time">Choose time</string>
+    <string name="settings_vibration">Vibration</string>
+    <string name="settings_standart_sound">Standard sound</string>
+    <string name="task_unread">Unread</string>
+    <string name="settings_unread_show">Show</string>
+    <string name="settings_unread_dont_show">Don`t show</string>
+    <string name="settings_unread_in_navigator">Unread section in the navigator</string>
+    <string name="order_by_default">No sorting</string>
+    <string name="order_by_term">Sorting by term</string>
+    <string name="order_by_marker">Sorting by color</string>
+    <string name="already_registered">Already registered?</string>
+    <string name="forgot_password">Forgot your password?</string>
+    <string name="synchronization_now">Synchronizing...</string>
+    <string name="never">Never</string>
+    <string name="updated">Updated</string>
+    <string name="license">License</string>
+    <string name="account">Account and license</string>
+    <string name="free">Expired</string>
+    <string name="to_premium">Buy</string>
+    <string name="premium_gone">Expire</string>
+    <string name="business_gone">Expire</string>
+    <string name="extend">Extend license</string>
+    <string name="days">days</string>
+    <string name="settings_show_categories_in_navigator">Show tags</string>
+    <string name="not_follow">Don`t follow project</string>
+    <string name="settings_task_count_in_navigator">Show the total number of tasks in the navigator</string>
+    <string name="intro_slide1_text">ALL TASKS ARE ALWAYS WITH YOU</string>
+    <string name="intro_slide1_subtext">On any device</string>
+    <string name="intro_slide2_text">SYNCHRONIZING YOUR DEVICES</string>
+    <string name="intro_slide2_subtext">Everything is always in your hands</string>
+    <string name="intro_slide3_text">DIVIDING TASKS BY PROJECTS </string>
+    <string name="intro_slide3_subtext">Easy way of grouping tasks </string>
+    <string name="intro_slide4_text">ASSIGN TASKS TO YOUR COLLEAGUES</string>
+    <string name="intro_slide4_subtext">A simple way of assigning tasks</string>
+    <string name="intro_slide5_text">WORKING OFFLINE </string>
+    <string name="intro_slide5_subtext">Access tasks anywhere </string>
+    <string name="intro_slide6_text">TASKS CAN BE FORMED INTO A MATRIX</string>
+    <string name="intro_slide6_subtext">Tasks on any level </string>
+    <string name="intro_slide7_text">CALENDAR, TAGS, PRIORITIES</string>
+    <string name="intro_slide7_subtext">, etc.</string>
+    <string name="intro_start">Start</string>
+    <string name="intro_forward">Next</string>
+    <string name="settings_inbox_in_navigator">Hide unsorted</string>
+    <string name="settings_navigator">Navigator</string>
+    <string name="intro">Tour</string>
+    <string name="intro_prev">Back</string>
+    <string name="contact_groups">Groups of contacts</string>
+    <string name="contacts">Contacts</string>
+    <string name="d_contact_group_remove_title">Deleting group of contacts</string>
+    <string name="d_contact_group_remove_message">Are you sure you want to delete this group of contacts?</string>
+    <string name="d_contact_remove_title">Deleting contact</string>
+    <string name="d_contact_remove_message">Are you sure you want to delete this contact?</string>
+    <string name="contacts_group_new">New group of contacts</string>
+    <string name="contacts_group_properties">Properties of the group of contacts</string>
+    <string name="contacts_group_add_performer">Add participants to the group</string>
+    <string name="contact_new">New contact</string>
+    <string name="contact_properties">Contact properties</string>
+    <string name="contact_last_name">Surname</string>
+    <string name="contact_name">First name</string>
+    <string name="contact_sername">Middle name</string>
+    <string name="contact_group">Group</string>
+    <string name="contact_details">Detailed</string>
+    <string name="contact_post">Post</string>
+    <string name="contact_org">Organization</string>
+    <string name="contact_connection">Communication tools</string>
+    <string name="contact_birthday">Birthday</string>
+    <string name="contact_home_adress">Home address</string>
+    <string name="contact_work_adress">Organization address</string>
+    <string name="add_comment">Send</string>
+    <string name="order_by_name">Sort by name</string>
+    <string name="not_change_status">Don`t change status</string>
+    <string name="rework_dialog_title">The performer completed the task - change the status of the task to send a message.</string>
+    <string name="display_project_subtasks">Show tasks of subprojects</string>
+    <string name="take_on_exec">Take on execution</string>
+    <string name="dell_communication">Delete communication tool</string>
+    <string name="d_communication_remove_message">Are you sure you want to delete the communication tool?</string>
+    <string name="project_add_communication">Add communication tool</string>
+    <string name="comm_phone">Phone</string>
+    <string name="comm_email">Email</string>
+    <string name="comm_msg">Messenger</string>
+    <string name="comm_www">Website</string>
+    <string name="gender_men">Male</string>
+    <string name="gender_women">Female</string>
+    <string name="gender_org">Organization</string>
+    <string name="gender_nobody">Not specified</string>
+    <string name="address_country">Country</string>
+    <string name="address_region">Region / district</string>
+    <string name="address_city">City</string>
+    <string name="address_street">Building, street</string>
+    <string name="address_index">Postcode</string>
+    <string name="copy">Copy</string>
+    <string name="d_remove_file_message_contact">Are you sure you want to delete this file?</string>
+    <string name="search">Search</string>
+    <string name="pass_at_start">Password when launching</string>
+    <string name="term_repeat">Repeat</string>
+    <string-array name="repeat_main_chooser">
+        <item>Do not repeat</item>
+        <item>Daily</item>
+        <item>Weekly</item>
+        <item>Monthly</item>
+        <item>Annually</item>
+    </string-array>
+    <string-array name="repeat_day_year_chooser">
+        <item>Day</item>
+        <item>Week</item>
+        <item>Month</item>
+        <item>Year</item>
+    </string-array>
+    <string-array name="repeat_month_chooser">
+        <item>Every</item>
+        <item>First</item>
+        <item>Second</item>
+        <item>Third</item>
+        <item>Fourth</item>
+        <item>Last</item>
+    </string-array>
+    <string name="foto_del">Delete photo</string>
+    <string name="foto_set">Select photo</string>
+    <string name="choose">Select</string>
+    <string name="choosen">Selected:</string>
+    <string name="confirm_delete_text_mass">Are you sure you want to delete the selected tasks?</string>
+    <string name="add_checked_tasks">Please select tasks</string>
+    <string name="set_as_read">Mark as read</string>
+    <string name="choose_new_file">Select file</string>
+    <string name="cut">Cut</string>
+    <string name="paste">Paste</string>
+    <string name="task_added">Task added</string>
+    <string name="new_assignment">New assignment!</string>
+    <string name="l_login">Your login</string>
+    <string name="properties_enter_comment">Enter your message...</string>
+    <string name="properties_comments">Comment</string>
+    <string name="account_license_expires">License has expired:</string>
+    <string name="account_license_org">Organization:</string>
+    <string name="account_license_director">Owner of license:</string>
+    <string name="account_license_spase_server">Used space in server:</string>
+    <string name="account_profile">Profile</string>
+    <string name="account_change">Change photo</string>
+    <string name="account_password">Change password</string>
+    <string name="account_exit">Exit</string>
+    <string name="account_old_password">Enter your current password</string>
+    <string name="account_new_password">Enter your new password</string>
+    <string name="account_new_password_again">Confirm password</string>
+    <string name="follow">Follow project</string>
+    <string name="leave_project">Leave project</string>
+    <string name="unboarding_addtasks">Start your work creating a list of your tasks</string>
+    <string name="settings_sound">Sound effects</string>
+    <string name="data_loading">Loading, please wait</string>
+    <string name="task_create">Date of task creation</string>
+    <string name="support_chat">Chat with tech support</string>
+    <string name="support_log">Send troubleshooting information</string>
+    <string name="sort_by_color">Sorting by color</string>
+    <string name="sort_by_term">Sorting by term</string>
+    <string name="sort_by_date_creation">Sorting by date of creation</string>
+    <string name="connection_string">Connection field</string>
+    <string name="connection_settings">Connection settings</string>
+    <string name="connection_add_str_sync_adress">Enter the address</string>
+    <string name="search_not_elements">No elements found</string>
+    <string name="done">Done</string>
+    <string-array name="pre_time">
+        <item>0</item>
+        <item>5</item>
+        <item>10</item>
+        <item>15</item>
+        <item>30</item>
+        <item>60</item>
+    </string-array>
+    <string name="pre_notify">Prior to (in minutes):</string>
+    <string name="add_emp">Add an employee</string>
+    <string name="unboarding_dialog_members">To give access to the project please add an employee</string>
+    <string name="unboarding_dialog_projects">Create your projects! Projects can have subprojects of any level of nesting.</string>
+    <string name="unboarding_dialog_performer">Please add an employee to assign a task.</string>
+    <string name="unboarding_dialog_categories">Tags will help you organize different tasks. For example, you can mark tasks as “important” or “urgent.” You can also mark tasks by location including “at home,” “at office,” and “in bank.” You can create any number of tags. Tags can be organized in a matrix.</string>
+    <string name="unboarding_dialog_markers">Add colors. You can mark tasks with colors. For example, important tasks can be red and meetings can be blue. You can sort any to-do list by color.</string>
+    <string name="unboarding_default_category1">Important</string>
+    <string name="unboarding_default_category2">Urgent!</string>
+    <string name="unboarding_default_category3">Attention</string>
+    <string name="del_project">Delete this project</string>
+    <string name="preview_slide1_text">Hi, </string>
+    <string name="preview_slide1_subtext">Are you ready to perform more tasks? \n Let`s customize LeaderTask for you.</string>
+    <string name="preview_slide2_text">Select projects out of the list</string>
+    <string name="preview_slide2_check2">Business</string>
+    <string name="preview_slide2_check3">Family</string>
+    <string name="preview_slide2_check4">Travel</string>
+    <string name="preview_slide2_check5">Hobby</string>
+    <string name="preview_slide3_text">Invite staff</string>
+    <string name="preview_slide3_subtext">Enter staff E-mails</string>
+    <string name="preview_slide3_edit_hint">Enter employee E-mails</string>
+    <string name="preview_slide3_no_emps">I don`t have staff, I`m a single user</string>
+    <string name="preview_slide4_text">Write down a task to assign to your employee</string>
+    <string name="preview_slide4_subtext">Task was assigned to your employee</string>
+    <string name="preview_slide4_task">Task</string>
+    <string name="preview_slide4_choose">Select employee</string>
+    <string name="preview_slide5_text">What would you like to do today?</string>
+    <string name="preview_slide5_subtext">Enter task for today</string>
+    <string name="preview_slide5_footer">Free your mind — keep it in the to-do list!</string>
+    <string name="preview_slide6_text">What task would you like to perform?</string>
+    <string name="preview_slide6_everyday">Every day</string>
+    <string name="preview_slide7_text">Congratulations, LeaderTask is ready for work!</string>
+    <string name="preview_add">Invite</string>
+    <string name="preview_cansel">Finish</string>
+    <string name="market">LeaderTask Market</string>
+    <string name="training_courses">Tutorials</string>
+    <string name="open">Open</string>
+    <string name="market_name1">Video course on time management</string>
+    <string name="market_subname1">Study the basic course on time management</string>
+    <string name="market_name2">E-book \'Time Management Secrets\'</string>
+    <string name="market_subname2">\'Time Management Secrets\' is the guide book with exact instructions and technologies for better managing your errands.</string>
+    <string name="market_name3">Video Course \'Turbo Time Management\'</string>
+    <string name="market_subname3">Video Course \'Turbo Time Management\' was created for anyone who wants to know how to manage time. This course includes the main principles of high efficiency and ways to practice them right now.</string>
+    <string name="market_name4">Helpful Hints Base</string>
+    <string name="market_subname4">The E-book consists of more than 2,600 helpful hints. The base is a rich repository of information and it works on raising your effeciency!</string>
+    <string name="market_name5">Main Time Management Methods For 60 Minutes</string>
+    <string name="market_subname5">The practice guide for three main Time Management systems</string>
+    <string name="app_rate_title">Value LeaderTask</string>
+    <string name="app_rate_text">If you like LeaderTask, please leave a rating for our app.</string>
+    <string name="app_rate_rate">Value</string>
+    <string name="app_rate_later">Later</string>
+    <string name="app_rate_no">No, thanks</string>
+    <string name="add_color">Add color</string>
+    <string name="add_categoty">Add tag</string>
+    <string name="add_task_top">To the top of the list</string>
+    <string name="add_task_bot">To the end of the list</string>
+    <string name="add_task">Adding tasks</string>
+    <string name="author">Author</string>
+    <string name="confirm_leave_project">Do you really want to leave this project?</string>
+    <string name="error_no_email_facebook">To register, you must add your E-mail in the settings of your Facebook account</string>
+    <string name="notification_task_done">Task completed</string>
+    <string name="notification_new_comment">A new message</string>
+    <string name="notification_new_comments">New messages on task</string>
+    <string name="del_category">Delete category</string>
+    <string name="change_category">Change category</string>
+    <string name="express_panel">Express panel</string>
+    <string name="txt_just_nono">No</string>
+    <string name="account_cont_emps">Number of workplaces</string>
+    <string name="add_new_user_message">Your employee was sent a letter with further instructions on how to start working in LeaderTask</string>
+    <string name="speech_dialog_title">Say something</string>
+    <string name="notsave">Discard changes</string>
+    <string name="autonomy">Offline mode</string>
+    <string name="one_week_in_nav">One week in the calendar</string>
+    <string name="in">in</string>
+    <string name="settings_notification_for_me">New assignments for me</string>
+    <string name="settings_notification_by_me">Assignments Complete</string>
+    <string name="settings_notification_comments">Discussion of tasks</string>
+    <string name="del_canceled">Deleting completed tasks</string>
+    <string name="del_canceled2">Delete all completed tasks</string>
+    <string name="del_canceled3">Delete completed tasks older than a month</string>
+    <string name="del_canceled_title">Are you sure you want to delete all completed tasks?</string>
+    <string name="notify_overdue">You have overdue tasks</string>
+    <string name="notify_overdue_sub">You need to take measures!</string>
+    <string name="settings_notification_overdue">Overdue tasks</string>
+    <string name="settings_notification_unread">Unread tasks</string>
+    <string name="settings_notification_today">Tasks for today</string>
+    <string name="notify_unread">You have unread tasks</string>
+    <string name="notify_today">You have tasks for today </string>
+    <string name="notify_settings">Notifications and reminders</string>
+    <string name="overdue_in_nav">Overdue point in the navigator</string>
+    <string name="overdue_tasks">Overdue tasks</string>
+    <string name="settings_show_colors_in_navigator">Show colors</string>
+    <string name="settings_show_emps_in_navigator">Show employees</string>
+    <string name="settings_show_week_calendar">Number of weeks in the calendar</string>
+    <string name="market_name6">Employees: Hiring, motivation, growth</string>
+    <string name="market_subname6">Step-by-step guide on hiring, training, motivating employees, increasing their productivity, and also rallying the team. In addition, inside you will find checklists, tests and specific examples of when and how to use them.</string>
+    <string name="loading_text1">Loading tasks...</string>
+    <string name="loading_text2">We set up LeaderTask...</string>
+    <string name="settings_show_week_calendar_first">Begin week on January 1</string>
+    <string name="emp_max">You reached your limit of employees. You must renew your license.</string>
+    <string name="emp_max_do">Expand your license</string>
+    <string name="chronometry">Fact / Plan</string>
+    <string name="chronometry1">Minutes</string>
+    <string name="chronometry2">Hours</string>
+    <string name="chronometry3">Days</string>
+    <string name="chronometry4">Seconds</string>
+    <string name="chronometry_notify">Time for this task has expired</string>
+    <string name="chronometry_del">Reset</string>
+    <string name="chronometry00">sec.</string>
+    <string name="chronometry10">min.</string>
+    <string name="chronometry20">h.</string>
+    <string name="chronometry30">days</string>
+    <string name="error_speeching">You need to include voice support in settings</string>
+    <string name="chronometry_comment">Fact is considered from status \'In progress\' till other status automatically</string>
+    <string name="fact">Fact</string>
+    <string name="paln">Plan</string>
+    <string name="settings_not_about">Notify about:</string>
+    <string name="d_color_remove_title">Delete color</string>
+    <string name="d_color_remove_message">Are you sure you want to delete this color?</string>
+    <string name="after_tomorrow">The day after tomorrow</string>
+    <string name="innew">On</string>
+    <string name="Monday2">On Monday</string>
+    <string name="Tuesday2">On Tuesday</string>
+    <string name="Wednesday2">On Wednesday</string>
+    <string name="Thursday2">On Thursday</string>
+    <string name="Friday2">On Friday</string>
+    <string name="Saturday2">On Saturday</string>
+    <string name="Sunday2">On Sunday</string>
+    <string name="may">May</string>
+    <string name="show_all">Show everything</string>
+    <string name="task_check_set">Set</string>
+    <string name="calendar_1_day">For 1 day</string>
+    <string name="calendar_3_day">For 3 days</string>
+    <string name="calendar_7_day">For 7 days</string>
+    <string name="calendar_name">Daily log</string>
+    <string name="no_tasts_title">No tasks for today!</string>
+    <string name="begin">Begin:</string>
+    <string name="end">End:</string>
+    <string name="settings_chrono">Timing</string>
+    <string name="invitation">Invite team members</string>
+    <string name="invitation_mes"> invites you to join the team </string>
+    <string name="invitation_yes">You have been successfully added to the team!</string>
+    <string name="invitation_no">You have not been added to the team.</string>
+    <string name="accept">Accept</string>
+    <string name="decline">Cancel</string>
+    <string name="add_new_user_message2">Invite has been sent to LeaderTask employee.</string>
+    <string name="add_new_user_message3">To successfully add an employee to your company the employee must:  1) Install LeaderTask on any device 2) Enter their login and password:  %1$s  %2$s</string>
+    <string name="reg_email2">Enter working E-mail</string>
+    <string name="error_addemp_org"> This employee is already in another LeaderTask team.;</string>
+    <string name="member">Participant</string>
+    <string name="member2">is successfully added to your team!</string>
+    <string name="phone_title">Enter your phone number</string>
+    <string name="phone_subtitle">Your phone number is used to insure the safety of your account.</string>
+    <string name="toast_unboarding1">Cool! Your task has been created; now add your project</string>
+    <string name="toast_unboarding2">Nice! Now add employees</string>
+    <string name="toast_unboarding3">Perfect! Now you can assign tasks to your employees!</string>
+    <string name="toast_unboarding4">Super! You assigned a task to your employee!</string>
+    <string name="settings_cal_period">Working hours</string>
+    <string name="settings_cal_period_start">Beginning of day</string>
+    <string name="settings_cal_period_end">End of day</string>
+    <string name="reg_rules">Register if you agree</string>
+    <string name="reg_rules1">License Agreement</string>
+    <string name="reg_rules2">and</string>
+    <string name="reg_rules3">Privacy Policy</string>
+    <string name="enter_your_name">Please enter your name</string>
+    <string name="preview_slide3_edit_hint2">Enter your employee’s name</string>
+    <string name="pro_projecr">Pilot project</string>
+    <string name="pro_main1">Master LeaderTask (click this task)</string>
+    <string name="pro_main2">Increase productivity</string>
+    <string name="pro_main3">Be aware</string>
+    <string name="pro_main1_1">This will help you master LeaderTask.</string>
+    <string name="pro_main1_2">Try to perform all tasks</string>
+    <string name="pro_main1_3">If your task has the icon: "Sheet of paper" (it\'s on the right) - this means that the task has a note. Click the task to read it</string>
+    <string name="pro_main1_31">The note is in this area</string>
+    <string name="pro_main1_4">If the task has a digit-indicator in a gray circle (it\'s at the left) - that means that the task has subtasks. Click the task to see them</string>
+    <string name="pro_main1_4_1">It\'s a subtask</string>
+    <string name="pro_main1_5">Create tasks</string>
+    <string name="pro_main1_51">Open the navigator (a panel at the left), select the day in the calendar and press the round button “Add Task.” \n\n The task is created on that day.</string>
+    <string name="pro_main1_6">Create projects</string>
+    <string name="pro_main1_61"> Any project is a folder. Tasks there, work for the project’s purposes. \n\n Open the Navigator and press Add Project.  \n\n Any task can be related to one project. \n\n Projects can be built in a matrix.</string>
+    <string name="pro_main1_7">Attach tags and color tasks in the necessary color</string>
+    <string name="pro_main1_71">The tag is a color label with text inside. \n\n Open the task, press the Tags button, and select the necessary tags from the appropriate window. \n\n To further color the task line in arbitrary colors, click the color squares under the note.</string>
+    <string name="pro_main1_8">Create subtasks</string>
+    <string name="pro_main1_81">Tap the task and select "Subtasks" from the appeared menu. You will see the level of subtasks. \n\n To create subtasks press the round button, “add task.” \n\n It is possible to add subtasks to any subtask. Depth of enclosure is not restricted</string>
+    <string name="pro_main1_9">Plan today</string>
+    <string name="pro_main1_91"> Open the navigator and click the Today point.  \n\n Add tasks which need to be executed today. \n\n To finish the task, click a status square (it\'s in a task line at the left) and select from the appeared window "Completed". \n\n To hide completed tasks, press the button with an icon of three points (it\'s on top on the right) and select from the appeared menu "Hide completed tasks".</string>
+    <string name="pro_main1_10">Create an assignment</string>
+    <string name="pro_main1_101"> Come into the task and press the Assign button. Then press “Add Employee.” Enter employee’s name and E-mail. \n\n The LeaderTask assignment will be sent to him/her. \n\n To see an assignment, your employee shall open the letter from LeaderTask, download the program through the link and login to the app, using the login and password specified in the letter.</string>
+    <string name="pro_main1_11">Control an assignment</string>
+    <string name="pro_main1_111">Chat is built into each task. You can discuss your employees work in chat. \n\n To leave a comment, open a task. Find the comment section located in the lower part of a window and send a message.  \n\n Pay attention to the status of your task. It\'s under squares of colors. All new tasks are automatically given the status "Not started". If the employee changes the status of an assignment to "Ready" (in a square the red tick appeared) - check result of the task.</string>
+    <string name="pro_main1_12">Begin collaboration with colleagues</string>
+    <string name="pro_main1_121">Open the project. Press the button with an icon of a person (on the top right) and select the necessary employees from the opened window. \n\n Selected employees will get access to the project. \n\n Employees will be able to see the task list in the project, discuss them in chat, attach files and also add new tasks.</string>
+    <string name="pro_main2_1">Convenient gestures</string>
+    <string name="pro_main2_11"> Open the necessary day of a project or the task list of an employee. \n\n In the lower part of the screen swipe quickly from right to left. The mode of package operation with tasks is activated. \n\n Click in turn several tasks, then press the button with a pencil icon (it\'s in the lower part of the screen). Select an action for the selected tasks from the appeared window.</string>
+    <string name="pro_main2_2">Widgets</string>
+    <string name="pro_main2_22">LeaderTask has two widgets: \n “Add to Trash” widget and “Add Photo” widget. \n\n Add widgets on a desktop.  \n\n Click the widget “Add to Trash.” In the appeared window enter the name of the task with a keyboard or with voice-to-text (speech will automatically be converted into text). The task will be added to the section "Inbox". \n\n Click the widget “Add Photo.” The camera app will start. Make a photo and press the button with a tick icon. The task with the attached photo will be added to the section "Inbox".</string>
+    <string name="pro_main2_3">Use OK Google voice command to add tasks.</string>
+    <string name="pro_main2_33">Say «OK, Google». Then say a command: «ADD THE NOTE to take away sending». \n\n The task «Take away sending» will be added to the section «Inbox».</string>
+    <string name="pro_main2_4">Recognition of date, time, and performer in the name of the task</string>
+    <string name="pro_main2_44">Open the widget “Add Task.” \n\n Enter the name of the task: dictated by voice or key.  \n\n LeaderTask recognizes both: \n * Date, for example: «Today», «Tomorrow», «on May 15» \n * Time, for example: «at 17:30», «at 3 pm», «at noon» \n * Performer. The word «Assign», will appear. For example: «To ASSIGN James» (it is necessary to use a name of the employee as it is displayed in the navigator) \n\n The task will appear in the appropriate day or will be assigned to the necessary employee.</string>
+    <string name="pro_main2_5">Repeating tasks</string>
+    <string name="pro_main2_55">If you make a task repeat, the task will automatically appear on the to-do list of certain days.  \n\n Open the task, press the Date and Reminder button and bind the task to a certain day. Then press “Repeat.” In the appeared window press “Not repeat” and select an interval of repetition for the task from the appeared menu. Setup an interval.</string>
+    <string name="pro_main2_6">Settings</string>
+    <string name="pro_main2_66">Open the navigator and open the section "Setttings" (it\'s below).  \n\n You can configure more than 20 app settings. For example: notification messages, audio effects, password of an input in app, working hours, sections in the navigator, etc.</string>
+    <string name="pro_main2_7">Sorting of tasks</string>
+    <string name="pro_main2_77">LeaderTask can automatically place tasks in a certain order.  \n\n Sorting is made in one of three parameters: \n 1) Date of creation \n 2) task color \n 3) Date and time the task is bound.  \n\n Open the necessary day, project, or to-do list of an employee. Press the button with an icon of three points (it\'s on the top right). Select the necessary parameters.  \n\n Sorting is launched manually every time it is necessary to create tasks.</string>
+    <string name="pro_main2_8">Timing</string>
+    <string name="pro_main2_88">You can connect the additional Timing module to LeaderTask. It is used to keep track of time spent on each task. \n\n The module can be purchased in our Market - shop for additional products for LeaderTask. \n\n Read the short review of the module: \nhttps://www.leadertask.com/products/timing</string>
+    <string name="pro_main3_1">Follow news about LeaderTask</string>
+    <string name="pro_main3_11">Follow news about LeaderTask \n * Follow us on FaceBook: \nhttps://www.facebook.com/LeaderTaskOrganizer</string>
+    <string name="pro_main3_2">Review our app in the Play Store.</string>
+    <string name="pro_main3_22">We would be grateful if you left a review. \nhttps://play.google.com/store/apps/details?id=com.ashberrysoft.leadertask</string>
+    <string name="pro_main3_3">Install LeaderTask on all your devices</string>
+    <string name="pro_main3_33">Download LeaderTask for Windows, iPhone and iPad: \n  https://www.leadertask.com/download</string>
+    <string name="pro_main3_4">Contact us!</string>
+    <string name="pro_main3_44">If you have any questions, send us a message: \n  https://www.leadertask.com/content/view/1024</string>
+    <string name="unboarding_default_marker1">Green</string>
+    <string name="unboarding_default_marker2">Yellow</string>
+    <string name="unboarding_default_marker3">Orange</string>
+    <string name="unboarding_default_marker4">Red</string>
+    <string name="unboarding_default_marker5">Blue</string>
+    <string name="color_task_name1">You can color coordinate tasks. For example, Meetings or Actions can be changed to blue.</string>
+    <string name="color_task_name2">It is convenient to mark red color important tasks.</string>
+    <string name="category_task_name1">Tags will help you organize different tasks. For example, you can mark tasks as “important” or “urgent.” You can also mark tasks by location including “at home,” “at office,” and “in bank.” You can create any number of tags.</string>
+    <string name="preview_slide2_check1">Health</string>
+    <string name="preview_color_add1">Goal of the year</string>
+    <string name="preview_color_add2">Goal of the month</string>
+    <string name="preview_color_add3">Goal of the week</string>
+    <string name="pro_main0">Get your bonus!</string>
+    <string name="pro_main01">Open your E-mail, which you specified during registration and click on the link to confirm your registration. \n \n After registering, you will receive the video Master Class "7 habits of successful people." This video will teach you how to achieve your goals!</string>
+    <string name="premium_dialog_1">LeaderTask Premium</string>
+    <string name="premium_dialog_2">Get full access to all opportunities of LeaderTask!</string>
+    <string name="premium_dialog_3">Premium is:</string>
+    <string name="premium_dialog_4">100% LeaderTask\'s features on all platforms: Windows, Android, iPhone and iPad</string>
+    <string name="premium_dialog_5">Synchronization of tasks on all your devices</string>
+    <string name="premium_dialog_6">Assignments to colleagues</string>
+    <string name="premium_dialog_7">Work in common projects</string>
+    <string name="premium_dialog_8">Create repeating tasks</string>
+    <string name="premium_dialog_9">Attach files to tasks</string>
+    <string name="premium_dialog_10">Search for tasks</string>
+    <string name="premium_dialog_11">and much more...</string>
+    <string name="premium_dialog_12">Buy now</string>
+    <string name="premium_dialog_13">$35,95 per year</string>
+    <string name="buy_chrono">Purchase the timing function</string>
+    <string name="buy_for_extend">To purchase advanced features, you must first purchase a license for LiderTask.</string>
+    <string name="chrono_price">$17,90</string>
+    <string name="chrono_price_buy">Buy</string>
+
+    <string name="task_focus">Focus</string>
+    <string name="task_focus_menu">Focus</string>
+    <string name="task_close_noty">Complete</string>
+    <string name="task_tomorrow_noty">Postpone for tomorrow</string>
+    <string name="pin_at_start">Login using a PIN code</string>
+    <string name="finger_at_start">Login using Touch ID</string>
+    <string name="activity_not_locked_text">Nothing should happen on this page, here for test purpose</string>
+    <string name="activity_dialog_title">Forgot you Pincode?</string>
+    <string name="activity_dialog_accept">OK</string>
+    <string name="activity_dialog_decline">CANCEL</string>
+    <string name="activity_dialog_content">Tap \'OK\' to log out, when you log back in you\'ll be able to create a new Pincode.\n\nIf you remember your Pincode, tap \'Cancel\' to go back.</string>
+    <string name="activity_appcompat_message">I am a PinCompatActivity!</string>
+    <string name="task_access">Access</string>
+    <string name="multi_mode">Select multiple tasks</string>
+    <string name="buy_leadertask">Buy LeaderTask</string>
+    <string name="task_access_nav">Tasks open to me</string>
+</resources>

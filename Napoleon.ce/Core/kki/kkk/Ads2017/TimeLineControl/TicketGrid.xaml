@@ -1,0 +1,46 @@
+﻿<UserControl x:Class="Ads2017.TicketGrid"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Ads2017" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" 
+             d:DesignWidth="300"
+             x:Name="TicketGridControl">
+    <Grid>
+        <StackPanel x:Name="timePanel">
+            <local:TimeCell StartTime="00:00" Height="{Binding Path=HourRowHeight, ElementName=TicketGridControl}"/>
+            <local:TimeCell StartTime="01:00" Height="{Binding Path=HourRowHeight, ElementName=TicketGridControl}"/>
+            <local:TimeCell StartTime="02:00" Height="{Binding Path=HourRowHeight, ElementName=TicketGridControl}"/>
+            <local:TimeCell StartTime="03:00" Height="{Binding Path=HourRowHeight, ElementName=TicketGridControl}"/>
+            <local:TimeCell StartTime="04:00" Height="{Binding Path=HourRowHeight, ElementName=TicketGridControl}"/>
+            <local:TimeCell StartTime="05:00" Height="{Binding Path=HourRowHeight, ElementName=TicketGridControl}"/>
+            <local:TimeCell StartTime="06:00" Height="{Binding Path=HourRowHeight, ElementName=TicketGridControl}"/>
+            <local:TimeCell StartTime="07:00" Height="{Binding Path=HourRowHeight, ElementName=TicketGridControl}"/>
+            <local:TimeCell StartTime="08:00" Height="{Binding Path=HourRowHeight, ElementName=TicketGridControl}"/>
+            <local:TimeCell StartTime="09:00" Height="{Binding Path=HourRowHeight, ElementName=TicketGridControl}"/>
+            <local:TimeCell StartTime="10:00" Height="{Binding Path=HourRowHeight, ElementName=TicketGridControl}"/>
+            <local:TimeCell StartTime="11:00" Height="{Binding Path=HourRowHeight, ElementName=TicketGridControl}"/>
+            <local:TimeCell StartTime="12:00" Height="{Binding Path=HourRowHeight, ElementName=TicketGridControl}"/>
+            <local:TimeCell StartTime="13:00" Height="{Binding Path=HourRowHeight, ElementName=TicketGridControl}"/>
+            <local:TimeCell StartTime="14:00" Height="{Binding Path=HourRowHeight, ElementName=TicketGridControl}"/>
+            <local:TimeCell StartTime="15:00" Height="{Binding Path=HourRowHeight, ElementName=TicketGridControl}"/>
+            <local:TimeCell StartTime="16:00" Height="{Binding Path=HourRowHeight, ElementName=TicketGridControl}"/>
+            <local:TimeCell StartTime="17:00" Height="{Binding Path=HourRowHeight, ElementName=TicketGridControl}"/>
+            <local:TimeCell StartTime="18:00" Height="{Binding Path=HourRowHeight, ElementName=TicketGridControl}"/>
+            <local:TimeCell StartTime="19:00" Height="{Binding Path=HourRowHeight, ElementName=TicketGridControl}"/>
+            <local:TimeCell StartTime="20:00" Height="{Binding Path=HourRowHeight, ElementName=TicketGridControl}"/>
+            <local:TimeCell StartTime="21:00" Height="{Binding Path=HourRowHeight, ElementName=TicketGridControl}"/>
+            <local:TimeCell StartTime="22:00" Height="{Binding Path=HourRowHeight, ElementName=TicketGridControl}"/>
+            <local:TimeCell StartTime="23:00" Height="{Binding Path=HourRowHeight, ElementName=TicketGridControl}"/>
+        </StackPanel>
+        <local:TicketPanel x:Name="ticketPanel" HourRowHeight="{Binding Path=HourRowHeight, ElementName=TicketGridControl}">
+            <!--<local:Ticket 
+                Start="0:30" 
+                Finish="8:00"
+                Background="Aquamarine"
+                Text="Сходи и в магазин купи вина сыра и фруктов" />-->
+        </local:TicketPanel>
+    </Grid>
+</UserControl>

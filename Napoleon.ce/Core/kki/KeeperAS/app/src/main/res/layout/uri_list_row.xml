@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent" 
+  android:layout_height="wrap_content" 
+  android:background="@drawable/list_selector">
+  
+    <ImageView android:id="@+id/imageView1" 
+    	android:paddingLeft="5dp" 
+    	android:paddingRight="5dp" 
+    	android:layout_width="wrap_content" 
+    	android:layout_height="wrap_content" android:src="@drawable/uri"/>
+    	
+    <TextView android:layout_width="wrap_content" 
+    	android:layout_height="wrap_content" 
+    	android:id="@+id/tvUriName" 
+    	android:textSize="18sp" 
+    	android:textColor="@color/black" 
+    	android:layout_gravity="center_vertical" android:text="Uri"/>
+    <TextView android:layout_width="wrap_content" android:textSize="18sp" android:layout_height="wrap_content" android:textColor="@color/black" android:layout_gravity="center_vertical" android:text="Alias" android:id="@+id/tvAlias"></TextView>
+</LinearLayout>

@@ -1,0 +1,57 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+  <objects>
+    <object name="Sizes">
+      <sources>
+        <source name="DBFTable">
+          <param name="tableName">"SIZES"</param>
+        </source>
+      </sources>
+
+      <field name="id" type="number" />
+      <field name="name" type="string" />
+    </object>
+
+    <object name="Colors">
+      <sources>
+        <source name="DBFTable">
+          <param name="tableName">"COLORS"</param>
+        </source>
+      </sources>
+
+      <field name="id" type="number" />
+      <field name="name" type="string" />
+    </object>
+
+    <object name="PriceQty">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"WHQTY"</param>
+          <param name="commonTable">"WHQTY"</param>
+          <param name="catalog">"id;items;0"</param>
+        </source>
+      </sources>
+
+      <field name="id" type="string" />
+      <field name="items" type="collection">
+        <data>
+          <object nem="PriceQtyItems">
+            <field name="colorid" type="number" />
+            <field name="sizeid" type="number" />
+            <field name="qty" type="number" prec="3" />
+          </object>
+        </data>
+      </field>
+    </object>
+
+
+    <modify src="Order$items">
+      <add>
+        <field name="colorid" type="number"/>
+        <field name="sizeid" type="number"/>
+      </add>
+    </modify>
+
+  </objects>
+
+</serverDefs>

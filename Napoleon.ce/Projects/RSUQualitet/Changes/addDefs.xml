@@ -1,0 +1,347 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+  <objects>
+    <object name="PhotoCount">
+      <sources>
+        <source name="SQLQuery">
+          <param name="stmt">
+            'select count(vi."id") as count, v."taskid" as taskid from "Visit" as v, "Visit$items" as vi where ' +
+            'v."date"&gt;=ToDate(' + "'$01'" + ') and v."date"&lt;ToDate(' + "'$02'" + ) and v."date"=vi."Visit$date" and v."userid" = vi."Visit$userid" and v."userid" in ($03) group by v."taskid"'
+          </param>
+        </source>
+      </sources>
+
+      <field name="count" type="number" />
+      <field name="taskid" type="string" />
+    </object>
+    
+    <object name="TaskQuery">
+      <sources>
+        <source name="SQLQuery">
+          <param name="stmt">
+            'select t."created", t."taskid", t."userid", t."text", t."start", t."finish", t."fio", t."phone", '+
+            'r."solution", r."created" as finishexec, r."lasttime" as startexec, r."remark" as execrem, r."latitude", r."longitude", r."userid" as execuser, '+
+            't."client", t."address", t."notify", t."manager" ' +
+            'from "Task" as t left outer join "TaskResponce" as r on t."taskid"=r."taskid" and r."sended"=(select max("sended") from "TaskResponce" as r where r."taskid"=t."taskid") ' +
+            'where t."start" &lt;= ToDate(' + "'$02'" + ') and t."finish" &gt;= ToDate(' + "'$01'" + ') and t."rem"=0 and t."userid" in ($03)'
+          </param>
+        </source>
+      </sources>
+
+      <field name="created" type="timestamp" />
+      <field name="taskid" type="string" />
+      <field name="userid" type="string" />
+      <field name="text" type="string" />
+      <field name="id" type="string" />
+      <field name="start" type="timestamp" />
+      <field name="finish" type="timestamp" />
+      <field name="fio" type="string" />
+      <field name="phone" type="string" />
+      <field name="number" type="string" />
+      <field name="solution" type="number" />
+      <field name="execrem" type="string" />
+      <field name="longitude" type="number" prec="5" />
+      <field name="latitude" type="number" prec="5" />
+      <field name="execuser" type="string" />
+      <field name="startexec" type="timestamp"/>
+      <field name="finishexec" type="timestamp"/>
+      <field name="client" type="string" />
+      <field name="address" type="string" />
+      <field name="notify" type="number" />
+      <field name="manager" type="string" />
+    </object>
+    
+    <object name="TaskAttachmentInfo">
+        <sources>
+          <source name="SQLQuery">
+            <param name="stmt">
+              'select a."taskid", a."id", a."name" from "TaskAttachment" a where a."taskid" in (select t."taskid" from "Task" t '+
+              'where t."start" &gt; ToDate(' + "'$01'" + ') and t."rem"=0 and t."userid"=' + "'" + $user.id + "')"
+            </param>
+          </source>
+        </sources>
+      
+        <field name="taskid" type="string"/>
+        <field name="id" type="string"/>
+        <field name="name" type="string"/>
+    </object>
+    
+    <object name="Task">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"taskid"</member>
+      <memberArray name="index">"start"</memberArray>
+      <memberArray name="index">"finish"</memberArray>
+
+      <field name="created" type="timestamp" />
+      <field name="taskid" type="string" />
+      <field name="userid" type="string" />
+      <field name="text" type="string" />
+      <!--<field name="id" type="string" />-->
+      <field name="start" type="timestamp" />
+      <field name="finish" type="timestamp" />
+      <field name="fio" type="string" />
+      <field name="phone" type="string" />
+      <field name="rem" type="number" />
+      <field name="client" type="string" />
+      <field name="address" type="string" />
+      <field name="notify" type="number" />
+      <field name="manager" type="string" />
+    </object>
+
+    <object name="TaskResponce">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <memberArray name="index">"taskid"</memberArray>
+      
+      <field name="taskid" type="string"/>
+      <field name="created" type="timestamp" />
+      <field name="lasttime" type="timestamp" />
+      <field name="userid" type="string" execOn="Put">$user.id</field>
+      <field name="sended" type="timestamp" execOn="Put">Now()</field>
+      <field name="remark" type="string" />
+      <field name="solution" type="number" />
+      <field name="longitude" type="number" prec="5" data="LONG" />
+      <field name="latitude" type="number" prec="5" data="LAT" />
+    </object>
+
+    <object name="Note">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"userid,created"</member>
+
+      <field name="userid" type="string" execOn="Put">$user.id</field>
+      <field name="created" type="timestamp" />
+      <field name="remark" type="string" />
+      <field name="taskid" type="string" />
+      <field name="id" type="string"/>
+      <field name="sended" type="timestamp" data="S_DATE" execOn="Put">Now()</field>
+      <field name="client" type="string" />
+      <field name="address" type="string" />
+    </object>
+    
+    <object name="UserOrder">
+        <sources>
+            <source name="SQLQuery">
+                <param name="stmt">
+                    'select n."created", n."userid", n."remark", t."client", t."address", t."fio", t."phone", r."readed" from "Note" n
+                    left join "Task" t on t."taskid" = n."taskid" 
+                    left join "UserOrderRemark" r on n."created" = r."created" and n."userid" = r."userid"
+                    where n."created" &gt;= ToDate(' + "'$01'" + ') and n."created" &lt; ToDate(' + "'$02'" + ') and n."userid" in ($03)'
+                </param>
+            </source>
+        </sources>
+        
+        <field name="userid" type="string"/>
+        <field name="created" type="timestamp" />
+        <field name="remark" type="string" />
+        <field name="client" type="string" />
+        <field name="address" type="string"/>
+        <field name="fio" type="string" />
+        <field name="phone" type="string" />
+        <field name="readed" type="number" />
+    </object>
+
+    <object name="UserOrderRemark">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"userid,created"</member>
+      <field name="userid" type="string" />
+      <field name="created" type="timestamp" />
+      <field name="readed" type="number"/>
+    </object>
+    
+    <object name="TaskAttachment">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"id"</member>
+      <memberArray name="index">"taskid"</memberArray>
+
+      <field name="id" type="string" />
+      <field name="taskid" type="string"/>
+      <field name="name" type="string"/>
+
+      <!--<field name="data" type="binary"/>-->
+
+      <field name="fileName" type="string" execOn="Put">ToFileName($object.id)</field>
+      <field name="data" type="file" src="fileName"  />
+    </object>
+
+    <object name="AddressTemplate">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"id"</member>
+
+      <field name="id" type="string" />
+      <field name="template" type="string" width="4000" />
+    </object>
+    
+    <object name="TaskVisit">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"userid,created"</member>
+      <memberArray name="index">"date"</memberArray>
+      <memberArray name="index">"created"</memberArray>
+
+      <field name="id" type="string" />
+      <field name="date" type="timestamp" />
+      <field name="created" type="timestamp" />
+      <field name="timeZone" type="number" />
+      <field name="serverTimeZone" type="number" data="S_TZ" execOn="Put" feature="USE_TIMEZONE">ServerTimeZone()</field>
+      <field name="remark" type="string" width="100" />
+      <field name="userid" type="string" execOn="Put">$user.id</field>
+      <field name="sended" type="timestamp" execOn="Put">Now()</field>
+      <field name="taskid" type="string" />
+
+      <field name="latitude" type="number" prec="5" />
+      <field name="longitude" type="number" prec="5" />
+      
+      <field name="items" type="collection">
+        <data>
+          <object name="TaskVisitItem">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+            <field name="id" type="string" />
+            <field name="date" type="timestamp" />
+          </object>
+        </data>
+      </field>
+
+      <events>
+        <event type="put">
+          <action name="WriteToLog">$object.type;$object.date</action>
+        </event>
+      </events>
+    </object>
+
+
+    <modify src="Agents">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+      <add>
+        <memberArray name="index">"hidden"</memberArray>
+        <field name="hidden" type="number" />
+      </add>
+    </modify>
+
+    <modify src="DivisionManager">
+      <add>
+        <field name="id" type="string" />
+        <field name="prefix" type="string" />
+        <field name="name" type="string" />
+      </add>
+    </modify>
+
+    <modify src="Visit">
+      <add>
+        <memberArray name="index">"taskid"</memberArray>
+        <field name="taskid" type="string" />
+      </add>
+    </modify>
+    
+    <modify src="TaskQuery" dest="TaskQueryUser">
+      <change>
+        <sources>
+          <source name="SQLQuery">
+            <param name="stmt">
+              'select t."created", t."taskid", t."userid", t."text", t."start", t."finish", t."fio", t."phone", '+
+              'r."solution", r."created" as finishexec, r."lasttime" as startexec, r."remark" as execrem, r."latitude", r."longitude", r."userid" as execuser, '+
+              't."client", t."address", t."notify" ' +
+              'from "Task" t left outer join "TaskResponce" as r on t."taskid"=r."taskid" and r."sended"=(select max("sended") from "TaskResponce" as r where r."taskid"=t."taskid") ' +
+              'where t."start" &gt;= ToDate(' + "'$01'" + ') and t."rem"=0 and t."userid"=' + "'" + $user.id + "'"
+            </param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="TaskQuery" dest="TaskQueryManager">
+      <change>
+        <sources>
+          <source name="SQLQuery">
+            <param name="stmt">
+              'select t."created", t."taskid", t."userid", t."text", t."start", t."finish", t."fio", t."phone", '+
+              'r."solution", r."created" as finishexec, r."lasttime" as startexec, r."remark" as execrem, r."latitude", r."longitude", r."userid" as execuser, '+
+              't."client", t."address", t."notify" ' +
+              'from "Task" as t left outer join "TaskResponce" as r on t."taskid"=r."taskid" and r."sended"=(select max("sended") from "TaskResponce" as r where r."taskid"=t."taskid") ' +
+              'where t."start" &lt;= ToDate(' + "'$02'" + ') and t."finish" &gt;= ToDate(' + "'$01'" + ') and t."rem"=0 and t."userid"=' + "'$03'"
+            </param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+    
+    <modify src="TaskVisit" dest="TaskVisitQuery">
+      <change>
+        <sources>
+          <source name="SQLQuery">
+            <param name="stmt">
+              'select * from "TaskVisit" as tv where tv."taskid" in '+
+              '(select t."taskid" from "Task" as t where t."start" &lt;= ToDate(' + "'$02'" + ') and t."finish" &gt;= ToDate(' + "'$01'" + ') and t."rem"=0 and t."userid" in ($03))'
+            </param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+    
+    <modify src="TaskAttachmentInfo" dest="TaskAttachmentInfoManager">
+        <change>
+            <sources>
+              <source name="SQLQuery">
+                <param name="stmt">
+                  'select a."taskid", a."id", a."name" from "TaskAttachment" a where a."taskid" in (select t."taskid" from "Task" t '+
+                  'where t."finish" &lt;= ToDate(' + "'$02'" + ') and t."start" &gt;= ToDate(' + "'$01'" + ') and t."rem"=0 and t."userid" in ($03))'
+                </param>
+              </source>
+            </sources>
+        </change>
+    </modify>
+
+    <modify src="Message">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal">
+            <param name="readFilter">'"userid" = ' + "'" + $user.id + "'"</param>
+          </source>
+        </sources>
+      </change>
+      <add>
+        <field name="date" type="timestamp" execOn="Put">Now()</field>
+        <field name="userid" type="string" execOn="Put">$user.id</field>
+      </add>
+    </modify>
+    
+    <modify src="PicStore" dest="PicStoreQuery">
+      <change>
+        <sources>
+          <source name="SQLQuery">
+            <param name="stmt">
+              'select "name" from "PicStore" where "id" in '+
+              '(select i."id" from "TaskVisit$items" as i, "TaskVisit" t where i."TaskVisit$created"=t."created" '+
+              'and i."TaskVisit$userid" = t."userid" and t."taskid"=' + "'$01')"
+            </param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+
+  </objects>
+</serverDefs>

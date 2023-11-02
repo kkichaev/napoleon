@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    
+    <item android:id="@+id/itConfig" 
+    	android:title="@string/setting"  />
+    
+    <item android:id="@+id/itNewTask" 
+      android:title="@string/newtask" 
+      android:icon="@drawable/config" />
+    	
+    <item android:id="@+id/itUpdate" 
+    	android:title="@string/sync"
+    	android:showAsAction="ifRoom"
+    	android:icon="@drawable/ic_autorenew_white_24dp"/>
+    
+    <item android:id="@+id/itCal" 
+    	android:title="@string/sync"
+    	android:showAsAction="ifRoom"
+    	android:actionLayout="@layout/calendar_item_menu"/>
+    
+    <item android:id="@+id/itMsgList" 
+        android:title="@string/messagelist"/>
+    
+    <item android:id="@+id/itClear"
+        android:title="@string/clear_memory"/>
+    
+    <item android:id="@+id/itAbout"
+        android:title="@string/about"/>
+    
+    <item android:id="@+id/itClose"
+        android:title="@string/exit"/>
+</menu>

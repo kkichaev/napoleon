@@ -1,0 +1,1 @@
+sqlite3.exe GRServer.sdb 0<pack.sql

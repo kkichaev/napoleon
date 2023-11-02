@@ -1,0 +1,81 @@
+<template>
+  <q-page style="padding: 25px">
+    <q-card style="minHeight: calc(100vh - 100px); padding: 16px" >
+
+      <div>
+        {{ $t('profile.title') }}
+      </div>
+
+      <q-input
+        class = "input-field"
+        v-model="position"
+        :label="$t('profile.position')"
+        filled
+        :rules="[val => !!val || $t('field_is_required')]"
+        hide-bottom-space
+        style="marginTop: 24px"/>
+
+      <q-input
+        class = "input-field"
+        v-model="email"
+        :label="$t('profile.email')"
+        filled
+        :rules="[val => !!val || $t('field_is_required')]"
+        hide-bottom-space
+        style="marginTop: 37px"/>
+
+      <q-input
+        class = "input-field"
+        v-model="phone"
+        :label="$t('profile.phone')"
+        filled
+        :rules="[val => !!val || $t('field_is_required')]"
+        hide-bottom-space
+        style="marginTop: 37px"/>
+
+      <div style="marginTop: 48px">
+        {{ $t('profile.security') }}
+      </div>
+
+      <q-input
+        class = "input-field"
+        v-model="login"
+        :label="$t('profile.login')"
+        filled
+        :rules="[val => !!val || $t('field_is_required')]"
+        hide-bottom-space
+        style="marginTop: 24px"/>
+
+      <q-input
+        class = "input-field"
+        v-model="password"
+        :label="$t('profile.password')"
+        filled
+        :rules="[val => !!val || $t('field_is_required')]"
+        hide-bottom-space
+        style="marginTop: 16px"/>
+    </q-card>
+  </q-page>
+</template>
+
+<script>
+import { ref } from "vue";
+
+const position = ref('')
+const email = ref('')
+const phone = ref('')
+const login = ref('')
+const password = ref('')
+
+export default {
+  setup(){
+    return {position, email,phone, login, password}
+  }
+}
+</script>
+
+<style scoped>
+.input-field{
+  width: 297px
+}
+</style>

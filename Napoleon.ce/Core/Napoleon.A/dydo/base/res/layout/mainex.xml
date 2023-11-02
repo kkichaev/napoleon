@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/llTop"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0">
+
+            <ImageView
+                android:id="@+id/ivGoUp"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:background="@color/footer"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:src="@drawable/goup"
+                tools:ignore="ContentDescription" >
+            </ImageView>
+
+            <TextView
+                android:id="@+id/tvFirstColumnCaption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="2"
+                android:background="@color/footer"
+                android:paddingBottom="5dp"
+                android:paddingLeft="2dp"
+                android:paddingTop="5dp"
+                android:text="@string/caption"
+                android:textColor="#000000"
+                tools:ignore="NestedWeights" 
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/tvMainDocValColTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:background="@color/footer"
+                android:gravity="right"
+                android:paddingBottom="5dp"
+                android:paddingRight="2dp"
+                android:paddingTop="5dp"
+                android:text="@string/sum"
+                android:textColor="#000000" 
+                android:textSize="16sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/LinearLayout04"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" >
+
+            <ListView
+                android:id="@+id/lvMainOrgs"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:background="@color/white"
+                tools:ignore="NestedWeights" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llFind"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+
+            <EditText
+                android:id="@+id/edFind"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp"
+                android:layout_weight="1"
+                tools:ignore="TextFields" />
+
+            <ImageButton
+                android:id="@+id/btnDelFind"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_delete"
+                tools:ignore="ContentDescription" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/footer"
+            android:padding="7dp" >
+
+            <ImageButton
+                android:id="@+id/btnDocFilter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="7dp"
+                android:src="@drawable/icon"
+                tools:ignore="ContentDescription" />
+
+            <ImageButton
+                android:id="@+id/btnMode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="7dp"
+                android:src="@drawable/icon"
+                tools:ignore="ContentDescription" />
+
+            <ImageButton
+                android:id="@+id/btnLines"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="7dp"
+                android:src="@drawable/line_2"
+                tools:ignore="ContentDescription" />
+
+            <ImageButton
+                android:id="@+id/btnFind"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="7dp"
+                android:src="@drawable/find"
+                tools:ignore="ContentDescription" />
+
+            <ImageButton
+                android:id="@+id/btnStart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/start" />
+
+            <TextView
+                android:id="@+id/tvTotalSum"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="right"
+                android:paddingRight="3dp"
+                android:text="@string/sum"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+</LinearLayout>

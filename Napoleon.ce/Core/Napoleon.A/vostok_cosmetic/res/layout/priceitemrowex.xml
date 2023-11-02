@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+ 	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" 
+	android:orientation="horizontal" 
+	android:layout_height="wrap_content" 
+	android:background="@drawable/list_selector">
+	
+	<LinearLayout 
+		android:layout_height="wrap_content" 
+		android:orientation="vertical" 
+		android:layout_weight="1"
+		android:layout_width="wrap_content" 
+		>
+    	<TextView android:layout_height="wrap_content" 
+			android:textColor="@color/black" 
+			android:id="@+id/tvPriceItemName" 
+			android:text="PriceItem" 
+			android:layout_width="wrap_content" 
+			android:textSize="18sp"></TextView>
+		
+		<LinearLayout 
+			android:layout_height="wrap_content" 
+			android:orientation="horizontal" 
+			android:layout_width="fill_parent" 
+			>
+		    	<TextView android:textColor="@color/black" 
+		    		android:id="@+id/tvClmn1" 
+		    		android:layout_height="wrap_content" 
+		    		android:layout_width="wrap_content" 
+		    		android:gravity="left"
+		    		android:textStyle="italic" 
+		    		android:minWidth="30sp"
+		    		android:layout_weight="0.2"
+		    		android:paddingRight="5dp"
+		    		android:text="" android:textSize="18sp"></TextView>
+	
+		    	<TextView
+		    	    android:id="@+id/tvClmn2"
+		    	    android:layout_width="wrap_content"
+		    	    android:layout_height="wrap_content"
+		    	    android:layout_weight="0.2"
+		    	    android:gravity="right"
+		    	    android:minWidth="30sp"
+		    	    android:paddingRight="5dp"
+		    	    android:text=""
+		    	    android:textColor="@color/black"
+		    	    android:textSize="18sp"
+		    	    android:textStyle="bold" />
+	
+		    	<TextView android:textColor="@color/black" 
+		    		android:id="@+id/tvClmn3" 
+		    		android:layout_height="wrap_content" 
+		    		android:gravity="right" 
+		    		android:minWidth="60sp"
+		    		android:layout_weight="0.2"
+		    		android:paddingRight="5dp"
+		    		android:layout_width="wrap_content" 
+		    		android:text="" android:textSize="18sp"></TextView>
+		
+			    <TextView android:textColor="@color/black" 
+		    		android:id="@+id/tvClmn4" 
+		    		android:layout_height="wrap_content" 
+		    		android:textStyle="bold" 
+		    		android:gravity="right" 
+		    		android:layout_weight="0.2"
+		    		android:minWidth="40sp"
+		    		android:paddingRight="5dp"
+		    		android:layout_width="wrap_content" 
+		    		android:text="" android:textSize="18sp"></TextView>
+		    </LinearLayout>
+	</LinearLayout>
+    <TextView android:textColor="@color/blue" 
+   		android:id="@+id/tvClmn5" 
+   		android:layout_weight="0.5"
+   		android:background="@color/lightgrey"
+   		android:layout_height="fill_parent" 
+   		android:textStyle="bold" 
+   		android:gravity="right|bottom" 
+   		android:minWidth="40sp"
+   		android:paddingRight="5dp"
+   		android:layout_width="wrap_content" 
+   		android:text="" 
+   		android:textSize="18sp"></TextView>
+</LinearLayout>

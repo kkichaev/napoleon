@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="libpc" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="../Build/bin/Debug/libpc" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option object_output="../Build/obj/Debug/" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add option="-Wall" />
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="../Build/bin/Release/libpc" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option object_output="../Build/obj/Release/" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add option="-Wall" />
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-finput-charset=WINDOWS-1251" />
+			<Add option="-pthread" />
+			<Add option="-fnon-call-exceptions" />
+			<Add option="-DUNIX=1" />
+			<Add directory="/home/ert/Documents/Napoleon/Include" />
+			<Add directory="/home/ert/Documents/Napoleon/Lib.pc/Include" />
+			<Add directory="/home/ert/Documents/Napoleon/Lib.pc/Unix" />
+		</Compiler>
+		<Unit filename="../Include/AES.cpp" />
+		<Unit filename="../Include/C32.cpp" />
+		<Unit filename="../Include/OutStream.cpp" />
+		<Unit filename="../Include/UnixCompat.h" />
+		<Unit filename="Core/filefield.cpp" />
+		<Unit filename="Core/packet.cpp" />
+		<Unit filename="Core/pktops.cpp" />
+		<Unit filename="Core/servobj.cpp" />
+		<Unit filename="Core/stdobjs.cpp" />
+		<Unit filename="Dbf/dbfapp.cpp" />
+		<Unit filename="Dbf/dbfchfil.cpp" />
+		<Unit filename="Dbf/dbfcnstr.cpp" />
+		<Unit filename="Dbf/dbfdelre.cpp" />
+		<Unit filename="Dbf/dbffill.cpp" />
+		<Unit filename="Dbf/dbfgetfl.cpp" />
+		<Unit filename="Dbf/dbfgo.cpp" />
+		<Unit filename="Dbf/dbfgtfr.cpp" />
+		<Unit filename="Dbf/dbfgthd.cpp" />
+		<Unit filename="Dbf/dbfop.cpp" />
+		<Unit filename="Dbf/dbfopen.cpp" />
+		<Unit filename="Dbf/dbfrdrec.cpp" />
+		<Unit filename="Dbf/dbfrecl.cpp" />
+		<Unit filename="Dbf/dbfwrrc.cpp" />
+		<Unit filename="Dbf/dbfwrrec.cpp" />
+		<Unit filename="Dbf/getwdh.cpp" />
+		<Unit filename="Unix/UnixCompat.cpp" />
+		<Unit filename="Unix/atlconv.h" />
+		<Unit filename="Unix/usocket.cpp" />
+		<Unit filename="Unix/uthread.cpp" />
+		<Unit filename="Zlib/adler32.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Zlib/compress.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Zlib/crc32.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Zlib/crc32.h" />
+		<Unit filename="Zlib/deflate.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Zlib/deflate.h" />
+		<Unit filename="Zlib/inffast.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Zlib/inffast.h" />
+		<Unit filename="Zlib/inffixed.h" />
+		<Unit filename="Zlib/inflate.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Zlib/inflate.h" />
+		<Unit filename="Zlib/inftrees.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Zlib/inftrees.h" />
+		<Unit filename="Zlib/trees.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Zlib/trees.h" />
+		<Unit filename="Zlib/zconf.h" />
+		<Unit filename="Zlib/zlib.h" />
+		<Unit filename="Zlib/zutil.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Zlib/zutil.h" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<lib_finder disable_auto="1" />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

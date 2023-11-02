@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        style="@style/Horizontal"
+        android:paddingBottom="@dimen/univ_padding_small"
+        android:paddingLeft="@dimen/univ_padding"
+        android:paddingRight="@dimen/univ_padding"
+        android:paddingTop="@dimen/univ_padding_small" >
+
+        <EditText
+            android:id="@+id/comments_new"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/email_input_box"
+            android:hint="@string/task_performer_email"
+            android:imeOptions="actionDone"
+            android:inputType="textEmailAddress"
+            android:padding="@dimen/univ_padding"
+            android:singleLine="true" />
+
+        <ImageButton
+            android:id="@+id/btn_clear"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/univ_padding"
+            android:background="@drawable/selector_button"
+            android:paddingLeft="@dimen/univ_padding"
+            android:paddingRight="@dimen/univ_padding"
+            android:src="@drawable/cross" />
+    </LinearLayout>
+
+    <ListView
+        android:id="@android:id/list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:cacheColorHint="@null"
+        android:divider="@color/lightgray_3"
+        android:dividerHeight="@dimen/divider_big" />
+
+</LinearLayout>

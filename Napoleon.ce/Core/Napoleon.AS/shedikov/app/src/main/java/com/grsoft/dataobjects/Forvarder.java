@@ -1,0 +1,12 @@
+package com.grsoft.dataobjects;
+
+import com.grsoft.database.TableInfo;
+
+@TableInfo(name="forvarder", keyFields = "id")
+public class Forvarder extends DataObject {
+	public String id = "";
+	public String name = "";
+	
+	@Override
+	public String toString() { return name; }
+}

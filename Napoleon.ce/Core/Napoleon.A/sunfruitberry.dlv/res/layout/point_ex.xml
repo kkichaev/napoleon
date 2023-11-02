@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    >
+   
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="7dp" 
+    android:paddingRight="7dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+        <LinearLayout
+        android:layout_width="0dip"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical" >
+        <TextView
+        android:id="@+id/tvName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/bigTextSz"
+        android:textStyle="bold"
+        android:text="Name" />
+
+    <TextView
+        android:id="@+id/tvAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/normalTextSz"
+        android:text="TextView" />
+    
+    <LinearLayout 
+         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+    
+        <TextView
+	        android:id="@+id/tvCName"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="TextView" 
+	        android:visibility="gone"
+	        android:textSize="@dimen/normalTextSz"
+	        />
+        
+	    <TextView
+	        android:id="@+id/tvPhone"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="TextView" 
+	        android:textColor="@color/blue"
+	        android:textSize="@dimen/normalTextSz"/>
+    
+    </LinearLayout>
+    </LinearLayout>
+    
+            <ImageButton
+        android:id="@+id/btnPhoto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/photo" />
+        
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llContacts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+    </LinearLayout>
+
+    <View android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:background="@color/lgrey"
+        android:layout_marginTop="10dp"/>
+    
+    <TextView
+        android:id="@+id/tvRemark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/normalTextSz"
+        android:text="Remark" />
+    
+    <View android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:background="@color/lgrey"
+        android:layout_marginTop="10dp"/>
+
+	<ListView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="0dip" 
+        android:divider="@android:color/transparent"
+        android:dividerHeight="10.0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="10dp">
+    </ListView>
+    
+    <com.grsoft.napoleon.util.HorizontalListView
+        android:layout_margin="5dp"
+	    android:id="@+id/gvItems"
+	    android:background="#FFFFFF"
+	    android:paddingBottom="1sp"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    />
+    
+</LinearLayout>    
+</ScrollView>

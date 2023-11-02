@@ -1,0 +1,91 @@
+﻿namespace GRSoft.NapoleonManager
+{
+   partial class DatePeriodView
+   {
+      /// <summary> 
+      /// Required designer variable.
+      /// </summary>
+      private System.ComponentModel.IContainer components = null;
+
+      /// <summary> 
+      /// Clean up any resources being used.
+      /// </summary>
+      /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+      protected override void Dispose(bool disposing)
+      {
+         if (disposing && (components != null))
+         {
+            components.Dispose();
+         }
+         base.Dispose(disposing);
+      }
+
+      #region Component Designer generated code
+
+      /// <summary> 
+      /// Required method for Designer support - do not modify 
+      /// the contents of this method with the code editor.
+      /// </summary>
+      private void InitializeComponent()
+      {
+         this.label1 = new System.Windows.Forms.Label();
+         this.dtpStart = new System.Windows.Forms.DateTimePicker();
+         this.label2 = new System.Windows.Forms.Label();
+         this.dtpFinish = new System.Windows.Forms.DateTimePicker();
+         this.SuspendLayout();
+         // 
+         // label1
+         // 
+         this.label1.AutoSize = true;
+         this.label1.Location = new System.Drawing.Point(2, 7);
+         this.label1.Name = "label1";
+         this.label1.Size = new System.Drawing.Size(45, 13);
+         this.label1.TabIndex = 0;
+         this.label1.Text = "Дата с:";
+         // 
+         // dtpStart
+         // 
+         this.dtpStart.Location = new System.Drawing.Point(50, 3);
+         this.dtpStart.Name = "dtpStart";
+         this.dtpStart.Size = new System.Drawing.Size(139, 20);
+         this.dtpStart.TabIndex = 1;
+         // 
+         // label2
+         // 
+         this.label2.AutoSize = true;
+         this.label2.Location = new System.Drawing.Point(199, 7);
+         this.label2.Name = "label2";
+         this.label2.Size = new System.Drawing.Size(22, 13);
+         this.label2.TabIndex = 2;
+         this.label2.Text = "по:";
+         // 
+         // dtpFinish
+         // 
+         this.dtpFinish.Location = new System.Drawing.Point(223, 3);
+         this.dtpFinish.Name = "dtpFinish";
+         this.dtpFinish.Size = new System.Drawing.Size(139, 20);
+         this.dtpFinish.TabIndex = 3;
+         // 
+         // DatePeriodView
+         // 
+         this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+         this.Controls.Add(this.dtpFinish);
+         this.Controls.Add(this.label2);
+         this.Controls.Add(this.dtpStart);
+         this.Controls.Add(this.label1);
+         this.Name = "DatePeriodView";
+         this.Size = new System.Drawing.Size(367, 27);
+         this.ResumeLayout(false);
+         this.PerformLayout();
+
+      }
+
+      #endregion
+
+      private System.Windows.Forms.Label label1;
+      private System.Windows.Forms.DateTimePicker dtpStart;
+      private System.Windows.Forms.Label label2;
+      private System.Windows.Forms.DateTimePicker dtpFinish;
+   }
+}

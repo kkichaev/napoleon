@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/refresh"
+        android:title="@string/refresh"
+        android:icon="@drawable/ic_sync"
+        android:showAsAction="ifRoom"
+        app:showAsAction="ifRoom"
+        />
+    <item android:id="@+id/notify"
+        android:title="@string/messages"
+        android:icon="@drawable/ic_notify"
+        android:showAsAction="ifRoom"
+        app:showAsAction="ifRoom"
+        />
+    <group android:id="@+id/set">
+        <item android:id="@+id/settings"
+            android:title="@string/settings"
+            android:icon="@drawable/settings"
+            android:showAsAction="never"
+            app:showAsAction="never"
+            />
+    </group>
+    <group android:id="@+id/abt">
+        <item android:id="@+id/about"
+            android:title="@string/about"
+            android:showAsAction="never"
+            app:showAsAction="never"
+            />
+    </group>
+
+    <group android:id="@+id/ext">
+        <item android:id="@+id/exit"
+            android:title="@string/exit"
+            android:showAsAction="never"
+            app:showAsAction="never"
+            />
+    </group>
+
+</menu>

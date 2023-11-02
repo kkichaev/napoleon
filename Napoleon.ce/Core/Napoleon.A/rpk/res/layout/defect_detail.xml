@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent" android:orientation="vertical">
+    <LinearLayout android:layout_height="wrap_content" android:layout_width="fill_parent" android:id="@+id/linearLayout1" android:background="@color/footer" android:paddingBottom="10dp" android:paddingTop="5dp" android:layout_weight="0">
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="@color/black" android:ellipsize="end" android:id="@+id/tvOrg" android:lines="1" android:scrollHorizontally="true" android:textSize="18sp" android:textStyle="bold" android:text="OrgName"></TextView>
+    </LinearLayout>
+    <LinearLayout android:layout_height="wrap_content" android:layout_width="fill_parent" android:id="@+id/linearLayout2" android:layout_weight="1" android:orientation="vertical">
+        <LinearLayout android:layout_height="wrap_content" android:orientation="horizontal" android:layout_width="fill_parent" android:layout_weight="0" android:id="@+id/linearLayout3" android:background="@color/black">
+            <TextView android:id="@+id/textView1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:background="@color/white" android:textColor="@color/black" android:paddingLeft="3dp" android:layout_margin="1dp" android:text="Название"></TextView>
+            <TextView android:id="@+id/textView2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="0" android:background="@color/white" android:textColor="@color/black" android:layout_marginLeft="1dp" android:layout_marginRight="1dp" android:layout_marginTop="1dp" android:text="Кол-во" android:paddingLeft="3dp" android:paddingRight="3dp"></TextView>
+        </LinearLayout>
+        <ListView android:layout_height="wrap_content" android:layout_width="fill_parent" android:layout_weight="1" android:background="@color/white" android:id="@+id/lvRemnantItems"></ListView>
+    </LinearLayout>
+    <LinearLayout android:layout_height="wrap_content" android:id="@+id/linearLayout4" android:layout_width="fill_parent" android:orientation="horizontal" android:padding="7dp" android:background="@color/footer">
+        <ImageButton android:src="@drawable/new_order" 
+        	android:layout_height="wrap_content" 
+        	android:layout_width="wrap_content" 
+        	android:id="@+id/btnAdd" 
+        	android:layout_marginRight="7dp" />
+		<ImageButton android:layout_width="wrap_content" 
+			android:layout_height="wrap_content" 
+			android:src="@drawable/orderedit" 
+			android:id="@+id/btnEditOrder" 
+			android:layout_marginRight="7dp"/>
+        <ImageButton android:src="@drawable/send" 
+        	android:layout_height="wrap_content" 
+        	android:layout_width="wrap_content" 
+        	android:id="@+id/btnSend" />
+    </LinearLayout>
+</LinearLayout>

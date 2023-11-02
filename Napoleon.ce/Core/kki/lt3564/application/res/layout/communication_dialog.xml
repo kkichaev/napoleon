@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/iv_img_container"
+                android:layout_width="@dimen/univ_ab_height"
+                android:layout_height="@dimen/univ_ab_height">
+
+                <ImageView
+                    android:id="@+id/image_view1"
+                    style="@style/mainSelectableItemBackground"
+                    android:layout_width="@dimen/univ_ab_height"
+                    android:layout_height="@dimen/univ_ab_height"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:src="@drawable/comm_phone"
+                    android:padding="@dimen/univ_padding" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                style="@style/mainSelectableItemBackground"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/univ_ab_height"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_toLeftOf="@+id/image_view"
+                android:layout_weight="1"
+                android:drawablePadding="@dimen/univ_padding_small"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:padding="@dimen/univ_padding_small"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/text_view1"
+                    style="@style/mainSelectableItemBackground"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/univ_ab_height"
+                    android:ellipsize="end"
+                    android:gravity="center_vertical"
+                    android:text="@string/comm_phone"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/text_size_normalSP"
+                    android:singleLine="true" />
+
+            </LinearLayout>
+
+            <RadioButton
+                android:layout_width="@dimen/univ_ab_height"
+                android:layout_height="@dimen/univ_ab_height"
+                android:id="@+id/checkBox1"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true" />
+
+        </LinearLayout>
+
+        <View
+            style="@style/dividerSmall"
+            android:layout_margin="5dp"/>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/iv_img_container"
+                android:layout_width="@dimen/univ_ab_height"
+                android:layout_height="@dimen/univ_ab_height">
+
+                <ImageView
+                    android:id="@+id/image_view2"
+                    style="@style/mainSelectableItemBackground"
+                    android:layout_width="@dimen/univ_ab_height"
+                    android:layout_height="@dimen/univ_ab_height"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:src="@drawable/comm_email"
+                    android:padding="@dimen/univ_padding" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                style="@style/mainSelectableItemBackground"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/univ_ab_height"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_toLeftOf="@+id/image_view"
+                android:layout_weight="1"
+                android:drawablePadding="@dimen/univ_padding_small"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:padding="@dimen/univ_padding_small"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/text_view2"
+                    style="@style/mainSelectableItemBackground"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/univ_ab_height"
+                    android:ellipsize="end"
+                    android:gravity="center_vertical"
+                    android:text="@string/comm_email"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/text_size_normalSP"
+                    android:singleLine="true" />
+
+            </LinearLayout>
+
+            <RadioButton
+                android:layout_width="@dimen/univ_ab_height"
+                android:layout_height="@dimen/univ_ab_height"
+                android:id="@+id/checkBox2"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true" />
+
+        </LinearLayout>
+
+        <View
+            style="@style/dividerSmall"
+            android:layout_margin="5dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/iv_img_container"
+                android:layout_width="@dimen/univ_ab_height"
+                android:layout_height="@dimen/univ_ab_height">
+
+                <ImageView
+                    android:id="@+id/image_view3"
+                    style="@style/mainSelectableItemBackground"
+                    android:layout_width="@dimen/univ_ab_height"
+                    android:layout_height="@dimen/univ_ab_height"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:src="@drawable/comm_msg"
+                    android:padding="@dimen/univ_padding" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                style="@style/mainSelectableItemBackground"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/univ_ab_height"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_toLeftOf="@+id/image_view"
+                android:layout_weight="1"
+                android:drawablePadding="@dimen/univ_padding_small"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:padding="@dimen/univ_padding_small"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/text_view3"
+                    style="@style/mainSelectableItemBackground"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/univ_ab_height"
+                    android:ellipsize="end"
+                    android:gravity="center_vertical"
+                    android:text="@string/comm_msg"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/text_size_normalSP"
+                    android:singleLine="true" />
+
+            </LinearLayout>
+
+            <RadioButton
+                android:layout_width="@dimen/univ_ab_height"
+                android:layout_height="@dimen/univ_ab_height"
+                android:id="@+id/checkBox3"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true" />
+
+        </LinearLayout>
+
+        <View
+            style="@style/dividerSmall"
+            android:layout_margin="5dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/iv_img_container"
+                android:layout_width="@dimen/univ_ab_height"
+                android:layout_height="@dimen/univ_ab_height">
+
+                <ImageView
+                    android:id="@+id/image_view4"
+                    style="@style/mainSelectableItemBackground"
+                    android:layout_width="@dimen/univ_ab_height"
+                    android:layout_height="@dimen/univ_ab_height"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:src="@drawable/comm_www"
+                    android:padding="@dimen/univ_padding" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                style="@style/mainSelectableItemBackground"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/univ_ab_height"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_toLeftOf="@+id/image_view"
+                android:layout_weight="1"
+                android:drawablePadding="@dimen/univ_padding_small"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:padding="@dimen/univ_padding_small"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/text_view4"
+                    style="@style/mainSelectableItemBackground"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/univ_ab_height"
+                    android:ellipsize="end"
+                    android:gravity="center_vertical"
+                    android:text="@string/comm_www"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/text_size_normalSP"
+                    android:singleLine="true" />
+
+            </LinearLayout>
+
+            <RadioButton
+                android:layout_width="@dimen/univ_ab_height"
+                android:layout_height="@dimen/univ_ab_height"
+                android:id="@+id/checkBox4"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true" />
+
+        </LinearLayout>
+
+        <View
+            style="@style/dividerSmall"
+            android:layout_margin="5dp"/>
+
+        <EditText
+            android:id="@+id/value"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:inputType="textCapWords"
+            android:singleLine="true"
+            android:hint="Значение"/>
+
+        <EditText
+            android:id="@+id/name"
+            android:inputType="textCapWords"
+            android:singleLine="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:hint="Описание" />
+
+    </LinearLayout>
+
+</RelativeLayout>

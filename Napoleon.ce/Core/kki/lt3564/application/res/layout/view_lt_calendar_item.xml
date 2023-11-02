@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_horizontal">
+
+    <TextView
+        android:id="@+id/sub_text"
+        android:visibility="gone"
+        android:textSize="10dp"
+        android:gravity="center_vertical"
+        android:textColor="#5e9c08"
+        android:layout_width="15dp"
+        android:layout_height="36.5dp"/>
+
+    <View
+        android:id="@+id/divider"
+        android:visibility="gone"
+        android:layout_height="match_parent"
+        android:layout_width="@dimen/divider_small"
+        android:layout_marginRight="2dp"
+        android:background="@color/properties_color_divider"/>
+
+</LinearLayout>

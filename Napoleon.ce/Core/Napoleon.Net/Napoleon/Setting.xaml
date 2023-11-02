@@ -1,0 +1,31 @@
+﻿<Window x:Class="Napoleon.Setting"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:properties="clr-namespace:Napoleon.Properties"
+        Title="Настройки" Height="300" Width="300"
+        Closed="Window_Closed">
+    <Window.Resources>
+        <properties:Settings x:Key="Settings"/>
+    </Window.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        
+        <GroupBox Grid.Row="0" Header="Настройки подключения">
+            <StackPanel>
+                <Label Content="Логин"/>
+                <TextBox x:Name="login" Text="{Binding Source={StaticResource ResourceKey=Settings}, Path=Default.Login}"/>
+                <Label Content="Пароль"/>
+                <TextBox x:Name="password" Text="{Binding Source={StaticResource ResourceKey=Settings}, Path=Default.Password}"/>
+                <Label Content="IP"/>
+                <TextBox x:Name="ip" Text="{Binding Source={StaticResource ResourceKey=Settings}, Path=Default.IP}"/>
+                <Label Content="Порт"/>
+                <TextBox x:Name="port" Text="{Binding Source={StaticResource ResourceKey=Settings}, Path=Default.Port}"/>
+            </StackPanel>
+        </GroupBox>
+        <Button Grid.Row="1" Content="OK" Click="Close_Window"/>
+    </Grid>
+</Window>

@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+   <objects>
+      <object name="ItemData">
+         <sources>
+            <source name="1C-Source">
+            </source>
+         </sources>
+
+         <field name="id" type="string" width="15" />
+         <field name="id_o" type="string" data="Контрагент" />
+         <field name="name" type="string" data="Название" />
+         <field name="cost" type="number" data="Цена" prec="2" />
+         <field name="qty" type="number" data="Количество" prec="3" />
+      </object>
+   </objects>
+</serverDefs>

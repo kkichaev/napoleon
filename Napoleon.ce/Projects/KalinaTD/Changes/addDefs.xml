@@ -1,0 +1,96 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+    <object name="OrderRemark">
+      <sources>
+        <source name="SQTable" type="internal" >
+          <param name="readFilter">'"rem" = 0'</param>
+         </source>
+      </sources>
+
+      <member name="primaryKey">"id"</member>
+
+      <field name="id" type="string" />
+      <field name="text" type="string" />
+      <field name="pos" type="number" />
+      <field name="rem" type="number" />
+    </object>
+    
+    <modify src="Order">
+        <add>
+            <field name="paytype" type="number" data="PT" />
+            <field name="selfpickup" type="number" data="SP" />
+        </add>
+    </modify>
+    
+    <modify src="Org">
+      <add>
+        <field name="paytype" type="number" data="PT" />
+        <field name="info" type="string" />
+    
+        <field name="costmodify" type="collection">
+           <data>
+            <object name="OrgCosTypeItem">
+              <sources>
+                <source name="DBFTableSet">
+                  <param name="userTable">"OSD"</param>
+                  <param name="commonTable">"ORGSD"</param>
+                  <param name="filter">"[ID] = $parent.id"</param>
+                </source>
+              </sources>
+
+              <field name="fid" data="ID_I" type="string" />
+              <field name="folderID" type="number" execOn="Get">FolderID($object.fid)</field>
+              <field name="sumtype" data="ST" type="number"/>
+              <field name="discount" data="DISC" type="number" prec="2"/>
+            </object>
+          </data>
+        </field>
+    
+        <field name="price" type="collection">
+          <data>
+            <object name="OrgPriceItem">
+              <sources>
+                <source name="DBFTableSet">
+                  <param name="userTable">"OWD"</param>
+                  <param name="commonTable">"ORGWD"</param>
+                  <param name="filter">"[ID] = $parent.id"</param>
+                </source>
+              </sources>
+
+              <field name="id" data="ID_I" type="string" />
+              <field name="cost" type="number" prec="2"/>
+            </object>
+          </data>
+        </field>
+      </add>
+    </modify>
+    
+    <modify src="Price">
+      <add>
+        <field name="minCost" data="MC" type="number" prec="2"/>
+        <field name="noDiscount" data="NO_DSC" type="number" />
+      </add>
+    </modify>
+    
+    <modify src="Order$items">
+      <add>
+        <field name="discount" type="number" prec="2" data="DISC" />
+        <field name="discdone" type="number" data="DD" />
+      </add>
+    </modify>
+    
+    <modify src="Monitoring$items">
+      <add>
+        <field name="cost" type="number" prec="2"/>
+      </add>
+    </modify>
+    
+    <modify src="MonitoringItem">
+      <add>
+        <field name="pos" type="number"/>
+      </add>
+    </modify>
+
+	</objects>
+</serverDefs>

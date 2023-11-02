@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.grsoft.manager.spk"
+    android:versionCode="3"
+    android:versionName="3.0" >
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="23" />
+
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:name="com.grsoft.manager.ManagerApp"
+        android:allowBackup="true"
+        android:icon="@drawable/pictograms"
+        android:label="@string/app_name"
+        android:theme="@style/ManagerTheme" >
+        <service android:name="com.grsoft.manager.ManagerService"/> 
+        <activity
+            android:name="com.grsoft.manager.ManagerNew"
+            android:screenOrientation="landscape" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.grsoft.napoleon.manager.TestActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="com.grsoft.manager.ManagerConfigurationivity"
+            android:configChanges="keyboard|keyboardHidden|orientation"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="com.grsoft.manager.UpdateDBEx"
+            android:configChanges="keyboard|keyboardHidden|orientation"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="com.grsoft.manager.AgentRoute"
+            android:configChanges="keyboard|keyboardHidden|orientation"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="com.grsoft.manager.EditorsItems"
+            android:configChanges="keyboard|keyboardHidden|orientation"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="com.grsoft.manager.Editors"
+            android:configChanges="keyboard|keyboardHidden|orientation"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="com.grsoft.manager.RatingActionEdit"
+            android:configChanges="keyboard|keyboardHidden|orientation"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="com.grsoft.manager.Preview"
+            android:configChanges="keyboard|keyboardHidden|orientation"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="com.grsoft.manager.History"
+            android:configChanges="keyboard|keyboardHidden|orientation"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="com.grsoft.manager.HistoryMessage"
+            android:configChanges="keyboard|keyboardHidden|orientation"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="com.grsoft.manager.ManagerConfiguration"
+            android:configChanges="keyboard|keyboardHidden|orientation"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="com.grsoft.manager.DocDetail"
+            android:configChanges="keyboard|keyboardHidden|orientation"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="com.grsoft.manager.LicenseConfig"
+            android:configChanges="keyboard|keyboardHidden|orientation"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="com.grsoft.manager.OrderDetail"
+            android:configChanges="keyboard|keyboardHidden|orientation"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="com.grsoft.manager.RemnantsDetail"
+            android:configChanges="keyboard|keyboardHidden|orientation"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="com.grsoft.manager.VisitDetail"
+            android:configChanges="keyboard|keyboardHidden|orientation"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="com.grsoft.manager.QuestionDetail"
+            android:configChanges="keyboard|keyboardHidden|orientation"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="com.grsoft.manager.OrgTaskList"
+            android:configChanges="keyboard|keyboardHidden|orientation"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="com.grsoft.manager.EditOrgTask"
+            android:configChanges="keyboard|keyboardHidden|orientation"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="com.grsoft.manager.ManagerTaskList"
+            android:configChanges="keyboard|keyboardHidden|orientation"
+            android:screenOrientation="landscape" />
+
+        <service
+            android:name="com.grsoft.napoleon.Shared"
+            android:exported="true"
+            android:process=":shared"
+            tools:ignore="ExportedService" >
+            <intent-filter>
+                <action android:name="com.grsoft.napoleon.ExchangeService" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </service>
+        <service android:name="com.grsoft.util.ReportService" />
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.grsoft.manager.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true" >
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/providers_path" />
+        </provider>
+
+        <activity
+            android:name="com.grsoft.napoleon.CrashReport"
+            android:configChanges="keyboard|keyboardHidden|orientation"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="com.grsoft.network.BaseSimpleActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="com.grsoft.manager.Documents"
+            android:configChanges="keyboard|keyboardHidden|orientation"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="com.grsoft.manager.DeliveryDetail"
+            android:configChanges="keyboard|keyboardHidden|orientation"
+            android:screenOrientation="landscape" />
+
+        <service android:name="com.grsoft.util.NapoleonServiceW" />
+
+        <activity
+            android:name="com.grsoft.manager.DrawerActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="com.grsoft.manager.ManagerConfigurationNew"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+            android:screenOrientation="landscape" />
+
+        <service android:name="com.grsoft.util.NapoleonService" />
+
+        <activity
+            android:name="com.grsoft.manager.AgentRouteNew"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="com.grsoft.manager.ReportListActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="com.grsoft.manager.Manager"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="com.grsoft.manager.AgentsInFields"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="com.grsoft.manager.AboutNew"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="com.grsoft.manager.LeaderReport"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="com.grsoft.manager.ActivityReport"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="com.grsoft.manager.OrgTaskListNew"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="com.grsoft.manager.VisitDetailNew"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="com.grsoft.manager.QuestionDetailNew"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="com.grsoft.manager.AKBReport"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="com.grsoft.manager.OrderSumReport"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="com.grsoft.manager.StoryTapeActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="com.grsoft.manager.AuditActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+        <activity
+            android:name="com.grsoft.napoleon.QuestAttachmentsList"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" 
+            android:label="@string/attachment_title"/>
+        <activity
+            android:name="com.grsoft.manager.AuditEditEx"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity
+            android:name="com.grsoft.manager.AuditQuests"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+        <activity
+            android:name="com.grsoft.manager.SPKTaskActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+        <activity
+            android:name="com.grsoft.manager.SPKTaskAgentActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+        <activity
+            android:name="com.grsoft.manager.SPKTaskEdit"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+    </application>
+
+</manifest>

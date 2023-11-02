@@ -1,0 +1,54 @@
+<template>
+  <q-page padding >
+    <q-card
+      flat
+      class="fixed-center card">
+
+      <q-card-section class="form-title text-center">Вход в систему</q-card-section>
+      <q-card-section>
+        <q-form>
+          <q-input
+            label="Введите email"
+            filled
+          ></q-input>
+          <q-input
+            style="margin-top: 38px;"
+            label="Введите пароль"
+            filled
+          ></q-input>
+          <q-checkbox
+            label="Сохранить пароль"
+            style="margin-top: 25px;"
+            v-model="save_password"
+            ></q-checkbox>
+        </q-form>
+
+        <q-btn
+          class="login-btn"
+          no-caps
+          style="margin-top: 25px;">
+            Войти
+        </q-btn>
+      </q-card-section>
+      <q-card-section class="text-center">
+        <q-btn flat label="Регистрация" no-caps/>
+      </q-card-section>
+      <q-card-section class="text-center" >
+        <q-btn flat no-caps><u>Написать в тех. поддержку</u></q-btn>
+      </q-card-section>
+    </q-card>
+  </q-page>
+</template>
+
+<script setup>
+  import {ref} from 'vue'
+  const save_password = ref(false)
+</script>
+
+<style scoped>
+.card{
+  min-width: 300px;
+  min-height: 450px;
+
+}
+</style>

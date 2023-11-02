@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.gesture.GestureOverlayView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/gestures"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gestureStrokeType="single"
+    android:eventsInterceptionEnabled="true"
+    android:orientation="vertical"
+    android:gestureColor="#00000000"
+    android:uncertainGestureColor="#00000000">
+    
+<LinearLayout
+ 	android:layout_height="fill_parent" 
+ 	android:layout_width="fill_parent" 
+ 	android:background="#FFFFFF" 
+ 	android:orientation="vertical">
+ 	
+	<TextView android:layout_height="wrap_content" 
+		android:layout_weight="0" 
+		android:layout_width="fill_parent" 
+		android:text="Имя организации" 
+		android:textStyle="bold" 
+		android:textColor="#0000FF" 
+		android:textSize="20sp" android:id="@+id/tvOrgName" 
+		android:ellipsize="end" 
+		android:lines="1" 
+		android:scrollHorizontally="true"></TextView>
+	
+	<ScrollView 
+		android:fillViewport="true"
+    	android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:layout_weight="1"
+    	android:id="@+id/scrollview"> 
+    	
+		<LinearLayout
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:background="#FFFFFF"
+		    android:orientation="vertical" >
+		<LinearLayout
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:background="#FFFFFF"
+		    android:orientation="horizontal" >
+		    
+			<LinearLayout
+			    android:paddingTop="5dp"
+				android:layout_weight="1"
+				android:layout_height="wrap_content" 
+				android:orientation="vertical" 
+				android:layout_width="0dip">
+		    <LinearLayout android:id="@+id/LinearLayout02" 
+				android:layout_height="wrap_content" 
+				android:orientation="horizontal" 
+				android:layout_margin="5dp" 
+				android:layout_width="fill_parent">
+				<TextView android:id="@+id/TextView01" 
+					android:layout_width="wrap_content" 
+					android:layout_height="wrap_content"
+					android:textColor="#000000" 
+					android:text="Дата:" 
+					></TextView>
+				<TextView android:layout_width="0dip" 
+					android:layout_height="wrap_content" 
+					android:textColor="#000000" 
+					android:text="25.11.2010" 
+					android:id="@+id/tvDate" 
+					android:layout_weight="1"
+					android:layout_marginLeft="5dp" 
+					android:textStyle="bold"></TextView>
+			</LinearLayout>
+			<LinearLayout android:id="@+id/LinearLayout32" 
+				android:layout_height="wrap_content" 
+				android:layout_marginLeft="5dp" 
+				android:orientation="horizontal" 
+				android:layout_width="fill_parent">
+				<TextView android:id="@+id/tvDscLabel" 
+					android:layout_width="wrap_content" 
+					android:layout_height="wrap_content"
+					android:textColor="#000000" 
+					android:text="Скидка,%:" 
+					></TextView>
+			<TextView android:layout_width="0dip" 
+				android:layout_height="wrap_content" 
+				android:textColor="#000000" 
+				android:text="0" 
+				android:layout_weight="1"
+				android:id="@+id/tvDiscount" 
+				android:layout_marginLeft="5dp" 
+				android:textStyle="bold"></TextView>
+			</LinearLayout>
+		</LinearLayout>
+			<LinearLayout 
+				android:layout_height="wrap_content" 
+				android:orientation="vertical" 
+				android:layout_width="wrap_content">
+			
+			<CheckBox android:layout_width="wrap_content" 
+				android:layout_height="wrap_content" 
+				android:id="@+id/cbCreateOrderCash" 
+				android:text="Оплата наличными" 
+				android:textColor="#000000" 
+				></CheckBox>
+			<CheckBox android:layout_width="wrap_content" 
+				android:layout_height="wrap_content" 
+				android:id="@+id/cbRetail" 
+				android:text="Чек" 
+				android:textColor="#000000" 
+				></CheckBox>
+			</LinearLayout>
+			
+		</LinearLayout>
+		   <TableLayout android:layout_width="fill_parent" 
+		    	android:stretchColumns="1"
+		    	android:id="@+id/tableLayout1" 
+		    	android:layout_height="wrap_content" 
+		    	android:layout_weight="0">
+		       <TableRow android:id="@+id/tableRow1"
+			    	android:padding="1dp"
+		        	android:layout_width="wrap_content" 
+		        	android:layout_height="wrap_content">
+					
+					<TextView android:id="@+id/TextView23" 
+						android:layout_height="wrap_content" 
+						android:text="Фирма" 
+						android:textColor="#000000" 
+						android:layout_marginLeft="5dp" 
+						android:layout_marginRight="5dp" android:layout_width="wrap_content" 
+						android:layout_gravity="center_vertical"></TextView>
+								
+					<Spinner android:layout_height="wrap_content" 
+						android:layout_weight="1" 
+						android:id="@+id/spFirma" android:layout_width="fill_parent"></Spinner>
+					
+				</TableRow>
+		       <TableRow android:id="@+id/tableRow23" 
+			    	android:padding="1dp"
+		        	android:layout_width="wrap_content" 
+		        	android:layout_height="wrap_content">
+					
+					<TextView android:id="@+id/TextView04" 
+						android:layout_height="wrap_content" 
+						android:textColor="#000000" 
+						android:text="Склад" 
+						android:layout_marginLeft="5dp" 
+						android:layout_marginRight="5dp" android:layout_width="wrap_content" 
+						android:layout_gravity="center_vertical"></TextView>	
+					<Spinner android:layout_height="wrap_content" 
+						android:layout_weight="1" android:id="@+id/spSklad" android:layout_width="fill_parent"></Spinner>
+				</TableRow>	
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="1dp" >
+
+                    <TextView
+                        android:layout_gravity="center_vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:text="@string/cost"
+                        android:textColor="#000000"
+                        android:textSize="16sp" />
+
+                    <Spinner
+                        android:id="@+id/spPrices"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" >
+                    </Spinner>
+                </TableRow>	
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="1dp" >
+
+                    <TextView
+                        android:layout_gravity="center_vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:text="Условия\nоплаты"
+                        android:textColor="#000000"
+                        android:textSize="16sp" />
+
+                    <Spinner
+                        android:id="@+id/spPayType"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:entries="@array/pay_types" >
+
+                    </Spinner>
+                </TableRow>	
+                
+            </TableLayout>
+			
+			<LinearLayout android:id="@+id/LinearLayout07" 
+				android:layout_height="wrap_content" 
+				android:layout_width="fill_parent" 
+				android:layout_weight="0.5">
+				
+				<EditText 
+					android:layout_height="fill_parent" 
+					android:layout_width="fill_parent" 
+					android:id="@+id/edCreateOrderNotes" 
+					android:gravity="top|left" android:minLines="2" android:lines="2"></EditText>
+			</LinearLayout>
+			<LinearLayout android:id="@+id/LinearLayout27" 
+			    android:orientation="horizontal"
+				android:layout_height="wrap_content" 
+				android:layout_width="fill_parent" 
+				>
+				
+				<TextView android:id="@+id/TextView21" 
+					android:layout_width="wrap_content" 
+					android:layout_height="wrap_content"
+					android:textColor="#000000" 
+					android:layout_marginRight="5dp"
+					android:text="Инкассация" 
+					></TextView>
+
+			    <EditText
+			        android:id="@+id/edPayRemark"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:gravity="top|left"
+			        android:minEms="3" >
+
+</EditText>
+			</LinearLayout>
+		</LinearLayout>
+	</ScrollView>
+	
+	<LinearLayout android:id="@+id/LinearLayout08" 
+		android:layout_height="wrap_content" 
+		android:layout_width="fill_parent" 
+		android:layout_weight="0" android:padding="5dp" android:background="@color/button_panel">
+		
+		<Button android:layout_width="wrap_content" 
+			android:layout_height="wrap_content" 
+			android:layout_weight="1" 
+			android:text="Отмена" android:id="@+id/btnCancel"></Button>
+		
+		<Button android:layout_width="wrap_content" 
+			android:layout_height="wrap_content" 
+			android:text="ОК" android:id="@+id/btnOK" 
+			android:layout_weight="3" 
+			android:textStyle="bold"></Button>
+	</LinearLayout>
+</LinearLayout>
+</android.gesture.GestureOverlayView>

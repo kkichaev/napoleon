@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/list_selector" >
+
+    <TextView
+        android:id="@+id/tvOrder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:gravity="right"
+        android:paddingRight="5dp"
+        android:text="No"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:width="30sp"
+        tools:ignore="HardcodedText" />
+    
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:paddingLeft="3dp"
+        android:scrollHorizontally="true"
+        android:text="tvName"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        tools:ignore="HardcodedText" >
+    </TextView>
+
+    <TextView
+        android:id="@+id/tvCost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="right|center_vertical"
+        android:paddingLeft="3dp"
+        android:paddingRight="10dp"
+        android:text="tvCost"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:width="80dp"
+        tools:ignore="HardcodedText" >
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/tvLimit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:textColor="@color/black"
+        android:paddingLeft="3dp"
+        android:paddingRight="10dp"
+        android:text="tvLimit"
+        android:textSize="16sp"
+        android:width="110dp"
+        tools:ignore="HardcodedText" >
+     </TextView>
+        
+    <TextView
+        android:id="@+id/tvChek"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:gravity="right"
+        android:background="@drawable/qty_back"
+        android:paddingLeft="3dp"
+        android:paddingRight="10dp"
+        android:text="tvCheck"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:width="60dp"
+        tools:ignore="HardcodedText" >
+    </TextView>
+
+    <LinearLayout 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+    <TextView
+        android:id="@+id/tvLoad"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:background="@drawable/qty_back"
+        android:paddingLeft="3dp"
+        android:paddingRight="10dp"
+        android:text="tvLoad"
+        android:gravity="center_horizontal"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:width="90dp"
+        tools:ignore="HardcodedText" />
+    
+    <TextView
+        android:id="@+id/tvRecLoad"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:background="@drawable/qty_back"
+        android:paddingLeft="3dp"
+        android:paddingRight="10dp"
+        android:text="tvRecLoad"
+        android:textColor="@color/red"
+        android:gravity="right"
+        android:textSize="16sp"
+        android:width="90dp"
+        tools:ignore="HardcodedText" />
+        
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvUnload"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:gravity="right"
+        android:background="@drawable/qty_back"
+        android:paddingLeft="3dp"
+        android:paddingRight="10dp"
+        android:text="tvUnload"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:width="90dp"
+        tools:ignore="HardcodedText" >
+    </TextView>
+</LinearLayout>

@@ -1,0 +1,96 @@
+{
+  "_from": "@intlify/devtools-if@9.3.0-beta.14-77e850b",
+  "_id": "@intlify/devtools-if@9.3.0-beta.14-77e850b",
+  "_inBundle": false,
+  "_integrity": "sha512-Misf4UDGi9vyUONXIAhcSAIb8n6bBYNfuezLQxwgnVDrJk0GacKQG38GW231QE9OgLvmUmC+WGbq7LTZo/pCpA==",
+  "_location": "/@intlify/devtools-if",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "@intlify/devtools-if@9.3.0-beta.14-77e850b",
+    "name": "@intlify/devtools-if",
+    "escapedName": "@intlify%2fdevtools-if",
+    "scope": "@intlify",
+    "rawSpec": "9.3.0-beta.14-77e850b",
+    "saveSpec": null,
+    "fetchSpec": "9.3.0-beta.14-77e850b"
+  },
+  "_requiredBy": [
+    "/@intlify/core-base"
+  ],
+  "_resolved": "https://registry.npmjs.org/@intlify/devtools-if/-/devtools-if-9.3.0-beta.14-77e850b.tgz",
+  "_shasum": "2482684714a015326f8eb6d8040cc2bb488be4c1",
+  "_spec": "@intlify/devtools-if@9.3.0-beta.14-77e850b",
+  "_where": "/home/devteam/prog/webfront/node_modules/@intlify/core-base",
+  "author": {
+    "name": "kazuya kawaguchi",
+    "email": "kawakazu80@gmail.com"
+  },
+  "bugs": {
+    "url": "https://github.com/intlify/vue-i18n-next/issues"
+  },
+  "buildOptions": {
+    "name": "IntlifyDevToolsIf",
+    "formats": [
+      "mjs",
+      "cjs"
+    ]
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "@intlify/shared": "9.3.0-beta.14-77e850b"
+  },
+  "deprecated": false,
+  "description": "@intlify/devtools-if",
+  "engines": {
+    "node": ">= 14"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/devtools-if.d.ts",
+      "import": "./dist/devtools-if.mjs",
+      "node": {
+        "import": {
+          "production": "./dist/devtools-if.prod.cjs",
+          "development": "./dist/devtools-if.mjs",
+          "default": "./dist/devtools-if.mjs"
+        },
+        "require": {
+          "production": "./dist/devtools-if.prod.cjs",
+          "development": "./dist/devtools-if.cjs",
+          "default": "./index.js"
+        }
+      }
+    },
+    "./dist/*": "./dist/*",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "index.js",
+    "dist"
+  ],
+  "funding": "https://github.com/sponsors/kazupon",
+  "homepage": "https://github.com/intlify/vue-i18n-next/tree/master/packages/devtools-if#readme",
+  "keywords": [
+    "devtools",
+    "i18n",
+    "internationalization",
+    "intlify"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "module": "dist/devtools-if.mjs",
+  "name": "@intlify/devtools-if",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/intlify/vue-i18n-next.git",
+    "directory": "packages/devtools-if"
+  },
+  "sideEffects": false,
+  "types": "dist/devtools-if.d.ts",
+  "version": "9.3.0-beta.14-77e850b"
+}

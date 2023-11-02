@@ -1,0 +1,290 @@
+﻿<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+   <objects>
+      <object name="Agents">
+         <sources>
+            <source name="SQTable" type="internal" />
+         </sources>
+         <member name="primaryKey">"id"</member>
+         
+         <field name="id" type="string" />
+         <field name="name" type="string" />
+         <field name="login" type="string" />
+         <field name="password" type="string" />
+         <field name="phone" type="string" />
+      </object>
+
+      <object name="Division">
+         <sources>
+            <source name="SQTable" type="internal" />
+         </sources>
+         <member name="primaryKey">"id"</member>
+         
+         <field name="id" type="number" />
+         <field name="name" type="string" />
+         <field name="description" type="string" />
+         <field name="cheif" type="string" />
+         <field name="agents" type="collection">
+            <data>
+               <object name="DivisionAgents">
+                  <sources>
+                     <source name="SQTable" type="internal" />
+                  </sources>
+                  <field name="id" type="string" />
+               </object>
+            </data>
+         </field>
+         <field name="parent" type="number" />
+      </object>
+
+      <object name="UserLog">
+         <member name="primaryKey">"userid,date"</member>
+
+         <field name="userid" type="string" />
+         <field name="date" type="timestamp" />
+         <field name="objType" type="string" />
+         <field name="objDate" type="timestamp" />
+      </object>
+
+      <object name="Locality">
+         <sources>
+            <source name="SQTable" type="internal" />
+         </sources>
+         <member name="primaryKey">"id"</member>
+
+         <field name="id" type="number" />
+         <field name="name" type="string" />
+      </object>
+      
+      <!-- школа и класс соеденины в иерархию -->
+      <object name="SchoolEntity">
+         <sources>
+            <source name="SQTable" type="internal" />
+         </sources>
+         <member name="primaryKey">"id"</member>
+
+         <field name="id" type="number" />
+         <field name="parent" type="number" />
+
+         <field name="locality" type="number" />
+         <field name="number" type="string" />
+         <field name="address" type="string" />
+
+         <field name="contacts" type="collection">
+            <data>
+               <object name="Contact">
+                  <sources>
+                     <source name="SQTable" type="internal" />
+                  </sources>
+
+                  <field name="name" type="string" />
+                  <field name="phone" type="string" />
+                  <field name="remark" type="string" />
+               </object>
+            </data>
+         </field>
+      </object>
+
+      <object name="Student">
+         <sources>
+            <source name="SQTable" type="internal" />
+         </sources>
+         <member name="primaryKey">"id"</member>
+
+         <field name="id" type="number" />
+         <field name="group" type="number" />
+
+         <field name="name" type="string" />
+
+         <!--
+         <field name="parents" type="collection">
+            <data>
+               <object name="StudParents">
+                  <sources>
+                     <source name="SQLTable" type="internal" />
+                  </sources>
+                  <field name="id" type="number" />
+               </object>
+            </data>
+         </field>
+         -->
+      </object>
+
+      <object name="Parent">
+         <sources>
+            <source name="SQTable" type="internal" />
+         </sources>
+         <member name="primaryKey">"id"</member>
+
+         <field name="id" type="number" />
+         <field name="name" type="string" />
+         
+         <field name="phones" type="collection">
+            <data>
+               <object name="Phone">
+                  <sources>
+                     <source name="SQTable" type="internal" />
+                  </sources>
+
+                  <field name="phone" type="string" />
+                  <field name="remark" type="string" />
+               </object>
+            </data>
+         </field>
+      </object>
+
+      <object name="Dogovor">
+         <sources>
+            <source name="SQTable" type="internal" />
+         </sources>
+         <member name="primaryKey">"id"</member>
+
+         <field name="id" type="number" />
+         <field name="number" type="string" />
+         <field name="start" type="date" />
+         <field name="end" type="date" />
+         <field name="type" type="number" />
+
+         <field name="students" type="collection">
+            <data>
+               <object name="DogStudent">
+                  <sources>
+                     <source name="SQTable" type="internal" />
+                  </sources>
+                  <field name="id" type="number" />
+               </object>
+            </data>
+         </field>
+         <field name="parents" type="collection">
+            <data>
+               <object name="DogParent">
+                  <sources>
+                     <source name="SQTable" type="internal" />
+                  </sources>
+                  <field name="id" type="number" />
+               </object>
+            </data>
+         </field>
+      </object>
+
+      <object name="SchoolSubject">
+         <sources>
+            <source name="SQTable" type="internal" />
+         </sources>
+         <member name="primaryKey">"id"</member>
+
+         <field name="id" type="number" />
+         <field name="name" type="string" />
+         <field name="secondName" type="string" />
+      </object>
+
+      <object name="Schedule">
+         <sources>
+            <source name="SQTable" type="internal" />
+         </sources>
+         <member name="primaryKey">"id"</member>
+
+         <field name="id" type="number" />
+         <field name="group" type="number" />
+         <!-- 0 - понедельник... -->
+         <field name="day" type="number" />
+         <field name="subjects" type="collection">
+            <data>
+               <object name="ScheduleItem">
+                  <sources>
+                     <source name="SQTable" type="internal" />
+                  </sources>
+                  <field name="id" type="number" />
+                     <!-- 
+                     0 - ежедневно
+                     1 - нечетная неделя
+                     2 - четная неделя
+                     -->
+                  <field name="period" type="number" />
+               </object>
+            </data>
+         </field>
+      </object>
+
+      <object name="SchoolFolder">
+         <sources>
+            <source name="SQTable" type="internal" />
+         </sources>
+
+         <member name="primaryKey">"id"</member>
+         
+         <field name="items" type="collection">
+            <data>
+               <object name="SchoolFolderItem">
+                  <sources>
+                     <source name="SQTable" type="internal" />
+                  </sources>
+                  <field name="id" type="number" />
+               </object>
+            </data>
+         </field>
+         
+         <field name="id" type="number" />
+         <field name="name" type="string" width="15" />
+         <field name="userid" type="string" width="10" />
+      </object>
+
+      <object name="Lesson">
+         <sources>
+            <source name="SQTable" type="internal" />
+         </sources>
+
+         <member name="primaryKey">"date,classID,order"</member>
+
+         <field name="items" type="collection">
+            <data>
+               <object name="LessonItems">
+                  <sources>
+                     <source name="SQTable" type="internal" />
+                  </sources>
+                  <field name="studentID" type="number" />
+                  <field name="mark" type="number" />
+                  
+                  <field name="task" type="string" />
+                  <field name="behavior" type="string" />
+                  <field name="remark" type="string" />
+               </object>
+            </data>
+         </field>
+
+         <field name="date" type="date" />
+         
+         <field name="classID" type="number" />
+         <field name="subjectID" type="number" />
+         <field name="order" type="number" />
+         
+         <field name="task" type="string" width="15" />
+         <field name="userid" type="string" width="10" />
+      </object>
+
+      <object name="Annonce">
+         <sources>
+            <source name="SQTable" type="internal" />
+         </sources>
+
+         <member name="primaryKey">"date,id"</member>
+
+         <field name="date" type="date" />
+         <field name="id" type="number" />
+         <field name="message" type="string" width="15" />
+         <field name="userid" type="string" width="10" />
+      </object>
+   </objects>
+
+   <actions>
+      <action name="WriteToLog">
+         <params>
+            <param name="action" />
+            <param name="docdate" />
+         </params>
+         <do>
+            <put object="UserLog" sourceType="internal">$object.userid=$user.id;$object.date=Now();$object.objType=$action;$object.objDate=$docdate</put>
+         </do>
+      </action>
+   </actions>
+</serverDefs>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="horizontal"
+    android:background="@color/white"
+    android:paddingTop="7sp" >
+
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="0dip"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:text="Name"
+        android:textSize="@dimen/row_font"
+        android:paddingLeft="4sp"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/tvQty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Qty"
+		android:gravity="right" 
+        android:textSize="@dimen/row_font"
+        android:paddingRight="4dp"
+        android:width="@dimen/item_cell"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/tvWeight"
+        android:gravity="right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="W"
+        android:textSize="@dimen/row_font"
+        android:width="@dimen/item_cell"
+        android:paddingRight="4dp"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/tvFactQty"
+        android:gravity="right"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+    	android:background="@drawable/list_selector"
+        android:text="FQty"
+        android:width="@dimen/item_cell"
+        android:textSize="@dimen/row_font"
+        android:paddingRight="4dp"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/tvFactWeight"
+        android:gravity="right"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:text="Fw"
+	    android:background="@drawable/list_selector"
+        android:textSize="@dimen/row_font"
+        android:width="@dimen/item_cell"
+        android:paddingRight="4dp"
+        android:textColor="@color/black" />
+
+</LinearLayout>

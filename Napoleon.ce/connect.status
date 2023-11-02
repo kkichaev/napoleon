@@ -1,0 +1,22 @@
+#define CONNMGR_STATUS_CONNECTED                  16  // @constdefine Connection is up
+#define CONNMGR_STATUS_SUSPENDED                  17  // @constdefine Connection is up but suspended
+
+#define CONNMGR_STATUS_DISCONNECTED               32  // @constdefine Connection is disconnected
+#define CONNMGR_STATUS_CONNECTIONFAILED           33  // @constdefine Connection failed and cannot not be reestablished
+#define CONNMGR_STATUS_CONNECTIONCANCELED         34  // @constdefine User aborted connection
+#define CONNMGR_STATUS_CONNECTIONDISABLED         35  // @constdefine Connection is ready to connect but disabled
+#define CONNMGR_STATUS_NOPATHTODESTINATION        36  // @constdefine No path could be found to destination
+#define CONNMGR_STATUS_WAITINGFORPATH             37  // @constdefine Waiting for a path to the destination
+#define CONNMGR_STATUS_WAITINGFORPHONE            38  // @constdefine Voice call is in progress
+#define CONNMGR_STATUS_PHONEOFF                   39  // @constdefine Phone resource needed and phone is off
+#define CONNMGR_STATUS_EXCLUSIVECONFLICT          40  // @constdefine the connection could not be established because it would multi-home an exclusive connection
+#define CONNMGR_STATUS_NORESOURCES                41  // @constdefine Failed to allocate resources to make the connection.
+#define CONNMGR_STATUS_CONNECTIONLINKFAILED       42  // @constdefine Connection link disconnected prematurely.
+#define CONNMGR_STATUS_AUTHENTICATIONFAILED       43  // @constdefine Failed to authenticate user.
+
+#define CONNMGR_STATUS_WAITINGCONNECTION          64  // @constdefine Attempting to connect
+#define CONNMGR_STATUS_WAITINGFORRESOURCE         65  // @constdefine Resource is in use by another connection
+#define CONNMGR_STATUS_WAITINGFORNETWORK          66  // @constdefine Network is used by higher priority thread or device is roaming.
+
+#define CONNMGR_STATUS_WAITINGDISCONNECTION      128  // @constdefine Connection is being brought down
+#define CONNMGR_STATUS_WAITINGCONNECTIONABORT    129  // @constdefine Aborting connection attempt

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+    
+	<LinearLayout android:layout_height="wrap_content" 
+		android:layout_width="fill_parent" 
+        android:layout_weight="0" 
+        android:background="@color/black" 
+        android:id="@+id/llTop">
+        
+		<TextView
+			android:text="Товар"
+			android:textColor="#000000"
+			android:textSize="@dimen/head_font"
+			android:layout_height="wrap_content" 
+			android:background="@color/footer" 
+			android:layout_marginTop="1sp" 
+			android:layout_marginBottom="1sp" 
+			android:layout_marginLeft="1sp" 
+			android:layout_marginRight="1sp" 
+			android:paddingLeft="2sp" 
+			android:paddingBottom="5sp" 
+			android:paddingTop="5sp" 
+			android:layout_width="wrap_content" 
+			android:layout_weight="1" 
+			android:id="@+id/tvFirstColumnCaption" android:layout_gravity="center_vertical"/>
+		
+		<TextView
+			android:id="@+id/tvRingTitle"
+			android:text="Остаток"
+			android:textColor="#000000"
+			android:textSize="@dimen/head_font"
+			android:layout_height="wrap_content" 
+			android:gravity="right" 
+			android:background="@color/footer" 
+			android:layout_marginTop="1sp" 
+			android:layout_marginBottom="1sp" 
+			android:layout_marginRight="1sp" 
+			android:paddingRight="2sp" 
+	        android:minWidth="70sp"
+			android:paddingTop="5sp" 
+			android:paddingBottom="5sp" 
+			android:layout_width="wrap_content" 
+            android:layout_gravity="center_vertical"/>
+	</LinearLayout>
+	
+    <ListView
+        android:id="@android:id/list"
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:background="@color/white"
+	    >
+	
+	</ListView>
+</LinearLayout>

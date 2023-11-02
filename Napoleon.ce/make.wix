@@ -1,0 +1,124 @@
+.PHONY : all copyfiles objfiles FAKE
+
+SHELL=$(ROOT)/shell
+
+WIX_FOLDER=$(CYG_DRIVE)/Works/Wix
+INT_DIR:=$(OUT_DIR)/wix
+
+T_PATH=C:\Works\Python39;C:\Works\Wix;C:\Works\Cygwin\bin
+export PATH:=$(subst ;,:,$(subst D:,/cygdrive/d,$(subst d:,/cygdrive/d,$(subst C:,/cygdrive/c,$(subst c:,/cygdrive/c,$(T_PATH))))))
+
+export WIXUI_PATH=$(subst /,\,$(subst $(CYG_DRIVE),$(WIN_DRIVE),$(WIX_FOLDER)))
+
+ifdef ADS_LIGHT
+SOURCE_FOLDER=$(ROOT)/$(PCORE)/Setup.ads
+else
+SOURCE_FOLDER=$(ROOT)/$(PCORE)/Setup.wix
+endif
+
+BaseProject = $(PROJECT)
+ifdef VariantBase
+BaseProject = $(VariantBase)
+endif
+
+ifneq ($(BaseProject),Core)
+VPATH:=$(PROJECT_DIR)/$(BaseProject)/Changes $(VPATH)
+endif
+
+ifneq ($(RefProject),)
+VPATH:=$(PROJECT_DIR)/$(RefProject)/Changes $(VPATH)
+endif
+
+
+ifneq ($(Variant),)
+VPATH := $(PROJECT_DIR)/$(BaseProject)/Variants/$(Variant)/Changes $(VPATH)
+endif
+
+WIX_SOURCE = $(ROOT)/$(WIX_SEARCH) $(ROOT)/$(WIX_SEARCH2) $(OUT_DIR) $(ROOT)/$(PCORE)/References $(ROOT)/$(PCORE)/References/WebView $(SOURCE_FOLDER)
+#ifneq ($(findstring ADS, $(FEATURES)),)
+#WIX_SOURCE += $(ROOT)/$(PCORE)/Ads/Server
+#else
+WIX_SOURCE += $(ROOT)/$(PCORE)/GRServer/Server/Core/objects
+#endif
+
+export PYTHON_LIB_SRC=
+export PYTHON_DLLs=
+ifneq ($(findstring VERSION_4, $(FEATURES)),)
+	SOURCES += pylib
+	ifdef SERVER_X64
+      ext64 = .x64
+	endif
+	ifdef PY_39
+		PYTHON_LIB_SRC = $(subst $(CYG_DRIVE),$(WIN_DRIVE),$(ROOT)/$(PCORE)/References/PyLib.3.9)
+		PYTHON_DLLs = $(subst $(CYG_DRIVE),$(WIN_DRIVE),$(ROOT)/$(PCORE)/References/Python.3.9/Release$(ext64)/DLLs)
+	else
+		PYTHON_LIB_SRC = $(subst $(CYG_DRIVE),$(WIN_DRIVE),$(ROOT)/$(PCORE)/References/PyLib.3.8)
+		PYTHON_DLLs = $(subst $(CYG_DRIVE),$(WIN_DRIVE),$(ROOT)/$(PCORE)/References/Python.3.8/Release/DLLs)
+	endif
+else
+	ifneq ($(findstring PYTHON_REPORTER, $(FEATURES)),)
+		SOURCES += pylib
+		PYTHON_LIB_SRC = $(subst $(CYG_DRIVE),$(WIN_DRIVE),$(ROOT)/$(PCORE)/References/PyLib)
+		ifneq ($(findstring USE_CURL, $(FEATURES)),)
+			PYTHON_DLLs = $(subst $(CYG_DRIVE),$(WIN_DRIVE),$(ROOT)/$(PCORE)/References/Python.2.7.14/Release/DLLs)
+		else
+			PYTHON_DLLs = $(subst $(CYG_DRIVE),$(WIN_DRIVE),$(ROOT)/$(PCORE)/References/Python/DLLs)
+		endif
+	endif
+endif
+
+ifdef SERVER_DEMO_BASE
+SOURCES += expfolder
+export EXP_FOLDER_SRC = $(subst $(CYG_DRIVE),$(WIN_DRIVE),$(ROOT)/$(PCORE)/References/Exp)
+endif
+
+export WEB_VIEW_SRC = $(subst $(CYG_DRIVE),$(WIN_DRIVE),$(ROOT)/$(PCORE)/References/WebView/runtimes)
+
+ifdef SERVER_X64
+  ArchFlag = -arch x64
+endif
+
+VPATH:=$(VPATH) $(WIX_SOURCE)
+
+dummy := $(shell mkdir -p "$(subst $(CYG_DRIVE),$(WIN_DRIVE),$(INT_DIR))")
+
+$(INT_DIR)/%.wixobj: %.wxs
+	candle $(ArchFlag) -out $(subst /,\,$(subst $(CYG_DRIVE),$(WIN_DRIVE),$(INT_DIR)/)) $(subst /,\,$(subst $(CYG_DRIVE),$(WIN_DRIVE),$+))
+
+$(OUT_DIR)/$(MSI_FILE).msi : copyfiles objfiles
+
+copyfiles: $(INST_FILES) License.rtf
+	echo $(VPATH)
+	cp -fpuP $+ $(INT_DIR)
+	chmod 777 $(INT_DIR)/*.exe
+	chmod 777 $(INT_DIR)/*.dll
+ifndef NO_WIN_MOBILE
+	chmod 666 $(INT_DIR)/*.cab
+endif
+
+objfiles: $(foreach file,$(SOURCES),$(INT_DIR)/$(file).wixobj) $(INT_DIR)/Main.wixobj
+#	light -b $(subst /,\,$(subst $(CYG_DRIVE),$(WIN_DRIVE),$(SOURCE_FOLDER))) -out $(subst /,\,$(subst $(CYG_DRIVE),$(WIN_DRIVE),$(OUT_DIR)/$(MSI_FILE).msi)) -loc $(subst /,\,$(subst $(CYG_DRIVE),$(WIN_DRIVE),$(WIX_FOLDER)/WixUI_ru-ru.wxl)) $(subst /,\,$(subst $(CYG_DRIVE),$(WIN_DRIVE),$(WIX_FOLDER)/WixUI.wixlib)) $(subst /,\,$(subst $(CYG_DRIVE),$(WIN_DRIVE),$+))
+	light -b $(subst /,\,$(subst $(CYG_DRIVE),$(WIN_DRIVE),$(SOURCE_FOLDER))) -out $(subst /,\,$(subst $(CYG_DRIVE),$(WIN_DRIVE),$(OUT_DIR)/$(MSI_FILE).msi)) -ext WixUIExtension -ext WixNetFxExtension -cultures:ru-ru -loc Setup.wix/Strings.wxl $(subst /,\,$(subst $(CYG_DRIVE),$(WIN_DRIVE),$+))
+
+$(INT_DIR)/Main.wixobj : MAIN_OBJ
+	candle $(ArchFlag) -out $(subst /,\,$(subst $(CYG_DRIVE),$(WIN_DRIVE),$(INT_DIR)/)) $(subst /,\,$(subst $(CYG_DRIVE),$(WIN_DRIVE),$(SOURCE_FOLDER)/Main.wxs))
+
+MAIN_OBJ:
+	python $(subst $(CYG_DRIVE),$(WIN_DRIVE),$(ROOT)/makewix.py) $(subst $(CYG_DRIVE),$(WIN_DRIVE),$(SOURCE_FOLDER)/Main.wxs) $(SOURCES)
+
+$(INT_DIR)/pylib.wixobj: $(INT_DIR)/pylib.wxs
+	candle $(ArchFlag) -out $(subst /,\,$(subst $(CYG_DRIVE),$(WIN_DRIVE),$(INT_DIR)/)) $(subst /,\,$(subst $(CYG_DRIVE),$(WIN_DRIVE),$+))
+$(INT_DIR)/expfolder.wixobj: $(INT_DIR)/expfolder.wxs
+	candle $(ArchFlag) -out $(subst /,\,$(subst $(CYG_DRIVE),$(WIN_DRIVE),$(INT_DIR)/)) $(subst /,\,$(subst $(CYG_DRIVE),$(WIN_DRIVE),$+))
+$(INT_DIR)/pylib.wxs: FAKE
+	rm -f -r $(PYTHON_LIB_SRC)/Lib/site-packages/*
+	rm -f -r $(PYTHON_LIB_SRC)/DLLs/*
+	cp -r $(PYTHON_DLLs)/* $(PYTHON_LIB_SRC)/DLLs/
+	cp -r $(PROJECT_DIR)/$(BaseProject)/Reports/* $(PYTHON_LIB_SRC)/Lib/site-packages/
+	heat dir "$(PYTHON_LIB_SRC)" -cg PythonLibFiles -dr _PRODUCT -sfrag -srd -g1 -gg -template fragment -var env.PYTHON_LIB_SRC -out $(subst /,\,$(subst $(CYG_DRIVE),$(WIN_DRIVE),$@))
+$(INT_DIR)/expfolder.wxs: FAKE
+	heat dir "$(EXP_FOLDER_SRC)" -cg DemoExpFiles -dr ExpFolder -sfrag -srd -g1 -gg -template fragment -var env.EXP_FOLDER_SRC -out $(subst /,\,$(subst $(CYG_DRIVE),$(WIN_DRIVE),$@))
+
+webview.wxs: FAKE
+	heat dir "$(WEB_VIEW_SRC)" -cg WebView -dr MgrRuntimes -sfrag -srd -g1 -gg -template fragment -var env.WEB_VIEW_SRC -out $(subst /,\,$(subst $(CYG_DRIVE),$(WIN_DRIVE),$@))	
+	

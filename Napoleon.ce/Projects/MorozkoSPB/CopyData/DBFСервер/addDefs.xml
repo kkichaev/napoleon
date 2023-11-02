@@ -1,0 +1,83 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+    <modify src="GPSPos" dest="CopyGPSPos">
+      <change>
+        <field name="userid" type="string" />
+      </change>
+    </modify>
+    <modify src="UserLog" dest="CopyUserLog">
+      <change>
+        <field name="userid" type="string" />
+      </change>
+    </modify>
+    <modify src="Visit" dest="CopyVisit">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+        <field name="userid" type="string" />
+      </change>
+    </modify>
+    <modify src="Visit$items" dest ="CopyVisit$items">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+    </modify>
+    <modify src="Order" dest="CopyOrder">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+        <field name="userid" type="string" />
+      </change>
+    </modify>
+    <modify src="Order$items" dest ="CopyOrder$items">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+    </modify>
+    <modify src="Returns" dest="CopyReturns">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+        <field name="userid" type="string" />
+      </change>
+    </modify>
+    <modify src="Returns$items" dest ="CopyReturns$items">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+    </modify>
+    <modify src="Incass" dest="CopyIncass">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+        <field name="userid" type="string" />
+      </change>
+    </modify>
+    <modify src="OrgRemnants" dest="CopyOrgRemnants">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+        <field name="userid" type="string" />
+      </change>
+    </modify>
+    <modify src="OrgRemnants$items" dest ="CopyOrgRemnants$items">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+    </modify>    
+  </objects>
+</serverDefs>

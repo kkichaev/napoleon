@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.grsoft.ads"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk android:minSdkVersion="4" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+	<uses-permission android:name="android.permission.VIBRATE" />
+	<uses-permission android:name="android.permission.CALL_PHONE" />
+	<uses-permission android:name="android.permission.CAMERA"/>
+    <uses-feature android:name="android.hardware.camera"/>
+	
+    <application
+        android:icon="@drawable/icon"
+        android:label="@string/app_name" android:name=".AdsApp">
+        <uses-library android:name="com.google.android.maps" />
+        
+        <activity
+            android:label="Наполеон АДС"
+            android:name=".AdsEx" 
+            android:launchMode="singleInstance">
+            
+            <intent-filter >
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
+        <activity android:name="com.grsoft.ads.Setting">
+            <intent-filter>
+                <action android:name="com.grsoft.ads.OPEN_SETTING"/>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+        <activity android:name=".OrderSummary" android:label="Информация по заявке"/>
+        <service android:name="AdsServiceEx"/>
+        <activity android:name="UserOrders" android:label="Заказы"/>
+        <activity android:name="UserOrderEdit"/>
+        <activity android:name=".OrderDetail" android:label="Подбор материала"/>
+        <activity android:name=".OrderTabActivityEx" android:label="Работа с заявкой"/>
+        <activity android:name="Warehouse" android:label="Товары и услуги"/>
+        <activity android:name="Messages" android:label="Сообщения"/>
+        <activity android:name="Map" android:label="Карта"/>
+        <activity android:name="SettingMainPage" android:label="Настройки программы" />
+        <activity android:name=".OrderPhoto" android:label="Фотография"/>
+        <activity android:name="com.grsoft.napoleon.CameraPreview" />
+        <activity android:name=".OrderReturn" android:label="Возврат" />
+
+        <activity android:name="SettingNetwork"
+            android:label="Настройки соединения">
+             <intent-filter>
+                <action android:name="com.grsoft.ads.OPEN_NETWORK_SETTING"/>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+        <activity android:name="SettingDataBase"
+            android:label="База данных">
+             <intent-filter>
+                <action android:name="com.grsoft.ads.OPEN_DATA_BASE_SETTING"/>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+        <activity android:name="SettingGPS" 
+            android:label="Настройка GPS">
+            <intent-filter>
+                <action android:name="com.grsoft.ads.OPEN_GPS_SETTING"/>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+        <activity android:name="SettingSync"
+            android:label="Синхронизация в фоновом режиме">
+             <intent-filter>
+                <action android:name="com.grsoft.ads.OPEN_SYNC_SETTING"/>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+        <activity android:name="SettingUser" android:label="Настройки"/>
+        
+        <activity android:name="SettingNotifyEx"
+            android:label="Настройка уведомлений">
+             <intent-filter>
+                <action android:name="com.grsoft.ads.OPEN_NOTIFY_SETTING"/>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+        <activity android:name="Address"></activity>
+        
+        <receiver android:name="com.grsoft.util.SystemActionReciever" 
+ 			android:permission="android.permission.RECEIVE_BOOT_COMPLETED">
+ 		
+			<intent-filter>
+				<action android:name="android.location.PROVIDERS_CHANGED"/>
+				<action android:name="android.intent.action.TIME_SET"/>
+				<action android:name="android.intent.action.BOOT_COMPLETED"/>
+				<action android:name="android.intent.action.ACTION_SHUTDOWN"/>
+				<category android:name="android.intent.category.DEFAULT" />
+			</intent-filter>
+		</receiver>
+	<activity android:name="CalendarActivity"/>
+	<service android:name="com.grsoft.util.ReportService"/>
+    </application>
+
+</manifest>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bkgColor">
+
+    <ImageView
+        android:id="@+id/serviko_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="80dp"
+        android:src="@drawable/ic_logo" />
+
+    <TextView
+        android:id="@+id/phone_hint"
+        style="@style/PhoneText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/serviko_text"
+        android:layout_marginTop="80dp"
+        android:text="@string/type_from_sms" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/code"
+        app:boxStrokeColor="@color/white"
+        app:boxBackgroundColor="@color/transparent"
+        android:theme="@style/PhoneInputTheme"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/phone_hint"
+        android:layout_marginTop="0dp"
+        android:layout_marginLeft="@dimen/phone_margin"
+        android:layout_marginRight="@dimen/phone_margin"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:inputType="number"
+            android:imeOptions="actionDone"
+            android:fontFamily="@font/montserrat"
+            android:textColor="@color/white"
+            android:textSize="22sp">
+            <requestFocus />
+        </com.google.android.material.textfield.TextInputEditText>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/doButton"
+        style="@style/PhoneButton"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/code"
+        android:layout_marginLeft="@dimen/phone_margin"
+        android:layout_marginTop="24dp"
+        android:layout_marginRight="@dimen/phone_margin"
+        android:text="ОТПРАВИТЬ" />
+
+    <TextView
+        android:id="@+id/doButtonSecond"
+        style="@style/PhoneText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/doButton"
+        android:layout_marginTop="16dp"
+        android:text="@string/get_code_by_phone_u"
+        android:textSize="18sp" />
+</RelativeLayout>

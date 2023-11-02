@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+ 	android:background="#FFFFFF" 
+    android:orientation="vertical" >
+s
+	<LinearLayout
+		android:id="@+id/LinearLayout01"
+		android:orientation="vertical"
+		android:layout_width="match_parent"
+		style="?header"
+		>
+
+		<TextView
+			android:text="Остатки на борту"
+			android:id="@+id/tvOrgInfo"
+			style="?headerText"
+			android:textStyle="bold"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			/>
+	</LinearLayout>
+
+    <LinearLayout android:id="@+id/LinearLayout04"
+		android:layout_width="fill_parent" 
+		android:layout_height="wrap_content"
+		android:background="@color/black">
+		
+		<TextView android:id="@+id/NameTitle" 
+			android:layout_width="wrap_content" 
+			android:layout_height="wrap_content" 
+			android:textColor="#000000" 
+			android:layout_weight="1" 
+			android:text="Название" 
+			android:background="@color/table_caption" 
+			android:width="80dp" />
+			
+		<TextView android:id="@+id/SumColumnTitle" 
+			android:layout_width="wrap_content" 
+			android:layout_height="wrap_content" 
+			android:textColor="#000000"
+			android:minWidth="80dp" 
+			android:text="Количество" 
+			android:background="@color/table_caption" 
+			android:gravity="right" 
+
+			android:layout_marginLeft="1dp" 
+			android:paddingRight="3dp" />
+		
+		<TextView  
+			android:layout_width="wrap_content" 
+			android:layout_height="wrap_content" 
+			android:textColor="#000000"
+			android:minWidth="80dp" 
+			android:text="Сумма" 
+			android:background="@color/table_caption" 
+			android:gravity="right" 
+
+			android:layout_marginLeft="1dp" 
+			android:paddingRight="3dp" />
+	</LinearLayout>
+    
+    <ListView
+        android:id="@+id/lvItems"
+        android:layout_weight="1"
+        android:layout_width="fill_parent"
+        android:layout_height="0dip" >
+    </ListView>
+
+	<LinearLayout android:id="@+id/llTaskBar"
+		android:layout_width="fill_parent"
+		style="?footer" >
+		
+        <ImageButton
+                android:id="@+id/btnPrint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+			style="?footerButton"
+                android:contentDescription="@string/send"
+                android:src="@drawable/print" />
+        
+	    <ImageButton android:layout_width="wrap_content" 
+			android:layout_height="wrap_content" 
+			android:src="@drawable/send"
+			style="?footerButton"
+			android:visibility="invisible"
+			android:contentDescription="@string/send" 
+			android:id="@+id/btnSendDocList"
+			/>
+			
+		<TextView 
+		    android:layout_height="wrap_content" 
+			android:textColor="@color/black" 
+			android:layout_width="fill_parent" 
+			android:layout_gravity="center_vertical" 
+			android:gravity="right"
+			style="?footerText"
+			android:id="@+id/tvTotalSum"/>
+	</LinearLayout>
+</LinearLayout>

@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+    <modify src="Price">
+      <add>
+        <field name="d1" type="date" />
+        <field name="d2" type="date" />
+        <field name="f1" type="string" />
+        <field name="f2" type="string" />
+        <field name="f3" type="string" />
+        <field name="f4" type="string" />
+        <field name="godn" type="string" />
+        <field name="mp" type="string" />
+        <field name="tu" type="string" />
+        <field name="sert" type="string" />
+      </add>
+    </modify>
+	</objects>
+</serverDefs>

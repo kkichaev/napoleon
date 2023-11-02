@@ -1,0 +1,165 @@
+﻿<RibbonWindow 
+    x:Class="Napoleon.RetDocsJournalWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:Napoleon"
+    mc:Ignorable="d"
+    Title="Журнал заявок на возврат" 
+    Height="600" Width="1001"
+    Loaded="RibbonWindow_Loaded"
+    Icon="Images\napoleon.ico">
+
+    <RibbonWindow.CommandBindings>
+        <CommandBinding Command="{x:Static local:NapoleonCommands.Refresh}" Executed="RefreshExecuted"/>
+    </RibbonWindow.CommandBindings>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="727*"/>
+            <ColumnDefinition Width="20*"/>
+            <ColumnDefinition Width="96*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.ColumnSpan="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="237*"/>
+                <ColumnDefinition Width="31*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="20"/>
+            </Grid.RowDefinitions>
+
+            <Ribbon Grid.Row="0" SelectedIndex="0" Grid.ColumnSpan="2" VerticalContentAlignment="Stretch">
+                <Ribbon.ApplicationMenu>
+                    <RibbonApplicationMenu Visibility="Collapsed"/>
+                </Ribbon.ApplicationMenu>
+
+                <RibbonTab 
+                    Header="Управление" 
+                    KeyTip="H" VerticalContentAlignment="Stretch">
+
+                    <RibbonGroup>
+                        <RibbonButton
+                            Margin="0,15,0,0"
+                            x:Name="btnRefresh" 
+                            LargeImageSource="Images\refresh.png" 
+                            Label="Обновить" 
+                            KeyTip="F5" 
+                            Command="local:NapoleonCommands.Refresh"
+                            ToolTipTitle ="Обновить (F5)"
+                            ToolTipDescription="Загрузить данные с сервера"/>
+                    </RibbonGroup>
+
+                    <RibbonGroup>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Grid.Column="0"   Content="Дата" FontSize="10"/>
+                            <DatePicker Grid.Column="1"  x:Name="datePicker" SelectedDateChanged="DatePicker_SelectedDateChanged"/>
+                        </Grid>
+                    </RibbonGroup>
+
+                    <RibbonGroup>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Grid.Column="0"   Content="Поиск" FontSize="10"/>
+                            <TextBox Grid.Column="1"  x:Name="tbSearch" Width="200" TextChanged="TbSearch_TextChanged"/>
+                            <RibbonButton
+                                Grid.Column="2"
+                                x:Name="btnSearchClear" 
+                                SmallImageSource="Images\clear.png" 
+                                Click="BtnSearchClear_Click"
+                                ToolTip ="Очисить поиск"/>
+                        </Grid>
+                    </RibbonGroup>
+                    <RibbonGroup Margin="0" HorizontalAlignment="Stretch" VerticalContentAlignment="Stretch">
+                        <ListBox x:Name="lbFirms" Margin="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MinWidth="150" MinHeight="70">
+                            <ListBox.ItemTemplate>
+                                <HierarchicalDataTemplate>
+                                    <CheckBox Content="{Binding Name}" IsChecked="{Binding IsChecked}"/>
+                                </HierarchicalDataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </RibbonGroup>
+                </RibbonTab>
+            </Ribbon>
+
+            <Grid Grid.Row="1" x:Name="progressLayout" Visibility="Hidden" Grid.ColumnSpan="2">
+                <ProgressBar  x:Name="progress" Height="30" IsIndeterminate="True"/>
+                <TextBlock Text="Идет сохранение..." HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>
+
+            <DataGrid 
+                x:Name="grid" 
+                AutoGenerateColumns="False" 
+                Grid.Row="2"
+                CanUserAddRows="False" Grid.ColumnSpan="2">
+
+                <DataGrid.Resources>
+                    <Style TargetType="DataGridRow">
+                        <EventSetter Event="MouseDoubleClick" Handler="Row_DoubleClick"/>
+                        <Setter Property="Background" Value="{Binding BkColor}"/>
+                    </Style>
+                    <DataGridLength x:Key="WeekColmnWidth">24</DataGridLength>
+                </DataGrid.Resources>
+                <DataGrid.ContextMenu>
+                    <RibbonContextMenu>
+                        <MenuItem Header="Удалить" Command="{Binding}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
+                    </RibbonContextMenu>
+                </DataGrid.ContextMenu>
+
+                <DataGrid.ColumnHeaderStyle>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="ContentTemplate">
+                            <Setter.Value>
+                                <DataTemplate>
+                                    <TextBlock TextWrapping="Wrap" Text="{Binding}"></TextBlock>
+                                </DataTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </DataGrid.ColumnHeaderStyle>
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Дата" x:Name="Column1"  Binding="{Binding Created, StringFormat=\{0:dd.MM.yy HH:mm\}}" Width="80" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Наименование" x:Name="Column3" Binding="{Binding FullName}" Width="*" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Адрес" x:Name="Column4" Binding="{Binding OrgAddr}" Width="*" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Сумма" x:Name="Column5" Binding="{Binding Sum}" Width="60" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Код ТП" x:Name="Column6" Binding="{Binding UserID}" Width="60" IsReadOnly="True"/>
+                    <DataGridCheckBoxColumn Header="УПП" x:Name="Column7" Binding="{Binding UPP}" Width="50" IsReadOnly="True"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <StackPanel 
+                Grid.Row="3"  
+                HorizontalAlignment="Left" 
+                Orientation="Horizontal">
+
+                <Grid Width="{Binding ElementName=Column1,Path=ActualWidth}">
+                    <TextBlock Margin="10,0,0,0" Text=""></TextBlock>
+                </Grid>
+                <Grid Width="{Binding ElementName=Column2,Path=ActualWidth}">
+                    <TextBlock Text="" Margin="10,0,0,0"></TextBlock>
+                </Grid>
+                <Grid Width="{Binding ElementName=Column3,Path=ActualWidth}">
+                    <TextBlock Text="" Margin="10,0,0,0"></TextBlock>
+                </Grid>
+                <Grid Width="{Binding ElementName=Column4,Path=ActualWidth}">
+                    <TextBlock Text="" Margin="10,0,0,0"></TextBlock>
+                </Grid>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</RibbonWindow>

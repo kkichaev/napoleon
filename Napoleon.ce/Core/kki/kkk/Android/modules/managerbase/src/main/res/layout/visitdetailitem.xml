@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/list_selector"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <ImageView 
+	    android:id="@+id/ivPic"
+	    android:layout_gravity="center"
+	    android:layout_width="@dimen/story_tape_pic_size_h"
+	    android:layout_height="@dimen/story_tape_pic_size_v"
+	    android:src="@drawable/ic_assignment_black">
+	
+	</ImageView>
+
+</LinearLayout>

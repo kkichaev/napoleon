@@ -1,0 +1,23 @@
+package com.grsoft.database;
+
+import com.grsoft.dataobjects.OrderProceeded;
+import com.grsoft.dataobjects.OrderProceededEx;
+
+
+public class PODHitchingEx extends PODHitching {
+	
+	@Override
+	protected ProceededDocHandler createHandler() {
+		return new Handler();
+	}
+}
+
+class Handler extends ProceededDocHandler {
+	@Override
+	public void handle(OrderProceeded proceeded, int param) {
+		
+		if(((OrderProceededEx)proceeded).approved == 1)
+			param |= OrderProceededEx.APPROVED;
+		super.handle(proceeded, param);
+	}
+}

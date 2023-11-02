@@ -1,0 +1,74 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+   <objects>
+      <object name="Order">
+         <sources>
+            <source name="DBFCatalogTable">
+               <param name="tableName">$object.table + $user.id</param>
+               <param name="catalog">"id"</param>
+               <param name="ordered">1</param>
+            </source>
+            <source name="SQTable" type="internal" />
+         </sources>
+
+         <member name="table">"ORD"</member>
+         <member name="primaryKey">"userid,created"</member>
+
+         <field name="userid" type="string" data="USERID" execOn="Put">$user.id</field>
+         <field name="created" type="timestamp" data="CREATED"/>
+         <field name="sended" type="timestamp" data="S_DATE" execOn="Put">Now()</field>
+         <field name="sdate" type="date" execOn="Put">Now()</field>
+         <field name="stime" type="time" execOn="Put">Now()</field>
+         <field name="wdate" type="date" execOn="Put">$object.created</field>
+         <field name="wtime" type="time" execOn="Put">$object.created</field>
+
+         <field name="date" type="date" data="Дата" />
+         <field name="id" width="20" type="string" data="ИНН" />
+         <field name="logistic" type="string" data="Логист" width="100" />
+         <field name="fcontrol" type="string" data="Финконт" width="100" />
+         <field name="collectNum" type="string" data="НомТТН" width="20" />
+         <field name="collectSum" type="number" prec="2" data="ИСумма" />
+         <field name="remark" type="string" width="100" data="Прим" />
+         <field name="sert" width="1" type="string" data="Серт" execOn="Put">DecodeFlag($object.params, 4, "", "1")</field>
+         <field name="dats" width="1" type="string" data="Даты" execOn="Put">DecodeFlag($object.params, 16, "", "1")</field>
+         <field name="qual" width="1" type="string" data="Качеств" execOn="Put">DecodeFlag($object.params, 8, "", "1")</field>
+         <field name="payBefore" width="1" type="string" data="ОплСнач" execOn="Put">DecodeFlag($object.params, 32, "", "1")</field>
+         <field name="fact" width="1" type="string" data="НалФакт" execOn="Put">DecodeFlag($object.params, 64, "", "1")</field>
+         <field name="items" type="collection">
+            <data>
+               <object name="OrderItem">
+                  <sources>
+                     <source name="DBFCatalogItemTable"/>
+                     <source name="SQTable" type="internal" />
+                  </sources>
+
+                  <field name="whNumber" type="number" prec="0" data="Склад" execOn="Put">AgentWH()</field>
+                  <field name="id" width="20" type="string" data="НомНомер"/>
+                  <field name="qty" type="number" prec="3" data="Кол_во" />
+                  <field name="cost" type="number" prec="2" />
+                  <field name="sum" type="number" prec="2" data="СуммаЦен" execOn="Put">$object.qty * $object.cost</field>
+                  <field name="ordflag" width="1" type="number" data="ТабНомер" execOn="Put">FirstItem($object)</field>
+               </object>
+            </data>
+         </field>
+
+         <field name="latitude" type="number" prec="4" />
+         <field name="longitude" type="number" prec="4" />
+
+         <events>
+            <event type="put">
+               <!--<action name="WriteOrder" /> !-->
+               <action name="RunBat" />
+               <action name="WriteInternal">$object.type</action>
+               <action name="WriteToLog">$object.type;$object.created</action>
+            </event>
+         </events>
+      </object>
+
+      <modify src="Org">
+         <change>
+            <field name="address" type="string" data="ADR" />
+         </change>
+      </modify>
+   </objects>
+</serverDefs>

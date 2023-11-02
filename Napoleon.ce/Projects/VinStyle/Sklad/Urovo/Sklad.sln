@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Sklad", "Sklad.vcproj", "{CC426823-99B8-480B-A272-52F87C97B3B1}"
+	ProjectSection(ProjectDependencies) = postProject
+		{2A3F108E-27F7-474D-872C-A28080056765} = {2A3F108E-27F7-474D-872C-A28080056765}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NplDb", "NplDb.vcproj", "{2A3F108E-27F7-474D-872C-A28080056765}"
+EndProject
+Project("{B900F1C2-3D47-4FEC-85B3-04AAF18C3634}") = "SkladCab", "SkladCab.vddproj", "{8F1A7709-6D90-4A57-87A4-88CC094B7F8C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Motorola MC3100c60 Windows CE6.0 PSDK (ARMV4I) = Debug|Motorola MC3100c60 Windows CE6.0 PSDK (ARMV4I)
+		Release|Motorola MC3100c60 Windows CE6.0 PSDK (ARMV4I) = Release|Motorola MC3100c60 Windows CE6.0 PSDK (ARMV4I)
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CC426823-99B8-480B-A272-52F87C97B3B1}.Debug|Motorola MC3100c60 Windows CE6.0 PSDK (ARMV4I).ActiveCfg = Debug|Motorola MC3100c60 Windows CE6.0 PSDK (ARMV4I)
+		{CC426823-99B8-480B-A272-52F87C97B3B1}.Debug|Motorola MC3100c60 Windows CE6.0 PSDK (ARMV4I).Build.0 = Debug|Motorola MC3100c60 Windows CE6.0 PSDK (ARMV4I)
+		{CC426823-99B8-480B-A272-52F87C97B3B1}.Debug|Motorola MC3100c60 Windows CE6.0 PSDK (ARMV4I).Deploy.0 = Debug|Motorola MC3100c60 Windows CE6.0 PSDK (ARMV4I)
+		{CC426823-99B8-480B-A272-52F87C97B3B1}.Release|Motorola MC3100c60 Windows CE6.0 PSDK (ARMV4I).ActiveCfg = Release|Motorola MC3100c60 Windows CE6.0 PSDK (ARMV4I)
+		{CC426823-99B8-480B-A272-52F87C97B3B1}.Release|Motorola MC3100c60 Windows CE6.0 PSDK (ARMV4I).Build.0 = Release|Motorola MC3100c60 Windows CE6.0 PSDK (ARMV4I)
+		{CC426823-99B8-480B-A272-52F87C97B3B1}.Release|Motorola MC3100c60 Windows CE6.0 PSDK (ARMV4I).Deploy.0 = Release|Motorola MC3100c60 Windows CE6.0 PSDK (ARMV4I)
+		{2A3F108E-27F7-474D-872C-A28080056765}.Debug|Motorola MC3100c60 Windows CE6.0 PSDK (ARMV4I).ActiveCfg = Debug|Motorola MC3100c60 Windows CE6.0 PSDK (ARMV4I)
+		{2A3F108E-27F7-474D-872C-A28080056765}.Debug|Motorola MC3100c60 Windows CE6.0 PSDK (ARMV4I).Build.0 = Debug|Motorola MC3100c60 Windows CE6.0 PSDK (ARMV4I)
+		{2A3F108E-27F7-474D-872C-A28080056765}.Debug|Motorola MC3100c60 Windows CE6.0 PSDK (ARMV4I).Deploy.0 = Debug|Motorola MC3100c60 Windows CE6.0 PSDK (ARMV4I)
+		{2A3F108E-27F7-474D-872C-A28080056765}.Release|Motorola MC3100c60 Windows CE6.0 PSDK (ARMV4I).ActiveCfg = Release|Motorola MC3100c60 Windows CE6.0 PSDK (ARMV4I)
+		{2A3F108E-27F7-474D-872C-A28080056765}.Release|Motorola MC3100c60 Windows CE6.0 PSDK (ARMV4I).Build.0 = Release|Motorola MC3100c60 Windows CE6.0 PSDK (ARMV4I)
+		{2A3F108E-27F7-474D-872C-A28080056765}.Release|Motorola MC3100c60 Windows CE6.0 PSDK (ARMV4I).Deploy.0 = Release|Motorola MC3100c60 Windows CE6.0 PSDK (ARMV4I)
+		{8F1A7709-6D90-4A57-87A4-88CC094B7F8C}.Debug|Motorola MC3100c60 Windows CE6.0 PSDK (ARMV4I).ActiveCfg = Debug
+		{8F1A7709-6D90-4A57-87A4-88CC094B7F8C}.Release|Motorola MC3100c60 Windows CE6.0 PSDK (ARMV4I).ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

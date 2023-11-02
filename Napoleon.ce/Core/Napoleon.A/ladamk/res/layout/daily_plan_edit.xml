@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/LinearLayout01"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:background="@color/footer"
+        android:paddingBottom="10dp"
+        android:orientation="vertical" 
+        android:paddingTop="5dp" >
+
+        <TextView
+            android:id="@+id/tvOrg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scrollHorizontally="true"
+            android:text="OrgName"
+            android:textColor="@color/black"
+            android:paddingLeft="5dp"
+            android:textSize="18sp"
+            tools:ignore="HardcodedText" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+			
+			<TextView
+	            android:id="@+id/tvPlanDate"
+	            android:layout_width="0dip"
+	            android:layout_height="wrap_content"
+	            tools:ignore="HardcodedText"
+	            android:paddingLeft="5dp"
+	            android:textSize="16sp"
+	            android:layout_weight="1"
+	            android:text="план на: 10/08/2018" />
+
+			<TextView
+			    android:id="@+id/textView1"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+	            tools:ignore="HardcodedText"
+	            android:gravity="center_horizontal"
+	            android:paddingLeft="5dp"
+	            android:textSize="16sp"
+	            android:width="80dp"
+			    android:text="План" />
+
+			<TextView
+			    android:id="@+id/textView2"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+	            tools:ignore="HardcodedText"
+	            android:gravity="center_horizontal"
+	            android:paddingLeft="5dp"
+	            android:textSize="16sp"
+	            android:width="80dp"
+			    android:text="Факт" />
+            
+        </LinearLayout>
+
+    </LinearLayout>
+    
+    <ListView
+        android:id="@+id/lvItems"
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1" 
+        >
+    </ListView>
+
+</LinearLayout>

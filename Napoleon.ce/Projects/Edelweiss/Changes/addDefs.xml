@@ -1,0 +1,41 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+	    <modify src="Org">
+	        <add>
+	            <field name="delay" type="number" width="5" />
+	            <field name="wrkTime" type="string" width="50" />
+	            <field name="balance" type="number" prec="2" />
+	    	</add>
+	    </modify>
+	    <modify src="Order">
+	        <add>
+	            <field name="payType" type="string" width="30" />
+         		<field name="id" width="50" type="string" />
+         		<field name="costCode" width="30" type="string" />
+         	</add>
+	    </modify>
+	   	<modify src="Incass">
+	        <add>
+	            <field name="payType" type="string" width="30" />
+         		<field name="id" width="50" type="string" />
+	        </add>
+	    </modify>
+	    <modify src="Delivery">
+	        <add>
+	            <field name="payType" type="string" width="30" />
+	            <field name="payDate" type="date" />
+	        </add>
+	    </modify>
+	    <modify src="Payment">
+	        <add>
+	            <field name="payType" type="string" width="30" />
+	    	</add>
+	    </modify>
+		<modify src="OrgFolder$items">
+			<change>
+				<field name="name" type="string" data="id" width="50"/>
+			</change>
+		</modify>
+	</objects>
+</serverDefs>

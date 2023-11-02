@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" 
+    android:background="@color/white">
+    
+    <ListView android:id="@+id/list"
+      android:layout_width="fill_parent"
+      android:layout_height="0dip"
+      android:layout_weight="1"/>
+    
+    <LinearLayout
+      android:id="@+id/linearLayout1"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:background="@color/footer"
+      android:padding="7dp" >
+  
+      <ImageButton
+          android:id="@+id/btnAdd"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginRight="7dp"
+          android:src="@drawable/new_order"/>
+      
+      <ImageButton
+          android:id="@+id/btnSend"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginRight="7dp"
+          android:src="@drawable/send"/>
+  
+      <TextView
+          android:id="@+id/tvDate"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center_vertical"
+          android:gravity="right"
+          android:paddingRight="3dp"
+          android:text="@string/date"
+          android:textColor="@color/black"
+          android:textSize="20sp" />
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,29 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+    <object name="OrgMatrix">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"OMX"</param>
+          <param name="commonTable">"ORGMTX"</param>
+          <param name="catalog">"name;items;0"</param>
+        </source>
+      </sources>
+      <field name="items" type="collection">
+        <data>
+          <object name="MatrixItem">
+            <field name="id" type="string" width="20" />
+            <field name="cost" type="number" prec="2" />
+          </object>
+        </data>
+      </field>
+      <field name="name" type="string" width="30" />
+    </object>
+
+    <modify src="Org">
+      <add>
+        <field name="matrix" type="string" />
+      </add>
+    </modify>
+  </objects>
+</serverDefs>

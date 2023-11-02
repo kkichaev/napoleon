@@ -1,0 +1,102 @@
+<object name="" TreasuryVersion="1">
+   <Album>True</Album><object name="Label34"><FontSize>7</FontSize><TextAlign>TopRight</TextAlign><Size>443, 36</Size><Text>Валюта: руб.</Text><Location>2726, 1019</Location></object>
+   <object name="Table1">
+      <FontSize>8</FontSize>
+      <TableWidth>
+         <Item0>1506</Item0>
+         <Item1>1899</Item1>
+         <Item2>2143</Item2>
+         <Item3>2285</Item3>
+         <Item4>2611</Item4>
+      </TableWidth>
+      <Size>2612, 37</Size>
+      <Text>Table2</Text>
+      <Rows>
+         <Cells0>
+            <Item0>0,1,1,"Всего, к оплате",MiddleLeft</Item0>
+            <Item1>1,1,1,"`sumwtax`",</Item1>
+            <Item2>2,1,1,"",</Item2>
+            <Item3>3,1,1,"`sumtax`",</Item3>
+            <Item4>4,1,1,"`sum`",</Item4>
+         </Cells0>
+      </Rows>
+      <Location>40, 1934</Location>
+      <TableHeight>
+         <Item0>36</Item0>
+      </TableHeight>
+      
+   </object><object name="Label1"><FontSize>9</FontSize><TextAlign>MiddleCenter</TextAlign><Size>1814, 149</Size><Text>`Наименование`, `Адрес`, тел. `Телефон`, `Банк`</Text><Location>39, 129</Location></object><object name="Label2"><FontSize>6</FontSize><TextAlign>MiddleRight</TextAlign><Size>738, 34</Size><Text>Отпечатано в системе НАПОЛЕОН, www.grsoft.ru</Text><Location>2442, 2348</Location></object><object name="Label3"><FontSize>8</FontSize><TextAlign>MiddleLeft</TextAlign><Size>1210, 78</Size><Text>`ИПРекв`</Text><Location>1968, 2188</Location></object>
+   <object name="Label4">
+   	<FontSize>8</FontSize>
+   	<TextAlign>LeftTop</TextAlign>
+   	<Size>512, 130</Size><Text>Руководитель организации (Индивидуальный предприниматель)</Text>
+   	<Location>42, 2065</Location>
+   </object>
+   <object name="Table2">
+      <FontSize>8</FontSize>
+      <TableWidth>
+         <Item0>963</Item0>
+         <Item1>1073</Item1>
+         <Item2>1199</Item2>
+         <Item3>1506</Item3>
+         <Item4>1899</Item4>
+         <Item5>2036</Item5>
+         <Item6>2143</Item6>
+         <Item7>2282</Item7>
+         <Item8>2609</Item8>
+         <Item9>2856</Item9>
+         <Item10>3128</Item10>
+      </TableWidth>
+      <Size>3129, 875</Size>
+      <Text>Table1</Text>
+      <VariableRow>2</VariableRow>
+      <Rows>
+         <Cells0>
+            <Item0>0,1,1,"Наименование товара (описание выполненных работ, оказанных услуг), имущественное право",</Item0>
+            <Item1>1,1,1,"Ед. изм.",</Item1>
+            <Item2>2,1,1,"Кол-во",</Item2>
+            <Item3>3,1,1,"Цена (тариф) за единицу измерения",</Item3>
+            <Item4>4,1,1,"Стоимость товаров (работ, услуг), имущ. прав, всего без налога",</Item4>
+            <Item5>5,1,1,"В том числе акциз",</Item5>
+            <Item6>6,1,1,"Нал. став.",</Item6>
+            <Item7>7,1,1,"Сумма налога",</Item7>
+            <Item8>8,1,1,"Стоимость товаров (работ, услуг), имущ. прав, всего с учётом налога",</Item8>
+            <Item9>9,1,1,"Страна происхождения",</Item9>
+            <Item10>10,1,1,"Номер таможенной декларации",</Item10>
+         </Cells0>
+         <Cells1>
+            <Item0>0,1,1,"1",</Item0>
+            <Item1>1,1,1,"2",</Item1>
+            <Item2>2,1,1,"3",</Item2>
+            <Item3>3,1,1,"4",</Item3>
+            <Item4>4,1,1,"5",</Item4>
+            <Item5>5,1,1,"6",</Item5>
+            <Item6>6,1,1,"7",</Item6>
+            <Item7>7,1,1,"8",</Item7>
+            <Item8>8,1,1,"9",</Item8>
+            <Item9>9,1,1,"10",</Item9>
+            <Item10>10,1,1,"11",</Item10>
+         </Cells1>
+         <Cells2>
+            <Item0>0,1,1,"`name`",MiddleLeft</Item0>
+            <Item1>1,1,1,"`unit`",</Item1>
+            <Item2>2,1,1,"`qty`",</Item2>
+            <Item3>3,1,1,"`cost`",</Item3>
+            <Item4>4,1,1,"`sumwtax`",</Item4>
+            <Item5>5,1,1,"",</Item5>
+            <Item6>6,1,1,"`tax`",</Item6>
+            <Item7>7,1,1,"`sumtax`",</Item7>
+            <Item8>8,1,1,"`sum`",</Item8>
+            <Item9>9,1,1,"`country`",</Item9>
+            <Item10>10,1,1,"`ntd`",</Item10>
+         </Cells2>
+      </Rows>
+      <Object>items</Object>
+      <Location>42, 1058</Location>
+      <TableHeight>
+         <Item0>185</Item0>
+         <Item1>227</Item1>
+         <Item2>874</Item2>
+      </TableHeight>
+      
+   </object><object name="Label5"><FontSize>9</FontSize><TextAlign>MiddleLeft</TextAlign><Size>1942, 40</Size><Text>`inn`</Text><Location>660, 974</Location></object><object name="Label6"><FontSize>9</FontSize><TextAlign>TopLeft</TextAlign><Size>2682, 40</Size><Text>`address`</Text><Location>432, 904</Location></object><object name="Label7"><FontSize>9</FontSize><TextAlign>TopLeft</TextAlign><Size>2682, 40</Size><Text>`name`</Text><Location>432, 838</Location></object><object name="Label8"><FontSize>9</FontSize><TextAlign>MiddleLeft</TextAlign><Size>958, 40</Size><Text>`date`</Text><Location>1016, 770</Location></object><object name="Label9"><FontSize>9</FontSize><TextAlign>MiddleLeft</TextAlign><Size>203, 40</Size><Text>`number`</Text><Location>724, 770</Location></object><object name="Label10"><FontSize>9</FontSize><TextAlign>MiddleLeft</TextAlign><Size>2454, 40</Size><Text>`name` `address`</Text><Location>660, 700</Location></object><object name="Label11"><FontSize>9</FontSize><TextAlign>TopLeft</TextAlign><Size>2454, 40</Size><Text>`Наименование` `Адрес`</Text><Location>660, 630</Location></object><object name="Label12"><FontSize>9</FontSize><TextAlign>MiddleLeft</TextAlign><Size>1844, 40</Size><Text>`ИНН`</Text><Location>432, 560</Location></object><object name="Label13"><FontSize>9</FontSize><TextAlign>MiddleLeft</TextAlign><Size>2682, 40</Size><Text>`Адрес`</Text><Location>432, 490</Location></object><object name="Label14"><FontSize>9</FontSize><TextAlign>MiddleLeft</TextAlign><Size>2685, 39</Size><Text>`Наименование`</Text><Location>429, 419</Location></object><object name="Label15"><FontSize>9</FontSize><TextAlign>MiddleLeft</TextAlign><Size>343, 40</Size><Text>`date`</Text><Location>786, 333</Location></object><object name="Label16"><FontSize>9</FontSize><TextAlign>MiddleLeft</TextAlign><Size>253, 40</Size><Text>`number`</Text><Location>432, 333</Location></object><object name="Label17"><FontSize>8</FontSize><TextAlign>MiddleRight</TextAlign><Size>1184, 34</Size><Text>№ 189, от 27.07.2002 № 575, от 16.02.2004 № 84, от 11.05.2006 № 283</Text><Location>1954, 174</Location></object><object name="Label18"><FontSize>8</FontSize><TextAlign>MiddleRight</TextAlign><Size>934, 34</Size><Text>( в ред. Постановлений Правительства РФ от 15.03.2001</Text><Location>2209, 134</Location></object><object name="Label19"><FontSize>8</FontSize><TextAlign>MiddleRight</TextAlign><Size>1334, 34</Size><Text>книг покупок и книг продаж при расчётах по налогу на добавленную стоимость</Text><Location>1804, 94</Location></object><object name="Label20"><FontSize>8</FontSize><TextAlign>MiddleRight</TextAlign><Size>1809, 34</Size><Text>Приложение № 1 к Правилам ведения журналов учёта полученных и выставленных счетов - фактур</Text><Location>1329, 54</Location></object><object name="Label21"><FontSize>8</FontSize><TextAlign>MiddleLeft</TextAlign><Size>216, 40</Size><Text>Адрес</Text><Location>42, 905</Location></object><object name="Label22"><FontSize>8</FontSize><TextAlign>MiddleLeft</TextAlign><Size>250, 40</Size><Text>Покупатель</Text><Location>42, 838</Location></object><object name="Label23"><FontSize>8</FontSize><TextAlign>MiddleLeft</TextAlign><Size>63, 40</Size><Text>от</Text><Location>933, 770</Location></object><object name="Label24"><FontSize>8</FontSize><TextAlign>MiddleLeft</TextAlign><Size>643, 40</Size><Text>К платёжно-расчётному документу №</Text><Location>42, 770</Location></object><object name="Label25"><FontSize>8</FontSize><TextAlign>MiddleLeft</TextAlign><Size>518, 40</Size><Text>Грузополучатель и его адрес</Text><Location>42, 700</Location></object><object name="Label26"><FontSize>8</FontSize><TextAlign>MiddleLeft</TextAlign><Size>541, 40</Size><Text>Грузоотправитель и его адрес</Text><Location>42, 630</Location></object><object name="Label27"><FontSize>8</FontSize><TextAlign>MiddleLeft</TextAlign><Size>352, 40</Size><Text>ИНН/КПП продавца</Text><Location>42, 561</Location></object><object name="Label28"><FontSize>8</FontSize><TextAlign>MiddleLeft</TextAlign><Size>176, 40</Size><Text>Адрес</Text><Location>42, 490</Location></object><object name="Label29"><FontSize>8</FontSize><TextAlign>MiddleLeft</TextAlign><Size>234, 40</Size><Text>Продавец</Text><Location>42, 421</Location></object><object name="Label30"><FontSize>8</FontSize><TextAlign>MiddleLeft</TextAlign><Size>57, 40</Size><Text>от</Text><Location>709, 333</Location></object><object name="Label31"><FontSize>9</FontSize><TextAlign>MiddleLeft</TextAlign><Size>373, 40</Size><Text>СЧЁТ-ФАКТУРА №</Text><Location>42, 333</Location></object><object name="Label32"><FontSize>8</FontSize><TextAlign>MiddleLeft</TextAlign><Size>374, 40</Size><Text>Главный бухгалтер</Text><Location>1709, 2085</Location></object><object name="Label33"><FontSize>8</FontSize><TextAlign>MiddleLeft</TextAlign><Size>470, 40</Size><Text>ИНН/КПП покупателя</Text><Location>42, 974</Location></object><object name="Line1"><LineText>реквизиты свидетельства о государственной регистрации индивидуального предпринимателя</LineText><Horizontal>True</Horizontal><Size>1238, 28</Size><Location>1940, 2268</Location></object><object name="Line3"><LineText>ф.и.о.</LineText><Horizontal>True</Horizontal><Size>636, 24</Size><Location>2538, 2124</Location></object><object name="Line5"><Horizontal>True</Horizontal><Size>215, 8</Size><Location>717, 809</Location></object><object name="Line7"><Horizontal>True</Horizontal><Size>364, 8</Size><Location>776, 372</Location></object><object name="Line9"><Horizontal>True</Horizontal><Size>283, 23</Size><Location>416, 372</Location></object><object name="Line11"><Horizontal>True</Horizontal><Size>2729, 14</Size><Location>416, 600</Location></object><object name="Line13"><Horizontal>True</Horizontal><Size>2520, 20</Size><Location>652, 1012</Location></object><object name="Line15"><LineText>ф.и.о.</LineText><Horizontal>True</Horizontal><Size>629, 49</Size><Location>1005, 2124</Location></object><object name="Line17"><Horizontal>True</Horizontal><Size>2731, 20</Size><Location>414, 529</Location></object><object name="Line2"><LineText>подпись</LineText><Horizontal>True</Horizontal><Size>424, 20</Size><Location>558, 2124</Location></object><object name="Line6"><Horizontal>True</Horizontal><Size>2756, 20</Size><Location>416, 876</Location></object><object name="Line10"><Horizontal>True</Horizontal><Size>2490, 12</Size><Location>652, 738</Location></object><object name="Line14"><Horizontal>True</Horizontal><Size>2168, 20</Size><Location>1004, 808</Location></object><object name="Line4"><Horizontal>True</Horizontal><Size>2728, 20</Size><Location>416, 460</Location></object><object name="Line12"><Horizontal>True</Horizontal><Size>2756, 20</Size><Location>416, 944</Location></object><object name="Line8"><LineText>подпись</LineText><Horizontal>True</Horizontal><Size>418, 49</Size><Location>2082, 2124</Location></object><object name="Line16"><Horizontal>True</Horizontal><Size>2490, 20</Size><Location>652, 668</Location></object></object>

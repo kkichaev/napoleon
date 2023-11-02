@@ -1,0 +1,17 @@
+SECRET_KEY=the_secret_key!*&^%
+DB_URI=postgresql://postgres:1@localhost:5432/postgres
+
+MAIL_SERVER=smtp.yandex.ru
+MAIL_PORT=465
+MAIL_USE_SSL=1
+MAIL_USERNAME=noreply@grsoft.ru
+MAIL_PASSWORD=NoRpl@3$
+MAIL_FROM=noreply@grsoft.ru
+
+GRS_FCGI_HOST=localhost
+GRS_FCGI_PORT=9500
+
+WEB_APP_PORT=9000
+GRS_PAGE_PREFIX=grs
+GRS_CMD_SOCK=/tmp/grs_cmd.sock
+RUST_BACKTRACE=1

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="taskCounterTextView" parent="@android:style/Widget.TextView">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:text">55</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/widget_oval_stroke</item>
+        <item name="android:minWidth">22dip</item>
+        <item name="android:background">@drawable/widget_oval</item>
+        <item name="android:padding">3dip</item>
+    </style>
+    
+    <style name="Napoleon" parent="android:Theme.Holo.Light">
+    	<item name="android:imageButtonStyle">@android:style/Widget.ImageButton</item>
+    	<item name="android:buttonStyle">@android:style/Widget.Button</item>         
+    </style>
+    
+
+</resources>

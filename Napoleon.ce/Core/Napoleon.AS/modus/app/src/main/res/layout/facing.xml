@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/tvOrgName"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:layout_weight="0"
+        android:background="@color/white"
+        android:lines="2"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:paddingTop="10dp"
+        android:text="@string/organization"
+        android:textColor="#000000" />
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:fillViewport="true" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/facing_doc_title"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/edCount"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="numberDecimal"
+                tools:ignore="NestedWeights" >
+            </EditText>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/remark"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/edRemark"
+                android:layout_width="fill_parent"
+                android:layout_height="0dip"
+                android:layout_weight="1"
+                android:gravity="top|left"
+                android:minLines="1"
+                android:text="" />
+
+            <LinearLayout
+                android:id="@+id/llKeyboard"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/blue" >
+
+                <TableLayout
+                    android:id="@+id/tableLayout1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginTop="2dp"
+                    android:background="@color/white"
+                    android:shrinkColumns="*"
+                    android:stretchColumns="*" >
+
+                    <TableRow
+                        android:id="@+id/tableRow1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <ImageButton
+                            android:id="@+id/btn1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="@string/digit"
+                            android:src="@drawable/k1"
+                            android:tag="1" />
+
+                        <ImageButton
+                            android:id="@+id/btn2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="@string/digit"
+                            android:src="@drawable/k2"
+                            android:tag="2" />
+
+                        <ImageButton
+                            android:id="@+id/btn3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="@string/digit"
+                            android:src="@drawable/k3"
+                            android:tag="3" />
+
+                        <ImageButton
+                            android:id="@+id/btn4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="@string/digit"
+                            android:src="@drawable/k4"
+                            android:tag="4" />
+
+                        <ImageButton
+                            android:id="@+id/btn5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="@string/digit"
+                            android:src="@drawable/k5"
+                            android:tag="5" />
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/tableRow2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <ImageButton
+                            android:id="@+id/btn6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="@string/digit"
+                            android:src="@drawable/k6"
+                            android:tag="6" />
+
+                        <ImageButton
+                            android:id="@+id/btn7"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="@string/digit"
+                            android:src="@drawable/k7"
+                            android:tag="7" />
+
+                        <ImageButton
+                            android:id="@+id/btn8"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="@string/digit"
+                            android:src="@drawable/k8"
+                            android:tag="8" />
+
+                        <ImageButton
+                            android:id="@+id/btn9"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="@string/digit"
+                            android:src="@drawable/k9"
+                            android:tag="9" />
+
+                        <ImageButton
+                            android:id="@+id/btn0"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="@string/digit"
+                            android:src="@drawable/k0"
+                            android:tag="0" />
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/tableRow3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <ImageButton
+                            android:id="@+id/btnDel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="@string/digit"
+                            android:src="@drawable/del"
+                            android:tag="7" />
+
+                        <ImageButton
+                            android:id="@+id/btnComma"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="@string/digit"
+                            android:src="@drawable/zap"
+                            android:tag="," />
+
+                        <ImageButton
+                            android:id="@+id/btnOK"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_span="3"
+                            android:contentDescription="@string/ok"
+                            android:src="@drawable/ok" />
+                    </TableRow>
+                </TableLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        style="?footer"
+        android:layout_width="match_parent">
+
+        <ImageButton
+            android:id="@+id/btnSend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="7dp"
+            android:contentDescription="@string/send"
+            android:src="@drawable/send"
+            style="?footerButton"/>
+    </LinearLayout>
+
+</LinearLayout>

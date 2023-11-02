@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Napoleon</string>
+    <string-array name="gps_send_interval">
+        <item>10</item>
+        <item>20</item>
+        <item>30</item>
+        <item>40</item>
+        <item>50</item>
+        <item>60</item>
+        <item>70</item>
+        <item>80</item>
+        <item>90</item>
+        <item>100</item>
+        <item>110</item>
+        <item>120</item>
+    </string-array>
+
+    <string-array name="warehouse_column_values">
+    	<item>Ні</item>
+    	<item>Кіл-ть на складі</item>
+    	<item>Кіл-ть в замовленні</item>
+    	<item>Ціна</item>
+    	<item>Сума в замовленні</item>
+    	<item>Кіл-ть прайс/Замовлення</item>
+    	<item>Ціна/Сума в замовленні</item>
+    </string-array>
+    <string-array name="wh_find_choices">
+        <item>Назва</item>
+        <item>Код</item>
+    </string-array>
+
+    <string-array name="print_src">
+        <item>HP</item>
+        <item>Samsung</item>
+    </string-array>
+
+    <string-array name="DiscountItems">
+	<item>знижка</item>
+	<item>націнка</item>
+    </string-array>
+    <string-array name="on_line_items">
+        <item >IP 1</item>
+        <item >IP 2</item>
+        <item >ні</item>
+    </string-array>
+
+    <string-array name="presentation_column_values">
+        <item>Авто</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+    </string-array>
+
+    <string-array name="day_to_del_visit">
+        <item>7</item>
+        <item>15</item>
+        <item>30</item>
+        <item>60</item>
+        <item>120</item>
+        <item>360</item>
+    </string-array>
+
+    <string-array name="months_to_recreate">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
+    <string-array name="nav_type_items">
+        <item>Класичний</item>
+        <item>Новий</item>
+    </string-array>
+    <string name="copy_doesnt_allow">Копіювання документа заборонено</string>
+    <string name="init_camera_error">Помилка при ініціалізації камери, можливо, камера на даному апараті відсутня або не працює.</string>
+    <string name="id">код</string>
+    <string name="cost_changing">Зміна ціни</string>
+    <string name="check_for_valid_number">Перевірте правильність введення числа</string>
+    <string name="date_filter">фільтр з %1$d.%2$d.%3$d по %4$d.%5$d.%6$d</string>
+    <string name="docs">Документи</string>
+    <string name="send">Надіслати</string>
+    <string name="filter_by_date">Фільтр за датою</string>
+    <string name="ok">ОК</string>
+    <string name="cancel">Відмова</string>
+    <string name="gpscoord_is_old">Останні зняті координати вважаються застарілими, натисніть кнопку \"зняти координати\" для поновлення</string>
+    <string name="remark">Замітка</string>
+    <string name="alert">Увага</string>
+    <string name="client_in_stop_list">Клієнт перебуває в стоп-листі!</string>
+    <string name="order_cant_processing">Заявка може бути не оброблена.</string>
+    <string name="inform">Інформація</string>
+    <string name="allow_crete_doc_without_gps">Час отримання координат минув, ви можете створити документ без установки позиції.</string>
+    <string name="gps_received">"Координати отримані успішно, ви можете створити документ "</string>
+    <string name="new_doc">Новий документ</string>
+    <string name="note">Примітка</string>
+    <string name="action">Дія</string>
+    <string name="open_folder">Відкрити папку</string>
+    <string name="comment">Коментар</string>
+    <string name="error">Помилка</string>
+    <string name="error_processing">Помилка проведення</string>
+    <string name="doc_save_error">Документ збережено не повністю</string>
+    <string name="doc_process_succs">Документ успішно проведений</string>
+    <string name="question">Запитання</string>
+    <string name="ask_to_resend">Документ оброблений. Хочете передати його ще раз?</string>
+    <string name="yes">Так</string>
+    <string name="no">Ні</string>
+    <string name="value">Значення</string>
+    <string name="check_input">Перевірте правильність введення числа</string>
+    <string name="delete_all">Видалити всі</string>
+    <string name="delete_by_date">Видалити за дату</string>
+    <string name="confirm">Підтвердження</string>
+    <string name="delete_all_messages">Видалити всі прийняті повідомлення?</string>
+    <string name="caption">Назва</string>
+    <string name="visit">Відвідування</string>
+    <string name="doc_list">Список документів</string>
+    <string name="msg_list">Список повідомлень</string>
+    <string name="price_list">Прайс-лист</string>
+    <string name="setting">Налаштування</string>
+    <string name="recieve_remains">Прийом залишків</string>
+    <string name="sync">Синхронізація</string>
+    <string name="add_org">Додати організацію</string>
+    <string name="about">Про програму</string>
+    <string name="exit">Вихід</string>
+    <string name="menu">Меню</string>
+    <string name="ask_to_exit">Для виходу з програми виберіть Меню -> Вихід.</string>
+    <string name="order_required_price">Замовте фокусний товар!</string>
+    <string name="required_price_ordered">Фокусний товар замовлено</string>
+    <string name="need_to_order_all_required_price">Необхідно замовити весь фокусний товар!</string>
+    <string name="necessary">Необхідно!</string>
+    <string name="add">Додати</string>
+    <string name="lines">Рядки</string>
+    <string name="shortlatitude">ш</string>
+    <string name="shortlongitude">д</string>
+    <string name="ask_to_valid_data">Недостатньо даних, перевірте, чи всі необхідні дані введені</string>
+    <string name="impossible_get_gps">Неможливо зняти координати.</string>
+    <string name="gps_recieved_succs">Поточні координати отримані успішно.</string>
+    <string name="wait_for_current_location">Йде отримання поточних координат…</string>
+    <string name="new_contact">Новый контакт</string>
+    <string name="cost">Ціна</string>
+    <string name="cost1">ціна</string>
+    <string name="warning">Попередження</string>
+    <string name="qty_has_been_reduced">Кількість в замовленні зменшено</string>
+    <string name="select_price">Оберіть товар</string>
+    <string name="all_question_should_been_processed">Необхідно відповісти на всі питання</string>
+    <string name="general">Загальні</string>
+    <string name="photo">Фото</string>
+    <string name="network">Мережа</string>
+    <string name="price">Прайс</string>
+    <string name="settings">Налаштування</string>
+    <string name="input_password">Введіть пароль</string>
+    <string name="save_setting">Зберегти налаштування</string>
+    <string name="load_setting">Отримати налаштування</string>
+    <string name="export_base">Експортувати базу</string>
+    <string name="file_save_succs">Файл збережений успішно</string>
+    <string name="file_save_error">Помилка при збереженні файлу</string>
+    <string name="setting_has_been_read_succs">Налаштування прочитані успішно</string>
+    <string name="setting_load_error">Помилка при завантаженні налаштувань</string>
+    <string name="sync_end_traffic">"Синхронізація завершена\nТрафік: "</string>
+    <string name="kB">" кБ"</string>
+    <string name="recieved_error">Помилка при прийомі</string>
+    <string name="use_sync_later">Неможливо виконати синхронізацію.  &lt;br>Будь ласка, повторіть операцію через 2 хвилини....</string>
+    <string name="over_limit_photo">Перевищений ліміт фотографій на одне відвідування</string>
+    <string name="all_price">Весь прайс</string>
+    <string name="input_qty">Введіть кількість</string>
+    <string name="disable_zero_filter">Вимкнути фільтр нульових позицій</string>
+    <string name="enable_zero_filter">Фільтр нульових позицій</string>
+    <string name="show_folder">Показати папки</string>
+    <string name="show_price">Показати товар</string>
+    <string name="setting_clmns">Налаштування колонок</string>
+    <string name="select_matrix">Виберіть матрицю</string>
+    <string name="price_loading">Прайс завантажується…</string>
+    <string name="sum">Сума</string>
+    <string name="doc_error">Помилка документа</string>
+    <string name="ask_to_delete_doc">Видалити документ?</string>
+    <string name="doc_not_sent">УВАГА! Документ не переданий на комп\'ютер. Видалити?</string>
+    <string name="processing_error">Помилка при обробці</string>
+    <string name="answers">Відповіді</string>
+    <string name="name">Ім\'я</string>
+    <string name="title">Найменування</string>
+    <string name="qty">Кіл-ть</string>
+    <string name="wait">Зачекайте</string>
+    <string name="table_is_creating">Йде побудова таблиці</string>
+    <string name="server_isnot_responded">Немає підтвердження від сервера</string>
+    <string name="remains_data_updated">Дані по залишках оновлені</string>
+    <string name="scripts_isnot_found">Немає доступних сценаріїв для контрагента</string>
+    <string name="select_variant">Виберіть варіант</string>
+    <string name="doc_type">Тип документа</string>
+    <string name="select_for_open">Натисніть, щоб відкрити Наполеон.</string>
+    <string name="on">Включений</string>
+    <string name="off">Вимкнений</string>
+    <string name="charge">заряд</string>
+    <string name="report_sending">Відправка звіту</string>
+    <string name="progress">прогрес…</string>
+    <string name="sent_succs">Відправка завершена успішно!</string>
+    <string name="send_error">Помилка при відправці звіту.</string>
+    <string name="send_error_try_later">При відправці сталася помилка, спробуйте пізніше.</string>
+    <string name="waiting">Очікування</string>
+    <string name="please_wait">Будь ласка, зачекайте…</string>
+    <string name="vibration">Вібрація</string>
+    <string name="rotate_screen">Поворот екрану</string>
+    <string name="autostart">Автостарт</string>
+    <string name="service">Сервіс</string>
+    <string name="print">Друк</string>
+    <string name="script_off">Сценарій відключений</string>
+    <string name="remove_visit_older">Видаляти відвідування старіше</string>
+    <string name="docs_for_period">Документи за період, міс</string>
+    <string name="on_line_ip">On-Line IP</string>
+    <string name="send_report">Відправити звіт</string>
+    <string name="send_report_and_base">Відправити звіт і базу</string>
+    <string name="comment_for_crash">Текстовий коментар до помилки:</string>
+    <string name="org_name">Назва організації</string>
+    <string name="set_period">Встановіть період</string>
+    <string name="contractor">Контрагент</string>
+    <string name="by_date_created">за датою створення</string>
+    <string name="begin">початок</string>
+    <string name="end">кінець</string>
+    <string name="time_update_gps">Час опитування, сек.</string>
+    <string name="lenght_to_change_distance">Зміна дистанції, м.</string>
+    <string name="background_send">Фонова передача</string>
+    <string name="interval">Інтервал, хв.</string>
+    <string name="time_for_wait_gps">Очікування коорд., сек.</string>
+    <string name="packing">Упаковками</string>
+    <string name="shipped">Відгр.</string>
+    <string name="order_to_target_price">Замовте фокусний товар!</string>
+    <string name="fio">ПІБ</string>
+    <string name="phone">Телефон</string>
+    <string name="camera_resolution">Роздільна здатність камери</string>
+    <string name="autofocus">Автофокус</string>
+    <string name="safe_photo_on_sdcard">Зберігати фото відвідувань на карті пам\'яті.</string>
+    <string name="use_inner_app_for_photo">Фотографувати за допомогою Android</string>
+    <string name="get_gps_coord">Зняти координати</string>
+    <string name="unknown">невідомо</string>
+    <string name="contacts">Контакти</string>
+    <string name="columns">Колонки</string>
+    <string name="clear_base">Очистити базу при прийомі</string>
+    <string name="gen_data">Основні дані</string>
+    <string name="remains_la_zero">залишки > 0</string>
+    <string name="gen_docs">Документи (заявки, мерч.)</string>
+    <string name="photo_visit">Фотозвіти (відвідування)</string>
+    <string name="presents">Презентація</string>
+    <string name="costs">Ціни</string>
+    <string name="shipped_and_debts">Відвантаження і борги</string>
+    <string name="recreate_order">Відновити заявки, міс.</string>
+    <string name="update">Оновити</string>
+    <string name="cause">Причина</string>
+    <string name="clmn_2">Колонка 2</string>
+    <string name="clmn_3">Колонка 3</string>
+    <string name="code_sku">Код товару</string>
+    <string name="check_remains">Перевіряти залишки</string>
+    <string name="complete_story">Складна історія продажів</string>
+    <string name="show_packs_in_order">Показувати упаковками в заявці</string>
+    <string name="sht">шт</string>
+    <string name="kg">кг</string>
+    <string name="delay">відстрочка</string>
+    <string name="incas_doc_title">Інкасація</string>
+    <string name="order_doc_title">Заявки</string>
+    <string name="debt_doc_title">Борги</string>
+    <string name="visit_doc_title">Відвідування</string>
+    <string name="remains_doc_title">Залишки</string>
+    <string name="selectDocType">Вибір типу документа</string>
+    <string name="organization">Організація</string>
+    <string name="sum1">сума</string>
+    <string name="newDoc">Створити новий документ</string>
+    <string name="gpsStatus">Статус GPS</string>
+    <string name="dateSample">01/01/2012</string>
+    <string name="digit">Цифра</string>
+    <string name="onWh">на складі</string>
+    <string name="inPack">в упаковці</string>
+    <string name="orgRest">в точці</string>
+    <string name="orderQty">замовлення</string>
+    <string name="crash1">У роботі програми сталася неочікувана помилка.</string>
+    <string name="crash2">Файл звіту про помилку знаходиться на карті пам\'яті /Napoleon/crash.log</string>
+    <string name="return_doc_title">Повернення</string>
+    <string name="sales_doc_title">Продажі</string>
+    <string name="time">Час</string>
+    <string name="cash">Готівка</string>
+    <string name="firm">Фірма</string>
+    <string name="order_comment_hint">Коментар до заявки</string>
+    <string name="copy">Копіювати</string>
+    <string name="skip">Пропустити</string>
+    <string name="view">Перегляд</string>
+    <string name="matrix">Матриця</string>
+    <string name="show_price">Показати прайс</string>
+    <string name="go_folder_to">Перейти в папку з цим товаром</string>
+    <string name="satellites">"супутники: "</string>
+    <string name="accuracy">"точність: "</string>
+    <string name="not_signal">немає сигналу</string>
+    <string name="nav_type">Тип навігації</string>
+    <string name="gpsOffTitle">GPS вимкнено</string>
+    <string name="gpsOffMessage">Необхідно включити визначення координат GPS в налаштуваннях.</string>
+    <string name="askToDelVisitMsg">"Документ без фотографій буде видалений, видалити?"</string>
+    <string name="autoorder">Автозамовлення</string>
+    <string name="regular_order">Звичайне замовлення</string>
+    <string name="remnants_not_found">Немає залишків на поточну дату</string>
+    <string name="admin_login">admin</string>
+    <string name="cant_send_part_script">Для відправки сценарії пройдіть всі пункти</string>
+    <string name="message_to_task">Введіть повідомлення для завдання</string>
+    <string name="task_doc_title">Завдання</string>
+    <string name="gpsValue">GPS</string>
+    <string name="stock_doc_title">Асортимент</string>
+    <string name="question_doc_title">Анкети</string>
+    <string name="remember">Запам\'ятати</string>
+    <string name="visit_cause">Причина</string>
+</resources>

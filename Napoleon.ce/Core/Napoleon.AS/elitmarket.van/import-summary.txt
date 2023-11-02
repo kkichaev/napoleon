@@ -1,0 +1,60 @@
+ECLIPSE ANDROID PROJECT IMPORT SUMMARY
+======================================
+
+Ignored Files:
+--------------
+The following files were *not* copied into the new Gradle project; you
+should evaluate whether these are still needed in your project and if
+so manually move them:
+
+* ant.properties
+* build.xml
+
+Moved Files:
+------------
+Android Gradle projects use a different directory structure than ADT
+Eclipse projects. Here's how the projects were restructured:
+
+* AndroidManifest.xml => modules\itext\src\main\AndroidManifest.xml
+* assets\ => modules\itext\src\main\assets
+* res\ => modules\itext\src\main\res\
+* src\ => modules\itext\src\main\java\
+* src\com\itextpdf\text\AGPL.txt => modules\itext\src\main\resources\com\itextpdf\text\AGPL.txt
+* src\com\itextpdf\text\l10n\error\en.lng => modules\itext\src\main\resources\com\itextpdf\text\l10n\error\en.lng
+* src\com\itextpdf\text\l10n\error\nl.lng => modules\itext\src\main\resources\com\itextpdf\text\l10n\error\nl.lng
+* src\com\itextpdf\text\l10n\error\pt.lng => modules\itext\src\main\resources\com\itextpdf\text\l10n\error\pt.lng
+* src\com\itextpdf\text\LICENSE.txt => modules\itext\src\main\resources\com\itextpdf\text\LICENSE.txt
+* src\com\itextpdf\text\NOTICE.txt => modules\itext\src\main\resources\com\itextpdf\text\NOTICE.txt
+* src\com\itextpdf\text\pdf\fonts\cmap_info.txt => modules\itext\src\main\resources\com\itextpdf\text\pdf\fonts\cmap_info.txt
+* src\com\itextpdf\text\pdf\fonts\Courier-Bold.afm => modules\itext\src\main\resources\com\itextpdf\text\pdf\fonts\Courier-Bold.afm
+* src\com\itextpdf\text\pdf\fonts\Courier-BoldOblique.afm => modules\itext\src\main\resources\com\itextpdf\text\pdf\fonts\Courier-BoldOblique.afm
+* src\com\itextpdf\text\pdf\fonts\Courier-Oblique.afm => modules\itext\src\main\resources\com\itextpdf\text\pdf\fonts\Courier-Oblique.afm
+* src\com\itextpdf\text\pdf\fonts\Courier.afm => modules\itext\src\main\resources\com\itextpdf\text\pdf\fonts\Courier.afm
+* src\com\itextpdf\text\pdf\fonts\glyphlist.txt => modules\itext\src\main\resources\com\itextpdf\text\pdf\fonts\glyphlist.txt
+* src\com\itextpdf\text\pdf\fonts\Helvetica-Bold.afm => modules\itext\src\main\resources\com\itextpdf\text\pdf\fonts\Helvetica-Bold.afm
+* src\com\itextpdf\text\pdf\fonts\Helvetica-BoldOblique.afm => modules\itext\src\main\resources\com\itextpdf\text\pdf\fonts\Helvetica-BoldOblique.afm
+* src\com\itextpdf\text\pdf\fonts\Helvetica-Oblique.afm => modules\itext\src\main\resources\com\itextpdf\text\pdf\fonts\Helvetica-Oblique.afm
+* src\com\itextpdf\text\pdf\fonts\Helvetica.afm => modules\itext\src\main\resources\com\itextpdf\text\pdf\fonts\Helvetica.afm
+* src\com\itextpdf\text\pdf\fonts\mustRead.html => modules\itext\src\main\resources\com\itextpdf\text\pdf\fonts\mustRead.html
+* src\com\itextpdf\text\pdf\fonts\Symbol.afm => modules\itext\src\main\resources\com\itextpdf\text\pdf\fonts\Symbol.afm
+* src\com\itextpdf\text\pdf\fonts\Times-Bold.afm => modules\itext\src\main\resources\com\itextpdf\text\pdf\fonts\Times-Bold.afm
+* src\com\itextpdf\text\pdf\fonts\Times-BoldItalic.afm => modules\itext\src\main\resources\com\itextpdf\text\pdf\fonts\Times-BoldItalic.afm
+* src\com\itextpdf\text\pdf\fonts\Times-Italic.afm => modules\itext\src\main\resources\com\itextpdf\text\pdf\fonts\Times-Italic.afm
+* src\com\itextpdf\text\pdf\fonts\Times-Roman.afm => modules\itext\src\main\resources\com\itextpdf\text\pdf\fonts\Times-Roman.afm
+* src\com\itextpdf\text\pdf\fonts\ZapfDingbats.afm => modules\itext\src\main\resources\com\itextpdf\text\pdf\fonts\ZapfDingbats.afm
+* src\com\itextpdf\text\pdf\hyphenation\hyph\readme.txt => modules\itext\src\main\resources\com\itextpdf\text\pdf\hyphenation\hyph\readme.txt
+
+Next Steps:
+-----------
+You can now build the project. The Gradle project needs network
+connectivity to download dependencies.
+
+Bugs:
+-----
+If for some reason your project does not build, and you determine that
+it is due to a bug or limitation of the Eclipse to Gradle importer,
+please file a bug at http://b.android.com with category
+Component-Tools.
+
+(This import summary is for your information only, and can be deleted
+after import once you are satisfied with the results.)

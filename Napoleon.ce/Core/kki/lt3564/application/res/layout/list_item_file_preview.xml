@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="150dp">
+
+    <ImageView
+        android:visibility="gone"
+        android:id="@+id/file_icon"
+        android:layout_width="@dimen/univ_ab_height"
+        android:layout_height="@dimen/univ_ab_height"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:padding="8dp" />
+
+    <View
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"/>
+
+    <ImageView
+        android:id="@+id/file_remove"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:padding="@dimen/univ_padding_small"
+        android:src="@drawable/cross"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"/>
+
+    <RelativeLayout
+        android:id="@+id/file_info"
+        android:layout_width="300dp"
+        android:layout_height="160dp"
+        android:layout_below="@+id/file_remove"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/univ_padding">
+
+        <ImageView
+            android:background="@drawable/transparent_oval"
+            android:id="@+id/file_preview"
+            android:src="@drawable/ic_photo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="1dp"/>
+
+        <LinearLayout
+            android:background="@drawable/image_text_container_bg"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_margin="1dp">
+
+            <TextView
+                android:id="@+id/file_name"
+                android:layout_width="match_parent"
+                android:layout_height="19dp"
+                android:paddingLeft="@dimen/univ_padding"
+                android:textColor="@color/properties_text_color"
+                android:textSize="14dp"/>
+
+            <TextView
+                android:id="@+id/file_size"
+                android:layout_width="match_parent"
+                android:layout_height="16dp"
+                android:paddingLeft="@dimen/univ_padding"
+                android:textColor="@color/properties_text_color"
+                android:textSize="11dp"/>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

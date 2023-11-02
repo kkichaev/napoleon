@@ -1,0 +1,139 @@
+<template>
+  <q-page padding>
+    <q-card class="q-ml-auto q-mr-auto" flat>
+      <q-card-section class="form-title text-center">
+        {{ $t("login.title") }}
+      </q-card-section>
+
+      <q-card-section>
+        <q-form ref="form">
+          <q-input
+            v-model="email"
+            :label="$t('login.emailLabel')"
+            filled
+            :rules="[val => !!val || $t('field_is_required')]"/>
+
+          <q-input
+            style="margin-top: 36px"
+            :label="$t('login.passwordLabel')"
+            filled
+            v-model="password"
+            :rules="[val => !!val || $t('field_is_required')]"
+          />
+
+          <q-checkbox
+            :label="$t('login.savePassword')"
+            style="margin-top: 24px"
+            v-model="remember"
+            class="login-form-text"
+          />
+        </q-form>
+
+        <q-card-section style="padding-top: 36px" class="text-center" v-if="forgotPassword">
+          <q-btn
+            flat
+            :label="$t('login.forgotPassword')"
+            no-caps
+            class="login-form-text"
+          />
+        </q-card-section>
+
+        <q-btn
+          class="login-btn login-form-text"
+          no-caps
+          style="margin-top: 25px"
+          :label="$t('login.enter')"
+          @click="login"
+        />
+      </q-card-section>
+
+      <q-card-section class="text-center">
+        <q-btn
+          class="login-form-text"
+          flat
+          :label="$t('login.reqistration')"
+          no-caps
+          :to="{name: 'Register'}"
+        />
+      </q-card-section>
+
+      <q-card-section class="text-center">
+        <q-btn class="login-form-text" flat no-caps>
+          <u>{{ $t("login.supportEmail") }}</u>
+        </q-btn>
+      </q-card-section>
+    </q-card>
+  </q-page>
+</template>
+
+<script>
+import { ref } from "vue";
+import { useBackendStore } from "src/stores/backend";
+import { useGuard } from 'src/components/guard'
+import { loginUser } from "src/backend/backend";
+import { useRouter } from "vue-router";
+
+export default{
+  setup(){
+    const guard = useGuard()
+    const remember = ref(true);
+    const email = ref("");
+    const password = ref("");
+    const form = ref(null)
+    const forgotPassword = ref(false)
+    const store = useBackendStore()
+    const router = useRouter()
+
+    function login(){
+      console.log('Login login ', this)
+      if (form.value.validate()){
+        loginUser({email: email.value, password: password.value, remember: remember.value})
+          .then((responce)=>{
+            useBackendStore().isAuth = true
+            router.push({name: 'Index'})
+          })
+          .catch((error) => console.log('login error:', error))
+      }
+    }
+
+    return{
+      remember, email, password, form, forgotPassword, store, login
+    }
+  },
+  mounted(){
+    console.log('onMounted: ', this.store.baseURL)
+  },
+
+}
+
+
+
+// function loginUser() {
+//   form.value.validate().then((success)=>{
+//     if (success){
+//       console.log('login: ', this)
+//     }
+//       // try{
+//       //   login({email: email.value, password: password.value, remember: remember.value})
+//       //     .then((response)=>console.log('login success: ', response))
+//       //     .catch((error)=>console.log('login error: ', error))
+//       // }catch(error){
+//       //   console.log('login error: ', error)
+//       // }
+//   })
+// }
+
+// function forgotPassword() {
+//   return mainStore.forgotPassword();
+// }
+
+// function restorePassword() {
+
+// }
+
+// onMounted(()=>{
+//   console.log('onMounted: ', app)
+// })
+</script>
+
+<style scoped></style>

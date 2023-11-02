@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <style name="Napoleon" parent="android:Theme.Holo.Light">
+    	<item name="android:imageButtonStyle">@android:style/Widget.ImageButton</item>
+    	<item name="android:buttonStyle">@android:style/Widget.Button</item>         
+    </style>
+
+    <style name="NTextView" parent="@android:style/TextAppearance.Widget.TextView">
+        <item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+    
+    <style name="GridCellTV" parent="NTextView">
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:layout_marginRight">2dp</item>
+    </style>
+        
+    <style name="GridItem" parent="GridCellTV">
+        <item name="android:width">@dimen/dvgitemw</item>
+    </style>
+    
+    <style name="GridTitle" parent="NTextView">
+        <item name="android:width">@dimen/dvgitemw</item>
+    </style>
+
+    <dimen name="dvgitemw">75dp</dimen>
+</resources>

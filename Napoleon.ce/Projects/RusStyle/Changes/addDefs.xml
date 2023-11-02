@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+  <objects>
+    <modify src="Folder">
+      <change>
+        <sources>
+          <source name="DBFFolderSet">
+            <param name="userTable">"F"</param>
+            <param name="commonTable">"FOLDERS"</param>
+            <param name="parentField">"PARENT"</param>
+            <param name="childField">"fid"</param>
+            <param name="rowidField">"id"</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+    <modify src="Price">
+      <add>
+        <field name="spike" type="number" />
+        <field name="color" type="hex" />
+      </add>
+    </modify>
+  </objects>
+</serverDefs>

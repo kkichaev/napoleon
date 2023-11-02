@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+    <modify src="Order">
+      <add>
+        <field name="schetFact" type="number" width="1" data="S_FACT" />
+        <field name="vd" type="number"/>
+      </add>
+    </modify>
+	</objects>
+</serverDefs>

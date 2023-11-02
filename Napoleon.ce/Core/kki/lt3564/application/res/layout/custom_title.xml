@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/mainSelectableItemBackground"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:paddingLeft="@dimen/univ_padding"
+    android:paddingRight="@dimen/univ_padding" >
+
+    <TextView
+        android:id="@+id/custom_title"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        android:singleLine="true"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text_size_aboutX" />
+
+    <ImageView
+        android:id="@+id/triangle"
+        android:layout_width="@dimen/univ_padding"
+        android:layout_height="@dimen/univ_padding"
+        android:layout_gravity="bottom"
+        android:paddingBottom="@dimen/univ_padding_small"
+        android:paddingLeft="@dimen/univ_padding_small"
+        android:src="@drawable/triangle" />
+
+</LinearLayout>

@@ -1,0 +1,228 @@
+# Russian translations for PROJECT.
+# Copyright (C) 2023 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2023-07-27 13:36+0400\n"
+"PO-Revision-Date: 2023-01-06 14:04+0400\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: ru\n"
+"Language-Team: ru <LL@li.org>\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: app/api/req_connects.py:21
+msgid "req connect haven't req fields"
+msgstr "нет необходимых полей в запросе"
+
+#: app/api/req_connects.py:56
+msgid "no valid code"
+msgstr "время ссылки истекло"
+
+#: app/api/server_auth.py:25
+#, fuzzy
+msgid "No server code"
+msgstr "Нет кода сервера"
+
+#: app/api/users.py:34
+msgid "EMail confirmation"
+msgstr "Подтверждение адреса электронной почты"
+
+#: app/api/templates/api/confirm_email.html:1
+#: app/api/templates/api/confirm_email.txt:1
+#, python-format
+msgid "Dear  %(username)s,"
+msgstr "Уважаемый  %(username)s,"
+
+#: app/api/templates/api/confirm_email.html:3
+msgid "To confirm email"
+msgstr "Для подтверждения почты"
+
+#: app/api/templates/api/confirm_email.html:5
+msgid "click here"
+msgstr "нажмите на ссылку"
+
+#: app/api/templates/api/confirm_email.html:8
+msgid ""
+"Alternatively, you can paste the following link in your browser's address"
+" bar:"
+msgstr "Так же Вы можете скопировать ссылку в адресную строку браузера:"
+
+#: app/api/templates/api/confirm_email.html:10
+#: app/api/templates/api/confirm_email.txt:7
+msgid "If you have not requested a password reset simply ignore this message."
+msgstr "Если Вы не запрашиваил смену пароля, просто игнорируйте это письмо"
+
+#: app/api/templates/api/confirm_email.html:11
+#: app/api/templates/api/confirm_email.txt:9
+msgid "Sincerely"
+msgstr "С уважением"
+
+#: app/api/templates/api/confirm_email.html:12
+#: app/api/templates/api/confirm_email.txt:11
+msgid "The GRSoft Team"
+msgstr "GRSoft"
+
+#: app/api/templates/api/confirm_email.txt:3
+msgid "To confirm email click on the following link:"
+msgstr "Для подтверждения email пройдите по ссылке"
+
+#: app/auth/templates/auth/user_create_error.html:4
+msgid "Error while creating user:"
+msgstr "Ошибка при создании пользователя"
+
+#: app/auth/templates/auth/user_created.html:4
+msgid "User created successfully:"
+msgstr "Пользователь успешно создан"
+
+#: app/moysklad/iframe.py:156
+msgid "RootFolder"
+msgstr "Каталог товаров"
+
+#: app/moysklad/iframe.py:265
+msgid "Delivery"
+msgstr "Реализация"
+
+#: app/moysklad/iframe.py:291 app/moysklad/iframe.py:323
+#: app/moysklad/iframe.py:525
+msgid "No account"
+msgstr "Не найден проект"
+
+#: app/moysklad/iframe.py:311
+msgid "Put data to the server"
+msgstr "Выгрузка данных на сервер"
+
+#: app/moysklad/iframe.py:327
+#, fuzzy
+msgid "No project code"
+msgstr "Нет кода проекта"
+
+#: app/moysklad/iframe.py:531
+msgid "No firms"
+msgstr "Не выбрана ни одна организация"
+
+#: app/moysklad/iframe.py:535
+msgid "No stores"
+msgstr "Не выбран ни один склад"
+
+#: app/moysklad/iframe.py:549
+#, python-format
+msgid "Orders %d, Returns %d, Incass %d"
+msgstr "заявок %d, возвратов %d, пко %d"
+
+#: app/moysklad/iframe.py:550
+msgid "Load docs"
+msgstr "Загрузить документы"
+
+#: app/moysklad/templates/moysklad/iframe.html:6
+msgid "Moy Sklad settings"
+msgstr "Настройки обмена с AceTeam"
+
+#: app/moysklad/templates/moysklad/iframe.html:85
+msgid "Load new docs"
+msgstr "Загрузить документы"
+
+#: app/moysklad/templates/moysklad/iframe.html:86
+msgid "Put data"
+msgstr "Выгрузить данные"
+
+#: app/moysklad/templates/moysklad/iframe.html:89
+msgid "Quick start"
+msgstr "Быстрый старт"
+
+#: app/moysklad/templates/moysklad/iframe.html:94
+msgid "Auto syncing"
+msgstr "Автоматический обмен"
+
+#: app/moysklad/templates/moysklad/iframe.html:112
+msgid "Project code"
+msgstr "Код проекта"
+
+#: app/moysklad/templates/moysklad/iframe.html:114
+msgid "Enter code"
+msgstr "Введите код проекта"
+
+#: app/moysklad/templates/moysklad/iframe.html:121
+msgid "Agents"
+msgstr "Агенты"
+
+#: app/moysklad/templates/moysklad/iframe.html:132
+msgid "Firms"
+msgstr "Организации"
+
+#: app/moysklad/templates/moysklad/iframe.html:145
+msgid "Stores"
+msgstr "Склады"
+
+#: app/moysklad/templates/moysklad/iframe.html:156
+msgid "Folders"
+msgstr "Папки товаров"
+
+#: app/moysklad/templates/moysklad/iframe.html:170
+msgid "Set as primary"
+msgstr "Сделать основным"
+
+#: app/moysklad/templates/moysklad/iframe.html:176
+msgid "There isn't right to view settings"
+msgstr "Просмотр настроек доступен только администратору"
+
+#: app/moysklad/templates/moysklad/iframe.html:205
+#, fuzzy
+msgid "Unloaded agents"
+msgstr "Выгружено агентов"
+
+#: app/moysklad/templates/moysklad/iframe.html:206
+#, fuzzy
+msgid "Orgs"
+msgstr "Контаргентов"
+
+#: app/moysklad/templates/moysklad/iframe.html:207
+msgid "Goods"
+msgstr "Товаров"
+
+#: app/moysklad/templates/moysklad/iframe.html:208
+#, fuzzy
+msgid "Deliveries"
+msgstr "Накладных"
+
+#: app/moysklad/templates/moysklad/iframe.html:213
+msgid "Unload data success"
+msgstr "Данные выгружены"
+
+#: app/moysklad/templates/moysklad/iframe.html:223
+#, fuzzy
+msgid "Load orders"
+msgstr "Загружено заказов"
+
+#: app/moysklad/templates/moysklad/iframe.html:224
+msgid "Load returns"
+msgstr "Загружено возвратов"
+
+#: app/moysklad/templates/moysklad/iframe.html:225
+#, fuzzy
+msgid "Load incass"
+msgstr "Загружено ПКО"
+
+#: app/moysklad/templates/moysklad/iframe.html:230
+#, fuzzy
+msgid "Load docs success"
+msgstr "Документы загружены"
+
+#: app/moysklad/templates/moysklad/iframe.html:326
+#: app/moysklad/templates/moysklad/iframe.html:358
+msgid "Enter project code"
+msgstr ""
+"Сервер не работает. Введите код сервера и нажмите на кнопку <b>Выгрузить "
+"данные</b> для начала работы"
+
+#~ msgid "No project"
+#~ msgstr "Не найден код проекта"
+

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Napoleon" parent="android:Theme.Holo.Light">
+    	<item name="android:imageButtonStyle">@style/NapoleonImageButton</item>
+    	<item name="android:buttonStyle">@android:style/Widget.Button</item>
+    	<item name="android:actionBarStyle">@style/NapoleonBarTheme</item>
+    	<item name="android:listViewStyle">@style/NapoleonListView</item>
+    	<item name="footer">@style/Footer</item>
+    	<item name="footerText">@style/FooterText</item>
+    	<item name="footerButton">@style/FooterButton</item>
+    	<item name="header">@style/Header</item>
+    	<item name="headerText">@style/HeaderText</item>
+    	<item name="android:actionButtonStyle">@style/NapoleonActionButton</item>
+    	<item name="android:actionOverflowButtonStyle">@style/NapoleonOverflowButton</item>
+    	<item name="android:actionBarTabStyle">@style/NapoleonActionBarTab</item>
+    	<item name="android:actionBarStyle">@style/NapoleonActionBar</item>
+    	<item name="findPanel">@style/FindPanel</item>
+    	<item name="headerButton">@style/HeaderButton</item>
+    	<item name="textButton">@style/TextButton</item>
+    </style>
+</resources>

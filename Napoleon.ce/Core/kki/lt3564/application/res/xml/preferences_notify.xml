@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+    <Preference
+        android:key="reminder"
+        android:title="@string/settings_reminder_title"
+        android:layout="@layout/preference_item_layout" />
+    <PreferenceCategory
+        android:layout="@layout/custom_preference_basic" >
+        <com.ashberrysoft.leadertask.modern.view.CustomSwitchPreference
+            android:key="reminder_for_me"
+            android:title="@string/settings_notification_for_me" />
+        <com.ashberrysoft.leadertask.modern.view.CustomSwitchPreference
+            android:key="reminder_by_me"
+            android:title="@string/settings_notification_by_me"/>
+        <com.ashberrysoft.leadertask.modern.view.CustomSwitchPreference
+            android:key="reminder_comments"
+            android:title="@string/settings_notification_comments" />
+        <com.ashberrysoft.leadertask.modern.view.CustomSwitchPreference
+            android:key="reminder_overdue"
+            android:title="@string/settings_notification_overdue" />
+        <com.ashberrysoft.leadertask.modern.view.CustomSwitchPreference
+            android:key="reminder_today"
+            android:title="@string/settings_notification_today"/>
+    </PreferenceCategory>
+</PreferenceScreen>

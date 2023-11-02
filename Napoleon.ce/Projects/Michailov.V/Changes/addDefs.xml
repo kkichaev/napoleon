@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+   <objects>
+     <modify src="Delivery">
+       <add>
+         <field name="payDate" type="date" date="PAY_DATE" />
+       </add>
+     </modify>
+     <modify src="Org">
+       <add>
+         <field name="stopMsg" type="string" />
+       </add>
+     </modify>
+
+   </objects>
+</serverDefs>

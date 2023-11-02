@@ -1,0 +1,7 @@
+package com.grsoft.dataobjects;
+
+public class PaymentEx extends Payment {
+	public String supplyer = "";
+	public String dogId = "";
+	public int fiscal;
+}

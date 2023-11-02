@@ -1,0 +1,1 @@
+import{j as s}from"./index.b84d2a1d.js";import"./backend.f6f90aca.js";const r=s("mainStore",{state:()=>({forgotPassword:!1,passwordRestore:!1}),actions:{restorePassword(){console.log("restorePassword"),this.router.push({name:"RestorePassword"})}}});export{r as u};

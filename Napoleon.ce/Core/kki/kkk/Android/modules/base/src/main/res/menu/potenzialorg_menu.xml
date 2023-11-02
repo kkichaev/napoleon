@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/itNewContact"
+        android:icon="@drawable/ic_person_add"
+        android:showAsAction="ifRoom"
+        android:title="@string/sync"/>
+
+    <item android:id="@+id/itMap"
+        android:icon="@drawable/globus"
+        android:showAsAction="ifRoom"
+        android:title="@string/sync"/>
+</menu>

@@ -1,0 +1,174 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+    <object name="Slsnet">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+      <member name="primaryKey">id</member>
+      <field name="id" type="string" />
+      <field name="name" type="string" />
+    </object>
+
+    <object name="City">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+      <member name="primaryKey">id</member>
+      <field name="id" type="string" />
+      <field name="name" type="string" />
+    </object>
+
+    <object name="OrgAssign">
+      <sources>
+        <source name="SQTable" type="internal" />  
+      </sources>
+      
+      <member name="primaryKey">id</member>
+      
+      <field name="id" type="string" />
+      <field name="items" type="collection">
+        <data>
+          <object name="OrgAssignItem">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+            <field name="id" type="string"/>
+          </object>
+        </data>
+      </field>
+    </object>
+
+    <object name="ScrAssign">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">id</member>
+
+      <field name="id" type="string" />
+      <field name="items" type="collection">
+        <data>
+          <object name="ScrAssignItem">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+            <field name="id" type="number"/>
+          </object>
+        </data>
+      </field>
+    </object>
+
+    <object name="ContractDef">
+      <sources>
+        <source name="SQTable" type="internal" >
+            <param name="readFilter">
+              'start &lt;= ToDate("' + FormatDate(Now(),"DD.MM.YYYY") + '") and ' +
+              'finish &gt;= ToDate("' + FormatDate(Now(),"DD.MM.YYYY") + '")'
+            </param>
+        </source>
+      </sources>
+
+      <member name="primaryKey">id</member>
+
+      <field name="id" type="string" />
+      <field name="start" type="timestamp" />
+      <field name="finish" type="timestamp" />
+      <field name="name" type="string" />
+      <field name="items" type="collection">
+        <data>
+          <object name="ContractDefItem">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+            <field name="id" type="string"/>
+          </object>
+        </data>
+      </field>
+    </object>
+
+    <object name="Contract">
+      <sources>
+         <source name="SQTable" type="internal" />
+      </sources>
+      
+      <member name="primaryKey">"userid,created"</member>
+      
+      <field name="id" type="string" />
+      <field name="userid" type="string" data="USER_ID" execOn="Put">$user.id</field>
+      <field name="created" type="timestamp" data="CREATED,NUM"/>
+      <field name="timeZone" type="number" />
+      <field name="serverTimeZone" type="number" data="S_TZ" execOn="Put" features="USE_TIMEZONE">ServerTimeZone()</field>
+      <field name="def" type="string" />
+      <field name="sended" type="timestamp" data="S_DATE" execOn="Put">Now()</field>
+      
+      <field name="items" type="collection">
+        <data>
+          <object name="ContractItem">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+            <field name="id" type="string"/>
+            <field name="qty" type="number" pres="3"/>
+            <field name="face" type="number" pres="3"/>
+          </object>
+        </data>
+      </field>
+    </object>
+    
+    <modify src="Org">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" >
+            <param name="readFilter">
+              "id in (select oi.id from orgassign oa, orgassign$items oi where oa.id=oi.orgassign$id and oa.id='"+ $user.id + "')"
+            </param>
+          </source>
+        </sources>
+      </change>
+      <add>
+        <member name="primaryKey">id</member>
+        <field name="cid" type="string" />
+        <field name="sid" type="string" />
+        <field name="userid" type="string" execOn="Get">$user.id</field>
+      </add>
+    </modify>
+
+    <modify src="Org" dest="CommonOrgs">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+    </modify>
+  
+  <modify src="Price">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal">
+            <param name="readFilter">
+              'id in (select ci.id from contractdef c, contractdef$items ci where c.id=ci.contractdef$id and '+
+              'start &lt;= ToDate("' + FormatDate(Now(),"DD.MM.YYYY") + '") and ' +
+              'finish &gt;= ToDate("' + FormatDate(Now(),"DD.MM.YYYY") + '"))'
+            </param>
+          </source>
+        </sources>
+      </change>
+      <add>
+        <member name="primaryKey">id</member>
+        <field name="userid" type="string" execOn="Get">$user.id</field>
+      </add>
+    </modify>
+    
+    <modify src="ManagerPrice" tableName="Price">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+      <add>
+        <member name="primaryKey">id</member>
+      </add>
+    </modify>
+  </objects>
+</serverDefs>

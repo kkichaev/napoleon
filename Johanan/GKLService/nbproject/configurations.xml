@@ -1,0 +1,468 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="100">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <logicalFolder name="SourceFiles"
+                   displayName="Исходные файлы"
+                   projectFiles="true">
+      <logicalFolder name="f1" displayName="bidi" projectFiles="true">
+        <itemPath>sources/bidi/bidiref.h</itemPath>
+        <itemPath>sources/bidi/bidirefp.h</itemPath>
+        <itemPath>sources/bidi/brrule.c</itemPath>
+        <itemPath>sources/bidi/brtable.c</itemPath>
+        <itemPath>sources/bidi/brtest.c</itemPath>
+        <itemPath>sources/bidi/brutils.c</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f2" displayName="fonts" projectFiles="true">
+        <itemPath>sources/fonts/DengXian16.c</itemPath>
+        <itemPath>sources/fonts/DengXian24.c</itemPath>
+        <itemPath>sources/fonts/F08_1.c</itemPath>
+        <itemPath>sources/fonts/F08_ASCII.c</itemPath>
+        <itemPath>sources/fonts/F10S_1.c</itemPath>
+        <itemPath>sources/fonts/F10S_ASCII.c</itemPath>
+        <itemPath>sources/fonts/F10_1.c</itemPath>
+        <itemPath>sources/fonts/F10_ASCII.c</itemPath>
+        <itemPath>sources/fonts/F13B_1.c</itemPath>
+        <itemPath>sources/fonts/F13B_ASCII.c</itemPath>
+        <itemPath>sources/fonts/F13HB_1.c</itemPath>
+        <itemPath>sources/fonts/F13HB_ASCII.c</itemPath>
+        <itemPath>sources/fonts/F13H_1.c</itemPath>
+        <itemPath>sources/fonts/F13H_ASCII.c</itemPath>
+        <itemPath>sources/fonts/F13_1.c</itemPath>
+        <itemPath>sources/fonts/F13_ASCII.c</itemPath>
+        <itemPath>sources/fonts/F16B_1.c</itemPath>
+        <itemPath>sources/fonts/F16B_ASCII.c</itemPath>
+        <itemPath>sources/fonts/F16_1.c</itemPath>
+        <itemPath>sources/fonts/F16_1HK.c</itemPath>
+        <itemPath>sources/fonts/F16_ASCII.c</itemPath>
+        <itemPath>sources/fonts/F16_HK.c</itemPath>
+        <itemPath>sources/fonts/F24B_1.c</itemPath>
+        <itemPath>sources/fonts/F24B_ASCII.c</itemPath>
+        <itemPath>sources/fonts/F24_1.c</itemPath>
+        <itemPath>sources/fonts/F24_ASCII.c</itemPath>
+        <itemPath>sources/fonts/F32B_1.c</itemPath>
+        <itemPath>sources/fonts/F32B_ASCII.c</itemPath>
+        <itemPath>sources/fonts/F32_1.c</itemPath>
+        <itemPath>sources/fonts/F32_ASCII.c</itemPath>
+        <itemPath>sources/fonts/F4x6.c</itemPath>
+        <itemPath>sources/fonts/F6x8.c</itemPath>
+        <itemPath>sources/fonts/F8x10_ASCII.c</itemPath>
+        <itemPath>sources/fonts/F8x12_ASCII.c</itemPath>
+        <itemPath>sources/fonts/F8x13_1.c</itemPath>
+        <itemPath>sources/fonts/F8x13_ASCII.c</itemPath>
+        <itemPath>sources/fonts/F8x15B_1.c</itemPath>
+        <itemPath>sources/fonts/F8x15B_ASCII.c</itemPath>
+        <itemPath>sources/fonts/F8x16.c</itemPath>
+        <itemPath>sources/fonts/F8x8.c</itemPath>
+        <itemPath>sources/fonts/FComic18B_1.c</itemPath>
+        <itemPath>sources/fonts/FComic18B_ASCII.c</itemPath>
+        <itemPath>sources/fonts/FComic24B_1.c</itemPath>
+        <itemPath>sources/fonts/FComic24B_ASCII.c</itemPath>
+        <itemPath>sources/fonts/FD24x32.c</itemPath>
+        <itemPath>sources/fonts/FD32.c</itemPath>
+        <itemPath>sources/fonts/FD36x48.c</itemPath>
+        <itemPath>sources/fonts/FD48.c</itemPath>
+        <itemPath>sources/fonts/FD48x64.c</itemPath>
+        <itemPath>sources/fonts/FD60x80.c</itemPath>
+        <itemPath>sources/fonts/FD64.c</itemPath>
+        <itemPath>sources/fonts/FD80.c</itemPath>
+        <itemPath>sources/fonts/FONT_Arabic.c</itemPath>
+        <itemPath>sources/fonts/FontDigitsArial72.c</itemPath>
+        <itemPath>sources/fonts/FontSymbol.c</itemPath>
+        <itemPath>sources/fonts/GUI.h</itemPath>
+        <itemPath>sources/fonts/GUI_FontIntern.h</itemPath>
+      </logicalFolder>
+      <itemPath>sources/clientthread.cpp</itemPath>
+      <itemPath>sources/common.h</itemPath>
+      <itemPath>sources/config.cpp</itemPath>
+      <itemPath>sources/controls.cpp</itemPath>
+      <itemPath>sources/controls.h</itemPath>
+      <itemPath>sources/device.cpp</itemPath>
+      <itemPath>sources/devicethread.cpp</itemPath>
+      <itemPath>sources/font_drawer.cpp</itemPath>
+      <itemPath>sources/font_util.cpp</itemPath>
+      <itemPath>sources/gklservice.cpp</itemPath>
+      <itemPath>sources/gtkservice.h</itemPath>
+      <itemPath>sources/mutex.cpp</itemPath>
+      <itemPath>sources/mutex.h</itemPath>
+      <itemPath>sources/packet.cpp</itemPath>
+      <itemPath>sources/packet.h</itemPath>
+      <itemPath>sources/render.cpp</itemPath>
+      <itemPath>sources/thread.cpp</itemPath>
+      <itemPath>sources/thread.h</itemPath>
+    </logicalFolder>
+    <logicalFolder name="HeaderFiles"
+                   displayName="Файлы заголовков"
+                   projectFiles="true">
+    </logicalFolder>
+    <logicalFolder name="ResourceFiles"
+                   displayName="Файлы ресурсов"
+                   projectFiles="true">
+    </logicalFolder>
+    <logicalFolder name="TestFiles"
+                   displayName="Файлы тестов"
+                   projectFiles="false"
+                   kind="TEST_LOGICAL_FOLDER">
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Важные файлы"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>makefile</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <sourceRootList>
+    <Elem>.</Elem>
+  </sourceRootList>
+  <projectmakefile>makefile</projectmakefile>
+  <confs>
+    <conf name="Debug" type="1">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <cTool>
+          <incDir>
+            <pElem>/usr/include/at-spi-2.0</pElem>
+            <pElem>/usr/include/at-spi2-atk/2.0</pElem>
+            <pElem>/usr/include/atk-1.0</pElem>
+            <pElem>/usr/include/cairo</pElem>
+            <pElem>/usr/include/dbus-1.0</pElem>
+            <pElem>/usr/include/freetype2</pElem>
+            <pElem>/usr/include/gdk-pixbuf-2.0</pElem>
+            <pElem>/usr/include/gio-unix-2.0/</pElem>
+            <pElem>/usr/include/glib-2.0</pElem>
+            <pElem>/usr/include/gtk-3.0</pElem>
+            <pElem>/usr/include/harfbuzz</pElem>
+            <pElem>/usr/include/libpng12</pElem>
+            <pElem>/usr/include/pango-1.0</pElem>
+            <pElem>/usr/include/pixman-1</pElem>
+            <pElem>/usr/lib/arm-linux-gnueabihf/dbus-1.0/include</pElem>
+            <pElem>/usr/lib/arm-linux-gnueabihf/glib-2.0/include</pElem>
+          </incDir>
+        </cTool>
+        <ccTool>
+          <incDir>
+            <pElem>/usr/include/at-spi-2.0</pElem>
+            <pElem>/usr/include/at-spi2-atk/2.0</pElem>
+            <pElem>/usr/include/atk-1.0</pElem>
+            <pElem>/usr/include/cairo</pElem>
+            <pElem>/usr/include/dbus-1.0</pElem>
+            <pElem>/usr/include/freetype2</pElem>
+            <pElem>/usr/include/gdk-pixbuf-2.0</pElem>
+            <pElem>/usr/include/gio-unix-2.0/</pElem>
+            <pElem>/usr/include/glib-2.0</pElem>
+            <pElem>/usr/include/gtk-3.0</pElem>
+            <pElem>/usr/include/harfbuzz</pElem>
+            <pElem>/usr/include/libpng12</pElem>
+            <pElem>/usr/include/pango-1.0</pElem>
+            <pElem>/usr/include/pixman-1</pElem>
+            <pElem>/usr/lib/arm-linux-gnueabihf/dbus-1.0/include</pElem>
+            <pElem>/usr/lib/arm-linux-gnueabihf/glib-2.0/include</pElem>
+          </incDir>
+        </ccTool>
+        <linkerTool>
+          <commandLine>`pkg-config --cflags gtk+-3.0` `pkg-config --libs gtk+-3.0`</commandLine>
+        </linkerTool>
+      </compileType>
+      <item path="sources/bidi/bidiref.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="sources/bidi/bidirefp.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="sources/bidi/brrule.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/bidi/brtable.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/bidi/brtest.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/bidi/brutils.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/clientthread.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="sources/common.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="sources/config.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="sources/controls.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="sources/controls.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="sources/device.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="sources/devicethread.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="sources/font_drawer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="sources/font_util.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="sources/fonts/DengXian16.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/DengXian24.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F08_1.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F08_ASCII.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F10S_1.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F10S_ASCII.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F10_1.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F10_ASCII.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F13B_1.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F13B_ASCII.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F13HB_1.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F13HB_ASCII.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F13H_1.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F13H_ASCII.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F13_1.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F13_ASCII.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F16B_1.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F16B_ASCII.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F16_1.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F16_1HK.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F16_ASCII.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F16_HK.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F24B_1.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F24B_ASCII.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F24_1.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F24_ASCII.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F32B_1.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F32B_ASCII.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F32_1.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F32_ASCII.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F4x6.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F6x8.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F8x10_ASCII.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F8x12_ASCII.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F8x13_1.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F8x13_ASCII.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F8x15B_1.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F8x15B_ASCII.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F8x16.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F8x8.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/FComic18B_1.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/FComic18B_ASCII.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/FComic24B_1.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/FComic24B_ASCII.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/FD24x32.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/FD32.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/FD36x48.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/FD48.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/FD48x64.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/FD60x80.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/FD64.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/FD80.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/FONT_Arabic.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/FontDigitsArial72.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/FontSymbol.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/GUI.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="sources/fonts/GUI_FontIntern.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="sources/gklservice.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="sources/gtkservice.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="sources/mutex.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="sources/mutex.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="sources/packet.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="sources/packet.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="sources/render.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="sources/thread.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="sources/thread.h" ex="false" tool="3" flavor2="0">
+      </item>
+    </conf>
+    <conf name="Release" type="1">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <cTool>
+          <developmentMode>5</developmentMode>
+        </cTool>
+        <ccTool>
+          <developmentMode>5</developmentMode>
+        </ccTool>
+        <fortranCompilerTool>
+          <developmentMode>5</developmentMode>
+        </fortranCompilerTool>
+        <asmTool>
+          <developmentMode>5</developmentMode>
+        </asmTool>
+      </compileType>
+      <item path="sources/fonts/DengXian16.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/DengXian24.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F08_1.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F08_ASCII.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F10S_1.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F10S_ASCII.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F10_1.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F10_ASCII.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F13B_1.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F13B_ASCII.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F13HB_1.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F13HB_ASCII.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F13H_1.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F13H_ASCII.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F13_1.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F13_ASCII.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F16B_1.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F16B_ASCII.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F16_1.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F16_1HK.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F16_ASCII.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F16_HK.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F24B_1.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F24B_ASCII.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F24_1.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F24_ASCII.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F32B_1.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F32B_ASCII.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F32_1.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F32_ASCII.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F4x6.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F6x8.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F8x10_ASCII.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F8x12_ASCII.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F8x13_1.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F8x13_ASCII.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F8x15B_1.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F8x15B_ASCII.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F8x16.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/F8x8.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/FComic18B_1.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/FComic18B_ASCII.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/FComic24B_1.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/FComic24B_ASCII.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/FD24x32.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/FD32.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/FD36x48.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/FD48.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/FD48x64.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/FD60x80.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/FD64.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/FD80.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/FONT_Arabic.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/FontDigitsArial72.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/FontSymbol.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sources/fonts/GUI.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="sources/fonts/GUI_FontIntern.h" ex="false" tool="3" flavor2="0">
+      </item>
+    </conf>
+  </confs>
+</configurationDescriptor>

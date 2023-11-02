@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="@dimen/folders_pic_sz"
+        android:layout_height="@dimen/folders_pic_sz"
+        android:src="@drawable/folder_pic" 
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="@dimen/folders_pic_sz"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="TextView" 
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        android:gravity="center_horizontal"/>
+    
+</FrameLayout>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:background="#FFFFFF"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent"
+  android:orientation="vertical">
+
+<TableLayout
+	android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_weight="0"
+    android:stretchColumns="1"
+    android:padding="0dp"
+    android:layout_margin="0dp">
+	
+    <TableRow>
+      <LinearLayout
+         android:layout_gravity="center_vertical"
+         android:layout_height="wrap_content"
+         android:orientation="horizontal"
+         android:layout_width="fill_parent"
+		 android:layout_marginLeft="0dp"
+		 android:layout_marginRight="2dp">
+
+         <TextView android:id="@+id/TextView01"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:text="Дата: "></TextView>
+
+         <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:text="25.11.2010"
+            android:id="@+id/tvDate"
+            android:textStyle="bold"></TextView>
+      </LinearLayout>
+
+      <Spinner android:layout_height="wrap_content"
+         android:id="@+id/spPayType" android:layout_width="fill_parent"></Spinner>
+    </TableRow>
+    <TableRow>
+   	<LinearLayout
+   		android:layout_gravity="center_vertical"
+		android:layout_height="wrap_content"
+		android:layout_width="fill_parent"
+		android:orientation="vertical"
+		android:layout_margin="0dp">
+
+         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:text="Логист: "></TextView>
+
+         <TextView android:id="@+id/tvLogPhone"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:text=""></TextView>
+      </LinearLayout>
+        <CheckBox 
+            android:id="@+id/cbCreateOrderCash"
+            android:text="Б/опл не отгружать"
+            android:textColor="#000000" ></CheckBox>
+	</TableRow>
+ </TableLayout>
+
+      <EditText android:layout_weight="0"
+			android:layout_height="wrap_content"
+			android:layout_width="fill_parent"
+			android:id="@+id/edLogText"
+			android:gravity="top|left" android:minLines="2" android:lines="2"></EditText>
+   
+      <LinearLayout
+         android:layout_height="wrap_content"
+         android:orientation="horizontal"
+         android:layout_weight="0"
+         android:layout_width="fill_parent"
+		android:layout_marginLeft="0dp"
+		android:layout_marginRight="0dp">
+
+         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:text="Фин.контроль: "
+            android:layout_weight="0"></TextView>
+
+         <TextView android:id="@+id/tvFinPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:text=""
+            android:layout_weight="1"></TextView>
+      </LinearLayout>
+
+      <EditText android:layout_weight="0"
+			android:layout_height="wrap_content"
+			android:layout_width="fill_parent"
+			android:id="@+id/edFinText"
+			android:gravity="top|left" android:minLines="2" android:lines="2"></EditText>
+</LinearLayout>

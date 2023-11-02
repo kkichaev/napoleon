@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding="windows-1251"?>
+<Wix xmlns='http://schemas.microsoft.com/wix/2006/wi'>
+   <Fragment Id='ODBC'>
+      <Feature Id='ODBC' Title='ODBC Driver' Description='Драйвер для подключение к СУБД через ODBC' 
+               Absent='allow' ConfigurableDirectory='_PRODUCT' Level='1' >
+         <ComponentRef Id='ODBCFtr' />
+        <ComponentGroupRef Id='Docs' />
+      </Feature>
+
+      <DirectoryRef Id='_PRODUCT' >
+         <Component Id='ODBCFtr' Guid='D9D59ED7-5FE1-4343-B6C7-7A7349E708F0'>
+           <File Id='ODBC_dll' Name='ODBC.dll' DiskId='1' Source='ODBC.dll' KeyPath='yes' />
+            <File Id='ODBC_pdf' Name='ODBC.pdf' DiskId='1' Source='ODBC.pdf' />
+         </Component>
+      </DirectoryRef>
+   </Fragment>
+</Wix>

@@ -1,0 +1,56 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+   <objects>
+      <object name="Order">
+         <sources>
+            <source name="SbisOrderTable">
+               <param name="tableName">$object.table + $user.id</param>
+               <param name="catalog">"id"</param>
+               <param name="ordered">1</param>
+            </source>
+            <source name="SQTable" type="internal" />
+         </sources>
+
+         <member name="primaryKey">"userid,created"</member>
+
+         <field name="userid" type="string" data="USER_ID" execOn="Put">$user.id</field>
+         <field name="created" type="timestamp" data="CREATED,NUM"/>
+         <field name="sended" type="timestamp" data="S_DATE" execOn="Put">Now()</field>
+         <field name="date" type="date" />
+         <field name="delay" type="number" prec="0" />
+         <field name="id" width="20" type="string" />
+         <field name="remark" type="string" />
+         <field name="items" type="collection">
+            <data>
+               <object name="OrderItem">
+                  <sources>
+                     <source name="SbisOrderItemTable"/>
+                     <source name="SQTable" type="internal" />
+                  </sources>
+
+                  <field name="id" width="20" type="string" data="ID_I"/>
+                  <field name="qty" type="number" prec="3" />
+                  <field name="cost" type="number" prec="2" />
+                  <!--<field name="pack" type="number" width="1" execOn="Put">DecodeFlag($object.flags, 1, "", "1")</field>
+                  <field name="ordflag" width="1" type="number" execOn="Put">FirstItem($object)</field>-->
+               </object>
+            </data>
+         </field>
+
+         <field name="ctype" type="string" width="30" execOn="Put">KeyValueReader("order.cfg","ВидЦены",$object.sumType)</field>
+         <field name="firma" type="string" width="30" execOn="Put">KeyValueReader("order.cfg","Организация",$object.supplyer)</field>
+
+         <field name="latitude" type="number" prec="5" />
+         <field name="longitude" type="number" prec="5" />
+
+         <events>
+            <event type="put">
+               <!--<action name="WriteOrder" /> !-->
+               <action name="RunBat" />
+               <action name="WriteInternal">$object.type</action>
+               <action name="WriteToLog">$object.type;$object.created</action>
+            </event>
+         </events>
+      </object>
+   </objects>
+</serverDefs>

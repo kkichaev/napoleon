@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+    <modify src="Order">
+      <add>
+        <field name="sklad" type="string" width="50" />
+        <field name="withDocs" type="number" width="1" data="W_DOCS" />
+        <field name="orderOnly" type="number" width="1" data="ORDER" />
+        <field name="beznal" type="number" width="1" data="BN" />
+      </add>
+    </modify>
+	</objects>
+</serverDefs>

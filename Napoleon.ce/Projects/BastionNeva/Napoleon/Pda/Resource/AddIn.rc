@@ -1,0 +1,147 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "NapoleonRes.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "resdefce.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Russian resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_RUS)
+#ifdef _WIN32
+LANGUAGE LANG_RUSSIAN, SUBLANG_DEFAULT
+#pragma code_page(1251)
+#endif //_WIN32
+
+
+IDD_ORG_LIST_ADD MENU 
+BEGIN
+    POPUP "Last"
+    BEGIN
+        MENUITEM "&О программе",                IDC_ABOUT
+    END
+    POPUP "OrgList"
+    BEGIN
+        MENUITEM "&О программе",                IDC_ABOUT
+        MENUITEM "&Настройки",                  IDC_PREFERENCE
+        MENUITEM SEPARATOR
+        MENUITEM "&Прием остатков",             IDC_RCV_PRICE
+        MENUITEM "С&инхронизация",              IDC_SYNC
+        MENUITEM SEPARATOR
+        POPUP "Списки"
+        BEGIN
+            MENUITEM "&Документы",              IDD_ORDER_LIST
+#ifdef RCV_MESSAGE
+            MENUITEM "&Сообщения",              IDD_MESSAGE_LIST
+#endif
+            MENUITEM "&Планы",                  IDD_PLAN
+            MENUITEM "Прайс-&лист",             IDD_PRICE_LIST
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "&Выход",                      IDC_QUIT
+    END
+    POPUP "ViewStyle"
+    BEGIN
+        MENUITEM "&Заказы",                     IDC_ORDER_VIEW
+        MENUITEM "&Накладные",                  IDC_DELIVERY_VIEW
+        MENUITEM "&Баланс",                     IDC_BALANCE_VIEW
+    END
+END
+
+IDD_ORG_DOCS_ADD DIALOG  0, 0, 120, 134
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_SYSMENU
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Static",IDC_ORG_TITLE,0,3,120,10
+    LTEXT           "ADDRESS",IDC_ADDRESS_LABEL,0,3,120,10
+    CONTROL         "",IDC_CONTACTS,"SysListView32",LVS_ALIGNLEFT | LVS_OWNERDATA | WS_TABSTOP | LVS_OWNERDRAWFIXED,0,10,120,110
+    CONTROL         "",IDC_TABLE,"SysListView32",LVS_ALIGNLEFT | LVS_OWNERDATA | WS_TABSTOP | LVS_OWNERDRAWFIXED,0,10,120,110
+END
+
+IDD_PLAN_LIST DIALOG  0, 0, 120, 134
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_SYSMENU
+FONT 8, "MS Shell Dlg"
+BEGIN
+    CONTROL         "",IDC_TABLE,"SysListView32",LVS_ALIGNLEFT | LVS_OWNERDATA | LVS_OWNERDRAWFIXED | WS_TABSTOP,0,7,120,110
+END
+
+IDD_FLDORGS_ADD SHMENUBAR DISCARDABLE
+BEGIN
+    IDD_ORG_LIST_ADD, 
+    4,
+
+    I_IMAGENONE, IDD_ORG_LIST, TBSTATE_ENABLED, TBSTYLE_DROPDOWN | TBSTYLE_AUTOSIZE, IDD_ORG_LIST, 0, 1,
+    15, IDC_CONTACTS, TBSTATE_ENABLED, TBSTYLE_BUTTON | TBSTYLE_AUTOSIZE, 0, IDC_CONTACTS, 1,
+    I_IMAGENONE, IDC_VIEW_TYPE, TBSTATE_ENABLED, TBSTYLE_DROPDOWN | TBSTYLE_AUTOSIZE, IDC_VIEW_TYPE_CAP, IDC_VIEW_TYPE, NOMENU,
+    //17, IDC_BACK, TBSTATE_ENABLED, TBSTYLE_BUTTON | TBSTYLE_AUTOSIZE, 0, IDC_BACK, 1,
+    12, IDC_SHOW_2_ROW, TBSTATE_ENABLED, TBSTYLE_BUTTON | TBSTYLE_AUTOSIZE, 0, IDC_NEXT, 1,
+END
+
+IDD_ORG_LIST_ADD SHMENUBAR DISCARDABLE
+BEGIN
+    IDD_ORG_LIST_ADD, 
+    4,
+
+    I_IMAGENONE, IDD_ORG_LIST, TBSTATE_ENABLED, TBSTYLE_DROPDOWN | TBSTYLE_AUTOSIZE, IDD_ORG_LIST, 0, 1,
+    14, IDC_CALENDAR, TBSTATE_ENABLED, TBSTYLE_BUTTON | TBSTYLE_AUTOSIZE, 0, IDC_CALENDAR, 1,
+    I_IMAGENONE, IDC_VIEW_TYPE, TBSTATE_ENABLED, TBSTYLE_DROPDOWN | TBSTYLE_AUTOSIZE, IDC_VIEW_TYPE_CAP, IDC_VIEW_TYPE, NOMENU,
+    12, IDC_SHOW_2_ROW, TBSTATE_ENABLED, TBSTYLE_BUTTON | TBSTYLE_AUTOSIZE, 0, IDC_NEXT, 1,
+END
+
+IDD_PLAN_LIST SHMENUBAR DISCARDABLE
+BEGIN
+    IDD_ORG_LIST_ADD, 
+    1,
+
+    0, IDC_BACK, TBSTATE_ENABLED, TBSTYLE_BUTTON | TBSTYLE_AUTOSIZE, 0, IDC_BACK, 1,
+END
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "NapoleonRes.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""resdefce.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+#endif    // Russian resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

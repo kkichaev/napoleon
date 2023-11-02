@@ -1,0 +1,385 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+  <objects>
+
+    <object name="OrderReceived" removeOnCommit="true" sendAlways="true">
+      <sources>
+        <source name="SQTable" type="internal">
+          <param name="readFilter">'"userid"=' + "'" + $user.id + "'"</param>
+        </source>
+      </sources>
+      
+      <field name="userid" type="string" />
+      <field name="created" type="timestamp" />
+      <field name="id" type="string" />
+      <field name="qty" type="number" prec="3" />
+      <field name="cost" type="number" prec="2" />
+    </object>
+
+    <modify src="PricePhoto">
+      <change>
+        <sources>
+          <source name="SQLQuery">
+            <param name="stmt">
+              "SELECT p.ID as id, p.DATA as photo, p.ID as name FROM NP_GET_RRICE_PHOTOS('D:\Works\Napoleon.ce\Projects\BeautyProfy\!\CBD10032015.FDB', 'sysdba', 'masterkey') p"
+            </param>
+          </source>
+        </sources>
+        <field name="photo" type="binary" />
+      </change>
+      <add>
+        <field name="name" type="string" />
+      </add>
+    </modify>
+    <modify src="PricePhoto$items">
+      <change>
+        <sources>
+          <source name="SQLQuery">
+            <param name="keyFields">"name"</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+
+
+    <modify src="ManagerFolder" tableName="Folder">
+      <change>
+        <sources>
+        <source name="SQLFolder">
+          <param name="parentField">"parent"</param>
+          <param name="childField">"fid"</param>
+          <param name="stmt">
+            "SELECT p.FID, p.PARENT, p.NAME
+            FROM NP_GET_FOLDER('D:\Works\Napoleon.ce\Projects\BeautyProfy\!\CBD10032015.FDB', 'sysdba', 'masterkey') p"
+          </param>
+        </source>
+      </sources>
+      </change>
+
+      <add>
+        <field name="userid" type="string" execOn="Put">$user.id</field>
+        <field name="fid" type="string" width="15" />
+        <field name="parent" type="string" width="15" />
+        <field name="name" type="string" width="60" />
+        <field name="level" type="number" width="9" />
+        <field name="id" type="string" execOn="Get">$object.fid</field>
+      </add>
+    </modify>
+
+    <modify src="Agents">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+    </modify>
+    
+    <modify src="CommonOrgs">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="CommonMatrix">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+      <add>
+        <member name="primaryKey">"name"</member>
+        <field name="userid" type="string" />
+      </add>
+    </modify>
+    <modify src="CommonMatrix$items">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="Matrix">
+      <change>
+        <sources>
+          <source name="SQLQuery">
+            <param name="stmt">
+              "select cm.name as name, i.id as id
+              from (CommonMatrix as cm inner join [CommonMatrix$items] as i on cm.name = i.[CommonMatrix$name])
+              inner join AgentMatrix as am on cm.name = am.name
+              where am.userid = '"+$user.id+"'"
+            </param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+    <modify src="Matrix$items">
+      <change>
+        <sources>
+          <source name="SQLQuery">
+            <param name="keyFields">"name"</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="Folder">
+      <change>
+        <sources>
+          <source name="SQLFolder">
+            <param name="parentField">"parent"</param>
+            <param name="childField">"fid"</param>
+            <param name="rowidField">"id"</param>
+            <param name="stmt">
+              "SELECT p.FID, p.PARENT, p.NAME
+              FROM NP_GET_FOLDER('D:\Works\Napoleon.ce\Projects\BeautyProfy\!\CBD10032015.FDB', 'sysdba', 'masterkey') p"
+            </param>
+          </source>
+        </sources>
+        <field name="id" type="number" />
+        <field name="fid" type="string" width="15" />
+      </change>
+      <add>
+        <field name="parent" type="string" width="15" />
+      </add>
+    </modify>
+
+    <modify src="Org">
+      <change>
+        <sources>
+          <source name="SQLQuery">
+            <param name="stmt">
+              "SELECT p.LID, p.ID, p.NAME, p.ADDRESS, p.USERID, p.BALANCE, p.STOP, c.ID as ID_I, c.NAME as FIO, c.phone
+              FROM NP_GET_ORG('D:\Works\Napoleon.ce\Projects\BeautyProfy\!\CBD10032015.FDB', 'sysdba', 'masterkey') p,
+              NP_GET_ORG$CONTACTS('D:\Works\Napoleon.ce\Projects\BeautyProfy\!\CBD10032015.FDB', 'sysdba', 'masterkey') c
+              where p.id = c.org$id and userid = '"+$user.id+"'"
+            </param>
+          </source>
+        </sources>
+      </change>
+      <add>
+        <field name="stop" type="number" hidden="true" />
+        <field name="balance" type="number" prec="2" />
+        <field name="flags" type="number" execOn="Get" >EncodeFlag($object.stop,2)</field>
+      </add>
+    </modify>
+
+    <modify src="Org$contacts">
+      <change>
+        <sources>
+          <source name="SQLQuery">
+            <param name="keyFields">"id"</param>
+          </source>
+        </sources>
+        <field name="id" type="string" width="30" data="id_i" />
+      </change>
+    </modify>
+
+    <modify src="Price">
+      <change>
+        <sources>
+          <source name="SQLQuery">
+            <param name="stmt">
+              "SELECT p.id as id, FOLDER, INPACK as inpack, NAME, qty, " + '"' + "WEIGHT" + '"' + ", pc.COST, pc.NUM FROM
+              NP_GET_PRICE('D:\Works\Napoleon.ce\Projects\BeautyProfy\!\CBD10032015.FDB', 'sysdba', 'masterkey') p,
+              NP_GET_PRICECOST('D:\Works\Napoleon.ce\Projects\BeautyProfy\!\CBD10032015.FDB', 'sysdba', 'masterkey') pc where p.id = pc.ID order by id, num"
+            </param>
+          </source>
+        </sources>
+      </change>
+      <add>
+        <field name="descr" type="string" />
+      </add>
+    </modify>
+
+    <modify src="Price$cost">
+      <change>
+        <sources>
+          <source name="SQLQuery">
+            <param name="keyFields">"id"</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="ManagerPrice">
+      <change>
+        <sources>
+          <source name="SQLQuery">
+            <param name="stmt">
+              "SELECT p.id as id, FOLDER, INPACK as inpack, NAME, qty, " + '"' + "WEIGHT" + '"' + ", pc.COST, pc.NUM FROM
+              NP_GET_PRICE('D:\Works\Napoleon.ce\Projects\BeautyProfy\!\CBD10032015.FDB', 'sysdba', 'masterkey') p,
+              NP_GET_PRICECOST('D:\Works\Napoleon.ce\Projects\BeautyProfy\!\CBD10032015.FDB', 'sysdba', 'masterkey') pc where p.id = pc.ID order by id, num"
+            </param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="ManagerPrice$cost">
+      <change>
+        <sources>
+          <source name="SQLQuery">
+            <param name="keyFields">"id"</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="Config">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+        <field name="value" type="string" width="4000" />
+      </change>
+    </modify>
+
+    <modify src="Order">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+      <add>
+        <field name="supplyer" type="number" />
+        <field name="sumType" type="number" />
+
+        <event type="put">
+          <action name="WriteToLog">$object.type;$object.created</action>
+        </event>
+        <event type="writeCommit">
+          <action name="OrdersWrited" />
+        </event>
+      </add>
+    </modify>
+
+    <modify src="Order$items">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="Returns">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+      <add>
+        <event type="put">
+          <action name="WriteToLog">$object.type;$object.created</action>
+        </event>
+        <event type="writeCommit">
+          <action name="ReturnsWrited" />
+        </event>
+      </add>
+    </modify>
+
+    <modify src="Returns$items">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="OrderProceeded">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal">
+            <param name="readFilter">'"userid"=' + "'" + $user.id + "'"</param>
+          </source>
+        </sources>
+      </change>
+      <add>
+        <field name="userid" type="string" />
+      </add>
+    </modify>
+
+    <modify src="OrderCommitted">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+
+      <add>
+        <member name="primaryKey">"userid,created"</member>
+        <field name="userid" type="string" />
+      </add>
+    </modify>
+
+    <modify src="OrgRemnants">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="Incass">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="MessageArchive">
+      <add>
+        <member name="primaryKey">"userid,date"</member>
+      </add>
+      <change>
+        <field name="message" type="string" width="4000"/>
+      </change>
+    </modify>
+
+    <modify src="Message">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal">
+            <param name="readFilter">'"userid" = ' + "'" + $user.id + "'"</param>
+          </source>
+        </sources>
+        <field name="message" type="string" width="4000"/>
+      </change>
+      <add>
+        <member name="primaryKey">"userid,date"</member>
+        <field name="date" type="timestamp" execOn="Put">Now()</field>
+        <field name="userid" type="string" execOn="Put">$user.id</field>
+      </add>
+    </modify>
+
+    <modify src="Payment">
+      <change>
+        <sources>
+          <source name="SQLQuery">
+            <param name="stmt">
+              'SELECT p.ID, p.BALANCE as "sum", '+"'Долг' as num, (DATEDIFF(second, timestamp '1/1/1970 00:00:00', current_timestamp) + 11644473600) * 10000000 as " +'"date" ' +
+              "FROM NP_GET_ORG('D:\Works\Napoleon.ce\Projects\BeautyProfy\!\CBD10032015.FDB', 'sysdba', 'masterkey') p where p.userid = '" + $user.id + "'"
+            </param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+
+  </objects>
+
+  <actions>
+    <action name="OrdersWrited">
+      <do>
+        <execute>"SELECT * FROM NP_GET_ORDER('D:\Works\Napoleon.ce\Projects\BeautyProfy\!\CBD10032015.FDB', 'sysdba', 'masterkey', 211)"</execute>
+      </do>
+    </action>
+    <action name="ReturnsWrited">
+      <do>
+        <execute>"SELECT * FROM NP_GET_RETURNS('D:\Works\Napoleon.ce\Projects\BeautyProfy\!\CBD10032015.FDB', 'sysdba', 'masterkey', 211)"</execute>
+      </do>
+    </action>
+  </actions>
+</serverDefs>

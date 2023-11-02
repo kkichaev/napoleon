@@ -1,0 +1,416 @@
+﻿<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+  <objects>
+    <const name="keyWidth">55</const>
+    <const name="nameWidth">100</const>
+
+    <fieldTemplate name="userid" type="string" width="$const.keyWidth" />
+    <fieldTemplate name="useridPut" template="userid" fieldName="userid" execOn="Put">$user.id</fieldTemplate>
+    <fieldTemplate name="fid" template="id" fieldName="fid" />
+    <fieldTemplate name="qty" type="number" prec="3" />
+    <fieldTemplate name="cost" type="number" prec="2" />
+
+    <object name="ServerTaskParams">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"id,key"</member>
+
+      <field name="id" type="string" />
+      <field name="key" type="string" />
+      <field name="value" type="string" />
+    </object>
+
+    <object name="ServerTaskLog">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"timestamp"</member>
+      <memberArray name="index">"id,date"</memberArray>
+
+      <field name="timestamp" type="number" />
+      <field name="id" type="string" />
+      <field name="date" type="timestamp" />
+      <field name="text" type="string" />
+    </object>
+
+    <object name="ServerTaskScheduler">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"id"</member>
+
+      <field name="id" type="string" />
+      <field name="name" type="string" />
+      <field name="description" type="string" />
+      <field name="module" type="string" />
+      <field name="params" type="string" />
+
+      <field name="items" type="collection">
+        <data>
+          <object name="Item">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+
+            <field name="starting" type="number" />
+            <field name="cycle" type="number" />
+            <field name="second" type="number" />
+            <field name="minute" type="number" />
+            <field name="hour" type="number" />
+            <field name="day" type="number" />
+            <field name="month" type="number" />
+          </object>
+        </data>
+      </field>
+    </object>
+
+    <modify src="ServerTaskScheduler" dest="ServerTaskSchedulerUpdate" table="ServerTaskScheduler">
+      <add>
+        <event type="writeCommit">
+          <action>
+            <do>
+              <refreshScheduler />
+            </do>
+          </action>
+        </event>
+      </add>
+    </modify>
+
+    <object name="UserLog">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"userid,unixtime"</member>
+      <memberArray name="index">"date"</memberArray>
+
+      <field template="useridPut" />
+
+      <field name="date" type="timestamp" />
+      <field name="objType" type="string" />
+      <field name="objDate" type="timestamp" />
+      <field name="category" type="number" />
+      <field name="action" type="number" />
+      <field name="comments" type="string" />
+      <field name="unixtime" type="number" prec="1" />
+    </object>
+
+    <object name="ExchangeInfo">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"type"</member>
+
+      <field name="time" type="timestamp" />
+      <field name="type" type="string" />
+    </object>
+
+    <object name="SyncInfo">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"userid,created"</member>
+
+      <field template="useridPut" />
+
+      <field name="created" type="timestamp" />
+      <field name="syncparam" type="number" />
+      <field name="result" type="number" />
+      <field name="errmsg" type="string" />
+      <field name="deviceID" type="string" />
+    </object>
+
+    <object name="GPSPos">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"userid,date"</member>
+      <memberArray name="index">"date"</memberArray>
+
+      <field template="useridPut" />
+
+      <field name="date" type="timestamp" />
+      <field name="longitude" type="number" prec="5" />
+      <field name="latitude" type="number" prec="5" />
+      <field name="speed" type="number" prec="2" />
+      <field name="isGSM" type="number" />
+      <field name="satellite" type="number" />
+      <field name="accuracy" type="number" />
+      <field name="stltime" type="timestamp" />
+      <field name="isMock" type="number" />
+    </object>
+
+    <!-- comman tables  -->
+
+    <object name="AgentData">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <field template="userid" />
+      <field template="id" />
+      <field name="type" type="string" />
+
+      <member name="primaryKey">"userid,id,type"</member>
+    </object>
+
+    <object name="ColorsTable">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"type,id"</member>
+
+      <field name="face" type="number" />
+      <field name="back" type="number" />
+      <field name="id" type="string" />
+      <!-- 
+         0 - Price
+         1 - Org
+         -->
+      <field name="type" type="number" />
+    </object>
+
+    <object name="Price">
+      <sources>
+        <source name="SQTable" type="internal">
+          <param name="readFilter">AgentDataFilter("id","Price",$01)</param>
+          <!--<param name="readFilter">'"id" in (select "id" from "AgentData" where "userid" = \'$01\' and "type"= \'Price\')'</param>
+          <param name="readFilter">''</param>-->
+          <param name="$01">$user.id</param>
+        </source>
+      </sources>
+
+      <member name="primaryKey">"id"</member>
+
+      <field template="id"/>
+      <field template="name"/>
+      <field template="fid" />
+      <field name="weight" type="number" prec ="3" />
+
+      <field name="folderID" type="number" execOn="Get">FolderID($object.fid)</field>
+      <field name="color" type="number" execOn="Get">GetColor($object.id,"price","face",0)</field>
+    </object>
+
+    <object name="Folder">
+      <sources>
+        <source name="SQLFolder" type="internal">
+          <!--<param name="parentField">"parent"</param>
+          <param name="childField">"fid"</param>
+          <param name="rowidField">"id"</param>-->
+          <!--<param name="readFilter">'"userid"= ' + "'" + $user.id + "'"</param>-->
+        </source>
+      </sources>
+
+      <member name="primaryKey">"fid"</member>
+
+      <field template="fid" />
+      <field template="name"/>
+
+      <field name="id" type="number" />
+      <field name="parent" type="string" width="55" />
+      <field name="userid" type="string" />
+      <field name="level" type="number"/>
+    </object>
+
+    <object name="Schedule" >
+      <sources>
+        <source name="SQTable" type="internal">
+          <param name="readFilter">'"userid"=\'$01\' and "date" &gt;= $02'</param>
+          <param name="$01">$user.id</param>
+          <param name="$02">ToDate(FormatDate(AdjustDate(Now(),-3,"day"),"DD.MM.YYYY"))</param>
+        </source>
+      </sources>
+      <member name="primaryKey">"userid,date"</member>
+      <field name="items" type="collection">
+        <data>
+          <object name="Item">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+            <field name="timeIndex" type="number" />
+          </object>
+        </data>
+      </field>
+      <field name="date" type="date" />
+      <field template="userid"/>
+    </object>
+
+    <object name="ServerConfig">
+      <sources>
+        <source name="SQTable" type="internal" >
+          <param name="readFilter">'"userid" is null or "userid"=\'\' or "userid"=\'$01\''</param>
+          <param name="$01">$user.id</param>
+        </source>
+      </sources>
+
+      <member name="primaryKey">"userid,key"</member>
+
+      <field template="userid" />
+      <field name="key" type="string" />
+      <field name="value" type="string" width="3000" />
+    </object>
+
+    <object name="Org">
+      <sources>
+        <source name="SQTable" type="internal">
+          <param name="readFilter">AgentDataFilter("id","Org",$01)</param>
+          <!--<param name="readFilter">AgentDataFilter("id","Org",$01)</param>-->
+          <!--<param name="readFilter">'"id" in (select "id" from "AgentData" where "userid" = \'$01\' and "type"= \'Org\')'</param>
+          <param name="readFilter">''</param>-->
+          <param name="$01">$user.id</param>
+        </source>
+      </sources>
+
+      <member name="primaryKey">"id"</member>
+
+      <field template="id" />
+      <field template="name"/>
+      <field name="address" type="string" />
+
+      <!-- <field name="color" type="hex" /> -->
+      <field name="color" type="number" execOn="Get" data="">GetColor($object.id,"org","face",0)</field>
+
+      <field name="contacts" type="collection">
+        <data>
+          <object name="Contact">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+
+            <field template="name"/>
+            <field name="phone" type="string" width="100" />
+          </object>
+        </data>
+      </field>
+      <field name="longitude" type="number" prec="5" />
+      <field name="latitude" type="number" prec="5" />
+
+    </object>
+
+    <modify src="Org" dest="CommonOrgs">
+      <change>
+        <sources>
+          <source name="SQLQuery">
+            <param name="stmt">'select * from "Org"'</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+
+    <object name="BaseDocument">
+      <member name="primaryKey">"userid,created"</member>
+      <memberArray name="index">"date"</memberArray>
+
+      <field template="useridPut" />
+      <field template="id" />
+
+      <field name="created" type="timestamp"/>
+
+      <field name="date" type="timestamp" />
+      <field name="remark" type="string" />
+
+      <field name="timeZone" type="number" />
+
+      <field name="serverTimeZone" type="number" execOn="Put">ServerTimeZone()</field>
+
+      <field name="sended" type="timestamp" execOn="Put">Now()</field>
+      <field name="longitude" type="number" prec="5" />
+      <field name="latitude" type="number" prec="5" />
+
+      <field name="stltime" type="number" />
+
+      <events>
+        <event type="put">
+          <action name="WriteToLog">$object.type;$object.created</action>
+        </event>
+      </events>
+    </object>
+
+    <object name="Visit" base="BaseDocument">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <field name="items" type="collection">
+        <data>
+          <object name="Item">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+            <field name="name" type="string" execOn="Put">ToFileName($user.id) + "/" + ToFileName($parent.id) + "/" + FormatDate($parent.created, "YYYYMMDDHHmmSS") + "_" + IndexOf($object) + DataExtention($object, "photo") </field>
+            <field name="photo" type="file" src="name"  />
+            <field name="smallName" type="string" execOn="Put">ToFileName($user.id) + "/" + ToFileName($parent.id) + "/" + FormatDate($parent.created, "YYYYMMDDHHmmSS") + "_" + IndexOf($object) + "_small" + DataExtention($object, "smallPhoto") </field>
+            <field name="smallSize" type="string" />
+            <field name="smallPhoto" type="file" src="smallName" />
+            <field name="date" type="timestamp" />
+            <field name="href" type="string" />
+          </object>
+        </data>
+      </field>
+    </object>
+
+    <modify src="Visit" dest="VisitInfo" table="Visit">
+      <remove>
+        <field name="items" />
+      </remove>
+    </modify>
+
+    <modify dest="VisitSrc" src="VisitInfo" >
+      <add>
+        <field name="items" type="collection">
+          <data>
+            <object name="VisitItem">
+              <sources>
+                <source name="SQTable" type="internal" />
+              </sources>
+              <field name="name" type="string" />
+              <field name="smallName" type="string" />
+              <field name="smallSize" type="string" />
+              <field name="rating" type="number" feature="SNAPSHOT_RATING"/>
+              <field name="href" type="string" />
+              <field name="date" type="timestamp" />
+            </object>
+          </data>
+        </field>
+      </add>
+    </modify>
+
+    <modify src="Visit$items" dest="VisitItemDoc" table="Visit$items">
+      <change>
+        <field name="name" type="string" execOn="Put">ToFileName($user.id) + "/" + $object.__nameBase  + DataExtention($object, "photo")</field>
+        <field name="smallName" type="string" execOn="Put">ToFileName($user.id) + "/" + $object.__nameBase + "_small" + DataExtention($object, "smallPhoto") </field>
+        <field name="Visit$created" type="timestamp" execOn="Put">$object.__date</field>
+        <field name="Visit$userid" type="string" execOn="Put">$user.id</field>
+      </change>
+    </modify>
+
+    <!--<object name="TestDoc" base="BaseDocument">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+    </object>-->
+
+  </objects>
+
+  <actions>
+
+    <action name="WriteToLog">
+      <params>
+        <param name="action" />
+        <param name="docdate" />
+      </params>
+      <do>
+        <put object="UserLog" sourceType="internal">$object.userid=$user.id;$object.date=Now();$object.unixtime=Now("UnixTimeMS");$object.objType=$action;$object.objDate=$docdate</put>
+      </do>
+    </action>
+
+  </actions>
+</serverDefs>

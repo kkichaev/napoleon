@@ -1,0 +1,83 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 31
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    defaultConfig {
+        applicationId "com.grsoft.manager"
+        minSdkVersion 21
+        targetSdkVersion 31
+        versionCode 20
+        versionName "20"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions{
+        encoding = 'windows-1251'
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        //abortOnError false
+    }
+
+    signingConfigs {
+        release {
+            keyAlias 'grsoft'
+            keyPassword 'GrSoftNapoleon'
+            storeFile file(System.getenv('RELEASE_KEY'))
+            storePassword 'GrSoftNapoleon'
+        }
+    }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+        }
+    }
+
+    applicationVariants.all {
+        variant ->
+            if (variant.buildType.name == "release")
+                variant.outputs.all {
+                    outputFileName = "ManagerZagetskaya.apk"
+                }
+    }
+
+}
+
+dependencies {
+    def fragment_version = "1.4.1"
+    def lifecycle_version = "2.5.0-alpha05"
+
+    implementation "androidx.fragment:fragment:$fragment_version"
+
+    implementation "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-livedata:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-runtime:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycle_version"
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation project(':managerbase')
+
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.drawerlayout:drawerlayout:1.1.1'
+
+    implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'com.google.android.material:material:1.1.0'
+}

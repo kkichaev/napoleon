@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:id="@+id/change_foto"
+            android:text="@string/foto_set"
+            android:gravity="center"
+            android:textSize="@dimen/text_size_lessSP"
+            android:clickable="true"
+            android:longClickable="false"
+            android:background="@drawable/selector_blue_item"/>
+
+        <View style="@style/dividerSmall"
+            android:layout_marginLeft="@dimen/univ_padding_small"
+            android:layout_marginRight="@dimen/univ_padding_small"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:id="@+id/change_foto_del"
+            android:text="@string/foto_del"
+            android:layout_marginBottom="@dimen/univ_padding_small"
+            android:gravity="center"
+            android:textSize="@dimen/text_size_lessSP"
+            android:clickable="true"
+            android:longClickable="false"
+            android:background="@drawable/selector_blue_item"/>
+
+        <View style="@style/dividerSmall"
+            android:visibility="invisible"/>
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

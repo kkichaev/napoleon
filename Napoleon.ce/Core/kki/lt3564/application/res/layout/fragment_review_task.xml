@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- <ScrollView xmlns:android="http://schemas.android.com/apk/res/android" -->
+<!-- android:layout_width="match_parent" -->
+<!-- android:layout_height="match_parent" > -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/linearLayout"
+    style="@style/Main"
+    android:paddingLeft="7dp"
+    android:paddingRight="7dp" >
+
+    <LinearLayout
+        android:id="@+id/panel"
+        style="@style/Horizontal"
+        android:padding="10dp" >
+
+        <LinearLayout
+            android:id="@+id/layout_performer"
+            style="@style/Horizontal"
+            android:layout_weight="1"
+            android:gravity="center_vertical" >
+
+            <ImageView
+                android:id="@+id/img_client"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/text_client"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:ellipsize="end"
+                android:hint="@string/task_assign"
+                android:singleLine="true" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_set_term"
+            style="@style/Horizontal"
+            android:layout_weight="1"
+            android:gravity="center_vertical" >
+
+            <ImageView
+                android:id="@+id/img_term"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/term_gray_small" />
+
+            <TextView
+                android:id="@+id/text_term"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:ellipsize="end"
+                android:singleLine="true" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:id="@+id/viewPanel"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerVertical="true" />
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" >
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autoLink="web|email"
+            android:gravity="top"
+            android:textSize="18sp" />
+    </ScrollView>
+
+    <com.ashberrysoft.leadertask.views.LinedEditText
+        android:id="@+id/editText"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:capitalize="sentences"
+        android:gravity="top"
+        android:overScrollMode="ifContentScrolls"
+        android:scrollbars="vertical"
+        android:singleLine="false"
+        android:textCursorDrawable="@null"
+        android:textSize="18sp" >
+    </com.ashberrysoft.leadertask.views.LinedEditText>
+
+</LinearLayout>

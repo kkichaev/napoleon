@@ -1,0 +1,85 @@
+{
+  "_from": "@quasar/render-ssr-error@^1.0.1",
+  "_id": "@quasar/render-ssr-error@1.0.1",
+  "_inBundle": false,
+  "_integrity": "sha512-4Shxl079hew/yZnIsDtWpRD8enOmqMjMu/s2bkGN0QBvlsRkpWv9pwOz5geJXZxBa17q1S4txvByBxkhPfhWaQ==",
+  "_location": "/@quasar/render-ssr-error",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "range",
+    "registry": true,
+    "raw": "@quasar/render-ssr-error@^1.0.1",
+    "name": "@quasar/render-ssr-error",
+    "escapedName": "@quasar%2frender-ssr-error",
+    "scope": "@quasar",
+    "rawSpec": "^1.0.1",
+    "saveSpec": null,
+    "fetchSpec": "^1.0.1"
+  },
+  "_requiredBy": [
+    "/@quasar/app-vite"
+  ],
+  "_resolved": "https://registry.npmjs.org/@quasar/render-ssr-error/-/render-ssr-error-1.0.1.tgz",
+  "_shasum": "5400b51c1bc55f4ee7bfb62ecb6f7c7d0f88ce7f",
+  "_spec": "@quasar/render-ssr-error@^1.0.1",
+  "_where": "/home/devteam/prog/webfront/node_modules/@quasar/app-vite",
+  "author": {
+    "name": "Razvan Stoenescu",
+    "email": "razvan.stoenescu@gmail.com",
+    "url": "https://github.com/quasarframework"
+  },
+  "bugs": {
+    "url": "https://github.com/quasarframework/quasar/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "stack-trace": "^1.0.0-pre2"
+  },
+  "deprecated": false,
+  "description": "Renders SSR errors for Quasar CLI",
+  "devDependencies": {
+    "@quasar/app-vite": "^1.0.0",
+    "@quasar/extras": "^1.0.0",
+    "autoprefixer": "^10.4.2",
+    "eslint": "^8.10.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.19.1",
+    "eslint-plugin-n": "^15.0.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-vue": "^9.0.0",
+    "fs-extra": "^11.1.1",
+    "postcss": "^8.4.14",
+    "prismjs": "^1.29.0",
+    "quasar": "^2.6.0",
+    "vue": "^3.0.0",
+    "vue-router": "^4.0.0"
+  },
+  "engines": {
+    "node": ">= 14.17.0"
+  },
+  "funding": {
+    "type": "github",
+    "url": "https://donate.quasar.dev"
+  },
+  "homepage": "https://quasar.dev",
+  "license": "MIT",
+  "main": "src/index.js",
+  "module": "src/index.js",
+  "name": "@quasar/render-ssr-error",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/quasarframework/quasar.git"
+  },
+  "scripts": {
+    "build": "yarn build:ui && yarn build:package",
+    "build:package": "node ./build/index.js",
+    "build:ui": "cd src-ui && quasar build",
+    "dev": "cd src-ui && quasar dev",
+    "lint": "eslint ./ --ext .js,.vue --fix --report-unused-disable-directives"
+  },
+  "type": "module",
+  "version": "1.0.1"
+}

@@ -1,0 +1,2010 @@
+﻿<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+  <objects>
+    <common>
+      <object>
+        <sources>
+          <!-- в определении функции можно использовать как именованные, так и не именованные параметры-->
+          <source name="DBFTable">
+            <param name="tableName">$object.table + $user.id</param>
+          </source>
+          <source name="DBFTable">
+            <param>$object.altTable</param>
+          </source>
+        </sources>
+      </object>
+
+      <!-- общие значения для полей рассчитываются один раз при загруке и после не пересчитываются -->
+      <!--
+      <field>
+         <data>ToUpper($field.name)</data>
+      </field>
+      -->
+    </common>
+
+    <object name="Agents">
+      <sources>
+        <source name="DBFTable">
+          <param name="tableName">"USERS"</param>
+        </source>
+      </sources>
+
+      <member name="primaryKey">"id"</member>
+
+      <field name="id" type="string" width="55" />
+      <field name="name" type="string" width="100" />
+      <field name="login" type="string" width="30" />
+      <field name="password" type="string" width="30" />
+      <field name="progid" width="25" type="string" feature="CHECK_LOGIN_PROGID" />
+    </object>
+
+    <object name="UserInfo">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+      <field name="userid" type="string" execOn="Put">$user.id</field>
+      <field name="phone" type="string" />
+    </object>
+
+    <object name="ColorsTable">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"type,id"</member>
+
+      <field name="face" type="number" />
+      <field name="back" type="number" />
+      <field name="id" type="string" />
+      <!-- 
+         0 - Price
+         1 - Org
+         -->
+      <field name="type" type="number" />
+    </object>
+
+    <object name="Division">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"id"</member>
+
+      <field name="id" type="number" />
+      <field name="name" type="string" />
+      <field name="description" type="string" />
+      <field name="cheif" type="string" />
+      <field name="agents" type="collection">
+        <data>
+          <object name="DivisionAgents">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+            <field name="id" type="string" />
+          </object>
+        </data>
+      </field>
+      <field name="parent" type="number" />
+    </object>
+
+    <object name="DivisionManager">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"login"</member>
+
+      <field name="division" type="number" />
+      <field name="login" type="string" />
+      <field name="password" type="string" />
+
+      <field name="rights" type="collection">
+        <data>
+          <object name="DivisionManagerRights">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+            <field name="token" type="string" />
+            <field name="type" type="number" />
+            <field name="right" type="number" />
+          </object>
+        </data>
+      </field>
+    </object>
+
+    <object name="PriceRemnants">
+      <sources>
+        <source name="DBFPriceTable">
+          <param name="userTable">"W"</param>
+          <param name="commonTable">"WAREHOUS"</param>
+          <param name="filter">"[folder] in $folder.fid"</param>
+        </source>
+      </sources>
+
+      <field name="id" type="string" />
+      <field name="qty" type="number" prec="3" />
+      <field name="firmQty" type="collection" feature="FIRMS_REST">
+        <data>
+          <object name="FirmQty">
+            <sources>
+              <source name="Sequence">
+                <param name="source">$parent.source</param>
+                <param name="startIndex">2</param>
+              </source>
+            </sources>
+            <field name="qty" type="number" prec="2" />
+          </object>
+        </data>
+      </field>
+    </object>
+
+    <object name="Price">
+      <sources>
+        <!-- таблица со включенным фильтром qty > 0  выключать/включать SetFilter(False/True) -->
+        <source name="DBFPriceTable">
+          <param name="userTable">"W"</param>
+          <param name="commonTable">"WAREHOUS"</param>
+          <param name="filter">"[folder] in $folder.fid"</param>
+        </source>
+      </sources>
+
+      <field name="id" type="string" />
+      <field name="fid" type="string" data="folder" hidden="true" />
+      <field name="folderID" type="number" execOn="Get">FolderID($object.fid)</field>
+      <field name="qtyInPack" type="number" prec="3" data="inpack" />
+      <field name="name" type="string" />
+      <field name="qty" type="number" prec="3" />
+      <field name="firmQty" type="collection" feature="FIRMS_REST">
+        <data>
+          <object name="FirmQty">
+            <sources>
+              <source name="Sequence">
+                <param name="source">$parent.source</param>
+                <param name="startIndex">2</param>
+              </source>
+            </sources>
+            <field name="qty" type="number" prec="2" />
+          </object>
+        </data>
+      </field>
+      <field name="whQty" type="collection" feature="WH_QTY">
+        <data>
+          <object name="FirmQty">
+            <sources>
+              <source name="Sequence">
+                <param name="source">$parent.source</param>
+                <param name="startIndex">2</param>
+              </source>
+            </sources>
+            <field name="qty" type="number" prec="2" />
+          </object>
+        </data>
+      </field>
+      <field name="weight" type="number" prec="3" />
+      <!-- <field name="color" type="hex" /> -->
+      <field name="color" type="number" execOn="Get">GetColor($object.id,"price","face",0)</field>
+      <field name="cost" type="collection">
+        <data>
+          <object name="CostItem">
+            <sources>
+              <source name="Sequence">
+                <param name="source">$parent.source</param>
+              </source>
+            </sources>
+            <field name="cost" type="number" prec="2" />
+          </object>
+        </data>
+      </field>
+      <field name="vanQty" type="number" prec="3" data="VAN_QTY" feature="SALES_MODULE" />
+      <field name="tax1" type="number" prec="0" data="TAX1" feature="SALES_MODULE" />
+      <field name="ntd" type="string" feature="SALES_MODULE" />
+      <field name="unit" type="string" feature="SALES_MODULE" />
+      <field name="unitCode" type="string" data="OKEI" feature="SALES_MODULE" />
+      <field name="country" type="string" feature="SALES_MODULE" />
+      <field name="packName" type="string" feature="SALES_MODULE" />
+      <field name="packCode" type="string" feature="SALES_MODULE" />
+      <field name="brutto" type="number" prec="3" feature="SALES_MODULE" />
+      <field name="countryCode" type="string" data="CTRYCODE" feature="SALES_MODULE" />
+    </object>
+
+    <!-- передается в NapoleonManager -->
+    <object name="ManagerPrice">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"W"</param>
+          <param name="commonTable">"WAREHOUS"</param>
+        </source>
+      </sources>
+
+      <field name="id" type="string" />
+      <field name="fid" type="string" data="folder" />
+      <field name="folderID" type="number" execOn="Get">FolderID($object.fid)</field>
+      <field name="qtyInPack" type="number" prec="3" data="inpack" />
+      <field name="name" type="string" />
+      <field name="qty" type="number" prec="3" />
+      <field name="weight" type="number" prec="3" />
+      <!-- <field name="color" type="hex" /> -->
+      <field name="color" type="number" execOn="Get">GetColor($object.id,"price","face",0)</field>
+      <field name="cost" type="collection">
+        <data>
+          <object name="CostItem">
+            <sources>
+              <source name="Sequence">
+                <param name="source">$parent.source</param>
+              </source>
+            </sources>
+            <field name="cost" type="number" prec="2" />
+          </object>
+        </data>
+      </field>
+    </object>
+
+    <object name="CommonMatrix">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"Mtx"</param>
+          <param name="commonTable">"Matrix"</param>
+          <param name="catalog">"name;items;0"</param>
+        </source>
+      </sources>
+      <field name="items" type="collection">
+        <data>
+          <object name="MatrixItem">
+            <field name="id" type="string" width="40" />
+          </object>
+        </data>
+      </field>
+      <field name="name" type="string" width="30" />
+    </object>
+
+    <object name="AgentMatrix">
+      <sources>
+        <source name="SQTable" type="internal">
+          <!--readFilter используется для чтения по умолчанию (когда идет команда Get)-->
+          <param name="readFilter">'"userid"=' + "'" + $user.id + "'"</param>
+        </source>
+      </sources>
+      <field name="userid" type="string" execOn="Put">$user.id</field>
+      <field name="name" type="string" />
+    </object>
+
+    <object name="Matrix">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"Mtx"</param>
+          <param name="commonTable">"Matrix"</param>
+          <param name="catalog">"name;items;0"</param>
+          <param name="filter">"[NAME] in $AgentMatrix.name"</param>
+        </source>
+      </sources>
+      <field name="items" type="collection">
+        <data>
+          <object name="MatrixItem">
+            <field name="id" type="string" width="40" />
+            <field name="order" type="number" data="rowid" />
+          </object>
+        </data>
+      </field>
+      <field name="name" type="string" width="30" />
+    </object>
+
+    <object name="OrgFolder" feature="SQL_ORG_ROUTE">
+      <sources>
+        <source name="SQTable" type="internal">
+          <param name="readFilter">'"userid"=' + "'" + $user.id + "'"</param>
+        </source>
+      </sources>
+      <member name="primaryKey">"userid,name"</member>
+      <field name="items" type="collection">
+        <data>
+          <object name="OrgFolderItem">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+            <field name="name" type="string" data="ID" width="55"/>
+            <field name="pos" type="number" />
+          </object>
+        </data>
+      </field>
+      <field name="name" type="string" width="20" />
+      <field name="userid" type="string" width="55" />
+    </object>
+
+    <object name="OrgFolder" feature="!SQL_ORG_ROUTE">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"FORG"</param>
+          <param name="commonTable">"FORGS"</param>
+          <param name="catalog">"name;items;0"</param>
+        </source>
+      </sources>
+      <field name="items" type="collection">
+        <data>
+          <object name="OrgFolderItem">
+            <field name="name" type="string" data="ID" width="55"/>
+            <field name="pos" type="number" data="rowid" />
+          </object>
+        </data>
+      </field>
+      <field name="name" type="string" width="20" />
+      <field name="userid" type="string" width="55" />
+    </object>
+
+    <object name="OrgFolderOld">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"FORG"</param>
+          <param name="commonTable">"FORGS"</param>
+          <param name="catalog">"name;items;0"</param>
+        </source>
+      </sources>
+      <field name="items" type="collection">
+        <data>
+          <object name="OrgFolderItem">
+            <field name="name" type="string" data="ID" width="55"/>
+          </object>
+        </data>
+      </field>
+      <field name="name" type="string" width="20" />
+      <field name="userid" type="string" width="55" />
+    </object>
+
+    <object name="PricePhoto" sendLimit="1000000" feature="!PRESENTATION_EDITOR">
+      <sources>
+        <source name="DBFCatalogTable">
+          <param name="tableName">$object.table + $user.id</param>
+          <param name="catalog">"[PATH]"</param>
+          <param name="ordered">0</param>
+        </source>
+        <source name="DBFCatalogTable">
+          <param name="tableName">$object.altTable</param>
+          <param name="filter">"[FOLDER] in $folder.fid"</param>
+          <param name="catalog">"[PATH]"</param>
+          <param name="ordered">0</param>
+        </source>
+      </sources>
+
+      <member name="table">"W"</member>
+      <member name="altTable">"WAREHOUS"</member>
+
+      <field name="items" type="collection">
+        <data>
+          <object name="PhotoPriceItem">
+            <sources>
+              <source name="DBFCatalogItemTable" />
+            </sources>
+            <field name="id" type="string" data="ID"/>
+          </object>
+        </data>
+      </field>
+      <field name="photo" type="file" data="PATH" />
+    </object>
+
+    <object name="PricePhoto" sendLimit="1000000" feature="PRESENTATION_EDITOR">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"name"</member>
+
+      <field name="items" type="collection">
+        <data>
+          <object name="PhotoPriceItem">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+            <field name="id" type="string"/>
+          </object>
+        </data>
+      </field>
+
+      <field name="name" type="string" />
+      <field name="photo" type="file" src="name" />
+    </object>
+
+    <object name="OrgStop" feature="ORG_STOP_EDITOR">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"id"</member>
+      <field name="id" type="string" />
+    </object>
+
+    <!--<object name="MgrPricePhoto" tableName="PricePhoto" feature="PRESENTATION_EDITOR">
+         <sources>
+            <source name="SQTable" type="internal" />
+         </sources>
+         
+         <member name="primaryKey">"name"</member>
+         
+         <field name="items" type="collection">
+            <data>
+               <object name="PhotoPriceItem">
+                  <sources>
+                     <source name="SQTable" type="internal" />
+                  </sources>
+                  <field name="id" type="string"/>
+               </object>
+            </data>
+         </field>
+         
+         <field name="name" type="string" />
+         <field name="photo" type="file" src="name" />
+      </object>-->
+
+    <!-- передается на КПК -->
+    <object name="Folder">
+      <sources>
+        <!-- 
+               DBFFolderSet - обязательные поля у объекта level & fid & id & name
+            -->
+        <source name="DBFFolderSet">
+          <param name="userTable">"F"</param>
+          <param name="commonTable">"FOLDERS"</param>
+          <!--
+               <param name="parentField">"PARENT"</param>
+               <param name="childField">"fid"</param>
+               <param name="rowidField">"id"</param>
+               -->
+        </source>
+      </sources>
+
+      <field name="id" type="number" key="true" data="rowid" />
+      <field name="fid" type="string" data="id" width="40" />
+      <field name="level" type="number" width="9" />
+      <field name="name" type="string" width="60" />
+      <field name="userid" type="string" hidden="put" />
+    </object>
+
+    <!-- передается в NapoleonManager -->
+    <!--<param name="parentField">"PARENT"</param>
+               <param name="childField">"id"</param>-->
+    <!-- 
+      <object name="ManagerFolder">
+         <sources>
+            <source name="DBFFolderSet">
+               <param name="userTable">"F"</param>
+               <param name="commonTable">"FOLDERS"</param>
+            </source>
+         </sources>
+
+         <field name="id" type="string" width="15" />
+         <field name="level" type="number" prec="0" />
+         <field name="name" type="string" width="60" />
+         <field name="userid" type="string" width="15"/>
+      </object>
+ -->
+    <object name="OrgLocation">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"id"</member>
+      <field name="id" type="string" />
+      <field name="longitude" type="number" prec="5" data="LONG" />
+      <field name="latitude" type="number" prec="5" data="LAT" />
+    </object>
+
+    <object name="Org">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"O"</param>
+          <param name="commonTable">"ORGS"</param>
+        </source>
+      </sources>
+
+      <field name="id" type="string" />
+      <field name="name" type="string" />
+      <field name="address" type="string" />
+      <!-- <field name="color" type="hex" /> -->
+      <field name="color" type="number" execOn="Get" data="">GetColor($object.id,"org","face",0)</field>
+      <field name="contacts" type="collection">
+        <data>
+          <object name="Contact">
+            <sources>
+              <source name="DBFTableSet">
+                <param name="userTable">"C"</param>
+                <param name="commonTable">"CONTACTS"</param>
+                <param name="filter">"[ID] = $parent.id"</param>
+              </source>
+            </sources>
+
+            <field name="name" data="FIO" type="string" width="100" />
+            <field name="phone" type="string" width="100" />
+            <field name="id" type="string" width="55" />
+          </object>
+        </data>
+      </field>
+      <field name="longitude" type="number" prec="5" data="LONG" />
+      <field name="latitude" type="number" prec="5" data="LAT" />
+      <field name="costype" type="number" />
+      <field name="stop" type="number" hidden="true" />
+      <field name="block" type="number" hidden="true" />
+      <field name="flags" type="number" execOn="Get" >EncodeFlag($object.stop,2, $object.block,1)</field>
+
+      <field name="userid" type="string" data="" />
+      <field name="orgAddress" type="collection" feature="DELIVERY_ADDRESS">
+        <data>
+          <object name="AddressItem">
+            <sources>
+              <source name="DBFTableSet">
+                <param name="userTable">"ADR"</param>
+                <param name="commonTable">"ADDRESS"</param>
+                <param name="filter">"[ID] = $parent.id"</param>
+              </source>
+            </sources>
+
+            <field name="name" data="ADDRESS" type="string" />
+            <field name="id" type="string" data="ID_A" />
+          </object>
+        </data>
+      </field>
+      <field name="inn" type="string" feature="SALES_MODULE" />
+      <field name="bank" type="string" feature="SALES_MODULE" />
+      <field name="phone" type="string" feature="SALES_MODULE" />
+      <field name="fullName" type="string" feature="SALES_MODULE" />
+      <field name="legalAddress" type="string" data="LEG_ADR" feature="SALES_MODULE" />
+      <field name="okpo" type="string" feature="SALES_MODULE" />
+    </object>
+
+    <object name="Config">
+      <sources>
+        <source name="KeyValueTable">
+          <param name="fileName">"ord"+$user.id+".cfg"</param>
+        </source>
+        <source name="KeyValueTable">
+          <param name="fileName">"order.cfg"</param>
+        </source>
+      </sources>
+
+      <field name="key" type="string" />
+      <field name="value" type="string" />
+    </object>
+
+    <object name="MessageArchive">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+      <field name="userid" type="string" />
+      <field name="date" type="timestamp" />
+      <field name="message" type="string" />
+    </object>
+
+    <object name="Message" removeOnCommit="true" sendAlways="true">
+      <sources>
+        <source name="MessageTable">
+          <param name="fileName">$user.id + ".TXT"</param>
+        </source>
+      </sources>
+
+      <!--имена полей "зашиты" в функцию-->
+      <field name="date" type="timestamp" />
+      <field name="message" type="string" />
+
+      <events>
+        <event type="put">
+          <action name="ArchiveMessage">$object.message</action>
+        </event>
+      </events>
+    </object>
+
+    <object name="OrderProceeded" removeOnCommit="true" sendAlways="true">
+      <sources>
+        <source name="DBFTable">
+          <param name="tableName">"POD" + $user.id</param>
+        </source>
+      </sources>
+
+      <!--имена полей "зашиты" в функцию-->
+      <field name="created" type="timestamp" />
+      <field name="remark" type="string" />
+      <field name="type" type="string" />
+
+      <events>
+        <event type="get">
+          <action name="ArchiveOrderProceeded">$object.created;$object.type;$object.remark</action>
+        </event>
+      </events>
+    </object>
+
+    <object name="ArchiveOrderProceeded">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"userid,type,created"</member>
+
+      <field name="userid" type="string" />
+      <field name="created" type="timestamp" />
+      <field name="remark" type="string" />
+      <field name="type" type="string" />
+    </object>
+    
+    <object name="OrderCommitted">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"PRD"</param>
+          <param name="commonTable">"PRDS"</param>
+        </source>
+      </sources>
+
+      <field name="created" type="timestamp" />
+      <field name="number" type="string" />
+      <field name="userid" type="string" />
+    </object>
+
+    <object name="GPSPos">
+      <sources>
+        <!--
+            <source name="DBFTable">
+               <param name="tableName">"GPS" + $user.id</param>
+            </source>
+            -->
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"userid,date"</member>
+      <memberArray name="index">"date"</memberArray>
+
+      <field name="userid" type="string" data="USER_ID" execOn="Put">$user.id</field>
+      <field name="date" type="timestamp" />
+      <field name="longitude" type="number" prec="5" />
+      <field name="latitude" type="number" prec="5" />
+      <field name="speed" type="number" prec="2" />
+      <field name="isGSM" type="number" />
+      <field name="satellite" type="number" />
+      <field name="accuracy" type="number" />
+      <field name="stltime" type="timestamp" />
+      <field name="isMock" type="number" />
+    </object>
+
+    <object name="Order">
+      <sources>
+        <source name="DBFCatalogTable">
+          <param name="tableName">$object.table + $user.id</param>
+          <param name="catalog">"id"</param>
+          <param name="ordered">1</param>
+        </source>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="table">"ORD"</member>
+      <member name="primaryKey">"userid,created"</member>
+      <memberArray name="index">"created"</memberArray>
+
+      <field name="userid" type="string" data="USER_ID" execOn="Put">$user.id</field>
+      <field name="created" type="timestamp" data="CREATED,NUM"/>
+      <field name="timeZone" type="number" />
+      <field name="serverTimeZone" type="number" data="S_TZ" execOn="Put" feature="USE_TIMEZONE">ServerTimeZone()</field>
+      <field name="sended" type="timestamp" data="S_DATE" execOn="Put">Now()</field>
+      <field name="date" type="date" />
+      <field name="discount" type="number" prec="1" feature="ORDER_DISCOUNT" />
+      <field name="delay" type="number" prec="0" />
+      <field name="paydate" type="date" execOn="Put">AdjustDate($object.date, $object.delay, "day")</field>
+      <field name="id" width="55" type="string" />
+      <field name="remark" type="string" />
+      <field name="items" type="collection">
+        <data>
+          <object name="OrderItem">
+            <sources>
+              <source name="DBFCatalogItemTable"/>
+              <source name="SQTable" type="internal" />
+            </sources>
+
+            <field name="id" width="40" type="string" data="ID_I"/>
+            <field name="qty" type="number" prec="3" />
+            <field name="discount" type="number" width="6" prec="1" feature="ORD_ITEM_DISCOUNT" />
+            <field name="cost" type="number" prec="2" />
+            <field name="flags" type="number" width="9" prec="0" data="" />
+            <field name="pack" type="number" width="1" execOn="Put">DecodeFlag($object.flags, 1, "", "1")</field>
+            <field name="ordflag" width="1" type="number" execOn="Put">FirstItem($object)</field>
+          </object>
+        </data>
+      </field>
+
+      <field name="ctype" type="string" width="30" feature="!HAVE_CONFIG_READER" execOn="Put">KeyValueReader("order.cfg","ВидЦены",$object.sumType)</field>
+      <field name="ctype" type="string" width="30" feature="HAVE_CONFIG_READER" execOn="Put">ConfigReader("ВидЦены",$object.sumType)</field>
+      <field name="params" type="number" width="9" prec="0" data="" />
+      <field name="cash"  type="number" width="1" execOn="Put">DecodeFlag($object.params, 2, "", "1")</field>
+
+      <field name="firma" type="string" width="30" execOn="Put" feature="!SALES_MODULE &amp; !HAVE_CONFIG_READER">KeyValueReader("order.cfg","Организация",$object.supplyer)</field>
+      <field name="firma" type="string" width="30" execOn="Put" feature="!SALES_MODULE &amp; HAVE_CONFIG_READER">ConfigReader("Организация",$object.supplyer)</field>
+      <field name="firmCode" type="string" width="55" />
+      <field name="prcType" type="string" width="55"/>
+
+      <field name="latitude" type="number" prec="5" />
+      <field name="longitude" type="number" prec="5" />
+
+      <field name="adrCode" type="string" width="20" feature="DELIVERY_ADDRESS"/>
+      <field name="whIndex" type="number" width="10" feature="WH_QTY"/>
+
+      <field name="survay" type="collection" feature="ORD_SURVAY">
+        <data>
+          <object name="Survay">
+            <sources>
+              <source name="DBFTable">
+                <param name="tableName">"OF" + $user.id</param>
+              </source>
+              <source name="SQTable" type="internal" />
+            </sources>
+
+            <field name="fid" type="string" width="20" data="FOLDER" />
+            <field name="choice" type="string" width="50" />
+            <field name="id" type="string" width="55">$parent.id</field>
+            <field name="date" type="timestamp" width="20">$parent.created</field>
+            <field name="ordflag" width="1" type="number" execOn="Put">FirstItem($object)</field>
+          </object>
+        </data>
+      </field>
+
+      <field name="focusedFolders" type="collection" feature="FOCUSED_GROUP">
+        <data>
+          <object name="Focused">
+            <sources>
+              <source name="DBFTable">
+                <param name="tableName">"FF" + $user.id</param>
+              </source>
+              <source name="SQTable" type="internal" />
+            </sources>
+
+            <field name="fid" type="string" width="20" data="FOLDER" />
+            <field name="remark" type="string" width="50" />
+            <field name="id" type="string" width="55">$parent.id</field>
+            <field name="date" type="timestamp" width="20">$parent.created</field>
+            <field name="ordflag" width="1" type="number" execOn="Put">FirstItem($object)</field>
+          </object>
+        </data>
+      </field>
+
+      <field name="focusedItems" type="collection" feature="FOCUSED_ITEMS">
+        <data>
+          <object name="FocusedItems">
+            <sources>
+              <source name="DBFTable">
+                <param name="tableName">"FI" + $user.id</param>
+              </source>
+              <source name="SQTable" type="internal" />
+            </sources>
+
+            <field name="id" type="string" width="40" data="ID_I" />
+            <field name="remark" type="string" width="50" />
+            <field name="pid" type="string" width="30" data="ID">$parent.id</field>
+            <field name="date" type="timestamp" width="20">$parent.created</field>
+            <field name="ordflag" width="1" type="number" execOn="Put">FirstItem($object)</field>
+          </object>
+        </data>
+      </field>
+
+      <events>
+        <event type="put">
+          <!--<action name="WriteOrder" /> !-->
+          <action name="RunBat" />
+          <action name="WriteInternal">$object.type</action>
+          <action name="WriteToLog">$object.type;$object.created</action>
+        </event>
+      </events>
+    </object>
+
+    <object name="OrderCharge">
+      <sources>
+        <source name="DBFCatalogTable">
+          <param name="tableName">$object.table + $user.id</param>
+          <param name="catalog">"id"</param>
+          <param name="ordered">1</param>
+        </source>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="table">"HRD"</member>
+      <member name="primaryKey">"userid,created"</member>
+      <memberArray name="index">"created"</memberArray>
+
+      <field name="userid" type="string" data="USER_ID" execOn="Put">$user.id</field>
+      <field name="created" type="timestamp" data="CREATED"/>
+      <field name="timeZone" type="number" />
+      <field name="serverTimeZone" type="number" data="S_TZ" execOn="Put" feature="USE_TIMEZONE">ServerTimeZone()</field>
+      <field name="sended" type="timestamp" data="S_DATE" execOn="Put">Now()</field>
+      <field name="date" type="date" />
+      <field name="id" width="55" type="string" />
+      <field name="remark" type="string" />
+      <field name="items" type="collection">
+        <data>
+          <object name="OrderItem">
+            <sources>
+              <source name="DBFCatalogItemTable"/>
+              <source name="SQTable" type="internal" />
+            </sources>
+
+            <field name="id" width="40" type="string" data="ID_I"/>
+            <field name="qty" type="number" prec="3" />
+            <field name="flags" type="number" width="9" prec="0" data="" />
+            <field name="pack" type="number" width="1" execOn="Put">DecodeFlag($object.flags, 1, "", "1")</field>
+            <field name="ordflag" width="1" type="number" execOn="Put">FirstItem($object)</field>
+          </object>
+        </data>
+      </field>
+
+      <field name="params" type="number" width="9" prec="0" data="" />
+      <field name="latitude" type="number" prec="5" />
+      <field name="longitude" type="number" prec="5" />
+
+      <events>
+        <event type="put">
+          <action name="WriteInternal">$object.type</action>
+          <action name="WriteToLog">$object.type;$object.created</action>
+        </event>
+      </events>
+    </object>
+
+    <object name="Visit">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"userid,date"</member>
+      <memberArray name="index">"date"</memberArray>
+
+      <field name="id" type="string" width="55" />
+      <field name="date" type="timestamp" />
+      <field name="created" type="timestamp" />
+      <field name="timeZone" type="number" />
+      <field name="serverTimeZone" type="number" data="S_TZ" execOn="Put" feature="USE_TIMEZONE">ServerTimeZone()</field>
+      <field name="remark" type="string" width="100" />
+      <field name="cause" type="string" width="100" feature="VISIT_CAUSE" />
+      <field name="userid" type="string" execOn="Put">$user.id</field>
+      <field name="sended" type="timestamp" execOn="Put">Now()</field>
+      <field name="rating" type="number" prec="2" feature="SNAPSHOT_RATING"/>
+
+      <field name="items" type="collection">
+        <data>
+          <object name="VisitItem">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+            <field name="id" type="binary"/>
+            <field name="rating" type="number" feature="SNAPSHOT_RATING"/>
+          </object>
+        </data>
+      </field>
+
+      <field name="latitude" type="number" prec="5" />
+      <field name="longitude" type="number" prec="5" />
+
+      <events>
+        <event type="put">
+          <action name="WriteToLog">$object.type;$object.date</action>
+        </event>
+      </events>
+    </object>
+
+    <object name="OrgRemnants">
+      <sources>
+        <!--<source name="DBFCatalogTable">
+          <param name="tableName">$object.table + $user.id</param>
+          <param name="catalog">"id"</param>
+          <param name="ordered">1</param>
+        </source>-->
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="table">"OST"</member>
+      <member name="primaryKey">"userid,date"</member>
+      <memberArray name="index">"date"</memberArray>
+
+      <field name="userid" type="string" data="USER_ID" execOn="Put">$user.id</field>
+      <field name="date" type="timestamp" data="NUM"/>
+      <field name="created" type="timestamp" />
+      <field name="timeZone" type="number" />
+      <field name="serverTimeZone" type="number" data="S_TZ" execOn="Put" feature="USE_TIMEZONE">ServerTimeZone()</field>
+      <field name="sended" type="timestamp" data="S_DATE" execOn="Put">Now()</field>
+      <field name="id" width="30" type="string" />
+      <field name="items" type="collection">
+        <data>
+          <object name="OrgRemnantsItem">
+            <sources>
+              <!--<source name="DBFCatalogItemTable"/>-->
+              <source name="SQTable" type="internal" />
+            </sources>
+
+            <field name="id" width="40" type="string" data="ID_I"/>
+            <field name="qty" type="number" prec="3" />
+            <field name="flags" type="number" prec="0" />
+            <field name="ordflag" width="1" type="number" execOn="Put">FirstItem($object)</field>
+          </object>
+        </data>
+      </field>
+
+      <field name="latitude" type="number" prec="4" />
+      <field name="longitude" type="number" prec="4" />
+
+      <events>
+        <event type="put">
+          <!--<action name="WriteInternal">$object.type</action>-->
+          <action name="WriteToLog">$object.type;$object.date</action>
+        </event>
+      </events>
+    </object>
+
+    <object name="Delivery">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"DLV"</param>
+          <param name="commonTable">"DELIVERY"</param>
+          <param name="catalog">"number;items;1"</param>
+          <param name="filter">"[id] in $Org.id"</param>
+        </source>
+      </sources>
+
+      <member name="table">"DLV"</member>
+
+      <field name="items" type="collection">
+        <data>
+          <object name="DeliveryItem">
+            <field name="id" type="string" data="ID_I"/>
+            <field name="qty" type="number" prec="3" />
+            <field name="sum" type="number" prec="2" />
+            <field name="taxSum" type="number" prec="2" data="TAX_I" feature="SALES_MODULE" />
+          </object>
+        </data>
+      </field>
+      <field name="id" type="string" />
+      <field name="sumD" type="number" prec="2" />
+      <field name="number" type="string" data="NUM" />
+      <field name="supplyercode" type="string" data="FIRMA" feature="SALES_MODULE" />
+      <field name="date" type="date" />
+      <field name="payDate" type="date" />
+      <field name="created" type="timestamp" />
+      <field name="userid" type="string" />
+    </object>
+
+    <object name="Payment">
+      <sources>
+        <source name="DBFTable">
+          <param name="tableName">$object.table + $user.id</param>
+        </source>
+        <source name="DBFTable">
+          <param>$object.altTable</param>
+          <param name="filter">"[id] in $Org.id"</param>
+        </source>
+      </sources>
+
+      <member name="table">"PAY"</member>
+      <member name="altTable">"PAYMENT"</member>
+
+      <field name="id" type="string" />
+      <field name="sum" type="number" prec="2" />
+      <field name="number" type="string" data="NUM" />
+      <field name="date" type="date" />
+    </object>
+
+    <object name="UserLog">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"userid,unixtime"</member>
+      <memberArray name="index">"date"</memberArray>
+
+      <field name="userid" type="string" execOn="Put">$user.id</field>
+      <field name="date" type="timestamp" />
+      <field name="objType" type="string" />
+      <field name="objDate" type="timestamp" />
+      <field name="category" type="number" />
+      <field name="action" type="number" />
+      <field name="comments" type="string" />
+      <field name="unixtime" type="number" prec="1" />
+    </object>
+
+
+    <object name="ServerConfig">
+      <sources>
+        <source name="SQTable" type="internal" >
+          <param name="readFilter">'"userid" is null or "userid"=' + "'' or " + '"userid"=' + "'" + $user.id + "'"</param>
+        </source>
+      </sources>
+
+      <member name="primaryKey">"userid,key"</member>
+
+      <field name="userid" type="string" />
+      <field name="key" type="string" />
+      <field name="value" type="string" />
+    </object>
+
+    <object name="ManagerConfig">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"manager,key"</member>
+
+      <field name="manager" type="string" />
+      <field name="key" type="string" />
+      <field name="value" type="string" />
+    </object>
+
+    <object name="Proxy">
+      <sources>
+        <source name="DBFTable">
+          <param name="tableName">$object.table + $user.id</param>
+        </source>
+      </sources>
+      <member name="table">"DVR"</member>
+
+      <field name="id" type="string" width="55" />
+      <field name="sum" type="number" prec="2" />
+      <field name="date" type="date" />
+      <field name="remark" type="string" width="100" />
+    </object>
+
+    <object name="AgentOrgTask">
+      <sources>
+        <source name="SQTable" type="internal" >
+          <param name="readFilter">'"userid" = ' + "'" + $user.id + "'" + ' and "dodate" is null'</param>
+        </source>
+      </sources>
+
+      <member name="primaryKey">"userid,created"</member>
+      <memberArray name="index">"created"</memberArray>
+
+      <field name="dodate" type="timestamp" />
+      <field name="created" type="timestamp" />
+      <field name="id" type="string" />
+      <field name="task" type="string" />
+      <field name="done" type="string" />
+      <field name="userid" type="string" />
+    </object>
+
+    <object name="PotenzialOrg">
+      <sources>
+        <source name="SQTable" type="internal" >
+          <param name="readFilter">'"userid" = ' + "'" + $user.id + "'"</param>
+        </source>
+      </sources>
+
+      <member name="primaryKey">"userid,id"</member>
+
+      <field name="userid" type="string" execOn="Put">$user.id</field>
+      <field name="created" type="timestamp" />
+      <field name="id" type="string" />
+      <field name="name" type="string" />
+      <field name="address" type="string" />
+      <field name="longitude" type="number" prec="5" />
+      <field name="latitude" type="number" prec="5" />
+      <field name="contacts" type="collection">
+        <data>
+          <object name="Contact">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+
+            <field name="name" data="FIO" type="string" />
+            <field name="phone" type="string" />
+          </object>
+        </data>
+      </field>
+    </object>
+    <!--Удаленные записи из PotenzialOrg-->
+    <object name="PODel" >
+      <sources>
+        <source name="SQTable" type="internal" >
+          <param name="readFilter">'"userid" = ' + "'" + $user.id + "'" + ' and "flags" = 0'</param>
+        </source>
+      </sources>
+
+      <member name="primaryKey">"userid,id"</member>
+
+      <field name="userid" type="string" />
+      <field name="id" type="string" />
+      <field name="flags" type="number" />
+
+      <events>
+        <event type="readCommit">
+          <action name="PODelSended" />
+        </event>
+      </events>
+    </object>
+
+    <object name="FocusedGroup" feature="FOCUSED_GROUP">
+      <sources>
+        <source name="SQTable" type="internal">
+          <param name="readFilter">'"userid"=' + "'" + $user.id + "'"</param>
+        </source>
+      </sources>
+
+      <member name="primaryKey">"userid,id"</member>
+
+      <field name="userid" type="string" />
+      <field name="id" type="string" />
+      <field name="items" type="collection">
+        <data>
+          <object name="RplItem">
+            <sources>
+              <source name="SQTable" type="internal"/>
+            </sources>
+
+            <field name="fid" type="string" />
+            <field name="folderID" type="number" execOn="Get">FolderID($object.fid)</field>
+          </object>
+        </data>
+      </field>
+    </object>
+
+    <object name="FocusedItems" feature="FOCUSED_ITEMS">
+      <sources>
+        <source name="SQTable" type="internal">
+          <param name="readFilter">'"userid"=' + "'" + $user.id + "'"</param>
+        </source>
+      </sources>
+
+      <member name="primaryKey">"userid,id"</member>
+
+      <field name="userid" type="string" />
+      <field name="id" type="string" />
+      <field name="items" type="collection">
+        <data>
+          <object name="FIItem">
+            <sources>
+              <source name="SQTable" type="internal"/>
+            </sources>
+
+            <field name="id" type="string" />
+          </object>
+        </data>
+      </field>
+    </object>
+
+    <object name="Incass">
+      <sources>
+        <source name="DBFCatalogTable">
+          <param name="tableName">"Incass" + $user.id</param>
+          <param name="catalog">"id"</param>
+          <param name="ordered">1</param>
+        </source>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"userid,created"</member>
+      <memberArray name="index">"created"</memberArray>
+
+      <field name="created" type="timestamp" />
+      <field name="timeZone" type="number" />
+      <field name="serverTimeZone" type="number" data="S_TZ" execOn="Put" feature="USE_TIMEZONE">ServerTimeZone()</field>
+      <field name="userid" type="string" execOn="Put">$user.id</field>
+      <field name="id" type="string" width="55" />
+      <field name="date" type="date" />
+      <field name="sended" type="timestamp" data="S_DATE" execOn="Put">Now()</field>
+      <field name="sum" type="number" prec="2" />
+      <field name="remark" type="string" width="100" />
+      <field name="latitude" type="number" prec="5" />
+      <field name="longitude" type="number" prec="5" />
+
+      <field name="items" type="collection" feature="INCASS_DEBET_DISTRIB">
+        <data>
+          <object name="DocPayItem">
+            <sources>
+              <source name="DBFCatalogItemTable"/>
+              <source name="SQTable" type="internal" />
+            </sources>
+
+            <field name="number" width="20" type="string" data="NUM_I"/>
+            <field name="date" type="date" data="DATE_I" />
+            <field name="sum" type="number" data="SUM_I" width="10" prec="2" />
+            <field name="ordflag" width="1" type="number" execOn="Put">FirstItem($object)</field>
+          </object>
+        </data>
+      </field>
+
+      <events>
+        <event type="put">
+          <action name="WriteInternal">$object.type</action>
+        </event>
+      </events>
+    </object>
+
+    <object name="AgentScript" feature="SCRIPT_DOC">
+      <sources>
+        <source name="SQTable" type="internal" />
+        <param name="readFilter">'"userid"=' + "'" + $user.id + "'";</param>
+      </sources>
+
+      <member name="primaryKey">"userid,script"</member>
+      <field name="userid" type="string" />
+      <field name="script" type="number" />
+    </object>
+
+    <object name="ScriptDef" feature="SCRIPT_DOC">
+      <sources>
+        <source name="SQTable" type="internal">
+          <param name="readFilter">'"id" IN (SELECT "script" FROM "AgentScript" WHERE "userid"=' + "'" + $user.id + "')"</param>
+        </source>
+      </sources>
+      <member name="primaryKey">"id"</member>
+      <field name="items" type="collection">
+        <data>
+          <object name="ScriptDocItem">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+            <field name="curType" type="string"/>
+            <field name="name" type="string"/>
+            <field name="nextDoc" type="number" />
+            <field name="condition" type="number" />
+            <field name="condParam" type="string"/>
+          </object>
+        </data>
+      </field>
+
+      <field name="id" type="number" />
+      <field name="userid" type="string" />
+      <field name="name" type="string" />
+    </object>
+
+    <object name="ScriptDoc" feature="SCRIPT_DOC">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+      <member name="primaryKey">"userid,created"</member>
+      <memberArray name="index">"created"</memberArray>
+      <field name="items" type="collection">
+        <data>
+          <object name="ScriptDocItem">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+            <field name="type" type="string"/>
+            <field name="date" type="timestamp" />
+            <field name="state" type="number" />
+          </object>
+        </data>
+      </field>
+
+      <field name="id" type="string" />
+      <field name="scriptId" type="number" />
+      <field name="created" type="timestamp" />
+      <field name="date" type="date" />
+      <field name="timeZone" type="number" />
+      <field name="serverTimeZone" type="number" data="S_TZ" execOn="Put" feature="USE_TIMEZONE">ServerTimeZone()</field>
+      <field name="sended" type="timestamp" execOn="Put">Now()</field>
+      <field name="sum" type="number" prec="2" />
+      <field name="params" type="number" prec="0" />
+      <field name="longitude" type="number" prec="5" />
+      <field name="latitude" type="number" prec="5" />
+      <field name="remark" type="string" />
+      <field name="userid" type="string" execOn="Put">$user.id</field>
+
+      <events>
+        <event type="put">
+          <action name="WriteToLog">$object.type;$object.date</action>
+        </event>
+      </events>
+    </object>
+    <object name="Sales" feature="SALES_MODULE">
+      <sources>
+        <source name="DBFCatalogTable">
+          <param name="tableName">$object.table + $user.id</param>
+          <param name="catalog">"id"</param>
+          <param name="ordered">1</param>
+        </source>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="table">"SLS"</member>
+      <member name="primaryKey">"userid,created"</member>
+      <memberArray name="index">"created"</memberArray>
+
+      <field name="userid" type="string" data="USER_ID" execOn="Put">$user.id</field>
+      <field name="created" type="timestamp" data="CREATED"/>
+      <field name="timeZone" type="number" />
+      <field name="serverTimeZone" type="number" data="S_TZ" execOn="Put" feature="USE_TIMEZONE">ServerTimeZone()</field>
+      <field name="number" type="string" width="20" />
+      <field name="sended" type="timestamp" data="S_DATE" execOn="Put">Now()</field>
+      <field name="date" type="date" />
+      <field name="id" width="55" type="string" />
+      <field name="remark" type="string" />
+      <field name="items" type="collection">
+        <data>
+          <object name="SalesItem">
+            <sources>
+              <source name="DBFCatalogItemTable"/>
+              <source name="SQTable" type="internal" />
+            </sources>
+
+            <field name="id" width="40" type="string" data="ID_I"/>
+            <field name="qty" type="number" prec="3" />
+            <field name="cost" type="number" prec="2" />
+            <field name="sum" type="number" prec="2" data="SUM_I" />
+            <field name="taxSum" type="number" prec="2" data="TAX_I"  />
+            <field name="flags" type="number" width="9" prec="0" data="" />
+            <field name="pack" type="number" width="1" execOn="Put">DecodeFlag($object.flags, 1, "", "1")</field>
+            <field name="ordflag" width="1" type="number" execOn="Put">FirstItem($object)</field>
+          </object>
+        </data>
+      </field>
+
+      <field name="ctype" type="string" width="30" execOn="Put">KeyValueReader("order.cfg","ВидЦены",$object.sumType)</field>
+      <field name="supplyercode" type="string" width="50" data="FIRMA" />
+      <field name="params" type="number" width="9" prec="0" data="" />
+      <field name="prcType" type="string" width="55"/>
+
+      <field name="latitude" type="number" prec="5" />
+      <field name="longitude" type="number" prec="5" />
+
+      <events>
+        <event type="put">
+          <action name="WriteInternal">$object.type</action>
+          <action name="WriteToLog">$object.type;$object.created</action>
+        </event>
+      </events>
+    </object>
+    <object name="Pko" feature="SALES_MODULE">
+      <sources>
+        <source name="DBFTable">
+          <param name="tableName">$object.table + $user.id</param>
+        </source>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="table">"Pko"</member>
+      <member name="primaryKey">"userid,created"</member>
+      <memberArray name="index">"created"</memberArray>
+
+      <field name="userid" type="string" data="USER_ID" execOn="Put">$user.id</field>
+      <field name="date" type="date" />
+      <field name="created" type="timestamp" data="CREATED"/>
+      <field name="timeZone" type="number" />
+      <field name="serverTimeZone" type="number" data="S_TZ" execOn="Put" feature="USE_TIMEZONE">ServerTimeZone()</field>
+      <field name="number" type="string" width="20" />
+      <field name="sended" type="timestamp" data="S_DATE" execOn="Put">Now()</field>
+      <field name="id" width="55" type="string" />
+      <field name="sales" type="timestamp" />
+      <field name="salesnumber" type="string" data="SLS_NUM" width="20" />
+      <field name="supplyercode" type="string" width="50" data="FIRMA" />
+      <field name="sum" type="number" prec="2" />
+      <field name="latitude" type="number" prec="5" />
+      <field name="longitude" type="number" prec="5" />
+
+      <events>
+        <event type="put">
+          <action name="WriteInternal">$object.type</action>
+        </event>
+      </events>
+    </object>
+
+    <object name="Cost" feature="COST_MANAGER">
+      <sources>
+        <source name="DBFCostReader">
+          <param name="cost">"COST"</param>
+          <param name="costType">"CTYPE"</param>
+        </source>
+      </sources>
+
+      <field name="data" type="binary" />
+    </object>
+
+    <object name="Firm">
+      <sources>
+        <source name="DBFTable">
+          <param name="tableName">"FIRMS" + $user.id</param>
+        </source>
+        <source name="DBFTable">
+          <param name="tableName">"FIRMS"</param>
+        </source>
+      </sources>
+
+      <field name="id" type="string" />
+      <field name="name" type="string" />
+      <field name="fullName" type="string" />
+      <field name="address" type="string" />
+      <field name="factAddress" type="string" data="FACTADR" />
+      <field name="shipApprove" type="string" data="SHIPAP" />
+      <field name="phone" type="string" />
+      <field name="inn" type="string" />
+      <field name="bank" type="string" />
+      <field name="buh" type="string" />
+      <field name="chief" type="string" data="CHIF"/>
+      <field name="chiefRange" type="string" data="RANGBOSS" />
+      <field name="okpo" type="string" />
+      <field name="certificate" type="string" data="CERT"/>
+    </object>
+    <object name="PA" feature="SALES_MODULE">
+      <sources>
+        <source name="DBFTable">
+          <param name="tableName">$object.table + $user.id</param>
+        </source>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="table">"PA"</member>
+      <member name="primaryKey">"userid,created"</member>
+      <memberArray name="index">"created"</memberArray>
+
+      <field name="userid" type="string" data="USER_ID" execOn="Put">$user.id</field>
+      <field name="created" type="timestamp" data="CREATED"/>
+      <field name="timeZone" type="number" />
+      <field name="serverTimeZone" type="number" data="S_TZ" execOn="Put" feature="USE_TIMEZONE">ServerTimeZone()</field>
+      <field name="date" type="date" />
+      <field name="period" type="date" />
+      <field name="number" type="string" width="20" />
+      <field name="sended" type="timestamp" data="S_DATE" execOn="Put">Now()</field>
+      <field name="id" width="55" type="string" />
+      <field name="docnumber" type="string" data="" />
+      <field name="doccreated" type="timestamp" data="" />
+      <field name="sum" type="number" prec="2" />
+      <field name="latitude" type="number" prec="5" />
+      <field name="longitude" type="number" prec="5" />
+
+      <events>
+        <event type="put">
+          <action name="WriteInternal">$object.type</action>
+        </event>
+      </events>
+    </object>
+
+    <object name="ReportList" fetures="REQUEST_REPORTS">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"RLST"</param>
+          <param name="commonTable">"REPLIST"</param>
+        </source>
+      </sources>
+      <field name="id" type="string" />
+      <field name="name" type="string" />
+    </object>
+
+    <object name="ReportRequest" fetures="REQUEST_REPORTS">
+      <sources>
+        <source name="DBFTable">
+          <param name="tableName">"RRQ" + $user.id</param>
+        </source>
+      </sources>
+      <field name="sended" type="timestamp" data="S_DATE" execOn="Put">Now()</field>
+      <field name="date" type="timestamp" />
+      <field name="id" type="string" width="55" />
+      <field name="idOrg" type="string" width="55" data="ID_O" />
+      <field name="start" type="date" />
+      <field name="end" type="date" />
+    </object>
+
+    <object name="ReportAnswer" removeOnCommit="true" fetures="REQUEST_REPORTS">
+      <sources>
+        <source name="DBFTable">
+          <param name="tableName">"RPT" + $user.id</param>
+        </source>
+      </sources>
+
+      <field name="encoding" type="string" data="ENCODE"/>
+      <field name="report" type="file" data="FILE" />
+      <field name="id" type="string" />
+    </object>
+
+
+    <object name="Question" feature="QUESTION">
+      <sources>
+        <source name="SQTable" type="internal" >
+          <param name="readFilter">'"idquest" IN (SELECT "idquest" FROM "AgentQuest" WHERE "userid"=' + "'" + $user.id + "')"</param>
+        </source>
+      </sources>
+
+      <member name="primaryKey">"idquest"</member>
+
+      <field name="idquest" type="string" />
+      <field name="name" type="string" />
+      <field name="from" type="timestamp" />
+      <field name="till" type="timestamp" />
+      <field name="text" type="string" />
+      <field name="html" type="string" width="4000" />
+      <field name="params" type="number" />
+      <field name="number" type="number" />
+      <field name="category" type="string" />
+      <field name="producer" type="string" />
+
+      <field name="items" type="collection">
+        <data>
+          <object name="QuestionItem">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+            <member name="primaryKey">"iditem"</member>
+            <field name="iditem" type="string" />
+            <field name="id" type="string" />
+            <field name="text" type="string" />
+            <!--0-text, 1-number, 2-list, 3-set, 4-boolean, 5-dataset -->
+            <field name="type" type="number" />
+            <field name="optional" type="number" />
+            <field name="values" type="collection">
+              <data>
+                <object name="QuestionItemValue">
+                  <sources>
+                    <source name="SQTable" type="internal" />
+                  </sources>
+                  <field name="value" type="string"/>
+                </object>
+              </data>
+            </field>
+          </object>
+        </data>
+      </field>
+    </object>
+
+    <!--<object name="Answer" feature="QUESTION">
+         <sources>
+           <source name="DBFCatalogTable">
+              <param name="tableName">$object.table + $user.id</param>
+              <param name="catalog">"id"</param>
+              <param name="ordered">1</param>
+           </source>
+           <source name="SQTable" type="internal" />
+         </sources>
+
+         <member name="table">"ANS"</member>
+         <member name="primaryKey">"created,userid"</member>
+
+         <field name="created" type="timestamp" data="CREATED"/>
+         <field name="userid" type="string" data="USER_ID" execOn="Put">$user.id</field>
+         <field name="question" type="string" data="QID" width="50"/>
+         <field name="id" type="string" width="100"/>
+         <field name="qname" type="string" width="10"/>
+         <field name="sended" type="timestamp" data="" execOn="Put">Now()</field>
+         <field name="longitude" type="number" prec="5" data="LONG" />
+         <field name="latitude" type="number" prec="5" data="LAT" />
+
+         <field name="items" type="collection">
+           <data>
+              <object name="AnswerItem">
+                 <sources>
+                    <source name="DBFCatalogItemTable"/>
+                    <source name="SQTable" type="internal" />
+                 </sources>
+                 
+                 <field name="id" type="string" data="ID_I" width="100"/>
+                 <field name="iditem" type="string" />
+                 <field name="answer" type="string" width="100"/>
+                 <field name="type" type="number"/>
+                 <field name="remark" type="string" width="100" />
+              </object>
+           </data>
+         </field>
+
+         <events>
+            <event type="put">
+               <action name="WriteInternal">$object.type</action>
+            </event>
+         </events>
+      </object>-->
+
+    <object name="Answer" feature="QUESTION">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="table">"ANS"</member>
+      <member name="primaryKey">"created,userid"</member>
+      <memberArray name="index">"created"</memberArray>
+
+      <field name="created" type="timestamp" data="CREATED"/>
+      <field name="timeZone" type="number" />
+      <field name="serverTimeZone" type="number" data="S_TZ" execOn="Put" feature="USE_TIMEZONE">ServerTimeZone()</field>
+      <field name="userid" type="string" data="USER_ID" execOn="Put">$user.id</field>
+      <field name="question" type="string" data="QID" width="50"/>
+      <field name="id" type="string" width="100"/>
+      <field name="qname" type="string" width="10"/>
+      <field name="sended" type="timestamp" data="" execOn="Put">Now()</field>
+      <field name="longitude" type="number" prec="5" data="LONG" />
+      <field name="latitude" type="number" prec="5" data="LAT" />
+
+      <field name="items" type="collection">
+        <data>
+          <object name="AnswerItem">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+
+            <field name="id" type="string" data="ID_I" width="100"/>
+            <field name="iditem" type="string" />
+            <field name="answer" type="string" width="100"/>
+            <field name="type" type="number"/>
+            <field name="remark" type="string" width="100" />
+          </object>
+        </data>
+      </field>
+    </object>
+
+    <object name="AgentQuest" feature="QUESTION">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"userid, idquest"</member>
+      <field name="userid" type="string" />
+      <field name="idquest" type="string" />
+    </object>
+
+    <object name="Returns" feature="RETURN_DOC">
+      <sources>
+        <source name="DBFCatalogTable">
+          <param name="tableName">$object.table + $user.id</param>
+          <param name="catalog">"id"</param>
+          <param name="ordered">1</param>
+        </source>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="table">"VZT"</member>
+      <member name="primaryKey">"userid,created"</member>
+      <memberArray name="index">"created"</memberArray>
+
+      <field name="userid" type="string" data="USER_ID" execOn="Put">$user.id</field>
+      <field name="timeZone" type="number" />
+      <field name="serverTimeZone" type="number" data="S_TZ" execOn="Put" feature="USE_TIMEZONE">ServerTimeZone()</field>
+      <field name="created" type="timestamp" data="CREATED"/>
+      <field name="date" type="date" data="DATE" />
+      <field name="id" width="55" type="string" />
+      <field name="remark" type="string" />
+      <field name="sended" type="timestamp" data="" execOn="Put">Now()</field>
+      <field name="longitude" type="number" prec="5" />
+      <field name="latitude" type="number" prec="5" />
+      <field name="ctype" type="string" width="30" feature="!HAVE_CONFIG_READER" execOn="Put">KeyValueReader("order.cfg","ВидЦены",$object.sumType)</field>
+      <field name="ctype" type="string" width="30" feature="HAVE_CONFIG_READER" execOn="Put">ConfigReader("ВидЦены",$object.sumType)</field>
+
+      <field name="items" type="collection">
+        <data>
+          <object name="OrderItem">
+            <sources>
+              <source name="DBFCatalogItemTable"/>
+              <source name="SQTable" type="internal" />
+            </sources>
+
+            <field name="id" width="40" type="string" data="ID_I"/>
+            <field name="qty" type="number" prec="3" />
+            <field name="cost" type="number" prec="2" />
+            <field name="ordflag" width="1" type="number" execOn="Put">FirstItem($object)</field>
+          </object>
+        </data>
+      </field>
+      <events>
+        <event type="put">
+          <action name="WriteInternal">$object.type</action>
+          <action name="WriteToLog">$object.type;$object.created</action>
+        </event>
+      </events>
+    </object>
+
+    <object name="MonitoringItem" feature="PRICE_MONITORING">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"id"</member>
+
+      <field name="name" type="string" />
+      <field name="id" type="string" />
+      <field name="flags" type="number" />
+    </object>
+
+    <object name="Monitoring" feature="PRICE_MONITORING">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"userid,created"</member>
+      <memberArray name="index">"created"</memberArray>
+
+      <field name="userid" type="string" data="USER_ID" execOn="Put">$user.id</field>
+      <field name="created" type="timestamp"/>
+      <field name="timeZone" type="number" />
+      <field name="serverTimeZone" type="number" data="S_TZ" execOn="Put" feature="USE_TIMEZONE">ServerTimeZone()</field>
+      <field name="sended" type="timestamp" execOn="Put">Now()</field>
+      <field name="longitude" type="number" prec="5" />
+      <field name="latitude" type="number" prec="5" />
+      <field name="date" type="date" />
+      <field name="id" type="string" />
+      <field name="remark" type="string" />
+      <field name="items" type="collection">
+        <data>
+          <object name="MonitoringDocItem">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+
+            <member name="primaryKey">"uid"</member>
+
+            <field name="uid" type="number" />
+            <field name="id" type="string" />
+            <field name="face" type="number"  />
+            <field name="cost" type="number" prec="2"/>
+            <field name="sku" type="number"/>
+            <field name="items" type="collection" feature="PRICE_VOLUME_MONITORING">
+              <data>
+                <object name="MonitoringVolumeItem">
+                  <sources>
+                    <source name="SQTable" type="internal" />
+                  </sources>
+
+                  <field name="volume" type="number" prec="2" />
+                  <field name="cost" type="number" prec="2" />
+                  <field name="qty" type="number" />
+                </object>
+              </data>
+            </field>
+          </object>
+        </data>
+      </field>
+    </object>
+
+    <object name="OrgTask">
+      <sources>
+        <source name="SQTable" type="internal">
+          <param name="readFilter">'not "id" in (select "id" from taskdone$items where "done"= 1) and "userid"=' + "'" + $user.id + "'"</param>
+        </source>
+      </sources>
+
+      <member name="primaryKey">"id"</member>
+
+      <field name="id" type="string" />
+      <field name="orgid" type="string" />
+      <field name="start" type="timestamp" />
+      <field name="finish" type="timestamp" />
+      <field name="text" type="string" />
+      <field name="userid" type="string" />
+    </object>
+
+    <object name="TaskDone">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"userid,created"</member>
+      <memberArray name="index">"created"</memberArray>
+
+      <field name="created" type="timestamp" />
+      <field name="timeZone" type="number" />
+      <field name="userid" type="string" execOn="Put">$user.id</field>
+      <field name="id" type="string" />
+      <field name="idTask" type="string" />
+      <field name="remark" type="string" />
+      <field name="items" type="collection">
+        <data>
+          <object name="TaskDoneItem">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+            <field name="id" type="string"/>
+            <field name="text" type="string"/>
+            <field name="done" type="number"/>
+          </object>
+        </data>
+      </field>
+    </object>
+
+    <object name="NotVisitedOrg">
+      <field name="id" type="string" />
+      <field name="userid" type="string" />
+      <field name="date" type="date" />
+    </object>
+    
+    <object name="WorkTime" feature="START_STOP">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"userid,id,start"</member>
+      <field name="userid" type="string" execOn="Put">$user.id</field>
+      <field name="id" type="string" />
+      <field name="start" type="timestamp" />
+      <field name="stop" type="timestamp" />
+    </object>
+    
+    <object name="AgentRoute" feature="ROUTE_APPROVE">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"userid"</member>
+
+      <field name="userid" type="string" execOn="Put">$user.id</field>
+      <field name="date" type="timestamp" />
+      <field name="items" type="collection">
+        <data>  
+          <object name="AgentRouteItem">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+                  
+            <field name="id" type="string"/>
+            <field name="day" type="number"/>
+            <field name="pos" type="number"/>
+          </object>
+        </data>
+      </field>
+    </object>
+    
+    <object name="SyncInfo">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"userid,created"</member>
+
+      <field name="userid" type="string" data="USER_ID" execOn="Put">$user.id</field>
+      <field name="created" type="timestamp" />
+      <field name="syncparam" type="number" />
+    </object>
+    
+    <object name="DeliveryDay" sendAlways="true">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"DDV"</param>
+          <param name="commonTable">"DDDLV"</param>
+          <param name="catalog">"number;items;1"</param>
+        </source>
+      </sources>
+
+      <field name="items" type="collection">
+        <data>
+          <object name="DeliveryItem">
+            <field name="id" type="string" data="ID_I" width="40"/>
+            <field name="qty" type="number" prec="3" />
+            <field name="sum" type="number" prec="2" />
+          </object>
+        </data>
+      </field>
+
+      <field name="id" type="string" width="40" />
+      <field name="number" type="string" data="NUM" width="20" />
+      <field name="sumd" type="number" prec="2" />
+      <field name="date" type="date" />
+      <field name="payDate" type="date" />
+      <field name="created" type="timestamp" />
+    </object>
+
+    <object name="GPSGather">
+      <sources>
+        <source name="DBFCatalogTable">
+          <param name="tableName">"GPS" + $user.id</param>
+          <param name="catalog">"created"</param>
+          <param name="ordered">1</param>
+        </source>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"userid,created"</member>
+      <memberArray name="index">"created"</memberArray>
+
+      <field name="userid" type="string" execOn="Put">$user.id</field>
+      <field name="date" type="timestamp"/>
+      <field name="created" type="timestamp" />
+      <field name="timeZone" type="number" />
+      <field name="serverTimeZone" type="number" data="S_TZ" execOn="Put" feature="USE_TIMEZONE">ServerTimeZone()</field>
+      <field name="sended" type="timestamp" data="S_DATE" execOn="Put">Now()</field>
+      <field name="id" width="30" type="string" />
+      <field name="latitude" type="number" prec="5" />
+      <field name="longitude" type="number" prec="5" />
+      <field name="accuracy" type="number" prec="5" data="ACC" />
+
+      <events>
+        <event type="put">
+          <action name="WriteInternal">$object.type</action>
+          <action name="WriteToLog">$object.type;$object.date</action>
+        </event>
+      </events>
+    </object>
+
+    <modify dest="UserLocation" src="GPSPos"> 
+        <change>
+            <sources>
+                <source name="SQLQuery">
+                    <param name="stmt">
+                        'select max("date") as "date", "userid", "latitude", "longitude", "speed", "accuracy", "satellite", "stltime", "isMock" from gpspos where "date" &lt;= ToDate("' + FormatDate(Now(),"DD.MM.YYYY 23:59:59") + '")  group by "userid"'
+                    </param>
+                </source>
+            </sources>
+            <field name="userid" type="string" />
+        </change>
+    </modify>
+        
+    <modify dest="VisitInfo" src="Visit">
+      <remove>
+        <field name="items" />
+      </remove>
+    </modify>
+    <modify dest="ManagerFolder" src="Folder">
+      <remove>
+        <field name="fid" />
+      </remove>
+      <change>
+        <field name="id" type="string" width="100" />
+      </change>
+    </modify>
+    <modify src="Agents" dest="AgentPrefix" feature="SALES_MODULE">
+      <add>
+        <field name="prefix" type="string" data="PFA" />
+        <field name="ser" type="string" />
+        <field name="number" type="string" />
+        <field name="region" type="string"  />
+        <field name="data" type="timestamp" />
+        <field name="fullname" type="string" />
+        <field name="order" type="string" />
+        <field name="userid" type="string" execOn="Get">$user.id</field>
+      </add>
+      <remove>
+        <field name="login" />
+        <field name="password" />
+      </remove>
+    </modify>
+
+    <modify src="PricePhoto" dest="MgrPricePhoto" sendLimit="3000000">
+    </modify>
+
+    <modify src="Org" dest="CommonOrgs">
+      <change>
+        <sources>
+          <source name="DBFTableSet">
+            <param name="userTable">"ORGS"</param>
+            <param name="commonTable">"ORGS"</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+    
+  </objects>
+
+  <actions>
+    <action name="WriteOrder">
+      <do>
+        <put object="Order" sourceType="internal" />
+      </do>
+    </action>
+
+    <action name="WriteInternal">
+      <params>
+        <param name="objectType" />
+      </params>
+      <do>
+        <put object="$source" sourceType="internal" />
+      </do>
+    </action>
+
+    <action name="RunBat">
+      <do>
+        <run object="order.bat" />
+      </do>
+    </action>
+
+    <action name="ArchiveMessage">
+      <params>
+        <param name="message" />
+      </params>
+      <do>
+        <put object="MessageArchive" sourceType="internal">$object.userid=$user.id;$object.date=Now();$object.message=message</put>
+      </do>
+    </action>
+
+    <action name="WriteToLog">
+      <params>
+        <param name="action" />
+        <param name="docdate" />
+      </params>
+      <do>
+        <put object="UserLog" sourceType="internal">$object.userid=$user.id;$object.date=Now();$object.unixtime=Now("UnixTimeMS");$object.objType=$action;$object.objDate=$docdate</put>
+      </do>
+    </action>
+    <action name="PODelSended">
+      <do>
+        <execute>'update "PODel" set "flags"=1 where "userid"=' + "'" + $user.id + "'"</execute>
+      </do>
+    </action>
+    
+    <action name="ArchiveOrderProceeded">
+      <params>
+        <param name="created" />
+        <param name="type" />
+        <param name="remark" />
+      </params>
+      <do>
+        <put object="ArchiveOrderProceeded" sourceType="internal">$object.userid=$user.id;$object.created=created;$object.type=type;$object.remark=remark</put>
+      </do>
+    </action>
+
+  </actions>
+</serverDefs>

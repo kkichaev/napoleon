@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bkgColor">
+
+    <ImageView
+        android:id="@+id/serviko_text"
+        app:layout_constraintVertical_weight="3"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="100dp"
+        android:src="@drawable/ic_loading" />
+
+    <LinearLayout
+        app:layout_constraintTop_toBottomOf="@+id/serviko_text"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_below="@+id/serviko_text"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        >
+
+        <TextView
+            android:id="@+id/loading"
+            style="@style/PhoneText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="Обновляю данные"
+            android:textSize="26sp" />
+
+        <ImageView
+            style="@style/WaitImage"
+            android:id="@+id/wait1"
+            android:layout_marginTop="12dp"
+            android:layout_gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_white"
+            />
+        <ImageView
+            android:id="@+id/wait2"
+            style="@style/WaitImage"
+            android:layout_marginTop="12dp"
+            android:layout_gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_white_none"
+            />
+        <ImageView
+            android:id="@+id/wait3"
+            style="@style/WaitImage"
+            android:layout_marginTop="12dp"
+            android:layout_gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_white_none"
+            />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

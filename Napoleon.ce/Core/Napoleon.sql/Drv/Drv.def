@@ -1,0 +1,12 @@
+LIBRARY		NplDrv
+
+EXPORTS		COM_Init
+        	COM_Deinit
+		COM_Open
+        	COM_Close
+        	COM_Read
+        	COM_Write
+        	COM_IOControl
+        	COM_PowerDown
+        	COM_PowerUp
+

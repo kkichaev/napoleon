@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <EditTextPreference
+    	android:title="Дистанция для снятия координат"
+    	android:key="distance"
+    	android:defaultValue="100"/>
+    
+    <EditTextPreference
+    	android:title="Частота снятия координат(сек.)"
+    	android:key="frequence"
+    	android:defaultValue="60"/>
+    
+</PreferenceScreen>

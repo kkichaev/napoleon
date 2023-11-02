@@ -1,0 +1,140 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+  <objects>
+    <object name="Ticket">
+      <sources>   
+         <source name="SQTable" type="internal" />
+      </sources>
+      
+      <member name="primaryKey">"id"</member>
+
+      <field name="id" type="string"/>
+      <field name="title" type="string" />
+      <field name="text" type="string"/>
+      <field name="date" type="timestamp"/>
+      
+      <field name="items" type="collection">
+        <data>
+          <object name="TicketItem">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+            <field name="id" type="string"/>
+            <field name="client" type="string"/>
+            <field name="address" type="string"/>
+          </object>
+        </data>
+      </field>
+    </object>
+    
+    <object name="Submission">
+      <sources>   
+          <source name="SQTable" type="internal" />
+      </sources>
+      
+      <member name="primaryKey">"created,userid"</member>
+
+      <field name="userid" type="string" execOn="Put">$user.id</field>
+      <field name="date" type="timestamp"/>
+      <field name="created" type="timestamp" />
+      <field name="timeZone" type="number" />
+      <field name="serverTimeZone" type="number" data="S_TZ" execOn="Put" feature="USE_TIMEZONE">ServerTimeZone()</field>
+      <field name="sended" type="timestamp" data="S_DATE" execOn="Put">Now()</field>
+      <field name="id" width="30" type="string" />
+      <field name="latitude" type="number" prec="5" />
+      <field name="longitude" type="number" prec="5" />
+      <field name="status" type="number" />
+  
+      <events>
+        <event type="put">
+          <action name="WriteInternal">$object.type</action>
+          <action name="WriteToLog">$object.type;$object.date</action>
+        </event>
+      </events>
+    </object>
+    
+    <object name="RouteStage">
+      <sources>   
+          <source name="SQTable" type="internal" />
+      </sources>
+      
+      <member name="primaryKey">"created,userid"</member>
+
+      <field name="userid" type="string" execOn="Put">$user.id</field>
+      <field name="date" type="timestamp"/>
+      <field name="created" type="timestamp" />
+      <field name="timeZone" type="number" />
+      <field name="serverTimeZone" type="number" data="S_TZ" execOn="Put" feature="USE_TIMEZONE">ServerTimeZone()</field>
+      <field name="sended" type="timestamp" data="S_DATE" execOn="Put">Now()</field>
+      <field name="id" type="string" />
+      <field name="latitude" type="number" prec="5" />
+      <field name="longitude" type="number" prec="5" />
+      <field name="itemid" type="string" />
+      <field name="status" type="number"/>
+      
+      <field name="photo" type="collection">
+        <data>
+          <object name="PhotoItem">
+            <sources>
+                <source name="SQTable" type="internal" />
+            </sources>
+            <field name="id" type="binary"/>
+          </object>
+        </data>
+      </field>
+
+      <events>
+        <event type="put">
+          <action name="WriteInternal">$object.type</action>
+          <action name="WriteToLog">$object.type;$object.date</action>
+        </event>
+      </events>
+    </object>
+    
+    <object name="RoutePoint">
+      <sources>   
+          <source name="SQTable" type="internal" >
+            <param name="readFilter">'"userid"=' + "'" + $user.id + "'"</param>
+          </source>
+      </sources>
+      
+      <member name="primaryKey">"id,userid"</member>
+
+      <field name="id" type="string"/>
+      <field name="pos" type="number"/>
+      <field name="userid" type="string"/>
+      <field name="date" type="timestamp"/>
+      <field name="name" type="string"/>
+      <field name="address" type="string"/>
+      <field name="terminal" type="string"/>
+      <field name="remark" type="string"/>
+      
+      <field name="contacts" type="collection">
+        <data>
+          <object name="PointContact">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+            <field name="pos" type="number"/>
+            <field name="name" type="string"/>
+            <field name="phone" type="string"/>
+          </object>
+        </data>
+      </field>
+      
+      <field name="docs" type="collection">
+        <data>
+          <object name="PointDoc">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+            <field name="number" type="string"/>
+            <field name="pos" type="number"/>
+            <field name="remark" type="string"/>
+          </object>
+        </data>
+      </field>
+    </object>
+    
+	</objects>
+</serverDefs>

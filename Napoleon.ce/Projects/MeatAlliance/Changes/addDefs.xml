@@ -1,0 +1,100 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+  <objects>
+    <object name="Reports" removeOnCommit="true" >
+      <sources>
+        <source name="DBFTable">
+          <param name="tableName">"REP" + $user.id</param>
+        </source>
+      </sources>
+
+      <field name="encode" type="string" />
+      <field name="report" type="file" />
+      <field name="name" type="string" />
+    </object>
+    
+    <object name="AgentPlan">
+      <sources>
+        <source name="SQTable" type="internal">
+          <param name="readFilter">
+            '"userid"=' + "'" + $user.id + "' and " +
+            '"begin" &lt;= ToDate("' + FormatDate(Now(),"DD.MM.YYYY") + '") and ' +
+            '"end" &gt;= ToDate("' + FormatDate(Now(),"DD.MM.YYYY") + '")'
+          </param>
+        </source>
+      </sources>
+
+      <member name="primaryKey">"userid,begin"</member>
+
+      <field name="userid" type="string" />
+      <field name="begin" type="date" />
+      <field name="end" type="date" />
+
+      <field name="groups" type="collection">
+        <data>
+          <object name="AgemtPlanGroups">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+            <field name="id" type="string" />
+            <field name="valueSum" type="number" prec="2" />
+            <field name="valueWeight" type="number" prec="3" />
+          </object>
+        </data>
+      </field>
+    </object>
+    
+    <object name="Realization">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"RLV"</param>
+          <param name="commonTable">"REAL"</param>
+          <param name="catalog">"number;items;1"</param>
+          <param name="filter">"[id] in $Org.id"</param>
+        </source>
+      </sources>
+
+      <member name="table">"RLV"</member>
+
+      <field name="items" type="collection">
+        <data>
+          <object name="RealizationItem">
+            <field name="id" type="string" data="ID_I"/>
+            <field name="qty" type="number" prec="3" />
+            <field name="sum" type="number" prec="2" />
+            <field name="taxSum" type="number" prec="2" data="TAX_I" feature="SALES_MODULE" />
+          </object>
+        </data>
+      </field>
+      <field name="id" type="string" />
+      <field name="sumD" type="number" prec="2" />
+      <field name="number" type="string" data="NUM" />
+      <field name="supplyercode" type="string" data="FIRMA" feature="SALES_MODULE" />
+      <field name="date" type="date" />
+      <field name="created" type="timestamp" />
+      <field name="userid" type="string" />
+    </object>
+    
+    
+    <modify src="Org">
+      <add>
+        <field name="due" type="number" prec="2" />
+        <field name="postdue" type="number" prec="2" data="PDUE"/>
+      </add>
+    </modify>
+
+	<modify src="Returns$items">
+         <add>
+            <field name="comment" type="string" width="150" />
+            <field name="flags" type="number" width="9" prec="0" data="" />
+         </add>
+    </modify>
+    
+	<modify src="Order$items">
+        <add>
+ 			<field name="discount" type="number" prec="2" />
+        </add>
+    </modify>
+	
+  </objects>
+</serverDefs>

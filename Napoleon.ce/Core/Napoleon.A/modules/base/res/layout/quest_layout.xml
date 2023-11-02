@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+    
+    <LinearLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="3dp">
+        
+        <TextView android:id="@+id/tvName"
+            android:layout_width="0dp"
+        	android:layout_height="wrap_content"
+        	android:layout_weight="1"
+        	android:layout_gravity="center_vertical"
+        	android:textSize="22sp"
+        	android:textStyle="bold"/>
+        
+        <ImageButton android:id="@+id/btnAttach"
+            android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:src="@drawable/attachment"/>
+        
+    </LinearLayout>
+    
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" >
+
+        <LinearLayout
+            android:id="@+id/holder"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical" />
+    </ScrollView>
+
+    <LinearLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="58dp"
+        android:paddingLeft="7dp"
+        android:paddingRight="7dp"
+        android:background="#007CC4"
+        android:gravity="center_vertical">
+        
+	    <TextView
+	        android:id="@+id/btnSave"
+	        android:layout_width="0dp"
+	        android:layout_weight="1"
+	        android:layout_height="fill_parent"
+	        android:text="@string/save" 
+	        android:textSize="16sp"
+	        android:textColor="@color/white"
+	        android:gravity="center"
+	        android:layout_marginTop="10dp"
+	        android:layout_marginBottom="10dp"
+	        android:background="@drawable/button_shape"/>
+    
+    </LinearLayout>
+
+</LinearLayout>

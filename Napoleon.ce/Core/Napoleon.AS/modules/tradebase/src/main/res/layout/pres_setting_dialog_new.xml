@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:padding="5dp" >
+
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="1"
+        tools:ignore="UselessParent" >
+
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:paddingRight="10dp"
+                android:text="@string/columns"
+                android:textColor="@color/black" />
+
+            <Spinner
+                android:id="@+id/spNumCol"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:entries="@array/presentation_column_values" />
+        </TableRow>
+
+        <CheckBox
+            android:id="@+id/cbShowFolders"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Show_folders" />
+
+        <CheckBox
+            android:id="@+id/cbShowPriceNames"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Show_price_names" />
+
+    </TableLayout>
+
+</LinearLayout>

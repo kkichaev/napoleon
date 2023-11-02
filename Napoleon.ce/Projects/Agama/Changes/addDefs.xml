@@ -1,0 +1,182 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+   <objects>
+      <object name="Display">
+         <sources>
+            <source name="SQTable" type="internal" />
+         </sources>
+
+         <member name="primaryKey">"userid,date"</member>
+
+         <field name="id" type="string" width="20" />
+         <field name="date" type="timestamp" />
+         <field name="remark" type="string" width="100" />
+         <field name="userid" type="string" execOn="Put">$user.id</field>
+         <field name="sended" type="timestamp" execOn="Put">Now()</field>
+         <field name="unitCode" type="number" />
+
+         <field name="items" type="collection">
+            <data>
+               <object name="DisplayItem">
+                  <sources>
+                     <source name="SQTable" type="internal" />
+                  </sources>
+                  <field name="id" type="binary" execOn="Put">PhotoSave("photo\\"+OrgName($parent.id),$object.id,$object.folder)</field>
+                  <field name="folder" type="string"/>
+               </object>
+            </data>
+         </field>
+
+         <field name="latitude" type="number" prec="4" />
+         <field name="longitude" type="number" prec="4" />
+
+         <events>
+            <event type="put">
+               <action name="WriteToLog">$object.type;$object.date</action>
+            </event>
+         </events>
+      </object>
+
+      <object name="WhConfig">
+         <sources>
+            <source name="KeyValueTable">
+               <param name="fileName">"wh.cfg"</param>
+            </source>
+         </sources>
+
+         <field name="key" type="string" />
+         <field name="value" type="string" />
+      </object>
+
+      <object name="OrdConfig">
+         <sources>
+            <source name="KeyValueTable">
+               <param name="fileName">"order.cfg"</param>
+            </source>
+         </sources>
+
+         <field name="key" type="string" />
+         <field name="value" type="string" />
+      </object>
+
+      <object name="Config">
+         <sources>
+            <source name="ObjectUnion">
+               <param>"OrdConfig"</param>
+               <param>"WhConfig"</param>
+            </source>
+         </sources>
+         <field name="key" type="string" />
+         <field name="value" type="string" />
+      </object>
+      
+      <modify src="OrgTask">
+         <add>
+            <field name="groupid" type="string" />
+         </add>
+      </modify>
+
+      <modify src="Agents">
+         <add>
+            <field name="group" type="string" width="10" hidden="put" />
+         </add>
+      </modify>
+
+     <modify src="Org">
+         <change>
+            <sources>
+               <source name="DBFTableSet">
+                  <param name="userTable">"O"</param>
+                  <param name="commonTable">"ORGS"</param>
+                  <param name="userFieldName">"group"</param>
+               </source>
+            </sources>
+         </change>
+
+         <add>
+            <field name="agent" type="string" />
+            <field name="costype" type="number" />
+            <field name="ido" type="string" />
+            <field name="filter1" type="string" data="F1" />
+            <field name="filter2" type="string" data="F2"/>
+            <field name="realClient" type="string" data="F3" />
+         </add>
+      </modify>
+      
+      <modify src="Org$contacts">
+         <change>
+            <sources>
+               <source name="DBFTableSet">
+                  <param name="userTable">"C"</param>
+                  <param name="commonTable">"CONTACTS"</param>
+                  <param name="filter">"[ID] = $parent.id"</param>
+                  <param name="userFieldName">"group"</param>
+               </source>
+            </sources>
+         </change>
+      </modify>
+      
+      <modify src="Price">
+         <change>
+            <field name="qty" type="collection">
+               <data>
+                  <object name="CostItem">
+                     <sources>
+                        <source name="Sequence">
+                           <param name="source">$parent.source</param>
+                           <!--<param name="startIndex">0</param>-->
+                        </source>
+                     </sources>
+                     <field name="qty" type="number" prec="2" />
+                  </object>
+               </data>
+            </field>
+         </change>
+         
+         <add>
+            <field name="delist" type="number" hidden="true" width="1" />
+            <field name="flags" type="number" execOn="Get" >EncodeFlag($object.delist,1)</field>
+         </add>
+      </modify>
+      
+      <modify src="Price" dest="PriceAnd">
+         <change>
+            <sources>
+               <!-- таблица со включенным фильтром qty > 0  выключать/включать SetFilter(False/True) -->
+               <source name="DBFTableSet">
+                  <param name="userTable">"_W"</param>
+                  <param name="commonTable">"WAREHOUS"</param>
+                  <param name="filter">"[folder] in $folder.fid"</param>
+               </source>
+            </sources>
+         
+            <field name="qty" type="number" prec="2" data="QTY1" />
+            <field name="whQty" type="collection">
+               <data>
+                  <object name="CostItem">
+                     <sources>
+                        <source name="Sequence">
+                           <param name="source">$parent.source</param>
+                           <param name="startIndex">2</param>
+                        </source>
+                     </sources>
+                     <field name="qty" type="number" prec="2" />
+                  </object>
+               </data>
+            </field>
+         </change>
+      </modify>
+      
+      <modify src="Order">
+         <add>
+            <field name="supplDate" type="date" data="SUPPL" />
+         </add>
+      </modify>
+      
+      <modify src="Payment">
+         <add>
+            <field name="sum2" type="number" prec="2" />
+         </add>
+      </modify>
+   </objects>
+</serverDefs>

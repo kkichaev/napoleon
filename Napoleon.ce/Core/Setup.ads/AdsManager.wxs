@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding="windows-1251"?>
+<Wix xmlns='http://schemas.microsoft.com/wix/2006/wi'>
+  <Fragment Id='AdsManager'>
+    <Feature Id='AdsManager' Title='АДС Диспетчер' Description='Программа контроля за работой мобильных сотрудников' Level='1' Display='5'
+             ConfigurableDirectory='_PRODUCT' Absent='allow'>
+      <ComponentRef Id='ADSManagerComponents' />
+      <ComponentRef Id='GRPacket' />
+      <ComponentRef Id='ManagerDocs' />
+      <Condition Level='10000'>
+        <![CDATA[Not(Installed OR NETFRAMEWORK45)]]>
+      </Condition>
+    </Feature>
+
+    <DirectoryRef Id='_PRODUCT' >
+      <Component Id='ADSManagerComponents' Guid='319ECA90-A65D-4ae3-9C8B-648956CD081B'>
+        <File Id='ADSManager_exe' Name='NapoleonDispatcher.exe' DiskId='1' Source='Ads2017.exe' KeyPath='yes'>
+          <Shortcut Id='ADSShc' Directory='ProgramMenuDir' Name='АДС' Description='АДС' WorkingDirectory='_PRODUCT' Advertise='yes'/>
+        </File>
+      </Component>
+      <Component Id='ManagerDocs' Guid='408AC62D-25F7-4007-9DD0-1F827FB77AD0'>
+        <File Id='ManagerDoc' Name='Dispatcher.pdf' DiskId='1' Source='Dispatcher.pdf' KeyPath='yes'>
+          <Shortcut Id='ManagerDoc' Directory='Docs' Name='Диспетчер' Description='Описание работы с диспетчером АДС' Advertise='yes' />
+        </File>
+      </Component>
+    </DirectoryRef>
+  </Fragment>
+</Wix>

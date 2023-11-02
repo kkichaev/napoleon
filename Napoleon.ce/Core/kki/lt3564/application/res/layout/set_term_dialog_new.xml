@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="5"
+            android:orientation="vertical"
+            android:background="@color/white" >
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divider_small"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/properties_color_divider3"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:paddingRight="10dp"
+                android:paddingLeft="10dp">
+
+                <TextView
+                    android:id="@+id/btn_select_date"
+                    style="@style/mainSelectableItemBackground"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="@string/btn_select_date"
+                    android:textSize="@dimen/text_size_simple"
+                    android:textColor="@android:color/black"
+                    android:autoText="false"
+                    android:paddingLeft="10dp"
+                    android:gravity="center_vertical|center_horizontal|left" />
+
+                <FrameLayout
+                    android:id="@+id/btn_without_term"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:layout_gravity="right" >
+
+                    <ImageView
+                        style="@style/mainSelectableItemBackground"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:src="@drawable/back"
+                        android:padding="8dp"
+                        android:layout_gravity="center"/>
+
+                </FrameLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:paddingRight="10dp"
+                android:paddingLeft="10dp" >
+
+                <TextView
+                    android:id="@+id/btn_select_time"
+                    style="@style/mainSelectableItemBackground"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="@string/btn_select_time"
+                    android:textSize="@dimen/text_size_simple"
+                    android:textColor="@android:color/black"
+                    android:paddingLeft="10dp"
+                    android:gravity="center_vertical|center_horizontal|left" />
+
+
+                <FrameLayout
+                    android:id="@+id/btn_without_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:layout_gravity="right" >
+
+                <ImageView
+                    style="@style/mainSelectableItemBackground"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/back"
+                    android:padding="8dp"
+                    android:layout_gravity="center"/>
+
+                </FrameLayout>
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+</LinearLayout>

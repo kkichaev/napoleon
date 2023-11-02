@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+     <TableLayout
+        android:background="@color/footer"
+         android:layout_width="fill_parent"
+         android:layout_height="wrap_content" >
+
+         <TableRow
+             android:id="@+id/tableRow1"
+             android:paddingTop="4dp"
+             android:paddingBottom="4dp"
+     			android:paddingLeft="4dp"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content" >
+
+             <TextView
+                 android:id="@+id/textView1"
+     			android:textSize="16sp"
+     			android:textColor="@color/black"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="@string/price_type" />
+
+             <TextView
+                 android:id="@+id/tvPriceType"
+     			android:textSize="16sp"
+     			android:paddingLeft="8dp"
+     			android:textColor="@color/blue"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="TextView" />
+             
+         </TableRow>
+
+         <TableRow
+             android:id="@+id/tableRow2"
+             android:paddingBottom="4dp"
+     			android:paddingLeft="4dp"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content" >
+
+             <TextView
+                 android:id="@+id/textView2"
+     			android:textColor="@color/black"
+     			android:textSize="16sp"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="@string/th_state" />
+
+             <TextView
+                 android:id="@+id/tvThState"
+     			android:textSize="16sp"
+     			android:paddingLeft="8dp"
+     			android:textColor="@color/blue"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="TextView" />
+
+         </TableRow>
+     </TableLayout>
+
+    <LinearLayout
+        android:id="@+id/LinearLayout02"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/LinearLayout04"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            tools:ignore="NestedWeights" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:paddingLeft="3dp"
+                android:text="@string/caption"
+                android:textColor="@color/black"
+                tools:ignore="NestedWeights" 
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/TextView03"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:background="@color/white"
+                android:minWidth="80dp"
+                android:paddingRight="3dp"
+                android:text="@string/exists"
+                android:textColor="@color/black" 
+                android:textSize="16sp"/>
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/lvItems"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@color/white" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/footer"
+        android:orientation="horizontal"
+        android:padding="7dp" >
+
+        <ImageButton
+            android:id="@+id/btnSend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="7dp"
+            android:src="@drawable/send"
+            tools:ignore="ContentDescription" />
+    </LinearLayout>
+</LinearLayout>

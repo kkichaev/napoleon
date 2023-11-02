@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/llHeader"
+        style="?header"
+        android:layout_width="fill_parent"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/tvOrgName"
+            style="?headerText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/organization" />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/edName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/name"/>
+
+    <EditText
+        android:id="@+id/edAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/address"/>
+
+    <EditText
+        android:id="@+id/edRemark"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/remark"
+        android:visibility="gone"/>
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="@string/contacts"
+        android:textSize="20sp"
+        android:layout_marginTop="15dp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/footer"/>
+
+    <ListView
+        android:id="@+id/lvContacts"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <LinearLayout
+        android:id="@+id/LinearLayout08"
+        style="?footer"
+        android:layout_width="fill_parent">
+
+        <TextView
+            android:id="@+id/btnCancel"
+            style="?textButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="7dp"
+            android:layout_weight="1"
+            android:text="@string/cancel"></TextView>
+
+        <TextView
+            android:id="@+id/btnOK"
+            style="?textButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:text="@string/ok"></TextView>
+    </LinearLayout>
+</LinearLayout>

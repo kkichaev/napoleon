@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+ 	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" 
+	android:orientation="horizontal" 
+	android:layout_height="wrap_content" 
+	android:gravity="right" android:background="@drawable/list_selector">
+    <ImageView 
+    	android:layout_marginRight="3dp"
+		android:layout_width="wrap_content" 
+		android:layout_height="wrap_content" android:id="@+id/ivImage" ></ImageView>
+	
+	<TextView android:layout_height="wrap_content" 
+		android:textColor="@color/black" 
+		android:id="@+id/tvName" 
+		android:text="PriceItem" 
+		android:layout_width="wrap_content" 
+		android:paddingRight="4dp"
+		android:layout_weight="1" android:textSize="18dp"></TextView>
+		
+   	<TextView android:textColor="@color/black" 
+   		android:id="@+id/tvQty" 
+   		android:layout_height="wrap_content" 
+		android:paddingRight="4dp"
+   		android:layout_width="wrap_content" 
+   		android:text="Clmn1" android:textSize="18dp"></TextView>
+   		
+   	<TextView android:textColor="@color/black" 
+   		android:id="@+id/tvRemark" 
+   		android:layout_height="wrap_content" 
+   		android:layout_width="wrap_content" 
+   		android:text="Clmn2" android:textSize="18dp"></TextView>
+</LinearLayout>

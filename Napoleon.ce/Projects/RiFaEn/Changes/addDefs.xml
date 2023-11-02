@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+    <modify src="Org">
+      <add>
+        <field name="firma" type="number" />
+      </add>
+    </modify>
+    <modify src="Incass">
+      <add>
+        <field name="dlvNumber" type="string" />
+        <field name="dlvDate" type="date" />
+      </add>
+    </modify>
+	</objects>
+</serverDefs>

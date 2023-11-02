@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/iv_img_container"
+                android:layout_width="@dimen/univ_ab_height"
+                android:layout_height="@dimen/univ_ab_height">
+
+                <ImageView
+                    android:id="@+id/image_view"
+                    style="@style/mainSelectableItemBackground"
+                    android:layout_width="@dimen/univ_ab_height"
+                    android:layout_height="@dimen/univ_ab_height"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:src="@drawable/user_gray"
+                    android:padding="6dp" />
+
+                <ImageView
+                    android:id="@+id/iv_img_custom"
+                    android:layout_width="@dimen/univ_ab_height"
+                    android:layout_height="@dimen/univ_ab_height"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:padding="@dimen/univ_padding_small"
+                    android:visibility="gone"/>
+
+            </RelativeLayout>
+
+        <TextView
+            android:id="@+id/text_view"
+            style="@style/mainSelectableItemBackground"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/univ_ab_height"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/image_view"
+            android:layout_weight="1"
+            android:drawablePadding="@dimen/univ_padding_small"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:padding="@dimen/univ_padding_small"
+            android:singleLine="true" />
+
+        <ImageView
+            android:id="@+id/image_view_remove"
+            style="@style/mainSelectableItemBackground"
+            android:layout_width="@dimen/univ_ab_height"
+            android:layout_height="@dimen/univ_ab_height"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/file_remove_gray"
+            android:padding="@dimen/univ_padding_small"
+            android:layout_gravity="center"/>
+
+        </LinearLayout>
+
+    <View
+        style="@style/dividerSmall" />
+
+    </LinearLayout>
+
+</merge>

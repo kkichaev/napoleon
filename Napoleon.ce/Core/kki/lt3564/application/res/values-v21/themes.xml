@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Application theme. -->
+    <style name="leadertask.AppTheme.Light" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:textColor">#ff000000</item>
+        <item name="android:windowBackground">@android:color/white</item>
+        <item name="android:itemTextAppearance">@style/leadertask.MyColorTheme</item>
+        <item name="android:colorPrimary">@color/primary_color</item>
+        <!-- This is the interesting part -->
+        <item name="android:dialogTheme">@style/AlertDialogCustom</item>
+        <item name="dialogTheme">@style/AlertDialogCustom</item>
+        <item name="android:alertDialogTheme">@style/AlertDialogCustom</item>
+        <item name="alertDialogTheme">@style/AlertDialogCustom</item>
+        <item name="colorAccent">@color/primary_color</item>
+        <item name="android:colorEdgeEffect">@color/primary_color</item>
+        <item name="windowActionModeOverlay">true</item>
+        <item name="android:windowActionModeOverlay">true</item>
+        <item name="actionModeStyle">@style/CustomActionMode</item>
+        <item name="drawerArrowStyle">@style/WhiteDrawerIconStyle</item>
+        <item name="android:autoCompleteTextViewStyle">@style/cursorColor</item>
+    </style>
+</resources>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<preference-headers xmlns:android="http://schemas.android.com/apk/res/android" >
+    <header android:fragment="com.grsoft.napoleon.dostavka.SettingNetwork"
+       android:title="@string/network_prefs_title"
+       android:summary="@string/network_prefs_title"/>
+    <header android:fragment="com.grsoft.napoleon.dostavka.SettingGPS"
+       android:title="@string/gps_prefs_title"
+       android:summary="@string/gps_prefs_title"/>
+    <header android:fragment="com.grsoft.napoleon.dostavka.SettingSync"
+       android:title="@string/gps_sync_title"
+       android:summary="@string/gps_sync_title"/>
+</preference-headers>

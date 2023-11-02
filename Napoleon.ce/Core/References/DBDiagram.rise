@@ -1,0 +1,1489 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE rise:model[<!--DTD for RISE XML 1.3 by R2B Software AB,copyright 2007-2010 -->
+<!ELEMENT rise:model (rise:modelInfo,rise:naming?,(rise:evolution,rise:publish?,rise:presentation?,rise:documentation?,rise:applications?))>
+<!ATTLIST rise:model xmlns:rise CDATA #FIXED "http://www.r2bsoftware/ns/rise/">
+<!ELEMENT rise:modelInfo (rise:name,rise:prefix,rise:guid,rise:about?,rise:engineVersion?,rise:integerSize?,rise:vendor,rise:base?)>
+<!ELEMENT rise:name (#PCDATA)>
+<!ELEMENT rise:prefix (#PCDATA)>
+<!ELEMENT rise:guid (#PCDATA)>
+<!ELEMENT rise:about (#PCDATA)>
+<!ELEMENT rise:engineVersion (#PCDATA)>
+<!ELEMENT rise:vendor (rise:name,rise:email,rise:www,rise:copyright)>
+<!ELEMENT rise:email (#PCDATA)>
+<!ELEMENT rise:www (#PCDATA)>
+<!ELEMENT rise:copyright (#PCDATA)>
+<!ELEMENT rise:base (rise:name,rise:guid,rise:sequenceNumber,rise:timeStamp?,rise:hint?)>
+<!ELEMENT rise:evolution ((rise:newEntity|rise:renameEntity|rise:deleteEntity|rise:newRelation|rise:renameRelation|rise:editRelation|rise:deleteRelation|rise:newAttribute|rise:renameAttribute|rise:editAttribute|rise:deleteAttribute|rise:release|rise:newSpecialization|rise:deleteSpecialization|rise:newIndex|rise:deleteIndex|rise:snapshot|rise:newInstance|rise:editInstance|rise:deleteInstance|rise:sortAttribute)*)>
+<!ELEMENT rise:newEntity (rise:sequenceNumber,rise:timeStamp,rise:entity)>
+<!ELEMENT rise:renameEntity (rise:sequenceNumber,rise:timeStamp,rise:entityName,rise:newEntityName)>
+<!ELEMENT rise:deleteEntity (rise:sequenceNumber,rise:timeStamp,rise:entityName)>
+<!ELEMENT rise:newRelation (rise:sequenceNumber,rise:timeStamp,rise:relation)>
+<!ELEMENT rise:renameRelation (rise:sequenceNumber,rise:timeStamp,rise:relationName,rise:newRelationName)>
+<!ELEMENT rise:editRelation (rise:sequenceNumber,rise:timeStamp,rise:relation)>
+<!ELEMENT rise:deleteRelation (rise:sequenceNumber,rise:timeStamp,rise:relationName)>
+<!ELEMENT rise:newAttribute (rise:sequenceNumber,rise:timeStamp,rise:entity)>
+<!ELEMENT rise:renameAttribute (rise:sequenceNumber,rise:timeStamp,rise:entityName,rise:attributeName,rise:newAttributeName)>
+<!ELEMENT rise:editAttribute (rise:sequenceNumber,rise:timeStamp,rise:entity)>
+<!ELEMENT rise:deleteAttribute (rise:sequenceNumber,rise:timeStamp,rise:entityName,rise:attributeName)>
+<!ELEMENT rise:release (rise:sequenceNumber,rise:timeStamp,rise:comment?)>
+<!ELEMENT rise:newSpecialization (rise:sequenceNumber,rise:timeStamp,rise:specialization)>
+<!ELEMENT rise:deleteSpecialization (rise:sequenceNumber,rise:timeStamp,rise:specializationName)>
+<!ELEMENT rise:newIndex (rise:sequenceNumber,rise:timeStamp,rise:entity)>
+<!ELEMENT rise:deleteIndex (rise:sequenceNumber,rise:timeStamp,rise:entityName,rise:indexName)>
+<!ELEMENT rise:snapshot (rise:sequenceNumber,rise:timeStamp,rise:releases,(rise:entity|rise:relation|rise:specialization)*)>
+<!ELEMENT rise:newInstance (rise:sequenceNumber,rise:timeStamp,(rise:entity|rise:relation|rise:specialization))>
+<!ELEMENT rise:editInstance (rise:sequenceNumber,rise:timeStamp,(rise:entity|rise:relation|rise:specialization))>
+<!ELEMENT rise:deleteInstance (rise:sequenceNumber,rise:timeStamp,(rise:entity|rise:relation|rise:specialization))>
+<!ELEMENT rise:sortAttribute (rise:sequenceNumber,rise:timeStamp,rise:entityName,rise:attributeName,rise:newPosition)>
+<!ELEMENT rise:sequenceNumber (#PCDATA)>
+<!ELEMENT rise:timeStamp (#PCDATA)>
+<!ELEMENT rise:entity (rise:name,rise:isDataType?,rise:attribute*,rise:index*,rise:deleted?,rise:maxID,rise:ID*)>
+<!ELEMENT rise:attribute (rise:name,rise:dataTypeAlias?,(rise:dataType,rise:dataSize?,rise:mustBeUnique?,rise:mustExist?,rise:default?,rise:check?,rise:fkAttribute?,rise:description?)?,rise:deleted?,rise:instance*)>
+<!ELEMENT rise:entityName (#PCDATA)>
+<!ELEMENT rise:newEntityName (#PCDATA)>
+<!ELEMENT rise:relation (rise:name,rise:node,rise:node,rise:deleted?,rise:maxID,rise:ID*,relationHint?)>
+<!ELEMENT rise:relationName (#PCDATA)>
+<!ELEMENT rise:newRelationName (#PCDATA)>
+<!ELEMENT rise:attributeName (#PCDATA)>
+<!ELEMENT rise:newAttributeName (#PCDATA)>
+<!ELEMENT rise:newPosition (#PCDATA)>
+<!ELEMENT rise:comment (#PCDATA)>
+<!ELEMENT rise:specialization (rise:name,rise:subEntity,rise:superEntity,rise:deleted?,rise:specialized*)>
+<!ELEMENT rise:specializationName (#PCDATA)>
+<!ELEMENT rise:index (rise:name,rise:mustBeUnique,rise:indexColumn+)>
+<!ELEMENT rise:indexColumn ((rise:attributeName|rise:relationName|rise:specializationName),rise:orderBy, rise:fkName?)>
+<!ELEMENT rise:releases (#PCDATA)>
+<!ELEMENT rise:fkName (#PCDATA)>
+<!ELEMENT rise:dataType (#PCDATA)>
+<!ELEMENT rise:dataSize (#PCDATA)>
+<!ELEMENT rise:mustBeUnique (#PCDATA)>
+<!ELEMENT rise:mustExist (#PCDATA)>
+<!ELEMENT rise:default (#PCDATA)>
+<!ELEMENT rise:check (#PCDATA)>
+<!ELEMENT rise:fkAttribute (rise:pkTable, rise:pkColumn)>
+<!ELEMENT rise:pkTable (#PCDATA)>
+<!ELEMENT rise:pkColumn (#PCDATA)>
+<!ELEMENT rise:node (rise:name,rise:entityName,rise:attributeName?,rise:cardinality,rise:reference*)>
+<!ELEMENT rise:cardinality (#PCDATA)>
+<!ELEMENT rise:subEntity (#PCDATA)>
+<!ELEMENT rise:superEntity (#PCDATA)>
+<!ELEMENT rise:deleted (#PCDATA)>
+<!ELEMENT rise:publish (rise:view*,rise:interface*)>
+<!ELEMENT rise:view (rise:name,rise:distinct?,rise:entityName,rise:viewAttribute*,rise:extendWith*,rise:whereClause?,rise:groupBy?)>
+<!ELEMENT rise:distinct (#PCDATA)>
+<!ELEMENT rise:extendWith (rise:name,(rise:specializationName|(rise:relationName,rise:nodeName)),rise:viewName?,rise:mandatory)>
+<!ELEMENT rise:viewAttribute (rise:name,rise:extendWithName?,rise:attributeName?,rise:postProcess?)>
+<!ELEMENT rise:whereClause (#PCDATA)>
+<!ELEMENT rise:groupBy (#PCDATA)>
+<!ELEMENT rise:nodeName (#PCDATA)>
+<!ELEMENT rise:mandatory (#PCDATA)>
+<!ELEMENT rise:extendWithName (#PCDATA)>
+<!ELEMENT rise:postProcess (#PCDATA)>
+<!ELEMENT rise:interface (rise:name,rise:method*,rise:isPrivate?)>
+<!ELEMENT rise:method (rise:name,(rise:entityMethod|rise:viewMethod|rise:customMethod|rise:composedMethod),rise:description?,rise:userManaged?,rise:isPrivate?)>
+<!ELEMENT rise:entityMethod (rise:entityName,rise:operation,rise:returnSet?,rise:argumentList?,rise:filterBy?,rise:orderBy?,rise:extendedQuery?)>
+<!ELEMENT rise:viewMethod (rise:viewName,rise:returnSet?,rise:argumentList?,rise:filterBy?,rise:orderBy?,rise:extendedQuery?)>
+<!ELEMENT rise:relationMethod (rise:relationName,rise:operation,rise:returnSet?,rise:argumentList?)>
+<!ELEMENT rise:customMethod (rise:include,rise:class,rise:isListing?,rise:returnSet?,rise:argumentList?,rise:noDatabase?)>
+<!ELEMENT rise:composedMethod (rise:composition,rise:returnSet?,rise:argumentList?)>
+<!ELEMENT rise:description (#PCDATA)>
+<!ELEMENT rise:userManaged (#PCDATA)>
+<!ELEMENT rise:viewName (#PCDATA)>
+<!ELEMENT rise:operation (#PCDATA)>
+<!ELEMENT rise:returnSet (rise:return+)>
+<!ELEMENT rise:argumentList (rise:argument+)>
+<!ELEMENT rise:filterBy (#PCDATA)>
+<!ELEMENT rise:orderBy (#PCDATA)>
+<!ELEMENT rise:extendedQuery (#PCDATA)>
+<!ELEMENT rise:include (#PCDATA)>
+<!ELEMENT rise:class (#PCDATA)>
+<!ELEMENT rise:return (rise:name,((rise:dataType,rise:mustExist?)|rise:attributeName|(rise:isID,((rise:relationName,rise:nodeName)|rise:specializationName)?)),rise:postProcess?)>
+<!ELEMENT rise:argument (rise:name,((rise:dataType,rise:mustExist?)|rise:attributeName|(rise:isID,((rise:relationName,rise:nodeName)|rise:specializationName)?)),rise:postProcess?)>
+<!ELEMENT rise:argumentName (#PCDATA)>
+<!ELEMENT rise:isID (#PCDATA)>
+<!ELEMENT rise:presentation (rise:diagram*)>
+<!ELEMENT rise:diagram (rise:name,(rise:drawEntity|rise:drawView|rise:drawInterface|rise:drawText)*,rise:drawingMode?,rise:drawingModeX?)>
+<!ELEMENT rise:drawEntity (rise:entityName,rise:showAttributes?,rise:boundingBox,rise:color?)>
+<!ELEMENT rise:drawView (rise:viewName,rise:showAttributes?,rise:boundingBox,rise:color?)>
+<!ELEMENT rise:drawInterface (rise:interfaceName,rise:boundingBox,rise:color?)>
+<!ELEMENT rise:drawText (rise:textRef,rise:display,rise:boundingBox,rise:color?)>
+<!ELEMENT rise:showAttributes (#PCDATA)>
+<!ELEMENT rise:boundingBox (rise:x,rise:y,rise:sizeX,rise:sizeY)>
+<!ELEMENT rise:textRef (#PCDATA)>
+<!ELEMENT rise:display (#PCDATA)>
+<!ELEMENT rise:documentation (rise:text*)>
+<!ELEMENT rise:text (rise:textID,rise:title,rise:text,(rise:entityName|rise:viewName|rise:interfaceName|rise:relationName|rise:specializationName)*)>
+<!ELEMENT rise:textID (#PCDATA)>
+<!ELEMENT rise:title (#PCDATA)>
+<!ELEMENT rise:text (#PCDATA)>
+<!ELEMENT rise:interfaceName (#PCDATA)>
+<!ELEMENT rise:x (#PCDATA)>
+<!ELEMENT rise:y (#PCDATA)>
+<!ELEMENT rise:sizeX (#PCDATA)>
+<!ELEMENT rise:sizeY (#PCDATA)>
+<!ELEMENT rise:ID (#PCDATA)>
+<!ELEMENT rise:maxID (#PCDATA)>
+<!ELEMENT rise:refID (#PCDATA)>
+<!ELEMENT rise:subID (#PCDATA)>
+<!ELEMENT rise:superID (#PCDATA)>
+<!ELEMENT rise:data (#PCDATA)>
+<!ELEMENT rise:instance (rise:ID,rise:data?)>
+<!ELEMENT rise:reference (rise:ID,rise:refID)>
+<!ELEMENT rise:specialized (rise:subID,rise:superID)>
+<!ELEMENT rise:applications (rise:application*)>
+<!ELEMENT rise:application (rise:name,rise:timeStamp,rise:ajax?)>
+<!ELEMENT rise:ajax (#PCDATA)>
+<!ELEMENT rise:composition (rise:dataset,rise:call*,rise:dataset)>
+<!ELEMENT rise:call (rise:interfaceName,rise:methodName,rise:dataset,rise:flowControl?,rise:callPostProcess?)>
+<!ELEMENT rise:methodName (#PCDATA)>
+<!ELEMENT rise:dataset (rise:name,rise:member*)>
+<!ELEMENT rise:member (rise:name,(rise:sourceDatasetName,rise:sourceMemberName)?)>
+<!ELEMENT rise:sourceDatasetName (#PCDATA)>
+<!ELEMENT rise:sourceMemberName (#PCDATA)>
+<!ELEMENT rise:isPrivate (#PCDATA)>
+<!ELEMENT rise:isListing (#PCDATA)>
+<!ELEMENT rise:noDatabase (#PCDATA)>
+<!ELEMENT rise:flowControl (rise:flowControlType,rise:sourceDatasetName,rise:sourceMemberName)>
+<!ELEMENT rise:flowControlType (#PCDATA)>
+<!ELEMENT rise:integerSize (#PCDATA)>
+<!ELEMENT rise:dataTypeAlias (#PCDATA)>
+<!ELEMENT rise:isDataType (#PCDATA)>
+<!ELEMENT rise:bgColor (#PCDATA)>
+<!ELEMENT rise:textColor (#PCDATA)>
+<!ELEMENT rise:color (rise:bgColor,rise:textColor)>
+<!ELEMENT rise:drawingMode (#PCDATA)>
+<!ELEMENT rise:drawingModeX (#PCDATA)>
+<!ELEMENT relationHint (rise:direction,rise:aggregation)>
+<!ELEMENT rise:direction (#PCDATA)>
+<!ELEMENT rise:aggregation (#PCDATA)>
+<!ELEMENT rise:callPostProcess (#PCDATA)>
+<!ELEMENT rise:naming (rise:dbNaming, rise:srcNaming, rise:customDataType*,rise:styles)>
+<!ELEMENT rise:dbNaming (rise:dbTablePrefix,rise:dbTableDeletedPrefix,rise:dbEntityTable,rise:dbRelationTable,rise:dbColumnPrefix,rise:dbColumnDeletedPrefix,rise:dbIdColumn,rise:dbAttributeColumn,rise:dbForeignKeyColumn,rise:dbDefaultValueConstraint,rise:dbUniqueConstraint,rise:dbCheckConstraint,rise:dbForeignKeyConstraint,rise:dbExternalForeignKeyConstraint,rise:dbIndex,rise:dbTable,rise:dbColumn,rise:dbView)>
+<!ELEMENT rise:dbTablePrefix (#PCDATA)>
+<!ELEMENT rise:dbTableDeletedPrefix (#PCDATA)>
+<!ELEMENT rise:dbEntityTable (#PCDATA)>
+<!ELEMENT rise:dbRelationTable (#PCDATA)>
+<!ELEMENT rise:dbColumnPrefix (#PCDATA)>
+<!ELEMENT rise:dbColumnDeletedPrefix (#PCDATA)>
+<!ELEMENT rise:dbIdColumn (#PCDATA)>
+<!ELEMENT rise:dbAttributeColumn (#PCDATA)>
+<!ELEMENT rise:dbForeignKeyColumn (#PCDATA)>
+<!ELEMENT rise:dbDefaultValueConstraint (#PCDATA)>
+<!ELEMENT rise:dbUniqueConstraint (#PCDATA)>
+<!ELEMENT rise:dbCheckConstraint (#PCDATA)>
+<!ELEMENT rise:dbForeignKeyConstraint (#PCDATA)>
+<!ELEMENT rise:dbExternalForeignKeyConstraint (#PCDATA)>
+<!ELEMENT rise:dbIndex (#PCDATA)>
+<!ELEMENT rise:dbTable (#PCDATA)>
+<!ELEMENT rise:dbColumn (#PCDATA)>
+<!ELEMENT rise:dbView (#PCDATA)>
+<!ELEMENT rise:srcNaming (rise:srcListEntity,rise:srcNewEntity,rise:srcDeleteEntity,rise:srcGetEntity,rise:srcSetEntity,rise:srcDownloadBlob,rise:srcUploadBlob,rise:srcListView,rise:srcReturnValue,rise:srcMethod,rise:srcListEntityByFk,rise:srcGetEntityByFk,rise:srcGetEntityByAttribute,rise:srcGetEntityByIndex,rise:srcListEntityByIndex,rise:srcListEntityByAttribute,rise:srcAttributeArg,rise:srcPkArg,rise:srcFkArg,rise:srcArgument)>
+<!ELEMENT rise:srcListEntity (#PCDATA)>
+<!ELEMENT rise:srcListEntityByFk (#PCDATA)>
+<!ELEMENT rise:srcNewEntity (#PCDATA)>
+<!ELEMENT rise:srcDeleteEntity (#PCDATA)>
+<!ELEMENT rise:srcGetEntity (#PCDATA)>
+<!ELEMENT rise:srcGetEntityByFk (#PCDATA)>
+<!ELEMENT rise:srcGetEntityByAttribute (#PCDATA)>
+<!ELEMENT rise:srcSetEntity (#PCDATA)>
+<!ELEMENT rise:srcDownloadBlob (#PCDATA)>
+<!ELEMENT rise:srcUploadBlob (#PCDATA)>
+<!ELEMENT rise:srcAttributeArg (#PCDATA)>
+<!ELEMENT rise:srcPkArg (#PCDATA)>
+<!ELEMENT rise:srcFkArg (#PCDATA)>
+<!ELEMENT rise:srcArgument (#PCDATA)>
+<!ELEMENT rise:srcListView (#PCDATA)>
+<!ELEMENT rise:srcReturnValue (#PCDATA)>
+<!ELEMENT rise:srcMethod (#PCDATA)>
+<!ELEMENT rise:customDataType (rise:dataTypeAlias,rise:dataType,rise:dataSize?)>
+<!ELEMENT rise:styles (rise:entityStyle,rise:viewStyle,rise:interfaceStyle,rise:textStyle,rise:drawingStyle?)>
+<!ELEMENT rise:entityStyle (rise:color)>
+<!ELEMENT rise:viewStyle (rise:color)>
+<!ELEMENT rise:interfaceStyle (rise:color)>
+<!ELEMENT rise:textStyle (rise:color)>
+<!ELEMENT rise:drawingStyle (rise:drawingMode,rise:drawingModeX?)>
+<!ELEMENT rise:srcGetEntityByIndex (#PCDATA)>
+<!ELEMENT rise:srcListEntityByIndex (#PCDATA)>
+<!ELEMENT rise:srcListEntityByAttribute (#PCDATA)>
+]>
+<rise:model xmlns:rise="http://www.r2bsoftware/ns/rise/">
+  <rise:modelInfo>
+    <rise:name>Test</rise:name>
+    <rise:prefix />
+    <rise:guid>d02f45f3-7b6e-4289-b045-a54c3dd44c72</rise:guid>
+    <rise:engineVersion>4.1.3902.28451</rise:engineVersion>
+    <rise:integerSize>64</rise:integerSize>
+    <rise:vendor>
+      <rise:name />
+      <rise:email />
+      <rise:www />
+      <rise:copyright />
+    </rise:vendor>
+  </rise:modelInfo>
+  <rise:evolution>
+    <rise:release>
+      <rise:sequenceNumber>1</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T10:53:59</rise:timeStamp>
+      <rise:comment>Created from empty model Blank (,49944b71-12fc-41f2-81a9-bcde1d55782e) </rise:comment>
+    </rise:release>
+    <rise:newEntity>
+      <rise:sequenceNumber>2</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T13:43:25</rise:timeStamp>
+      <rise:entity>
+        <rise:name>Entity</rise:name>
+        <rise:maxID>0</rise:maxID>
+      </rise:entity>
+    </rise:newEntity>
+    <rise:renameEntity>
+      <rise:sequenceNumber>3</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T13:45:23</rise:timeStamp>
+      <rise:entityName>Entity</rise:entityName>
+      <rise:newEntityName>Division</rise:newEntityName>
+    </rise:renameEntity>
+    <rise:newAttribute>
+      <rise:sequenceNumber>4</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T13:46:46</rise:timeStamp>
+      <rise:entity>
+        <rise:name>Division</rise:name>
+        <rise:attribute>
+          <rise:name>id</rise:name>
+          <rise:dataTypeAlias />
+          <rise:dataType>string</rise:dataType>
+          <rise:dataSize>50</rise:dataSize>
+          <rise:mustBeUnique>False</rise:mustBeUnique>
+          <rise:mustExist>False</rise:mustExist>
+          <rise:description />
+        </rise:attribute>
+        <rise:maxID>0</rise:maxID>
+      </rise:entity>
+    </rise:newAttribute>
+    <rise:editAttribute>
+      <rise:sequenceNumber>5</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T13:46:54</rise:timeStamp>
+      <rise:entity>
+        <rise:name>Division</rise:name>
+        <rise:attribute>
+          <rise:name>id</rise:name>
+          <rise:dataTypeAlias />
+          <rise:dataType>int</rise:dataType>
+          <rise:dataSize>50</rise:dataSize>
+          <rise:mustBeUnique>False</rise:mustBeUnique>
+          <rise:mustExist>False</rise:mustExist>
+          <rise:description />
+        </rise:attribute>
+        <rise:maxID>0</rise:maxID>
+      </rise:entity>
+    </rise:editAttribute>
+    <rise:editAttribute>
+      <rise:sequenceNumber>6</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T13:46:54</rise:timeStamp>
+      <rise:entity>
+        <rise:name>Division</rise:name>
+        <rise:attribute>
+          <rise:name>id</rise:name>
+          <rise:dataTypeAlias />
+          <rise:dataType>int</rise:dataType>
+          <rise:mustBeUnique>False</rise:mustBeUnique>
+          <rise:mustExist>False</rise:mustExist>
+          <rise:description />
+        </rise:attribute>
+        <rise:maxID>0</rise:maxID>
+      </rise:entity>
+    </rise:editAttribute>
+    <rise:newAttribute>
+      <rise:sequenceNumber>7</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T13:47:02</rise:timeStamp>
+      <rise:entity>
+        <rise:name>Division</rise:name>
+        <rise:attribute>
+          <rise:name>name</rise:name>
+          <rise:dataTypeAlias />
+          <rise:dataType>string</rise:dataType>
+          <rise:dataSize>50</rise:dataSize>
+          <rise:mustBeUnique>False</rise:mustBeUnique>
+          <rise:mustExist>False</rise:mustExist>
+          <rise:description />
+        </rise:attribute>
+        <rise:maxID>0</rise:maxID>
+      </rise:entity>
+    </rise:newAttribute>
+    <rise:newAttribute>
+      <rise:sequenceNumber>8</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T13:47:11</rise:timeStamp>
+      <rise:entity>
+        <rise:name>Division</rise:name>
+        <rise:attribute>
+          <rise:name>description</rise:name>
+          <rise:dataTypeAlias />
+          <rise:dataType>string</rise:dataType>
+          <rise:dataSize>50</rise:dataSize>
+          <rise:mustBeUnique>False</rise:mustBeUnique>
+          <rise:mustExist>False</rise:mustExist>
+          <rise:description />
+        </rise:attribute>
+        <rise:maxID>0</rise:maxID>
+      </rise:entity>
+    </rise:newAttribute>
+    <rise:newAttribute>
+      <rise:sequenceNumber>9</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T13:47:24</rise:timeStamp>
+      <rise:entity>
+        <rise:name>Division</rise:name>
+        <rise:attribute>
+          <rise:name>cheif</rise:name>
+          <rise:dataTypeAlias />
+          <rise:dataType>string</rise:dataType>
+          <rise:dataSize>50</rise:dataSize>
+          <rise:mustBeUnique>False</rise:mustBeUnique>
+          <rise:mustExist>False</rise:mustExist>
+          <rise:description />
+        </rise:attribute>
+        <rise:maxID>0</rise:maxID>
+      </rise:entity>
+    </rise:newAttribute>
+    <rise:newAttribute>
+      <rise:sequenceNumber>10</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T13:47:27</rise:timeStamp>
+      <rise:entity>
+        <rise:name>Division</rise:name>
+        <rise:attribute>
+          <rise:name>parent</rise:name>
+          <rise:dataTypeAlias />
+          <rise:dataType>string</rise:dataType>
+          <rise:dataSize>50</rise:dataSize>
+          <rise:mustBeUnique>False</rise:mustBeUnique>
+          <rise:mustExist>False</rise:mustExist>
+          <rise:description />
+        </rise:attribute>
+        <rise:maxID>0</rise:maxID>
+      </rise:entity>
+    </rise:newAttribute>
+    <rise:newEntity>
+      <rise:sequenceNumber>11</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T13:47:42</rise:timeStamp>
+      <rise:entity>
+        <rise:name>Entity</rise:name>
+        <rise:maxID>0</rise:maxID>
+      </rise:entity>
+    </rise:newEntity>
+    <rise:renameEntity>
+      <rise:sequenceNumber>12</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T13:48:05</rise:timeStamp>
+      <rise:entityName>Entity</rise:entityName>
+      <rise:newEntityName>Division$agents</rise:newEntityName>
+    </rise:renameEntity>
+    <rise:newAttribute>
+      <rise:sequenceNumber>13</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T13:48:42</rise:timeStamp>
+      <rise:entity>
+        <rise:name>Division$agents</rise:name>
+        <rise:attribute>
+          <rise:name>Division$id</rise:name>
+          <rise:dataTypeAlias />
+          <rise:dataType>string</rise:dataType>
+          <rise:dataSize>50</rise:dataSize>
+          <rise:mustBeUnique>False</rise:mustBeUnique>
+          <rise:mustExist>False</rise:mustExist>
+          <rise:description />
+        </rise:attribute>
+        <rise:maxID>0</rise:maxID>
+      </rise:entity>
+    </rise:newAttribute>
+    <rise:newAttribute>
+      <rise:sequenceNumber>14</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T13:48:44</rise:timeStamp>
+      <rise:entity>
+        <rise:name>Division$agents</rise:name>
+        <rise:attribute>
+          <rise:name>id</rise:name>
+          <rise:dataTypeAlias />
+          <rise:dataType>string</rise:dataType>
+          <rise:dataSize>50</rise:dataSize>
+          <rise:mustBeUnique>False</rise:mustBeUnique>
+          <rise:mustExist>False</rise:mustExist>
+          <rise:description />
+        </rise:attribute>
+        <rise:maxID>0</rise:maxID>
+      </rise:entity>
+    </rise:newAttribute>
+    <rise:editAttribute>
+      <rise:sequenceNumber>15</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T13:48:50</rise:timeStamp>
+      <rise:entity>
+        <rise:name>Division$agents</rise:name>
+        <rise:attribute>
+          <rise:name>Division$id</rise:name>
+          <rise:dataTypeAlias />
+          <rise:dataType>int</rise:dataType>
+          <rise:dataSize>50</rise:dataSize>
+          <rise:mustBeUnique>False</rise:mustBeUnique>
+          <rise:mustExist>False</rise:mustExist>
+          <rise:description />
+        </rise:attribute>
+        <rise:maxID>0</rise:maxID>
+      </rise:entity>
+    </rise:editAttribute>
+    <rise:editAttribute>
+      <rise:sequenceNumber>16</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T13:48:50</rise:timeStamp>
+      <rise:entity>
+        <rise:name>Division$agents</rise:name>
+        <rise:attribute>
+          <rise:name>Division$id</rise:name>
+          <rise:dataTypeAlias />
+          <rise:dataType>int</rise:dataType>
+          <rise:mustBeUnique>False</rise:mustBeUnique>
+          <rise:mustExist>False</rise:mustExist>
+          <rise:description />
+        </rise:attribute>
+        <rise:maxID>0</rise:maxID>
+      </rise:entity>
+    </rise:editAttribute>
+    <rise:newRelation>
+      <rise:sequenceNumber>17</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T13:49:10</rise:timeStamp>
+      <rise:relation>
+        <rise:name>DivisionDivision$agents</rise:name>
+        <rise:node>
+          <rise:name>Division</rise:name>
+          <rise:entityName>Division</rise:entityName>
+          <rise:cardinality>1</rise:cardinality>
+        </rise:node>
+        <rise:node>
+          <rise:name>Division$agents</rise:name>
+          <rise:entityName>Division$agents</rise:entityName>
+          <rise:cardinality>0toN</rise:cardinality>
+        </rise:node>
+        <rise:maxID>0</rise:maxID>
+      </rise:relation>
+    </rise:newRelation>
+    <rise:deleteRelation>
+      <rise:sequenceNumber>18</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T13:49:30</rise:timeStamp>
+      <rise:relationName>DivisionDivision$agents</rise:relationName>
+    </rise:deleteRelation>
+    <rise:newRelation>
+      <rise:sequenceNumber>19</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T13:49:48</rise:timeStamp>
+      <rise:relation>
+        <rise:name>DivisionDivision$agents</rise:name>
+        <rise:node>
+          <rise:name>Division</rise:name>
+          <rise:entityName>Division</rise:entityName>
+          <rise:cardinality>1</rise:cardinality>
+        </rise:node>
+        <rise:node>
+          <rise:name>Division$agents</rise:name>
+          <rise:entityName>Division$agents</rise:entityName>
+          <rise:cardinality>0toN</rise:cardinality>
+        </rise:node>
+        <rise:maxID>0</rise:maxID>
+      </rise:relation>
+    </rise:newRelation>
+    <rise:editAttribute>
+      <rise:sequenceNumber>20</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T13:50:15</rise:timeStamp>
+      <rise:entity>
+        <rise:name>Division</rise:name>
+        <rise:attribute>
+          <rise:name>id</rise:name>
+          <rise:dataTypeAlias />
+          <rise:dataType>int</rise:dataType>
+          <rise:mustBeUnique>True</rise:mustBeUnique>
+          <rise:mustExist>False</rise:mustExist>
+          <rise:description />
+        </rise:attribute>
+        <rise:maxID>0</rise:maxID>
+      </rise:entity>
+    </rise:editAttribute>
+    <rise:editAttribute>
+      <rise:sequenceNumber>21</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T13:50:28</rise:timeStamp>
+      <rise:entity>
+        <rise:name>Division</rise:name>
+        <rise:attribute>
+          <rise:name>id</rise:name>
+          <rise:dataTypeAlias />
+          <rise:dataType>int</rise:dataType>
+          <rise:mustBeUnique>True</rise:mustBeUnique>
+          <rise:mustExist>True</rise:mustExist>
+          <rise:description />
+        </rise:attribute>
+        <rise:maxID>0</rise:maxID>
+      </rise:entity>
+    </rise:editAttribute>
+    <rise:newRelation>
+      <rise:sequenceNumber>22</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T13:50:50</rise:timeStamp>
+      <rise:relation>
+        <rise:name>DivisionDivision1</rise:name>
+        <rise:node>
+          <rise:name>Division</rise:name>
+          <rise:entityName>Division</rise:entityName>
+          <rise:cardinality>1</rise:cardinality>
+        </rise:node>
+        <rise:node>
+          <rise:name>Division1</rise:name>
+          <rise:entityName>Division</rise:entityName>
+          <rise:cardinality>0toN</rise:cardinality>
+        </rise:node>
+        <rise:maxID>0</rise:maxID>
+      </rise:relation>
+    </rise:newRelation>
+    <rise:renameRelation>
+      <rise:sequenceNumber>23</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T13:51:08</rise:timeStamp>
+      <rise:relationName>DivisionDivision1</rise:relationName>
+      <rise:newRelationName>Parent</rise:newRelationName>
+    </rise:renameRelation>
+    <rise:newEntity>
+      <rise:sequenceNumber>24</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T13:52:00</rise:timeStamp>
+      <rise:entity>
+        <rise:name>Entity</rise:name>
+        <rise:maxID>0</rise:maxID>
+      </rise:entity>
+    </rise:newEntity>
+    <rise:renameEntity>
+      <rise:sequenceNumber>25</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T13:52:11</rise:timeStamp>
+      <rise:entityName>Entity</rise:entityName>
+      <rise:newEntityName>Users.dbf</rise:newEntityName>
+    </rise:renameEntity>
+    <rise:newAttribute>
+      <rise:sequenceNumber>26</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T13:52:32</rise:timeStamp>
+      <rise:entity>
+        <rise:name>Users.dbf</rise:name>
+        <rise:attribute>
+          <rise:name>id</rise:name>
+          <rise:dataTypeAlias />
+          <rise:dataType>string</rise:dataType>
+          <rise:dataSize>50</rise:dataSize>
+          <rise:mustBeUnique>False</rise:mustBeUnique>
+          <rise:mustExist>False</rise:mustExist>
+          <rise:description />
+        </rise:attribute>
+        <rise:maxID>0</rise:maxID>
+      </rise:entity>
+    </rise:newAttribute>
+    <rise:newAttribute>
+      <rise:sequenceNumber>27</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T13:52:33</rise:timeStamp>
+      <rise:entity>
+        <rise:name>Users.dbf</rise:name>
+        <rise:attribute>
+          <rise:name>name</rise:name>
+          <rise:dataTypeAlias />
+          <rise:dataType>string</rise:dataType>
+          <rise:dataSize>50</rise:dataSize>
+          <rise:mustBeUnique>False</rise:mustBeUnique>
+          <rise:mustExist>False</rise:mustExist>
+          <rise:description />
+        </rise:attribute>
+        <rise:maxID>0</rise:maxID>
+      </rise:entity>
+    </rise:newAttribute>
+    <rise:newAttribute>
+      <rise:sequenceNumber>28</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T13:52:36</rise:timeStamp>
+      <rise:entity>
+        <rise:name>Users.dbf</rise:name>
+        <rise:attribute>
+          <rise:name>login</rise:name>
+          <rise:dataTypeAlias />
+          <rise:dataType>string</rise:dataType>
+          <rise:dataSize>50</rise:dataSize>
+          <rise:mustBeUnique>False</rise:mustBeUnique>
+          <rise:mustExist>False</rise:mustExist>
+          <rise:description />
+        </rise:attribute>
+        <rise:maxID>0</rise:maxID>
+      </rise:entity>
+    </rise:newAttribute>
+    <rise:newAttribute>
+      <rise:sequenceNumber>29</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T13:52:38</rise:timeStamp>
+      <rise:entity>
+        <rise:name>Users.dbf</rise:name>
+        <rise:attribute>
+          <rise:name>password</rise:name>
+          <rise:dataTypeAlias />
+          <rise:dataType>string</rise:dataType>
+          <rise:dataSize>50</rise:dataSize>
+          <rise:mustBeUnique>False</rise:mustBeUnique>
+          <rise:mustExist>False</rise:mustExist>
+          <rise:description />
+        </rise:attribute>
+        <rise:maxID>0</rise:maxID>
+      </rise:entity>
+    </rise:newAttribute>
+    <rise:newRelation>
+      <rise:sequenceNumber>30</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T13:54:49</rise:timeStamp>
+      <rise:relation>
+        <rise:name>Division$agentsUsers.dbf</rise:name>
+        <rise:node>
+          <rise:name>Division$agents</rise:name>
+          <rise:entityName>Division$agents</rise:entityName>
+          <rise:cardinality>1toN</rise:cardinality>
+        </rise:node>
+        <rise:node>
+          <rise:name>Users.dbf</rise:name>
+          <rise:entityName>Users.dbf</rise:entityName>
+          <rise:cardinality>1toN</rise:cardinality>
+        </rise:node>
+        <rise:maxID>0</rise:maxID>
+      </rise:relation>
+    </rise:newRelation>
+    <rise:newEntity>
+      <rise:sequenceNumber>31</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T13:55:01</rise:timeStamp>
+      <rise:entity>
+        <rise:name>Entity</rise:name>
+        <rise:maxID>0</rise:maxID>
+      </rise:entity>
+    </rise:newEntity>
+    <rise:renameEntity>
+      <rise:sequenceNumber>32</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T13:55:06</rise:timeStamp>
+      <rise:entityName>Entity</rise:entityName>
+      <rise:newEntityName>UserINfo</rise:newEntityName>
+    </rise:renameEntity>
+    <rise:renameEntity>
+      <rise:sequenceNumber>33</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T13:55:09</rise:timeStamp>
+      <rise:entityName>UserINfo</rise:entityName>
+      <rise:newEntityName>UserInfo</rise:newEntityName>
+    </rise:renameEntity>
+    <rise:newAttribute>
+      <rise:sequenceNumber>34</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T13:55:27</rise:timeStamp>
+      <rise:entity>
+        <rise:name>UserInfo</rise:name>
+        <rise:attribute>
+          <rise:name>userid</rise:name>
+          <rise:dataTypeAlias />
+          <rise:dataType>string</rise:dataType>
+          <rise:dataSize>50</rise:dataSize>
+          <rise:mustBeUnique>False</rise:mustBeUnique>
+          <rise:mustExist>False</rise:mustExist>
+          <rise:description />
+        </rise:attribute>
+        <rise:maxID>0</rise:maxID>
+      </rise:entity>
+    </rise:newAttribute>
+    <rise:newAttribute>
+      <rise:sequenceNumber>35</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T13:55:32</rise:timeStamp>
+      <rise:entity>
+        <rise:name>UserInfo</rise:name>
+        <rise:attribute>
+          <rise:name>phone</rise:name>
+          <rise:dataTypeAlias />
+          <rise:dataType>string</rise:dataType>
+          <rise:dataSize>50</rise:dataSize>
+          <rise:mustBeUnique>False</rise:mustBeUnique>
+          <rise:mustExist>False</rise:mustExist>
+          <rise:description />
+        </rise:attribute>
+        <rise:maxID>0</rise:maxID>
+      </rise:entity>
+    </rise:newAttribute>
+    <rise:newRelation>
+      <rise:sequenceNumber>36</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T13:55:39</rise:timeStamp>
+      <rise:relation>
+        <rise:name>Users.dbfUserInfo</rise:name>
+        <rise:node>
+          <rise:name>Users.dbf</rise:name>
+          <rise:entityName>Users.dbf</rise:entityName>
+          <rise:cardinality>1</rise:cardinality>
+        </rise:node>
+        <rise:node>
+          <rise:name>UserInfo</rise:name>
+          <rise:entityName>UserInfo</rise:entityName>
+          <rise:cardinality>1</rise:cardinality>
+        </rise:node>
+        <rise:maxID>0</rise:maxID>
+      </rise:relation>
+    </rise:newRelation>
+    <rise:newRelation>
+      <rise:sequenceNumber>37</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T14:05:17</rise:timeStamp>
+      <rise:relation>
+        <rise:name>DivisionUsers.dbf</rise:name>
+        <rise:node>
+          <rise:name>Division</rise:name>
+          <rise:entityName>Division</rise:entityName>
+          <rise:cardinality>1</rise:cardinality>
+        </rise:node>
+        <rise:node>
+          <rise:name>Users.dbf</rise:name>
+          <rise:entityName>Users.dbf</rise:entityName>
+          <rise:cardinality>0toN</rise:cardinality>
+        </rise:node>
+        <rise:maxID>0</rise:maxID>
+      </rise:relation>
+    </rise:newRelation>
+    <rise:newEntity>
+      <rise:sequenceNumber>38</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T14:11:00</rise:timeStamp>
+      <rise:entity>
+        <rise:name>Entity</rise:name>
+        <rise:maxID>0</rise:maxID>
+      </rise:entity>
+    </rise:newEntity>
+    <rise:renameEntity>
+      <rise:sequenceNumber>39</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T14:11:04</rise:timeStamp>
+      <rise:entityName>Entity</rise:entityName>
+      <rise:newEntityName>Price</rise:newEntityName>
+    </rise:renameEntity>
+    <rise:newEntity>
+      <rise:sequenceNumber>40</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T14:11:14</rise:timeStamp>
+      <rise:entity>
+        <rise:name>Entity</rise:name>
+        <rise:maxID>0</rise:maxID>
+      </rise:entity>
+    </rise:newEntity>
+    <rise:renameEntity>
+      <rise:sequenceNumber>41</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T14:11:16</rise:timeStamp>
+      <rise:entityName>Entity</rise:entityName>
+      <rise:newEntityName>Folder</rise:newEntityName>
+    </rise:renameEntity>
+    <rise:newAttribute>
+      <rise:sequenceNumber>42</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T14:11:31</rise:timeStamp>
+      <rise:entity>
+        <rise:name>Folder</rise:name>
+        <rise:attribute>
+          <rise:name>id</rise:name>
+          <rise:dataTypeAlias />
+          <rise:dataType>string</rise:dataType>
+          <rise:dataSize>50</rise:dataSize>
+          <rise:mustBeUnique>False</rise:mustBeUnique>
+          <rise:mustExist>False</rise:mustExist>
+          <rise:description />
+        </rise:attribute>
+        <rise:maxID>0</rise:maxID>
+      </rise:entity>
+    </rise:newAttribute>
+    <rise:newAttribute>
+      <rise:sequenceNumber>43</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T14:11:32</rise:timeStamp>
+      <rise:entity>
+        <rise:name>Folder</rise:name>
+        <rise:attribute>
+          <rise:name>name</rise:name>
+          <rise:dataTypeAlias />
+          <rise:dataType>string</rise:dataType>
+          <rise:dataSize>50</rise:dataSize>
+          <rise:mustBeUnique>False</rise:mustBeUnique>
+          <rise:mustExist>False</rise:mustExist>
+          <rise:description />
+        </rise:attribute>
+        <rise:maxID>0</rise:maxID>
+      </rise:entity>
+    </rise:newAttribute>
+    <rise:newAttribute>
+      <rise:sequenceNumber>44</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T14:11:33</rise:timeStamp>
+      <rise:entity>
+        <rise:name>Folder</rise:name>
+        <rise:attribute>
+          <rise:name>level</rise:name>
+          <rise:dataTypeAlias />
+          <rise:dataType>string</rise:dataType>
+          <rise:dataSize>50</rise:dataSize>
+          <rise:mustBeUnique>False</rise:mustBeUnique>
+          <rise:mustExist>False</rise:mustExist>
+          <rise:description />
+        </rise:attribute>
+        <rise:maxID>0</rise:maxID>
+      </rise:entity>
+    </rise:newAttribute>
+    <rise:newAttribute>
+      <rise:sequenceNumber>45</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T14:11:43</rise:timeStamp>
+      <rise:entity>
+        <rise:name>Price</rise:name>
+        <rise:attribute>
+          <rise:name>id</rise:name>
+          <rise:dataTypeAlias />
+          <rise:dataType>string</rise:dataType>
+          <rise:dataSize>50</rise:dataSize>
+          <rise:mustBeUnique>False</rise:mustBeUnique>
+          <rise:mustExist>False</rise:mustExist>
+          <rise:description />
+        </rise:attribute>
+        <rise:maxID>0</rise:maxID>
+      </rise:entity>
+    </rise:newAttribute>
+    <rise:newAttribute>
+      <rise:sequenceNumber>46</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T14:11:47</rise:timeStamp>
+      <rise:entity>
+        <rise:name>Price</rise:name>
+        <rise:attribute>
+          <rise:name>fid</rise:name>
+          <rise:dataTypeAlias />
+          <rise:dataType>string</rise:dataType>
+          <rise:dataSize>50</rise:dataSize>
+          <rise:mustBeUnique>False</rise:mustBeUnique>
+          <rise:mustExist>False</rise:mustExist>
+          <rise:description />
+        </rise:attribute>
+        <rise:maxID>0</rise:maxID>
+      </rise:entity>
+    </rise:newAttribute>
+    <rise:renameAttribute>
+      <rise:sequenceNumber>47</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T14:12:01</rise:timeStamp>
+      <rise:entityName>Price</rise:entityName>
+      <rise:attributeName>fid</rise:attributeName>
+      <rise:newAttributeName>folderid</rise:newAttributeName>
+    </rise:renameAttribute>
+    <rise:newAttribute>
+      <rise:sequenceNumber>48</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T14:12:08</rise:timeStamp>
+      <rise:entity>
+        <rise:name>Price</rise:name>
+        <rise:attribute>
+          <rise:name>inpack</rise:name>
+          <rise:dataTypeAlias />
+          <rise:dataType>string</rise:dataType>
+          <rise:dataSize>50</rise:dataSize>
+          <rise:mustBeUnique>False</rise:mustBeUnique>
+          <rise:mustExist>False</rise:mustExist>
+          <rise:description />
+        </rise:attribute>
+        <rise:maxID>0</rise:maxID>
+      </rise:entity>
+    </rise:newAttribute>
+    <rise:newAttribute>
+      <rise:sequenceNumber>49</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T14:12:10</rise:timeStamp>
+      <rise:entity>
+        <rise:name>Price</rise:name>
+        <rise:attribute>
+          <rise:name>name</rise:name>
+          <rise:dataTypeAlias />
+          <rise:dataType>string</rise:dataType>
+          <rise:dataSize>50</rise:dataSize>
+          <rise:mustBeUnique>False</rise:mustBeUnique>
+          <rise:mustExist>False</rise:mustExist>
+          <rise:description />
+        </rise:attribute>
+        <rise:maxID>0</rise:maxID>
+      </rise:entity>
+    </rise:newAttribute>
+    <rise:newAttribute>
+      <rise:sequenceNumber>50</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T14:12:14</rise:timeStamp>
+      <rise:entity>
+        <rise:name>Price</rise:name>
+        <rise:attribute>
+          <rise:name>qty</rise:name>
+          <rise:dataTypeAlias />
+          <rise:dataType>string</rise:dataType>
+          <rise:dataSize>50</rise:dataSize>
+          <rise:mustBeUnique>False</rise:mustBeUnique>
+          <rise:mustExist>False</rise:mustExist>
+          <rise:description />
+        </rise:attribute>
+        <rise:maxID>0</rise:maxID>
+      </rise:entity>
+    </rise:newAttribute>
+    <rise:newAttribute>
+      <rise:sequenceNumber>51</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T14:12:17</rise:timeStamp>
+      <rise:entity>
+        <rise:name>Price</rise:name>
+        <rise:attribute>
+          <rise:name>weight</rise:name>
+          <rise:dataTypeAlias />
+          <rise:dataType>string</rise:dataType>
+          <rise:dataSize>50</rise:dataSize>
+          <rise:mustBeUnique>False</rise:mustBeUnique>
+          <rise:mustExist>False</rise:mustExist>
+          <rise:description />
+        </rise:attribute>
+        <rise:maxID>0</rise:maxID>
+      </rise:entity>
+    </rise:newAttribute>
+    <rise:newAttribute>
+      <rise:sequenceNumber>52</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T14:12:22</rise:timeStamp>
+      <rise:entity>
+        <rise:name>Price</rise:name>
+        <rise:attribute>
+          <rise:name>color</rise:name>
+          <rise:dataTypeAlias />
+          <rise:dataType>string</rise:dataType>
+          <rise:dataSize>50</rise:dataSize>
+          <rise:mustBeUnique>False</rise:mustBeUnique>
+          <rise:mustExist>False</rise:mustExist>
+          <rise:description />
+        </rise:attribute>
+        <rise:maxID>0</rise:maxID>
+      </rise:entity>
+    </rise:newAttribute>
+    <rise:newAttribute>
+      <rise:sequenceNumber>53</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T14:12:26</rise:timeStamp>
+      <rise:entity>
+        <rise:name>Price</rise:name>
+        <rise:attribute>
+          <rise:name>tax1</rise:name>
+          <rise:dataTypeAlias />
+          <rise:dataType>string</rise:dataType>
+          <rise:dataSize>50</rise:dataSize>
+          <rise:mustBeUnique>False</rise:mustBeUnique>
+          <rise:mustExist>False</rise:mustExist>
+          <rise:description />
+        </rise:attribute>
+        <rise:maxID>0</rise:maxID>
+      </rise:entity>
+    </rise:newAttribute>
+    <rise:newAttribute>
+      <rise:sequenceNumber>54</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T14:12:32</rise:timeStamp>
+      <rise:entity>
+        <rise:name>Price</rise:name>
+        <rise:attribute>
+          <rise:name>cost1</rise:name>
+          <rise:dataTypeAlias />
+          <rise:dataType>string</rise:dataType>
+          <rise:dataSize>50</rise:dataSize>
+          <rise:mustBeUnique>False</rise:mustBeUnique>
+          <rise:mustExist>False</rise:mustExist>
+          <rise:description />
+        </rise:attribute>
+        <rise:maxID>0</rise:maxID>
+      </rise:entity>
+    </rise:newAttribute>
+    <rise:newRelation>
+      <rise:sequenceNumber>55</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T14:12:47</rise:timeStamp>
+      <rise:relation>
+        <rise:name>FolderPrice</rise:name>
+        <rise:node>
+          <rise:name>Folder</rise:name>
+          <rise:entityName>Folder</rise:entityName>
+          <rise:cardinality>0or1</rise:cardinality>
+        </rise:node>
+        <rise:node>
+          <rise:name>Price</rise:name>
+          <rise:entityName>Price</rise:entityName>
+          <rise:cardinality>0toN</rise:cardinality>
+        </rise:node>
+        <rise:maxID>0</rise:maxID>
+      </rise:relation>
+    </rise:newRelation>
+    <rise:newEntity>
+      <rise:sequenceNumber>56</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T14:26:13</rise:timeStamp>
+      <rise:entity>
+        <rise:name>Entity</rise:name>
+        <rise:maxID>0</rise:maxID>
+      </rise:entity>
+    </rise:newEntity>
+    <rise:renameEntity>
+      <rise:sequenceNumber>57</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T14:26:26</rise:timeStamp>
+      <rise:entityName>Entity</rise:entityName>
+      <rise:newEntityName>Matrix</rise:newEntityName>
+    </rise:renameEntity>
+    <rise:newEntity>
+      <rise:sequenceNumber>58</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T14:37:22</rise:timeStamp>
+      <rise:entity>
+        <rise:name>Entity</rise:name>
+        <rise:maxID>0</rise:maxID>
+      </rise:entity>
+    </rise:newEntity>
+    <rise:renameEntity>
+      <rise:sequenceNumber>59</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T14:37:26</rise:timeStamp>
+      <rise:entityName>Entity</rise:entityName>
+      <rise:newEntityName>AgentMatrix</rise:newEntityName>
+    </rise:renameEntity>
+    <rise:newAttribute>
+      <rise:sequenceNumber>60</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T14:37:43</rise:timeStamp>
+      <rise:entity>
+        <rise:name>AgentMatrix</rise:name>
+        <rise:attribute>
+          <rise:name>userid</rise:name>
+          <rise:dataTypeAlias />
+          <rise:dataType>string</rise:dataType>
+          <rise:dataSize>50</rise:dataSize>
+          <rise:mustBeUnique>False</rise:mustBeUnique>
+          <rise:mustExist>False</rise:mustExist>
+          <rise:description />
+        </rise:attribute>
+        <rise:maxID>0</rise:maxID>
+      </rise:entity>
+    </rise:newAttribute>
+    <rise:newAttribute>
+      <rise:sequenceNumber>61</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T14:37:46</rise:timeStamp>
+      <rise:entity>
+        <rise:name>AgentMatrix</rise:name>
+        <rise:attribute>
+          <rise:name>name</rise:name>
+          <rise:dataTypeAlias />
+          <rise:dataType>string</rise:dataType>
+          <rise:dataSize>50</rise:dataSize>
+          <rise:mustBeUnique>False</rise:mustBeUnique>
+          <rise:mustExist>False</rise:mustExist>
+          <rise:description />
+        </rise:attribute>
+        <rise:maxID>0</rise:maxID>
+      </rise:entity>
+    </rise:newAttribute>
+    <rise:newAttribute>
+      <rise:sequenceNumber>62</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T14:45:44</rise:timeStamp>
+      <rise:entity>
+        <rise:name>Matrix</rise:name>
+        <rise:attribute>
+          <rise:name>name</rise:name>
+          <rise:dataTypeAlias />
+          <rise:dataType>string</rise:dataType>
+          <rise:dataSize>50</rise:dataSize>
+          <rise:mustBeUnique>False</rise:mustBeUnique>
+          <rise:mustExist>False</rise:mustExist>
+          <rise:description />
+        </rise:attribute>
+        <rise:maxID>0</rise:maxID>
+      </rise:entity>
+    </rise:newAttribute>
+    <rise:newAttribute>
+      <rise:sequenceNumber>63</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T14:45:45</rise:timeStamp>
+      <rise:entity>
+        <rise:name>Matrix</rise:name>
+        <rise:attribute>
+          <rise:name>id</rise:name>
+          <rise:dataTypeAlias />
+          <rise:dataType>string</rise:dataType>
+          <rise:dataSize>50</rise:dataSize>
+          <rise:mustBeUnique>False</rise:mustBeUnique>
+          <rise:mustExist>False</rise:mustExist>
+          <rise:description />
+        </rise:attribute>
+        <rise:maxID>0</rise:maxID>
+      </rise:entity>
+    </rise:newAttribute>
+    <rise:newRelation>
+      <rise:sequenceNumber>64</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T14:45:55</rise:timeStamp>
+      <rise:relation>
+        <rise:name>PriceMatrix</rise:name>
+        <rise:node>
+          <rise:name>Price</rise:name>
+          <rise:entityName>Price</rise:entityName>
+          <rise:cardinality>1toN</rise:cardinality>
+        </rise:node>
+        <rise:node>
+          <rise:name>Matrix</rise:name>
+          <rise:entityName>Matrix</rise:entityName>
+          <rise:cardinality>1toN</rise:cardinality>
+        </rise:node>
+        <rise:maxID>0</rise:maxID>
+      </rise:relation>
+    </rise:newRelation>
+    <rise:newRelation>
+      <rise:sequenceNumber>65</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T14:46:50</rise:timeStamp>
+      <rise:relation>
+        <rise:name>AgentMatrixMatrix</rise:name>
+        <rise:node>
+          <rise:name>AgentMatrix</rise:name>
+          <rise:entityName>AgentMatrix</rise:entityName>
+          <rise:cardinality>1</rise:cardinality>
+        </rise:node>
+        <rise:node>
+          <rise:name>Matrix</rise:name>
+          <rise:entityName>Matrix</rise:entityName>
+          <rise:cardinality>0toN</rise:cardinality>
+        </rise:node>
+        <rise:maxID>0</rise:maxID>
+      </rise:relation>
+    </rise:newRelation>
+    <rise:newRelation>
+      <rise:sequenceNumber>66</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T14:47:35</rise:timeStamp>
+      <rise:relation>
+        <rise:name>Users.dbfAgentMatrix</rise:name>
+        <rise:node>
+          <rise:name>Users.dbf</rise:name>
+          <rise:entityName>Users.dbf</rise:entityName>
+          <rise:cardinality>1</rise:cardinality>
+        </rise:node>
+        <rise:node>
+          <rise:name>AgentMatrix</rise:name>
+          <rise:entityName>AgentMatrix</rise:entityName>
+          <rise:cardinality>0toN</rise:cardinality>
+        </rise:node>
+        <rise:maxID>0</rise:maxID>
+      </rise:relation>
+    </rise:newRelation>
+    <rise:renameEntity>
+      <rise:sequenceNumber>67</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T14:50:17</rise:timeStamp>
+      <rise:entityName>Folder</rise:entityName>
+      <rise:newEntityName>Folder.dbf</rise:newEntityName>
+    </rise:renameEntity>
+    <rise:renameEntity>
+      <rise:sequenceNumber>68</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T14:50:21</rise:timeStamp>
+      <rise:entityName>Price</rise:entityName>
+      <rise:newEntityName>Price.dbf</rise:newEntityName>
+    </rise:renameEntity>
+    <rise:renameEntity>
+      <rise:sequenceNumber>69</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T14:50:24</rise:timeStamp>
+      <rise:entityName>Matrix</rise:entityName>
+      <rise:newEntityName>Matrix.dbf</rise:newEntityName>
+    </rise:renameEntity>
+    <rise:newEntity>
+      <rise:sequenceNumber>70</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T14:56:35</rise:timeStamp>
+      <rise:entity>
+        <rise:name>Entity</rise:name>
+        <rise:maxID>0</rise:maxID>
+      </rise:entity>
+    </rise:newEntity>
+    <rise:renameEntity>
+      <rise:sequenceNumber>71</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T14:56:43</rise:timeStamp>
+      <rise:entityName>Entity</rise:entityName>
+      <rise:newEntityName>Org</rise:newEntityName>
+    </rise:renameEntity>
+    <rise:renameEntity>
+      <rise:sequenceNumber>72</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T14:56:48</rise:timeStamp>
+      <rise:entityName>Org</rise:entityName>
+      <rise:newEntityName>Org.dbf</rise:newEntityName>
+    </rise:renameEntity>
+    <rise:newAttribute>
+      <rise:sequenceNumber>73</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T14:56:51</rise:timeStamp>
+      <rise:entity>
+        <rise:name>Org.dbf</rise:name>
+        <rise:attribute>
+          <rise:name>id</rise:name>
+          <rise:dataTypeAlias />
+          <rise:dataType>string</rise:dataType>
+          <rise:dataSize>50</rise:dataSize>
+          <rise:mustBeUnique>False</rise:mustBeUnique>
+          <rise:mustExist>False</rise:mustExist>
+          <rise:description />
+        </rise:attribute>
+        <rise:maxID>0</rise:maxID>
+      </rise:entity>
+    </rise:newAttribute>
+    <rise:newAttribute>
+      <rise:sequenceNumber>74</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T14:56:53</rise:timeStamp>
+      <rise:entity>
+        <rise:name>Org.dbf</rise:name>
+        <rise:attribute>
+          <rise:name>name</rise:name>
+          <rise:dataTypeAlias />
+          <rise:dataType>string</rise:dataType>
+          <rise:dataSize>50</rise:dataSize>
+          <rise:mustBeUnique>False</rise:mustBeUnique>
+          <rise:mustExist>False</rise:mustExist>
+          <rise:description />
+        </rise:attribute>
+        <rise:maxID>0</rise:maxID>
+      </rise:entity>
+    </rise:newAttribute>
+    <rise:newAttribute>
+      <rise:sequenceNumber>75</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T14:56:55</rise:timeStamp>
+      <rise:entity>
+        <rise:name>Org.dbf</rise:name>
+        <rise:attribute>
+          <rise:name>address</rise:name>
+          <rise:dataTypeAlias />
+          <rise:dataType>string</rise:dataType>
+          <rise:dataSize>50</rise:dataSize>
+          <rise:mustBeUnique>False</rise:mustBeUnique>
+          <rise:mustExist>False</rise:mustExist>
+          <rise:description />
+        </rise:attribute>
+        <rise:maxID>0</rise:maxID>
+      </rise:entity>
+    </rise:newAttribute>
+    <rise:newAttribute>
+      <rise:sequenceNumber>76</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T14:56:59</rise:timeStamp>
+      <rise:entity>
+        <rise:name>Org.dbf</rise:name>
+        <rise:attribute>
+          <rise:name>color</rise:name>
+          <rise:dataTypeAlias />
+          <rise:dataType>string</rise:dataType>
+          <rise:dataSize>50</rise:dataSize>
+          <rise:mustBeUnique>False</rise:mustBeUnique>
+          <rise:mustExist>False</rise:mustExist>
+          <rise:description />
+        </rise:attribute>
+        <rise:maxID>0</rise:maxID>
+      </rise:entity>
+    </rise:newAttribute>
+    <rise:newEntity>
+      <rise:sequenceNumber>77</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T14:57:27</rise:timeStamp>
+      <rise:entity>
+        <rise:name>Entity</rise:name>
+        <rise:maxID>0</rise:maxID>
+      </rise:entity>
+    </rise:newEntity>
+    <rise:renameEntity>
+      <rise:sequenceNumber>78</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T14:57:32</rise:timeStamp>
+      <rise:entityName>Entity</rise:entityName>
+      <rise:newEntityName>Contactss.dbf</rise:newEntityName>
+    </rise:renameEntity>
+    <rise:renameEntity>
+      <rise:sequenceNumber>79</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T14:57:37</rise:timeStamp>
+      <rise:entityName>Contactss.dbf</rise:entityName>
+      <rise:newEntityName>Contacts.dbf</rise:newEntityName>
+    </rise:renameEntity>
+    <rise:newAttribute>
+      <rise:sequenceNumber>80</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T14:57:41</rise:timeStamp>
+      <rise:entity>
+        <rise:name>Contacts.dbf</rise:name>
+        <rise:attribute>
+          <rise:name>id</rise:name>
+          <rise:dataTypeAlias />
+          <rise:dataType>string</rise:dataType>
+          <rise:dataSize>50</rise:dataSize>
+          <rise:mustBeUnique>False</rise:mustBeUnique>
+          <rise:mustExist>False</rise:mustExist>
+          <rise:description />
+        </rise:attribute>
+        <rise:maxID>0</rise:maxID>
+      </rise:entity>
+    </rise:newAttribute>
+    <rise:newAttribute>
+      <rise:sequenceNumber>81</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T14:57:42</rise:timeStamp>
+      <rise:entity>
+        <rise:name>Contacts.dbf</rise:name>
+        <rise:attribute>
+          <rise:name>fio</rise:name>
+          <rise:dataTypeAlias />
+          <rise:dataType>string</rise:dataType>
+          <rise:dataSize>50</rise:dataSize>
+          <rise:mustBeUnique>False</rise:mustBeUnique>
+          <rise:mustExist>False</rise:mustExist>
+          <rise:description />
+        </rise:attribute>
+        <rise:maxID>0</rise:maxID>
+      </rise:entity>
+    </rise:newAttribute>
+    <rise:newAttribute>
+      <rise:sequenceNumber>82</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T14:57:45</rise:timeStamp>
+      <rise:entity>
+        <rise:name>Contacts.dbf</rise:name>
+        <rise:attribute>
+          <rise:name>phone</rise:name>
+          <rise:dataTypeAlias />
+          <rise:dataType>string</rise:dataType>
+          <rise:dataSize>50</rise:dataSize>
+          <rise:mustBeUnique>False</rise:mustBeUnique>
+          <rise:mustExist>False</rise:mustExist>
+          <rise:description />
+        </rise:attribute>
+        <rise:maxID>0</rise:maxID>
+      </rise:entity>
+    </rise:newAttribute>
+    <rise:newRelation>
+      <rise:sequenceNumber>83</rise:sequenceNumber>
+      <rise:timeStamp>2010-09-24T14:57:56</rise:timeStamp>
+      <rise:relation>
+        <rise:name>Org.dbfContacts.dbf</rise:name>
+        <rise:node>
+          <rise:name>Org.dbf</rise:name>
+          <rise:entityName>Org.dbf</rise:entityName>
+          <rise:cardinality>1</rise:cardinality>
+        </rise:node>
+        <rise:node>
+          <rise:name>Contacts.dbf</rise:name>
+          <rise:entityName>Contacts.dbf</rise:entityName>
+          <rise:cardinality>0toN</rise:cardinality>
+        </rise:node>
+        <rise:maxID>0</rise:maxID>
+      </rise:relation>
+    </rise:newRelation>
+  </rise:evolution>
+  <rise:publish />
+  <rise:presentation>
+    <rise:diagram>
+      <rise:name>Divisions</rise:name>
+      <rise:drawEntity>
+        <rise:entityName>Division</rise:entityName>
+        <rise:boundingBox>
+          <rise:x>337</rise:x>
+          <rise:y>87</rise:y>
+          <rise:sizeX>112</rise:sizeX>
+          <rise:sizeY>112</rise:sizeY>
+        </rise:boundingBox>
+        <rise:color>
+          <rise:bgColor>255;176;224;230;PowderBlue</rise:bgColor>
+          <rise:textColor>255;0;0;0;Black</rise:textColor>
+        </rise:color>
+      </rise:drawEntity>
+      <rise:drawEntity>
+        <rise:entityName>Division$agents</rise:entityName>
+        <rise:boundingBox>
+          <rise:x>139</rise:x>
+          <rise:y>68</rise:y>
+          <rise:sizeX>119</rise:sizeX>
+          <rise:sizeY>150</rise:sizeY>
+        </rise:boundingBox>
+        <rise:color>
+          <rise:bgColor>255;176;224;230;PowderBlue</rise:bgColor>
+          <rise:textColor>255;0;0;0;Black</rise:textColor>
+        </rise:color>
+      </rise:drawEntity>
+      <rise:drawEntity>
+        <rise:entityName>Users.dbf</rise:entityName>
+        <rise:boundingBox>
+          <rise:x>148</rise:x>
+          <rise:y>276</rise:y>
+          <rise:sizeX>100</rise:sizeX>
+          <rise:sizeY>150</rise:sizeY>
+        </rise:boundingBox>
+        <rise:color>
+          <rise:bgColor>255;176;224;230;PowderBlue</rise:bgColor>
+          <rise:textColor>255;0;0;0;Black</rise:textColor>
+        </rise:color>
+      </rise:drawEntity>
+      <rise:drawEntity>
+        <rise:entityName>UserInfo</rise:entityName>
+        <rise:boundingBox>
+          <rise:x>340</rise:x>
+          <rise:y>276</rise:y>
+          <rise:sizeX>100</rise:sizeX>
+          <rise:sizeY>150</rise:sizeY>
+        </rise:boundingBox>
+        <rise:color>
+          <rise:bgColor>255;176;224;230;PowderBlue</rise:bgColor>
+          <rise:textColor>255;0;0;0;Black</rise:textColor>
+        </rise:color>
+      </rise:drawEntity>
+    </rise:diagram>
+    <rise:diagram>
+      <rise:name>Price</rise:name>
+      <rise:drawEntity>
+        <rise:entityName>Price.dbf</rise:entityName>
+        <rise:boundingBox>
+          <rise:x>149</rise:x>
+          <rise:y>200</rise:y>
+          <rise:sizeX>100</rise:sizeX>
+          <rise:sizeY>183</rise:sizeY>
+        </rise:boundingBox>
+        <rise:color>
+          <rise:bgColor>255;176;224;230;PowderBlue</rise:bgColor>
+          <rise:textColor>255;0;0;0;Black</rise:textColor>
+        </rise:color>
+      </rise:drawEntity>
+      <rise:drawEntity>
+        <rise:entityName>Folder.dbf</rise:entityName>
+        <rise:boundingBox>
+          <rise:x>149</rise:x>
+          <rise:y>30</rise:y>
+          <rise:sizeX>100</rise:sizeX>
+          <rise:sizeY>90</rise:sizeY>
+        </rise:boundingBox>
+        <rise:color>
+          <rise:bgColor>255;176;224;230;PowderBlue</rise:bgColor>
+          <rise:textColor>255;0;0;0;Black</rise:textColor>
+        </rise:color>
+      </rise:drawEntity>
+      <rise:drawEntity>
+        <rise:entityName>Matrix.dbf</rise:entityName>
+        <rise:boundingBox>
+          <rise:x>331</rise:x>
+          <rise:y>247</rise:y>
+          <rise:sizeX>100</rise:sizeX>
+          <rise:sizeY>88</rise:sizeY>
+        </rise:boundingBox>
+        <rise:color>
+          <rise:bgColor>255;176;224;230;PowderBlue</rise:bgColor>
+          <rise:textColor>255;0;0;0;Black</rise:textColor>
+        </rise:color>
+      </rise:drawEntity>
+      <rise:drawEntity>
+        <rise:entityName>AgentMatrix</rise:entityName>
+        <rise:boundingBox>
+          <rise:x>331</rise:x>
+          <rise:y>87</rise:y>
+          <rise:sizeX>100</rise:sizeX>
+          <rise:sizeY>79</rise:sizeY>
+        </rise:boundingBox>
+        <rise:color>
+          <rise:bgColor>255;176;224;230;PowderBlue</rise:bgColor>
+          <rise:textColor>255;0;0;0;Black</rise:textColor>
+        </rise:color>
+      </rise:drawEntity>
+      <rise:drawEntity>
+        <rise:entityName>Users.dbf</rise:entityName>
+        <rise:boundingBox>
+          <rise:x>496</rise:x>
+          <rise:y>74</rise:y>
+          <rise:sizeX>100</rise:sizeX>
+          <rise:sizeY>104</rise:sizeY>
+        </rise:boundingBox>
+        <rise:color>
+          <rise:bgColor>255;176;224;230;PowderBlue</rise:bgColor>
+          <rise:textColor>255;0;0;0;Black</rise:textColor>
+        </rise:color>
+      </rise:drawEntity>
+    </rise:diagram>
+    <rise:diagram>
+      <rise:name>Orgs</rise:name>
+      <rise:drawEntity>
+        <rise:entityName>Org.dbf</rise:entityName>
+        <rise:boundingBox>
+          <rise:x>98</rise:x>
+          <rise:y>121</rise:y>
+          <rise:sizeX>100</rise:sizeX>
+          <rise:sizeY>98</rise:sizeY>
+        </rise:boundingBox>
+        <rise:color>
+          <rise:bgColor>255;176;224;230;PowderBlue</rise:bgColor>
+          <rise:textColor>255;0;0;0;Black</rise:textColor>
+        </rise:color>
+      </rise:drawEntity>
+      <rise:drawEntity>
+        <rise:entityName>Contacts.dbf</rise:entityName>
+        <rise:boundingBox>
+          <rise:x>274</rise:x>
+          <rise:y>122</rise:y>
+          <rise:sizeX>100</rise:sizeX>
+          <rise:sizeY>96</rise:sizeY>
+        </rise:boundingBox>
+        <rise:color>
+          <rise:bgColor>255;176;224;230;PowderBlue</rise:bgColor>
+          <rise:textColor>255;0;0;0;Black</rise:textColor>
+        </rise:color>
+      </rise:drawEntity>
+    </rise:diagram>
+  </rise:presentation>
+  <rise:documentation />
+  <rise:applications />
+</rise:model>

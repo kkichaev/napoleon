@@ -1,0 +1,192 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+    <object name="SklRest">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"REST"</param>
+          <param name="commonTable">"SKLREST"</param>
+          <param name="catalog">"id;items;0"</param>
+        </source>
+      </sources>
+
+      <field name="items" type="collection">
+        <data>
+          <object name="DeliveryItem">
+            <field name="id" type="string" data="ID_I" width="20"/>
+            <field name="qty" type="number" prec="3" />
+            <field name="cost" type="number" prec="2" />
+          </object>
+        </data>
+      </field>
+
+      <field name="id" type="string" width="40" data="ID_WH" />
+    </object>
+    
+    <object name="OrdConfig">
+      <sources>
+        <source name="KeyValueTable">
+          <param name="fileName">"ord"+$user.id+".cfg"</param>
+        </source>
+        <source name="KeyValueTable">
+          <param name="fileName">"order.cfg"</param>
+        </source>
+      </sources>
+
+      <field name="key" type="string" />
+      <field name="value" type="string" />
+    </object>
+
+    <object name="Skalds">
+      <sources>
+        <source name="KeyValueDBFTable">
+          <param name="fileName">"SKL"+$user.id</param>
+          <param name="key">"СкладыТоваров"</param>
+          <param name="itemName">"NAME"</param>
+          <param name="itemKey">"ID"</param>
+        </source>
+        <source name="KeyValueDBFTable">
+          <param name="fileName">"SKLADS"</param>
+          <param name="key">"СкладыТоваров"</param>
+          <param name="itemName">"NAME"</param>
+          <param name="itemKey">"ID"</param>
+        </source>
+      </sources>
+      <field name="key" type="string" />
+      <field name="value" type="string" />
+    </object>
+
+    <object name="Config">
+      <sources>
+        <source name="ObjectUnion">
+          <param>"OrdConfig"</param>
+          <param>"Skalds"</param>
+        </source>
+      </sources>
+      <field name="key" type="string" />
+      <field name="value" type="string" />
+    </object>
+    <object name="Incass">
+      <sources>
+        <source name="DBFCatalogTable">
+          <param name="tableName">$object.table + $user.id</param>
+          <param name="catalog">"id"</param>
+          <param name="ordered">1</param>
+        </source>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="table">"PKO"</member>
+      <member name="primaryKey">"userid,created"</member>
+
+      <field name="id" type="string" width="120" />
+      <field name="iddog" type="string" width="120" />
+      <field name="sum" type="number" prec="2" />
+      <field name="created" type="timestamp" />
+      <field name="date" type="date" />
+      <field name="remark" type="string" width="100" />
+      <field name="userid" type="string" execOn="Put">$user.id</field>
+
+      <field name="items" type="collection">
+        <data>
+          <object name="DocPayItem">
+            <sources>
+              <source name="DBFCatalogItemTable"/>
+              <source name="SQTable" type="internal" />
+            </sources>
+
+            <field name="number" width="20" type="string" data="NUM_I"/>
+            <field name="date" type="date" data="DATE_I" />
+            <field name="sum" type="number" data="SUM_I" width="10" prec="2" />
+            <field name="ordflag" width="1" type="number" execOn="Put">FirstItem($object)</field>
+          </object>
+        </data>
+      </field>
+      <events>
+        <event type="put">
+          <action name="WriteInternal">$object.type</action>
+          <action name="WriteToLog">$object.type;$object.created</action>
+        </event>
+      </events>
+    </object>
+    <modify src="Order">
+      <add>
+        <field name="prcType" type="string" width="20" />
+        </add>
+    </modify>
+    <modify src="Order$items">
+      <add>
+        <field name="idWh" type="string" width="20" data="ID_WH" />
+        <field name="dscType" type="number" width="1" />
+        <field name="discount" type="number" width="2" data="DSC" />
+      </add>
+    </modify>
+    <modify src="Price">
+      <add>
+        <field name="whQty" type="number" prec="3" data="QTY2"/>
+        <field name="barcode" type="string" />
+        <field name="dscType" type="number" />
+        <field name="minDsc" type="number" prec="2" />
+        <field name="maxDsc" type="number" prec="2" />
+      </add>
+    </modify>
+    <modify src="Org">
+      <add>
+        <field name="prcType" type="string" width="20" />
+        <field name="discount" type="number" prec="2" data="DSC" />
+      </add>
+    </modify>
+    <modify src="Firm">
+      <add>
+        <field name="prefix" type="string" />
+      </add>
+    </modify>
+    <modify src="Delivery">
+      <add>
+        <field name="payDate" type="date" />
+      </add>
+    </modify>
+    <modify src="Returns">
+      <add>
+        <field name="firma" type="string" width="30" />
+      </add>
+    </modify>
+    <modify src="Returns$items">
+      <add>
+        <field name="uid" type="string" data="" />
+        <field name="cause" type="string" />
+        <field name="items" type="collection">
+          <data>
+            <object name="ReturnDlv">
+              <sources>
+                <source name="DBFCatalogItemTable"/>
+                <source name="SQTable" type="internal" />
+              </sources>
+
+              <field name="number" width="40" type="string" data="NUM_I"/>
+              <field name="date" type="date" data="DATE_I"/>
+              <field name="qty" type="number" prec="3" data="QTY_I"/>
+              <field name="cost" type="number" prec="2" data="COST_I"/>
+              <field name="docflag" width="1" type="number" execOn="Put">FirstItem($object)</field>
+            </object>
+          </data>
+        </field>
+        <member name="primaryKey">"uid"</member>
+      </add>
+    </modify>
+    
+    <modify dest="Relivery" src="Delivery" >
+      <change>
+        <sources>
+            <source name="DBFTableSet">
+               <param name="userTable">"RLV"</param>
+               <param name="commonTable">"RELIVERY"</param>
+               <param name="catalog">"number;items;1"</param>
+               <param name="filter">"[id] in $Org.id"</param>
+            </source>
+         </sources>
+      </change>
+    </modify>
+    
+  </objects>
+</serverDefs>

@@ -1,0 +1,107 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "NapoleonRes.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "winres.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Russian resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_RUS)
+#ifdef _WIN32
+LANGUAGE LANG_RUSSIAN, SUBLANG_DEFAULT
+#pragma code_page(1251)
+#endif //_WIN32
+
+IDD_RETURN DIALOG 0, 0, 186, 90
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Параметры возврата"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    CONTROL         "",IDC_ORDER_DATE,"SysDateTimePick32",DTS_RIGHTALIGN | WS_TABSTOP,36,2,40,15
+    RTEXT           "Дата",IDC_STATIC,1,5,34,8
+
+    COMBOBOX        IDD_ORDER_LIST,36,17,80,46,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
+    RTEXT           "Заявка",IDC_STATIC,1,18,34,8
+
+
+/*
+    CONTROL         "",IDC_ORDER_TIME,"SysDateTimePick32",DTS_RIGHTALIGN | DTS_UPDOWN | DTS_APPCANPARSE | WS_TABSTOP | 0x8,111,4,35,12
+    RTEXT           "Время",IDC_STATIC,86,5,24,8
+
+    EDITTEXT        IDC_DELAY,36,17,15,12,WS_BORDER | ES_NUMBER | ES_AUTOHSCROLL
+    LTEXT           "Отсрочка",IDC_STATIC,1,18,35,8
+
+    CONTROL         "Наличные",IDC_CACHE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,111,18,48,10
+
+    COMBOBOX        IDC_SUPPL,36,17,80,46,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    RTEXT           "Фирма",IDC_STATIC,1,18,34,8
+
+    COMBOBOX        IDC_COST_TYPE,36,32,80,46,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    RTEXT           "Оплата",IDC_STATIC,1,33,34,8
+*/
+
+    EDITTEXT        IDC_REMARK,2,32,182,44,ES_MULTILINE | ES_AUTOVSCROLL | ES_AUTOHSCROLL | ES_WANTRETURN
+
+    DEFPUSHBUTTON   "OK",IDOK,136,76,50,14
+    PUSHBUTTON      "Отмена",IDCANCEL,0,76,50,14
+END
+
+IDD_INVOICE_ADD DIALOG  0, 0, 120, 134
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_SYSMENU
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Static",IDC_ORG_TITLE,0,3,120,10
+    CONTROL         "",IDC_TABLE,"SysListView32",LVS_ALIGNLEFT | LVS_OWNERDATA | LVS_OWNERDRAWFIXED | WS_TABSTOP,0,10,120,110
+    LTEXT           "Static",IDC_TEXT,0,110,120,10
+END
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "dummy.\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""winres.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+#endif    // Russian resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED

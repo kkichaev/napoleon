@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+    <modify src="Price">
+      <add>
+        <field name="width" type="number" prec="2" />
+        <field name="height" type="number" prec="2" />
+        <field name="dia" type="number" prec="2" />
+        <field name="studded" type="number" />
+        <field name="season" type="string" />
+        <field name="axe" type="string" />
+      </add>
+    </modify>
+	</objects>
+</serverDefs>

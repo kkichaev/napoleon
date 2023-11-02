@@ -1,0 +1,7 @@
+include ':mainlibs:AmbilWarna', ':wear', ':lollipin'
+include ':mainlibs:V2AndLib-commonandroid'
+include ':mainlibs:OrmliteContentProvider'
+include ':mainlibs:V2AndLib-media'
+include ':mainlibs:V2AndLib-commondata'
+include ':application'
+project(':lollipin').projectDir = new File('mainlibs/lollipin')

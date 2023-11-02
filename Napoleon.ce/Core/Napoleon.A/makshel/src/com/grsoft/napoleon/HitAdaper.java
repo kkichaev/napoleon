@@ -1,0 +1,25 @@
+package com.grsoft.napoleon;
+
+import com.grsoft.util.FoldersAdapter;
+import com.grsoft.util.WarehouseManager;
+
+
+public class HitAdaper extends FoldersAdapter {
+
+	public HitAdaper(WarehouseManager warehouse) {
+		super(warehouse);
+	}
+	
+	@Override
+	public String getWhereStr() {
+		StringBuilder sb = new StringBuilder(super.getWhereStr());
+		
+		if(sb.length() > 0)
+			sb.append(" AND ");
+		
+		sb.append("isHit=1");
+		
+		return sb.toString();
+	}
+
+}

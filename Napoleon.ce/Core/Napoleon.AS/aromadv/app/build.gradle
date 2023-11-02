@@ -1,0 +1,75 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 29
+
+    defaultConfig {
+        applicationId "com.grsoft.napoleon"
+        minSdkVersion 15
+        targetSdkVersion 28
+        versionCode 14
+        versionName "1.0"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions.encoding = 'windows-1251'
+
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+
+    signingConfigs {
+        release {
+            keyAlias 'grsoft'
+            keyPassword 'GrSoftNapoleon'
+            storeFile file(System.getenv('NAPOLEON_KEY'))
+            storePassword 'GrSoftNapoleon'
+        }
+    }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+        }
+    }
+
+    flavorDimensions "version"
+    productFlavors{
+        aromadv {
+            dimension "version"
+        }
+
+        elitemarket{
+            dimension "version"
+        }
+    }
+    applicationVariants.all {
+        variant ->
+            def names = variant.productFlavors*.name
+            if (variant.buildType.name == "release" && names.contains("aromadv")) {
+                variant.outputs.all {
+                    outputFileName = "AromaDV.apk"
+                }
+            }
+            if (variant.buildType.name == "release" && names.contains("elitemarket")) {
+                variant.outputs.all {
+                    outputFileName = "EliteMarket.apk"
+                }
+            }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation project(':tradebase')
+    implementation 'androidx.core:core:1.2.0'
+}

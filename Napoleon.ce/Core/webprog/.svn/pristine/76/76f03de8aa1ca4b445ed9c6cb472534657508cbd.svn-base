@@ -1,0 +1,512 @@
+import requests
+import traceback
+from datetime import datetime, timedelta
+from app.moysklad import moysklad
+from app.moysklad.models import BaseObject, Account, AccLog, Agent, Org, Store, Firm, PriceType, Folder, Price, Pack, Stock, Delivery, Balance, MetaObject
+from app.moysklad.endpoints import getUserContext
+from flask import Response, abort, jsonify, render_template, request
+from app.fcgi_client import FCGIManager, get_result_data
+from app import db
+from flask_babel import gettext as _
+
+class IFrameData(object):
+    def __init__(self, context:dict[str,any]) -> None:
+        self.id = context['uid']
+        self.fio = context['shortFio']
+        self.account = Account.get(context['accountId'])
+        if self.account.srv_token is None:
+            self.account.srv_token = ''
+
+        self.isAdmin = context['permissions']['admin']['view']
+
+        if self.isAdmin:
+            self.stores = Store.getMoySklad(self.account)
+            nstores = Store.getNapoleon(self.account)
+            primary = nstores[0] if len(nstores) else Store({'id':''})
+            for oi in self.stores:
+                oi.assigned = oi in nstores
+                oi.primary = oi == primary
+
+            self.agents = Agent.getMoySklad(self.account)
+            nagents = Agent.getNapoleon(self.account)
+            for oi in self.agents:
+                oi.assigned = oi in nagents
+
+            self.firms = Firm.getMoySklad(self.account)
+            nfirms = Firm.getNapoleon(self.account)
+            primary = nfirms[0] if len(nfirms) else Firm({'id':''})
+            for oi in self.firms:
+                oi.assigned = oi in nfirms
+                oi.primary = oi == primary
+
+
+@moysklad.route('iframe')
+def render_iframe():
+    contextKey = request.args.get('contextKey')
+
+    # context = {'uid':'uid', 'shortFio':'fio','accountId':"id",'permissions':{'admin':{'view':True}}}
+    context = getUserContext(contextKey)
+    if context is None:
+        abort(400)
+    
+    data = IFrameData(context)
+
+    return render_template('moysklad/iframe.html', data=data)
+
+def error(account:Account, action:str, message:str, trace:str='',code=401) -> Response:
+    id = account.accid if account else 'no_id'
+    AccLog.addErr(account.accid, action, message, trace)
+
+    res = jsonify({'message': message, 'error': True})
+    res.status_code = code
+    return res
+
+MOY_SKLAD_DF = '%Y-%m-%d %H:%M:%S'
+GRS_DATE_FORMAT = '%Y%m%d%H%M%S'
+def dateFromMoySklad(dateStr:str) -> datetime:
+    date = dateStr
+    pidx = date.find('.')
+    if pidx > 0: date = date[:pidx]
+
+    return datetime.strptime(date, MOY_SKLAD_DF)
+    
+def convertDate(dateStr:str, toMoySklad:bool) ->str:
+    if not toMoySklad:
+        dt = dateFromMoySklad(dateStr)
+        return dt.strftime(GRS_DATE_FORMAT)
+    
+    dt = datetime.strptime(dateStr, GRS_DATE_FORMAT)
+    return dt.strftime(MOY_SKLAD_DF)
+
+def putOrgData(account:Account, agents:list[Agent]) :
+    defPT : PriceType = None
+    usedPt:list[PriceType] = []
+    prcTypes:dict[str,PriceType] = {}
+    for pi in PriceType.getMoySklad(account):
+        if not defPT: 
+            defPT = pi
+            usedPt.append(pi)
+        prcTypes[pi.id] = pi
+
+    if defPT is None: defPT = PriceType({"id":"", "name":""})
+
+    filter = ';'.join(['owner=' + x.href() for x in agents])
+
+    orgs = Org.getMoySklad(account, filter)
+    agentOrgData = []
+    orgData = []
+    for oi in orgs:
+        pt = oi.priceType
+        if pt == '' :
+            pt = defPT.id
+        else:
+            pt = pt.id
+            if pt in prcTypes:
+                pti = prcTypes[pt]
+                if not pti in usedPt: usedPt.append(pti)
+
+        dest = {'id':oi.id, 'name':oi.name, 'address':oi.actualAddress, 'prcType':pt}
+        orgData.append(dest)
+        agentOrgData.append({'id':oi.id,'userid':oi.owner.id,'type':'Org'})
+
+    uri = '/object'
+    data = [
+        {'name':'Org','data':orgData,'where':''},
+        {'name':'AgentData','data':agentOrgData,'where':"type='Org'"},
+    ]
+    fcgm = FCGIManager.get()
+    res = fcgm.send_to_server(account.srv_token, uri, 'PUT', data)
+    # print('Org',res)
+    # answ, data = get_result_data(res)
+    return usedPt
+
+def loadPrice(account:Account, priceTypes) :
+    rootId = 'ROOT_FOLDER'
+    folders = Folder.getMoySklad(account)
+    folderData = [{'fid':rootId,'name':_('RootFolder'),'parent':''}]
+    for fi in folders:
+        parent = fi.productFolder
+        if parent == '':
+            parent = rootId
+        else:
+            parent = parent.id
+
+        folderData.append({'fid':fi.id,'name':fi.name,'parent':parent})
+
+    packs = Pack.getPacks(account)
+    price = Price.getMoySklad(account)
+    priceData = []
+    costData = []
+    for pi in price:
+        parent = pi.productFolder
+        if parent == '':
+            parent = rootId
+        else:
+            parent = parent.id
+
+        v = {'id':pi.id, 'fid':parent,'name':pi.name,'units':pi.makeUnits(packs), 'weight':pi.weight}
+        priceData.append(v)
+
+        v = pi.makeCost(priceTypes)
+        if len(v) > 0:
+            costData.extend(v)
+
+    ptData = []
+    for pi in priceTypes:
+        ptData.append({'id':pi.id,'name':pi.name})
+
+    uri = '/object'
+    data = [
+        {'name':'Folder','data':folderData,'where':''},
+        {'name':'Price','data':priceData,'where':""},
+        {'name':'PriceCost','data':costData,'where':""},
+        {'name':'PriceTypes','data':ptData,'where':""},
+    ]
+    fcgm = FCGIManager.get()
+    res = fcgm.send_to_server(account.srv_token, uri, 'PUT', data)
+    # print('Price',res)
+
+
+def loadStock(account:Account) :
+    qtyData = []
+    res = Stock.getMoySklad(account)
+    for ri in res:
+        for rii in ri.stocks:
+            v = {'id':rii['id'], 'qty':rii['qty'], 'idItem':ri.id}
+            qtyData.append(v)
+    uri = '/object'
+    data = [
+        {'name':'StoreQty','data':qtyData,'where':''},
+    ]
+    fcgm = FCGIManager.get()
+    res = fcgm.send_to_server(account.srv_token, uri, 'PUT', data)
+    # print(res)
+
+def loadDeliveries(account:Account, agents:list[Agent]):
+    DAYS = 60
+    PAY_DAYS = 14
+    dstart = datetime.now() - timedelta(days=DAYS)
+
+    # filter = ';'.join(['owner=' + x.href() for x in agents])
+    # filter += ';demand>' + dstart.date().strftime(MOY_SKLAD_DF) 
+    filter = 'moment>' + dstart.date().strftime(MOY_SKLAD_DF) 
+    dlv = Delivery.getMoySklad(account, filter)
+
+    balanceData = []
+    balance:dict[str,dict[str,any]] = {}
+    blnc = Balance.getMoySklad(account, 'balance!=0')
+    for bi in blnc:
+        v = {'id': bi.id, 'sum': -bi.balance / 100, 'documents':[]}
+        balance[bi.id] = v
+        balanceData.append(v)
+
+    dlvData = []
+    for di in dlv:
+        items = []
+        for dii in di.positions.rows:
+            qty = dii['quantity']
+            sum = qty * dii['price'] / 100
+            meta = MetaObject(dii['assortment'])
+            ii = {'id':meta.id, 'qty':qty, 'sum':sum}
+            items.append(ii)
+
+        id = di.agent.id
+        docDate =  dateFromMoySklad(di.moment)
+        payDate = docDate + timedelta(days=PAY_DAYS)
+        v = {'id':id, 'number':di.name, 'uid':di.id,
+             'date':docDate.strftime(GRS_DATE_FORMAT), 'items':items
+             }
+        dlvData.append(v)
+
+        if id in balance:
+            sumD = (di.sum - di.payedSum) / 100
+            v = {'number':di.name, 'date':docDate.strftime(GRS_DATE_FORMAT), 'payDate':payDate.strftime(GRS_DATE_FORMAT),
+                 'sumDoc':di.sum / 100, 'sum':sumD, 'title':_('Delivery'),'type':'Delivery',
+                 'uid':di.id,
+                 }
+            balance[id]['documents'].append(v)
+
+    uri = '/object'
+    fcgm = FCGIManager.get()
+    data = [
+        {'name':'Balance','data':balanceData,'where':''},
+    ]
+    res = fcgm.send_to_server(account.srv_token, uri, 'PUT', data)
+    print(res)
+    data = [
+        {'name':'Delivery','data':dlvData},
+    ]
+    res = fcgm.send_to_server(account.srv_token, uri, 'POST', data)
+    # print(res)
+    # print(dlvData)
+    # print(balanceData)
+
+
+@moysklad.route('put_data/<accountId>')
+def putDataToServer(accountId):
+    account = Account.get(accountId)
+    if not account:
+        return error(None, 'putDataToServer', _('No account') + accountId)
+    
+    agents = Agent.getNapoleon(account)
+    usedPT = putOrgData(account, agents)
+    loadPrice(account, usedPT)
+    loadStock(account)
+    loadDeliveries(account, agents)
+
+    # goodsData, folderData = loadPrice(account, usedPT)
+
+    AccLog.add(account.accid, _('Put data to the server'))
+    return jsonify({'error':False})
+
+
+@moysklad.route('server_code/<accountId>', methods=['PUT'])
+def updateServerCode(accountId):
+    try:
+        account = Account.get(accountId)
+        if not account:
+            return error(None, 'putDataToServer', _('No account') + accountId)
+
+        data = request.get_json() or {}
+        if not 'code' in data:
+            return error(account, 'updateServerCode', _('No server code'))
+
+        code = data['code']
+        fcgm = FCGIManager.get()
+        res = fcgm.send_to_manager('server_info', {'code':code})
+        if isinstance(res, Response):
+            return error(account, 'updateServerCode',_('No server ') + code)
+        
+        answ, data = get_result_data(res)
+        if not answ.ok:
+            return error(account, 'updateServerCode',_('No server ') + res.decode('utf-8'))
+
+        account.srv_token = code
+        db.session.commit()
+    except:
+        trb = traceback.format_exc()
+        return error(account, 'updateServerCode', '', trb)
+    return jsonify({'error':False})
+
+class DocLoader:
+    @staticmethod
+    def objectName() -> str: return ""
+
+    @staticmethod
+    def docType() -> str: return ""
+
+    @staticmethod
+    def moySkladObject() -> str: return ""
+
+    @staticmethod
+    def makeDoc(src, fcgm:FCGIManager, account:Account) -> dict[str, any] : 
+        doc = {
+            'agent':Org.meta(src['id']),
+            'description':src['remark'],
+            'owner':Agent.meta(src['userid']),
+            'shared':True,
+        }
+        return doc
+
+    @classmethod
+    def loadDocs(cls, account:Account, fcgm:FCGIManager) -> tuple[Response|None,int]:
+        ndocs = 0
+        try:
+            uri = '/object/' + cls.objectName()
+            res = fcgm.send_to_server(account.srv_token, uri)
+
+            answ, data = get_result_data(res)
+            docs = data.get_list(cls.objectName())
+            if not answ.ok:
+                return (error(account,'loadDocs',answ.message), 0)
+            
+            if not docs:
+                return (None, 0)
+            
+            docData = []
+            commitData = []
+            for di in docs:
+                doc = cls.makeDoc(di, fcgm, account)
+                if not doc: continue
+                if not 'organization' in doc:
+                    firm = fcgm.get_object(account.srv_token, 'Firm')[0]
+                    doc['organization'] = Firm.meta(firm['id'])
+
+                # print('doc', doc)
+                # continue
+
+                docData.append(doc)
+                commitData.append({'created':di['created'], 'type':cls.docType(), 'userid':di['userid']})
+
+            if len(docData) > 0:
+                uri = BaseObject.MOY_SKLAD_HREF + cls.moySkladObject()
+                headers = {
+                    'Authorization' : 'Bearer ' + account.json_token,
+                    'Content-Type' : 'application/json'
+                }
+                res = requests.post(uri, json=docData, headers=headers)
+                if res.status_code > 300:
+                    # print(res.content.decode('utf-8'))
+                    return (error(account,'loadDocs',res.content.decode('utf-8')), 0)
+                
+                idx = 0
+                response = res.json()
+                for ri in response:
+                    order = commitData[idx]
+
+                    order['number'] = ri['name']
+                    order['date'] = convertDate(ri['moment'], False)
+                    idx += 1
+                
+                # print(commitData)
+                
+                uri = '/object'
+                data = [
+                    {'name':'DocCommitted','data':commitData},
+                ]
+                ndocs = len(commitData)
+                _ = fcgm.send_to_server(account.srv_token, uri, 'POST', data)
+        except:
+            trb = traceback.format_exc()
+            return (error(account, 'updateServerCode', '', trb), 0)
+
+        return (None, ndocs)
+
+
+class OrderLoader(DocLoader):
+    @staticmethod
+    def objectName() -> str: return "NewOrders"
+
+    @staticmethod
+    def docType() -> str: return "Order"
+
+    @staticmethod
+    def moySkladObject() -> str: return "entity/customerorder"
+
+    @staticmethod
+    def makeDoc(src, fcgm:FCGIManager, account:Account) :
+        items = []
+        for oi in src['items']:
+            item = {'quantity':oi['qty'],'price':oi['cost'] * 100.0,'assortment':Price.meta(oi['id'])}
+            if len(oi['unit']) > 0:
+                item['pack'] = {'id':oi['unit'] }
+            items.append(item)
+
+        order = DocLoader.makeDoc(src, fcgm, account)
+        
+        order.update({
+            'organization':Firm.meta(src['firmCode']), 
+            'positions':items,
+            'store':Store.meta(src['whCode']),
+            'deliveryPlannedMoment':convertDate(src['date'], True)
+        })
+
+        return order
+
+class ReturnLoader(DocLoader):
+    @staticmethod
+    def objectName() -> str: return "NewReturns"
+
+    @staticmethod
+    def docType() -> str: return "Returns"
+
+    @staticmethod
+    def moySkladObject() -> str: return "entity/salesreturn"
+
+    @staticmethod
+    def makeDoc(src, fcgm:FCGIManager, account:Account) :
+        items = []
+        for oi in src['items']:
+            item = {'quantity':oi['qty'],'price':oi['cost'] * 100.0,'assortment':Price.meta(oi['id'])}
+            # if len(oi['unit']) > 0:
+            #     item['pack'] = {'id':oi['unit'] }
+            items.append(item)
+
+        order = DocLoader.makeDoc(src, fcgm, account)
+        store = fcgm.get_object(account.srv_token, 'Stores')[0]
+        
+        order.update({
+            'positions':items,
+            'store':Store.meta(store['id'])
+        })
+
+        return order
+
+class IncassLoader(DocLoader):
+    @staticmethod
+    def objectName() -> str: return "NewIncass"
+
+    @staticmethod
+    def docType() -> str: return "Incass"
+
+    @staticmethod
+    def moySkladObject() -> str: return "entity/cashin"
+
+    @staticmethod
+    def makeDoc(src, fcgm:FCGIManager, account:Account) :
+        items = []
+
+        for oi in src['items']:
+            meta = Delivery.meta(oi['uid'])
+            item = {'linkedSum':oi['sum'] * 100.0}
+            item.update(meta)
+            items.append(item)
+
+        order = DocLoader.makeDoc(src, fcgm, account)
+        
+        order.update({
+            'operations':items,
+            'sum':src['sum'] * 100.0
+        })
+
+        # print('incass', order)
+        return order
+
+@moysklad.route('load_docs/<accountId>')
+def loadDocs(accountId):
+    account = Account.get(accountId)
+    if not account:
+        return error(None, 'loadDocs', _('No account'))
+
+    fcgm = FCGIManager.get()
+
+    firms = fcgm.get_object(account.srv_token, "Firm")
+    if len(firms) == 0:
+        return error(account, 'loadDocs', _('No firms'))
+
+    stores = fcgm.get_object(account.srv_token, "Stores")
+    if len(stores) == 0:
+        return error(account, 'loadDocs', _('No stores'))
+
+    res, norders = OrderLoader.loadDocs(account, fcgm)
+    if res:
+        return res
+
+    res, nreturns = ReturnLoader.loadDocs(account, fcgm)
+    if res:
+        return res
+
+    res, nincass = IncassLoader.loadDocs(account, fcgm)
+    if res:
+        return res
+
+    text = _('Orders %d, Returns %d, Incass %d') % (norders, nreturns, nincass)
+    AccLog.add(account.accid, _('Load docs'), text )
+    return jsonify({'error':False})
+
+@moysklad.route('ift')
+def test_iframe():
+    # context = {'uid':'uid', 'shortFio':'fio','accountId':"id",'permissions':{'admin':{'view':True}}}
+    # context = getUserContext('8d260a43-df5c-11ed-0a80-06f1000048a0')
+
+    context = {
+        'uid' : '1',
+        'shortFio':'test',
+        'accountId':'8d260a43-df5c-11ed-0a80-06f1000048a0',
+        'permissions':{'admin':{'view':True}},        
+    }
+
+    data = IFrameData(context)
+
+    return render_template('moysklad/iframe.html', data=data)
+

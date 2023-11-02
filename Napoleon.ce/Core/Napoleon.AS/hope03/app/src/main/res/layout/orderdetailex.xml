@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.gesture.GestureOverlayView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/gestures"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gestureStrokeType="single"
+    android:eventsInterceptionEnabled="true"
+    android:orientation="vertical"
+    android:gestureColor="#00000000"
+    android:uncertainGestureColor="#00000000">
+<LinearLayout
+  	android:layout_height="fill_parent" 
+  	android:layout_width="fill_parent" 
+  	android:orientation="vertical">
+
+	<LinearLayout
+		android:id="@+id/LinearLayout01"
+		android:layout_width="fill_parent"
+		style="?header">
+
+		<TextView
+			android:id="@+id/tvOrg"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:scrollHorizontally="true"
+			android:text="OrgName"
+			style="?headerText" />
+	</LinearLayout>
+	
+	<LinearLayout android:id="@+id/LinearLayout02" 
+		android:layout_height="wrap_content" 
+		android:layout_width="fill_parent" 
+		android:layout_weight="1" 
+		android:orientation="vertical">
+		
+		<LinearLayout android:id="@+id/LinearLayout04" 
+			android:layout_height="wrap_content" 
+			android:layout_width="fill_parent" 
+			android:layout_weight="0" 
+			android:background="@color/black">
+			
+			<TextView android:id="@+id/TextView01" 
+				android:layout_width="wrap_content" 
+				android:layout_height="wrap_content" 
+				android:text="Название" 
+				android:layout_weight="1" 
+				android:background="@color/white" 
+				android:textColor="@color/black" 
+				android:layout_margin="1dp" 
+				android:paddingLeft="3dp"/>
+				
+			<TextView android:id="@+id/TextView02" 
+				android:layout_width="wrap_content" 
+				android:layout_height="wrap_content" 
+				android:layout_weight="0" 
+				android:background="@color/white" 
+				android:textColor="@color/black" 
+				android:layout_marginBottom="1dp" 
+				android:layout_marginRight="1dp" 
+				android:layout_marginTop="1dp" 
+				android:paddingLeft="2dp" 
+				android:paddingRight="2dp" 
+				android:text="Кол-во" 
+				android:minWidth="80dp"/>
+				
+			<TextView android:id="@+id/TextView03" 
+				android:layout_width="wrap_content" 
+				android:layout_height="wrap_content" 
+				android:text="Сумма" 
+				android:layout_weight="0" 
+				android:background="@color/white" 
+				android:textColor="@color/black" 
+				android:layout_marginLeft="0dp" 
+				android:layout_marginBottom="1dp" 
+				android:layout_marginRight="1dp" 
+				android:layout_marginTop="1dp" 
+				android:paddingRight="3dp" 
+				android:minWidth="80dp"/>
+		</LinearLayout>
+
+		<ListView android:layout_width="fill_parent" 
+			android:layout_height="fill_parent" 
+			android:layout_weight="1" 
+			android:id="@+id/lvItems" 
+			android:background="@color/white"/>
+		
+		<LinearLayout android:id="@+id/llRemark" 
+			android:layout_height="wrap_content" 
+			android:layout_width="fill_parent"
+			android:background="#FFFFFF"
+			android:paddingTop="3dp"
+			android:orientation="horizontal">
+
+			<EditText
+			    android:id="@+id/edRemark"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:layout_weight="1"
+			     />
+
+			<ImageButton android:layout_width="wrap_content" 
+				android:layout_height="wrap_content" 
+				android:id="@+id/btnOK" 
+				android:src="@drawable/apply" 
+				android:layout_marginRight="1dp"/>
+			<ImageButton android:layout_width="wrap_content" 
+				android:layout_height="wrap_content" 
+				android:id="@+id/btnCancel" 
+				android:src="@drawable/left" 
+				android:layout_marginRight="3dp"/>
+		</LinearLayout>
+		
+		<LinearLayout android:id="@+id/llFocus" 
+			android:layout_height="wrap_content" 
+			android:layout_width="fill_parent"
+			android:visibility="gone" 
+			android:background="#FFFFFF"
+			android:orientation="vertical">
+			<Button android:id="@+id/btnFocus"
+				android:layout_width="wrap_content" 
+				android:textColor="#FF0000"
+				android:text="Закажите фокусный товар!"
+				android:layout_height="wrap_content"></Button>
+		</LinearLayout>
+	</LinearLayout>
+
+	<LinearLayout
+		android:id="@+id/linearLayout1"
+		android:layout_width="fill_parent"
+		style="?footer"
+		>
+		
+		<ImageButton android:layout_width="wrap_content" 
+			android:layout_height="wrap_content" 
+			android:id="@+id/btnAddItems" 
+			android:src="@drawable/new_order"
+			style="?footerButton" />
+			
+		<ImageButton android:layout_width="wrap_content" 
+			android:layout_height="wrap_content" 
+			android:src="@drawable/orderedit" 
+			android:id="@+id/btnEditOrder"
+			style="?footerButton" />
+			
+		<ImageButton android:layout_width="wrap_content" 
+			android:layout_height="wrap_content" 
+			android:id="@+id/btnLines" 
+			android:src="@drawable/line_2"
+			style="?footerButton" />
+			
+		<ImageButton android:layout_width="wrap_content" 
+			android:layout_height="wrap_content" 
+			android:src="@drawable/send" 
+			android:id="@+id/btnSend"
+			style="?footerButton" />
+
+		<TextView
+			android:id="@+id/tvTotalSum"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center_vertical"
+			android:gravity="right"
+			android:text="@string/sum"
+			style="?footerText"/>
+	</LinearLayout>
+</LinearLayout>
+</android.gesture.GestureOverlayView>

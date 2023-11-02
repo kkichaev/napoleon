@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="7dp"
+    android:paddingLeft="7dp"
+    android:paddingRight="7dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/plan_header_text"
+        android:layout_margin="5dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/black"
+        android:padding="1dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="Плановая группа"
+            android:background="@color/white"
+            android:gravity="center"
+            android:layout_marginRight="1dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"/>
+
+        <TextView
+            android:layout_width="@dimen/plan_table_cel_width"
+            android:layout_height="match_parent"
+            android:text="План на месяц"
+            android:background="@color/white"
+            android:gravity="center"
+            android:layout_marginRight="1dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"/>
+
+        <TextView
+            android:layout_width="@dimen/plan_table_cel_width"
+            android:layout_height="match_parent"
+            android:text="План на день"
+            android:background="@color/white"
+            android:gravity="center"
+            android:layout_marginRight="1dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"/>
+
+        <TextView
+            android:layout_width="@dimen/plan_table_cel_width"
+            android:layout_height="match_parent"
+            android:text="Факт за месяц накопительн"
+            android:background="@color/white"
+            android:gravity="center"
+            android:layout_marginRight="1dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"/>
+
+        <TextView
+            android:layout_width="@dimen/plan_table_cel_width"
+            android:layout_height="match_parent"
+            android:text="Факт за день"
+            android:background="@color/white"
+            android:gravity="center"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"/>
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/white"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/black"
+        android:padding="1dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="@string/itogo"
+            android:textStyle="bold"
+            android:background="@color/white"
+            android:gravity="center"
+            android:layout_marginRight="1dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"/>
+
+        <TextView
+            android:id="@+id/tvSumMonthPlan"
+            android:layout_width="@dimen/plan_table_cel_width"
+            android:layout_height="match_parent"
+            android:text="0.0"
+            android:textStyle="bold"
+            android:background="@color/white"
+            android:gravity="center"
+            android:layout_marginRight="1dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"/>
+
+        <TextView
+            android:id="@+id/tvSumDayPlan"
+            android:layout_width="@dimen/plan_table_cel_width"
+            android:layout_height="match_parent"
+            android:text="0.0"
+            android:background="@color/white"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:layout_marginRight="1dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"/>
+
+        <TextView
+            android:id="@+id/tvSumMonthFact"
+            android:layout_width="@dimen/plan_table_cel_width"
+            android:layout_height="match_parent"
+            android:text="0.0"
+            android:background="@color/white"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:layout_marginRight="1dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"/>
+
+        <TextView
+            android:id="@+id/tvSumDayFact"
+            android:layout_width="@dimen/plan_table_cel_width"
+            android:layout_height="match_parent"
+            android:text="0.0"
+            android:background="@color/white"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"/>
+    </LinearLayout>
+
+</LinearLayout>

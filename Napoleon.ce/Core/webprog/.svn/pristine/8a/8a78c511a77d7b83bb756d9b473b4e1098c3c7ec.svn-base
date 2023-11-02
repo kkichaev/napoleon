@@ -1,0 +1,8 @@
+from app import db, create_app
+from app.auth.models import User
+
+app = create_app()
+
+@app.shell_context_processor
+def get_shell_context():
+    return {'db':db, 'User': User }

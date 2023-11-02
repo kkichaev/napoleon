@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+    <EditTextPreference
+       android:key="@string/gps_freq_pref"
+       android:title="@string/time_update_gps"
+       android:defaultValue="@string/def_gps_freq_val"
+       android:numeric="integer" />
+    
+    <EditTextPreference
+       android:key="@string/gps_dist_pref"
+       android:title="@string/lenght_to_change_distance"
+       android:defaultValue="@string/def_gps_dist_val"
+       android:numeric="integer" />
+
+</PreferenceScreen>

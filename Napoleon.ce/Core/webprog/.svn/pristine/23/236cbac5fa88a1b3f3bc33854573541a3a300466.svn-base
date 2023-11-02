@@ -1,0 +1,18 @@
+<template>
+  <h1>User authenticated!</h1>
+</template>
+
+<script>
+import { useGuard } from 'src/components/guard'
+import { onMounted } from 'vue'
+
+export default{
+  setup(){
+    const guard = useGuard()
+    onMounted(()=>{
+      console.log('Index page moounted: ', this)
+    })
+  }
+}
+
+</script>

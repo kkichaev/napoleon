@@ -1,0 +1,104 @@
+{
+  "_from": "@intlify/message-compiler@9.3.0-beta.14-77e850b",
+  "_id": "@intlify/message-compiler@9.3.0-beta.14-77e850b",
+  "_inBundle": false,
+  "_integrity": "sha512-MF7EdnBoKo21Unf8rDy37KEhRzcbPlel+FTD7VR+EzzMgk4R/sMtICnMgDxS3Kl5FS9tLdHlNF0Qbuxc6+NNmg==",
+  "_location": "/@intlify/core-base/@intlify/message-compiler",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "@intlify/message-compiler@9.3.0-beta.14-77e850b",
+    "name": "@intlify/message-compiler",
+    "escapedName": "@intlify%2fmessage-compiler",
+    "scope": "@intlify",
+    "rawSpec": "9.3.0-beta.14-77e850b",
+    "saveSpec": null,
+    "fetchSpec": "9.3.0-beta.14-77e850b"
+  },
+  "_requiredBy": [
+    "/@intlify/core-base"
+  ],
+  "_resolved": "https://registry.npmjs.org/@intlify/message-compiler/-/message-compiler-9.3.0-beta.14-77e850b.tgz",
+  "_shasum": "0c6032e508850d0e3c694c9f6b59c86522a6ad5f",
+  "_spec": "@intlify/message-compiler@9.3.0-beta.14-77e850b",
+  "_where": "/home/devteam/prog/webfront/node_modules/@intlify/core-base",
+  "author": {
+    "name": "kazuya kawaguchi",
+    "email": "kawakazu80@gmail.com"
+  },
+  "bugs": {
+    "url": "https://github.com/intlify/vue-i18n-next/issues"
+  },
+  "buildOptions": {
+    "name": "IntlifyMessageCompiler",
+    "formats": [
+      "mjs",
+      "browser",
+      "cjs",
+      "global"
+    ],
+    "enableFullBundleForEsmBrowser": true
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "@intlify/shared": "9.3.0-beta.14-77e850b",
+    "source-map": "0.6.1"
+  },
+  "deprecated": false,
+  "description": "@intlify/message-compiler",
+  "engines": {
+    "node": ">= 14"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/message-compiler.d.ts",
+      "import": "./dist/message-compiler.mjs",
+      "browser": "./dist/message-compiler.esm-browser.js",
+      "node": {
+        "import": {
+          "production": "./dist/message-compiler.prod.cjs",
+          "development": "./dist/message-compiler.mjs",
+          "default": "./dist/message-compiler.mjs"
+        },
+        "require": {
+          "production": "./dist/message-compiler.prod.cjs",
+          "development": "./dist/message-compiler.cjs",
+          "default": "./index.js"
+        }
+      }
+    },
+    "./dist/*": "./dist/*",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "index.js",
+    "dist"
+  ],
+  "funding": "https://github.com/sponsors/kazupon",
+  "homepage": "https://github.com/intlify/vue-i18n-next/tree/master/packages/message-compiler#readme",
+  "jsdelivr": "dist/message-compiler.global.js",
+  "keywords": [
+    "compiler",
+    "i18n",
+    "internationalization",
+    "intlify",
+    "message-format"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "module": "dist/message-compiler.mjs",
+  "name": "@intlify/message-compiler",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/intlify/vue-i18n-next.git",
+    "directory": "packages/message-compiler"
+  },
+  "sideEffects": false,
+  "types": "dist/message-compiler.d.ts",
+  "unpkg": "dist/message-compiler.global.js",
+  "version": "9.3.0-beta.14-77e850b"
+}

@@ -1,0 +1,96 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "NapoleonRes.h"
+#include "AddRes.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "resdefce.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Russian resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_RUS)
+#ifdef _WIN32
+LANGUAGE LANG_RUSSIAN, SUBLANG_DEFAULT
+#pragma code_page(1251)
+#endif //_WIN32
+
+IDD_ORDER_DETAIL DIALOG  0, 0, 186, 90
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Параметры заказа"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Дата",-1,2,5,18,8
+    CONTROL         "",IDC_ORDER_DATE,"SysDateTimePick32",DTS_RIGHTALIGN | WS_TABSTOP,29,2,40,15
+
+    COMBOBOX        IDC_DOCUMENTS,85,3,69,47,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
+
+    LTEXT           "Логист",IDC_STATIC,2,16,25,8
+    LTEXT           "тел",IDC_PHONE,28,16,70,8,SS_NOTIFY
+    CONTROL         "Б/опл не отгружать",IDC_PAY_GUARANTY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,85,16,70,10
+    EDITTEXT        IDC_REMARK,2,26,182,20,ES_MULTILINE | ES_AUTOVSCROLL | ES_AUTOHSCROLL | ES_WANTRETURN
+
+    LTEXT           "Фин.контроль",IDC_STATIC,2,48,50,8
+    LTEXT           "тел",IDC_PHONE1,53,48,100,8,SS_NOTIFY
+    EDITTEXT        IDC_REMARK2,2,58,182,20,ES_MULTILINE | ES_AUTOVSCROLL | ES_AUTOHSCROLL | ES_WANTRETURN
+
+    PUSHBUTTON      "Отмена",IDCANCEL,0,76,50,14
+END
+
+IDD_DETAIL_PAGE2 DIALOG  0, 0, 186, 90
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Параметры заказа"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Инкассация",IDC_STATIC,2,2,40,8
+    EDITTEXT        IDC_SUM,45,2,40,10, ES_AUTOHSCROLL | WS_TABSTOP
+
+    LTEXT           "№ ТТН",IDC_STATIC,94,2,25,8
+    EDITTEXT        IDC_DOC_NUMBER,120,2,35,10,ES_AUTOHSCROLL
+
+    PUSHBUTTON      "Документы",IDC_DOCUMENTS,40,30,70,28
+
+    PUSHBUTTON      "Отмена",IDCANCEL,0,76,50,14
+END
+
+IDD_DETAIL_PAGE3 DIALOG  0, 0, 80, 70
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Параметры заказа"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    CONTROL         "Сертификат",IDC_SERTIFICAT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,5,10,70,10
+    CONTROL         "Качественные",IDC_OTHER,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,5,22,70,10
+    CONTROL         "Даты",IDC_DOCUMENTS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,5,33,70,10
+
+    DEFPUSHBUTTON   "OK",IDOK,10,50,50,14
+END
+#endif    // Russian resources
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "NapoleonRes.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""resdefce.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\0"
+END
+
+
+#endif    // APSTUDIO_INVOKED

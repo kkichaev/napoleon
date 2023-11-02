@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="grserver" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="../Build/bin/Debug/grserver" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="../Build/bin/Debug" />
+				<Option object_output="../Build/obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+				<Linker>
+					<Add library="../Build/bin/Debug/libpc.a" />
+				</Linker>
+			</Target>
+			<Target title="Release">
+				<Option output="../Build/bin/Release/grserver" prefix_auto="1" extension_auto="1" />
+				<Option object_output="../Build/obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add library="../Build/bin/Release/libpc.a" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-finput-charset=WINDOWS-1251" />
+			<Add option="-pthread" />
+			<Add option="-fnon-call-exceptions" />
+			<Add option="-DUNIX=1" />
+			<Add directory="/home/ert/Documents/Napoleon/Include" />
+			<Add directory="/home/ert/Documents/Napoleon/Lib.pc/Include" />
+			<Add directory="/home/ert/Documents/Napoleon/Lib.pc/Unix" />
+			<Add directory="/home/ert/Documents/Napoleon/GRServer/Server/Core" />
+			<Add directory="/home/ert/Documents/Napoleon/GRServer/Include" />
+		</Compiler>
+		<Linker>
+			<Add option="-pthread" />
+			<Add option="-ldl" />
+			<Add option="-lrt" />
+		</Linker>
+		<Unit filename="Include/folderholder.h" />
+		<Unit filename="Include/gservices.h" />
+		<Unit filename="Include/idatasource.h" />
+		<Unit filename="Include/ievent.h" />
+		<Unit filename="Include/iobject.h" />
+		<Unit filename="Include/iplugin.h" />
+		<Unit filename="Include/iserver.h" />
+		<Unit filename="Include/isessobj.h" />
+		<Unit filename="Include/srctype.h" />
+		<Unit filename="Server/Core/action.cpp" />
+		<Unit filename="Server/Core/actloader.cpp" />
+		<Unit filename="Server/Core/actresolver.h" />
+		<Unit filename="Server/Core/addon.cpp" />
+		<Unit filename="Server/Core/auth.cpp" />
+		<Unit filename="Server/Core/chgdef.cpp" />
+		<Unit filename="Server/Core/chgdef.h" />
+		<Unit filename="Server/Core/commands.cpp" />
+		<Unit filename="Server/Core/compat.h" />
+		<Unit filename="Server/Core/config.cpp" />
+		<Unit filename="Server/Core/creators.h" />
+		<Unit filename="Server/Core/csvsource.cpp" />
+		<Unit filename="Server/Core/cwriter.h" />
+		<Unit filename="Server/Core/datactrl.cpp" />
+		<Unit filename="Server/Core/datactrl.h" />
+		<Unit filename="Server/Core/datasource.cpp" />
+		<Unit filename="Server/Core/datasource.h" />
+		<Unit filename="Server/Core/dbfcost.cpp" />
+		<Unit filename="Server/Core/dbfsource.cpp" />
+		<Unit filename="Server/Core/dbftblset.cpp" />
+		<Unit filename="Server/Core/dbftblset.h" />
+		<Unit filename="Server/Core/dbfwriter.cpp" />
+		<Unit filename="Server/Core/dispatcher.cpp" />
+		<Unit filename="Server/Core/dispatcher.h" />
+		<Unit filename="Server/Core/dofunc.cpp" />
+		<Unit filename="Server/Core/event.cpp" />
+		<Unit filename="Server/Core/event.h" />
+		<Unit filename="Server/Core/evtloader.cpp" />
+		<Unit filename="Server/Core/expat/ascii.h" />
+		<Unit filename="Server/Core/expat/asciitab.h" />
+		<Unit filename="Server/Core/expat/expat.h" />
+		<Unit filename="Server/Core/expat/expat_external.h" />
+		<Unit filename="Server/Core/expat/iasciitab.h" />
+		<Unit filename="Server/Core/expat/internal.h" />
+		<Unit filename="Server/Core/expat/latin1tab.h" />
+		<Unit filename="Server/Core/expat/macconfig.h" />
+		<Unit filename="Server/Core/expat/nametab.h" />
+		<Unit filename="Server/Core/expat/utf8tab.h" />
+		<Unit filename="Server/Core/expat/winconfig.h" />
+		<Unit filename="Server/Core/expat/xmlparse.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Server/Core/expat/xmlrole.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Server/Core/expat/xmlrole.h" />
+		<Unit filename="Server/Core/expat/xmltok.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Server/Core/expat/xmltok.h" />
+		<Unit filename="Server/Core/expat/xmltok_impl.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Server/Core/expat/xmltok_impl.h" />
+		<Unit filename="Server/Core/expat/xmltok_ns.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Server/Core/features.cpp" />
+		<Unit filename="Server/Core/filter.cpp" />
+		<Unit filename="Server/Core/filter.h" />
+		<Unit filename="Server/Core/folderset.cpp" />
+		<Unit filename="Server/Core/folderset.h" />
+		<Unit filename="Server/Core/grftrs.h" />
+		<Unit filename="Server/Core/jhead/jhead.h" />
+		<Unit filename="Server/Core/kvtable.cpp" />
+		<Unit filename="Server/Core/loaders.cpp" />
+		<Unit filename="Server/Core/loaders.h" />
+		<Unit filename="Server/Core/log.cpp" />
+		<Unit filename="Server/Core/msgtable.cpp" />
+		<Unit filename="Server/Core/objdef.cpp" />
+		<Unit filename="Server/Core/objdef.h" />
+		<Unit filename="Server/Core/objects.cpp" />
+		<Unit filename="Server/Core/objects.h" />
+		<Unit filename="Server/Core/objects/stdObjects.xml">
+			<Option compile="1" />
+			<Option link="1" />
+			<Option compiler="gcc" use="1" buildCommand="cd $file_dir ; objcopy --input binary --output elf32-i386 --binary-architecture i386 $file_name.$file_ext $(PROJECTDIR)$object" />
+		</Unit>
+		<Unit filename="Server/Core/parse.cpp" />
+		<Unit filename="Server/Core/parse.h" />
+		<Unit filename="Server/Core/pricetable.cpp" />
+		<Unit filename="Server/Core/progloader.h" />
+		<Unit filename="Server/Core/reqhandler.cpp" />
+		<Unit filename="Server/Core/runaction.cpp" />
+		<Unit filename="Server/Core/sequence.cpp" />
+		<Unit filename="Server/Core/server.h" />
+		<Unit filename="Server/Core/serversrc.cpp" />
+		<Unit filename="Server/Core/serversrc.h" />
+		<Unit filename="Server/Core/service.h" />
+		<Unit filename="Server/Core/session.cpp" />
+		<Unit filename="Server/Core/session.h" />
+		<Unit filename="Server/Core/sessobj.cpp" />
+		<Unit filename="Server/Core/sessobj.h" />
+		<Unit filename="Server/Core/sources.h" />
+		<Unit filename="Server/Core/sqlite/sqlite3.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Server/Core/sqlite/sqlite3.h" />
+		<Unit filename="Server/Core/sqlite/sqlite3ext.h" />
+		<Unit filename="Server/Core/sqsource.cpp" />
+		<Unit filename="Server/Core/srvdata.cpp" />
+		<Unit filename="Server/Core/srvdata.h" />
+		<Unit filename="Server/Core/srvupdate.cpp" />
+		<Unit filename="Server/Core/srvutility.cpp" />
+		<Unit filename="Server/Core/srvutility.h" />
+		<Unit filename="Server/Core/tholder.cpp" />
+		<Unit filename="Server/Core/token.h" />
+		<Unit filename="Server/Core/tray.h" />
+		<Unit filename="Server/Core/udisp.cpp" />
+		<Unit filename="Server/Core/updpacket.cpp" />
+		<Unit filename="Server/Core/updpacket.h" />
+		<Unit filename="Server/Core/userver.cpp" />
+		<Unit filename="Server/Core/xml.cpp" />
+		<Unit filename="Server/Core/xml.h" />
+		<Unit filename="../Include/AES.h" />
+		<Unit filename="../Include/C32.h" />
+		<Unit filename="../Include/Key.cpp" />
+		<Unit filename="../Include/ServerDefs.h" />
+		<Unit filename="../Include/UnixCompat.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="../Lib.pc/Include/dbf.h" />
+		<Unit filename="../Lib.pc/Include/ierrlog.h" />
+		<Unit filename="../Lib.pc/Include/ithread.h" />
+		<Unit filename="../Lib.pc/Include/member.h" />
+		<Unit filename="../Lib.pc/Include/packet.h" />
+		<Unit filename="../Lib.pc/Include/pstream.h" />
+		<Unit filename="../Lib.pc/Include/servobj.h" />
+		<Unit filename="../Lib.pc/Include/socket.h" />
+		<Unit filename="../Lib.pc/Include/stdobjs.h" />
+		<Unit filename="../Lib.pc/Include/thread.h" />
+		<Unit filename="../Lib.pc/Unix/atlconv.h" />
+		<Unit filename="../Lib.pc/Zlib/crc32.h" />
+		<Unit filename="../Lib.pc/Zlib/deflate.h" />
+		<Unit filename="../Lib.pc/Zlib/inffast.h" />
+		<Unit filename="../Lib.pc/Zlib/inffixed.h" />
+		<Unit filename="../Lib.pc/Zlib/inflate.h" />
+		<Unit filename="../Lib.pc/Zlib/inftrees.h" />
+		<Unit filename="../Lib.pc/Zlib/trees.h" />
+		<Unit filename="../Lib.pc/Zlib/zconf.h" />
+		<Unit filename="../Lib.pc/Zlib/zlib.h" />
+		<Unit filename="../Lib.pc/Zlib/zutil.h" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<lib_finder disable_auto="1" />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

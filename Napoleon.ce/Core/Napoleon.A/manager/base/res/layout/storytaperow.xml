@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:paddingLeft="25dp"
+    android:paddingRight="25dp"
+    android:paddingTop="12dp"
+    android:paddingBottom="25dp">
+
+    <TextView
+        android:id="@+id/tvOrg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="OrgName" 
+        android:textColor="#007CC5"
+        android:textSize="22sp"/>
+
+    <TextView
+        android:id="@+id/tvDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#8FA399"
+        android:text="Date" />
+
+    <View 
+        android:id="@+id/top_pics"
+        android:layout_width="match_parent"
+	    android:layout_height="10dp"/>
+    
+    <!--  
+    <HorizontalScrollView 
+	    android:id="@+id/hscroll" 
+	    android:layout_width="match_parent" 
+	    android:layout_height="wrap_content"> 
+	    <GridLayout 
+	        android:id="@+id/pics"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:columnCount="4">
+		</GridLayout>
+	</HorizontalScrollView>
+	-->
+    <!--  
+    <View
+        android:id="@+id/top_docs" 
+        android:layout_width="match_parent"
+	    android:layout_height="15dp"/>
+
+	-->
+	
+	<GridLayout 
+	        android:id="@+id/pics"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:columnCount="4">
+	</GridLayout>
+	
+    <LinearLayout
+        android:id="@+id/docs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    </LinearLayout>
+    
+    <View 
+        android:id="@+id/top_user"
+        android:layout_width="match_parent"
+	    android:layout_height="15dp"/>
+
+    <TextView
+        android:id="@+id/tvUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#007CC5"
+        android:text="User" />
+
+</LinearLayout>

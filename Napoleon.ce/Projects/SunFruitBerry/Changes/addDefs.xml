@@ -1,0 +1,1273 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+  <objects>
+    <object name="Fuel">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"id"</member>
+
+      <field name="id" type="string" />
+      <field name="name" type="string" />
+    </object>
+
+    <object name="AutoInfo">
+      <sources>
+        <source name="SQLQuery">
+          <param name="stmt">
+            "select * from AutoInfo where userid = '" + $user.id + "'"
+          </param>
+        </source>
+      </sources>
+
+      <member name="primaryKey">"id"</member>
+      <memberArray name="index">"userid"</memberArray>
+
+      <field name="id" type="string" />
+      <field name="number" type="string" />
+      <field name="color" type="number" />
+      <field name="fuel1Id" type="string" />
+      <field name="fuel2Id" type="string" />
+    </object>
+
+    <object name="AutoWaybill">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"userid,created"</member>
+      <memberArray name="index">"created"</memberArray>
+
+      <field name="userid" type="string" data="USER_ID" execOn="Put">$user.id</field>
+      <field name="timeZone" type="number" />
+      <field name="serverTimeZone" type="number" data="S_TZ" execOn="Put" feature="USE_TIMEZONE">ServerTimeZone()</field>
+      <field name="created" type="timestamp" data="CREATED"/>
+      <field name="date" type="date" data="DATE" />
+      <field name="id" width="55" type="string" />
+      <field name="remark" type="string" />
+      <field name="visit" type="timestamp" />
+
+      <field name="startKM" type="number" prec="2" />
+      <field name="finishKM" type="number" prec="2" />
+      <field name="fuel1Start" type="number" prec="3" />
+      <field name="fuel2Start" type="number" prec="3" />
+      <field name="fuel1Finish" type="number" prec="3" />
+      <field name="fuel2Finish" type="number" prec="3" />
+      <field name="fuel1Input" type="number" prec="3" />
+      <field name="fuel2Input" type="number" prec="3" />
+      
+
+      <field name="sended" type="timestamp" data="" execOn="Put">Now()</field>
+      <field name="longitude" type="number" prec="5" />
+      <field name="latitude" type="number" prec="5" />
+      <field name="stltime" type="number" />
+
+      <events>
+        <event type="put">
+          <action name="WriteToLog">$object.type;$object.created</action>
+        </event>
+      </events>
+    </object>
+
+    <object name="OrderDriverRouteInfo">
+      <sources>
+        <source name="SQLQuery">
+          <param name="stmt">
+            "select d.*, ri.route from DriverRouteActions d, RouteItem ri where d.routeItemId = ri.itemid and ri.route in
+            (select route from RouteItem ri, RouteItem$docs rd where ri.itemid = rd.RouteItem$itemid and rd.userid = '" + $user.id +
+            "' and rd.created &gt;= ToDate('" + FormatDate(AdjustDate(Now(), -10, "day"),"DD.MM.YYYY") + "'))"
+          </param>
+        </source>
+      </sources>
+
+      <memberArray name="index">"routeItemId"</memberArray>
+      <field name="created" type="timestamp" />
+      <field name="routeItemId" width="55" type="string" />
+      <field name="sended" type="timestamp" data="" execOn="Put">Now()</field>
+      <field name="longitude" type="number" prec="5" />
+      <field name="latitude" type="number" prec="5" />
+      <field name="stltime" type="number" />
+      <field name="status" type="number" />
+      <field name="docNumber" type="string" />
+      <field name="route" type="string" />
+      <field name="userid" type="string" />
+    </object>
+
+    <object name="OrderRouteInfo">
+      <sources>
+        <source name="SQLQuery">
+          <param name="stmt">
+				"select r.start, r.finish, r.name, ri.itemid, r.id as route, r.phone, rd.number from Route r,  RouteItem ri, RouteItem$docs rd
+				where r.id = ri.route and ri.itemid = rd.RouteItem$itemid
+				and rd.userid = '" + $user.id + "' and rd.created &gt;= ToDate('" + FormatDate(AdjustDate(Now(), -10, "day"),"DD.MM.YYYY") + "')"
+          </param>
+        </source>
+      </sources>
+
+      <field name="start" type="timestamp" />
+      <field name="finish" type="timestamp" />
+      <field name="name" type="string" />
+      <field name="phone" type="string" />
+      <field name="number" type="string" />
+      <field name="itemid" type="string" />
+      <field name="route" type="string" />
+    </object>
+
+    <object name="DeliveryProceeded">
+      <sources>
+        <source name="SQTable" type="internal">
+          <param name="readFilter">
+            '"userid"=' + "'" + $user.id + "' and modify &gt;= ToDate('" + FormatDate(AdjustDate(Now(), -3, "day"),"DD.MM.YYYY") + "')"
+          </param>
+        </source>
+      </sources>
+
+      <member name="primaryKey">"userid,created"</member>
+      <memberArray name="index">"userid,modify"</memberArray>
+
+      <field name="created" type="timestamp" />
+      <field name="remark" type="string" />
+      <field name="type" type="string" />
+      <field name="userid" type="string" />
+      <field name="phone" type="string" />
+      <field name="modify" type="timestamp" />
+    </object>
+
+    <object name="ManagerMemo">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"userid,created"</member>
+      <memberArray name="index">"sended"</memberArray>
+
+      <field name="userid" type="string" />
+      <field name="manager" type="string" execOn="Put">$user.id</field>
+      <field name="created" type="timestamp" />
+      <field name="id" width="55" type="string" />
+      <field name="remark" type="string" />
+      <field name="handled" type="number" />
+      <field name="sended" type="timestamp" data="" execOn="Put">Now()</field>
+    </object>
+
+    <object name="MemoType">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"id"</member>
+
+      <field name="id" type="string" />
+      <field name="type" type="number" />
+      <field name="acceptManager" type="number" />
+    </object>
+
+    <object name="MemoStatus">
+      <sources>
+        <source name="SQTable" type="internal" />
+        <param name="readFilter">
+            '"userid"=' + "'" + $user.id + "' and created &gt;= ToDate('" + FormatDate(AdjustDate(Now(), -7, "day"),"DD.MM.YYYY") + "')"
+        </param>
+      </sources>
+
+      <member name="primaryKey">"userid,created"</member>
+
+      <field name="userid" type="string" />
+      <field name="created" type="timestamp" />
+      <field name="status" type="string" />
+    </object>
+
+    <object name="AgentManagerMemo" >
+      <sources>
+        <source name="SQLQuery">
+          <param name="stmt">
+            "SELECT DISTINCT am.[created], am.deliveries, o.[id], o.[name] as orgName, o.[address] as orgAddress ,[orgColor],[remark],[sended],am.[userid],am.[till],am.[sum], am.[sumD],
+            am.[overdueSum], am.[overdue],am.[topic],am.[idDog],am.[orgColor],am.[dogColor], ob.name as dogName, ob.dueDays as dogDue, ob.limit as dogLimit
+            FROM (select am.* from AgentMemo am, MemoType mt where am.topic = mt.id and mt.acceptManager = 1) am left join
+            (select userid, created from ArchiveOrderProceeded where [type] = 'AgentMemo' and created &gt;= ToDate('$01')
+          union all select userid, created from OrderProceeded where [type] = 'AgentMemo') prc
+          on am.userid = prc.userid and am.created = prc.created, Org o, OrgBalance ob, Agents a
+          where prc.userid is null  and o.id = am.id and a.id = am.userid and ob.idDog = am.idDog and am.userid in ($02) and am.created &gt;= ToDate('$01')"
+          </param>
+        </source>
+      </sources>
+
+      <field name="userid" type="string" />
+      <field name="created" type="timestamp" />
+      <field name="sended" type="timestamp" />
+      <field name="id" type="string" />
+      <field name="remark" type="string" />
+
+
+      <field name="till" type="date"  />
+      <field name="sum" type="number" prec="2" />
+      <field name="sumD" type="number" prec="2" />
+      <field name="overdueSum" type="number" prec="2" />
+      <field name="overdue" type="number" />
+      <field name="topic" width="55" type="string" />
+      <field name="idDog" width="55" type="string" />
+      <field name="orgColor" type="number" />
+      <field name="dogColor" type="number" />
+      <field name="deliveries" type="string" width="4000" />
+
+      <field name="dogDue" type="number" />
+      <field name="dogLimit" type="number" prec="2" />
+
+
+      <field name="agentName" type="string" />
+      <field name="orgName" type="string" />
+      <field name="orgAddress" type="string" />
+      <field name="dogName" type="string" />
+
+    </object>
+
+    <object name="AgentMemo" >
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"userid,created"</member>
+      <memberArray name="index">"created"</memberArray>
+
+      <field name="userid" type="string" data="USER_ID" execOn="Put">$user.id</field>
+      <field name="timeZone" type="number" />
+      <field name="serverTimeZone" type="number" data="S_TZ" execOn="Put" feature="USE_TIMEZONE">ServerTimeZone()</field>
+      <field name="created" type="timestamp" data="CREATED"/>
+      <field name="date" type="date" data="DATE" />
+      <field name="id" width="55" type="string" />
+      <field name="remark" type="string" />
+
+      <field name="till" type="timestamp"  />
+      <field name="sum" type="number" prec="2" />
+      <field name="sumPay" type="number" prec="2" />
+      <field name="sumD" type="number" prec="2" />
+      <field name="overdueSum" type="number" prec="2" />
+      <field name="overdue" type="number" />
+      <field name="topic" width="55" type="string" />
+      <field name="idDog" width="55" type="string" />
+      <field name="orgColor" type="number" />
+      <field name="dogColor" type="number" />
+      <field name="deliveries" type="string" width="4000" />
+
+	  <field name="topicName" type="string" />
+      <field name="email" type="string" />
+
+      <field name="sended" type="timestamp" data="" execOn="Put">Now()</field>
+      <field name="longitude" type="number" prec="5" />
+      <field name="latitude" type="number" prec="5" />
+      <field name="stltime" type="number" />
+
+      <events>
+        <event type="put">
+          <action name="WriteToLog">$object.type;$object.created</action>
+        </event>
+      </events>
+    </object>
+
+
+    <object name="OrgBalance">
+      <sources>
+        <source name="SQTable" type="internal">
+          <param name="readFilter">'"id" in (select "ido" from "Org" where "userid"=' + "'" + $user.id + "')"</param>
+        </source>
+      </sources>
+
+      <member name="primaryKey">"id,idDog"</member>
+
+      <field name="id" type="string" />
+      <field name="idDog" type="string" />
+      <field name="name" type="string" />
+      
+      <field name="dueDays" type="number" />
+      <field name="limit" type="number" prec="2" />
+      <field name="balance" type="number" prec="2" />
+      <field name="unlockDate" type="date" />
+    </object>
+
+    <object name="OrgBalanceData">
+      <sources>
+        <source name="SQTable" type="internal">
+          <param name="readFilter">'"ido" in (select "ido" from "Org" where "userid"=' + "'" + $user.id + "')"</param>
+        </source>
+      </sources>
+
+      <member name="primaryKey">"ido,idDog,number"</member>
+
+      <field name="ido" type="string" />
+      <field name="idDog" type="string" />
+      <field name="number" type="string" />
+
+      <field name="payDate" type="date" />
+      <field name="date" type="date" />
+      <field name="sumD" type="number" prec="2" />
+    </object>
+
+    <!-- Доставка -->
+
+    <object name="DispatchReturnsInfo">
+      <sources>
+        <source name="SQTable" type="internal">
+          <param name="readFilter">'"id" in (select "id" from "Org" where "userid"=' + "'" + $user.id + "') and created &gt;= ToDate('" + 
+            FormatDate(AdjustDate(Now(), -3, "day"),"DD.MM.YYYY") + "')"</param>
+        </source>
+      </sources>
+
+      <member name="primaryKey">"userid,created"</member>
+      <memberArray name="index">"sended"</memberArray>
+
+      <field name="userid" type="string" execOn="Put">$user.id</field>
+      <field name="created" type="timestamp" />
+      <field name="routeItemId" width="55" type="string" />
+      <field name="dispatch" type="timestamp" />
+      <field name="id" width="55" type="string" />
+      <field name="sended" type="timestamp" data="" execOn="Put">Now()</field>
+      <field name="longitude" type="number" prec="5" />
+      <field name="latitude" type="number" prec="5" />
+      <field name="stltime" type="number" />
+	  <field name="remark" type="string" width="4000" />
+
+
+      <field name="items" type="collection">
+        <data>
+          <object name="Item">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+
+            <field name="id" type="string"/>
+            <field name="qty" type="number" prec="3"/>
+            <field name="cost" type="number" prec="2"/>
+            <field name="cause" type="string" />
+          </object>
+        </data>
+      </field>
+    </object>
+
+    <object name="DriverRouteActions">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"userid,created"</member>
+      <memberArray name="index">"sended"</memberArray>
+
+      <field name="userid" type="string" execOn="Put">$user.id</field>
+      <field name="created" type="timestamp" />
+      <field name="routeItemId" width="55" type="string" />
+      <field name="sended" type="timestamp" data="" execOn="Put">Now()</field>
+      <field name="longitude" type="number" prec="5" />
+      <field name="latitude" type="number" prec="5" />
+      <field name="stltime" type="number" />
+      <field name="status" type="number" />
+      <!-- 
+        0 active
+        1 finished
+        2 cancel
+        3 reject
+        driver status with empty routeItemId
+        4 driver free
+        5 driver working
+        6 driver drivng
+        7 driver broke
+      -->
+      <field name="docNumber" type="string" />
+    </object>
+
+
+    <object name="Dispatch">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"created,userid"</member>
+      <memberArray name="index">"itemid"</memberArray>
+
+      <field name="userid" type="string" execOn="Put">$user.id</field>
+      <field name="date" type="timestamp"/>
+      <field name="created" type="timestamp" />
+      <field name="timeZone" type="number" />
+      <field name="serverTimeZone" type="number" data="S_TZ" execOn="Put" feature="USE_TIMEZONE">ServerTimeZone()</field>
+      <field name="sended" type="timestamp" data="S_DATE" execOn="Put">Now()</field>
+      <field name="id" type="string" />
+      <field name="latitude" type="number" prec="5" />
+      <field name="longitude" type="number" prec="5" />
+      <field name="itemid" type="string" />
+      <field name="visit" type="timestamp" />
+
+      <field name="times" type="collection">
+        <data>
+          <object name="DispatchTime">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+
+            <field name="start" type="timestamp"/>
+            <field name="finish" type="timestamp"/>
+          </object>
+        </data>
+      </field>
+
+      <field name="items" type="collection">
+        <data>
+          <object name="DispatchItem">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+
+            <field name="number" type="string"/>
+            <field name="state" type="number"/>
+            <field name="remark" type="string"/>
+            <field name="cause" type="string"/>
+            <field name="date" type="timestamp"/>
+            <field name="itemid" type="string"/>
+            <field name="type" type="string"/>
+          </object>
+        </data>
+      </field>
+
+      <events>
+        <event type="put">
+          <action name="WriteToLog">$object.type;$object.date</action>
+        </event>
+      </events>
+    </object>
+
+    <object name="DIncass">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"created,userid"</member>
+
+      <field name="userid" type="string" execOn="Put">$user.id</field>
+      <field name="date" type="timestamp"/>
+      <field name="created" type="timestamp" />
+      <field name="timeZone" type="number" />
+      <field name="serverTimeZone" type="number" data="S_TZ" execOn="Put" feature="USE_TIMEZONE">ServerTimeZone()</field>
+      <field name="sended" type="timestamp" data="S_DATE" execOn="Put">Now()</field>
+      <field name="id" type="string" />
+      <field name="latitude" type="number" prec="5" />
+      <field name="longitude" type="number" prec="5" />
+      <field name="dispatch" type="timestamp"/>
+      <field name="disprem" type="string" />
+      <field name="number" type="string"/>
+      <field name="sum" type="number" prec="2"/>
+
+      <events>
+        <event type="put">
+          <action name="WriteToLog">$object.type;$object.date</action>
+        </event>
+      </events>
+    </object>
+
+    <object name="DTask">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"created,userid"</member>
+
+      <field name="userid" type="string" execOn="Put">$user.id</field>
+      <field name="date" type="timestamp"/>
+      <field name="created" type="timestamp" />
+      <field name="timeZone" type="number" />
+      <field name="serverTimeZone" type="number" data="S_TZ" execOn="Put" feature="USE_TIMEZONE">ServerTimeZone()</field>
+      <field name="sended" type="timestamp" data="S_DATE" execOn="Put">Now()</field>
+      <field name="id" type="string" />
+      <field name="latitude" type="number" prec="5" />
+      <field name="longitude" type="number" prec="5" />
+      <field name="dispatch" type="timestamp"/>
+      <field name="disprem" type="string" />
+      <field name="number" type="string"/>
+      <field name="remark" type="string" />
+
+      <events>
+        <event type="put">
+          <action name="WriteToLog">$object.type;$object.date</action>
+        </event>
+      </events>
+    </object>
+
+    <object name="DReturn">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"created,userid"</member>
+
+      <field name="userid" type="string" execOn="Put">$user.id</field>
+      <field name="date" type="timestamp"/>
+      <field name="created" type="timestamp" />
+      <field name="timeZone" type="number" />
+      <field name="serverTimeZone" type="number" data="S_TZ" execOn="Put" feature="USE_TIMEZONE">ServerTimeZone()</field>
+      <field name="sended" type="timestamp" data="S_DATE" execOn="Put">Now()</field>
+      <field name="id" type="string" />
+      <field name="latitude" type="number" prec="5" />
+      <field name="longitude" type="number" prec="5" />
+      <field name="dispatch" type="timestamp"/>
+      <field name="disprem" type="string" />
+      <field name="number" type="string"/>
+      <field name="remark" type="string" />
+
+      <field name="items" type="collection">
+        <data>
+          <object name="DReturnItem">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+
+            <field name="id" type="string"/>
+            <field name="pos" type="number"/>
+            <field name="inqty" type="number" prec="3"/>
+            <field name="outqty" type="number" prec="3"/>
+            <field name="cost" type="number" prec="2"/>
+            <field name="remark" type="string"/>
+            <field name="cause" type="string"/>
+          </object>
+        </data>
+      </field>
+
+      <events>
+        <event type="put">
+          <action name="WriteToLog">$object.type;$object.date</action>
+        </event>
+      </events>
+    </object>
+
+    <object name="DShipment">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"created,userid"</member>
+
+      <field name="userid" type="string" execOn="Put">$user.id</field>
+      <field name="date" type="timestamp"/>
+      <field name="created" type="timestamp" />
+      <field name="timeZone" type="number" />
+      <field name="serverTimeZone" type="number" data="S_TZ" execOn="Put" feature="USE_TIMEZONE">ServerTimeZone()</field>
+      <field name="sended" type="timestamp" data="S_DATE" execOn="Put">Now()</field>
+      <field name="id" type="string" />
+      <field name="latitude" type="number" prec="5" />
+      <field name="longitude" type="number" prec="5" />
+      <field name="dispatch" type="timestamp"/>
+      <field name="disprem" type="string" />
+      <field name="number" type="string"/>
+      <field name="remark" type="string" />
+      <field name="routeItemId" type="string" />
+      <field name="params" type="number" />
+
+      <field name="items" type="collection">
+        <data>
+          <object name="DReturnItem">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+
+            <field name="id" type="string"/>
+            <field name="pos" type="number"/>
+            <field name="inqty" type="number" prec="3"/>
+            <field name="outqty" type="number" prec="3"/>
+            <field name="cost" type="number" prec="2"/>
+            <field name="remark" type="string"/>
+            <field name="cause" type="string"/>
+          </object>
+        </data>
+      </field>
+
+      <events>
+        <event type="put">
+          <action name="WriteToLog">$object.type;$object.date</action>
+        </event>
+      </events>
+    </object>
+
+    <object name="Route">
+      <sources>
+        <source name="SQTable" type="internal" >
+          <param name="readFilter">'finish &gt;= ToDate("' + FormatDate(AdjustDate(Now(), -3, "day"),"DD.MM.YYYY") + '") and userid=' + "'"+$user.id+"'"</param>
+        </source>
+      </sources>
+
+      <member name="primaryKey">"id"</member>
+
+      <field name="id" type="string"/>
+      <field name="created" type="timestamp"/>
+      <field name="userid" type="string"/>
+      <field name="start" type="timestamp"/>
+      <field name="finish" type="timestamp"/>
+    </object>
+
+    <object name="RouteItem">
+      <sources>
+        <source name="SQTable" type="internal" >
+          <param name="readFilter">'route in (select id from route where finish &gt;= ToDate("' + FormatDate(AdjustDate(Now(), -3, "day"),"DD.MM.YYYY") + '") and userid=' + "'"+$user.id+"')"</param>
+        </source>
+      </sources>
+
+      <member name="primaryKey">"itemid"</member>
+
+      <field name="route" type="string"/>
+      <field name="itemid" type="string"/>
+      <field name="id" type="string"/>
+      <field name="pos" type="number"/>
+      <field name="remark" type="string"/>
+
+      <field name="docs" type="collection">
+        <data>
+          <object name="ItemDef">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+
+            <field name="id" type="string"/>
+            <field name="number" type="string"/>
+            <field name="pos" type="number"/>
+            <field name="remark" type="string"/>
+            <field name="type" type="string"/>
+            <field name="title" type="string"/>
+          </object>
+        </data>
+      </field>
+    </object>
+
+    <object name="ChatData">
+      <sources>
+        <source name="SQTable" type="internal" >
+        </source>
+      </sources>
+
+      <member name="primaryKey">"id"</member>
+
+      <field name="id" type="string"/>
+      <field name="created" type="timestamp" />
+      <field name="userid" type="string" execOn="Put">$user.id</field>
+      <field name="text" type="string" />
+      <field name="group" type="string" />
+    </object>
+
+    <object name="ChatGroup">
+      <sources>
+        <source name="SQTable"  type="internal" >
+          <param name="readFilter">"rem = 0"</param>
+        </source>
+      </sources>
+
+      <member name="primaryKey">"id"</member>
+
+      <field name="id" type="string"/>
+      <field name="owner" type="string"/>
+      <field name="title" type="string" />
+      <field name="rem" type="number" />
+
+      <field name="items" type="collection">
+        <data>
+          <object name="ChatGroupItem">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+
+            <field name="id" type="string"/>
+          </object>
+        </data>
+      </field>
+    </object>
+
+    <object name="ChatUser">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"id"</member>
+
+      <field name="id" type="string"/>
+      <field name="name" type="string" />
+      <field name="incsnd" type="string" />
+      <field name="outsnd" type="string" />
+    </object>
+
+    <object name="Waybill">
+      <sources>
+        <source name="SQTable" type="internal" >
+          <param name="readFilter">
+            ' number in ( '+
+            'select d.number from Route as r '+
+            'left join RouteItem as ri on r.id = ri.route '+
+            'left join RouteItem$docs as d on ri.itemid = d.RouteItem$itemid '+
+            'where r.start &lt;= ToDate("' + FormatDate(AdjustDate(Now(),1,"day"),"DD.MM.YYYY") +  '") and ' +
+            'r.finish &gt;= ToDate("' + FormatDate(AdjustDate(Now(), -3, "day"),"DD.MM.YYYY") + '") and r.userid=' + "'"+$user.id+"')"
+          </param>
+        </source>
+      </sources>
+
+      <member name="primaryKey">"number"</member>
+
+      <field name="items" type="collection">
+        <data>
+          <object name="DocRequestItem">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+
+            <field name="id" type="string" data="ID_I"/>
+            <field name="qty" type="number" prec="3" />
+            <field name="cost" type="number" prec="2" />
+            <field name="pos" type="number" />
+          </object>
+        </data>
+      </field>
+
+      <field name="id" type="string" />
+      <field name="sumD" type="number" prec="2" />
+      <field name="number" type="string" data="NUM" />
+      <field name="date" type="date" />
+      <field name="payDate" type="date" />
+      <field name="created" type="timestamp" />
+      <field name="userid" type="string" />
+    </object>    
+    <modify src="ChatData" dest="ChatQueryAgent">
+      <change>
+        <sources>
+          <source name="SQLQuery">
+            <param name="stmt">
+              "select top(100) created, userid, text, [group] from ChatData where [group] in (select ChatGroup$items.ChatGroup$id from ChatGroup$items where id = '" +$user.id + "')"+
+              "order by created desc"
+            </param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="ChatGroup" dest="ChatGroupAgent">
+      <change>
+        <sources>
+          <source name="SQLQuery">
+            <param name="stmt">
+              "select top(100) [id], title from ChatGroup where [id] in (select ChatGroup$items.ChatGroup$id from ChatGroup$items where id = '" +$user.id + "')"
+            </param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="Org" dest="RoutePoint">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" >
+            <param name="readFilter">'id in (select id from Routeitem as i where i.route in( select id from Route where finish &gt;= ToDate("' + 
+				FormatDate(AdjustDate(Now(), -3, "day"),"DD.MM.YYYY") + '") and userid=' + "'"+$user.id+"')) and userid='"+ $user.id+"'"</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="RoutePoint$contacts" >
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="Price" dest="DPrice">
+      <change>
+        <sources>
+          <source name="SQLQuery">
+            <param name="stmt">
+              'select p.id, p.name from Price as p where id in ( '+
+              'select distinct(i.id) from Route as r ' +
+              'left join RouteItem as ri on r.id = ri.route '+
+              'left join RouteItem$docs as d on ri.itemid = d.RouteItem$itemid '+
+              'left join waybill as w on d.number = w.number '+
+              'left join Waybill$items as i on w.number  = i.Waybill$number ' +
+              'where r.start &lt;= ToDate("' + FormatDate(AdjustDate(Now(),1,"day"),"DD.MM.YYYY") +  '") and ' +
+              'r.finish &gt;= ToDate("' + FormatDate(AdjustDate(Now(), -3, "day"),"DD.MM.YYYY") + '") and r.userid=' + "'"+$user.id+"')"
+            </param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="Visit" dest="DVisit" table="DVisit">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+    </modify>
+    
+    <modify src="DVisit$items" dest="DispVisitItemDoc" table="DVisit$items">
+      <change>
+        <field name="name" type="string" execOn="Put">ToFileName($user.id) + "\" + $object.__nameBase  + DataExtention($object, "id")</field>
+        <field name="smallName" type="string" execOn="Put">ToFileName($user.id) + "\" + $object.__nameBase + "_small" + DataExtention($object, "id") </field>
+        <field name="DVisit$date" type="timestamp" execOn="Put">$object.__date</field>
+        <field name="DVisit$userid" type="string" execOn="Put">$user.id</field>
+      </change>
+    </modify>
+
+    <modify src="Agents" dest="ChatAgent">
+      <remove>
+        <field name="login"/>
+        <field name="password"/>
+      </remove>
+
+      <add>
+        <field name="userid" type="string" execOn="Get">$user.id</field>
+      </add>
+    </modify>    
+    <!-- Доставка end !-->
+
+    <modify src="Org">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal">
+            <param name="readFilter">'"userid"=' + "'" + $user.id + "'"</param>
+          </source>
+        </sources>
+      </change>
+      <add>
+        <member name="primaryKey">"userid,id"</member>
+        <field name="ido" type="string" />
+        <field name="email" type="string" />
+        <field name="deliveryNotes" type="string" sith="4000" />
+        
+        <field name="cost" type="collection">
+          <data>
+            <object name="Item">
+              <sources>
+                <source name="SQTable" type="internal" />
+              </sources>
+              
+              <field name="id" type="string" />
+              <field name="discount" type="number" prec="2" />
+              <field name="type" type="number" width="1" />
+            </object>
+          </data>
+        </field>
+      </add>
+    </modify>
+
+    <modify src="Org$contacts">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+        <field name="name" data="c_name" type="string" width="100" />
+        <field name="phone" type="string" width="100" />
+        <field name="id" data="c_id" type="string" width="30" />
+      </change>
+    </modify>
+
+    <modify src="CommonOrgs">
+      <change>
+        <sources>
+          <source name="SQLQuery">
+            <param name="stmt">
+              "select distinct id as tag, * from Org "
+            </param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="ManagerFolder">
+      <change>
+        <sources>
+          <source name="SQLFolder" type="internal">
+            <param name="parentField">"parent"</param>
+            <param name="childField">"fid"</param>
+            <param name="readFilter">"[userid] = '" + $user.id + "'"</param>
+          </source>
+        </sources>
+      </change>
+      <add>
+        <field name="fid" type="string" width="50" />
+        <field name="id" type="string" execOn="Get">$object.fid</field>
+        <field name="parent" type="string" width="50" />
+        <field name="userid" type="string" execOn="Put">$user.id</field>
+      </add>
+    </modify>
+
+    <modify src="Folder">
+      <change>
+        <sources>
+          <source name="SQLFolder" type="internal">
+            <param name="parentField">"parent"</param>
+            <param name="childField">"fid"</param>
+            <param name="rowidField">"id"</param>
+            <param name="stmt">
+              "if exists(select TOP(1) * from [Folder] where [userid] = '" + $user.id + "')
+              SELECT * FROM [Folder] where [userid] = '" + $user.id + "'
+              else
+              SELECT * FROM [Folder] where [userid] is null or [userid] = ''"
+            </param>
+          </source>
+        </sources>
+        <field name="id" type="number" />
+        <field name="fid" type="string" width="50" />
+        <field name="name" type="string" />
+        <field name="userid" type="string" />
+      </change>
+      <add>
+        <field name="parent" type="string" width="50" />
+      </add>
+    </modify>
+
+    <modify src="Price">
+      <change>
+        <sources>
+          <source name="SQLQuery">
+            <param name="stmt">"select * from [Price]" </param>
+          </source>
+        </sources>
+      </change>
+      <add>
+        <field name="article" type="string" />
+        <field name="barcode" type="string" />
+      </add>
+    </modify>
+
+    <modify src="ManagerPrice">
+      <change>
+        <sources>
+          <source name="SQLQuery">
+            <param name="stmt">"select * from [Price]"</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="Order">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+      <add>
+        <event type="put">
+          <action name="WriteToLog">$object.type;$object.created</action>
+        </event>
+        <field name="from" type="timestamp" />
+        <field name="till" type="timestamp" />
+        <field name="expeditorRemark" type="string" />
+        <field name="dtp" type="number" />
+      </add>
+    </modify>
+
+    <modify src="Order$items">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+      <add>
+        <field name="discount" type="number" prec="2" />
+        <field name="costWD" type="number" prec="2" />
+        <field name="remark" type="string" />
+      </add>
+    </modify>
+
+    <modify src="Order" dest="LoadedOrders" table="LoadedOrders">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal">
+            <param name="readFilter">'"userid"=' + "'" + $user.id + "'" + ' and "created" &gt;= ToDate(' + "'" + FormatDate(AdjustDate(Now(),-5,"day"),"DD.MM.YYYY") + "')" </param>
+          </source>
+        </sources>
+        <member name="primaryKey">"docNumber"</member>
+      </change>
+      <add>
+        <memberArray name="index">"userid,created"</memberArray>
+        <field name="docNumber" type="string" />
+	    </add>
+    </modify>
+
+    <modify src="OrderCommitted">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal">
+            <param name="readFilter">'"userid"=' + "'" + $user.id + "'" + ' and "created" &gt;= ToDate(' + "'" + FormatDate(AdjustDate(Now(),-1,"month"),"DD.MM.YYYY") + "')" </param>
+          </source>
+        </sources>
+      </change>
+      <add>
+        <member name="primaryKey">"userid,created"</member>
+      </add>
+    </modify>
+
+
+    <modify src="Delivery">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal">
+            <param name="readFilter">'"ido" in (select "ido" from "Org" where "userid"=' + "'" + $user.id + "') and " + '"date" > ToDate("' + FormatDate(AdjustDate(Now(),-3,"month"),"DD.MM.YYYY") + '")'</param>
+          </source>
+        </sources>
+        <field name="number" type="string"  />
+      </change>
+      <add>
+        <member name="primaryKey">"userid,id,number"</member>
+        <field name="dogovor" type="string" />
+        <field name="ido" type="string" />
+      </add>
+    </modify>
+
+    <modify src="Delivery$items">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="Payment">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal">
+            <param name="readFilter">'"userid"=' + "'" + $user.id + "'"</param>
+          </source>
+        </sources>
+      </change>
+      <add>
+        <field name="userid" type="string" />
+        <member name="primaryKey">"userid,id,number"</member>
+      </add>
+    </modify>
+
+    <modify src="OrderProceeded">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal">
+            <param name="readFilter">'"userid"=' + "'" + $user.id + "'"</param>
+          </source>
+        </sources>
+      </change>
+      <add>
+        <field name="userid" type="string" />
+        <field name="phone" type="string" />
+        <event type="get">
+          <action name="ArchiveOrderProceededEx">$object.created;$object.type;$object.remark;$object.phone</action>
+        </event>
+      </add>
+    </modify>
+	<modify src="ArchiveOrderProceeded">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal">
+            <param name="readFilter">
+            '"userid"=' + "'" + $user.id + "' and created &gt;= ToDate('" + FormatDate(AdjustDate(Now(), -3, "day"),"DD.MM.YYYY") + "')"
+			</param>
+          </source>
+        </sources>
+      </change>
+      <add>
+        <field name="phone" type="string" />
+      </add>
+	</modify>
+	<modify src="Config">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+        <field name="value" type="string" width="4000" />
+      </change>
+    </modify>
+    <modify src="Agents">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+        <field name="id" type="string" />
+        <field name="name" type="string" />
+        <field name="login" type="string" width="30" />
+        <field name="password" type="string" width="30" />
+      </change>
+    </modify>
+
+    <modify src="Message">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal">
+            <param name="readFilter">'"userid" = ' + "'" + $user.id + "'"</param>
+          </source>
+        </sources>
+        <field name="message" type="string" width="4000"/>
+      </change>
+      <add>
+        <field name="date" type="timestamp" execOn="Put">Now()</field>
+        <field name="userid" type="string" execOn="Put">$user.id</field>
+      </add>
+    </modify>
+
+    <modify src="CommonMatrix">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+      <add>
+        <member name="primaryKey">"name"</member>
+        <field name="userid" type="string" />
+      </add>
+    </modify>
+    
+    <modify src="CommonMatrix$items">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+    </modify>
+    
+    <modify src="Matrix">
+      <change>
+        <sources>
+          <source name="SQLQuery">
+            <param name="stmt">
+              "select i.CommonMatrix$name as name, i.id as id from [CommonMatrix$items] as i
+              where i.[CommonMatrix$name] in (select name from  AgentMatrix where userid = '"+$user.id+"')
+              order by name"
+            </param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+    
+    <modify src="Matrix$items">
+      <change>
+        <sources>
+          <source name="SQLQuery">
+            <param name="keyFields">"name"</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="Returns">
+	<change>
+	<sources>
+		<source name="SQTable" type="internal" />
+	</sources>
+	</change>
+      <add>
+        <event type="put">
+          <action name="WriteToLog">$object.type;$object.created</action>
+        </event>
+      </add>
+    </modify>
+
+    <modify src="Returns$items">
+      <add>
+        <field name="uid" type="string" data="" />
+        <field name="cause" type="string" />
+        <field name="items" type="collection">
+          <data>
+            <object name="ReturnDlv">
+              <sources>
+                <source name="SQTable" type="internal" />
+              </sources>
+
+              <field name="number" width="40" type="string" data="NUM_I"/>
+              <field name="date" type="date" data="DATE_I"/>
+              <field name="qty" type="number" prec="3" data="QTY_I"/>
+              <field name="cost" type="number" prec="2" data="COST_I"/>
+              <field name="docflag" width="1" type="number" execOn="Put">FirstItem($object)</field>
+            </object>
+          </data>
+        </field>
+        <member name="primaryKey">"uid"</member>
+      </add>
+    </modify>
+
+    <modify src="ReportList" >
+      <change>
+        <sources>
+          <source name="SQTable" type="internal">
+			<param name="readFilter">"prgType is null or prgType = ''"</param>
+		  </source>
+        </sources>
+      </change>
+	  <add>
+		<field name="prgType" type="string" />
+	  </add>
+    </modify>
+
+    <modify src="ReportRequest" >
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+      <add>
+        <field name="userid" type="string" execOn="Put">$user.id</field>
+      </add>
+    </modify>
+
+    <modify src="ReportAnswer" >
+      <change>
+        <sources>
+          <source name="SQTable" type="internal">
+            <param name="readFilter">'"userid"=' + "'" + $user.id + "'"</param>
+          </source>
+        </sources>
+
+        <member name="primaryKey">"userid,id"</member>
+        <field name="userid" type="string" />
+        <field name="report" type="binary" />
+      </change>
+    </modify>
+
+    <!-- Changse from Base Delivery !-->
+    <modify src="Route">
+      <add>
+        <field name="name" type="string" />
+        <field name="phone" type="string" />
+      </add>
+    </modify>
+
+    <modify src="RouteItem">
+      <add>
+        <field name="from" type="string" />
+        <field name="till" type="string" />
+      </add>
+    </modify>
+
+    <modify src="RouteItem$docs">
+      <add>
+		  <field name="userid" type="string" />
+		  <field name="created" type="timestamp" />
+		  <field name="dlvNumber" type="string" />
+      </add>
+    </modify>
+
+    <modify src="VisitSrc" dest="RoutePhotos">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal">
+            <param name="readFilter">
+              "routeItemId in (select RouteItem$itemid from RouteItem$docs where userid = '" + $user.id + "' and created &gt;= ToDate('" + FormatDate(AdjustDate(Now(), -10, "day"),"DD.MM.YYYY") + "'))"
+            </param>
+          </source>
+        </sources>
+      </change>
+      <add>
+        <memberArray name="index">"routeItemId"</memberArray>
+        <field name="routeItemId" type="string" />
+      </add>
+    </modify>
+  </objects>
+	<actions>
+    <action name="ArchiveOrderProceededEx">
+      <params>
+        <param name="created" />
+        <param name="type" />
+        <param name="remark" />
+        <param name="phone" />
+      </params>
+      <do>
+        <put object="ArchiveOrderProceeded" sourceType="internal">$object.userid=$user.id;$object.created=created;$object.type=type;$object.remark=remark;$object.phone=phone</put>
+      </do>
+    </action>
+	</actions>
+</serverDefs>

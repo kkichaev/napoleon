@@ -1,0 +1,309 @@
+/*
+ * Copyright (C), 2010, Гильдия Разработчиков
+ *
+ * Создать накладную
+ *
+ * kki   24/11/2010   creating
+ */
+package com.grsoft.napoleon;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Bundle;
+import android.text.Html;
+import android.text.SpannableString;
+import android.text.style.UnderlineSpan;
+import android.view.KeyEvent;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.grsoft.dataobjects.ConfigHelper;
+import com.grsoft.dataobjects.Dogovors;
+import com.grsoft.dataobjects.Order;
+import com.grsoft.dataobjects.OrderEx;
+import com.grsoft.dataobjects.Org;
+import com.grsoft.dataobjects.OrgAddress;
+import com.grsoft.dataobjects.OrgEx;
+import com.grsoft.dataobjects.ParamState;
+import com.grsoft.dataobjects.impl.ConfigImpl;
+import com.grsoft.dataobjects.impl.OrderImpl;
+import com.grsoft.dataobjects.impl.OrgImpl;
+import com.grsoft.napoleon.documents.OrderDoc;
+import com.grsoft.util.ExtrasConst;
+import com.grsoft.util.OnClickListenerToNotify;
+import com.grsoft.util.view.dialog_helper.DialogHelper;
+import com.grsoft.util.view.dialog_helper.KeyValue;
+import com.grsoft.util.view.dialog_helper.TimeHandler;
+import com.grsoft.view.BaseActivity;
+
+public class CreateOrder extends BaseActivity
+{
+	private OrderImpl order = (OrderImpl)OrderDoc.instance().create();
+	
+	private static final int DIALOG_DATE_PICKER_ID = 0;
+	private static final int DIALOG_TIME_PICKER_ID = 1;
+	
+	private boolean editMode = false;
+	
+//	private ArrayList<CharSequence> firms = new ArrayList<CharSequence>();
+//	private ArrayList<CharSequence> priceType = new ArrayList<CharSequence>();
+	
+//	DateHandler dateHandler;
+	TimeHandler timeHandler;
+	
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.createorder);
+		init();
+	}
+	
+	public static void open(Context context, OrderImpl order) { 
+		open(context, order, true); 
+	}
+	
+	public static void open(Context context, OrderImpl order, boolean editOldOrder) {
+		Intent i = new Intent(context, CreateOrder.class);
+		
+		i.putExtra(ExtrasConst.EDIT_MODE_STR, editOldOrder);
+		i.putExtra(ExtrasConst.DOC_ROW_ID_STR, order.getRowid());
+
+		context.startActivity(i);		
+	}
+	
+	private void init() {
+		editMode = getIntent().getBooleanExtra(ExtrasConst.EDIT_MODE_STR, true);
+		long orderRowId = getIntent().getLongExtra(ExtrasConst.DOC_ROW_ID_STR, ExtrasConst.INVALID_ID);
+				
+		order.read(orderRowId);
+		final OrderEx o = (OrderEx) order.getData();
+		
+		OrgImpl oi = new OrgImpl();
+		oi.getData().id = o.id;
+		oi.read();
+		oi.close();
+
+		OrgEx org = (OrgEx) oi.getData();
+		String ret = org.fullName();
+		if(Features.SHOW_ORG_ADDRESS && org.address.length() > 0 ) {
+			ret += "<br><i>" + org.address + "</i>";
+		}		
+		((TextView) findViewById(R.id.tvOrgName)).setText(Html.fromHtml(ret));
+
+		if( !editMode ) 
+			initOrder(o, org);
+
+		ConfigImpl config = new ConfigImpl();
+
+		Spinner spDog = (Spinner) findViewById(R.id.spDogovor);
+		DialogHelper.loadSpinnerFromDataObject(spDog, Dogovors.class, new DialogHelper.Selected<Dogovors>() {
+			@Override
+			public boolean isSelected(Dogovors object) {
+				return o.dogovor.equals(object.id);
+			}
+		}, true);
+
+		spDog.setEnabled(o.items.size() == 0);
+
+		EditText remark = (EditText)findViewById(R.id.edCreateOrderNotes);
+		remark.setText(o.remark);
+
+		((CheckBox)findViewById(R.id.cbSelfDelivery)).setChecked(o.selfDelivery > 0);
+		findViewById(R.id.tvDate).setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent i = new Intent(CreateOrder.this, CalendarActivity.class);
+				i.putExtra(ExtrasConst.DATE_TAG, order.getDate().getTime());
+				startActivityForResult(i, DIALOG_DATE_PICKER_ID);
+			}
+		});
+		
+//		dateHandler = new DateHandler((TextView)findViewById(R.id.tvDate), o.date, DIALOG_DATE_PICKER_ID);
+		timeHandler = new TimeHandler((TextView)findViewById(R.id.tvTime), o.date, DIALOG_TIME_PICKER_ID);
+		
+		View btnOK = findViewById(R.id.btnOK);
+		btnOK.setEnabled(order.isEditable());
+		btnOK.setOnClickListener(new OKClickListener());
+
+        findViewById(R.id.btnCancel).setOnClickListener(new CancelClickListener());
+		refreshDate();
+	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if( data != null && requestCode == DIALOG_DATE_PICKER_ID ) {
+			Date curDate = new Date();
+			long ct = data.getExtras().getLong(ExtrasConst.DATE_TAG, curDate.getTime());
+			Date newDate = new Date(ct);
+			order.getData().date = newDate;
+			refreshDate();
+		}
+	}
+	
+	private void refreshDate() {
+		SimpleDateFormat sd = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());		
+		((TextView)findViewById(R.id.tvDate)).setText(sd.format(order.getDate()));		
+	}
+
+	/**
+	 * инициализация дополнительных полей заявки (индивидуально для проекта)
+	 * @param o
+	 */
+	private void initOrder(Order o, Org org) {
+		o.sumType = org.costype;
+		
+		switch(ConfigHelper.getDateType()){
+		case workday:
+			dateworkday(o);
+			break;
+		case nextday:
+			datenextday(o);
+			break;
+		default:
+			break;
+		}
+	}
+	
+	private void datenextday(Order o) {
+		Calendar c = Calendar.getInstance();
+		c.setTime(o.date);
+		c.add(Calendar.DAY_OF_MONTH, 1);
+		o.date = c.getTime();	
+	}
+
+	private void dateworkday(Order o) {
+		Calendar c = Calendar.getInstance();
+		c.setTime(o.date);
+		c.add(Calendar.DAY_OF_MONTH, 1);
+		
+		if( c.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY )
+			c.add(Calendar.DAY_OF_MONTH, 1);
+		
+		o.date = c.getTime();
+	}
+
+	@Override
+	protected Dialog onCreateDialog(int id) {
+		switch(id) {
+//			case DIALOG_DATE_PICKER_ID:
+//				return dateHandler.createDialog();
+			case DIALOG_TIME_PICKER_ID:
+				return timeHandler.createDialog();
+		}
+		return super.onCreateDialog(id);
+	}
+	
+	@Override
+	protected void onStop() {
+		order.close();
+		super.onStop();
+	}
+
+	class CancelClickListener extends OnClickListenerToNotify {
+		@Override
+		public void onClick(View v) {
+			super.onClick(v);
+			deleteEmptyOrder();			
+			finish();
+		}
+	}
+	
+	private void deleteEmptyOrder() {
+		if(!editMode) {
+			if( order.getData().items == null || order.getData().items.size() == 0 )
+				order.delete();
+		}
+	}
+	
+	class OKClickListener extends OnClickListenerToNotify {
+		@Override
+		public void onClick(View v) {
+			super.onClick(v);
+
+			Spinner spDog = (Spinner) findViewById(R.id.spDogovor);
+			Dogovors sel = (Dogovors) spDog.getSelectedItem();
+			if(sel == null || sel.id.length() == 0) {
+				Toast.makeText(CreateOrder.this, "Необходимо выбрать договор", Toast.LENGTH_LONG).show();
+				return;
+			}
+			okDone(false);
+		}
+		
+		private void okDone(boolean updateSumType) {
+			OrderEx o = (OrderEx) order.getData();
+			o.date = timeHandler.adjustTime(o.date);
+
+			if (o.created == null)
+				o.created = new Date();
+			Spinner spDog = (Spinner) findViewById(R.id.spDogovor);
+			Dogovors sd = (Dogovors) spDog.getSelectedItem();
+			if(sd != null) {
+				o.dogovor = sd.id;
+				o.prcType = sd.priceID;
+			}
+
+			o.selfDelivery = ((CheckBox)findViewById(R.id.cbSelfDelivery)).isChecked() ? 1 : 0;
+
+			EditText remark = (EditText)findViewById(R.id.edCreateOrderNotes);
+			o.remark = remark.getText().toString();
+			
+			order.write();
+			
+			if(!editMode)
+				Warehouse.open(CreateOrder.this, order, false);
+			
+			finish();
+		}
+		
+		private void askToApplyNewSumType(Context context, final int newSumType){
+			AlertDialog.Builder builder = new AlertDialog.Builder(context);
+			builder.setTitle("Внимание");
+			builder.setMessage("Тип цены был изменен, пересчитать заказ?");
+
+			builder.setPositiveButton("Пересчитать", new DialogInterface.OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					okDone(true);
+				}
+			});
+			
+			builder.setNegativeButton("Оставить", new DialogInterface.OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					okDone(false);
+				}
+			});
+			
+			builder.create().show();
+		}
+	}
+	
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+			if (keyCode == KeyEvent.KEYCODE_BACK){
+				deleteEmptyOrder();
+				finish();
+				return true;
+			}else
+				return super.onKeyDown(keyCode, event);
+	}
+}

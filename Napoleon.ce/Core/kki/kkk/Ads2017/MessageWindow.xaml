@@ -1,0 +1,45 @@
+﻿<Window x:Class="Ads2017.MessageWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:p = "clr-namespace:Ads2017.Properties"
+        mc:Ignorable="d"
+        Title="{x:Static p:Resources.message}" 
+        Height="600" 
+        Width="600"
+        Loaded="Window_Loaded">
+   <Grid>
+      <Grid.RowDefinitions>
+         <RowDefinition Height="Auto"/>
+         <RowDefinition/>
+         <RowDefinition/>
+      </Grid.RowDefinitions>
+
+      <Grid Grid.Row="0"
+              Background="LightGray">
+
+         <Grid Margin="10">
+            <Grid.ColumnDefinitions>
+               <ColumnDefinition/>
+               <ColumnDefinition Width="40"/>
+               <ColumnDefinition Width="70"/>
+               <ColumnDefinition Width="10"/>
+               <ColumnDefinition Width="70"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0" Text="{Binding Path=Recipient, 
+                RelativeSource={RelativeSource AncestorType={x:Type Window}},
+                StringFormat={x:Static p:Resources.message_for}}"/>
+            <TextBlock Grid.Column="1" Text="{Binding Path=Remains, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"/>
+            <Button Grid.Column="2" Content="{x:Static p:Resources.send}" Click="Send_Click" />
+            <Button Grid.Column="4" Content="{x:Static p:Resources.history}" Click="History_Click"/>
+         </Grid>
+      </Grid>
+
+      <TextBox Grid.Row="1" TextChanged="TextBox_TextChanged" PreviewKeyDown="TextBox_PreviewKeyDown" AcceptsReturn="True" Text="{Binding Path=SndMessage, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"/>
+      <GridSplitter Grid.Row="1" Height="3" Background="LightGray" VerticalAlignment="Bottom" HorizontalAlignment="Stretch"/>
+      <TextBox Grid.Row="2" Background="LightGray" IsReadOnly="True"
+                 Text="{Binding Path=History, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"/>
+   </Grid>
+</Window>

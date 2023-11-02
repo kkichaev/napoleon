@@ -1,0 +1,151 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+  <objects>
+    <object name="Distributors">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"id"</member>
+      <field name="id" type="string" />
+      <field name="name" type="string" />
+      <field name="disc" type="number" prec="2" />
+    </object>
+
+    <modify src="ManagerPrice" dest="OldManagerPrice">
+       <add>
+          <field name="fid" type="string" data="folder"/>
+       </add>
+       
+      <change>
+         <sources>
+            <source name="DBFTableSet">
+               <param name="userTable">"W"</param>
+               <param name="commonTable">"WAREHOUS"</param>
+            </source>
+         </sources>
+      </change>
+    </modify>
+    
+    <modify src="Price">
+      <change>
+         <sources>
+            <source name="SQTable" type="internal" />
+         </sources>
+      </change>
+      
+      <add>
+         <member name="primaryKey">"id"</member>
+         <field name="fid" type="string" data="folder"/>
+         <field name="items" type="collection">
+            <data>
+               <object name="PriceItem">
+                  <sources>
+                     <source name="SQTable" type="internal" />
+                  </sources>
+                  
+                  <field name="id" type="string" />
+                  <field name="qty" type="number" prec="3" />
+                  <field name="cost" type="number" prec="2" />
+               </object>
+            </data>
+         </field>
+         <field name="userid" type="string"/>
+      </add>
+    </modify>
+
+    <modify src="Order">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+      <add>
+        <field name="distr" type="string" width="30" />
+        <event type="put">
+          <action name="WriteToLog">$object.type;$object.created</action>
+        </event>
+      </add>
+    </modify>
+
+    <modify src="Order$items">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="Returns">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+      <add>
+        <field name="distr" type="string" width="30" />
+        <event type="put">
+          <action name="WriteToLog">$object.type;$object.created</action>
+        </event>
+      </add>
+    </modify>
+
+    <modify src="Returns$items">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+    </modify>
+    
+      <modify src="CommonOrgs" dest="OldOrgs">
+         <change>
+           <sources>
+             <source name="DBFTableSet">
+               <param name="userTable">"ORGS"</param>
+               <param name="commonTable">"ORGS"</param>
+             </source>
+           </sources>
+         </change>
+      </modify>
+      
+      <modify src="Org">
+         <change>
+            <sources>
+               <source name="SQTable" type="internal">
+                  <param name="readFilter">"userid='" + $user.id + "'"</param>
+               </source>
+            </sources>
+            <member name="primaryKey">"id"</member>
+         </change>
+      </modify>
+         
+      <modify src="Org" dest="CommonOrgs">
+         <change>
+            <sources>
+               <source name="SQTable" type="internal" />
+            </sources>
+            
+            <member name="primaryKey">"id"</member>
+         </change>
+      </modify>
+         
+      <modify src="Org$contacts">
+         <change>
+            <sources>
+               <source name="SQTable" type="internal">
+               </source>
+            </sources>
+         </change>
+      </modify>
+         
+      <modify src="CommonOrgs$contacts">
+         <change>
+            <sources>
+               <source name="SQTable" type="internal">
+               </source>
+            </sources>
+         </change>
+      </modify>
+  </objects>
+</serverDefs>

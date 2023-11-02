@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+ 	android:background="#FFFFFF"
+    android:orientation="vertical" >
+
+	<LinearLayout 
+		android:id="@+id/LinearLayout01" 
+		android:orientation="vertical"
+		android:layout_width="match_parent"
+		style="?header"
+		>
+
+		<TextView
+			android:text="Остатки на борту" 
+			android:id="@+id/tvOrgInfo"
+			style="?headerText"
+			android:textStyle="bold"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			 />
+	</LinearLayout>
+	<LinearLayout android:id="@+id/LinearLayout04"
+		android:layout_height="wrap_content"
+		android:layout_width="fill_parent"
+		android:orientation="horizontal"
+		android:layout_weight="0"
+		android:background="@color/black">
+		
+		<TextView android:id="@+id/NameTitle" 
+			android:layout_width="0dp"
+			android:layout_height="wrap_content" 
+			android:background="@color/white"
+			android:textColor="@color/black"
+			android:layout_margin="1dp"
+			android:layout_weight="1"
+			android:text="Название" />
+			
+		<TextView android:id="@+id/SumColumnTitle" 
+			android:layout_width="wrap_content" 
+			android:layout_height="wrap_content"
+			android:background="@color/white"
+			android:textColor="@color/black"
+			android:layout_margin="1dp"
+			android:minWidth="80dp" 
+			android:text="Количество" 
+			android:gravity="right"
+
+			 />
+	</LinearLayout>
+    
+    <ListView
+        android:id="@+id/lvItems"
+        android:layout_weight="1"
+        android:layout_width="fill_parent"
+        android:layout_height="0dip" >
+    </ListView>
+
+	<LinearLayout
+		android:id="@+id/linearLayout1"
+		android:layout_width="fill_parent"
+		style="?footer" >
+		
+        <ImageButton
+                android:id="@+id/btnPrint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/send"
+                android:src="@drawable/print"
+				style="?footerButton"/>
+        
+	    <ImageButton android:layout_width="wrap_content" 
+			android:layout_height="wrap_content" 
+			android:src="@drawable/send"
+			android:visibility="gone"
+			android:contentDescription="@string/send"
+			style="?footerButton"
+			android:id="@+id/btnSendDocList" />
+			
+		<TextView android:layout_height="wrap_content" 
+			android:textColor="@color/black" 
+			android:layout_width="fill_parent" 
+			android:layout_gravity="center_vertical" 
+			android:gravity="right" android:id="@+id/tvTotalSum"
+			style="?footerText"/>
+	</LinearLayout>
+</LinearLayout>

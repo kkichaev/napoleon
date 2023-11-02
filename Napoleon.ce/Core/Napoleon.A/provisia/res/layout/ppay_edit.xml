@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+    
+    <LinearLayout
+        android:id="@+id/LinearLayout01"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:background="@color/footer"
+        android:paddingBottom="10dp"
+        android:paddingTop="5dp" >
+
+        <TextView
+            android:id="@+id/tvOrg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scrollHorizontally="true"
+            android:text="OrgName"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+           	 />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0" >
+	    <TextView
+	        android:id="@+id/textView1"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+            android:textColor="@color/black"
+	        android:layout_weight="0"
+	        android:paddingLeft="4dp"
+            android:textSize="18sp"
+	        android:text="@string/date" />
+
+	    <TextView
+	        android:id="@+id/tvDate"
+	        android:layout_width="wrap_content"
+            android:textColor="@color/blue"
+	        android:paddingLeft="4dp"
+            android:textSize="18sp"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="0"
+	        android:text="TextView" />
+
+	    <TextView
+	        android:id="@+id/textView3"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+            android:textColor="@color/black"
+	        android:paddingLeft="4dp"
+            android:textSize="18sp"
+	        android:layout_weight="0"
+	        android:text="@string/sum" />
+
+	    <EditText
+	        android:id="@+id/edSum"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="0"
+	        android:ems="10" >
+
+	        <requestFocus />
+	    </EditText>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:gravity="center_vertical" >
+
+        <TextView
+            android:id="@+id/textView4"
+            android:textColor="@color/black"
+	        android:paddingLeft="4dp"
+	        android:paddingRight="4dp"
+            android:textSize="18sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Причина" />
+
+        <EditText
+            android:id="@+id/edCause"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10" />
+
+        <ImageButton
+            android:id="@+id/btnCause"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/pack_off" />
+
+    </LinearLayout>
+     <LinearLayout
+         android:background="@color/black"
+         android:id="@+id/LinearLayout04"
+         android:layout_width="fill_parent"
+         android:layout_height="wrap_content"
+          >
+
+         <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:background="@color/white"
+             android:layout_marginRight="1dp"
+             android:layout_marginBottom="1dp"
+             android:layout_weight="1"
+             android:paddingLeft="3dp"
+             android:text="Номер"
+             android:textColor="@color/black"
+             android:textSize="16sp"/>
+         
+         <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:background="@color/white"
+             android:layout_marginBottom="1dp"
+             android:layout_marginRight="1dp"
+             android:paddingLeft="3dp"
+             android:text="Накл/Оплата"
+             android:textColor="@color/black"
+             android:textSize="16sp"/>
+         
+         <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:background="@color/white"
+             android:layout_marginBottom="1dp"
+             android:layout_marginRight="1dp"
+             android:paddingLeft="3dp"
+             android:text="Сумма/Дней"
+             android:textColor="@color/black"
+             android:textSize="16sp"/>
+         
+         <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:background="@color/white"
+             android:layout_marginBottom="1dp"
+             android:paddingLeft="3dp"
+             android:text="Тип"
+             android:textColor="@color/black"
+             android:textSize="16sp"/>
+         
+     </LinearLayout>
+         
+    <ListView
+        android:id="@+id/lvItems"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@color/white" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/footer"
+        android:orientation="horizontal"
+        android:padding="7dp" >
+
+        <ImageButton
+            android:id="@+id/btnSend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="7dp"
+            android:src="@drawable/send"
+            />
+    </LinearLayout>
+    
+</LinearLayout>

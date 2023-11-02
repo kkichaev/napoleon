@@ -1,0 +1,86 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 29
+
+    defaultConfig {
+        applicationId "com.grsoft.napoleon"
+        minSdkVersion 15
+        targetSdkVersion 29
+        versionCode 22
+        versionName "22"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+        market {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions.encoding = 'windows-1251'
+
+    lintOptions {
+        checkReleaseBuilds false
+        //abortOnError false
+    }
+
+    signingConfigs {
+        release {
+            keyAlias 'grsoft'
+            keyPassword 'GrSoftNapoleon'
+            storeFile file(System.getenv('NAPOLEON_KEY'))
+            storePassword 'GrSoftNapoleon'
+        }
+
+        market {
+            keyAlias 'grnpl'
+            keyPassword 'GrSoftNapoleon'
+            storeFile file(System.getenv('GRNPL_KEY'))
+            storePassword 'GrSoftNapoleon'
+        }
+    }
+
+    buildTypes {
+        debug {
+            manifestPlaceholders.access_background_location = "android.permission.ACCESS_BACKGROUND_LOCATION"
+        }
+
+        release {
+            signingConfig signingConfigs.release
+            manifestPlaceholders.access_background_location = "android.permission.ACCESS_BACKGROUND_LOCATION"
+        }
+
+        market {
+            signingConfig signingConfigs.market
+            manifestPlaceholders.access_background_location = "fake.name"
+        }
+    }
+
+    applicationVariants.all {
+        variant ->
+            if (variant.buildType.name == "release")
+                variant.outputs.all {
+                    outputFileName = "KratosS.apk"
+                }
+            if (variant.buildType.name == "market")
+                variant.outputs.all {
+                    outputFileName = "NapoleonMarketDev4.apk"
+                }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation project(':base')
+
+    implementation 'androidx.appcompat:appcompat:1.0.0'
+
+}

@@ -1,0 +1,290 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.ashberrysoft.leadertask"
+    android:installLocation="auto"
+    android:versionCode="344"
+    android:versionName="14.5">
+
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
+    <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="com.android.vending.BILLING" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false"/>
+
+    <application
+        android:name="com.ashberrysoft.leadertask.application.LTApplication"
+        android:allowBackup="true"
+        android:largeHeap="true"
+        android:icon="@drawable/leadertask_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/leadertask.AppTheme.Light">
+
+        <meta-data android:name="android.support.VERSION" android:value="26.0.0" tools:replace="android:value" />
+        <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
+        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
+
+        <activity android:name="com.facebook.FacebookActivity"
+                  android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+                  android:label="@string/app_name" />
+        <activity
+            android:name=".activities.LoginActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.ashberrysoft.leadertask.day_calendar.DayCalendarActivity">
+        </activity>
+        <activity
+            android:name="com.ashberrysoft.leadertask.modern.activity.AccountActivity"
+            android:label="@string/app_name"/>
+        <activity
+            android:name=".activities.SettingsActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/app_name" />
+        <activity
+            android:name=".activities.FeaturesActivity"
+            android:label="@string/app_name"
+            android:theme="@style/leadertask.AppTheme.Light"
+            android:screenOrientation="user"
+            android:windowSoftInputMode="adjustPan">
+
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
+
+        <activity
+            android:name=".activities.SearchActivity"
+            android:label="@string/search"
+            android:theme="@style/leadertask.AppTheme.Light"
+            android:screenOrientation="user"
+            android:windowSoftInputMode="adjustPan">
+
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
+        <activity
+            android:name=".activities.WidgetActivity"
+            android:label="@string/app_name"
+            android:excludeFromRecents="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.LTmain.Transparent" >
+        </activity>
+        <activity
+            android:name="com.ashberrysoft.leadertask.modern.activity.SlidingActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.ashberrysoft.leadertask.modern.activity.EditTaskActivity"
+            android:label="@string/app_name"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name="com.ashberrysoft.leadertask.modern.activity.LoadingScreenActivity"
+            android:label="@string/app_name"
+            android:windowSoftInputMode="adjustResize" >
+        </activity>
+        <receiver android:name="com.ashberrysoft.leadertask.modern.activity.AddTaskWidget" >
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_create_task" />
+        </receiver>
+        <!--
+        <receiver android:name="com.ashberrysoft.leadertask.modern.activity.TodayTasksWidget" >
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_today_list" />
+        </receiver>
+
+        -->
+
+        <activity
+            android:name="com.ashberrysoft.leadertask.modern.activity.AddNewTaskWidgetActivity"
+            android:noHistory="true"
+            android:excludeFromRecents="true"
+            android:windowSoftInputMode="stateAlwaysVisible"
+            android:theme="@style/leadertask.Theme.AppCompat.Translucent" >
+
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="image/*" />
+            </intent-filter>
+
+           <intent-filter>
+               <action android:name="com.google.android.gms.actions.CREATE_NOTE" />
+               <category android:name="android.intent.category.VOICE"/>
+               <category android:name="android.intent.category.DEFAULT" />
+               <data android:mimeType="text/plain"/>
+           </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.INSERT" />
+                <category android:name="android.intent.category.VOICE"/>
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="vnd.android.cursor.dir/event" />
+            </intent-filter>
+
+ </activity>
+ <!-- [START gcm_receiver] -->
+        <receiver
+            android:name="com.google.android.gms.gcm.GcmReceiver"
+            android:exported="true"
+            android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+            </intent-filter>
+        </receiver>
+        <!-- [END gcm_receiver] -->
+
+        <receiver android:name=".widget.PhotoWidget" >
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="com.ashberrysoft.leadertask.widget.ACTION_WIDGET_CLICK_PHOTO" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_photo" />
+        </receiver>
+        <!-- <receiver android:name=".widget.TaskWidget" >
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="com.ashberrysoft.leadertask.widget.ACTION_WIDGET_CLICK_TASK" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_create_task" />
+        </receiver> -->
+        <service
+            android:name=".service.LeaderTaskService"
+            android:enabled="true" />
+        <service
+            android:name=".service.SyncService"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.content.SyncAdapter" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.content.SyncAdapter"
+                android:resource="@xml/syncadapter" />
+        </service>
+        <service
+            android:name=".service.AuthService"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.accounts.AccountAuthenticator" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.accounts.AccountAuthenticator"
+                android:resource="@xml/account" />
+        </service>
+
+        <service
+            android:name="com.ashberrysoft.leadertask.modern.service.TodayWidgetAdapterService"
+            android:permission="android.permission.BIND_REMOTEVIEWS">
+        </service>
+
+        <!-- [START instanceId_listener] -->
+        <service
+            android:name="com.ashberrysoft.leadertask.instance_sync.MyInstanceIDListenerService" >
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+        <!-- [END instanceId_listener] -->
+        <service
+            android:name="com.ashberrysoft.leadertask.instance_sync.MyFcmListenerService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+        <service
+            android:name="com.ashberrysoft.leadertask.instance_sync.LeaderTaskSyncService"
+            android:exported="true">
+        </service>
+        <receiver
+            android:name=".receivers.MyBroadcastReceiver"
+            android:permission="android.permission.RECEIVE_BOOT_COMPLETED">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name="com.ashberrysoft.leadertask.receivers.AlarmBroadcastReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.ashberrysoft.leadertask.modern.helper.TaskNotifyHelper.ACTION_SHOW_NOTIFICATION" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+        <provider
+            android:name=".providers.SyncProvider"
+            android:authorities="com.ashberrysoft.leadertask.providers.SyncProvider"
+            android:exported="false" />
+        <provider
+            android:name=".content_providers.LeaderTaskProvider"
+            android:authorities="com.ashberrysoft.leadertask"
+            android:exported="false" />
+        <!-- Used for Google Play Store Campaign Measurement-->
+        <receiver android:name="com.google.android.gms.analytics.CampaignTrackingReceiver"
+                  android:enabled="true"
+                  android:exported="true">
+            <intent-filter>
+                <action android:name="com.android.vending.INSTALL_REFERRER" />
+            </intent-filter>
+        </receiver>
+        <service android:name="com.google.android.gms.analytics.CampaignTrackingService"
+                 android:enabled="true"
+                 android:exported="false" />
+        <receiver android:name="com.ashberrysoft.leadertask.modern.activity.CloseTaskReceiver"/>
+        <receiver android:name="com.ashberrysoft.leadertask.modern.activity.TomorrowTaskReceiver"/>
+        <activity android:name="com.ashberrysoft.leadertask.modern.activity.LTPinActivity"/>
+    </application>
+
+</manifest>

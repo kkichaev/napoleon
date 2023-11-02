@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/mainSelectableItemBackground"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/univ_ab_height"
+    android:orientation="horizontal" >
+
+    <FrameLayout
+        android:layout_width="@dimen/univ_ab_height"
+        android:layout_height="@dimen/univ_ab_height">
+
+    <RelativeLayout
+        android:id="@+id/iv_img_container"
+        android:layout_width="@dimen/univ_ab_height"
+        android:layout_height="@dimen/univ_ab_height"
+        android:layout_marginLeft="5dp">
+
+        <ImageView
+            android:id="@+id/image_view"
+            android:layout_width ="@dimen/univ_ab_height"
+            android:layout_height="@dimen/univ_ab_height"
+            android:layout_gravity="center"
+            android:padding="8dp"/>
+
+        <ImageView
+            android:id="@+id/iv_img_custom"
+            android:layout_width="@dimen/univ_ab_height"
+            android:layout_height="@dimen/univ_ab_height"
+            android:layout_gravity="center"
+            android:padding="7dp"
+            android:visibility="gone"/>
+
+    </RelativeLayout>
+
+    </FrameLayout>
+    <TextView
+        android:id="@+id/text_view"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:ellipsize="end"
+        android:layout_marginLeft="10dp"
+        android:gravity="center_vertical"
+        android:padding="@dimen/univ_padding_small"
+        android:singleLine="true"
+        android:textSize="@dimen/text_size_simple" />
+
+</LinearLayout>

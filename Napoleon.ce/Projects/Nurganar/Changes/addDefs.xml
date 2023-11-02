@@ -1,0 +1,135 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+    <object name="Dogovor">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"DGV"</param>
+          <param name="commonTable">"DOGOVOR"</param>
+        </source>
+      </sources>
+
+      <field name="id" type="string" />
+      <field name="ido" type="string" />
+      <field name="name" type="string" />
+    </object>
+
+    <object name="Equip">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"EQU"</param>
+          <param name="commonTable">"EQUIP"</param>
+        </source>
+      </sources>
+
+      <field name="id" type="string" />
+      <field name="ido" type="string" />
+      <field name="name" type="string" />
+      <field name="number" type="string"/>
+      <field name="barcode" type="string"/>
+    </object>
+
+    <object name="InvEqu">
+      <sources>
+        <source name="DBFCatalogTable">
+          <param name="tableName">$object.table + $user.id</param>
+          <param name="catalog">"id"</param>
+          <param name="ordered">1</param>
+        </source>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="table">"CNR"</member>
+      <member name="primaryKey">"userid,created"</member>
+
+      <field name="userid" type="string" data="USER_ID" execOn="Put">$user.id</field>
+      <field name="created" type="timestamp" />
+      <field name="date" type="date" />
+      <field name="timeZone" type="number" />
+      <field name="serverTimeZone" type="number" data="S_TZ" execOn="Put" features="USE_TIMEZONE">ServerTimeZone()</field>
+      <field name="sended" type="timestamp" data="S_DATE" execOn="Put">Now()</field>
+      <field name="id" width="60" type="string" />
+      <field name="visitDoc" type="timestamp" data="" />
+
+      <field name="items" type="collection">
+        <data>
+          <object name="InvFrgItem">
+            <sources>
+              <source name="DBFCatalogItemTable"/>
+              <source name="SQTable" type="internal" />
+            </sources>
+
+            <field name="id" width="60" type="string" data="ID_I"/>
+            <field name="name" type="string"/>
+            <field name="number" type="string"/>
+            <field name="barcode" type="string" />
+            <field name="flags" type="number" prec="0" />
+            <field name="ordflag" width="1" type="number" execOn="Put">FirstItem($object)</field>
+            <field name="newItem" type="number" prec="0" />
+            <field name="check" type="number" prec="0" />
+            <field name="remark" type="string" width="100"/>
+          </object>
+        </data>
+      </field>
+
+      <field name="latitude" type="number" prec="4" />
+      <field name="longitude" type="number" prec="4" />
+
+      <events>
+        <event type="put">
+          <action name="WriteInternal">$object.type</action>
+          <action name="WriteToLog">$object.type;$object.date</action>
+        </event>
+      </events>
+    </object>
+    
+    <modify src="Order">
+      <add>
+        <field name="schetFact" type="number" width="1" data="S_FACT" />
+        <field name="dogovor" type="string" width="55" data="DG" />
+      </add>
+    </modify>
+    
+    <modify src="OrgLocation">
+      <change>
+        <sources>
+          <source name="DBFTable">
+            <param name="tableName">"ORGLOC"</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="ScriptDef">
+      <add>
+        <field name="filter" type="number" />
+        <field name="tareType" type="number" />
+      </add>
+    </modify>
+
+    <modify src="Price">
+      <add>
+        <field name="tareType" type="number" data="TT"/>
+      </add>
+    </modify>
+
+    <modify src="Visit">
+      <add>
+        <event type="put">
+          <action name="WriteInternal">$object.type</action>
+          <action name="WriteToLog">$object.type;$object.created</action>
+        </event>
+      </add>
+      <change>
+        <sources>
+          <source name="DBFCatalogTable">
+            <param name="tableName">"VIT" + $user.id</param>
+            <param name="catalog">"id"</param>
+            <param name="ordered">1</param>
+          </source>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+    </modify>
+	</objects>
+</serverDefs>

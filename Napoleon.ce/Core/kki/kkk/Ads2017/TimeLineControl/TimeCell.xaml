@@ -1,0 +1,51 @@
+﻿<UserControl x:Class="Ads2017.TimeCell"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Ads2017"
+             xmlns:p = "clr-namespace:Ads2017.Properties"
+             mc:Ignorable="d" 
+             d:DesignHeight="60" d:DesignWidth="300"
+             x:Name="TimeCellControl">
+    <Grid>
+        <Label 
+               BorderThickness="0, 0, 0.5, 0.5" 
+               HorizontalAlignment="Stretch" 
+               Background="AliceBlue"
+               x:Name="label">
+
+            <!--<Label.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" >
+                    <GradientStop Color="LightBlue" Offset="0" />
+                    <GradientStop Color="White" Offset="0.35" />
+                    <GradientStop Color="White" Offset="0.65" />
+                    <GradientStop Color="LightBlue" Offset="1" />
+                </LinearGradientBrush>
+            </Label.Background>-->
+            
+            <Label.Style>
+                <Style TargetType="Label">
+                    <Setter Property="BorderBrush" Value="Blue"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderBrush" Value="LightCoral"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>
+    </Grid>
+
+    <UserControl.CommandBindings>
+        <CommandBinding Command="{x:Static local:AdsCommands.Paste}" Executed="PastExecuted" CanExecute="CanPastExecuted"/>
+    </UserControl.CommandBindings>
+
+    <UserControl.ContextMenu>
+        <ContextMenu>
+            <MenuItem Header="{Binding Source={x:Static p:Resources.paste}}" 
+               Command="{x:Static local:AdsCommands.Paste}" 
+               CommandTarget="{Binding Path=PlacementTarget,RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}}}"/>
+        </ContextMenu>
+    </UserControl.ContextMenu>
+</UserControl>

@@ -1,0 +1,211 @@
+<resources>
+    
+    <string-array name="engine_timer_entryvalues">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+    </string-array>
+    
+    <string-array name="state_report_on_move_entryvalues">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+        <item>17</item>
+        <item>18</item>
+        <item>19</item>
+        <item>20</item>
+        <item>21</item>
+        <item>22</item>
+        <item>23</item>
+        <item>24</item>
+        <item>25</item>
+        <item>26</item>
+        <item>27</item>
+        <item>28</item>
+        <item>29</item>
+        <item>30</item>
+        <item>31</item>
+        <item>32</item>
+        <item>33</item>
+        <item>34</item>
+        <item>35</item>
+        <item>36</item>
+        <item>37</item>
+        <item>38</item>
+        <item>39</item>
+        <item>40</item>
+        <item>41</item>
+        <item>42</item>
+        <item>43</item>
+        <item>44</item>
+        <item>45</item>
+        <item>46</item>
+        <item>47</item>
+        <item>48</item>
+        <item>49</item>
+        <item>50</item>
+        <item>51</item>
+        <item>52</item>
+        <item>53</item>
+        <item>54</item>
+        <item>55</item>
+        <item>56</item>
+        <item>57</item>
+        <item>58</item>
+        <item>59</item>
+        <item>60</item>
+    </string-array>
+    
+    <string-array name="state_report_on_move_entryvalues_gsm510">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>15</item>
+        <item>20</item>
+        <item>30</item>
+        <item>45</item>
+        <item>60</item>
+    </string-array>
+    
+    <string-array name="entryvalues_system_type">
+        <item>sobrgsm_sobrg1220</item>
+        <item>domonline</item>
+        <item>chip0103</item>
+        <item>g0103</item>
+        <item>sobrchip</item>
+        <item>sobrgsm510</item>
+    </string-array>
+    
+    <string-array name="entryvalues_phone_status">
+        <item>base_value</item>
+        <item>not_base_value</item>
+    </string-array>
+    
+    <string-array name="entryvalues_command_123">
+        <item>adz_value</item>
+        <item>ppp_on_value</item>
+        <item>siren_value</item>
+        <item>gate_value</item>
+        <item>custom_value</item>
+        <item>disable_value</item>
+    </string-array>
+    
+    <string-array name="entryvalues_command_123_1">
+        <item>adz_value</item>
+        <item>ppp_on_value</item>
+        <item>siren_value</item>
+        <item>custom_value</item>
+        <item>disable_value</item>
+    </string-array>
+    
+    <string-array name="entryvalues_command_123_2">
+        <item>siren_value</item>
+        <item>gate_value</item>
+        <item>custom_value</item>
+        <item>disable_value</item>
+    </string-array>
+    
+    <string-array name="entryvalues_command_456">
+        <item>ppp_on_value</item>
+        <item>siren_value</item>
+        <item>execution_unit_on_value</item>
+        <item>gate_value</item>
+        <item>custom_value</item>
+        <item>disable_value</item>
+    </string-array>
+    
+    <string-array name="entryvalues_command_456_1">
+        <item>ppp_on_value</item>
+        <item>siren_value</item>
+        <item>execution_unit_on_value</item>
+        <item>custom_value</item>
+        <item>disable_value</item>
+    </string-array>
+    
+     <string-array name="entryvalues_command_456_2">
+        <item>siren_value</item>
+        <item>execution_unit_on_value</item>
+        <item>gate_value</item>
+        <item>custom_value</item>
+        <item>disable_value</item>
+    </string-array>
+    
+    <string-array name="entryvalues_command_789">
+        <item>ppp_off_value</item>
+        <item>execution_unit_off_value</item>
+        <item>custom_value</item>
+        <item>disable_value</item>
+    </string-array>
+    
+    <string-array name="entryvalues_command_789_1">
+        <item>execution_unit_off_value</item>
+        <item>custom_value</item>
+        <item>disable_value</item>
+    </string-array>
+    
+    <string-array name="entryvalues_command_666">
+        <item>blocking_value</item>
+        <item>search_mode_on_value</item>
+        <item>disable_value</item>
+    </string-array>
+    
+    <string-array name="entryvalues_command_777">
+        <item>heater_on_value</item>
+        <item>gate_value</item>
+        <item>custom_value</item>
+        <item>disable_value</item>
+    </string-array>
+    
+    <string-array name="entryvalues_command_999">
+        <item>blocking_off_value</item>
+        <item>heater_off_value</item>
+        <item>search_mode_off_value</item>
+        <item>custom_value</item>
+        <item>disable_value</item>
+    </string-array>
+    
+    <string-array name="entryvalues_command_999_1">
+        <item>heater_off_value</item>
+        <item>custom_value</item>
+        <item>disable_value</item>
+    </string-array>
+    
+    <string-array name="entryvalues_command_09">
+        <item>call_and_sms_value</item>
+        <item>call_only_value</item>
+        <item>disable_value</item>
+    </string-array>
+    
+    <string-array name="entryvalues_command_911">
+        <item>doors_unlock_value</item>
+        <item>custom_value</item>
+        <item>disable_value</item>
+    </string-array>
+
+</resources>

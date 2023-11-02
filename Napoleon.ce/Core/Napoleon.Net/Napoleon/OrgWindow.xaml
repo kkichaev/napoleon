@@ -1,0 +1,104 @@
+﻿<RibbonWindow 
+    x:Class="Napoleon.OrgWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:Napoleon"
+    mc:Ignorable="d"
+    Title="Контрагенты" 
+    Height="600" Width="800"
+    Icon="Images\napoleon.ico" Loaded="RibbonWindow_Loaded">
+    
+    <RibbonWindow.CommandBindings>
+        <CommandBinding Command="{x:Static local:NapoleonCommands.Refresh}" Executed="RefreshExecuted"/>
+    </RibbonWindow.CommandBindings>
+
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Ribbon Grid.Row="0" SelectedIndex="0">
+                <Ribbon.ApplicationMenu>
+                    <RibbonApplicationMenu Visibility="Collapsed"/>
+                </Ribbon.ApplicationMenu>
+                <RibbonTab 
+                    Header="Управление" 
+                    KeyTip="H">
+
+                    <RibbonGroup>
+                        <RibbonButton
+                            x:Name="btnRefresh" 
+                            LargeImageSource="Images\refresh.png" 
+                            Label="Обновить" 
+                            KeyTip="F5" 
+                            Command="local:NapoleonCommands.Refresh"
+                            ToolTipTitle ="Обновить (F5)"
+                            ToolTipDescription="Загрузить данные с сервера"/>
+                    </RibbonGroup>
+
+                    <RibbonGroup>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Grid.Column="0"   Content="Поиск" FontSize="10"/>
+                            <TextBox Grid.Column="1"  x:Name="tbSearch" Width="200" TextChanged="TbSearch_TextChanged"/>
+
+                            <RibbonButton
+                                Grid.Column="2"
+                                x:Name="btnSearchClear" 
+                                SmallImageSource="Images\clear.png" 
+                                Click="BtnSearchClear_Click"
+                                ToolTip ="Очисить поиск"/>
+                        </Grid>
+                    </RibbonGroup>
+                </RibbonTab>
+            </Ribbon>
+
+            <DataGrid 
+                Grid.Row="1" 
+                Grid.Column="0" 
+                Grid.ColumnSpan="2" 
+                x:Name="grid" 
+                AutoGenerateColumns="False" 
+                IsReadOnly="True">
+
+                <DataGrid.ColumnHeaderStyle>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="ContentTemplate">
+                            <Setter.Value>
+                                <DataTemplate>
+                                    <TextBlock TextWrapping="Wrap" Text="{Binding}"></TextBlock>
+                                </DataTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </DataGrid.ColumnHeaderStyle>
+
+                <DataGrid.Resources>
+                    <Style TargetType="DataGridRow">
+                        <EventSetter Event="MouseDoubleClick" Handler="Row_DoubleClick"/>
+                    </Style>
+                    <DataGridLength x:Key="WeekColmnWidth">24</DataGridLength>
+                </DataGrid.Resources>
+                <DataGrid.ContextMenu>
+                    <RibbonContextMenu>
+                        <MenuItem Header="Заявка на возврат" Command="{Binding}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}" />
+                    </RibbonContextMenu>
+                </DataGrid.ContextMenu>
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Контрагент" x:Name="Column2" Binding="{Binding Name}" Width="*"/>
+                    <DataGridTextColumn Header="АдресДоставки" x:Name="Column3" Binding="{Binding Address}" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </Grid>
+</RibbonWindow>

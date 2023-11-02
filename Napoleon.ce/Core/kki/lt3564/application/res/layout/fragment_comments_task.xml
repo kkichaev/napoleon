@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/cont_comment"
+            android:layout_width="213dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:paddingRight="5dp">
+
+            <com.ashberrysoft.leadertask.views.CustomEditTextNew
+                android:id="@+id/comments_new"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="3dp"
+                android:layout_toLeftOf="@+id/add_comment"
+                android:background="@null"
+                android:hint="@string/properties_enter_comment"
+                android:inputType="textMultiLine|textCapSentences"
+                android:maxLines="3"
+                android:padding="@dimen/univ_padding"
+                android:singleLine="false"
+                android:textCursorDrawable="@null"/>
+
+            <Button
+                android:id="@+id/add_comment"
+                android:layout_width="70dp"
+                android:layout_height="40dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/selector_bg_btn_orange"
+                android:text="@string/add_comment"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_simple"
+                android:layout_alignParentTop="true"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

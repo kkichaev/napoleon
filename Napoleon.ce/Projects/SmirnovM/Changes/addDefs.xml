@@ -1,0 +1,54 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+   <objects>
+      <object name="Org">
+         <sources>
+            <source name="DBFTableSet">
+               <param name="userTable">"O"</param>
+               <param name="commonTable">"ORGS"</param>
+               <param name="userFieldName">"group"</param>
+            </source>
+         </sources>
+
+         <field name="id" type="string" />
+         <field name="name" type="string" />
+         <field name="address" type="string" />
+         <!-- <field name="color" type="hex" /> -->
+         <field name="color" type="number" execOn="Get">GetColor($object.id,"org","face",0)</field>
+         <field name="contacts" type="collection">
+            <data>
+               <object name="Contact">
+                  <sources>
+                     <source name="DBFTableSet">
+                        <param name="userTable">"C"</param>
+                        <param name="commonTable">"CONTACTS"</param>
+                        <param name="filter">"[ID] = $parent.id"</param>
+                        <param name="userFieldName">"group"</param>
+                     </source>
+                  </sources>
+
+                  <field name="name" data="FIO" type="string" />
+                  <field name="phone" type="string" />
+               </object>
+            </data>
+         </field>
+         <field name="stop" type="number" hidden="true" />
+         <field name="flags" type="number" execOn="Get">EncodeFlag($object.stop,2)</field>
+
+         <field name="longitude" type="number" prec="5" data="LONG" />
+         <field name="latitude" type="number" prec="5" data="LAT" />
+         <field name="costype" type="number" />
+         <field name="userid" type="string" />
+      </object>
+      <modify src="Order">
+         <change>
+            <field name="id" width="50" type="string" />
+         </change>
+      </modify>
+      <modify src="OrgFolder$items">
+         <change>
+            <field name="name" type="string" data="ID" width="50"/>
+         </change>
+      </modify>
+   </objects>
+</serverDefs>

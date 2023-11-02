@@ -1,0 +1,500 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "NapoleonRes.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "resdefce.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Russian resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_RUS)
+#ifdef _WIN32
+LANGUAGE LANG_RUSSIAN, SUBLANG_DEFAULT
+#pragma code_page(1251)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_APP                 ICON                    "program.ico"
+IDC_BACK                ICON                    "back.ico"
+IDC_FIND                ICON                    "find.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDC_DEL MENU 
+BEGIN
+    POPUP "LocalMenu"
+    BEGIN
+        MENUITEM "&Удалить",                    IDC_DEL
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_MAIN_FRAME ACCELERATORS 
+BEGIN
+    VK_ESCAPE,      IDC_BACK,               VIRTKEY, NOINVERT
+    VK_F1,          IDC_F1,                 VIRTKEY, NOINVERT
+    VK_RETURN,      IDOK,                   VIRTKEY, NOINVERT
+    VK_F4,          IDC_F4,                 VIRTKEY, NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDR_MAIN_FRAME DIALOG  0, 0, 152, 166
+STYLE DS_SETFONT | WS_POPUP | WS_SYSMENU
+FONT 8, "Microsoft Sans Serif"
+BEGIN
+    PUSHBUTTON      "Работа",IDD_ORDER_LIST,23,90,86,18
+    PUSHBUTTON      "Выход",IDC_QUIT,23,113,86,19
+    LTEXT           "Наполеон ""Магазин""",IDC_STATIC,20,135,111,8,SS_NOPREFIX
+    LTEXT           "Версия 3.0.0.1",IDC_VERSION,20,145,111,8
+    COMBOBOX        IDC_AGENTS,23,44,103,89,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Ревизор",IDC_STATIC,23,34,30,8
+    EDITTEXT        IDC_PASSWORD,23,69,103,14,ES_PASSWORD | ES_AUTOHSCROLL
+    LTEXT           "Пароль",IDC_STATIC,25,60,26,8
+    COMBOBOX        IDC_SERVERS,23,19,103,85,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Сервер",IDC_STATIC,23,8,26,8
+END
+
+IDC_NET_PREFERENCE_DIALOG DIALOG  0, 0, 125, 104
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    EDITTEXT        IDC_LOGIN,35,2,78,14,ES_AUTOHSCROLL
+    RTEXT           "логин",-1,5,4,27,8
+    EDITTEXT        IDC_PWD,35,17,78,14,ES_PASSWORD | ES_AUTOHSCROLL
+    RTEXT           "пароль",-1,5,18,27,8
+    EDITTEXT        IDC_IP,35,32,78,14,ES_AUTOHSCROLL
+    RTEXT           "IP 1",IDC_NET_PREFERENCE_DIALOG,5,33,27,8
+    EDITTEXT        IDC_IP2,35,47,78,14,ES_AUTOHSCROLL
+    RTEXT           "IP 2",-1,5,48,27,8
+    EDITTEXT        IDC_PORT,35,62,30,13,ES_AUTOHSCROLL | ES_NUMBER
+    RTEXT           "порт",-1,5,63,27,8
+    PUSHBUTTON      "Записать",IDOK,0,90,50,14
+    PUSHBUTTON      "Отмена",IDCANCEL,58,90,50,14
+END
+
+IDD_ABOUTBOX DIALOG  0, 0, 156, 129
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CENTER | WS_POPUP | WS_CAPTION
+EXSTYLE 0x80000000L
+CAPTION "О программе Наполеон"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    ICON            IDI_APP,-1,6,11,20,20,SS_REALSIZEIMAGE
+    LTEXT           "Наполеон ""Магазин""",-1,34,6,111,8,SS_NOPREFIX
+    LTEXT           "(C) 2007-2013, Гильдия Разработчиков",IDC_COPYRIGHT,3,51,152,13
+    LTEXT           "Версия 3.0.0.1",IDC_VERSION,34,16,111,8
+    LTEXT           "http://www.grsoft.ru",-1,3,79,70,8
+    LTEXT           "тел. (4852) 599-368",-1,3,65,68,8
+END
+
+IDD_ENTER_VALUE DIALOG  0, 0, 69, 86
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Значение"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    EDITTEXT        IDD_ENTER_VALUE,2,6,64,12,ES_AUTOHSCROLL | ES_NOHIDESEL
+    PUSHBUTTON      "7",IDC_DIG_7,2,22,17,14
+    PUSHBUTTON      "8",IDC_DIG_8,18,22,17,14
+    PUSHBUTTON      "9",IDC_DIG_9,34,22,17,14
+    PUSHBUTTON      "4",IDC_DIG_4,2,35,17,14
+    PUSHBUTTON      "5",IDC_DIG_5,18,35,17,14
+    PUSHBUTTON      "6",IDC_DIG_6,34,35,17,14
+    PUSHBUTTON      "1",IDC_DIG_1,2,47,17,14
+    PUSHBUTTON      "2",IDC_DIG_2,18,47,17,14
+    PUSHBUTTON      "3",IDC_DIG_3,34,47,17,14
+    PUSHBUTTON      "0",IDC_DIG_0,2,60,33,14
+    PUSHBUTTON      ".",IDC_DIG_PT,34,60,17,14
+    PUSHBUTTON      "<-",IDC_DIG_BS,50,22,17,27
+    PUSHBUTTON      "ОК",IDOK,50,47,17,27
+END
+
+IDD_ADMPWD DIALOG  0, 0, 157, 77
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Введите пароль"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    EDITTEXT        IDC_PWD,7,7,143,14,ES_PASSWORD | ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,7,56,50,14
+    PUSHBUTTON      "Отмена",IDCANCEL,63,56,50,14
+END
+
+IDD_SYNC DIALOG  0, 0, 144, 134
+STYLE DS_SETFONT | WS_POPUP | WS_SYSMENU
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "",IDC_STATIC,65,0,4,8
+    LTEXT           "",IDC_STATIC,15,0,4,8
+    CONTROL         "Очистка базы при приеме",IDC_CLEAR_BASE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,14,5,118,18
+    PUSHBUTTON      "Начать",IDOK,14,28,69,22
+    PUSHBUTTON      "Настройки",IDC_PREFERENCE,14,55,69,22
+END
+
+IDD_PRICE_LIST DIALOG  0, 0, 120, 134
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_SYSMENU
+FONT 8, "MS Shell Dlg"
+BEGIN
+    CONTROL         "",IDC_TABLE,"SysListView32",LVS_OWNERDRAWFIXED | LVS_ALIGNLEFT | LVS_OWNERDATA | WS_TABSTOP,0,14,120,106
+    CONTROL         "Back",IDC_BACK,"Button",BS_OWNERDRAW | WS_TABSTOP,182,30,22,22
+    CONTROL         "Find",IDC_FIND,"Button",BS_OWNERDRAW | WS_TABSTOP,22,30,22,22
+    CONTROL         "ChgRw",IDC_SHOW_2_ROW,"Button",BS_OWNERDRAW | WS_TABSTOP,22,30,22,22
+END
+
+IDD_ORDER_LIST DIALOG  0, 0, 120, 134
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_SYSMENU
+FONT 8, "MS Shell Dlg"
+BEGIN
+    EDITTEXT        IDC_BARCODE,4,4,84,14,ES_AUTOHSCROLL
+    PUSHBUTTON      ">",IDC_FIND,91,4,23,14
+    EDITTEXT        IDC_QTY,4,21,51,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Сохранить",IDC_SAVE,64,21,50,14
+    CONTROL         "Автосохранение",IDC_AUTO_SAVE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,38,110,10
+    LTEXT           "",IDC_INFO,4,55,110,38
+    RTEXT           "ШК:",IDC_BAR,40,104,74,8
+    LTEXT           "Код:",IDC_ID,4,104,50,8
+    LTEXT           "Общее кол-во:",IDC_ORDER_QTY,4,116,110,8
+END
+
+IDD_CTRL_DOC_LIST DIALOG  0, 0, 120, 134
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_SYSMENU
+FONT 8, "MS Shell Dlg"
+BEGIN
+    CONTROL         "",IDC_TABLE,"SysListView32",LVS_OWNERDRAWFIXED | LVS_ALIGNLEFT | LVS_OWNERDATA | WS_TABSTOP,0,24,120,109
+    PUSHBUTTON      "Отправить",IDC_SEND,3,5,44,14
+END
+
+IDD_ROUTE_LIST DIALOG  0, 0, 120, 134
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_SYSMENU
+FONT 8, "MS Shell Dlg"
+BEGIN
+    CONTROL         "",IDC_TABLE,"SysListView32",LVS_OWNERDRAWFIXED | LVS_ALIGNLEFT | LVS_OWNERDATA | WS_TABSTOP,0,42,120,74
+    LTEXT           "Документ",IDC_DOC,3,4,34,10
+    PUSHBUTTON      "Удл.",IDC_REMOVE,96,5,24,14
+END
+
+IDD_QTY DIALOG  0, 0, 140, 75
+STYLE DS_SETFONT | DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Введите количество"
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "Название",IDC_ITEM_NAME,2,1,138,20
+    LTEXT           "Кол-во",IDC_QTY_LABEL,2,31,28,10
+    EDITTEXT        IDC_QTY,34,29,38,12,ES_AUTOHSCROLL | ES_NOHIDESEL
+    PUSHBUTTON      "ОК",IDOK,2,61,36,14
+    PUSHBUTTON      "Отмена",IDCANCEL,39,61,36,14
+END
+
+IDD_EDIT_PAYMENT DIALOG  0, 0, 140, 120
+STYLE DS_SETFONT | DS_CENTER | WS_POPUP | WS_CAPTION
+CAPTION "Сумма оплаты"
+FONT 14, "Tahoma"
+BEGIN
+    COMBOBOX        IDC_COUPON,50,32,78,73,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Дальше >",IDOK,2,106,49,14
+    PUSHBUTTON      "Отмена",IDCANCEL,85,106,54,14
+    LTEXT           "Сумма",IDC_STATIC,7,6,36,9
+    LTEXT           "Скидка",IDC_STATIC,7,17,36,9
+    LTEXT           "Купон",IDC_STATIC,7,33,36,8
+    LTEXT           "К оплате",IDC_STATIC,7,48,36,8
+    RTEXT           "Статический",IDC_SUM,50,6,45,8
+    RTEXT           "Статический",IDC_DISCOUNT,50,17,45,8
+    RTEXT           "Статический",IDC_PAY,50,48,45,8
+END
+
+IDD_PAY_TYPE DIALOG  0, 0, 140, 120
+STYLE DS_SETFONT | DS_CENTER | WS_POPUP | WS_CAPTION
+CAPTION "Вид оплаты"
+FONT 14, "Tahoma"
+BEGIN
+    PUSHBUTTON      "Наличные",IDC_PAY_CHEK,67,16,59,20
+    PUSHBUTTON      "Карта",IDC_PAY_CARD,67,46,59,20
+    PUSHBUTTON      "< Назад",IDCANCEL,67,77,59,20
+    LTEXT           "Выберите способ оплаты заказа",IDC_STATIC,12,30,35,37
+END
+
+IDD_PAYMENT DIALOG  0, 0, 140, 120
+STYLE DS_SETFONT | DS_CENTER | WS_POPUP | WS_CAPTION
+CAPTION "Оплата наличными"
+FONT 14, "Tahoma"
+BEGIN
+    EDITTEXT        IDC_CASH,65,32,51,14,ES_RIGHT | ES_AUTOHSCROLL
+    PUSHBUTTON      "Чек",IDOK,0,100,59,20
+    PUSHBUTTON      "< Назад",IDCANCEL,81,100,59,20
+    LTEXT           "Сумма",IDC_STATIC,28,14,23,8
+    RTEXT           "Статический",IDC_SUM,71,14,45,8
+    LTEXT           "Сдача",IDC_STATIC,29,54,22,8
+    RTEXT           "Статический",IDC_CHANGE,71,54,45,8
+    LTEXT           "Получено",IDC_STATIC,16,35,35,8
+END
+
+IDD_UNDLV DIALOG  0, 0, 169, 100
+STYLE DS_SETFONT | DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Укажите причину"
+FONT 14, "Tahoma"
+BEGIN
+    LTEXT           "Причина",IDC_STATIC,2,14,35,10
+    COMBOBOX        IDC_CAUSE,38,14,125,41,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "ОК",IDOK,2,86,36,14
+    PUSHBUTTON      "Отмена",IDCANCEL,39,86,36,14
+END
+
+IDD_INPUT_BC DIALOG  0, 0, 170, 64
+STYLE DS_SETFONT | DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Введите код"
+FONT 8, "MS Sans Serif"
+BEGIN
+    EDITTEXT        IDC_FIND,3,20,162,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "ОК",IDOK,2,46,61,18
+    PUSHBUTTON      "Отмена",IDCANCEL,108,46,61,18
+    LTEXT           "Штрих-код",IDC_STATIC,5,9,39,8
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "NapoleonRes.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""resdefce.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_TOOLBAR             BITMAP                  "toolbar.bmp"
+IDB_CHECKED             BITMAP                  "checked.bmp"
+IDB_FOLDER              BITMAP                  "folder.bmp"
+IDC_BACK                BITMAP                  "back.bmp"
+IDC_DETAIL              BITMAP                  "detail.bmp"
+IDD_PAYMENT             BITMAP                  "payment.bmp"
+IDC_FAIL                BITMAP                  "fail.bmp"
+IDC_FIND                BITMAP                  "find.bmp"
+IDC_FIND_CLEAR          BITMAP                  "find_stop.bmp"
+IDC_SEND                BITMAP                  "send.bmp"
+IDC_SHOW_2_ROW          BITMAP                  "lines.bmp"
+IDB_ORDER_STATUS        BITMAP                  "order_status.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+1 VERSIONINFO
+ FILEVERSION 3,1,0,27
+ PRODUCTVERSION 3,1,0,27
+ FILEFLAGSMASK 0x17L
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x0L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "041904b0"
+        BEGIN
+            VALUE "CompanyName", "Гильдия разработчиков"
+            VALUE "FileDescription", "Наполеон Магазин"
+            VALUE "FileVersion", "3.1.0.27"
+            VALUE "InternalName", "Store.exe"
+            VALUE "LegalCopyright", "Copyright (C) 2007-2017"
+            VALUE "OriginalFilename", "Store.exe"
+            VALUE "ProductName", "Store.exe"
+            VALUE "ProductVersion", "3.1.0.27"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x419, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_SYNC, DIALOG
+    BEGIN
+        RIGHTMARGIN, 139
+    END
+
+    IDD_QTY, DIALOG
+    BEGIN
+        RIGHTMARGIN, 139
+    END
+
+    IDD_EDIT_PAYMENT, DIALOG
+    BEGIN
+        RIGHTMARGIN, 139
+    END
+
+    IDD_UNDLV, DIALOG
+    BEGIN
+        RIGHTMARGIN, 139
+    END
+
+    IDD_INPUT_BC, DIALOG
+    BEGIN
+        RIGHTMARGIN, 169
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDR_MAIN_FRAME          "Наполеон Sklad"
+END
+
+STRINGTABLE 
+BEGIN
+    IDR_MENU                "Работа"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_NETWORK             "Сеть"
+    IDS_MAIN_SETTINGS       "Основные"
+    IDS_SETTINGS            "Настройки"
+    IDS_ERROR_IN_SYNC       "Ошибка при приеме: \n"
+    IDS_SYNC_ENDED          "Синхронизация завершена"
+    IDS_MESSAGE             "Сообщение"
+    IDS_CANT_OPEN_DB        "Не могу открыть базу данных"
+    IDS_ERROR               "Ошибка"
+    IDS_ERROR_CODE          "код ошибки %d"
+    IDS_PROCESS_SETTINGS    "Обработка настроек..."
+    IDS_PROCESSING          "Обработка..."
+    IDS_ERROR_PROCESSING    "Ошибка при обработке информации"
+    IDS_SERVER_NOT_RESPONSE "Сервер не отвечает"
+    IDS_TX_DATA             "Передача данных"
+    IDS_RX_DATA             "Прием ответа от сервера..."
+    IDS_PROCESS_DATA        "Обработка ответа..."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_DATA_SENDED         "Данные отправлены"
+    IDS_ERROR_WHILE_RCV     "Ошибка на сервере при приеме"
+    IDS_PRICE               "Товар"
+    IDS_PRICE_FOLDERS       "Папки товаров"
+    IDS_WARNING             "Предупреждение"
+    IDS_CLEAR_BASE_ALERT    "ВНИМАНИЕ! Во время синхронизации будет удалена вся информация из компьютера. Продолжить?"
+    IDS_PROCESS_ORDER       "Обработка заявок"
+    IDS_NAME                "Название"
+    IDS_QTY                 "Кол-во"
+    IDS_SUM                 "Сумма"
+    IDS_COST                "Цена"
+    IDS_ADDRESS_LABEL       "Адрес/Номер"
+    IDS_DATE                "Дата"
+    IDS_CLIENT              "Клиент"
+    IDS_PHONE               "Телефон"
+    IDS_PAY                 "Оплата"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_UNDLV_WARN          "После проведения документ не может быть изменен. Проводить документ? "
+    IDS_QUESTION            "Вопрос"
+    IDS_SET_UNDLV_CAUSE_ALERT "Выберите причину отказа"
+    IDS_CASH                "Касса"
+    IDS_CASH_CHEK           "Заказ №"
+    IDS_INFO                "Информация"
+    IDS_PREPARE             "Подготовка"
+    IDS_ERROR_IN_TX         "Ошибка при передаче:\n"
+    IDS_ERROR_PRINT_CHEK    "Ошибка при печати чека\nПовторить?"
+    IDS_DISCOUNT            "Скидка"
+    IDS_TIME_LABEL          "Время/Сумма"
+    IDS_NUM                 "№ п/п"
+    IDS_QTY_TOTAL           "Всего шт."
+    IDS_CARD_PROCESS_ERROR  "Ошибка при работе с картой: "
+    IDS_ORDER_HELDED        "Документ проведен"
+    IDS_NOT_OPEN            "Нет подключения к кассе\nПовторить?"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_WORK_DAY_NOT_OPEN   "Не открыта смена.\nВыполните закрытие смены."
+    IDS_QTY_ABOVE           "Количество больше доступного"
+    IDS_AGENTS              "Агенты"
+    IDS_DOC_TYPES           "Типы документов"
+    IDS_CTRL_DOCS           "Документы контроля"
+    IDS_CTRL_QTY            "Д"
+    IDS_QTY_HEAD            "Кол-во"
+    IDS_DOC                 "Номер"
+END
+
+#endif    // Russian resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

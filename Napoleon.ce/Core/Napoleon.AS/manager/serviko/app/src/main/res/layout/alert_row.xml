@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/half_w"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.3"
+        />
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text = "10:00"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/agent"
+        app:layout_constraintTop_toTopOf="parent"
+
+        android:paddingLeft="4dp"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:ems="3"
+        android:layout_gravity="center_vertical"
+        />
+
+    <TextView
+        android:id="@+id/agent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        tools:text="Иванов"
+
+        app:layout_constraintStart_toEndOf="@id/time"
+        app:layout_constraintEnd_toStartOf="@id/half_w"
+        app:layout_constraintTop_toTopOf="parent"
+
+        android:paddingLeft="4dp"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:layout_gravity="center_vertical"
+        />
+    <TextView
+        android:id="@+id/alert"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintStart_toEndOf="@id/half_w"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+
+        android:paddingLeft="4dp"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:layout_gravity="center_vertical"
+
+        tools:text="Агент создал заказ ..."
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>

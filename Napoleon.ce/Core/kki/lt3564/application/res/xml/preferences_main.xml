@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+        <com.ashberrysoft.leadertask.modern.view.CustomSwitchPreference
+            android:key="autonomy_mode"
+            android:title="@string/autonomy"/>
+        <com.ashberrysoft.leadertask.modern.view.CustomSwitchPreference
+            android:key="express"
+            android:title="@string/express_panel" />
+        <com.ashberrysoft.leadertask.modern.view.CustomSwitchPreference
+            android:key="sound"
+            android:title="@string/settings_sound" />
+        <Preference
+            android:key="add_tasks"
+            android:summary="@string/add_task_top"
+            android:title="@string/add_task"
+            android:layout="@layout/preference_item_layout" />
+        <Preference
+            android:key="calendar_period"
+            android:title="@string/settings_cal_period"
+            android:layout="@layout/preference_item_layout" />
+
+        <com.ashberrysoft.leadertask.modern.view.CustomSwitchPreference
+            android:key="show_shrono"
+            android:title="@string/settings_chrono" />
+
+        <com.ashberrysoft.leadertask.modern.view.CustomSwitchPreference
+            android:key="strikethru_tasks"
+            android:title="@string/settings_strikethru_tasks"/>
+            <!--
+        <SwitchPreference
+            android:key="contacts_enabled"
+            android:title="@string/contacts" />
+            -->
+        <Preference
+            android:key="language"
+            android:title="@string/settings_language"
+            android:layout="@layout/preference_item_layout" />
+
+
+</PreferenceScreen>

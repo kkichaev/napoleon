@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/list_selector"
+    android:gravity="right"
+    android:orientation="horizontal" >
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_marginLeft="5dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/tvNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="tvNumber"
+            android:textColor="@color/black"
+            android:textSize="18dp"
+            android:minWidth="75dp"
+            tools:ignore="HardcodedText" >
+        </TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvAgent"
+            android:textColor="@color/black"
+            android:textSize="18dp"
+            />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvDlvDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="tvDlvDate"
+        android:textColor="@color/black"
+        android:textSize="18dp"
+        android:minWidth="75dp" >
+    </TextView>
+
+    <TextView
+        android:id="@+id/tvSum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:text="tvSum"
+        android:layout_marginRight="5dp"
+        android:textColor="@color/black"
+        android:textSize="18dp"
+        android:width="90dp" >
+    </TextView>
+
+</LinearLayout>

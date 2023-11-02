@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<!--
+    <item
+        android:id="@+id/addNote"
+        android:icon="@drawable/add_24"
+        android:title="@string/notes"
+        android:contentDescription="@string/notes"
+        app:showAsAction="always" />
+-->
+    <item
+        android:id="@+id/calendar"
+        app:showAsAction="always"
+        android:contentDescription="@string/notes"
+        app:actionLayout="@layout/calendar_item_menu"
+        android:title="календарь" />
+
+    <item
+        android:id="@+id/task"
+        app:showAsAction="always"
+        android:contentDescription="@string/notes"
+        android:icon="@drawable/outline_task_alt_white_24"
+        android:title="@string/task_title" />
+
+    <item
+        android:id="@+id/calc"
+        app:showAsAction="always"
+        android:contentDescription="@string/notes"
+        android:icon="@drawable/outline_calculate_24"
+        android:title="@string/calculator" />
+
+    <item
+        android:id="@+id/search"
+        android:icon="@drawable/search"
+        app:actionViewClass="android.widget.SearchView"
+        android:title="Поиск"
+        app:showAsAction="always" />
+    <!--
+    <item
+        android:id="@+id/share"
+        android:icon="@drawable/share"
+        android:title="@string/share"
+        android:contentDescription="@string/notes"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/add_alert"
+        android:icon="@drawable/add_alert"
+        android:title="@string/add_alert"
+        android:contentDescription="@string/notes"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/palette"
+        android:icon="@drawable/palette"
+        android:title="@string/palette"
+        android:contentDescription="@string/notes"
+        app:showAsAction="always" />
+
+-->
+
+    <item android:id="@+id/exportData" android:title="@string/export"/>
+    <item android:id="@+id/importData" android:title="@string/importBase"/>
+
+</menu>

@@ -1,0 +1,449 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+  <objects>
+    <object name="PlanogramDoc" >
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"userid,created"</member>
+      <memberArray name="index">"created"</memberArray>
+
+      <field name="id" type="string" width="55" />
+      <field name="date" type="timestamp" />
+      <field name="created" type="timestamp" />
+      <field name="timeZone" type="number" />
+      <field name="serverTimeZone" type="number" data="S_TZ" execOn="Put" feature="USE_TIMEZONE">ServerTimeZone()</field>
+      <field name="remark" type="string" width="100" />
+      <field name="userid" type="string" execOn="Put">$user.id</field>
+      <field name="sended" type="timestamp" execOn="Put">Now()</field>
+
+      <field name="latitude" type="number" prec="5" />
+      <field name="longitude" type="number" prec="5" />
+      <field name="stltime" type="number" />
+
+      <field name="planogram" type="string" />
+      <field name="planogramTitle" type="string" />
+
+      <events>
+        <event type="put">
+          <action name="WriteToLog">$object.type;$object.date</action>
+        </event>
+      </events>
+    </object>
+
+    <object name="Planograms" sendLimit="500000">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+      <member name="primaryKey">"id"</member>
+
+      <field name="id" type="string" />
+      <field name="name" type="string" />
+      
+      <field name="path" type="string" />
+      <field name="photo" type="file" src="path" />
+    </object>
+
+    <object name="PriceMovie">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+      <member name="primaryKey">"id"</member>
+      
+      <field name="id" type="string" />
+      <field name="url" type="string" />
+    </object>
+    
+    <object name="ManagerPrice">
+      <sources>
+        <source name="VTPriceReader">
+          <param name="fileName">"price/101_" + FormatDate(Now(), "UnixTime") </param>
+          <param name="backupFolder">"price/back"</param>
+        </source>
+      </sources>
+
+      <field name="id" type="string" />
+      <field name="fid" type="string"  />
+      <field name="folderID" type="number" />
+      <field name="qtyInPack" type="number" prec="3" data="inpack" />
+      <field name="name" type="string" />
+      <field name="qty" type="number" prec="3" />
+      <field name="weight" type="number" prec="3" />
+      <field name="volume" type="number" prec="2" />
+      <field name="info" type="string" />
+    </object>
+
+    <object name="ReqClients">
+      <sources>
+        <source name="VTReqClients">
+          <param name="fileName">"price/reqclients"</param>
+        </source>
+      </sources>
+      <field name="id" type="string" />
+    </object>
+    <object name="OrderReserv">
+      <field name="created" type="timestamp" />
+      <field name="id" type="string" />
+      <field name="date" type="date" />
+      <field name="number" type="string" />
+      <field name="items" type="collection">
+        <data>
+          <object name="OrderReservItem">
+            <field name="id" type="string" />
+            <field name="qty" type="number" prec="3" />
+            <field name="cost" type="number" prec="2" />
+          </object>
+        </data>
+      </field>
+    </object>
+
+    <object name="Cost">
+      <sources>
+        <source name="VTCostReader">
+          <!--<param name="fileName">"price/1_1384324708"</param>-->
+          <param name="fileName">"price/" + $user.id + "_" + FormatDate(Now(), "UnixTime") </param>
+          <param name="backupFolder">"price/back"</param>
+        </source>
+      </sources>
+
+      <field name="data" type="binary" />
+    </object>
+
+    <object name="StockOrg">
+      <field name="id" type="string" />
+      <field name="items" type="collection">
+        <data>
+          <object name="Item">
+            <field name="id" type="string" />
+          </object>
+        </data>
+      </field>
+    </object>
+    
+    <object name="InvFrg">
+      <sources>
+        <source name="VTInvFrgWriter">
+          <param name="fileName">"order/" + $user.id + "_" + FormatDate(Now(), "UnixTime") </param>
+        </source>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"userid,created"</member>
+
+      <field name="userid" type="string" data="USER_ID" execOn="Put">$user.id</field>
+      <field name="created" type="timestamp" />
+      <field name="date" type="date" />
+      <field name="timeZone" type="number" />
+      <field name="serverTimeZone" type="number" data="S_TZ" execOn="Put" features="USE_TIMEZONE">ServerTimeZone()</field>
+      <field name="sended" type="timestamp" data="S_DATE" execOn="Put">Now()</field>
+      <field name="id" width="60" type="string" />
+      <field name="remark" type="string" />
+      <field name="tenant" type="number" />
+      <field name="retEquip" type="number" />
+
+      <field name="items" type="collection">
+        <data>
+          <object name="InvFrgItem">
+            <sources>
+              <source name="VTInvFrgItemsWriter" />
+              <source name="SQTable" type="internal" />
+            </sources>
+
+            <field name="id" width="60" type="string" data="ID_I"/>
+            <field name="name" type="string"/>
+            <field name="number" type="string"/>
+            <field name="barcode" type="string" />
+            <field name="isnew" type="number"  />
+            <field name="exist" type="number"  />
+          </object>
+        </data>
+      </field>
+
+      <field name="latitude" type="number" prec="4" />
+      <field name="longitude" type="number" prec="4" />
+
+      <events>
+        <event type="put">
+          <action name="WriteInternal">$object.type</action>
+          <action name="WriteToLog">$object.type;$object.date</action>
+        </event>
+      </events>
+    </object>
+    
+    <object name="Fridge">
+      <sources>
+        <source name="VTFridgeReader">
+          <param name="fileName">"price/" + $user.id + "_frg"</param>
+        </source>
+      </sources>
+
+      <field name="id" type="string" />
+      <field name="ido" type="string" />
+      <field name="name" type="string" />
+      <field name="number" type="string"/>
+      <field name="barcode" type="string"/>
+    </object>
+    
+    <object name="OrgNotes">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"userid,date"</member>
+      <memberArray name="index">"date"</memberArray>
+
+      <field name="userid" type="string" execOn="Put">$user.id</field>
+      <field name="date" type="timestamp" />
+      <field name="id" type="string" />
+      <field name="text" type="string" />
+    </object>
+
+
+    <modify src="Delivery">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal">
+            <param name="readFilter">"userid='" + $user.id + "'"</param>
+          </source>
+        </sources>
+      </change>
+      <add>
+        <member name="primaryKey">"userid,id"</member>
+      </add>
+    </modify>
+
+    <modify src="Delivery$items">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="Returns">
+      <change>
+        <sources>
+          <source name="VTReturnWriter">
+            <param name="fileName">"order/" + $user.id + "_" + FormatDate(Now(), "UnixTime") </param>
+          </source>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+      <add>
+        <field name="visitDoc" type="datetime" />
+      </add>
+    </modify>
+
+    <modify src="Returns$items">
+      <change>
+        <sources>
+          <source name="VTReturnItemsWriter" />
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+      <add>
+        <field name="production" type="date" />
+        <field name="expired" type="date" />
+      </add>
+    </modify>
+    
+    <modify src="ManagerFolder">
+      <change>
+        <sources>
+          <source name="VTFolderReader">
+            <param name="fileName">"price/101_" + FormatDate(Now(), "UnixTime") </param>
+            <param name="backupFolder">"price/back"</param>
+          </source>
+        </sources>
+      </change>
+      <add>
+        <field name="fid" type="string" width="40" />
+        <field name="id" type="string" execOn="Get">$object.fid</field>
+      </add>
+    </modify>
+
+    <modify src="Price">
+      <change>
+        <sources>
+          <source name="VTPriceReader">
+            <!--<param name="fileName">"price/1_1384324708" </param>-->
+            <param name="fileName">"price/" + $user.id + "_" + FormatDate(Now(), "UnixTime") </param>
+            <param name="backupFolder">"price/back"</param>
+          </source>
+        </sources>
+      </change>
+      <add>
+        <field name="volume" type="number" prec="2" />
+        <field name="info" type="string" />
+        <field name="barcode" type="string"/>
+      </add>
+    </modify>
+    <modify src="Price$cost">
+      <change>
+        <sources>
+          <source name="VTPriceCostReader" />
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="Agents">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+      <add>
+        <field name="kisID" type="string" />
+      </add>
+    </modify>
+    <modify src="Org">
+      <change>
+        <sources>
+          <source name="VTOrgReader">
+            <param name="fileName">"price/clients"</param>
+          </source>
+        </sources>
+      </change>
+      <add>
+        <field name="balance" type="number" prec="2" />
+        <field name="info" type="string" />
+        <field name="ido" type="string" />
+      </add>
+    </modify>
+    <modify src="Folder">
+      <change>
+        <sources>
+          <source name="VTFolderReader">
+            <param name="fileName">"price/" + $user.id + "_" + FormatDate(Now(), "UnixTime") </param>
+            <param name="backupFolder">"price/back"</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+    <modify src="Order">
+      <add>
+        <field name="number" type="string" />
+        <field name="orgName" type="string" />
+        <field name="ret" type="number" />
+      </add>
+      <change>
+        <sources>
+          <source name="VTOrderWriter">
+            <param name="fileName">"order/" + $user.id + "_" + FormatDate(Now(), "UnixTime") </param>
+          </source>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+    </modify>
+    <modify src="Order$items">
+      <change>
+        <sources>
+          <source name="VTOrderItemsWriter" />
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+    </modify>
+    <modify src="OrderProceeded">
+      <change>
+        <sources>
+          <source name="VTPODReader">
+            <param name="fileName">"order/" + $user.id + "_status"</param>
+            <param name="backupFolder">"order/back"</param>
+          </source>
+        </sources>
+      </change>
+      <add>
+        <field name="number" type="string" />
+        <event type="get">
+          <action name="ArchiveOrderProceededEx">$object.created;$object.type;$object.remark;$object.number</action>
+        </event>
+      </add>
+    </modify>
+    <modify src="ArchiveOrderProceeded">
+      <add>
+        <field name="number" type="string" />
+      </add>
+    </modify>
+    <modify src="Order" dest="OrderCancel" table="OrderCancel">
+      <change>
+        <sources>
+          <source name="VTOrderCancel">
+            <param name="fileName">"order/" + $user.id + "_" + FormatDate(Now(), "UnixTime") </param>
+          </source>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+    </modify>
+    <modify src="OrderCancel$items">
+      <change>
+        <sources>
+          <source name="VTOrderCancelItems" />
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+    </modify>
+    <modify src="Message">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal">
+            <param name="readFilter">'"userid" = ' + "'" + $user.id + "'"</param>
+          </source>
+        </sources>
+        <field name="message" type="string" />
+      </change>
+      <add>
+        <field name="date" type="timestamp" execOn="Put">Now()</field>
+        <field name="userid" type="string" execOn="Put">$user.id</field>
+      </add>
+    </modify>
+    <modify src="Visit">
+      <add>
+        <field name="stock" type="number" />
+      </add>
+    </modify>
+
+    <modify src="OrgRemnants">
+      <change>
+        <sources>
+          <source name="DBFCatalogTable">
+            <param name="tableName">"OST" + $user.id</param>
+            <param name="catalog">"id"</param>
+            <param name="ordered">1</param>
+          </source>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+      <add>
+        <event type="put">
+          <action name="WriteInternal">$object.type</action>
+          <action name="WriteToLog">$object.type;$object.date</action>
+        </event>
+      </add>
+    </modify>
+
+    <modify src="OrgRemnants$items">
+      <change>
+        <sources>
+          <source name="DBFCatalogItemTable"/>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+    </modify>
+  </objects>
+
+
+  <actions>
+    <action name="ArchiveOrderProceededEx">
+      <params>
+        <param name="created" />
+        <param name="type" />
+        <param name="remark" />
+        <param name="number" />
+      </params>
+      <do>
+        <put object="ArchiveOrderProceeded" sourceType="internal">$object.userid=$user.id;$object.created=created;$object.type=type;$object.remark=remark;$object.number=number</put>
+      </do>
+    </action>
+  </actions>
+</serverDefs>

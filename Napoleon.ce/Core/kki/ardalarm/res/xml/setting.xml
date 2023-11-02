@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <RingtonePreference
+        android:key="message_snd"
+        android:ringtoneType="notification"
+        android:title="Звонок" />
+
+    <EditTextPreference
+        android:key="ard_addr"
+        android:title="Адрес" />
+
+</PreferenceScreen>

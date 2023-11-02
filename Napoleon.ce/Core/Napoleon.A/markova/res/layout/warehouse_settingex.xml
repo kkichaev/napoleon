@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="7dp" >
+
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginLeft="3dp"
+              android:layout_marginRight="10dp"
+              android:text="@string/clmn_2"
+              android:textSize="16sp" />
+
+          <Spinner
+              android:id="@+id/spColumn2"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:entries="@array/warehouse_column_values" />
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_marginLeft="3dp"
+               android:text="@string/clmn_3"
+               android:textSize="16sp" />
+
+           <Spinner
+               android:id="@+id/spColumn3"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:entries="@array/warehouse_column_values" />
+
+           <CheckBox
+               android:id="@+id/cbItemID"
+               android:visibility="gone"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="@string/code_sku" />
+
+        <CheckBox
+            android:id="@+id/checkPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="@string/check_remains" />
+
+        <CheckBox
+            android:id="@+id/cbComplexSalesHistory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/complete_story" />
+
+        <CheckBox
+            android:id="@+id/cbPackView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/show_packs_in_order" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/nav_type"
+            android:textSize="16sp" />
+
+        <Spinner
+            android:id="@+id/spNavType"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/nav_type_items" />
+
+        <CheckBox
+            android:id="@+id/cbUseUpdatePrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/active_update_price"
+            android:visibility="gone" />
+
+        <Spinner
+            android:id="@+id/spUpdatePriceInBg"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/gps_send_interval"
+            android:visibility="gone" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp" 
+            android:text="@string/selnotsail" />
+
+        <Spinner
+            android:id="@+id/spMonth"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/months_to_recreate" />
+
+    </LinearLayout>
+
+</ScrollView>

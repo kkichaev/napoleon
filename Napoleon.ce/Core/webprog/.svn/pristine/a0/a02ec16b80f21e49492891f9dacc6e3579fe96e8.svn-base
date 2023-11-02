@@ -1,0 +1,38 @@
+import { defineStore } from 'pinia'
+import { registerUser, loginUser } from "src/backend/backend";
+
+export const useBackendStore = defineStore('backend', {
+  state: () => ({
+    errorCode: 0,
+    errorMessage: '',
+    loading: false,
+    registrationStatus : false,
+    isAuth : false,
+  }),
+
+  actions: {
+    registerUser(data){
+      this.loading = true
+      registerUser(data).then((response) => {
+        console.log('registerUser responce: ', response)
+        this.errorCode = 0
+        this.errorMessage = ''
+        this.registrationStatus = true
+      })
+      .catch((error) => {
+        console.log('registerUser error: ', error)
+        // if(error.response.data.data == undefined){
+        //   this.errorMessage = error.response.statusText
+        //   this.errorCode = error.response.status
+        // }else{
+        //   this.errorMessage = error.response.data.data.message
+        //   this.errorCode = error.response.data.data.response
+        // }
+      }).finally(()=>this.loading = false);
+    },
+    clearError(){
+      this.errorCode = 0
+      this.errorMessage = ''
+    }
+  }
+})

@@ -1,0 +1,19 @@
+#!/usr/bin/sh
+
+quasar build -m ssr
+
+echo "FROM node:19.7-alpine as webfront
+WORKDIR /prog
+COPY dist/ssr/ ./
+RUN yarn global add @quasar/cli
+RUN npm install
+RUN npm install pm2 -g
+EXPOSE 3000
+CMD [\"pm2-runtime\", \"index.js\"]
+" > dockf
+docker rm webfront
+docker image rm webfront
+docker build --force-rm -f dockf -t webfront ./
+docker create --name webfront -p 3000:3000 -it webfront
+
+rm dockf

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">АДС</string>
+    
+    <!-- Action -->
+    <string name="open_setting">com.grsoft.ads.OPEN_SETTING</string>
+
+    <string-array name="delay_entries">
+        <item>5</item>
+        <item>10</item>
+        <item>15</item>
+        <item>20</item>
+        <item>30</item>
+    </string-array>
+    <string-array name="delay_entry_values">
+        <item>5</item>
+        <item>10</item>
+        <item>15</item>
+        <item>20</item>
+        <item>30</item>
+    </string-array>
+    <string-array name="answer_type_entries">
+        <item>Решена</item>
+        <item>Отказано</item>
+    </string-array>
+    
+    <string name="network_setting">Настройки соединения</string>
+    <string name="network_setting_summary">Ввод данных для подключения к серверу</string>
+    <string name="dbase_setting">Настройки базы данных</string>
+    <string name="gps_setting">Настройки GPS</string>
+    <string name="sync_setting">Синхронизация в фоновом режиме</string>
+    <string name="notify_setting">Настройка уведомлений</string>
+    <string name="alert">Внимание!</string>
+    <string name="drop_db_confirm">"Удалить всю информацию из базы данных?"</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Отменить</string>
+    <string name="db_has_cleared">База данных очищена</string>
+    <string name="setting">Настройки</string>
+    <string name="task_comment">Комментарий к задаче</string>
+    <string name="answer_type">Тип решения</string>
+    <string name="questions">Анекты</string>
+    <string name="question">Анекта</string>
+    <string name="task">Задача</string>
+    <string name="syncinprogress">Выполняется операция синхронизации, дождитесь завершения</string>
+    <string name="updateresult">Синхронизация завершена&lt;br>Трафик: %d КБ</string>
+    <string name="syncprocess">Синхронизация&#8230;</string>
+    <string name="kilobyte">%d КБ</string>
+    <string name="syncbkg">Фоновая синхронизация</string>
+    <string name="syncbkg_summary">Параметры фоновой синхронизации</string>
+    <string name="sync">Синхронизация</string>
+    <string-array name="syncbkg_step">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>5</item>
+        <item>10</item>
+        <item>15</item>
+        <item>20</item>
+        <item>30</item>
+    </string-array>
+    
+    <string name="syncbkgperiod">Периодичность фоновой синхронизации</string>
+    <string name="rcvnewtasks">У вас новые заявки, подтвердите</string>
+    <string name="pushtoopen">Щелкните что бы открыть</string>
+    <string name="apply">Принять</string>
+    <string name="reject">Отказаться</string>
+    <string name="contragent">Контрагент</string>
+    <string name="where">Где</string>
+    <string name="when">Когда</string>
+    <string name="asktoreject">Вы уверены, что хотите отказаться?</string>
+    <string name="query">Вопрос</string>
+    <string name="Start">Начать</string>
+    <string name="Finish">Завершить</string>
+    <string name="Answer_task">Текст ответа на задачу</string>
+    <string name="add_photo">+ Фото</string>
+    <string name="gpstitle">GPS</string>
+    <string name="gpssummary">Параметры снятия координат</string>
+    <string name="gpsfreq">Время опроса, с</string>
+    <string name="gpsdist">Изменения дистанции, м</string>
+    <string name="order">Заявка</string>
+    <string name="open">Открыть</string>
+    <string name="delete">Удалить</string>
+    <string name="select_action">Выберите действие</string>
+    <string name="notify">Оповещения</string>
+    <string name="notifysummary">Настройка оповещений</string>
+    <string name="newtaskrcv">Новые заявки</string>
+    <string name="taskmissed">Непринятые заявки</string>
+    <string name="taskmissedtime">Период напоминаний о непринятых заявках</string>
+    <string name="tasknotify">Звук напоминания</string>
+    
+    <string-array name="taskmissedtime_step">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+    
+    <string name="havetotakephoto">Необходимо сделать фотографию</string>
+    <string name="begin">с</string>
+    <string name="finish">по</string>
+    <string name="date">Дата</string>
+    <string name="newtask">Новые задачи</string>
+    <string name="exit">Выход</string>
+    <string name="about">О программе....</string>
+    <string name="input_comment">Введите коментарий</string>
+    <string name="input_reject_cause">Введите причину отказа</string>
+    <string name="answer_title">Ваш ответ</string>
+    <string name="order_title">Текст заявки</string>
+    <string name="select_time">Установите время</string>
+    <string name="crash2">Файл отчета об ошибке находится на карте памяти /ADS/crash.log</string>
+    <string name="time_error">Время окончание не может быть меньше или равно времени начала</string>
+    <!--   <string name="taskid">taskid</string> -->
+    <string name="newmessage">У вас есть непрочитанные сообщения!</string>
+    <string name="messagelist">Список сообщений</string>
+    <string name="messageads">АДС</string>
+    <string name="client">Клиент</string>
+    <string name="contact">Контакт</string>
+    <string name="status_new">Новая</string>
+    <string name="status_apply">Принята</string>
+    <string name="status_reject">Отказ</string>
+    <string name="status_inwork">В работе</string>
+    <string name="status_resolved">Выполнена</string>
+    <string name="time">Время</string>
+    <string name="attachment">Вложения</string>
+    <string name="notify_msg">АДС работает. Нажмите чтобы открыть.</string>
+    <string name="clear_memory">Очистка памяти</string>
+    <string name="please_wait">Пожалуйста подождите....</string>
+    <string name="select_data_to_delete">Выберите данные, которые надо удалить</string>
+    <string name="pictures_data">Фотоотчеты</string>
+    <string name="attachments_data">Вложения в задачах</string>
+    <string name="clearing_warning">Будут удалены все ранее отправленные данные</string>
+    <string name="clear_data">Удалить данные</string>
+</resources>

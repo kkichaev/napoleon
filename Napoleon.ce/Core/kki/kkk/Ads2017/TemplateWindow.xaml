@@ -1,0 +1,167 @@
+﻿<Window x:Class="Ads2017.TemplateWindow"
+   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+   xmlns:local="clr-namespace:Ads2017" 
+   xmlns:p = "clr-namespace:Ads2017.Properties"
+   mc:Ignorable="d"
+   Title="{x:Static p:Resources.clients_templates}" 
+   Height="700" 
+   Width="900"
+   Loaded="Window_Loaded">
+
+   <Window.CommandBindings>
+      <CommandBinding Command="local:AdsCommands.Save" Executed="SaveExecuted" CanExecute="CanSaveExecute"/>
+      <CommandBinding Command="local:AdsCommands.Refresh" Executed="RefreshExecuted"/>
+   </Window.CommandBindings>
+   
+
+   <Grid>
+      <Grid.RowDefinitions>
+         <RowDefinition Height="Auto"/>
+         <RowDefinition Height="*"/>
+      </Grid.RowDefinitions>
+      <ToolBar Grid.Row="0">
+         <Button x:Name="btnRefresh" Command="local:AdsCommands.Refresh">
+            <Image Source="Images\refresh.png" />
+         </Button>
+
+         <Button x:Name="btnSave" Command="local:AdsCommands.Save">
+            <Image Source="Images\save.png" >
+               <Image.Style>
+                  <Style TargetType="Image">
+                     <Style.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                           <Setter Property="Opacity" Value="0.5" />
+                        </Trigger>
+                     </Style.Triggers>
+                  </Style>
+               </Image.Style>
+            </Image>
+         </Button>
+      </ToolBar>
+
+      <Grid Grid.Row="1">
+         <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+         </Grid.RowDefinitions>
+         
+         <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+               <RowDefinition Height="Auto"/>
+               <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+            <Grid Grid.Row="0">
+               <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="*"/>
+                  <ColumnDefinition Width="Auto"/>
+                  <ColumnDefinition Width="Auto"/>
+               </Grid.ColumnDefinitions>
+               <Label Content="{Binding Source={x:Static p:Resources.client}}" Grid.Column="0"/>
+
+               <local:TransparentButton  Grid.Column="1" Click="AddTemplate">
+                  <Image Width="16" Height="16" Source="Images\add.png" Margin="3,0,3,0"/>
+               </local:TransparentButton>
+
+               <local:TransparentButton Grid.Column="2" Click="RemoveTemplate">
+                  <Image Width="16"  Height="16" Source="Images\delete.png" Margin="3,0,3,0"/>
+               </local:TransparentButton>
+            </Grid>
+
+            <DataGrid Grid.Row="1" 
+               x:Name="template" 
+               AutoGenerateColumns="False"
+               CanUserAddRows="True"
+               CellEditEnding="TemplateCellEditEnding">
+               
+               <DataGrid.Columns>
+                  <DataGridTextColumn Header="{Binding Source={x:Static p:Resources.titlename}}" Binding="{Binding Name}" Width="*"/>
+               </DataGrid.Columns>
+               
+            </DataGrid>
+         </Grid>
+
+         <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+               <RowDefinition Height="Auto"/>
+               <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+            <Grid Grid.Row="0">
+               <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="*"/>
+                  <ColumnDefinition Width="Auto"/>
+                  <ColumnDefinition Width="Auto"/>
+               </Grid.ColumnDefinitions>
+
+               <Label Content="{Binding Source={x:Static p:Resources.address}}" Grid.Column="0"/>
+
+               <local:TransparentButton  Grid.Column="1" Click="AddAddress">
+                  <Image Width="16" Height="16" Source="Images\add.png" Margin="3,0,3,0"/>
+               </local:TransparentButton>
+
+               <local:TransparentButton Grid.Column="2" Click="RemoveAddress">
+                  <Image Width="16"  Height="16" Source="Images\delete.png" Margin="3,0,3,0"/>
+               </local:TransparentButton>
+               
+            </Grid>
+            
+            <DataGrid  
+               x:Name="address"  
+               Grid.Row="1" 
+               AutoGenerateColumns="False"
+               CanUserAddRows="True"
+               CellEditEnding="AddressCellEditEnding"
+               ItemsSource="{Binding ElementName=template, Path=SelectedItem.Address, UpdateSourceTrigger=PropertyChanged}">
+               
+               <DataGrid.Columns>
+                  <DataGridTextColumn Header="{Binding Source={x:Static p:Resources.titlename}}" Binding="{Binding Name}" Width="*"/>
+               </DataGrid.Columns>
+            </DataGrid>
+         </Grid>
+
+         <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+               <RowDefinition Height="Auto"/>
+               <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+            <Grid Grid.Row="0">
+               <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="*"/>
+                  <ColumnDefinition Width="Auto"/>
+                  <ColumnDefinition Width="Auto"/>
+               </Grid.ColumnDefinitions>
+
+               <Label Content="{Binding Source={x:Static p:Resources.contact}}" Grid.Column="0"/>
+
+               <local:TransparentButton  Grid.Column="1" Click="AddContact">
+                  <Image Width="16" Height="16" Source="Images\add.png" Margin="3,0,3,0"/>
+               </local:TransparentButton>
+
+               <local:TransparentButton Grid.Column="2" Click="RemoveContact">
+                  <Image Width="16"  Height="16" Source="Images\delete.png" Margin="3,0,3,0"/>
+               </local:TransparentButton>
+            </Grid>
+
+            <DataGrid  
+               x:Name="contact" 
+               Grid.Row="1" 
+               AutoGenerateColumns="False"
+               CanUserAddRows="True"
+               CellEditEnding="ContactCellEditEnding"
+               ItemsSource="{Binding ElementName=address, Path=SelectedItem.Contact, UpdateSourceTrigger=PropertyChanged}">
+               
+               <DataGrid.Columns>
+                  <DataGridTextColumn Header="{Binding Source={x:Static p:Resources.name}}" Binding="{Binding Name}" Width="*"/>
+                  <DataGridTextColumn Header="{Binding Source={x:Static p:Resources.phone}}"  Binding="{Binding Phone}" Width="*"/>
+               </DataGrid.Columns>
+            </DataGrid>
+         </Grid>
+      </Grid>
+   </Grid>
+</Window>

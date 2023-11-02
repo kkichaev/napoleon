@@ -1,0 +1,41 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+    <modify src="Price">
+      <change>
+        <field name="tabak" type="number"  />
+        <field name="barcode" type="string" />
+        <field name="mrc" type="number" prec ="2" />
+      </change>
+    </modify>
+
+    <modify src="Sales">
+      <add>
+        <field name="tabak" type="number" width="1" />
+      </add>
+    </modify>
+
+    <modify src="Sales$items">
+      <add>
+        <member name="primaryKey">"uid"</member>
+        <field name="uid" type="string" />
+
+        <field name="itemQty" type="number" prec="3" />
+        <field name="packQty" type="number" prec="3" />
+        <field name="barcodes" type="collection">
+          <data>
+            <object name="ScanData">
+              <sources>
+                <source name="DBFCatalogItemTable"/>
+                <source name="SQTable" type="internal" />
+              </sources>
+
+              <field name="barcode" type="string" />
+              <field name="docflag" width="1" type="number" execOn="Put">FirstItem($object)</field>
+            </object>
+          </data>
+        </field>
+      </add>
+    </modify>
+  </objects>
+</serverDefs>

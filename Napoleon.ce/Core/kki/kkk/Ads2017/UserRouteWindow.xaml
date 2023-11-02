@@ -1,0 +1,160 @@
+﻿<RibbonWindow x:Class="Ads2017.UserRouteWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:Ads2017"      
+    xmlns:p = "clr-namespace:Ads2017.Properties"
+    Title="{x:Static p:Resources.route}" 
+    Height="700" 
+    Width="1300"
+    Loaded="RibbonWindow_Loaded"
+    Icon="napoleon.ico"          >
+
+   <RibbonWindow.CommandBindings>
+      <CommandBinding Command="local:AdsCommands.Refresh" Executed="RefreshExecuted"/>
+      <CommandBinding Command="local:AdsCommands.Open" Executed="OpenExecuted"/>
+      <CommandBinding Command="local:AdsCommands.Message" Executed="MessageExecuted"/>
+   </RibbonWindow.CommandBindings>
+
+   <Grid>
+      <Grid.RowDefinitions>
+         <RowDefinition Height="Auto"/>
+         <RowDefinition Height="*"/>
+      </Grid.RowDefinitions>
+
+      <Ribbon Grid.Row="0" SelectedIndex="0">
+         <Ribbon.ApplicationMenu>
+            <RibbonApplicationMenu Visibility="Collapsed"/>
+         </Ribbon.ApplicationMenu>
+
+         <RibbonTab Header="{Binding Source={x:Static p:Resources.operation}}" >
+            <RibbonGroup>
+               <RibbonButton 
+                  x:Name="btnRefresh" 
+                  LargeImageSource="Images\refresh.png" 
+                  Label="{Binding Source={x:Static p:Resources.refresh}}" 
+                  KeyTip="F5" 
+                  Command="local:AdsCommands.Refresh"
+                  ToolTipTitle ="{Binding Source={x:Static p:Resources.refresh_hint}}"
+                  ToolTipDescription="{Binding Source={x:Static p:Resources.refresh_description}}"/>
+
+               <RibbonButton 
+                  LargeImageSource="Images\message.png" 
+                  Label="{Binding Source={x:Static p:Resources.message}}" 
+                  KeyTip="F5" 
+                  Command="local:AdsCommands.Message"
+                  ToolTipTitle ="{Binding Source={x:Static p:Resources.message_hint}}"
+                  ToolTipDescription="{Binding Source={x:Static p:Resources.message_description}}"/>
+
+               <RibbonButton 
+                  LargeImageSource="Images\browser.png" 
+                  Label="{Binding Source={x:Static p:Resources.browser}}" 
+                  KeyTip="Ctrl+O" 
+                  Command="local:AdsCommands.Open"
+                  ToolTipTitle ="{Binding Source={x:Static p:Resources.browser_hint}}"
+                  ToolTipDescription="{Binding Source={x:Static p:Resources.browser_description}}"/>
+            </RibbonGroup>
+
+            <RibbonGroup>
+               <RibbonComboBox Label="{Binding Source={x:Static p:Resources.agent}}"                  
+                   HorizontalContentAlignment="Center">
+
+                  <RibbonGallery Name="rgAgents" MaxColumnCount="1">
+                     <RibbonGalleryCategory Name="rgcAgents"/>
+                  </RibbonGallery>
+
+               </RibbonComboBox>
+
+               <RibbonComboBox 
+                  Label="{Binding Source={x:Static p:Resources.map}}" 
+                  HorizontalContentAlignment="Center"
+                  HorizontalAlignment="Right">
+
+                  <RibbonGallery Name="rgMaps" >
+                     <RibbonGalleryCategory Name="rgcMaps"/>
+                  </RibbonGallery>
+               </RibbonComboBox>
+
+               <RibbonTextBox Label="{Binding Source={x:Static p:Resources.accuracy}}" x:Name="routePointAccuracy" />
+
+               <RibbonComboBox  Label="{Binding Source={x:Static p:Resources.filter}}" Name="gpsFilter" >
+                  <RibbonGallery MaxColumnCount="1">
+                     <RibbonGalleryCategory>
+                        <RibbonGalleryItem>Все</RibbonGalleryItem>
+                        <RibbonGalleryItem>GSM</RibbonGalleryItem>
+                        <RibbonGalleryItem IsSelected="True">GPS</RibbonGalleryItem>
+                     </RibbonGalleryCategory>
+                  </RibbonGallery>
+               </RibbonComboBox>
+
+               <RibbonCheckBox Label="{Binding Source={x:Static p:Resources.route_points}}" x:Name="routePointUseInterval" Visibility="Hidden"/>
+               <RibbonTextBox Label="{Binding Source={x:Static p:Resources.interval_min}}" x:Name="routePointInterval" TextBoxWidth="25" Visibility="Hidden"/>
+            </RibbonGroup>
+
+            <RibbonGroup Header="{Binding Source={x:Static p:Resources.select_period}}">
+               <Grid>
+                  <Grid.RowDefinitions>
+                     <RowDefinition/>
+                     <RowDefinition/>
+                  </Grid.RowDefinitions>
+                  <Grid Grid.Row="0" >
+                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                     </Grid.ColumnDefinitions>
+
+                     <TextBlock  Grid.Column="0" Text="{Binding Source={x:Static p:Resources.date}}" VerticalAlignment="Center" HorizontalAlignment="Right" Padding="0,0,7,0"/>
+                     <DatePicker Grid.Column="1" Name="datePicker"/>
+                  </Grid>
+
+                  <Grid Margin="0,3" Grid.Row="1">
+                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                     </Grid.ColumnDefinitions>
+
+                     <TextBlock  Grid.Column="0" Text="{Binding Source={x:Static p:Resources.work_time_from}}" VerticalAlignment="Center" Padding="0,0,3,0"/>
+                     <local:TimeControl Grid.Column="1" x:Name="start" Mode="Start" Width="100"/>
+                     <TextBlock  Grid.Column="2" Text="{Binding Source={x:Static p:Resources.to}}" VerticalAlignment="Center" Padding="7,0,3,0"/>
+                     <local:TimeControl Grid.Column="3" x:Name="finish" Mode="Finish" Width="100"/>
+                  </Grid>
+               </Grid>
+            </RibbonGroup>
+         </RibbonTab>
+      </Ribbon>
+
+      <Grid Grid.Row="1">
+         <Grid.ColumnDefinitions>
+            <ColumnDefinition  Width="*"/>
+            <ColumnDefinition  Width="400"/>
+         </Grid.ColumnDefinitions>
+
+         <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+               <RowDefinition Height="*"/>
+               <RowDefinition Height="30"/>
+            </Grid.RowDefinitions>
+
+            <WebBrowser Grid.Row="0" x:Name="browser"/>
+            <StatusBar Grid.Row="1">
+               <Label x:Name="distance" Content="Distance"/>
+            </StatusBar>
+         </Grid>
+         <TabControl Grid.Column="1">
+            <TabItem Header="{Binding Source={x:Static p:Resources.route2}}">
+               <local:ListView x:Name="taskPoints"/>
+            </TabItem>
+            <TabItem Header="{Binding Source={x:Static p:Resources.log}}">
+               <DataGrid x:Name="gridLog" AutoGenerateColumns="False" IsReadOnly="True" >
+                  <DataGrid.Columns>
+                     <DataGridTextColumn Header="{Binding Source={x:Static p:Resources.time}}" Binding="{Binding Time}" Width="50"/>
+                     <DataGridTextColumn Header="{Binding Source={x:Static p:Resources.action}}" Binding="{Binding userAction}" Width="*"/>
+                  </DataGrid.Columns>
+               </DataGrid>
+            </TabItem>
+         </TabControl>
+         <GridSplitter Grid.Column="0" Width="5"  VerticalAlignment="Stretch"  />
+      </Grid>
+   </Grid>
+</RibbonWindow>

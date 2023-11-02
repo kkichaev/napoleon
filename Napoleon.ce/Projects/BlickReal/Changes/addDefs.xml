@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+    <object name="MatrixOrder">
+      <sources>
+        <source name="SQTable" type="internal">
+          <param name="readFilter">'"userid"=' + "'" + $user.id + "'"</param>
+        </source>
+      </sources>
+
+      <member name="primaryKey">"userid"</member>
+
+      <field name="userid" type="string" execOn="Put">$user.id</field>
+      <field name="items" type="collection">
+        <data>
+          <object name="MatrixName">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+            <field name="name" type="string" />
+            <field name="order" type="number" />
+          </object>
+        </data>
+      </field>
+    </object>
+
+    <modify src="Price">
+      <add>
+        <field name="action" type="number" />
+      </add>
+    </modify>
+	</objects>
+</serverDefs>

@@ -1,0 +1,94 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+   <objects>     
+
+     <!--<modify name="Incass">
+        <change>
+          <sources>
+            <source name="DBFTable">
+              <param name="tableName">"IS" + $user.id</param>
+            </source>
+            <source name="SQTable" type="internal" />
+          </sources>
+        </change>
+
+        <add>
+          <field name="payDate" type="date" />
+        </add> 
+      </modify>-->
+     
+     <object name="OrderAnswer" removeOnCommit="true">
+       <sources>
+         <source name="DBFTableSet">
+           <param name="userTable">"OA"</param>
+           <param name="commonTable">""</param>
+           <param name="catalog">"created;items;1"</param>
+         </source>
+       </sources>
+
+       <field name="created" type="timestamp" data="CREATED"/>
+       <field name="number" type="string"/>
+       <field name="remark" type="string"/>
+
+       <field name="items" type="collection">
+         <data>
+           <object name="OrderItem">
+             <sources>
+               <source name="DBFCatalogItemTable"/>
+             </sources>
+
+             <field name="id" width="40" type="string" data="ID_I"/>
+             <field name="qty" type="number" prec="3" />
+           </object>
+         </data>
+       </field>
+
+     </object>
+
+     <modify src="Order" table="Order">
+       <add>
+         <event type="writeCommit">
+           <action name="DocsExchange"/>
+         </event>
+       </add>
+     </modify>
+
+
+     <modify src="Org">
+        <add>
+          <field name="discount" type="number" prec="2" />
+          <field name="folderDsc" type="collection">
+            <data>
+              <object name="OrgDiscountItem">
+                <sources>
+                  <source name="DBFTableSet">
+                    <param name="userTable">"OFD"</param>
+                    <param name="commonTable">"ORGFD"</param>
+                    <param name="filter">"[ID] = $parent.id"</param>
+                  </source>
+                </sources>
+
+                <field name="id" data="ID_I" type="string" />
+                <field name="discount" data="DISC" type="number" prec="2"/>
+              </object>
+            </data>
+          </field>
+        </add>
+      </modify>
+
+     <modify src="Price">
+       <add>
+         <field name="info" type="string"/>
+         <field name="noDiscount" type="number" data="NO_DSC" />
+       </add>
+     </modify>
+   </objects>
+
+  <actions>
+    <action name="DocsExchange">
+      <do>
+        <runReport name="documents_handler" />
+      </do>
+    </action>
+  </actions>
+</serverDefs>

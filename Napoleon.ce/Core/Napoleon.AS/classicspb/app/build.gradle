@@ -1,0 +1,92 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 29
+
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
+
+    defaultConfig {
+        applicationId "com.grsoft.napoleon"
+        minSdkVersion 24
+        targetSdkVersion 29
+        versionCode 22
+        versionName "22"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+        market {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    flavorDimensions "version"
+    productFlavors{
+        apk1{
+            dimension "version"
+            applicationId "com.grsoft.napoleon"
+        }
+
+        apk2{
+            dimension "version"
+            applicationId "com.grsoft.napoleon2"
+        }
+    }
+
+    compileOptions.encoding = 'windows-1251'
+
+    lintOptions {
+        checkReleaseBuilds false
+        //abortOnError false
+    }
+
+    signingConfigs {
+        release {
+            keyAlias 'grsoft'
+            keyPassword 'GrSoftNapoleon'
+            storeFile file(System.getenv('NAPOLEON_KEY'))
+            storePassword 'GrSoftNapoleon'
+        }
+    }
+
+    buildTypes {
+        debug {
+            manifestPlaceholders.access_background_location = "android.permission.ACCESS_BACKGROUND_LOCATION"
+        }
+
+        release {
+            signingConfig signingConfigs.release
+            manifestPlaceholders.access_background_location = "android.permission.ACCESS_BACKGROUND_LOCATION"
+        }
+    }
+
+    applicationVariants.all {
+        variant ->
+            if (variant.buildType.name == "release"&& variant.productFlavors[0].name.equals("apk1"))
+                variant.outputs.all {
+                    outputFileName = "Classic1.apk"
+                }
+            if (variant.buildType.name == "release"&& variant.productFlavors[0].name.equals("apk2"))
+                variant.outputs.all {
+                    outputFileName = "Classic2.apk"
+                }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation project(':tradebase')
+
+    implementation 'androidx.appcompat:appcompat:1.0.0'
+    implementation 'com.journeyapps:zxing-android-embedded:4.1.0'
+}

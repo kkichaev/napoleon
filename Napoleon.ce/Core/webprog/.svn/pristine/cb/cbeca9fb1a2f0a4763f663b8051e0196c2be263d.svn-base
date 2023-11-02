@@ -1,0 +1,31 @@
+<template>
+  <q-page padding >
+    <q-card class="q-ml-auto q-mr-auto">
+    </q-card>
+  </q-page>
+</template>
+
+<script>
+  import { useBackendStore } from "../stores/backend";
+  import { useRoute } from 'vue-router'
+
+  export default{
+    setup(){
+      const store = useBackendStore()
+      const route = useRoute()
+
+      return {store, route}
+    },
+
+    mounted(){
+      console.log('mounted: ', this.route.query)
+
+      if ( this.route.query.token != undefined)
+        this.store.sendRegToken( this.route.query.token)
+    }
+  }
+</script>
+
+<style scoped>
+
+</style>

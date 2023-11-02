@@ -1,0 +1,69 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+   <objects>
+      <object name="GoodsRest">
+         <sources>
+            <source name="DBFCatalogTable">
+               <param name="tableName">$object.table + $user.id</param>
+               <param name="catalog">"id"</param>
+               <param name="ordered">1</param>
+            </source>
+            <source name="SQTable" type="internal" />
+         </sources>
+
+         <member name="table">"GR"</member>
+         <member name="primaryKey">"userid,date"</member>
+         
+         <field name="userid" type="string" data="USER_ID" execOn="Put">$user.id</field>
+         <field name="sended" type="timestamp" data="S_DATE" execOn="Put">Now()</field>
+         <field name="created" type="timestamp" execOn="Put">$object.date</field>
+         <field name="date" type="date" />
+         <field name="id" width="20" type="string" />
+         <field name="remark" type="string" />
+         <field name="items" type="collection">
+            <data>
+               <object name="GoodsItem">
+                  <sources>
+                     <source name="DBFCatalogItemTable"/>
+                     <source name="SQTable" type="internal" />
+                  </sources>
+
+                  <field name="id" width="20" type="string" data="ID_I"/>
+                  <field name="qty" type="number" prec="3" />
+                  <field name="vqty" type="number" prec="3" />
+                  <field name="date" type="date" data="PARTY" />
+                  <field name="ordflag" width="1" type="number" execOn="Put">FirstItem($object)</field>
+               </object>
+            </data>
+         </field>
+         
+         <events>
+            <event type="put">
+               <action name="WriteInternal">$object.type</action>
+               <action name="WriteToLog">$object.type;$object.created</action>
+            </event>
+         </events>
+      </object>
+      
+      <modify src="Price">
+         <add>
+            <field name="realiz" type="number" prec="0" width="3" />
+            <field name="unload" type="number" prec="0" width="3" />
+            <field name="party" type="collection">
+               <data>
+                  <object name="PartyItem">
+                     <sources>
+                        <source name="DBFTableSet">
+                           <param name="userTable">"PRT"</param>
+                           <param name="commonTable">"PARTY"</param>
+                           <param name="filter">"[ID] = $parent.id"</param>
+                        </source>
+                     </sources>
+                     <field name="date" type="date" />
+                  </object>
+               </data>
+            </field>
+         </add>
+      </modify>
+   </objects>
+</serverDefs>

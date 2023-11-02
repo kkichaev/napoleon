@@ -1,0 +1,11 @@
+package com.grsoft.dataobjects;
+
+import com.grsoft.types.FieldOrder;
+
+public class ReturnItemEx extends OrderItem {
+	@FieldOrder(order=USER_FIELDS)
+	public String cause = "";
+
+	@FieldOrder(order=USER_FIELDS + 1)
+	public int factory = 0;
+}

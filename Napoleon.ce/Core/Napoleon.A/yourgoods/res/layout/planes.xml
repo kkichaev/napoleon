@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gestureStrokeType="single"
+    android:eventsInterceptionEnabled="true"
+    android:orientation="vertical"
+    android:gestureColor="#00000000"
+    android:uncertainGestureColor="#00000000">
+    
+    <LinearLayout android:layout_width="fill_parent" 
+        android:id="@+id/linearLayout1" 
+        android:layout_height="wrap_content" 
+        android:background="@color/black" 
+        android:layout_weight="0">
+        
+        <TextView android:layout_width="fill_parent" 
+            android:layout_height="wrap_content" 
+            android:background="@color/footer" 
+            android:textColor="@color/black" 
+            android:layout_marginBottom="1dp" 
+            android:layout_marginRight="1dp" 
+            android:layout_marginTop="1dp" 
+            android:paddingBottom="5dp" 
+            android:paddingLeft="2dp" 
+            android:paddingRight="2dp" 
+            android:paddingTop="5dp" 
+            android:gravity="right" 
+            android:text="Наименование"/>
+    </LinearLayout>
+    
+    <ListView android:layout_height="wrap_content" 
+        android:layout_width="fill_parent" 
+        android:layout_weight="1" 
+        android:background="@color/white" 
+        android:id="@android:id/list"/>
+</LinearLayout>

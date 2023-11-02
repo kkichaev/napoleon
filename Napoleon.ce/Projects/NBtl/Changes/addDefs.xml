@@ -1,0 +1,779 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+  <objects>
+    <object name="AgentDivision">
+      <sources>
+        <source name="SQLQuery">
+          <param name="stmt">
+            "select a.id as userid, name from division$agents a join division d on a.[Division$id] = d.id"
+          </param>
+        </source>
+      </sources>
+
+      <field name="userid" type="string" />
+      <field name="name" type="string" />
+    </object>
+  
+    <object name="VisitPlanFact">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"date,userid"</member>
+      <field name="userid" type="string" />
+      <field name="date" type="date" />
+
+      <field name="items" type="collection">
+        <data>
+          <object name="Item">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+            <field name="id" type="string"/>
+            <field name="plan" type="number" />
+            <field name="miss" type="number" />
+            <field name="comment" type="string" />
+          </object>
+        </data>
+      </field>
+    </object>
+
+    <object name="GoodsValues">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"id"</member>
+      <field name="id" type="string" />
+      
+      <field name="items" type="collection">
+        <data>
+          <object name="GoodsValuesItem">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+            <field name="id" type="string"/>
+            <field name="redLine" type="number" />
+            <field name="greenLine" type="number" />
+          </object>
+        </data>
+      </field>
+    </object>
+
+    <object name="BtlPlan">
+      <sources>
+        <source name="SQTable" type="internal" >
+          <param name="readFilter">
+            'cid in (select c.id from contractdef c where start &lt;= ToDate("' + FormatDate(Now(),"DD.MM.YYYY") + '") and finish &gt;= ToDate("' + FormatDate(Now(),"DD.MM.YYYY") + '"))'
+          </param>
+        </source>
+      </sources>
+
+      <member name="primaryKey">"id,cid"</member>
+      <field name="id" type="string" />
+      <field name="cid" type="string" />
+      <field name="face" type="number" prec="3"/>
+
+      <field name="items" type="collection">
+        <data>
+          <object name="BtlPlanItem">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+            <field name="id" type="string"/>
+            <field name="face" type="number" prec="3"/>
+          </object>
+        </data>
+      </field>
+
+    </object>
+
+    <object name="NBTLViewer" >
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">id</member>
+      <field name="id" type="string" />
+      <field name="division" type="number" />
+      <field name="name" type="string" />
+      <field name="password" type="string" />
+
+      <field name="contracts" type="collection">
+        <data>
+          <object name="ContractItem">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+            <field name="id" type="string"/>
+          </object>
+        </data>
+      </field>
+    </object>
+
+    <object name="Slsnet">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+      <member name="primaryKey">id</member>
+      <field name="id" type="string" />
+      <field name="name" type="string" />
+	  <field name="plan" type="number" />
+    </object>
+
+    <object name="City">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+      <member name="primaryKey">id</member>
+      <field name="id" type="string" />
+      <field name="name" type="string" />
+    </object>
+
+    <object name="OrgAssignment">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">id</member>
+
+      <field name="id" type="string" />
+      <field name="items" type="collection">
+        <data>
+          <object name="OrgAssignmentItem">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+            <field name="id" type="string"/>
+          </object>
+        </data>
+      </field>
+    </object>
+
+    <object name="OrgAssign">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">id</member>
+
+      <field name="id" type="string" />
+      <field name="items" type="collection">
+        <data>
+          <object name="OrgAssignItem">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+            <field name="id" type="string"/>
+          </object>
+        </data>
+      </field>
+    </object>
+
+    <object name="ScrAssign">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">id</member>
+
+      <field name="id" type="string" />
+      <field name="items" type="collection">
+        <data>
+          <object name="ScrAssignItem">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+            <field name="id" type="number"/>
+          </object>
+        </data>
+      </field>
+    </object>
+
+    <object name="ContractDef">
+      <sources>
+        <source name="SQTable" type="internal" >
+          <param name="readFilter">
+            'start &lt;= ToDate("' + FormatDate(Now(),"DD.MM.YYYY") + '") and ' +
+            'finish &gt;= ToDate("' + FormatDate(Now(),"DD.MM.YYYY") + '")'
+          </param>
+        </source>
+      </sources>
+
+      <member name="primaryKey">id</member>
+
+      <field name="id" type="string" />
+      <field name="start" type="timestamp" />
+      <field name="finish" type="timestamp" />
+      <field name="name" type="string" />
+      <field name="photo" type="binary"/>
+
+      <field name="items" type="collection">
+        <data>
+          <object name="ContractDefItem">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+            <field name="id" type="string"/>
+          </object>
+        </data>
+      </field>
+
+      <field name="orgImg" type="collection">
+        <data>
+          <object name="ContractDefItem">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+            <field name="id" type="string"/>
+            <field name="name" type="string"/>
+            <field name="href" type="string" /> 
+            <!--<field name="photo" type="binary"/>-->
+          </object>
+        </data>
+      </field>
+    </object>
+
+    <object name="Contract">
+      <sources>
+          <source name="SQTable" type="internal">
+            <param name="whereFilter">'"sended" &lt;= ToDate("' + FormatDate(Now(),"DD.MM.YYYY HH:mm:SS") + '")'</param>
+            <param name="whereCondition">$user.licenseType = "monitor"</param>
+          </source>
+      </sources>
+
+      <member name="primaryKey">"userid,created"</member>
+      <memberArray name="index">"created"</memberArray>
+
+      <field name="id" type="string" />
+      <field name="userid" type="string" data="USER_ID" execOn="Put">$user.id</field>
+      <field name="created" type="timestamp" data="CREATED,NUM"/>
+      <field name="timeZone" type="number" />
+      <field name="serverTimeZone" type="number" data="S_TZ" execOn="Put" features="USE_TIMEZONE">ServerTimeZone()</field>
+      <field name="def" type="string" />
+      <field name="sended" type="timestamp" data="S_DATE" execOn="Put">Now()</field>
+      <field name="remark" type="string" />
+
+      <field name="items" type="collection">
+        <data>
+          <object name="ContractItem">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+            <field name="id" type="string"/>
+            <field name="qty" type="number" prec="3"/>
+          </object>
+        </data>
+      </field>
+    </object>
+
+    <object name="Planogram">
+      <sources>
+          <source name="SQTable" type="internal">
+            <param name="whereFilter">'"sended" &lt;= ToDate("' + FormatDate(Now(),"DD.MM.YYYY HH:mm:SS") + '")'</param>
+            <param name="whereCondition">$user.licenseType = "monitor"</param>
+          </source>
+      </sources>
+
+      <member name="primaryKey">"userid,created"</member>
+      <memberArray name="index">"created"</memberArray>
+
+      <field name="id" type="string" />
+      <field name="userid" type="string" data="USER_ID" execOn="Put">$user.id</field>
+      <field name="created" type="timestamp" data="CREATED,NUM"/>
+      <field name="timeZone" type="number" />
+      <field name="serverTimeZone" type="number" data="S_TZ" execOn="Put" features="USE_TIMEZONE">ServerTimeZone()</field>
+      <field name="def" type="string" />
+      <field name="sended" type="timestamp" data="S_DATE" execOn="Put">Now()</field>
+      <field name="approved" type="number" />
+    </object>
+
+    <object name="CMonitoring">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"userid,created"</member>
+      <memberArray name="index">"created"</memberArray>
+
+      <field name="id" type="string" />
+      <field name="userid" type="string" data="USER_ID" execOn="Put">$user.id</field>
+      <field name="created" type="timestamp" data="CREATED,NUM"/>
+      <field name="timeZone" type="number" />
+      <field name="serverTimeZone" type="number" data="S_TZ" execOn="Put" features="USE_TIMEZONE">ServerTimeZone()</field>
+      <field name="def" type="string" />
+      <field name="sended" type="timestamp" data="S_DATE" execOn="Put">Now()</field>
+
+      <field name="items" type="collection">
+        <data>
+          <object name="CMonitoringItem">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+            <field name="id" type="string"/>
+            <field name="cost" type="number" prec="2"/>
+          </object>
+        </data>
+      </field>
+    </object>
+
+    <object name="Distrib">
+      <sources>
+          <source name="SQTable" type="internal">
+            <param name="whereFilter">'"sended" &lt;= ToDate("' + FormatDate(Now(),"DD.MM.YYYY  HH:mm:SS") + '")'</param>
+            <param name="whereCondition">$user.licenseType = "monitor"</param>
+          </source>
+      </sources>
+
+      <member name="primaryKey">"userid,created"</member>
+      <memberArray name="index">"created"</memberArray>
+
+      <field name="id" type="string" />
+      <field name="userid" type="string" data="USER_ID" execOn="Put">$user.id</field>
+      <field name="created" type="timestamp" data="CREATED,NUM"/>
+      <field name="timeZone" type="number" />
+      <field name="serverTimeZone" type="number" data="S_TZ" execOn="Put" features="USE_TIMEZONE">ServerTimeZone()</field>
+      <field name="sended" type="timestamp" data="S_DATE" execOn="Put">Now()</field>
+
+      <field name="items" type="collection">
+        <data>
+          <object name="DistribItem">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+            <field name="id" type="string"/>
+            <field name="exist" type="number" />
+            <field name="itemStatus" type="number" />
+          </object>
+        </data>
+      </field>
+    </object>
+
+    <object name="PartShelf">
+      <sources>
+        <source name="SQTable" type="internal"/>
+      </sources>
+
+      <member name="primaryKey">"cid,sid"</member>
+
+      <field name="cid" type="string"/>
+      <field name="sid" type="string"/>
+      <field name="part" type="number"/>
+    </object>
+
+    <object name="ReturnCause">
+      <sources>
+        <source name="SQTable" type="internal"/>
+      </sources>
+
+      <member name="primaryKey">"id"</member>
+
+      <field name="id" type="string" />
+      <field name="agent" type="string"/>
+      <field name="report" type="string" />
+      <field name="notprint" type="number" />
+    </object>
+
+    <object name="OrgMatrix">
+      <sources>
+        <source name="SQTable" type="internal" >
+          <param name="readFilter">
+            "id in (select oi.id from orgassign oa, orgassign$items oi where oa.id=oi.orgassign$id and oa.id='"+ $user.id + "')"  and " +
+            'cdef in (select c.id from contractdef c where '+
+            'start &lt;= ToDate("' + FormatDate(Now(),"DD.MM.YYYY") + '") and ' +
+            'finish &gt;= ToDate("' + FormatDate(Now(),"DD.MM.YYYY") + '"))'
+          </param>
+        </source>
+      </sources>
+
+      <member name="primaryKey">"cdef,id"</member>
+
+      <field name="id" type="string" />
+      <field name="cdef" type="string"/>
+      <field name="name" type="string" />
+    </object>
+
+    <object name="GroupGoods">
+      <sources>
+        <source name="SQTable" type="internal">
+          <param name="readFilter">"rem=0"</param>
+        </source>
+      </sources>
+
+      <member name="primaryKey">"id"</member>
+
+      <field name="id" type="string"/>
+      <field name="fid" type="string"/>
+      <field name="name" type="string"/>
+      <field name="rem" type="number"/>
+    </object>
+
+    <object name="GoodsMatrix">
+      <sources>
+        <source name="SQTable" type="internal"/>
+      </sources>
+
+      <member name="primaryKey">"name"</member>
+
+      <field name="items" type="collection">
+        <data>
+          <object name="MatrixItem">
+            <sources>
+              <source name="SQTable" type="internal"/>
+            </sources>
+            <field name="id" type="string" width="40" />
+          </object>
+        </data>
+      </field>
+
+      <field name="name" type="string"/>
+    </object>
+	
+	<object name="AgentPlan">
+      <sources>
+        <source name="SQTable" type="internal"/> 
+      </sources>
+
+      <member name="primaryKey">"id"</member>
+
+      <field name="id" type="string"/>
+      <field name="plan" type="number"/>
+    </object>
+    
+    <object name="Target">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"userid,created"</member>
+      <memberArray name="index">"created"</memberArray>
+
+      <field name="id" type="string" />
+      <field name="userid" type="string" execOn="Put">$user.id</field>
+      <field name="created" type="timestamp" />
+      <field name="timeZone" type="number" />
+      <field name="serverTimeZone" type="number" data="S_TZ" execOn="Put" features="USE_TIMEZONE">ServerTimeZone()</field>
+      <field name="defid" type="number" />
+      <field name="sended" type="timestamp" data="S_DATE" execOn="Put">Now()</field>
+      <field name="remark" type="string" />
+      <field name="scriptCreated" type="timestamp" />
+    </object>
+    
+    <object name="PLU">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"item,sls,code"</member>
+
+      <field name="item" type="string"/>
+      <field name="sls" type="string"/>
+      <field name="code" type="string"/>
+    </object>
+
+    <!--<modify dest="CopyVisit" src="VisitInfo" feature="HTTP_SERVER">
+      <add>
+        <field name="items" type="collection">
+          <data>
+            <object name="VisitItem">
+              <sources>
+                <source name="SQTable" type="internal" />
+              </sources>
+              
+              <field name="name" type="string" />
+              <field name="smallName" type="string" />
+              <field name="smallSize" type="string"  />
+              <field name="rating" type="number" feature="SNAPSHOT_RATING"/>
+              <field name="date" type="timestamp" />
+            </object>
+          </data>
+        </field>
+      </add>
+    </modify>-->
+      
+    <modify src="Org" dest="CommonOrgs">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+        <member name="primaryKey">"id"</member>
+      </change>
+      <add>
+        <field name="code" type="string" />
+      </add>
+    </modify>
+
+    <modify src="OrgFolder$items">
+      <add>
+        <field name="itemId" type="string" />
+        <member name="primaryKey">"itemId"</member>
+        <field name="scripts" type="collection">
+          <data>
+            <object name="OrgFolderScripts">
+              <sources>
+                <source name="SQTable" type="internal" />
+              </sources>
+              <field name="id" type="number" />
+            </object>
+          </data>
+        </field>
+      </add>
+    </modify>
+
+    <modify src="Org">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" >
+            <param name="readFilter">
+              "id in (select oi.id from orgassign oa, orgassign$items oi where oa.id=oi.orgassign$id and oa.id='"+ $user.id + "')"
+            </param>
+          </source>
+        </sources>
+      </change>
+      <add>
+        <member name="primaryKey">id</member>
+        <field name="cid" type="string" />
+        <field name="sid" type="string" />
+        <field name="userid" type="string" execOn="Get">$user.id</field>
+        <field name="goodsMatrix" type="string"/>
+        <field name="nameLPR" type="string"/>
+        <field name="contactsLPR" type="string"/>
+        <field name="bithdayLPR" type="string"/>
+        <field name="visitDays" type="string"/>
+        <field name="responsible" type="string"/>
+        <field name="equipment" type="string"/>
+        <field name="matrixsku" type="string"/>
+        <field name="orderday" type="string"/>
+        <field name="promoplan" type="string"/>
+        <field name="providerNumber" type="string" />
+        <field name="code" type="string"/>
+      </add>
+    </modify>
+
+    <modify src="CommonMatrix">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal">
+            <param name="readFilter">
+              'cdef in (select c.id from contractdef c where '+
+              'start &lt;= ToDate("' + FormatDate(Now(),"DD.MM.YYYY") + '") and ' +
+              'finish &gt;= ToDate("' + FormatDate(Now(),"DD.MM.YYYY") + '"))'
+            </param>
+          </source>
+        </sources>
+      </change>
+      <add>
+        <field name="cdef" type="string" />
+        <member name="primaryKey">cdef,name</member>
+      </add>
+    </modify>
+    <modify src="CommonMatrix$items">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal"/>
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="Matrix" table="CommonMatrix">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal">
+            <param name="readFilter">
+              'cdef in (select c.id from contractdef c where '+
+              'start &lt;= ToDate("' + FormatDate(Now(),"DD.MM.YYYY") + '") and ' +
+              'finish &gt;= ToDate("' + FormatDate(Now(),"DD.MM.YYYY") + '"))'
+            </param>
+          </source>
+        </sources>
+      </change>
+      <add>
+        <field name="cdef" type="string" />
+        <member name="primaryKey">sid,name</member>
+      </add>
+    </modify>
+    <modify src="Matrix$items">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal"/>
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="Price">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal">
+            <param name="readFilter">
+              'rem = 0 and (isGoods=1 or (id in (select ci.id from contractdef c, contractdef$items ci where c.id=ci.contractdef$id and start &lt;= ToDate("' + FormatDate(Now(),"DD.MM.YYYY") + '") and finish &gt;= ToDate("' + FormatDate(Now(),"DD.MM.YYYY") + '"))))'
+            </param>
+          </source>
+        </sources>
+        <field name="fid" type="string"/>
+      </change>
+      <add>
+        <member name="primaryKey">id</member>
+        <field name="my" type="number"/>
+        <field name="group" type="string"/>
+        <field name="userid" type="string" execOn="Get">$user.id</field>
+        <field name="isGoods" type="number" />
+        <field name="categ" type="string"/>
+        <field name="product" type="string"/>
+        <field name="rem" type="number"/>
+        <field name="code" type="string" />
+        <field name="barcode" type="string" />
+      </add>
+    </modify>
+
+    <modify src="ManagerPrice" tableName="Price">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+      <add>
+        <member name="primaryKey">id</member>
+        <field name="cdef" type="string"/>
+        <field name="group" type="string"/>
+        <field name="my" type="number"/>
+        <field name="isGoods" type="number" />
+        <field name="categ" type="string"/>
+        <field name="product" type="string"/>
+        <field name="rem" type="number"/>
+        <field name="code" type="string" />
+        <field name="barcode" type="string" />
+      </add>
+    </modify>
+
+    <modify src="Returns$items">
+      <add>
+        <field name="flags" type="number" />
+        <field name="comment" type="string" />
+        <field name="causeid" type="string" />
+        <field name="expdate" type="timestamp" />
+      </add>
+    </modify>
+
+    <modify src="OrgRemnants$items">
+      <add>
+        <field name="qtyFact" type="number" prec="3" />
+        <field name="qtyInput" type="number" prec="3" />
+        <field name="qtyUnload" type="number" prec="3" />
+        <field name="qtyBrak" type="number" prec="3" />
+      </add>
+    </modify>
+
+    <modify src="Visit">
+      <add>
+        <field name="def" type="string" />
+      </add>
+    </modify>
+
+    <modify src="ScriptDef" feature="SCRIPT_DOC">
+      <add>
+        <field name="cdefid" type="string" />
+      </add>
+    </modify>
+    
+    <modify src="Returns" dest="ReturnOnDelivery" table="ReturnOnDelivery">
+    </modify>
+    
+    <modify src="ReturnOnDelivery$items">
+      <add>
+        <field name="flags" type="number" />
+        <field name="comment" type="string" />
+        <field name="causeid" type="string" />
+        <field name="expdate" type="timestamp" />
+      </add>
+    </modify>
+    
+    <modify src="ScriptDef" dest="ScriptDefAll">
+      <change>
+        <sources>
+            <source name="SQTable" type="internal">
+            </source>
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="Question$items">
+      <add>
+        <field name="clients" type="string"/>
+        <field name="altText" type="string"/>
+      </add>
+    </modify>
+
+    <modify src="Question$items$values">
+      <add>
+        <field name="value2" type="string"/>
+      </add>
+    </modify>
+  
+    <modify src="ScriptDoc">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal">
+            <param name="whereFilter">'"sended" &lt;= ToDate("' + FormatDate(Now(),"DD.MM.YYYY HH:mm:SS") + '")'</param>
+            <param name="whereCondition">$user.licenseType = "monitor"</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="Answer">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal">
+            <param name="whereFilter">'"sended" &lt;= ToDate("' + FormatDate(Now(),"DD.MM.YYYY HH:mm:SS") + '")'</param>
+            <param name="whereCondition">$user.licenseType = "monitor"</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="OrgRemnants">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal">
+            <param name="whereFilter">'"sended" &lt;= ToDate("' + FormatDate(Now(),"DD.MM.YYYY HH:mm:SS") + '")'</param>
+            <param name="whereCondition">$user.licenseType = "monitor"</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="Visit">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal">
+            <param name="whereFilter">'"sended" &lt;= ToDate("' + FormatDate(Now(),"DD.MM.YYYY HH:mm:SS") + '")'</param>
+            <param name="whereCondition">$user.licenseType = "monitor"</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="VisitInfo">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal">
+            <param name="whereFilter">'"sended" &lt;= ToDate("' + FormatDate(Now(),"DD.MM.YYYY HH:mm:SS") + '")'</param>
+            <param name="whereCondition">$user.licenseType = "monitor"</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="VisitSrc">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal">
+            <param name="whereFilter">'"sended" &lt;= ToDate("' + FormatDate(Now(),"DD.MM.YYYY HH:mm:SS") + '")'</param>
+            <param name="whereCondition">$user.licenseType = "monitor"</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+  
+  </objects>
+</serverDefs>

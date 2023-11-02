@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="@dimen/doc_form_padding"
+    android:paddingLeft="@dimen/doc_form_padding"
+    android:paddingRight="@dimen/doc_form_padding">
+
+    <TextView
+        android:id="@+id/doc_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/purchase_margin"
+        android:text="@string/buy_goods"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/head"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/purchase_back_line"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/doc_title">
+
+        <TextView
+            style="@style/PurchaseHeadText"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:background="@color/purchase_back"
+            android:padding="8dp"
+            android:text="@string/item_name" />
+
+        <TextView
+            style="@style/PurchaseHeadText"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.25"
+            android:background="@color/purchase_back"
+            android:gravity="center"
+            android:text="@string/weight_kg"/>
+
+        <TextView
+            style="@style/PurchaseHeadText"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="1dp"
+            android:layout_weight="0.25"
+            android:background="@color/purchase_back"
+            android:gravity="center"
+            android:text="@string/cost_rub"/>
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/items"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toTopOf="@+id/div1"
+        app:layout_constraintTop_toBottomOf="@id/head" />
+
+    <View
+        android:id="@+id/div1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/black"
+        app:layout_constraintBottom_toTopOf="@id/bottom_bar" />
+
+    <LinearLayout
+        android:id="@+id/bottom_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bottom_bar_height"
+        android:orientation="horizontal"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            style="@style/PurchaseText"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/total" />
+
+        <TextView
+            android:id="@+id/total_wight"
+            style="@style/PurchaseText"
+            android:layout_width="@dimen/purchase_weight_columns"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical|end"
+            tools:text="4,05" />
+
+        <TextView
+            android:id="@+id/total_sum"
+            style="@style/PurchaseText"
+            android:layout_width="@dimen/purchase_sum_columns"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical|end"
+            tools:text="137 000,00" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

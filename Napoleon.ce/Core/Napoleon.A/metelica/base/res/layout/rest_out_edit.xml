@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.gesture.GestureOverlayView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/gestures"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gestureStrokeType="single"
+    android:eventsInterceptionEnabled="true"
+    android:orientation="vertical"
+    android:gestureColor="#00000000"
+    android:uncertainGestureColor="#00000000" xmlns:app="http://schemas.android.com/tools">
+    
+<LinearLayout
+  	android:layout_height="fill_parent" 
+  	android:layout_width="fill_parent" 
+  	android:orientation="vertical">
+  	
+	<LinearLayout android:id="@+id/LinearLayout01" 
+		android:layout_height="wrap_content" 
+		android:layout_width="fill_parent" 
+		android:layout_weight="0" 
+		android:paddingBottom="10dp" 
+		android:paddingTop="5dp" 
+		android:background="@color/footer">
+		
+		<TextView android:layout_width="wrap_content" 
+			android:layout_height="wrap_content" 
+			android:id="@+id/tvOrg" 
+			android:text="OrgName" 
+			android:textStyle="bold" 
+			android:textSize="18sp" 
+			android:ellipsize="end" 
+			android:lines="1" 
+			android:scrollHorizontally="true" 
+			android:textColor="@color/black"/>
+	</LinearLayout>
+	
+	<LinearLayout android:id="@+id/LinearLayout02" 
+		android:layout_height="wrap_content" 
+		android:layout_width="fill_parent" 
+		android:layout_weight="1" 
+		android:orientation="vertical">
+		
+		<LinearLayout android:id="@+id/LinearLayout04" 
+			android:layout_height="wrap_content" 
+			android:layout_width="fill_parent" 
+			android:layout_weight="0" 
+			android:background="@color/black">
+			
+			<TextView android:id="@+id/TextView01" 
+				android:layout_width="wrap_content" 
+				android:layout_height="wrap_content" 
+				android:text="Название" 
+				android:gravity="center_horizontal"
+				android:layout_weight="1" 
+				android:background="@color/white" 
+				android:textColor="@color/black" 
+				android:layout_margin="1dp" 
+				android:paddingLeft="3dp"/>
+				
+			<TextView android:id="@+id/TextView02" 
+				android:layout_width="wrap_content" 
+				android:layout_height="wrap_content" 
+				android:layout_weight="0" 
+				android:background="@color/white" 
+				android:textColor="@color/black" 
+				android:layout_marginBottom="1dp" 
+				android:layout_marginRight="1dp" 
+				android:layout_marginTop="1dp" 
+				android:paddingLeft="2dp" 
+				android:paddingRight="2dp" 
+				android:gravity="center_horizontal"
+				android:text="План SKU" 
+				android:minWidth="55dp"/>
+				
+			<TextView android:id="@+id/textView1" 
+				android:layout_width="wrap_content" 
+				android:layout_height="wrap_content" 
+				android:gravity="center_horizontal"
+				android:text="Наличие" 
+				android:background="@color/white" 
+				android:textColor="@color/black" 
+				android:layout_marginTop="1dp" 
+				android:layout_marginRight="1dp" 
+				android:layout_weight="0" 
+				android:paddingLeft="2dp" 
+				android:minWidth="55dp"/>
+				
+			<TextView android:id="@+id/TextView03" 
+				android:layout_width="wrap_content" 
+				android:layout_height="wrap_content" 
+				android:gravity="center_horizontal"
+				android:text="Заказ" 
+				android:layout_weight="0" 
+				android:background="@color/white" 
+				android:textColor="@color/black" 
+				android:layout_marginLeft="0dp" 
+				android:layout_marginBottom="1dp" 
+				android:layout_marginRight="1dp" 
+				android:layout_marginTop="1dp" 
+				android:paddingRight="3dp" 
+				android:minWidth="55dp"/>
+		</LinearLayout>
+
+		<ListView android:layout_width="fill_parent" 
+			android:layout_height="fill_parent" 
+			android:layout_weight="1" 
+			android:id="@+id/lvItems" 
+			android:background="@color/white"/>
+	</LinearLayout>
+	
+	<LinearLayout android:layout_height="wrap_content" 
+		android:layout_width="fill_parent" 
+		android:id="@+id/linearLayout1" 
+		android:background="@color/footer" 
+		android:orientation="horizontal" 
+		android:padding="7dp">
+
+		<ImageButton
+		    android:id="@+id/btnRemark"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_marginRight="7dp"
+		    android:src="@drawable/orderedit"
+		    app:ignore="ContentDescription" />
+					
+		<ImageButton android:layout_width="wrap_content" 
+			android:layout_height="wrap_content" 
+			android:src="@drawable/send" 
+			android:id="@+id/btnSend" 
+			android:layout_marginRight="7dp"/>
+			
+	</LinearLayout>
+</LinearLayout>
+</android.gesture.GestureOverlayView>

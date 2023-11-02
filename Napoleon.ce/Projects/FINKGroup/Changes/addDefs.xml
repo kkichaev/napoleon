@@ -1,0 +1,104 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+   <objects>
+     <object name="Gather" removeOnCommit="true">
+       <sources>
+         <source name="DBFCatalogTable">
+           <param name="tableName">"OUTC" + $user.id</param>
+           <param name="catalog">"id"</param>
+           <param name="ordered">1</param>
+         </source>
+       </sources>
+
+       <field name="id" type="string" />
+
+       <field name="items" type="collection">
+         <data>
+           <object name="OrderItem">
+             <sources>
+               <source name="DBFCatalogItemTable"/>
+             </sources>
+
+             <field name="id" type="string" data="ID_I" />
+             <field name="qty" type="number" prec="3"/>
+             <field name="weight" type="number" prec="3" />
+           </object>
+         </data>
+       </field>
+     </object>
+
+     <object name="Complete">
+       <sources>
+         <source name="DBFCatalogTable">
+           <param name="tableName">"CMPL" + $user.id</param>
+           <param name="catalog">"id"</param>
+           <param name="ordered">1</param>
+         </source>
+       </sources>
+
+       <field name="id" type="string" />
+
+       <field name="items" type="collection">
+         <data>
+           <object name="OrderItem">
+             <sources>
+               <source name="DBFCatalogItemTable"/>
+             </sources>
+
+             <field name="id" type="string" data="ID_I" />
+             <field name="qty" type="number" prec="3"/>
+             <field name="weight" type="number" prec="3" />
+             <field name="factQty" type="number" prec="3"/>
+             <field name="factWeight" type="number" prec="3" data="FACT_W" />
+           </object>
+         </data>
+       </field>
+     </object>
+
+     <object name="Invoice">
+         <sources>
+            <source name="DBFCatalogTable">
+               <param name="tableName">$object.table + $user.id</param>
+               <param name="catalog">"id"</param>
+               <param name="ordered">1</param>
+            </source>
+            <source name="SQTable" type="internal" />
+         </sources>
+
+         <member name="table">"Inv"</member>
+         <member name="primaryKey">"userid,created"</member>
+
+         <field name="userid" type="string" data="USER_ID" execOn="Put">$user.id</field>
+         <field name="date" type="timestamp"/>
+         <field name="created" type="timestamp" />
+         <field name="sended" type="timestamp" data="S_DATE" execOn="Put">Now()</field>
+         <field name="id" width="20" type="string" />
+         <field name="items" type="collection">
+            <data>
+               <object name="InvoiceItem">
+                  <sources>
+                     <source name="DBFCatalogItemTable"/>
+                     <source name="SQTable" type="internal" />
+                  </sources>
+
+                  <field name="id" width="20" type="string" data="ID_I"/>
+                  <field name="qty" type="number" prec="3" />
+                  <field name="weight" type="number" prec="3" />
+                  <field name="flags" type="number" prec="0" />
+                  <field name="ordflag" width="1" type="number" execOn="Put">FirstItem($object)</field>
+               </object>
+            </data>
+         </field>
+
+         <field name="latitude" type="number" prec="4" data="" />
+         <field name="longitude" type="number" prec="4" data="" />
+
+         <events>
+            <event type="put">
+               <action name="WriteInternal">$object.type</action>
+               <action name="WriteToLog">$object.type;$object.date</action>
+            </event>
+         </events>
+      </object>
+   </objects>
+</serverDefs>

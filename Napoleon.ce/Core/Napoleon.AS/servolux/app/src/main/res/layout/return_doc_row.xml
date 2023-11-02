@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="horizontal" 
+    android:background="@color/white"
+	android:paddingTop="5dp"
+	android:paddingBottom="5dp">
+        
+    <TextView
+        android:id="@+id/tvDoc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:width="220dp"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:paddingLeft="3dp"
+        tools:ignore="HardcodedText" 
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/tvExpDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:layout_weight="0.1"
+        android:textSize="16sp"
+        android:paddingRight="5dp"
+        android:textColor="@color/black"
+        android:layout_gravity="center_horizontal"
+        tools:ignore="HardcodedText" 
+        android:text="TextView" />
+    
+    <TextView
+        android:id="@+id/tvParty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:textSize="16sp"
+        android:layout_weight="0.1"
+        android:paddingRight="5dp"
+        android:textColor="@color/black"
+        android:layout_gravity="center_horizontal"
+        tools:ignore="HardcodedText" 
+        android:text="TextView" />
+    
+    
+    <TextView
+        android:id="@+id/tvCost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:width="70dp"
+        android:textSize="16sp"
+        android:gravity="right"
+        android:textColor="@color/black"
+        android:paddingRight="3dp"
+        tools:ignore="HardcodedText"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/tvQty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:width="70dp"
+        android:gravity="right"
+        android:paddingRight="3dp"
+        android:textColor="@color/black"
+        android:background="@drawable/even_row_selector"
+        tools:ignore="HardcodedText"
+        android:text="TextView" />
+
+    
+    <TextView
+        android:id="@+id/tvMaxQty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:width="70dp"
+        android:gravity="right"
+        android:paddingRight="3dp"
+        tools:ignore="HardcodedText"
+        android:text="TextView" />        
+</LinearLayout>

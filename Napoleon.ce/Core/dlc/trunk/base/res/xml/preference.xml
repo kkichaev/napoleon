@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+    <EditTextPreference 
+   		android:title="@string/passwpord_caption" 
+   		android:key="password"
+   		android:defaultValue="1234"/>
+	<CheckBoxPreference 
+	    android:title="@string/phone_caption"
+	    android:key="phone"
+	    android:defaultValue="true"/>
+	<CheckBoxPreference 
+	    android:title="@string/message_caption"
+	    android:key="message"
+	    android:defaultValue="true"/>
+	<CheckBoxPreference 
+	    android:title="@string/show_dcl_icons_caption"
+	    android:summary="@string/show_dcl_icons_summary"
+	    android:key="show_dcl_icons"
+	    android:defaultValue="true"/>
+</PreferenceScreen>

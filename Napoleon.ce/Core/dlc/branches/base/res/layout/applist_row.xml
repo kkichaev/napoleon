@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="5dp" android:paddingTop="5dp"
+    android:orientation="horizontal">
+
+       <ImageView
+           android:id="@+id/ivPic"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:src="@android:drawable/stat_notify_sdcard_usb" 
+           android:layout_gravity="center_vertical" 
+           android:maxWidth="32dp" 
+           android:maxHeight="32dp"
+           android:scaleType="centerInside"
+           android:adjustViewBounds="true"
+           android:contentDescription="@string/empty_string"/>
+
+       <CheckedTextView xmlns:android="http://schemas.android.com/apk/res/android"
+	   		android:id="@+id/ctvApp"
+	   		android:layout_width="match_parent"
+	   		android:layout_height="?android:attr/listPreferredItemHeight"
+	   		android:textAppearance="?android:attr/textAppearanceLarge"
+	   		android:gravity="center_vertical"
+	   		android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+	   		android:paddingLeft="6dip"
+	   		android:paddingRight="6dip"/>
+</LinearLayout>

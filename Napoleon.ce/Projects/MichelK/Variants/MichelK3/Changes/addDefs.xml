@@ -1,0 +1,127 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+  <objects>
+    <object name="OrdConfig">
+      <sources>
+        <source name="KeyValueTable">
+          <param name="fileName">"ord"+$user.id+".cfg"</param>
+        </source>
+        <source name="KeyValueTable">
+          <param name="fileName">"order.cfg"</param>
+        </source>
+      </sources>
+
+      <field name="key" type="string" />
+      <field name="value" type="string" />
+    </object>
+
+    <object name="Skalds">
+      <sources>
+        <source name="KeyValueDBFTable">
+          <param name="fileName">"SKLADS"+$user.id</param>
+          <param name="key">"Склады"</param>
+          <param name="itemName">"NAME"</param>
+          <param name="itemKey">"ID"</param>
+        </source>
+        <source name="KeyValueDBFTable">
+          <param name="fileName">"SKLADS"</param>
+          <param name="key">"Склады"</param>
+          <param name="itemName">"NAME"</param>
+          <param name="itemKey">"ID"</param>
+        </source>
+      </sources>
+      <field name="key" type="string" />
+      <field name="value" type="string" />
+    </object>
+
+    <object name="PriceSklad">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"PRQ"</param>
+          <param name="commonTable">"PRCQTY"</param>
+          <param name="catalog">"id;sklads;0"</param>
+        </source>
+      </sources>
+      <field name="id" type="string" />
+      <field name="sklads" type="collection">
+        <data>
+          <object name="Item">
+            <field name="ids" type="string" />
+            <field name="qty" type="number" prec="3" />
+          </object>
+        </data>
+      </field>
+    </object>
+
+    <object name="Config">
+      <sources>
+        <source name="ObjectUnion">
+          <param>"OrdConfig"</param>
+          <param>"Skalds"</param>
+        </source>
+      </sources>
+      <field name="key" type="string" />
+      <field name="value" type="string" />
+    </object>
+
+    <object name="UpdatePhoto" sendLimit="300000">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"name"</member>
+
+      <field name="items" type="collection">
+        <data>
+          <object name="UpdatePhotoItem">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+            <field name="id" type="string" data="ID"/>
+          </object>
+        </data>
+      </field>
+
+      <field name="photo" type="file" data="PATH" />
+      <field name="name" type="string" />
+    </object>
+
+    <modify src="Price">
+      <add>
+        <field name="descr" type="string" />
+      </add>
+    </modify>
+
+
+    <modify src="Order">
+
+      <add>
+        <field name="supplyer" type="number" />
+        <field name="sumType" type="number" />
+
+      </add>
+    </modify>
+
+
+    <modify src="OrgRemnants">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="PricePhoto">
+      <add>
+        <field name="crc" type="string" width="16" />
+      </add>
+    </modify>
+
+    <modify src="PricePhoto" dest="UpdCrc">
+      <remove>
+        <field name="photo" />
+      </remove>
+    </modify>
+
+  </objects>
+</serverDefs>

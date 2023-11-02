@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<style name="AlertDialogCustom" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:itemTextAppearance">@android:style/TextAppearance.Large.Inverse</item>
+        <item name="android:textAppearanceListItem">@android:style/TextAppearance.Large.Inverse</item>
+        <item name="android:textAppearanceListItemSmall">@android:style/TextAppearance.Large.Inverse</item>
+    <item name="android:textSize">24sp</item>
+</style>
+<style name="Napoleon" parent="android:Theme.Holo.Light">
+    	<item name="android:imageButtonStyle">@android:style/Widget.ImageButton</item>
+    	<item name="android:buttonStyle">@android:style/Widget.Button</item>         
+    </style>
+</resources>

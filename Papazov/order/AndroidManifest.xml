@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" 
+    android:versionName="@string/version" 
+    package="com.grsoft.prch_order" 
+    android:versionCode="12" 
+    xmlns:tools="http://schemas.android.com/tools">
+      
+    <uses-sdk android:minSdkVersion="14" android:targetSdkVersion="23"/>
+    
+    <uses-feature android:name="android.hardware.location.network" android:required="false"/>
+    <uses-feature android:name="android.hardware.wifi" android:required="false"/>
+    <uses-feature android:name="android.hardware.touchscreen" android:required="false"/>
+    
+    <uses-permission android:name="android.permission.INTERNET"/>  
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    
+    <supports-screens
+        android:smallScreens="true"
+        android:normalScreens="true"
+        android:largeScreens="true"
+        android:resizeable="true"
+        />
+ 	
+    <application android:debuggable="true" 
+        android:icon="@drawable/pictograms" 
+        android:label="@string/app_name" 
+        android:name="com.grsoft.prch_order.App" 
+        android:theme="@style/Napoleon"
+        
+        tools:ignore="HardcodedDebugMode">
+    
+    	<receiver android:enabled="true" android:permission="android.permission.RECEIVE_BOOT_COMPLETED" android:name="com.grsoft.util.BootUpReceiver">
+
+        	<intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <category android:name="android.intent.category.DEFAULT" />
+        	</intent-filter>
+		</receiver>
+    	
+    	<activity android:label="@string/app_name" 
+    	    android:launchMode="singleTask" 
+    	    android:name="com.grsoft.prch_order.Main" 
+    	    android:configChanges="keyboard|keyboardHidden|orientation|screenSize">
+        	
+        	<intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+		
+
+         <activity android:name="com.grsoft.prch_order.Config" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
+         <activity android:name="com.grsoft.prch_order.GateEditor" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
+
+         <activity android:name="com.grsoft.napoleon.CrashReport" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
+         <activity android:name="com.grsoft.network.BaseSimpleActivity" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
+         <service android:name="com.grsoft.util.NapoleonServiceW"/>
+         <service android:name="com.grsoft.util.NapoleonService"/>
+</application>
+
+</manifest>

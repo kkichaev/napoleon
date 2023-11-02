@@ -1,0 +1,200 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+  <objects>
+    <object name="PhoneCall">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"userid,created"</member>
+      <memberArray name="index">"created"</memberArray>
+
+      <field name="created" type="timestamp" />
+      <field name="timeZone" type="number" />
+      <field name="serverTimeZone" type="number" data="S_TZ" execOn="Put" feature="USE_TIMEZONE">ServerTimeZone()</field>
+      <field name="userid" type="string" execOn="Put">$user.id</field>
+      <field name="id" type="string" width="55" />
+      <field name="date" type="date" />
+      <field name="sended" type="timestamp" data="S_DATE" execOn="Put">Now()</field>
+      <field name="sum" type="number" prec="2" />
+      <field name="remark" type="string" width="100" />
+      <field name="latitude" type="number" prec="5" />
+      <field name="longitude" type="number" prec="5" />
+      <field name="stltime" type="number" />
+
+      <field name="actions" type="number" />
+
+      <events>
+        <event type="put">
+          <action name="WriteToLog">$object.type;$object.created</action>
+        </event>
+      </events>
+    </object>
+    
+    <object name="Contragent">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"KCA"</param>
+          <param name="commonTable">"KAGENTS"</param>
+          <param name="filter">"[IDO] in $Org.ido"</param>
+        </source>
+      </sources>
+
+      <field name="name" type="string"  />
+      <field name="id" type="string" />
+      <field name="ido" type="string" />
+    </object>
+
+    <object name="Agreement">
+      <sources>
+        <source name="DBFTable">
+          <param name="tableName">"AGRMNT"</param>
+        </source>
+      </sources>
+
+      <member name="primaryKey">"id"</member>
+
+      <field name="id" type="string" />
+      <field name="name" type="string" />
+      <field name="firm" type="string" />
+      <field name="idSeg" type="string" />
+    </object>
+
+    <modify src="Price">
+      <add>
+        <field name="minCost" type="number" prec="2" data="MIN_COST" />
+        <field name="canDiscount" type="number" data="DSC" />
+        <field name="unit" type="string" />
+        <field name="units" type="collection">
+          <data>
+            <object name="UItem">
+              <sources>
+                <source name="DBFTableSet">
+                  <param name="userTable">"UN"</param>
+                  <param name="commonTable">"UNITS"</param>
+                  <param name="filter">"[ID] = $parent.id"</param>
+                </source>
+              </sources>
+              <field name="id" type="string" data="ID_U" />
+              <field name="name" type="string" />
+              <field name="inpack" type="number" prec="3" />
+            </object>
+          </data>
+        </field>
+      </add>
+    </modify>
+
+    <modify src="Incass">
+      <add>
+        <field name="firma" type="string" width="50" execOn="Put">KeyValueReader("order.cfg","Организация",$object.supplyer)</field>
+        <field name="cash" type="number" width="1" />
+        <field name="supplyer" type="number" />
+        <field name="panumber" type="string" />
+      </add>
+    </modify>
+
+    <modify src="Order">
+      <add>
+        <field name="pkoCost" type="number" prec="2" />
+        <field name="byPhone" type="number" width="1" />
+        <field name="kagent" type="string" width="55" />
+        <field name="agreement" type="string" width="55" data="ID_AGR" />
+        <field name="firma" type="string" width="50" execOn="Put">KeyValueReader("order.cfg","Организация",$object.supplyer)</field>
+      </add>
+    </modify>
+
+    <modify src="Order$items">
+      <add>
+        <field name="sumType" type="number" data="SUM_I" />
+        <field name="unit" type="string" width="60" />
+      </add>
+    </modify>
+
+    <!--<modify src="Visit">
+      <change>
+        <sources>
+          <source name="DBFCatalogTable">
+            <param name="tableName">"VIS" + $user.id</param>
+            <param name="catalog">"id"</param>
+            <param name="ordered">1</param>
+          </source>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+      <add>
+        <event type="put">
+          <action name="WriteInternal">$object.type</action>
+          <action name="WriteToLog">$object.type;$object.created</action>
+        </event>
+      </add>
+    </modify>-->
+
+    <modify src="Delivery">
+      <add>
+        <field name="firma" type="string" />
+      </add>
+    </modify>
+
+    <modify src="Payment">
+      <add>
+        <field name="firma" type="string" />
+      </add>
+    </modify>
+
+    <modify src="Org">
+      <add>
+        <field name="manager" type="string" />
+        <field name="direction" type="string" data="DIR" />
+        <field name="refregerators" type="number" data="RFRG" />
+        <field name="delay" type="number" />
+        <field name="ido" type="string" />
+        <field name="params" type="collection">
+          <data>
+            <object name="OrgParamItem">
+              <sources>
+                <source name="DBFTableSet">
+                  <param name="userTable">"PRM"</param>
+                  <param name="commonTable">"PARAMS"</param>
+                  <param name="filter">"[ID] = $parent.id"</param>
+                </source>
+              </sources>
+              <field name="key" data="NAME" type="string" />
+              <field name="value" type="string" />
+            </object>
+          </data>
+        </field>
+        <field name="agree" type="collection">
+          <data>
+            <object name="AgreeItem">
+              <sources>
+                <source name="DBFTableSet">
+                  <param name="userTable">"OAG"</param>
+                  <param name="commonTable">"ORGAGR"</param>
+                  <param name="filter">"[IDO] = $parent.id"</param>
+                </source>
+              </sources>
+              <field name="id" type="string" />
+              <field name="name" type="string" />
+              <field name="firm" type="string" />
+            </object>
+          </data>
+        </field>
+        <field name="segments" type="collection">
+          <data>
+            <object name="Item">
+              <sources>
+                <source name="DBFTableSet">
+                  <param name="userTable">"OSEG"</param>
+                  <param name="commonTable">"ORGSEGS"</param>
+                  <param name="filter">"[IDO] = $parent.id"</param>
+                </source>
+              </sources>
+              <field name="id" type="string" />
+            </object>
+          </data>
+        </field>
+      </add>
+    </modify>
+
+  </objects>
+</serverDefs>

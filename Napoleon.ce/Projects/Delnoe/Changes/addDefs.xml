@@ -1,0 +1,139 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+    <object name="OrdConfig">
+      <sources>
+        <source name="KeyValueTable">
+          <param name="fileName">"ord"+$user.id+".cfg"</param>
+        </source>
+        <source name="KeyValueTable">
+          <param name="fileName">"order.cfg"</param>
+        </source>
+      </sources>
+
+      <field name="key" type="string" />
+      <field name="value" type="string" />
+    </object>
+
+    <object name="Skalds">
+      <sources>
+        <source name="KeyValueDBFTable">
+          <param name="fileName">"SKLADS"</param>
+          <param name="key">"Склады"</param>
+          <param name="itemName">"NAME"</param>
+          <param name="itemKey">"ID"</param>
+        </source>
+      </sources>
+      <field name="key" type="string" />
+      <field name="value" type="string" />
+    </object>
+
+    <object name="Config">
+      <sources>
+        <source name="ObjectUnion">
+          <param>"OrdConfig"</param>
+          <param>"Skalds"</param>
+        </source>
+      </sources>
+      <field name="key" type="string" />
+      <field name="value" type="string" />
+    </object>
+
+    <object name="VisitWithPhoto">
+      <sources>
+        <source name="SQLQuery">
+          <param name="stmt">
+            "select id, date, userid from Visit as v where date &gt;= ToDate('$01') and date &lt; ToDate('$02') and (select count(*) from visit$items as vi where v.date=vi.visit$date and v.userid = vi.visit$userid ) > 0"
+          </param>
+          <param name="debug" />
+        </source>
+      </sources>
+        
+      <field name="id" type="string" />
+      <field name="userid" type="string" />
+      <field name="date" type="timestamp" />
+    </object>
+	
+    <object name="ActionDef">
+      <sources>
+        <source name="SQTable" type="internal">
+          <param name="readFilter">'"start" &gt;= ToDate("' + FormatDate(AdjustDate(Now(),-7,"day"),"DD.MM.YYYY") + '")'</param>
+        </source>
+      </sources>
+
+      <member name="primaryKey">"id"</member>
+
+      <field name="id" type="string" />-
+      <field name="start" type="date" />
+      <field name="till" type="date" />
+      <field name="iditem" type="string" />
+      <field name="qty" type="number" />
+    </object>
+    
+    <!--<object name="Reports" removeOnCommit="true" >
+      <sources>
+        <source name="DBFTable">
+          <param name="tableName">"REP" + $user.id</param>
+        </source>
+      </sources>
+
+      <field name="encode" type="string" />
+      <field name="report" type="file" />
+      <field name="name" type="string" />
+    </object>-->
+
+    
+    <modify src="Order" dest="Action" table="Action">
+      <change>
+        <member name="table">"ACT"</member>
+      </change>
+      <add>
+        <field name="order" type="timestamp" />
+        <field name="def" type="string" width="100" />
+      </add>
+      <remove>
+        <field name="focusedItems" />
+        <field name="focusedFolders" />
+      </remove>
+    </modify>
+
+    <modify src="Order">
+      <add>
+        <field name="whCode" type="string" width="20" data="ID_WH" />
+      </add>
+    </modify>
+    <modify src="Order$items">
+      <add>
+        <field name="discount" type="number" prec="2" data="DSC_I" />
+        <field name="costWODiscount" type="number" prec="2" data="COST_WD" />
+      </add>
+    </modify>
+
+    <modify src="Price">
+      <add>
+        <field name="discount" type="number" prec="2" data="DSC" />
+        <field name="dscQuant" type="number" prec="1" data="DSC_QT" />
+        <field name="whQty" type="collection">
+          <data>
+            <object name="QtyItem">
+              <sources>
+                <source name="Sequence">
+                  <param name="source">$parent.source</param>
+                  <param name="startIndex">2</param>
+                </source>
+              </sources>
+              <field name="qty" type="number" prec="3" />
+            </object>
+          </data>
+        </field>
+      </add>
+    </modify>
+
+    <modify src="Firm">
+      <add>
+        <field name="canDiscount" type="number" data="CAN_DSC" />
+      </add>
+    </modify>
+    
+  </objects>
+</serverDefs>

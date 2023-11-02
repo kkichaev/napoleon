@@ -1,0 +1,207 @@
+﻿<Window 
+   x:Class="Ads2017.TaskWindow"
+   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+   xmlns:local="clr-namespace:Ads2017"
+   xmlns:p = "clr-namespace:Ads2017.Properties"
+   Title="{x:Static p:Resources.task}" 
+   Height="650" 
+   Width="580"
+   WindowStartupLocation="CenterOwner"
+   Icon="napoleon.ico"
+   Loaded="Window_Loaded"
+   PreviewKeyDown="Window_PreviewKeyDown">
+
+   <Window.CommandBindings>
+      <CommandBinding Command="local:AdsCommands.Delete" Executed="DeleteExecuted" />
+   </Window.CommandBindings>
+
+   <Grid Grid.Row="0" Margin="10">
+      <Grid.RowDefinitions>
+         <RowDefinition Height="Auto"/>
+         <RowDefinition Height="Auto"/>
+         <RowDefinition Height="Auto"/>
+         <RowDefinition Height="Auto"/>
+         <RowDefinition Height="Auto"/>
+         <RowDefinition Height="*"/>
+         <RowDefinition Height="Auto"/>
+         <RowDefinition Height="Auto"/>
+         <RowDefinition Height="Auto"/>
+      </Grid.RowDefinitions>
+
+      <Grid >
+         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="15"/>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="30"/>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="Auto"/>
+         </Grid.ColumnDefinitions>
+
+         <DatePicker Grid.Column="0" x:Name="startDate" />
+         <local:TimeControl Grid.Column="1" x:Name="startTime" Mode="Start"/>
+         <Label Grid.Column="2">-</Label>
+         <local:TimeControl Grid.Column="3" x:Name="finishTime" Mode="Finish"/>
+         <DatePicker Grid.Column="4" x:Name="finishDate" Width="100" />
+         <Image Grid.Column="5" Source="Images\notify.png" Width="16" Height="16"/>
+         <local:TextBoxPopup  Grid.Column="6" x:Name="notify" Items="{Binding Source={x:Static p:Resources.notify_interval}}" Value="0"/>
+         <Label Grid.Column="7" Content="{Binding Source={x:Static p:Resources.minutes}}"/>
+      </Grid>
+
+      <Grid Grid.Row="1" Margin="0,10,0,0" >
+         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="*"/>
+         </Grid.ColumnDefinitions>
+
+         <Label Grid.Column="0" FontSize="13" Content="{Binding Source={x:Static p:Resources.client}}"/>
+         
+         <TextBox 
+            Grid.Column="1" 
+            x:Name="tbClient" 
+            PreviewTextInput ="TextBoxClient_PreviewTextInput"
+            PreviewKeyDown="TextBoxClient_PreviewKeyDown"/>
+
+         <Popup Name="ppClient" 
+            PlacementTarget="{Binding ElementName=tbClient}" 
+            Placement="Bottom"
+            Height="100"
+            Width="{Binding ElementName=tbClient, Path=ActualWidth}">
+
+            <ListView x:Name="lbClient">
+               <ListView.ItemContainerStyle>
+                  <Style TargetType="ListViewItem">
+                     <EventSetter Event="PreviewMouseLeftButtonDown" Handler="ListViewClient_PreviewMouseLeftButtonDown" />
+                  </Style>
+               </ListView.ItemContainerStyle>
+            </ListView>
+         </Popup>
+      </Grid>
+
+      <Grid Grid.Row="2" Margin="0,10,0,0">
+         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="*"/>
+         </Grid.ColumnDefinitions>
+
+         <Label Grid.Column="0" FontSize="13" Content="{Binding Source={x:Static p:Resources.address}}"/>
+         <TextBox 
+            Grid.Column="1" 
+            x:Name="tbAddress" 
+            PreviewTextInput="TextBoxAddress_PreviewTextInput" 
+            GotFocus="TextBoxAddress_GotFocus"
+            LostFocus="TextBoxAddress_LostFocus"
+            PreviewKeyDown="TextBoxAddress_PreviewKeyDown"/>
+
+         <Popup Name="ppAddress" 
+            PlacementTarget="{Binding ElementName=tbAddress}" 
+            Placement="Bottom"
+            Height="100"
+            Width="{Binding ElementName=tbAddress, Path=ActualWidth}">
+
+            <ListView x:Name="lbAddress">
+               <ListView.ItemContainerStyle>
+                  <Style TargetType="ListViewItem">
+                     <EventSetter Event="PreviewMouseLeftButtonDown" Handler="ListViewAddress_PreviewMouseLeftButtonDown" />
+                  </Style>
+               </ListView.ItemContainerStyle>
+            </ListView>
+         </Popup>
+      </Grid>
+
+      <Grid Grid.Row="3" Margin="0,10,0,0" >
+         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="*"/>
+         </Grid.ColumnDefinitions>
+
+         <Label Grid.Column="0" FontSize="13" Content="{Binding Source={x:Static p:Resources.phone}}"/>
+         <TextBox 
+            Grid.Column="1" 
+            x:Name="tbPhone"
+            GotFocus="TextBoxPhone_GotFocus"
+            LostFocus="TextBoxPhone_LostFocus"
+            PreviewKeyDown="TextBoxPhone_PreviewKeyDown"/>
+      </Grid>
+
+      <Grid Grid.Row="4" Margin="0,10,0,0">
+         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="*"/>
+         </Grid.ColumnDefinitions>
+
+         <Label Grid.Column="0" FontSize="13" Content="{Binding Source={x:Static p:Resources.fio}}"/>
+         <TextBox 
+            Grid.Column="1" 
+            x:Name="tbFIO" 
+            PreviewTextInput="TextBoxFIO_PreviewTextInput"
+            GotFocus="TextBoxFIO_GotFocus"
+            LostFocus="TextBoxFIO_LostFocus"
+            PreviewKeyDown="TextBoxPhone_PreviewKeyDown"/>
+
+         <Popup Name="ppFIO" 
+            PlacementTarget="{Binding ElementName=tbFIO}" 
+            Placement="Bottom"
+            Height="100"
+            Width="{Binding ElementName=tbAddress, Path=ActualWidth}">
+
+            <ListView x:Name="lbFIO">
+               <ListView.ItemContainerStyle>
+                  <Style TargetType="ListViewItem">
+                     <EventSetter Event="PreviewMouseLeftButtonDown" Handler="ListViewFIO_PreviewMouseLeftButtonDown" />
+                  </Style>
+               </ListView.ItemContainerStyle>
+            </ListView>
+         </Popup>
+      </Grid>
+
+      <Grid Grid.Row="5" Margin="0,10,0,0">
+         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="*"/>
+         </Grid.ColumnDefinitions>
+
+         <Label Grid.Column="0" FontSize="13" Content="{Binding Source={x:Static p:Resources.task}}"/>
+         <TextBox Grid.Column="1" x:Name="tbText" TextWrapping="Wrap"/>
+      </Grid>
+
+      <Grid Grid.Row="6" Margin="0,10,0,0">
+         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="*"/>
+         </Grid.ColumnDefinitions>
+
+         <RibbonButton 
+            Grid.Column="0"
+            HorizontalAlignment="Left" 
+            LargeImageSource="Images/attachment.png"
+            Click="AddAddachment_Click"
+            ToolTipTitle ="{Binding Source={x:Static p:Resources.attachments_hint}}"
+            ToolTipDescription="{Binding Source={x:Static p:Resources.attachments_description}}"
+            Label="{Binding Source={x:Static p:Resources.attachments}}"/>
+
+         <ListBox Grid.Column="1" x:Name="attachments" MouseDoubleClick="Attachments_MouseDoubleClick">
+            <ListBox.InputBindings>
+               <KeyBinding Key="Delete" Command="local:AdsCommands.Delete" />
+            </ListBox.InputBindings>
+         </ListBox>
+      </Grid>
+      
+      <Grid Grid.Row="7" x:Name="progressLayout" Visibility="Hidden">
+         <ProgressBar  x:Name="progress" Height="30" IsIndeterminate="True" Foreground="Blue"/>
+         <TextBlock Text="{Binding Source={x:Static p:Resources.saving_process}}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+      </Grid>
+
+      <Grid Grid.Row="8">
+         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+         </Grid.ColumnDefinitions>
+         <Button Grid.Column="0" x:Name="btnOK" Content="{Binding Source={x:Static p:Resources.ok}}" Click="OK_Click"/>
+         <Button Grid.Column="1" Content="{Binding Source={x:Static p:Resources.cancel}}" Click="Cancel_Click"/>
+      </Grid>
+   </Grid>
+</Window>

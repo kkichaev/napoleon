@@ -1,0 +1,235 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+  <objects>
+
+    <object name="ReturnFolders">
+      <sources>
+        <source name="SQTable" type="internal">
+          <!--readFilter используется для чтения по умолчанию (когда идет команда Get)-->
+          <param name="readFilter">'"userid"=' + "'" + $user.id + "'"</param>
+        </source>
+      </sources>
+      <member name="primaryKey">"userid,fid"</member>
+      <field name="userid" type="string" />
+      <field name="fid" type="string" />
+    </object>
+
+    <object name="PriceTop" >
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"PRC_TOP"</param>
+          <param name="commonTable">"PRC_TPS"</param>
+          <param name="catalog">"id;items;1"</param>
+        </source>
+      </sources>
+
+      <field name="id" type="string" width="40" />
+
+      <field name="items" type="collection" >
+        <data>
+          <object name="Item">
+            <field name="id" type="string" data="ID_I" />
+            <field name="order" type="number" data="rowid" />
+          </object>
+        </data>
+      </field>
+    </object>
+
+    <object name="DailyDeliveryBalanceData" sendAlways="true">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"BDDV"</param>
+          <param name="commonTable">"BLNCDDV"</param>
+          <param name="catalog">"num;items;0"</param>
+        </source>
+      </sources>
+
+      <field name="id" type="string" width="40" />
+      <field name="num" type="string" width="20" />
+
+      <field name="items" type="collection" >
+        <data>
+          <object name="DeliveryBalanceDataItem">
+            <field name="type" type="string" width="20" />
+            <field name="num" type="string" data="NUM_I" width="20"/>
+            <field name="date" type="date" data="DATE_I" />
+            <field name="sum" type="number" prec="2" data="SUM_I" />
+            <field name="created" type="timestamp" />
+          </object>
+        </data>
+      </field>
+    </object>
+
+    <object name="DeliveryBalanceData" >
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"BLDV"</param>
+          <param name="commonTable">"BALANCEDV"</param>
+          <param name="catalog">"num;items;0"</param>
+        </source>
+      </sources>
+
+      <field name="id" type="string" width="40" />
+      <field name="num" type="string" width="20" />
+
+      <field name="items" type="collection" >
+        <data>
+          <object name="DeliveryBalanceDataItem">
+            <field name="type" type="string" width="20" />
+            <field name="num" type="string" data="NUM_I" width="20"/>
+            <field name="date" type="date" data="DATE_I" />
+            <field name="sum" type="number" prec="2" data="SUM_I" />
+            <field name="created" type="timestamp" />
+          </object>
+        </data>
+      </field>
+    </object>
+
+    <object name="OrgBalance" sendAlways="true">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"BLNC"</param>
+          <param name="commonTable">"BALANCE"</param>
+        </source>
+      </sources>
+
+      <field name="id" type="string" width="40" />
+      <field name="sum" type="number" prec="2" />
+      <field name="num" type="string" width="20" />
+      <field name="sumd" type="number" prec="2" />
+    </object>
+
+    <modify src="Incass">
+      <add>
+        <event type="writeCommit">
+          <action name="CommitOrders" />
+        </event>
+      </add>
+    </modify>
+
+    <modify src="Order">
+      <add>
+        <field name="incass" type="number" prec="2" />
+        <field name="willPay" type="number" />
+        <field name="willSum" type="number" prec="2" />
+        <field name="incassNum" type="string" width="20" />
+
+        <event type="writeCommit">
+          <action name="CommitOrders" />
+        </event>
+      </add>
+    </modify>
+    <modify src="Price">
+      <add>
+        <field name="changes" type="number" />
+        <field name="boxed" type="number" />
+        <field name="priceGroup" type="string" data="PRC_GRP" />
+      </add>
+    </modify>
+    <modify src="PriceRemnants">
+      <change>
+        <sources>
+          <source name="DBFTableSet">
+            <param name="userTable">"PRT"</param>
+            <param name="commonTable">"PRCREST"</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+    <modify src="Org">
+      <add>
+        <field name="debt" type="number" prec="2" />
+        <field name="category" type="string" />
+        <field name="catCode" type="string" />
+        <field name="segment" type="string" />
+        <field name="delay" type="number" />
+        <field name="priceGroups" type="collection">
+          <data>
+            <object name="PriceGroup">
+              <sources>
+                <source name="DBFTableSet">
+                  <param name="userTable">"OPC"</param>
+                  <param name="commonTable">"OPRICE"</param>
+                  <param name="filter">"[ID] = $parent.id"</param>
+                </source>
+              </sources>
+
+              <field name="group" data="ID_I" type="string" />
+              <field name="isPriceGroup" data="IS_PRC" type="number" />
+              <field name="costType" type="number" data="COSTYPE" />
+              <field name="id" type="string" width="30" />
+            </object>
+          </data>
+        </field>
+      </add>
+    </modify>
+
+    <modify src="GPSGather">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="OrgLocation">
+      <add>
+        <field name="date" type="timestamp" />
+      </add>
+    </modify>
+
+    <modify src="Delivery$items">
+      <add>
+        <field name="retQty" type="number" prec="3" />
+      </add>
+    </modify>
+
+    <modify src="DeliveryDay$items">
+      <add>
+        <field name="retQty" type="number" prec="3" />
+      </add>
+    </modify>
+
+    <modify src="Returns$items">
+      <add>
+        <field name="uid" type="string" data="" />
+        <field name="cause" type="string" />
+        <field name="mfrDate" type="date" />
+        <field name="items" type="collection">
+          <data>
+            <object name="ReturnDlv">
+              <sources>
+                <source name="DBFCatalogItemTable"/>
+                <source name="SQTable" type="internal" />
+              </sources>
+
+              <field name="number" width="40" type="string" data="NUM_I"/>
+              <field name="date" type="date" data="DATE_I"/>
+              <field name="qty" type="number" prec="3" data="QTY_I"/>
+              <field name="cost" type="number" prec="2" data="COST_I"/>
+              <field name="docflag" width="1" type="number" execOn="Put">FirstItem($object)</field>
+            </object>
+          </data>
+        </field>
+        <member name="primaryKey">"uid"</member>
+      </add>
+    </modify>
+    <modify src="Returns">
+      <add>
+        <field name="retNumber" type="string" width="30" />
+        <event type="writeCommit">
+          <action name="CommitOrders" />
+        </event>
+      </add>
+    </modify>
+
+  </objects>
+
+  <actions>
+    <action name="CommitOrders">
+      <do>
+        <runReport name="order_handler" />
+      </do>
+    </action>
+  </actions>
+</serverDefs>

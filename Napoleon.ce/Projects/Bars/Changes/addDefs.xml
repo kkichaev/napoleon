@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+	    <modify src="Order$items">
+	        <add >
+                  <field name="sert" type="number" width="1" execOn="Put">DecodeFlag($object.flags, 128, "", "1")</field>
+	        </add>
+	    </modify>
+	</objects>
+</serverDefs>

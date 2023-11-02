@@ -1,0 +1,32 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+	    <modify src="Price">
+	        <add>
+	            <field name="isWeight" type="number" data="IS_WP" />
+	            <field name="packText" type="string" data="PACK_TXT" />
+	    	</add>
+	    </modify>
+	    <modify src="Org">
+	        <add>
+	            <field name="idOrg" type="string" data="ID_O" hidden="true" />
+	            <field name="balance" type="collection">
+	                <data>
+						<object name="OrgBalance">
+					         <sources>
+			                     <source name="DBFTableSet">
+			                        <param name="userTable">"BLNC"</param>
+			                        <param name="commonTable">"BALANCE"</param>
+			                        <param name="filter">"[ID] = $parent.idOrg"</param>
+			                     </source>
+					         </sources>
+					
+					         <field name="sum" type="number" prec="2" />
+					         <field name="sumOut" type="number" prec="2" data="SUM_OUT" />
+						</object>
+	                </data>
+	            </field>
+	        </add>
+	    </modify>
+	</objects>
+</serverDefs>

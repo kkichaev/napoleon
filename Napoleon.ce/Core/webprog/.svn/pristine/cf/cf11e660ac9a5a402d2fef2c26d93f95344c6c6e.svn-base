@@ -1,0 +1,50 @@
+from app import db, create_app
+from app.auth.models import User
+from flask import current_app
+
+from datetime import datetime, timedelta
+
+from os import environ
+from flask import request
+
+app = create_app()
+
+if 'DEVENV' in environ:
+    app.config.update(
+       DEVENV = True,
+       REMEMBER_COOKIE_SECURE = True,
+       REMEMBER_COOKIE_SAMESITE = 'None',
+#       REMEMBER_COOKIE_DOMAIN = 'localhost',
+       SESSION_COOKIE_SAMESITE = 'None',
+       SESSION_COOKIE_SECURE = True,
+#       SESSION_COOKIE_DOMAIN = 'localhost',
+    )
+
+@app.after_request
+def add_cors_headers(response):
+    if current_app.config.get('DEVENV', False) and request.referrer != None:
+#        response.status_code = 200
+#        response.status = 'OK'
+        try:
+           response.access_control_allow_origin = request.referrer[:-1]
+           response.access_control_allow_credentials = True
+           response.access_control_allow_headers = ['content-type',]
+        except:
+            pass
+        # expires = datetime.utcnow() + timedelta(seconds=1000)
+        # response.set_cookie(
+        #     'test_token'
+        #     , value ='1'
+        #     , expires = expires
+        #     , domain=None
+        #     , path = '/'
+        #     , secure = True 
+        #     , httponly = True
+        #     ,samesite = 'None'
+        # )
+        #print(request.host_url)
+    return response
+
+@app.shell_context_processor
+def get_shell_context():
+    return {'db':db, 'User': User }

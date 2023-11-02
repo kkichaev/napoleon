@@ -1,0 +1,171 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+  <objects>
+    <object name="NapoleonTaskTemplate">
+      <sources>
+        <source name="SQTable" type="internal"/>
+      </sources>
+
+      <member name="primaryKey">"id"</member>
+
+      <field name="id" type="string" />
+      <field name="task" type="string" />
+    </object>
+
+    <object name="NapoleonTask">
+      <sources>
+        <source name="SQTable" type="internal">
+          <param name="readFilter">'"userid"=' + "'" + $user.id + "' and " + '"end" &gt;= ToDate("' + FormatDate(Now(),"DD.MM.YYYY") + '")'</param>
+        </source>
+      </sources>
+
+      <member name="primaryKey">"id"</member>
+      <memberArray name="index">"userid,end"</memberArray>
+
+      <field name="id" type="string" />
+      <field name="task" type="string" />
+
+      <field name="start" type="timestamp" />
+      <field name="end" type="timestamp" />
+
+      <field name="userid" type="string" />
+      <field name="useridObject" type="string" />
+    </object>
+
+    <object name="NapoleonTaskResponse">
+      <sources>
+        <source name="SQTable" type="internal"/>
+      </sources>
+
+      <member name="primaryKey">"userid,created"</member>
+      <memberArray name="index">"id"</memberArray>
+
+      <field name="userid" type="string" execOn="Put">$user.id</field>
+      <field name="created" type="timestamp"/>
+      <field name="timeZone" type="number" />
+      <field name="serverTimeZone" type="number" data="S_TZ" execOn="Put" features="USE_TIMEZONE">ServerTimeZone()</field>
+      <field name="sended" type="timestamp" data="S_DATE" execOn="Put">Now()</field>
+      <field name="id" type="string" />
+      <field name="date" type="timestamp" />
+
+      <field name="remark" type="string" />
+
+      <field name="items" type="collection">
+        <data>
+          <object name="VisitItem">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+            <field name="id" type="binary"/>
+          </object>
+        </data>
+      </field>
+    </object>
+
+    <object name="Dogovor">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"DGV"</param>
+          <param name="commonTable">"DGVS"</param>
+          <param name="userFieldName">"division"</param>
+        </source>
+      </sources>
+
+      <field name="id" type="string"/>
+      <field name="name" type="string"/>
+
+      <field name="items" type="collection">
+        <data>
+          <object name="DgvItem">
+            <sources>
+              <source name="DBFTableSet">
+                <param name="userTable">"DM"</param>
+                <param name="commonTable">"DMS"</param>
+                <param name="filter">"[ID] = $parent.id"</param>
+                <param name="userFieldName">"division"</param>
+              </source>
+            </sources>
+
+            <field name="id" data="ID_I" type="string"/>
+            <field name="cost" type="number" prec="2" />
+            <field name="qtyInPack" type="number" prec="3" data="inpack" />
+          </object>
+        </data>
+      </field>
+    </object>
+
+    <modify src="Config">
+      <change>
+        <sources>
+          <source name="KeyValueTable">
+            <param name="fileName">"ord"+$user.division+".cfg"</param>
+          </source>
+          <source name="KeyValueTable">
+            <param name="fileName">"order.cfg"</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="Order">
+      <add>
+        <field name="dgv" type="string" />
+      </add>
+    </modify>
+
+    <modify src="Order$items">
+      <add>
+        <field name="qtyPack" type="number" prec="3" data="QTY_PACK" />
+      </add>
+    </modify>
+
+    <modify src="Price">
+      <change>
+        <sources>
+          <source name="DBFPriceTable">
+            <param name="userTable">"W"</param>
+            <param name="commonTable">"WAREHOUS"</param>
+            <param name="userFieldName">"division"</param>
+          </source>
+        </sources>
+      </change>
+      <add>
+        <!--<field name="turnover" type="number" prec="1" />-->
+        <field name="salesSpeed" type="number" prec="1" data="S_SPEED" />
+        <field name="barcode" type="string" />
+      </add>
+    </modify>
+
+    <modify src="ManagerPrice">
+      <change>
+        <sources>
+          <source name="DBFTableSet">
+            <param name="userTable">"W"</param>
+            <param name="commonTable">"WAREHOUS"</param>
+            <param name="filter">"[folder] in $folder.fid"</param>
+            <param name="userFieldName">"division"</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="Agents">
+      <add>
+        <field name="division" type="string" width="30" />
+      </add>
+    </modify>
+
+    <modify src="Agents" dest="AgentPrefix" >
+      <add>
+        <field name="prefix" type="string" data="PFA" />
+        <field name="ser" type="string" />
+        <field name="number" type="string" />
+        <field name="region" type="string"  />
+        <field name="data" type="timestamp" />
+        <field name="fullname" type="string" />
+        <field name="userid" type="string" execOn="Get">$user.id</field>
+      </add>
+    </modify>
+
+  </objects>
+</serverDefs>

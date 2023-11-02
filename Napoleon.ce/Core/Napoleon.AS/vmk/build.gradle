@@ -1,0 +1,101 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    repositories {
+        google()
+        jcenter()
+        
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.3.1'
+        classpath 'io.github.http-builder-ng:http-builder-ng-okhttp:1.0.4'
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+import static groovyx.net.http.MultipartContent.multipart
+tasks.register('put_update') {
+    def patternVer = ~/version.*>(\d+\.\d+\.\d+(\.\d+)?).*<\/string/
+    def patternProj = ~/project.*>(.*)<\/string/
+    def patternWeb = /<tr><td>([^<]+)<\/td><td>([^<]+)<\/td><td>Android<\/td>/
+
+    doLast {
+      // read projects from url
+      def prjText = new URL('http://212.232.41.126/upgrade/projects.php').getText()
+      def prjMap = [:]
+      def m = prjText =~ patternWeb
+      if(m.find()) {
+         for (i in 0..<m.count) {
+            def elM = m[i]
+            prjMap[elM[1]] = elM[2]
+         }
+      }
+
+      def p = project(':app')
+      p.android.applicationVariants.findAll{it.buildType.name == 'release'}.each{
+         variant -> println variant.flavorName
+
+         def outFile = variant.outputs[0].outputFile
+         def version = ''
+         def project = ''
+
+         def srcName = variant.flavorName + '/res/values/compilation_info.xml'
+         variant.sourceSets.each{ss -> ss.res.srcDirs.each{sdi -> 
+            def ft = fileTree(dir: sdi, include: '**/' + "/compilation_info.xml")
+            ft.getFiles().find{ it.toString().replace('\\', '/').contains(srcName)}.each{ 
+               def matcher = it =~ patternVer
+               if( matcher.find() ) { version = matcher.group(1) }
+
+               matcher = it =~ patternProj
+               if( matcher.find() ) { project = matcher.group(1) }
+            }
+         }}
+
+         def isGreater = false
+         if(prjMap.containsKey(project)) {
+             def srcVer = prjMap[project].split('\\.')
+             def dstVer = version.split('\\.')
+
+             for(i in 0..<Math.min(srcVer.size(), dstVer.size())) {
+                if(dstVer[i].toInteger() > srcVer[i].toInteger()) {
+                   isGreater = true
+                   break
+                } 
+             }
+             if(!isGreater) { isGreater = dstVer.size() > srcVer.size() }
+         } else { isGreater = true } 
+         if(!isGreater) { throw new Exception("No version increment for project $project $version!") }
+         println version
+         println project
+         println outFile.getName()
+
+         def http = groovyx.net.http.OkHttpBuilder.configure {
+             request.uri = 'http://212.232.41.126'
+         }.post {
+             request.uri.path = '/upgrade/load.php'
+             request.contentType = 'multipart/form-data'
+             request.body =  multipart {
+                field 'project',project
+                field 'version',version
+                field 'category','Android'
+                part 'filename', outFile.getName(), 'application/octet-stream', outFile
+             }
+             request.encoder 'multipart/form-data', groovyx.net.http.OkHttpEncoders.&multipart
+         }
+
+     } // applicationVariants.findAll
+}}

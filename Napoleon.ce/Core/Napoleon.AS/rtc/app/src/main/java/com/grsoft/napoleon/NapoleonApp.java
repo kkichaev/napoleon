@@ -1,0 +1,96 @@
+/*
+ * Copyright (C), 2011, Гильдия Разработчиков
+ * 
+ * Демо программа (с базой данных)
+ *
+ * kki   16/05/2011   creating
+ */
+
+package com.grsoft.napoleon;
+
+import android.content.Context;
+
+import com.grsoft.database.ActionHitching;
+import com.grsoft.database.Hitching;
+import com.grsoft.database.HitchingCtor;
+import com.grsoft.database.RcvNewHitching;
+import com.grsoft.dataobjects.Action;
+import com.grsoft.dataobjects.ActionFolder;
+import com.grsoft.dataobjects.DlvGroup;
+import com.grsoft.dataobjects.Incass;
+import com.grsoft.dataobjects.IncassEx;
+import com.grsoft.dataobjects.Order;
+import com.grsoft.dataobjects.OrderEx;
+import com.grsoft.dataobjects.Org;
+import com.grsoft.dataobjects.OrgEx;
+import com.grsoft.dataobjects.Price;
+import com.grsoft.dataobjects.PriceEx;
+import com.grsoft.dataobjects.impl.DbObject;
+import com.grsoft.dataobjects.impl.OrderImpl;
+import com.grsoft.napoleon.util.CfgNpl;
+import com.grsoft.napoleon.util.ConfigManager;
+import com.grsoft.network.ServerCommand;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class NapoleonApp extends NapoleonAppBase {
+	
+	class OrderEditor implements OrderImpl.PropertiesEditor {
+		@Override
+		public void edit(Context ctx, OrderImpl order, boolean isOldOrder) {
+			CreateOrder.open(ctx, order, isOldOrder);
+		}
+	}
+	
+	@Override
+	public void onCreate() {
+		ConfigManager.initConfig(new CfgNpl());
+		super.onCreate();
+		OrderImpl.OrderEditor = new OrderEditor();
+		setProgrammVersion();
+		
+		//NapoleonChat.init(this);
+
+		UpdateDB.addHitchingCtor(new HitchingCtor(){
+			@Override
+			public List<Hitching> createList() {
+				List<Hitching> res = new ArrayList<>();
+				res.add(new RcvNewHitching(ActionFolder.class));
+				res.add(new ActionHitching());
+				res.add(new RcvNewHitching(DlvGroup.class));
+				return res;
+			}
+		}, UpdateDB.GEN_DATA_HITCHING);
+	}
+
+	private void setProgrammVersion() {
+		try{
+			ServerCommand.ProgramVersion = getResources().getString(R.string.version);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	protected void defineNewType() {
+		DbObject.regNewDataType(Org.class, OrgEx.class);
+		DbObject.regNewDataType(Price.class, PriceEx.class);
+		DbObject.regNewDataType(Order.class, OrderEx.class);
+		DbObject.regNewDataType(Incass.class, IncassEx.class);
+		CostStrategy.defaultInstance = new CostStrategyEx();
+	}
+
+	@Override
+	protected void initChildActivity() {
+		Warehouse.activity = WarehouseEx.class;
+		IncassEdit.activity = IncassEditEx.class;
+	}
+
+	@Override
+	protected void initChildFeature() {
+		Features.UNLIMIT_VISIT_ITEMS = true;
+		Features.WH_QTY = true;
+	}
+
+}

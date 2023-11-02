@@ -1,0 +1,411 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+  <objects>
+    <object name="SalesDocNumbers">
+      <sources>
+        <source name="SQTable" type="internal" >
+          <param name="readFilter">'"userid" = ' + "'" + $user.id + "'" + 'and "date" &gt;= ToDate("' + FormatDate(AdjustDate(Now(), -2, "day"),"DD.MM.YYYY") + '")'</param>
+        </source>
+      </sources>
+
+      <member name="primaryKey">"userid,date,doc"</member>
+
+      <field name="doc" type="string" />
+      <field name="userid" type="string" execOn="Put">$user.id</field>
+      <field name="date" type="date" />
+      <field name="datestr" type="string" />
+      <field name="number" type="number" />
+    </object>
+
+    <object name="Incomes">
+      <sources>
+        <source name="DBFCatalogTable">
+          <param name="tableName">"INCOME"</param>
+          <param name="catalog">"date"</param>
+          <param name="ordered">0</param>
+        </source>
+      </sources>
+
+      <field name="date" type="date" />
+      <field name="items" type="collection">
+        <data>
+          <object name="IncomeItems">
+            <sources>
+              <source name="DBFCatalogItemTable" />
+            </sources>
+
+            <field name="id" type="string" />
+            <field name="qty" type="number" prec="3" />
+            <field name="cost" type="number" prec="2" />
+            <field name="sum" type="number" prec="2" />
+          </object>
+        </data>
+      </field>
+    </object>
+
+    <object name="PKO1c">
+      <sources>
+        <source name="DBFTable">
+          <param name="tableName">"1CPKO"</param>
+          <param name="filter">"[ido] in $Org.ido"</param>
+        </source>
+      </sources>
+
+      <field name="ido" type="string" />
+      <field name="id" type="string" />
+      <field name="sum" type="number" prec="2" />
+      <field name="number" type="string" data="NUM" />
+      <field name="date" type="date" />
+    </object>
+
+    <object name="Firms">
+      <sources>
+        <source name="KeyValueDBFTable">
+          <param name="fileName">"FIRMS"</param>
+          <param name="key">"Организация"</param>
+          <param name="itemName">"NAME"</param>
+          <param name="itemKey">"ID"</param>
+        </source>
+      </sources>
+
+      <field name="key" type="string" />
+      <field name="value" type="string" />
+    </object>
+
+    <object name="OrdConfig">
+      <sources>
+        <source name="KeyValueTable">
+          <param name="fileName">"ord"+$user.id+".cfg"</param>
+        </source>
+        <source name="KeyValueTable">
+          <param name="fileName">"order.cfg"</param>
+        </source>
+      </sources>
+
+      <field name="key" type="string" />
+      <field name="value" type="string" />
+    </object>
+
+    <object name="Config">
+      <sources>
+        <source name="ObjectUnion">
+          <param>"OrdConfig"</param>
+          <param>"Firms"</param>
+        </source>
+      </sources>
+
+      <field name="key" type="string" />
+      <field name="value" type="string" />
+    </object>
+
+    <object name="FolderPhoto">
+      <sources>
+        <source name="DBFTable">
+          <param name="tableName">"FDATA" +  $user.id</param>
+        </source>
+        <source name="DBFTable">
+          <param name="tableName">"FDATA"</param>
+        </source>
+      </sources>
+
+      <field name="id" type="string"/>
+      <field name="pic" type="file" />
+      <field name="color" type="string" />
+      <field name="tsz" type="number" />
+    </object>
+
+    <object name="SalesBan">
+      <sources>
+        <source name="SQTable" type="internal" >
+          <param name="readFilter">'"userid" = ' + "'" + $user.id + "'"</param>
+          <param name="debug"/>
+        </source>
+      </sources>
+
+      <member name="primaryKey">"userid,id"</member>
+      <memberArray name="index">"id"</memberArray>
+
+      <field name="id" type="string" />
+      <field name="userid" type="string" />
+      <field name="value" type="number"/>
+    </object>
+
+    <object name="WSales">
+      <sources>
+        <source name="SQTable" type="internal" >
+        </source>
+      </sources>
+
+      <member name="primaryKey">"barcode"</member>
+
+      <field name="barcode" type="string" />
+      <field name="firm_sender" type="string" />
+      <field name="firm_recipient" type="string" />
+      <field name="org_recipient" type="string" />
+
+      <field name="items" type="collection">
+        <data>
+          <object name="WSalesItem">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+
+            <field name="qrcode" type="string"/>
+            <field name="product" type="string"/>
+            <field name="info" type="string"/>
+            <field name="code" type="string"/>
+          </object>
+        </data>
+      </field>
+
+
+    </object>
+
+    <modify src="Sales">
+      <add>
+        <field name="isBlack" type="number" width="1" />
+        <field name="isExpired" type="number" width="1" data="EXPRD" />
+        <field name="isExchange" type="number" width="1" data="EXCHNG" />
+        <field name="taxType" type="number" />
+        <field name="orderBaseNumber" type="string" width="30" data="ORD_NUM" />
+        <field name="orderBaseDate" type="date" data="ORD_DATE" />
+        <field name="barcode" type="string" width="50"/>
+        <field name="totalPageUPD" type="number" width="3" data="PAGEUPD"/>
+        <field name="totalPageSF" type="number" width="3" data="PAGESF"/>
+        <field name="totalPageNakl" type="number" width="3" data="PAGENK"/>
+      </add>
+    </modify>
+
+    <modify src="Sales$items">
+      <add>
+        <field name="party" type="collection">
+          <data>
+            <object name="PartyQty">
+              <sources>
+                <source name="DBFCatalogItemTable"/>
+                <source name="SQTable" type="internal" />
+              </sources>
+
+              <field name="date" type="date" data="DATE_I"/>
+              <field name="qty" type="number" prec="3" data="QTY_I" />
+              <field name="docflag" width="1" type="number" execOn="Put">FirstItem($object)</field>
+            </object>
+          </data>
+        </field>
+
+        <field name="barcodes" type="collection">
+          <data>
+            <object name="BCItem">
+              <sources>
+                <source name="DBFTable">
+                  <param name="tableName">"SBC" + $user.id</param>
+                </source>
+                <source name="SQTable" type="internal" />
+              </sources>
+            
+              <field name="mark" type="string" />
+              <field name="id" type="string" width="55">$parent.id</field>              
+              <field name="orgid" type="string" width="55">$parent.parent.id</field>
+              <field name="created" type="timestamp" width="20">$parent.parent.created</field>
+              <field name="ordflag" width="1" type="number" execOn="Put">FirstItem($object)</field>
+            </object>
+          </data>
+        </field>
+        <field name="uid" type="string" />
+        <member name="primaryKey">"uid"</member>
+      </add>
+    </modify>
+
+    <modify src="Org">
+      <add>
+        <field name="ido" type="string" />
+        <field name="dogovor" type="string" />
+        <field name="dogNum" type="string" />
+        <field name="dogDate" type="date" />
+        <field name="divName" type="string" />
+        <field name="stopMsg" type="string" />
+        <field name="payName" type="string" />
+        <field name="payPhone" type="string" />
+        <field name="payBank" type="string" />
+        <field name="payInn" type="string" />
+        <field name="kpk" type="number" />
+        <field name="isBlack" type="number" />
+        <field name="isAZS" type="number" />
+        <field name="checkMark" type="number" data="CHKMRK" width="1" />
+
+        <field name="taxType" type="number" />
+
+        <field name="orgCost" type="collection">
+          <data>
+            <object name="OrgDsc">
+              <sources>
+                <source name="DBFTableSet">
+                  <param name="userTable">"PCO"</param>
+                  <param name="commonTable">"PRCOSTS"</param>
+                  <param name="filter">"[ID] = $parent.id"</param>
+                </source>
+              </sources>
+
+              <field name="id" type="string" data="IDC"/>
+              <field name="cost" type="number" prec="2" />
+            </object>
+          </data>
+        </field>
+        <field name="info" type="string" />
+        <field name="vetis" type="number" />
+      </add>
+    </modify>
+
+    <modify src="Order">
+      <add>
+        <field name="prcCode" type="string" width="30" />
+        <field name="stpRmt" type="string" width="30" />
+      </add>
+    </modify>
+
+    <modify src="Delivery">
+      <change>
+        <sources>
+          <source name="DBFTableSet">
+            <param name="userTable">"_DLV"</param>
+            <param name="commonTable">"DELIVERY"</param>
+            <param name="catalog">"number;items;1"</param>
+            <param name="filter">"[ido] in $Org.ido"</param>
+          </source>
+        </sources>
+      </change>
+      <add>
+        <field name="ido" type="string" />
+      </add>
+    </modify>
+
+    <modify src="Payment">
+      <change>
+        <sources>
+          <source name="DBFTable">
+            <param name="tableName">"_PAY" + $user.id</param>
+          </source>
+          <source name="DBFTable">
+            <param name="tableName">"PAYMENT"</param>
+            <param name="filter">"[ido] in $Org.ido"</param>
+          </source>
+        </sources>
+      </change>
+      <add>
+        <field name="ido" type="string" />
+      </add>
+    </modify>
+
+    <modify src="Returns">
+      <add>
+        <field name="dlvDate" type="date" />
+        <field name="dlvNum" type="string" width="20" />
+      </add>
+    </modify>
+
+    <modify src="Order" dest="RequestOrders">
+      <change>
+        <sources>
+          <source name="DBFTableSet">
+            <param name="userTable">"RQD"</param>
+            <param name="commonTable">"RQORDERS"</param>
+            <param name="catalog">"created;items;1"</param>
+          </source>
+        </sources>
+
+        <field name="items" type="collection">
+          <data>
+            <object name="Item">
+              <field name="id" type="string" data="ID_I"/>
+              <field name="qty" type="number" prec="3" />
+              <field name="cost" type="number" prec="2" />
+            </object>
+          </data>
+        </field>
+      </change>
+      <add>
+        <field name="orderNumber" type="string" data="NUM" />
+        <field name="created" type="timestamp" data="CREATED"/>
+      </add>
+    </modify>
+
+
+    <modify src="Order" dest="LoadedOrders">
+      <change>
+        <sources>
+          <source name="DBFTableSet">
+            <param name="userTable">"LD_ORD"</param>
+            <param name="commonTable">"LD_ORDERS"</param>
+            <param name="catalog">"created;items;1"</param>
+            <param name="filter">"[id] in $Org.id"</param>
+            <param name="userFieldName">"division"</param>
+          </source>
+        </sources>
+
+        <field name="items" type="collection">
+          <data>
+            <object name="Item">
+              <field name="id" type="string" data="ID_I"/>
+              <field name="qty" type="number" prec="3" />
+              <field name="cost" type="number" prec="2" />
+            </object>
+          </data>
+        </field>
+      </change>
+      <add>
+        <field name="created" type="timestamp" data="CREATED"/>
+        <field name="orderNumber" type="string" data="NUM" />
+      </add>
+    </modify>
+
+    <modify src="Price">
+      <add>
+        <field name="gost" type="string" />
+        <field name="cert" type="string" />
+        <field name="stcond" type="string" />
+        <field name="bestBfr" type="string" />
+        <field name="barcode" type="string" data="BC" />
+        <field name="barcodePack" type="string" data="BC_PACK" />
+        <field name="barcodeType" type="string" data="BC_TYPE" />
+        <field name="party" type="collection">
+          <data>
+            <object name="Party">
+              <sources>
+                <source name="DBFTableSet">
+                  <param name="userTable">"PRT"</param>
+                  <param name="commonTable">"PARTIES"</param>
+                  <param name="filter">"[ID] = $parent.id"</param>
+                </source>
+              </sources>
+              <field name="date" type="date" />
+              <field name="qty" type="number" prec="3" />
+            </object>
+          </data>
+        </field>
+      </add>
+    </modify>
+
+    <modify src="Firm">
+      <add>
+        <field name="bankName" type="string" data="B_NAME" />
+        <field name="bic" type="string" />
+        <field name="k_acc" type="string" />
+        <field name="acc" type="string" />
+      </add>
+    </modify>
+
+    <modify src="Sales" dest="ArchSales" table="ArchSales">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="PotenzialOrg">
+      <add>
+        <field name="orgCreateInn" type="string" />
+      </add>
+    </modify>
+  </objects>
+</serverDefs>

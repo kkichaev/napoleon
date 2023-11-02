@@ -1,0 +1,107 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+        <object name="Gather" removeOnCommit="true">
+         <sources>
+            <source name="DBFCatalogTable">
+               <param name="tableName">"OUTC"</param>
+               <param name="catalog">"id"</param>
+               <param name="ordered">1</param>
+            </source>
+         </sources>
+
+         <field name="id" type="string" />
+         <field name="name" type="string" />
+         <field name="address" type="string" />
+         <field name="remark" type="string" />
+         <field name="date" type="timestamp" />
+         <field name="krug" type="number" />
+         
+         <field name="items" type="collection">
+            <data>
+               <object name="OrderItem">
+                  <sources>
+                     <source name="DBFCatalogItemTable"/>
+                  </sources>
+
+                  <field name="item" type="string" />
+                  <field name="i_id" type="string" />
+                  <field name="unit" type="string" />
+                  <field name="qty" type="number" prec="3"/>
+                  <field name="cost" type="number" prec="2" />
+               </object>
+            </data>
+         </field>
+      </object>
+
+        <object name="WhPrice" >
+         <sources>
+            <source name="DBFTable">
+               <param name="tableName">"OUT_REST"</param>
+            </source>
+         </sources>
+
+         <field name="id" type="string" />
+         <field name="name" type="string" />
+         <field name="qty" type="number" prec="3" />
+      </object>
+        
+      <object name="Complete">
+         <sources>
+            <source name="DBFCatalogTable">
+               <param name="tableName">"CMPL"</param>
+               <param name="catalog">"id"</param>
+               <param name="ordered">1</param>
+            </source>
+         </sources>
+
+         <field name="id" type="string" />
+         <field name="date" type="timestamp" />
+         <field name="krug" type="number" />
+         <field name="remark" type="string" width="200" />
+         
+         <field name="items" type="collection">
+            <data>
+               <object name="OrderItem">
+                  <sources>
+                     <source name="DBFCatalogItemTable"/>
+                  </sources>
+
+                  <field name="item" type="string" />
+                  <field name="i_id" type="string" />
+                  <field name="unit" type="string" />
+                  <field name="new_id" type="string" />
+                  <field name="newqty" type="number" prec="3"/>
+                  <field name="cost" type="number" prec="2" />
+               </object>
+            </data>
+         </field>
+      </object>
+      
+	    <modify src="Price">
+	        <add>
+	            <field name="packName" type="string" data="PACK" />
+	            <field name="packAlt" type="string" data="PACK2" />
+	            <field name="orderAllowed" type="number" data="ORD_ALW" />
+	         </add>
+	    </modify>
+	    <modify src="Org">
+	        <add>
+	            <field name="priceType" type="string" data="PRCTYPE" />
+	            <field name="ido" type="string" />
+	        </add>
+	    </modify>
+	    <modify src="Payment">
+	        <add>
+	            <field name="ido" type="string" />
+	            <field name="dogovor" type="string" data="DOG" />
+	            <field name="payDate" type="date" />
+	        </add>
+	    </modify>
+	    <modify src="Delivery">
+	        <add>
+	            <field name="payDate" type="date" />
+	        </add>
+	    </modify>
+	</objects>
+</serverDefs>

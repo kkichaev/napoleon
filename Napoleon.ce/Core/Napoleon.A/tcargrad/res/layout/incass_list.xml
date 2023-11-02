@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+    
+	<LinearLayout android:id="@+id/LinearLayout04" 
+		android:layout_width="fill_parent" 
+		android:layout_height="wrap_content"
+		android:background="@color/black">
+		
+		<TextView android:id="@+id/idNumber" 
+			android:layout_width="wrap_content" 
+			android:layout_height="wrap_content" 
+			android:textColor="#000000" 
+			android:paddingLeft="7sp" 
+			android:layout_weight="0.5" 
+			android:text="@string/number_title" 
+			android:background="@color/table_caption" 
+			android:width="80sp" />
+			
+		<TextView
+		    android:id="@+id/idDate"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_marginLeft="1sp"
+		    android:layout_weight="0.25"
+		    android:background="@color/table_caption"
+		    android:gravity="center_horizontal"
+		    android:text="@string/date"
+		    android:textColor="#000000" />
+			
+		<TextView android:id="@+id/idSum" 
+			android:layout_width="wrap_content" 
+			android:layout_height="wrap_content" 
+			android:textColor="#000000" 
+			android:layout_weight="0.25" 
+			android:layout_marginLeft="1dp"
+			android:text="@string/sum" 
+			android:gravity="right" 
+			android:background="@color/table_caption" 
+	    	android:minWidth="100sp"
+			android:paddingRight="7sp" />
+	</LinearLayout>
+			
+	<ExpandableListView android:id="@+id/lvDocs" 
+	    android:layout_weight="1"
+		android:layout_height="0sp" 
+		android:layout_width="fill_parent" 
+		android:background="@color/white" />
+
+	<LinearLayout android:id="@+id/llTaskBar" 
+		android:layout_height="wrap_content" 
+		android:layout_width="fill_parent" 
+		android:background="@color/footer" 
+		android:padding="7sp">
+		
+		<ImageButton android:layout_width="wrap_content"
+		    android:contentDescription="@string/send" 
+			android:layout_height="wrap_content" 
+			android:src="@drawable/send" 
+			android:id="@+id/btnSend" android:layout_marginRight="7sp"/>
+
+		<ImageButton android:layout_width="wrap_content"
+		    android:contentDescription="@string/send" 
+			android:layout_height="wrap_content" 
+			android:src="@drawable/left" 
+			android:id="@+id/btnDel" android:layout_marginRight="7sp"/>
+		
+			
+		<TextView android:layout_height="wrap_content" 
+		    android:visibility="gone"
+			android:text="@string/sum" 
+			android:textColor="@color/black" 
+			android:layout_width="fill_parent" 
+			android:layout_gravity="center_vertical" 
+			android:gravity="right" android:id="@+id/tvTotalSum"/>
+	</LinearLayout>
+</LinearLayout>

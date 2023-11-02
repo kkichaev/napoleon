@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/camera_resolution" 
+        android:textSize="16sp">
+    </TextView>
+
+    <Spinner
+        android:id="@+id/spPicSize"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+    </Spinner>
+
+    <CheckBox
+        android:id="@+id/cbAutofocus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/autofocus" >
+    </CheckBox>
+
+    <CheckBox
+        android:id="@+id/cbSharedData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/safe_photo_on_sdcard" />
+
+    <CheckBox
+        android:id="@+id/cbAndroidPhoto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/use_inner_app_for_photo"/>
+
+</LinearLayout>

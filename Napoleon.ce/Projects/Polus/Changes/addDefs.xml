@@ -1,0 +1,96 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+   <objects>
+      <modify src="Org">
+         <change>
+            <sources>
+               <source name="DBFMixer">
+                  <param name="userTable">"O"</param>
+                  <param name="commonTable">"ORGS"</param>
+               </source>
+            </sources>
+         </change>
+      </modify>
+
+      <modify src="ManagerFolder">
+         <change>
+            <sources>
+               <source name="DBFFolderCombine">
+                  <param name="userTable">"F"</param>
+                  <param name="commonTable">"FOLDERS"</param>
+                  <!--<param name="parentField">"PARENT"</param>
+                  <param name="childField">"id"</param>-->
+               </source>
+            </sources>
+         </change>
+      </modify>
+
+      <modify src="Folder">
+         <change>
+            <sources>
+               <!-- 
+                  DBFFolderSet - обязательные поля у объекта level & fid & id & name
+               -->
+               <source name="DBFFolderCombine">
+                  <param name="userTable">"F"</param>
+                  <param name="commonTable">"FOLDERS"</param>
+                  <!--
+                  <param name="parentField">"PARENT"</param>
+                  <param name="childField">"fid"</param>
+                  <param name="rowidField">"id"</param>
+                  -->
+               </source>
+            </sources>
+         </change>
+      </modify>
+
+      <modify src="PriceRemnants">
+         <change>
+            <sources>
+               <source name="DBFPriceCombine">
+                  <param name="userTable">"W"</param>
+                  <param name="commonTable">"WAREHOUS"</param>
+                  <param name="filter">"[folder] in $folder.folderID"</param>
+               </source>
+            </sources>
+         </change>
+      </modify>
+
+      <modify src="Price">
+         <change>
+            <sources>
+               <!-- таблица со включенным фильтром qty > 0  выключать/включать SetFilter(False/True) -->
+               <source name="DBFPriceCombine">
+                  <param name="userTable">"W"</param>
+                  <param name="commonTable">"WAREHOUS"</param>
+                  <param name="filter">"[folder] in $folder.folderID"</param>
+               </source>
+            </sources>
+         </change>
+      </modify>
+
+      <modify src="ManagerPrice">
+         <change>
+            <sources>
+               <source name="DBFPriceCombine">
+                  <param name="userTable">"W"</param>
+                  <param name="commonTable">"WAREHOUS"</param>
+               </source>
+            </sources>            
+         </change>
+      </modify>
+
+      <modify src="Order">
+         <change>
+            <sources>
+               <source name="DBFOrderExtractor">
+                  <param name="tableName">$object.table + $user.id</param>
+                  <param name="catalog">"id"</param>
+                  <param name="ordered">1</param>
+               </source>
+               <source name="SQTable" type="internal" />
+            </sources>
+         </change>
+      </modify>
+   </objects>
+</serverDefs>

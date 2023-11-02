@@ -1,0 +1,291 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+
+    <style name="PhoneInputTheme" parent="">
+        <item name="colorControlActivated">@color/white</item>
+        <item name="boxStrokeColor">@color/white</item>
+    </style>
+
+    <style name="PhoneButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="strokeColor">@color/white</item>
+        <item name="shapeAppearance">@style/RoundedCornerSM</item>
+        <item name="android:layout_height">80dp</item>
+        <item name="fontFamily">@font/montserrat</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="RoundedCornerSM" parent="ShapeAppearance.MaterialComponents.LargeComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">12dp</item>
+    </style>
+
+    <style name="RoundedCorner" parent="ShapeAppearance.MaterialComponents.LargeComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">40dp</item>
+    </style>
+
+    <style name="WaitImage">
+        <item name="android:layout_marginBottom">4dp</item>
+        <item name="android:layout_marginLeft">12dp</item>
+    </style>
+
+    <style name="PhoneText">
+        <item name="fontFamily">@font/montserrat</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="FolderText">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:padding">0dp</item>
+    </style>
+
+    <style name="PriceDescText">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:padding">0dp</item>
+    </style>
+
+    <style name="PriceText" parent="PriceDescText">
+        <!--<item name="android:textStyle">bold</item> -->
+    </style>
+
+    <style name="PriceActText" parent="PriceText">
+        <item name="android:textColor">@color/action</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="BasketRowSumText">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:padding">4dp</item>
+        <item name="android:layout_width">100dp</item>
+    </style>
+
+    <style name="TextButton1" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="strokeColor">@drawable/mtrl_btn_stroke_color_selector1</item>
+        <item name="android:textColor">@drawable/mtrl_text_btn_text_color_selector1</item>
+        <item name="backgroundTint">@drawable/mtrl_btn_text_btn_bg_color_selector1</item>
+    </style>
+
+    <style name="TextButton2" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="strokeColor">@drawable/mtrl_btn_stroke_color_selector2</item>
+        <item name="android:textColor">@drawable/mtrl_text_btn_text_color_selector2</item>
+        <item name="backgroundTint">@drawable/mtrl_btn_text_btn_bg_color_selector2</item>
+    </style>
+
+    <style name="PartnerTextView2" parent="PartnerTextView">
+        <item name="android:layout_gravity">center</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="PartnerTextView" parent="@android:style/Widget.TextView">
+        <item name="android:ellipsize">end</item>
+        <item name="android:textColor">?attr/colorPrimary</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:layout_margin">12dp</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:text">@string/select_partner</item>
+        <item name="backgroundColor">@color/green</item>
+        <item name="android:drawableLeft">@drawable/ic_location_on</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="MessageText" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="MessageTextDate" parent="MessageText">
+
+    </style>
+
+    <style name="OrderText">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="fontFamily">@font/montserrat</item>
+    </style>
+
+    <style name="OrderSecondaryText">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/gray_text</item>
+        <item name="fontFamily">@font/montserrat</item>
+    </style>
+
+    <style name="ProfileButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:layout_height">64dp</item>
+        <item name="android:layout_marginLeft">@dimen/button_margin</item>
+        <item name="android:layout_marginRight">@dimen/button_margin</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="strokeColor">@color/colorPrimary</item>
+        <item name="shapeAppearance">@style/RoundedCornerSM</item>
+        <item name="android:textSize">18sp</item>
+        <item name="fontFamily">@font/montserrat</item>
+    </style>
+
+    <style name="ExitButton" parent="Widget.MaterialComponents.Button">
+        <item name="android:layout_height">@dimen/button_height</item>
+        <item name="android:layout_marginLeft">@dimen/button_margin</item>
+        <item name="android:layout_marginRight">@dimen/button_margin</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="strokeColor">@color/colorPrimary</item>
+        <item name="shapeAppearance">@style/RoundedCornerSM</item>
+        <item name="android:textSize">18sp</item>
+        <item name="fontFamily">@font/montserrat</item>
+    </style>
+
+    <style name="PackButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:layout_height">38dp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="strokeColor">@color/colorPrimary</item>
+        <item name="shapeAppearance">@style/RoundedCornerSM</item>
+        <item name="android:textSize">10sp</item>
+        <item name="fontFamily">@font/montserrat</item>
+        <item name="android:minWidth">55dp</item>
+    </style>
+
+    <style name="CostTextLarge" >
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="strokeColor">@color/colorPrimary</item>
+        <item name="android:textSize">22sp</item>
+        <item name="fontFamily">@font/montserrat</item>
+    </style>
+
+    <style name="CatalogButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="strokeColor">@color/colorPrimary</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="fontFamily">@font/montserrat</item>
+        <item name="shapeAppearance">@style/RoundedCornerSM</item>
+        <item name="android:layout_marginRight">8dp</item>
+        <item name="android:layout_marginLeft">8dp</item>
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:layout_marginBottom">4dp</item>
+        <item name="android:minHeight">66dp</item>
+    </style>
+
+    <style name="BasketButton" parent="Widget.MaterialComponents.Button">
+        <item name="shapeAppearance">@style/RoundedCornerSM</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:layout_marginEnd">@dimen/button_margin</item>
+        <item name="android:layout_marginStart">@dimen/button_margin</item>
+        <item name="android:fontFamily">@font/montserrat</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="BasketText">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="fontFamily">@font/montserrat</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="BasketDialogButton" parent="Widget.MaterialComponents.Button">
+        <item name="shapeAppearance">@style/RoundedCornerSM</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingBottom">4dp</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:fontFamily">@font/montserrat</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="ViewTitle">
+        <item name="android:gravity">center</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:background">@color/title_back</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="fontFamily">@font/montserrat</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">22sp</item>
+    </style>
+
+    <style name="OrderFilterText">
+        <item name="android:textSize">18sp</item>
+        <item name="android:layout_margin">8dp</item>
+        <item name="fontFamily">@font/montserrat</item>
+        <item name="android:layout_gravity">center_vertical</item>
+    </style>
+
+    <style name="OrderFilterButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="strokeColor">@color/colorPrimary</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="fontFamily">@font/montserrat</item>
+        <item name="shapeAppearance">@style/RoundedCornerSM</item>
+        <item name="android:layout_marginRight">24dp</item>
+        <item name="android:layout_marginLeft">24dp</item>
+    </style>
+
+
+    <style name="OrderHeadText">
+        <item name="android:gravity">center</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="fontFamily">@font/montserrat</item>
+        <item name="android:textSize">16dp</item>
+    </style>
+
+    <style name="ContactText" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="android:textColor">@color/black</item>
+        <item name="fontFamily">@font/montserrat</item>
+        <item name="android:textSize">18dp</item>
+    </style>
+
+    <style name="ActionCardView" parent="Widget.MaterialComponents.CardView">
+        <item name="shapeAppearanceOverlay">@style/ActionRoundedCorners</item>
+    </style>
+
+    <style name="ActionRoundedCorners">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">8dp</item>
+    </style>
+
+    <style name="PriceTitleText">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="fontFamily">@font/montserrat</item>
+    </style>
+
+    <style name="PriceFilterButton" parent="Widget.MaterialComponents.Button">
+        <item name="shapeAppearance">@style/RoundedCornerSM</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:fontFamily">@font/montserrat</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="KupecText">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">16sp</item>
+        <item name="fontFamily">@font/montserrat</item>
+        <item name="android:layout_margin">1dp</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingBottom">4dp</item>
+    </style>
+
+    <style name="KupecTextHead" parent="KupecText">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:paddingTop">0dp</item>
+        <item name="android:paddingBottom">0dp</item>
+    </style>
+
+</resources>

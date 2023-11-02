@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item
+        android:id="@+id/reports"
+        android:icon="@drawable/ic_assessment_black_24dp"
+        android:title="@string/journal" />
+    
+    <item
+        android:id="@+id/agents_in_fields"
+        android:icon="@drawable/ic_supervisor_account_black_24dp"
+        android:title="@string/agents" />
+    
+    <item
+        android:id="@+id/agents_in_fields"
+        android:icon="@drawable/ic_supervisor_account_black_24dp"
+        android:title="@string/route" />
+    
+    <item
+        android:id="@+id/agents_in_fields"
+        android:icon="@drawable/ic_supervisor_account_black_24dp"
+        android:title="@string/distance" />
+    
+    <item
+        android:id="@+id/agents_in_fields"
+        android:icon="@drawable/ic_supervisor_account_black_24dp"
+        android:title="@string/orders" />
+    
+    <item
+        android:id="@+id/setting"
+        android:icon="@drawable/ic_settings_black_24dp"
+        android:title="@string/action_settings" />
+
+    <item
+        android:id="@+id/about"
+        android:icon="@drawable/ic_info_black_24dp"
+        android:title="@string/about" />
+</menu>

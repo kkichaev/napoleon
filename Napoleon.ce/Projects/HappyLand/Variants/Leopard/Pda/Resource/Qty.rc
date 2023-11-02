@@ -1,0 +1,227 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "NapoleonRes.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "resdefce.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Russian resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_RUS)
+#ifdef _WIN32
+LANGUAGE LANG_RUSSIAN, SUBLANG_DEFAULT
+#pragma code_page(1251)
+#endif //_WIN32
+
+#ifdef PRICE_MOVER
+IDC_NEXT             BITMAP                  "next.bmp"
+IDC_PREV             BITMAP                  "prev.bmp"
+IDC_NEXT32           BITMAP                  "next32.bmp"
+IDC_PREV32           BITMAP                  "prev32.bmp"
+
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+#ifdef ORD_ITEM_DISCOUNT
+IDD_ENTER_COST DIALOG  0, 0, 69, 85
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Значение"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "цена",IDC_COST_LABEL,2,2,30,8
+    RTEXT           "", IDC_COST1,32,2,34,8
+
+    EDITTEXT        IDC_COST,42,12,24,12,ES_AUTOHSCROLL | ES_NOHIDESEL
+    COMBOBOX        IDC_DISCOUNT,2,12,39,47,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
+
+    PUSHBUTTON      "7",IDC_DIG_7, 2,28,17,14
+    PUSHBUTTON      "8",IDC_DIG_8,18,28,17,14
+    PUSHBUTTON      "9",IDC_DIG_9,34,28,17,14
+
+    PUSHBUTTON      "4",IDC_DIG_4, 2,41,17,14
+    PUSHBUTTON      "5",IDC_DIG_5,18,41,17,14
+    PUSHBUTTON      "6",IDC_DIG_6,34,41,17,14
+
+    PUSHBUTTON      "1",IDC_DIG_1, 2,54,17,14
+    PUSHBUTTON      "2",IDC_DIG_2,18,54,17,14
+    PUSHBUTTON      "3",IDC_DIG_3,34,54,17,14
+
+    PUSHBUTTON      "0",IDC_DIG_0, 2,67,33,14
+    PUSHBUTTON      ".",IDC_DIG_PT,34,67,17,14
+
+    PUSHBUTTON      "<-",IDC_DIG_BS,50,28,17,27
+    PUSHBUTTON      "ОК", IDOK,50,54,17,27
+
+END
+#endif
+
+#ifdef SHOW_OFF_TAKE
+IDD_QTY DIALOG  0, 0, 139, 100
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Введите количество"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Название",IDC_ITEM_NAME,2,1,138,20
+
+    LTEXT           "на складе",IDC_REST_LABEL,2,22,40,10
+    RTEXT           "на складе",IDC_REST,31,22,40,10
+
+    RTEXT           "в точке",IDC_REMNANTS_LABEL,52,22,35,10
+    EDITTEXT        IDD_REMNANTS_QTY,90,20,38,12,ES_AUTOHSCROLL | ES_NOHIDESEL
+
+    LTEXT           "цена",IDC_COST_LABEL,2,37,29,10
+    RTEXT           "цена",IDC_COST,31,37,40,10,SS_NOTIFY
+
+    RTEXT           "заказ",IDC_QTY_LABEL,66,37,21,10
+    EDITTEXT        IDC_QTY,90,35,38,12,ES_AUTOHSCROLL | ES_NOHIDESEL
+
+    //LTEXT           "в упак.",IDC_INPACK_LABEL,2,52,29,10
+    COMBOBOX        IDC_INPACK_LABEL,2,52,40,47,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
+    RTEXT           "в упак.",IDC_INPACK,31,52,40,10
+
+    RTEXT           "сумма",IDC_SUM_LABEL,66,52,21,10
+    LTEXT           "сумма",IDC_SUM,91,52,46,10
+
+#ifdef ORD_ITEM_DISCOUNT
+    LTEXT           "скид.,%",IDC_DISCOUNT,2,63,30,10
+    RTEXT           "нац.",IDC_DISCOUNT_VALUE,31,63,40,10,SS_NOTIFY
+#endif
+
+    CONTROL         "упаковками",IDC_PACK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,90,63,53,10
+
+    PUSHBUTTON      "1",IDC_DIG_1,  90, 75,14,12
+    PUSHBUTTON      "2",IDC_DIG_2,  103,75,14,12
+    PUSHBUTTON      "3",IDC_DIG_3,  116,75,14,12
+    PUSHBUTTON      "0",IDC_DIG_0,  129,75,14,12
+    PUSHBUTTON      "4",IDC_DIG_4,  90, 86,14,12
+    PUSHBUTTON      "5",IDC_DIG_5,  103,86,14,12
+    PUSHBUTTON      "6",IDC_DIG_6,  116,86,14,12
+    PUSHBUTTON      ".",IDC_DIG_PT, 129,86,14,12
+    PUSHBUTTON      "7",IDC_DIG_7,  90, 97,14,12
+    PUSHBUTTON      "8",IDC_DIG_8,  103,97,14,12
+    PUSHBUTTON      "9",IDC_DIG_9,  116,97,14,12
+    PUSHBUTTON      "<-",IDC_DIG_BS,129,97,14,12
+
+    LTEXT           "история продаж",IDC_SALES_HIST,2,103,58,8,SS_NOTIFY
+    LTEXT           "Static",IDC_PREV_QTY,2,112,79,32
+
+    PUSHBUTTON      "Отмена",IDCANCEL,2,86,36,14
+    PUSHBUTTON      "ОК",IDOK,39,86,36,14
+
+#ifdef PRICE_MOVER
+    PUSHBUTTON      "^",IDC_PREV,76,86,15,15,BS_OWNERDRAW
+    PUSHBUTTON      "U",IDC_NEXT,92,86,15,15,BS_OWNERDRAW
+#endif
+
+END
+
+#else
+
+IDD_QTY DIALOG  0, 0, 139, 100
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Введите количество"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Название",IDC_ITEM_NAME,2,1,138,20
+
+    LTEXT           "заказ",IDC_QTY_LABEL,66,22,21,10
+    EDITTEXT        IDC_QTY,90,20,38,12,ES_AUTOHSCROLL | ES_NOHIDESEL
+
+    LTEXT           "на складе",IDC_REST_LABEL,2,22,29,10
+    RTEXT           "на складе",IDC_REST,31,22,40,10
+
+    LTEXT           "цена",IDC_COST_LABEL,2,33,29,10
+    RTEXT           "цена",IDC_COST,31,33,40,10,SS_NOTIFY
+
+#ifdef ORD_ITEM_DISCOUNT
+    LTEXT           "скид.,%",IDC_DISCOUNT,2,44,30,10
+    RTEXT           "нац.",IDC_DISCOUNT_VALUE,31,44,40,10,SS_NOTIFY
+#endif
+
+    LTEXT           "в упак.",IDC_INPACK_LABEL,2,44,29,10
+    RTEXT           "в упак.",IDC_INPACK,31,44,40,10
+
+    LTEXT           "сумма",IDC_SUM_LABEL,66,33,21,10
+    LTEXT           "сумма",IDC_SUM,91,33,46,10
+
+    CONTROL         "упаковками",IDC_PACK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,90,43,53,10
+
+    PUSHBUTTON      "Отмена",IDCANCEL,2,86,36,14
+    PUSHBUTTON      "ОК",IDOK,39,86,36,14
+
+#ifdef PRICE_MOVER
+    PUSHBUTTON      "^",IDC_PREV,76,86,15,15,BS_OWNERDRAW
+    PUSHBUTTON      "U",IDC_NEXT,92,86,15,15,BS_OWNERDRAW
+#endif
+
+    LTEXT           "история продаж",IDC_SALES_HIST,2,71,58,8,SS_NOTIFY
+    LTEXT           "Static",IDC_PREV_QTY,2,82,79,16
+
+    PUSHBUTTON      "1",IDC_DIG_1,90,54,14,12
+    PUSHBUTTON      "2",IDC_DIG_2,103,54,14,12
+    PUSHBUTTON      "3",IDC_DIG_3,116,54,14,12
+    PUSHBUTTON      "4",IDC_DIG_4,90,65,14,12
+    PUSHBUTTON      "5",IDC_DIG_5,103,65,14,12
+    PUSHBUTTON      "6",IDC_DIG_6,116,65,14,12
+    PUSHBUTTON      "7",IDC_DIG_7,90,76,14,12
+    PUSHBUTTON      "8",IDC_DIG_8,103,76,14,12
+    PUSHBUTTON      "9",IDC_DIG_9,116,76,14,12
+    PUSHBUTTON      ".",IDC_DIG_PT,90,87,14,12
+    PUSHBUTTON      "0",IDC_DIG_0,103,87,14,12
+    PUSHBUTTON      "<-",IDC_DIG_BS,116,87,14,12
+END
+#endif // SHOW_OFF_TAKE
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "NapoleonRes.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""resdefce.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+#endif    // Russian resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

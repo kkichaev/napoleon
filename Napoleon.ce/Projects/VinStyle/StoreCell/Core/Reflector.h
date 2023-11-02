@@ -1,0 +1,95 @@
+
+/*
+ * Copyright (C), 2006-2007, Денис Мосягин
+ *
+ * Exchange Reflection
+ *
+ *  ert   01/12/2006   creating
+ */ 
+#ifndef __REFLECTION_TYPE_H
+#define __REFLECTION_TYPE_H
+
+//
+//------------------------------- TYPE REFLECTIONS ------------------------------------------
+//
+BEGIN_TYPE_REFLECTION(Price)
+   REGISTER_STRING_MEMBER(Price, id)
+   REGISTER_STRING_MEMBER(Price, name)
+   REGISTER_STRING_MEMBER(Price, barcode)
+   REGISTER_ULONG_SCALE_MEMBER2(Price, inPack, QTY_SCALE, true)
+END_TYPE_REFLECTION(Price)
+
+BEGIN_TYPE_REFLECTION(SkMarks)
+   REGISTER_STRING_MEMBER(SkMarks, id)
+   REGISTER_STRING_MEMBER(SkMarks, markBegin)
+   REGISTER_STRING_MEMBER(SkMarks, markEnd)
+END_TYPE_REFLECTION(SkMarks)
+
+BEGIN_TYPE_REFLECTION(DocTypes)
+   REGISTER_STRING_MEMBER(DocTypes, id)
+   REGISTER_STRING_MEMBER(DocTypes, name)
+   REGISTER_LONG_MEMBER(DocTypes, controlDoc)
+   REGISTER_LONG_MEMBER(DocTypes, controlRack)
+   REGISTER_LONG_MEMBER(DocTypes, controlItem)
+   REGISTER_LONG_MEMBER(DocTypes, controlQty)
+   REGISTER_LONG_MEMBER(DocTypes, isRouteList)
+   REGISTER_LONG_MEMBER(DocTypes, isMovement)
+END_TYPE_REFLECTION(DocTypes)
+
+BEGIN_TYPE_REFLECTION(WhAgents)
+   REGISTER_STRING_MEMBER(WhAgents, id)
+   REGISTER_STRING_MEMBER(WhAgents, userid)
+   REGISTER_USHORT_MEMBER(WhAgents, canMixInput)
+   REGISTER_USHORT_MEMBER(WhAgents, canInputQty)
+   REGISTER_USHORT_MEMBER(WhAgents, canInputInPack)
+   REGISTER_USHORT_MEMBER(WhAgents, inputRack)
+END_TYPE_REFLECTION(WhAgents)
+
+BEGIN_TYPE_REFLECTION(Config)
+   REGISTER_STRING_MEMBER(Config, key)
+   REGISTER_STRING_MEMBER(Config, value)
+END_TYPE_REFLECTION(Config)
+
+BEGIN_TYPE_REFLECTION(OrderItem)
+   REGISTER_STRING_MEMBER(OrderItem, id)
+   REGISTER_STRING_MEMBER(OrderItem, rack)
+   REGISTER_STRING_MEMBER(OrderItem, rackDest)
+   REGISTER_STRING_MEMBER(OrderItem, mark)
+   REGISTER_STRING_MEMBER(OrderItem, barcode)
+   REGISTER_STRING_MEMBER(OrderItem, palletBarcode)
+   REGISTER_LONG_SCALE_MEMBER2(OrderItem, qty, QTY_SCALE, true)
+   REGISTER_USHORT_MEMBER(OrderItem, flags)
+END_TYPE_REFLECTION(OrderItem)
+
+BEGIN_TYPE_REFLECTION(WhCellOrder)
+   REGISTER_TIMESTAMP_MEMBER(WhCellOrder, created)
+   REGISTER_STRING_MEMBER(WhCellOrder, id)
+   REGISTER_ULONG_MEMBER(WhCellOrder, params)
+
+   REGISTER_COLLECTION_MEMBER(WhCellOrder, items, OrderItem)
+END_TYPE_REFLECTION(WhCellOrder)
+
+BEGIN_TYPE_REFLECTION(ControlDoc)
+   REGISTER_STRING_MEMBER(ControlDoc, id)
+
+   REGISTER_COLLECTION_MEMBER(ControlDoc, items, OrderItem)
+END_TYPE_REFLECTION(ControlDoc)
+
+BEGIN_TYPE_REFLECTION(OrderProceeded)
+   REGISTER_FILETIME_MEMBER(OrderProceeded, created)
+   REGISTER_STRING_MEMBER(OrderProceeded, remark)
+   REGISTER_STRING_MEMBER(OrderProceeded, type)
+END_TYPE_REFLECTION(OrderProceeded)
+
+BEGIN_TYPE_REFLECTION(PalletItem)
+   REGISTER_STRING_MEMBER(PalletItem, id)
+   REGISTER_STRING_MEMBER(PalletItem, barcode)
+	REGISTER_ULONG_SCALE_MEMBER(PalletItem, qty, QTY_SCALE)
+END_TYPE_REFLECTION(PalletItem)
+
+BEGIN_TYPE_REFLECTION(Pallets)
+   REGISTER_STRING_MEMBER(Pallets, barcode)
+   REGISTER_COLLECTION_MEMBER(Pallets, items, PalletItem)
+END_TYPE_REFLECTION(Pallets)
+
+#endif

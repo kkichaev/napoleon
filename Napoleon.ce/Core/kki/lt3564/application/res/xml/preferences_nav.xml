@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+    <com.ashberrysoft.leadertask.modern.view.CustomSwitchPreference
+        android:key="one_week"
+        android:title="@string/one_week_in_nav"/>
+    <com.ashberrysoft.leadertask.modern.view.CustomSwitchPreference
+        android:key="week_number"
+        android:title="@string/settings_show_week_calendar"/>
+    <com.ashberrysoft.leadertask.modern.view.CustomSwitchPreference
+        android:key="week_number_first"
+        android:title="@string/settings_show_week_calendar_first" />
+    <com.ashberrysoft.leadertask.modern.view.CustomSwitchPreference
+        android:key="show_tasks_count"
+        android:title="@string/settings_task_count_in_navigator" />
+    <com.ashberrysoft.leadertask.modern.view.CustomSwitchPreference
+        android:key="show_overdue_in_nav"
+        android:title="@string/overdue_in_nav" />
+    <com.ashberrysoft.leadertask.modern.view.CustomSwitchPreference
+        android:key="show_categories"
+        android:title="@string/settings_show_categories_in_navigator"/>
+    <com.ashberrysoft.leadertask.modern.view.CustomSwitchPreference
+        android:key="show_colors"
+        android:title="@string/settings_show_colors_in_navigator" />
+    <com.ashberrysoft.leadertask.modern.view.CustomSwitchPreference
+        android:key="show_emps"
+        android:title="@string/settings_show_emps_in_navigator" />
+
+</PreferenceScreen>

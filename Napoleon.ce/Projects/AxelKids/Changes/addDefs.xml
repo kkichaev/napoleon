@@ -1,0 +1,68 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+		<object name="PriceGroup">
+			<sources>
+        		<source name="DBFTableSet">
+          			<param name="userTable">"GP"</param>
+          			<param name="commonTable">"GROUP"</param>
+        		</source>
+      		</sources>
+
+         	<field name="id" type="string" width="20" />
+         	<field name="name" type="string" width="50" />         	
+      	</object>
+      	
+      	<object name="Plan">
+			<sources>
+        		<source name="DBFTableSet">
+          			<param name="userTable">"PL"</param>
+          			<param name="commonTable">"PLAN"</param>
+        		</source>
+      		</sources>
+         	<field name="id" type="string" width="20" />        	
+         	<field name="plan" type="number" prec="2" />
+         	<field name="fact" type="number" prec="2" />
+      	</object>
+      	
+		<modify src="Price">
+	        <add>
+	            <field name="group" type="string" />
+	        </add>
+	    </modify>
+	    
+	    <modify src="Org">
+	        <add>
+	            <field name="disc" type="number" prec="2" />
+	            <field name="group" type="collection">
+            		<data>
+               			<object name="OrgGroupItem">
+                  			<sources>
+                     			<source name="DBFTableSet">
+                        			<param name="userTable">"OGR"</param>
+                        			<param name="commonTable">"ORGGROUP"</param>
+			                        <param name="filter">"[ID] = $parent.id"</param>
+            			        </source>
+		                  	</sources>
+                 			<field name="id" type="string" />
+                  			<field name="group" type="string" />
+                  			<field name="disc" type="number" prec="2" />
+               			</object>
+            		</data>
+	         	</field>
+	        </add>
+	    </modify>
+	    
+	    <modify src="Order">
+	        <add>
+	            <field name="disc" type="number" prec="2" />
+	        </add>
+	    </modify>
+	    
+	    <modify src="Order$items">
+            <add>
+	            <field name="disc" type="number" prec="2" data="DISC_I"/>
+	        </add>
+      	</modify>
+	</objects>
+</serverDefs>

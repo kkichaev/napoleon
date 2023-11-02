@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="10dp">
+
+    <TextView
+        android:id="@+id/tvNumber"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:layout_marginRight="5dp"/>
+
+    <TextView
+        android:id="@+id/tvData"
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:layout_marginRight="5dp"/>
+
+    <TextView
+        android:id="@+id/edQty"
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:layout_marginRight="15dp"/>
+
+    <CheckBox
+        android:id="@+id/cbPack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"/>
+</LinearLayout>

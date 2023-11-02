@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/univ_padding"
+        android:layout_marginBottom="20dp">
+
+        <EditText
+            android:layout_marginTop="15dp"
+            android:id="@+id/editText1"
+            android:inputType="textCapSentences|textMultiLine"
+            android:layout_width="match_parent"
+            android:minHeight="@dimen/univ_ab_height"
+            android:layout_height="wrap_content"
+            android:hint="@string/feature_name"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@+id/backColor"
+            android:layout_toLeftOf="@+id/backColor"/>
+
+        <View
+            android:id="@+id/backColor"
+            style="@style/fppView2"
+            android:clickable="true"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"/>
+
+    </RelativeLayout>
+
+</ScrollView>

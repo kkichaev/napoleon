@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    style="@style/fab_layout_match_width_match_height_style"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/toolbar_simple"/>
+
+    <FrameLayout
+        android:id="@+id/frame_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+    </FrameLayout>
+
+</LinearLayout>
+
+    <com.software.shell.fab.ActionButton
+        xmlns:fab="http://schemas.android.com/apk/res-auto"
+        style="@style/fab_action_button_style"
+        android:id="@+id/action_button"
+        android:layout_marginRight="@dimen/fab_margin"
+        android:layout_marginBottom="@dimen/fab_margin"
+        fab:type="DEFAULT"
+        fab:button_color="@color/primary_color"
+        fab:button_colorPressed="@color/primary_color"
+        fab:image="@drawable/ic_add_white_48dp"
+        fab:image_size="28dp"
+        fab:stroke_color="@color/primary_color"
+        fab:stroke_width="1.0dp"
+        fab:button_colorRipple="@color/primary_color_lite"
+        fab:rippleEffect_enabled="true"
+        fab:shadowResponsiveEffect_enabled="false"
+        fab:show_animation="@anim/fab_roll_to_down"
+        fab:hide_animation="@anim/fab_roll_to_down"
+        fab:shadow_radius="3.0dp"
+        fab:shadow_xOffset="4dp"
+        fab:shadow_yOffset="3dp"
+        />
+
+</RelativeLayout>

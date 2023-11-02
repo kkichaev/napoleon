@@ -1,0 +1,220 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+  <objects>
+    <object name="OrgMtx">
+      <sources>
+        <source name="SQTable" type="internal" />
+        <param name="readFilter">'"userid"=' + "'" + $user.id + "'"</param>
+      </sources>
+      <member name="primaryKey">"id,userid"</member>
+      <field name="id" type="string" />
+      <field name="userid" type="string" />
+      <field name="matrix" type="string" />
+    </object>
+
+    <object name="RetMtx">
+      <sources>
+        <source name="SQTable" type="internal" />
+        <param name="readFilter">'"userid"=' + "'" + $user.id + "'"</param>
+      </sources>
+      <member name="primaryKey">"id,userid"</member>
+      <field name="id" type="string" />
+      <field name="userid" type="string" />
+      <field name="matrix" type="string" />
+    </object>
+    
+    <object name="OrdConfig">
+        <sources>
+			<source name="KeyValueTable">
+        		<param name="fileName">"order.cfg"</param>
+        	</source>
+        </sources>
+
+        <field name="key" type="string" />
+    	<field name="value" type="string" />
+    </object>
+    
+    <object name="NumGroup">
+         <sources>
+            <source name="KeyValueDBFTable">
+               	<param name="fileName">"NUMGR"</param>
+               	<param name="key">"НомГруп"</param>
+               	<param name="itemName">"NAME"</param>
+            	<param name="itemKey">"ID"</param>
+        	</source>
+        </sources>
+
+        <field name="key" type="string" />
+    	<field name="value" type="string" />
+    </object>
+	
+	<object name="Sklads">
+        <sources>
+            <source name="KeyValueDBFTable">
+               	<param name="fileName">"SKLADS"</param>
+               	<param name="key">"Склады"</param>
+               	<param name="itemName">"NAME"</param>
+            	<param name="itemKey">"ID"</param>
+        	</source>
+        </sources>
+
+        <field name="key" type="string" />
+    	<field name="value" type="string" />
+    </object>
+    
+	 <object name="Config">
+         <sources>
+            <source name="ObjectUnion">
+            	<param>"OrdConfig"</param>
+               	<param>"Sklads"</param>
+               	<param>"NumGroup"</param>
+        	</source>
+        </sources>
+
+        <field name="key" type="string" />
+    	<field name="value" type="string" />
+    </object>
+	
+	
+    <object name="AgentRoute">
+         <sources>
+            <source name="SQTable" type="internal" />
+         </sources>
+
+         <member name="primaryKey">"userid"</member>
+
+         <field name="userid" type="string" execOn="Put">$user.id</field>
+         <field name="date" type="timestamp" />
+         <field name="items" type="collection">
+            <data>
+               <object name="AgentRouteItem">
+                  <sources>
+                     <source name="SQTable" type="internal" />
+                  </sources>
+                  
+                  <field name="id" type="string"/>
+                  <field name="day" type="number"/>
+                  <field name="pos" type="number"/>
+               </object>
+            </data>
+         </field>
+    </object>
+      
+    <object name="AgentPlan">
+    	<sources>
+        	<source name="SQTable" type="internal">
+          		<param name="readFilter">'"userid"=' + "'" + $user.id + "' and " + 
+          			'"begin" &lt;= ToDate("' + FormatDate(Now(),"DD.MM.YYYY") + '") and ' +
+          			'"end" &gt;= ToDate("' + FormatDate(Now(),"DD.MM.YYYY") + '")'</param>
+        	</source>
+      	</sources>
+      	
+      	<member name="primaryKey">"userid,begin"</member>
+      	
+      	<field name="userid" type="string" />
+      	<field name="begin" type="date" />
+      	<field name="end" type="date" />
+      	<field name="items" type="collection">
+        	<data>
+          		<object name="AgemtPlanItems">
+            		<sources>
+              			<source name="SQTable" type="internal" />
+            		</sources>
+            		<field name="id" type="string" />
+            		<field name="value" type="number" prec="3" />
+          		</object>
+        	</data>
+      	</field>
+      	<field name="groups" type="collection">
+        	<data>
+          		<object name="AgemtPlanGroups">
+            		<sources>
+              			<source name="SQTable" type="internal" />
+            		</sources>
+            		<field name="id" type="string" />
+            		<field name="value" type="number" prec="3" />
+          		</object>
+        	</data>
+      	</field>
+    </object>
+    
+    <object name="RetNtfy" removeOnCommit="true" sendAlways="true">
+         <sources>
+            <source name="SQTable" type="internal" >
+                <param name="readFilter">'"userid"=' + "'" + $user.id + "'"</param>
+            </source>
+         </sources>
+         
+         <member name="primaryKey">"userid,created"</member>
+         
+         <field name="created" type="timestamp" />
+         <field name="userid" type="string" />
+    </object>
+    
+    <modify src="Order">
+      <add>
+        <field name="payType" type="number" />
+        <field name="dogovor" type="string" width="20" data="ID_D" />
+        <field name="whCode" type="string" width="20" data="ID_WH" />
+        <field name="numgroup" type="string" width="20" data="NUM_GR" />
+      </add>
+    </modify>
+    
+    <modify src="Delivery">
+      <add>
+        <field name="payDate" type="date" />
+      </add>
+    </modify>
+    
+    <modify src="Org">
+      <add>
+        <field name="matrix" type="string" width="30" />
+        <field name="dogovors" type="collection">
+          <data>
+            <object name="OrgDogovor">
+              <sources>
+                <source name="DBFTableSet">
+                  <param name="userTable">"DG"</param>
+                  <param name="commonTable">"DOGOVORS"</param>
+                  <param name="filter">"[ID] = $parent.id"</param>
+                </source>
+              </sources>
+              <field name="id" type="string" data="ID_D" />
+              <field name="name" type="string" />
+            </object>
+          </data>
+        </field>
+      </add>
+    </modify>
+    
+	<modify src="Price">
+    	<add>
+        	<field name="whQty" type="collection">
+            	<data>
+                	<object name="QtyItem">
+                    	<sources>
+                        	<source name="Sequence">
+                            	<param name="source">$parent.source</param>
+                        	</source>
+                        </sources>
+                        <field name="qty" type="number" prec="3" />
+                     </object>
+                 </data>
+            </field>
+        </add>
+    </modify>
+    
+	<modify src="Returns$items">
+         <add>
+            <field name="flags" type="number" width="9" prec="0" data="" />
+            <field name="comment" type="string" width="150" />
+         </add>
+    </modify>
+	
+	<modify src="Returns">
+	    <add>
+	        <field name="forsake" type="number" />
+	    </add>
+	</modify>
+  </objects>
+</serverDefs>

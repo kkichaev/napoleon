@@ -1,0 +1,32 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+  <objects>
+    <modify src="Org">
+      <add>
+        <field name="discount" type="collection">
+          <data>
+            <object name="OrgDiscountItem">
+              <sources>
+                <source name="DBFTableSet">
+                  <param name="userTable">"OFD"</param>
+                  <param name="commonTable">"ORGFD"</param>
+                  <param name="filter">"[ID] = $parent.id"</param>
+                </source>
+              </sources>
+
+              <field name="fid" data="ID_I" type="string" />
+              <field name="discount" data="DISC" type="number" prec="2"/>
+            </object>
+          </data>
+        </field>
+      </add>
+    </modify>
+    <modify src="Returns$items">
+      <add>
+        <field name="mfrDate" type="date" />
+        <field name="endDate" type="date" />
+        <field name="remark" type="string" data="REM_I" width="100" />
+      </add>
+    </modify>
+  </objects>
+</serverDefs>

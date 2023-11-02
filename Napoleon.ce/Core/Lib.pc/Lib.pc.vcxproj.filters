@@ -1,0 +1,1848 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Dbf">
+      <UniqueIdentifier>{a6075c1f-38e7-4116-99ba-0ff3a11873fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ZLib">
+      <UniqueIdentifier>{2de39b9c-6f73-42ed-a275-77a6cd99b46e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core">
+      <UniqueIdentifier>{88f9216b-8f6d-4aab-9429-a1007ebe7fdc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Source Files\crypt">
+      <UniqueIdentifier>{d283e23f-7012-461d-b46d-90b8bbf5ac03}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Core\stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Dbf\dbfapp.cpp">
+      <Filter>Source Files\Dbf</Filter>
+    </ClCompile>
+    <ClCompile Include="Dbf\dbfchfil.cpp">
+      <Filter>Source Files\Dbf</Filter>
+    </ClCompile>
+    <ClCompile Include="Dbf\dbfcnstr.cpp">
+      <Filter>Source Files\Dbf</Filter>
+    </ClCompile>
+    <ClCompile Include="Dbf\dbfdelre.cpp">
+      <Filter>Source Files\Dbf</Filter>
+    </ClCompile>
+    <ClCompile Include="Dbf\dbffill.cpp">
+      <Filter>Source Files\Dbf</Filter>
+    </ClCompile>
+    <ClCompile Include="Dbf\dbfgetfl.cpp">
+      <Filter>Source Files\Dbf</Filter>
+    </ClCompile>
+    <ClCompile Include="Dbf\dbfgo.cpp">
+      <Filter>Source Files\Dbf</Filter>
+    </ClCompile>
+    <ClCompile Include="Dbf\dbfgtfr.cpp">
+      <Filter>Source Files\Dbf</Filter>
+    </ClCompile>
+    <ClCompile Include="Dbf\dbfgthd.cpp">
+      <Filter>Source Files\Dbf</Filter>
+    </ClCompile>
+    <ClCompile Include="Dbf\dbfop.cpp">
+      <Filter>Source Files\Dbf</Filter>
+    </ClCompile>
+    <ClCompile Include="Dbf\dbfopen.cpp">
+      <Filter>Source Files\Dbf</Filter>
+    </ClCompile>
+    <ClCompile Include="Dbf\dbfrdrec.cpp">
+      <Filter>Source Files\Dbf</Filter>
+    </ClCompile>
+    <ClCompile Include="Dbf\dbfrecl.cpp">
+      <Filter>Source Files\Dbf</Filter>
+    </ClCompile>
+    <ClCompile Include="Dbf\dbfwrrc.cpp">
+      <Filter>Source Files\Dbf</Filter>
+    </ClCompile>
+    <ClCompile Include="Dbf\dbfwrrec.cpp">
+      <Filter>Source Files\Dbf</Filter>
+    </ClCompile>
+    <ClCompile Include="Dbf\getwdh.cpp">
+      <Filter>Source Files\Dbf</Filter>
+    </ClCompile>
+    <ClCompile Include="Zlib\adler32.c">
+      <Filter>Source Files\ZLib</Filter>
+    </ClCompile>
+    <ClCompile Include="Zlib\compress.c">
+      <Filter>Source Files\ZLib</Filter>
+    </ClCompile>
+    <ClCompile Include="Zlib\crc32.c">
+      <Filter>Source Files\ZLib</Filter>
+    </ClCompile>
+    <ClCompile Include="Zlib\deflate.c">
+      <Filter>Source Files\ZLib</Filter>
+    </ClCompile>
+    <ClCompile Include="Zlib\inffast.c">
+      <Filter>Source Files\ZLib</Filter>
+    </ClCompile>
+    <ClCompile Include="Zlib\inflate.c">
+      <Filter>Source Files\ZLib</Filter>
+    </ClCompile>
+    <ClCompile Include="Zlib\inftrees.c">
+      <Filter>Source Files\ZLib</Filter>
+    </ClCompile>
+    <ClCompile Include="Zlib\trees.c">
+      <Filter>Source Files\ZLib</Filter>
+    </ClCompile>
+    <ClCompile Include="Zlib\zutil.c">
+      <Filter>Source Files\ZLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Include\AESEnc.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Include\C32.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\dateparse.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\filefield.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Include\OutStream.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\packet.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\pktops.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\servobj.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\socket.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\stdobjs.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\thread.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\token.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\adler32.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\aes.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\aes_tab.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\anubis.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\base64_decode.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\base64_encode.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\blake2b.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\blake2bmac.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\blake2bmac_file.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\blake2bmac_memory.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\blake2bmac_memory_multi.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\blake2bmac_test.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\blake2s.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\blake2smac.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\blake2smac_file.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\blake2smac_memory.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\blake2smac_memory_multi.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\blake2smac_test.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\blowfish.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_cutoffs.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_deprecated.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_2expt.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_abs.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_add.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_add_d.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_addmod.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_and.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_clamp.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_clear.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_clear_multi.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_cmp.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_cmp_d.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_cmp_mag.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_cnt_lsb.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_complement.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_copy.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_count_bits.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_decr.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_div.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_div_2.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_div_2d.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_div_3.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_div_d.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_dr_is_modulus.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_dr_reduce.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_dr_setup.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_error_to_string.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_exch.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_expt_u32.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_exptmod.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_exteuclid.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_fread.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_from_sbin.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_from_ubin.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_fwrite.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_gcd.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_get_double.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_get_i32.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_get_i64.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_get_l.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_get_ll.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_get_mag_u32.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_get_mag_u64.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_get_mag_ul.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_get_mag_ull.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_grow.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_incr.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_init.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_init_copy.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_init_i32.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_init_i64.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_init_l.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_init_ll.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_init_multi.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_init_set.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_init_size.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_init_u32.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_init_u64.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_init_ul.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_init_ull.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_invmod.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_is_square.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_iseven.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_isodd.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_kronecker.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_lcm.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_log_u32.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_lshd.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_mod.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_mod_2d.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_mod_d.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_montgomery_calc_normalization.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_montgomery_reduce.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_montgomery_setup.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_mul.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_mul_2.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_mul_2d.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_mul_d.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_mulmod.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_neg.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_or.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_pack.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_pack_count.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_prime_fermat.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_prime_frobenius_underwood.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_prime_is_prime.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_prime_miller_rabin.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_prime_next_prime.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_prime_rabin_miller_trials.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_prime_rand.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_prime_strong_lucas_selfridge.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_radix_size.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_radix_smap.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_rand.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_read_radix.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_reduce.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_reduce_2k.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_reduce_2k_l.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_reduce_2k_setup.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_reduce_2k_setup_l.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_reduce_is_2k.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_reduce_is_2k_l.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_reduce_setup.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_root_u32.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_rshd.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_sbin_size.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_set.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_set_double.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_set_i32.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_set_i64.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_set_l.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_set_ll.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_set_u32.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_set_u64.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_set_ul.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_set_ull.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_shrink.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_signed_rsh.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_sqr.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_sqrmod.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_sqrt.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_sqrtmod_prime.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_sub.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_sub_d.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_submod.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_to_radix.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_to_sbin.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_to_ubin.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_ubin_size.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_unpack.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_xor.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_mp_zero.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_prime_tab.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_s_mp_add.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_s_mp_balance_mul.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_s_mp_exptmod.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_s_mp_exptmod_fast.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_s_mp_get_bit.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_s_mp_invmod_fast.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_s_mp_invmod_slow.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_s_mp_karatsuba_mul.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_s_mp_karatsuba_sqr.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_s_mp_montgomery_reduce_fast.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_s_mp_mul_digs.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_s_mp_mul_digs_fast.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_s_mp_mul_high_digs.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_s_mp_mul_high_digs_fast.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_s_mp_prime_is_divisible.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_s_mp_rand_jenkins.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_s_mp_rand_platform.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_s_mp_reverse.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_s_mp_sqr.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_s_mp_sqr_fast.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_s_mp_sub.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_s_mp_toom_mul.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\bn_s_mp_toom_sqr.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\burn_stack.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\camellia.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\cast5.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\cbc_decrypt.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\cbc_done.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\cbc_encrypt.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\cbc_getiv.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\cbc_setiv.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\cbc_start.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\ccm_add_aad.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\ccm_add_nonce.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\ccm_done.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\ccm_init.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\ccm_memory.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\ccm_process.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\ccm_reset.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\ccm_test.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\cfb_decrypt.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\cfb_done.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\cfb_encrypt.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\cfb_getiv.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\cfb_setiv.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\cfb_start.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\chacha_crypt.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\chacha_done.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\chacha_ivctr32.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\chacha_ivctr64.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\chacha_keystream.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\chacha_setup.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\chacha_test.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\chacha20.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\chacha20poly1305_add_aad.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\chacha20poly1305_decrypt.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\chacha20poly1305_done.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\chacha20poly1305_encrypt.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\chacha20poly1305_init.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\chacha20poly1305_memory.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\chacha20poly1305_setiv.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\chacha20poly1305_setiv_rfc7905.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\chacha20poly1305_test.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\chc.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\compare_testvector.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\crc32.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\crypt.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\crypt_argchk.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\crypt_cipher_descriptor.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\crypt_cipher_is_valid.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\crypt_constants.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\crypt_find_cipher.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\crypt_find_cipher_any.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\crypt_find_cipher_id.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\crypt_find_hash.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\crypt_find_hash_any.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\crypt_find_hash_id.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\crypt_find_hash_oid.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\crypt_find_prng.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\crypt_fsa.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\crypt_hash_descriptor.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\crypt_hash_is_valid.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\crypt_inits.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\crypt_ltc_mp_descriptor.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\crypt_prng_descriptor.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\crypt_prng_is_valid.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\crypt_prng_rng_descriptor.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\crypt_register_all_ciphers.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\crypt_register_all_hashes.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\crypt_register_all_prngs.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\crypt_register_cipher.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\crypt_register_hash.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\crypt_register_prng.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\crypt_sizes.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\crypt_unregister_cipher.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\crypt_unregister_hash.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\crypt_unregister_prng.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\ctr_decrypt.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\ctr_done.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\ctr_encrypt.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\ctr_getiv.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\ctr_setiv.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\ctr_start.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\ctr_test.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\der_decode_bit_string.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\der_decode_boolean.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\der_decode_choice.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\der_decode_generalizedtime.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\der_decode_ia5_string.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\der_decode_integer.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\der_decode_object_identifier.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\der_decode_octet_string.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\der_decode_printable_string.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\der_decode_raw_bit_string.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\der_decode_sequence_ex.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\der_decode_sequence_flexi.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\der_decode_sequence_multi.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\der_decode_short_integer.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\der_decode_subject_public_key_info.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\der_decode_teletex_string.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\der_decode_utctime.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\der_decode_utf8_string.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\der_encode_bit_string.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\der_encode_boolean.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\der_encode_generalizedtime.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\der_encode_ia5_string.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\der_encode_integer.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\der_encode_object_identifier.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\der_encode_octet_string.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\der_encode_printable_string.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\der_encode_raw_bit_string.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\der_encode_sequence_ex.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\der_encode_sequence_multi.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\der_encode_set.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\der_encode_setof.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\der_encode_short_integer.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\der_encode_subject_public_key_info.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\der_encode_utctime.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\der_encode_utf8_string.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\der_length_bit_string.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\der_length_boolean.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\der_length_generalizedtime.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\der_length_ia5_string.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\der_length_integer.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\der_length_object_identifier.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\der_length_octet_string.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\der_length_printable_string.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\der_length_sequence.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\der_length_short_integer.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\der_length_teletex_string.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\der_length_utctime.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\der_length_utf8_string.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\der_sequence_free.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\der_sequence_shrink.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\des.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\dh.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\dh_check_pubkey.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\dh_export.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\dh_export_key.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\dh_free.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\dh_generate_key.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\dh_import.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\dh_set.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\dh_set_pg_dhparam.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\dh_shared_secret.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\dsa_decrypt_key.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\dsa_encrypt_key.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\dsa_export.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\dsa_free.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\dsa_generate_key.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\dsa_generate_pqg.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\dsa_import.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\dsa_make_key.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\dsa_set.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\dsa_set_pqg_dsaparam.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\dsa_shared_secret.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\dsa_sign_hash.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\dsa_verify_hash.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\dsa_verify_key.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\eax_addheader.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\eax_decrypt.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\eax_decrypt_verify_memory.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\eax_done.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\eax_encrypt.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\eax_encrypt_authenticate_memory.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\eax_init.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\eax_test.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\ecb_decrypt.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\ecb_done.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\ecb_encrypt.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\ecb_start.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\ecc.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\ecc_ansi_x963_export.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\ecc_ansi_x963_import.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\ecc_decrypt_key.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\ecc_encrypt_key.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\ecc_export.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\ecc_free.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\ecc_get_size.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\ecc_import.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\ecc_make_key.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\ecc_shared_secret.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\ecc_sign_hash.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\ecc_sizes.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\ecc_test.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\ecc_verify_hash.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\error_to_string.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\f8_decrypt.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\f8_done.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\f8_encrypt.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\f8_getiv.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\f8_setiv.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\f8_start.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\f8_test_mode.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\f9_done.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\f9_file.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\f9_init.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\f9_memory.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\f9_memory_multi.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\f9_process.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\f9_test.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\fortuna.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\gcm_add_aad.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\gcm_add_iv.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\gcm_done.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\gcm_gf_mult.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\gcm_init.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\gcm_memory.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\gcm_mult_h.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\gcm_process.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\gcm_reset.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\gcm_test.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\gmp_desc.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\hash_file.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\hash_filehandle.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\hash_memory.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\hash_memory_multi.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\hkdf.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\hkdf_test.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\hmac_done.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\hmac_file.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\hmac_init.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\hmac_memory.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\hmac_memory_multi.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\hmac_process.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\hmac_test.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\kasumi.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\katja_decrypt_key.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\katja_encrypt_key.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\katja_export.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\katja_exptmod.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\katja_free.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\katja_import.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\katja_make_key.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\khazad.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\kseed.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\lrw_decrypt.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\lrw_done.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\lrw_encrypt.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\lrw_getiv.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\lrw_process.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\lrw_setiv.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\lrw_start.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\lrw_test.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\ltc_ecc_fp_mulmod.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\ltc_ecc_is_valid_idx.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\ltc_ecc_map.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\ltc_ecc_mul2add.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\ltc_ecc_mulmod.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\ltc_ecc_mulmod_timing.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\ltc_ecc_points.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\ltc_ecc_projective_add_point.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\ltc_ecc_projective_dbl_point.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\ltm_desc.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\md2.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\md4.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\md5.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\mem_neq.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\multi.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\multi2.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\noekeon.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\ocb_decrypt.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\ocb_decrypt_verify_memory.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\ocb_done_decrypt.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\ocb_done_encrypt.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\ocb_encrypt.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\ocb_encrypt_authenticate_memory.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\ocb_init.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\ocb_ntz.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\ocb_shift_xor.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\ocb_test.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\ocb3_add_aad.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\ocb3_decrypt.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\ocb3_decrypt_last.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\ocb3_decrypt_verify_memory.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\ocb3_done.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\ocb3_encrypt.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\ocb3_encrypt_authenticate_memory.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\ocb3_encrypt_last.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\ocb3_init.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\ocb3_int_ntz.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\ocb3_int_xor_blocks.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\ocb3_test.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\ofb_decrypt.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\ofb_done.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\ofb_encrypt.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\ofb_getiv.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\ofb_setiv.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\ofb_start.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\omac_done.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\omac_file.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\omac_init.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\omac_memory.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\omac_memory_multi.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\omac_process.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\omac_test.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\pelican.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\pelican_memory.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\pelican_test.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\pk_get_oid.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\pkcs_1_i2osp.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\pkcs_1_mgf1.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\pkcs_1_oaep_decode.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\pkcs_1_oaep_encode.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\pkcs_1_os2ip.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\pkcs_1_pss_decode.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\pkcs_1_pss_encode.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\pkcs_1_v1_5_decode.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\pkcs_1_v1_5_encode.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\pkcs_5_1.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\pkcs_5_2.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\pkcs_5_test.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\pmac_done.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\pmac_file.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\pmac_init.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\pmac_memory.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\pmac_memory_multi.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\pmac_ntz.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\pmac_process.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\pmac_shift_xor.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\pmac_test.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\poly1305.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\poly1305_file.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\poly1305_memory.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\poly1305_memory_multi.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\poly1305_test.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\radix_to_bin.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\rand_bn.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\rand_prime.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\rc2.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\rc4.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\rc4_stream.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\rc4_test.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\rc5.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\rc6.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\rmd128.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\rmd160.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\rmd256.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\rmd320.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\rng_get_bytes.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\rng_make_prng.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\rsa_decrypt_key.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\rsa_encrypt_key.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\rsa_export.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\rsa_exptmod.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\rsa_free.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\rsa_get_size.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\rsa_import.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\rsa_import_pkcs8.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\rsa_import_x509.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\rsa_make_key.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\rsa_set.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\rsa_sign_hash.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\rsa_sign_saltlen_get.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\rsa_verify_hash.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\s_ocb_done.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\safer.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\safer_tab.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\saferp.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\sha1.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\sha3.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\sha3_test.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\sha224.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\sha256.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\sha384.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\sha512.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\sha512_224.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\sha512_256.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\skipjack.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\sober128.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\sober128_stream.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\sober128_test.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\sober128tab.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\sprng.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\tfm_desc.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\tiger.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\twofish.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\twofish_tab.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\whirl.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\whirltab.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\xcbc_done.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\xcbc_file.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\xcbc_init.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\xcbc_memory.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\xcbc_memory_multi.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\xcbc_process.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\xcbc_test.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\xtea.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\xts_decrypt.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\xts_done.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\xts_encrypt.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\xts_init.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\xts_mult_x.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\xts_test.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\yarrow.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="crypt\zeromem.c">
+      <Filter>Source Files\crypt</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

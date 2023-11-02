@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:id="@+id/itApplications" 
+        android:icon="@drawable/ic_all_applications" 
+        android:title="@string/applications"/>
+    
+    <item android:id="@+id/itSetting" 
+        android:icon="@drawable/ic_setting" 
+        android:title="@string/setting_dlc"/>
+    <!--  
+    <item android:id="@+id/itWallpapper"
+        android:icon="@drawable/ic_menu_gallery"
+        android:title="@string/wallpaper_caption"/>
+    -->
+    
+    <item android:id="@+id/itLicense"
+        android:icon="@drawable/ic_dialog_alert"
+        android:title="@string/license_caption"/>
+    
+    <item android:id="@+id/itDate"
+        android:icon="@drawable/ic_menu_my_calendar"
+        android:title="@string/date_time_setting"/>
+</menu>

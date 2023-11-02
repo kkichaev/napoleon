@@ -1,0 +1,175 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+  <objects>
+    <object name="WhRest">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"RST"</param>
+          <param name="commonTable">"RSSST"</param>
+          <param name="catalog">"id;items;0"</param>
+        </source>
+      </sources>
+      <field name="items" type="collection">
+        <data>
+          <object name="Item">
+            <field name="id" type="string" data="ID_I" />
+            <field name="qty" type="number" prec="3"  />
+          </object>
+        </data>
+      </field>
+      <field name="id" type="string" data="ID_S" />
+    </object>
+
+    <object name="OrgMatrix">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"OrgMtx"</param>
+          <param name="commonTable">"OrgMatrix"</param>
+          <param name="catalog">"id;items;0"</param>
+        </source>
+      </sources>
+      <field name="items" type="collection">
+        <data>
+          <object name="MatrixItem">
+            <field name="id" type="string" width="20" data="ID_I" />
+          </object>
+        </data>
+      </field>
+      <field name="id" type="string" width="30" />
+    </object>
+
+    <object name="Ret1CDocs">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"RET"</param>
+          <param name="commonTable">"RETURNS"</param>
+          <param name="catalog">"number;items;1"</param>
+          <param name="filter">"[id] in $Org.id"</param>
+        </source>
+      </sources>
+
+      <field name="date" type="date" data="DATE" />
+      <field name="id" width="55" type="string" />
+      <field name="number" type="string" data="NUM" />
+
+      <field name="items" type="collection">
+        <data>
+          <object name="Ret1cItem">
+            <field name="id" type="string" data="ID_I"/>
+            <field name="qty" type="number" prec="3" />
+            <field name="sum" type="number" prec="2" />
+          </object>
+        </data>
+      </field>
+    </object>
+    <object name="CustomCost">
+      <sources>
+        <source name="DBFTable">
+          <param name="tableName">"CUCOST"</param>
+        </source>
+      </sources>
+
+      <field name="id" type="string"  />
+      <field name="userid" type="string" execOn="Get">$user.id</field>
+    </object>
+    <object name="Incass">
+      <sources>
+        <source name="DBFCatalogTable">
+          <param name="tableName">$object.table + $user.id</param>
+          <param name="catalog">"id"</param>
+          <param name="ordered">1</param>
+        </source>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="table">"PKO"</member>
+      <member name="primaryKey">"userid,created"</member>
+
+      <field name="id" type="string" width="20" />
+      <field name="firm" type="string" width="50" />
+      <field name="sum" type="number" prec="2" />
+      <field name="created" type="timestamp" />
+      <field name="userid" type="string" data="" execOn="Put">$user.id</field>
+      <field name="date" type="date" />
+      <field name="remark" type="string" width="100" />
+
+      <field name="items" type="collection">
+        <data>
+          <object name="DocPayItem">
+            <sources>
+              <source name="DBFCatalogItemTable"/>
+              <source name="SQTable" type="internal" />
+            </sources>
+
+            <field name="number" width="20" type="string" data="NUM_I"/>
+            <field name="date" type="date" data="DATE_I" />
+            <field name="sum" type="number" data="SUM_I" width="10" prec="2" />
+            <field name="ordflag" width="1" type="number" execOn="Put">FirstItem($object)</field>
+          </object>
+        </data>
+      </field>
+      <events>
+        <event type="put">
+          <action name="WriteInternal">$object.type</action>
+        </event>
+      </events>
+    </object>
+    <modify src="Price">
+      <add>
+        <field name="whQty" type="collection">
+          <data>
+            <object name="QtyItem">
+              <sources>
+                <source name="Sequence">
+                  <param name="source">$parent.source</param>
+                  <param name="startIndex">2</param>
+                </source>
+              </sources>
+
+              <field name="qty" type="number" prec="2" />
+            </object>
+          </data>
+        </field>
+      </add>
+    </modify>
+    <modify src="Order">
+      <add>
+        <field name="dogovor" type="string" width="20" data="ID_D" />
+        <field name="costCode" type="string" width="20" data="ID_C" />
+        <field name="whCode" type="string" width="30" />
+      </add>
+    </modify>
+    <modify src="Org">
+      <add>
+        <field name="ido" type="string" width="20" />
+        <field name="stop" type="number" hidden="true" />
+        <field name="flags" type="number" execOn="Get">EncodeFlag($object.stop,2)</field>
+        <field name="costCode" type="string" />
+        <field name="firms" type="number" />
+        <field name="dogovors" type="collection">
+          <data>
+            <object name="OrgDogovor">
+              <sources>
+                <source name="DBFTableSet">
+                  <param name="userTable">"DG"</param>
+                  <param name="commonTable">"DOGOVORS"</param>
+                  <param name="filter">"[ID] = $parent.id"</param>
+                </source>
+              </sources>
+              <field name="id" type="string" data="ID_D" />
+              <field name="name" type="string" />
+            </object>
+          </data>
+        </field>
+      </add>
+    </modify>
+
+    <modify src="Delivery">
+      <add>
+        <field name="payDate" type="date" />
+        <field name="color" type="hex" />
+        <field name="firm" type="string" width="50" />
+      </add>
+    </modify>
+  </objects>
+</serverDefs>

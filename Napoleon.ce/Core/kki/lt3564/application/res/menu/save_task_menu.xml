@@ -1,0 +1,44 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:balloonberry="http://schemas.android.com/apk/res-auto"
+  xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/focus_menu"
+        balloonberry:showAsAction="always"
+        android:icon="@drawable/focus_active"
+        android:title="@string/task_focus_menu"/>
+
+    <item
+        android:id="@+id/add_file_menu"
+        balloonberry:showAsAction="always"
+        android:icon="@drawable/add_file"
+        android:title="@string/task_files"/>
+
+    <item
+        android:id="@+id/points"
+        android:orderInCategory="101"
+        app:showAsAction="always"
+        android:icon="@drawable/more">
+
+        <menu>
+
+            <item
+                android:id="@+id/copy_task_link"
+                balloonberry:showAsAction="never"
+                android:title="@string/copy_link"/>
+
+            <item
+                android:id="@+id/not_save_menu"
+                balloonberry:showAsAction="never"
+                android:title="@string/notsave"/>
+
+            <item
+                android:id="@+id/del_task_menu"
+                balloonberry:showAsAction="never"
+                android:title="@string/menu_dell"/>
+
+        </menu>
+
+    </item>
+
+</menu>

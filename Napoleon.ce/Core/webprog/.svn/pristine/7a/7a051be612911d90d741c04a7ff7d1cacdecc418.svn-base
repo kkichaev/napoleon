@@ -1,0 +1,76 @@
+{
+  "_from": "@intlify/bundle-utils@^3.1.2",
+  "_id": "@intlify/bundle-utils@3.4.0",
+  "_inBundle": false,
+  "_integrity": "sha512-2UQkqiSAOSPEHMGWlybqWm4G2K0X+FyYho5AwXz6QklSX1EY5EDmOSxZmwscn2qmKBnp6OYsme5kUrnN9xrWzQ==",
+  "_location": "/@intlify/bundle-utils",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "range",
+    "registry": true,
+    "raw": "@intlify/bundle-utils@^3.1.2",
+    "name": "@intlify/bundle-utils",
+    "escapedName": "@intlify%2fbundle-utils",
+    "scope": "@intlify",
+    "rawSpec": "^3.1.2",
+    "saveSpec": null,
+    "fetchSpec": "^3.1.2"
+  },
+  "_requiredBy": [
+    "/@intlify/vite-plugin-vue-i18n"
+  ],
+  "_resolved": "https://registry.npmjs.org/@intlify/bundle-utils/-/bundle-utils-3.4.0.tgz",
+  "_shasum": "72558611f4b223a6791f591363dc48a4bcacdf70",
+  "_spec": "@intlify/bundle-utils@^3.1.2",
+  "_where": "/home/devteam/prog/webfront/node_modules/@intlify/vite-plugin-vue-i18n",
+  "author": {
+    "name": "kazuya kawaguchi",
+    "email": "kawakazu80@gmail.com"
+  },
+  "bugs": {
+    "url": "https://github.com/intlify/bundle-tools/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "@intlify/message-compiler": "next",
+    "@intlify/shared": "next",
+    "jsonc-eslint-parser": "^1.0.1",
+    "source-map": "0.6.1",
+    "yaml-eslint-parser": "^0.3.2"
+  },
+  "deprecated": false,
+  "description": "Bundle utilities for Intlify project",
+  "engines": {
+    "node": ">= 12"
+  },
+  "files": [
+    "lib"
+  ],
+  "homepage": "https://github.com/intlify/bundle-tools/blob/main/packages/bundle-utils/README.md",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "name": "@intlify/bundle-utils",
+  "peerDependenciesMeta": {
+    "petite-vue-i18n": {
+      "optional": true
+    },
+    "vue-i18n": {
+      "optional": true
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/intlify/bundle-tools.git",
+    "directory": "packages/bundle-utils"
+  },
+  "scripts": {
+    "build": "tsc -p .",
+    "changelog": "jiti ../../scripts/changelog.ts",
+    "clean": "npm-run-all \"clean:*\"",
+    "clean:lib": "rm -rf ./lib",
+    "release": "jiti ../../scripts/release.ts",
+    "watch": "tsc -p . --watch"
+  },
+  "types": "lib/index.d.ts",
+  "version": "3.4.0"
+}

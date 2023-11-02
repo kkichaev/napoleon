@@ -1,0 +1,286 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "NapoleonRes.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "resdefce.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Russian resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_RUS)
+#ifdef _WIN32
+LANGUAGE LANG_RUSSIAN, SUBLANG_DEFAULT
+#pragma code_page(1251)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_APP                 ICON                    "program.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MAIN_FRAME MENU 
+BEGIN
+    POPUP "Do"
+    BEGIN
+        MENUITEM "&О программе",                IDC_ABOUT
+        MENUITEM SEPARATOR
+        MENUITEM "&Настройки",                  IDC_PREFERENCE
+        MENUITEM "С&инхронизация",              IDC_SYNC
+        MENUITEM SEPARATOR
+        MENUITEM "Д&окументы",                  IDC_DOC_LIST
+        MENUITEM SEPARATOR
+        MENUITEM "&Выход",                      IDC_QUIT
+    END
+END
+
+IDC_DEL MENU 
+BEGIN
+    POPUP "LocalMenu"
+    BEGIN
+        MENUITEM "&Удалить",                    IDC_DEL
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDR_MAIN_FRAME DIALOG  0, 0, 120, 134
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_SYSMENU
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Для начала работы выберите пользователя и введите пароль",IDC_TEXT,10,10,120,24
+
+    LTEXT           "Пользователь",-1,10,38,100,8
+    COMBOBOX        IDC_USER,10,48,120,94,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
+
+    LTEXT           "Пароль",-1,10,62,100,8
+    EDITTEXT        IDC_PWD,10,72,120,12,ES_PASSWORD | ES_AUTOHSCROLL
+
+    PUSHBUTTON      "Полки", IDC_REST,  10, 88, 40, 18
+    PUSHBUTTON      "Цены", IDC_COST,  60, 88, 40, 18
+END
+
+IDS_ORG_LIST DIALOG  0, 0, 120, 134
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_SYSMENU
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Выберите контрагента и введите свой пароль",IDC_TEXT,10,10,120,24
+
+    LTEXT           "Контрагент",-1,10,38,100,8
+    COMBOBOX        IDS_ORG_LIST,10,48,120,94,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
+
+    LTEXT           "Пароль",-1,10,62,100,8
+    EDITTEXT        IDC_PWD,10,72,120,12,ES_PASSWORD | ES_AUTOHSCROLL
+
+    PUSHBUTTON      "OK", IDOK,  10, 88, 40, 18
+END
+
+IDC_COST DIALOG 0, 0, 120, 134
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_SYSMENU
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Введите штрих-код товара",IDC_TEXT,2,10,120,8
+    EDITTEXT        IDC_ITEM_CODE,2,20,120,12,ES_AUTOHSCROLL
+
+    RTEXT           "Цена",-1,2,36,20,8
+    EDITTEXT        IDC_COST,24,35,33,12,ES_AUTOHSCROLL | ES_READONLY
+
+    RTEXT           "Остаток",-1,58,36,28,8
+    EDITTEXT        IDC_QTY,88,35,33,12, ES_AUTOHSCROLL | ES_READONLY
+
+    PUSHBUTTON      "7",IDC_DIG_7, 24,50,20,20
+    PUSHBUTTON      "8",IDC_DIG_8, 43,50,20,20
+    PUSHBUTTON      "9",IDC_DIG_9, 62,50,20,20
+
+    PUSHBUTTON      "4",IDC_DIG_4, 24,69,20,20
+    PUSHBUTTON      "5",IDC_DIG_5, 43,69,20,20
+    PUSHBUTTON      "6",IDC_DIG_6, 62,69,20,20
+
+    PUSHBUTTON      "1",IDC_DIG_1, 24,88,20,20
+    PUSHBUTTON      "2",IDC_DIG_2, 43,88,20,20
+    PUSHBUTTON      "3",IDC_DIG_3, 62,88,20,20
+
+    PUSHBUTTON      "0",IDC_DIG_0,   24,107,39,20
+    PUSHBUTTON      ".",IDC_DIG_PT,  62,107,20,20
+    PUSHBUTTON      "<-",IDC_DIG_BS, 81,50,20,39
+    PUSHBUTTON      "OK",IDOK,       81,88,20,39
+
+    PUSHBUTTON      "Выход", IDC_BACK,  24, 130, 40, 18
+END
+
+IDD_QTY DIALOG 0, 0, 120, 134
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_SYSMENU
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "",IDC_TEXT,2,2,130,16
+    EDITTEXT        IDC_ITEM_CODE,2,20,130,12,ES_AUTOHSCROLL
+
+    RTEXT           "Введите количество",IDC_QTY_LABEL,2,36,77,8
+    EDITTEXT        IDC_QTY,80,35,52,12,ES_AUTOHSCROLL
+
+    RTEXT           "Eд.изм.",IDC_UNIT_TEXT_LABEL,78,50,28,8
+    RTEXT           "кг", IDC_UNIT_TEXT,110,50,22,8
+
+    PUSHBUTTON      "7",IDC_DIG_7,  2,50,20,20
+    PUSHBUTTON      "8",IDC_DIG_8, 19,50,20,20
+    PUSHBUTTON      "9",IDC_DIG_9, 38,50,20,20
+
+    PUSHBUTTON      "4",IDC_DIG_4,  2,69,20,20
+    PUSHBUTTON      "5",IDC_DIG_5, 19,69,20,20
+    PUSHBUTTON      "6",IDC_DIG_6, 38,69,20,20
+
+    PUSHBUTTON      "1",IDC_DIG_1,  2,88,20,20
+    PUSHBUTTON      "2",IDC_DIG_2, 19,88,20,20
+    PUSHBUTTON      "3",IDC_DIG_3, 38,88,20,20
+
+    PUSHBUTTON      "0",IDC_DIG_0,    2,107,38,20
+    PUSHBUTTON      ".",IDC_DIG_PT,  38,107,20,20
+    PUSHBUTTON      "<-",IDC_DIG_BS, 57,50,20,39
+    PUSHBUTTON      "OK",IDOK,       57,88,20,39
+
+    PUSHBUTTON      "Отмена", IDCANCEL,  2, 130, 50, 18
+    PUSHBUTTON      "Отправить", IDC_SEND,  60, 130, 50, 18
+END
+
+IDD_ADMPWD DIALOG  0, 0, 157, 77
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Введите пароль"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    EDITTEXT        IDC_PWD,7,7,143,14,ES_PASSWORD | ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,7,56,50,14
+END
+
+IDC_NET_PREFERENCE_DIALOG DIALOG  0, 0, 186, 104
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD
+FONT 8, "MS Shell Dlg"
+BEGIN
+    EDITTEXT        IDC_LOGIN,35,2,78,14,ES_AUTOHSCROLL
+    LTEXT           "логин",-1,12,5,20,8
+    EDITTEXT        IDC_PWD,35,17,78,14,ES_PASSWORD | ES_AUTOHSCROLL
+    LTEXT           "пароль",-1,7,19,25,8
+    EDITTEXT        IDC_IP,35,32,78,14,ES_AUTOHSCROLL
+    RTEXT           "IP 1",IDC_NET_PREFERENCE_DIALOG,3,33,30,8
+    EDITTEXT        IDC_IP2,35,47,78,14,ES_AUTOHSCROLL
+    RTEXT           "IP 2",-1,3,48,30,8
+    EDITTEXT        IDC_PORT,35,62,30,13,ES_AUTOHSCROLL | ES_NUMBER
+    RTEXT           "порт",-1,1,63,31,8
+    COMBOBOX        IDC_COM_PORT,35,77,40,110,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
+    RTEXT           "сканер",-1,1,78,31,8
+
+    PUSHBUTTON      "Отмена",IDCANCEL,0,90,50,14
+END
+
+IDC_DOC_LIST DIALOG  0, 0, 120, 134
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_SYSMENU
+FONT 8, "MS Shell Dlg"
+BEGIN
+    CONTROL         "",IDC_TABLE,"SysListView32",LVS_ALIGNLEFT | LVS_OWNERDATA | WS_TABSTOP,0,7,120,110
+END
+
+IDD_REMOVE_ORDERS DIALOG  0, 0, 186, 104
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Укажите дату для удаления заказов"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Дата",-1,12,5,20,8
+    CONTROL         "",IDC_ORDER_DATE,"SysDateTimePick32",DTS_RIGHTALIGN | WS_TABSTOP,40,2,46,15
+    PUSHBUTTON      "Отмена",IDCANCEL,2,86,38,14
+    DEFPUSHBUTTON   "ОК",IDOK,41,86,38,14
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "NapoleonRes.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""resdefce.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_RUS)\r\n"
+    "LANGUAGE 25, 1\r\n"
+    "#pragma code_page(1251)\r\n"
+    "#include ""Main.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#endif\r\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_TOOLBAR             BITMAP                  "toolbar.bmp"
+IDB_CHECKED             BITMAP                  "checked.bmp"
+IDB_CHECKED32           BITMAP                  "checked32.bmp"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDR_MAIN_FRAME          "Наполеон Logistic"
+    IDR_MENU                "Работа"
+END
+
+
+#endif    // Russian resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_RUS)
+LANGUAGE 25, 1
+#pragma code_page(1251)
+#include "Main.rc2"  // non-Microsoft Visual C++ edited resources
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

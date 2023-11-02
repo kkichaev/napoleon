@@ -1,0 +1,43 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+    <object name="AgentPlan">
+      <sources>
+        <source name="SQTable" type="internal">
+          <param name="readFilter">
+            '"userid"=' + "'" + $user.id + "' and " +
+            '"begin" &lt;= ToDate("' + FormatDate(Now(),"DD.MM.YYYY") + '") and ' +
+            '"end" &gt;= ToDate("' + FormatDate(Now(),"DD.MM.YYYY") + '")'
+          </param>
+        </source>
+      </sources>
+
+      <member name="primaryKey">"userid,begin"</member>
+
+      <field name="userid" type="string" />
+      <field name="begin" type="date" />
+      <field name="end" type="date" />
+
+      <field name="groups" type="collection">
+        <data>
+          <object name="AgemtPlanGroups">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+            <field name="id" type="string" />
+            <field name="type" type="number"/>
+            <field name="valueSum" type="number" prec="2" />
+            <field name="valueQty" type="number" prec="3" />
+          </object>
+        </data>
+      </field>
+    </object>
+    <modify src="Returns$items">
+      <add>
+        <field name="cause" type="string" width="50" />
+        <field name="dlvDate" type="date" data="DLVDATE" />
+        <field name="dlvNumber" type="string" width="20" data="DLV_NUM" />
+      </add>
+    </modify>
+  </objects>
+</serverDefs>

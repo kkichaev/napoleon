@@ -1,0 +1,88 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+   		<modify src="Org">
+   			<add>
+   				<field name="dcost" type="string" data="COSTTYPE" />
+   			</add>
+   		</modify>
+    <object name="OrdConfig">
+      <sources>
+        <source name="KeyValueTable">
+          <param name="fileName">"ord"+$user.id+".cfg"</param>
+        </source>
+        <source name="KeyValueTable">
+          <param name="fileName">"order.cfg"</param>
+        </source>
+      </sources>
+
+      <field name="key" type="string" />
+      <field name="value" type="string" />
+    </object>
+
+    <object name="Sklads">
+      <sources>
+        <source name="KeyValueDBFTable">
+          <param name="fileName">"SKLADS"</param>
+          <param name="key">"Склады"</param>
+          <param name="itemName">"NAME"</param>
+          <param name="itemKey">"ID"</param>
+        </source>
+      </sources>
+
+      <field name="key" type="string" />
+      <field name="value" type="string" />
+    </object>
+
+    <object name="Config">
+      <sources>
+        <source name="ObjectUnion">
+          <param>"OrdConfig"</param>
+          <param>"Sklads"</param>
+        </source>
+      </sources>
+
+      <field name="key" type="string" />
+      <field name="value" type="string" />
+    </object>
+
+    <modify src="Price">
+   			<add>
+   				<field name="remark" type="string" />
+          <field name="order" type="number" data="SORTING" />
+          <field name="colorText" type="hex" data="COLOR_T" />
+          <field name="colorBack" type="hex" data="COLOR_B" />
+          <field name="whQty" type="collection">
+            <data>
+              <object name="PriceQty">
+                <sources>
+                  <source name="Sequence">
+                    <param name="source">$parent.source</param>
+                  </source>
+                </sources>
+                <field name="qty" type="number" prec="2" />
+              </object>
+            </data>
+          </field>
+        </add>
+   		</modify>
+   		<modify src="Order">
+   			<add>
+   				<field name="costtype" type="string" width="30" />
+          <field name="whCode" type="string" data="ID_WH" />
+          <field name="whIndex" type="number" data="" />
+        </add>
+   			<change>
+		         <field name="params" type="number" width="9" prec="0" />
+   			</change>
+   		</modify>
+      
+        <modify src="Order$items">
+            <add>
+                <field name="i_cr_tm" type="timestamp" data="I_CT" />
+                <field name="i_mod_tm" type="timestamp" data="I_MT" />
+            </add>
+        </modify>
+      
+	</objects>
+</serverDefs>

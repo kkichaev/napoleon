@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/itSettings"
+        android:icon="@drawable/ic_date_range_white_24dp"
+        android:title="@string/order_pref"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/itSend"
+        android:icon="@drawable/ic_send_white_24dp"
+        app:showAsAction="ifRoom"
+        android:contentDescription="@string/send"
+        android:title="@string/send" />
+</menu>

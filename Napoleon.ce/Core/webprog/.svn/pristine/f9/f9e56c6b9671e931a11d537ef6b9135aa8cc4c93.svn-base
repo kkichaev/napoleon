@@ -1,0 +1,72 @@
+import axios from "axios";
+
+// function getHost() {
+//   if (window.location.host.indexOf("localhost") >= 0) {
+//     return "https://aceteam.app";
+//   }
+//   return window.location.protocol + "//" + window.location.host;
+// }
+
+export function registerUser(user) {
+  const headers = {
+    "Content-Type": "application/json;charset=UTF-8",
+  };
+
+  const url = getHost() + "/api/users";
+  //return api.post(url, user, headers)
+}
+
+// //http://localhost:9000/confirm?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtraWNoYWV2QHlhbmRleC5ydSIsIm5hbWUiOiJcdTA0MTJcdTA0MzBcdTA0NDFcdTA0NGYgXHUwNDFmXHUwNDQzXHUwNDNmXHUwNDNhXHUwNDM4XHUwNDNkIiwicGFzc3dvcmQiOiIxMjM0NTYiLCJjb21tYW5kIjoiY3JlYXRlX3VzZXIiLCJleHAiOjE2Nzc3NzIxMjkuNjk2NDIwN30.r2ezuTrZLQgLD0M_s553XYBq_Bfny6mCF3T98gZhswk
+// export function sendRegToken(token){
+//   console.log('sendRegToken')
+//   const headers = {
+//     "Content-Type": "application/json;charset=UTF-8",
+//   };
+
+//   const url = getHost() + "/auth/cnf_email/" + token;
+//   api.get(url, {headers})
+//     .then((resopnce)=>{console.log('success: ', resopnce)})
+//     .catch((error)=>{console.log('error: ', error)})
+// }
+
+// export async function isAuth(){
+//   console.log('sendRegToken')
+//   const headers = {
+//     "Content-Type": "application/json;charset=UTF-8",
+//   };
+
+//   const url = getHost() + "/auth/user";
+
+//   try{
+//     var result = await api.get(url, {headers})
+//     console.log("auth success: " + result)
+//     return true
+//   }catch(error){
+//     return false
+//     console.log("auth error: " + error)
+//   }
+// }
+
+export async function loginUser(baseUrl, user) {
+  console.log("login: ", user);
+  const headers = {
+    "Content-Type": "application/json;charset=UTF-8",
+  };
+
+  // const url = baseUrl + "/auth/login";
+  const url = "https://aceteam.app/auth/login";
+  // const url = "http://localhost/auth/login";
+
+  try {
+    return await axios.post(
+      url,
+      { email: user.email, password: user.password, remember: user.remember },
+      {
+        headers,
+        withCredentials: true,
+      }
+    );
+  } catch (error) {
+    throw error;
+  }
+}

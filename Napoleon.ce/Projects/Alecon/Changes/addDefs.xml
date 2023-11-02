@@ -1,0 +1,91 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+	   <object name="OrgMtx">
+	       <sources>
+	           <source name="SQTable" type="internal" />
+               <param name="readFilter">'"userid"=' + "'" + $user.id + "'"</param>
+	       </sources>
+           <member name="primaryKey">"id,userid"</member>
+           <field name="id" type="string" />
+           <field name="userid" type="string" />
+           <field name="matrix" type="string" />
+        </object>
+    <object name="Realization">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"RLV"</param>
+          <param name="commonTable">"REAL"</param>
+          <param name="catalog">"number;items;1"</param>
+          <param name="filter">"[id] in $Org.id"</param>
+        </source>
+      </sources>
+
+      <member name="table">"RLV"</member>
+
+      <field name="items" type="collection">
+        <data>
+          <object name="RealizationItem">
+            <field name="id" type="string" data="ID_I"/>
+            <field name="qty" type="number" prec="3" />
+            <field name="sum" type="number" prec="2" />
+            <field name="taxSum" type="number" prec="2" data="TAX_I" feature="SALES_MODULE" />
+          </object>
+        </data>
+      </field>
+      <field name="id" type="string" />
+      <field name="sumD" type="number" prec="2" />
+      <field name="number" type="string" data="NUM" />
+      <field name="supplyercode" type="string" data="FIRMA" feature="SALES_MODULE" />
+      <field name="date" type="date" />
+      <field name="created" type="timestamp" />
+      <field name="userid" type="string" />
+    </object>
+    <modify src="Delivery">
+      <add>
+        <field name="payDate" type="date" />
+      </add>
+    </modify>
+    <modify src="Org">
+      <add>
+        <field name="matrix" type="string" width="30" />
+      </add>
+    </modify>
+    <modify src="Order" dest="OrderW" table="wsorder">
+        <change>
+            <sources>
+                <source name="SQTable" type="internal" />
+            </sources>
+        </change>
+    </modify>
+    <modify src="Agents">
+      <add>
+        <field name="region" type="string" />
+      </add>
+    </modify>
+    <modify src="Price">
+      <change>
+        <sources>
+          <source name="DBFPriceTable">
+            <param name="userTable">"W"</param>
+            <param name="commonTable">"WAREHOUS"</param>
+            <param name="filter">"[folder] in $folder.fid"</param>
+            <param name="userFieldName">"region"</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+    <modify src="OrgStop">
+		<change>
+            <sources>
+           		<source name="DBFTable">
+                	<param name="tableName">"OSTP" + $user.id</param>
+                </source>
+    			<source name="DBFTable">
+                	<param name="tableName">"ORGSTOP"</param>
+                </source>
+            </sources>
+		</change>
+    </modify>
+  </objects>
+</serverDefs>

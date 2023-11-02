@@ -1,0 +1,35 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+    <modify src="Agents">
+      <change>
+        <field name="id" type="string" width="100" />
+      </change>
+    </modify>
+    <modify src="OrgRemnants">
+      <change>
+        <field name="id" width="100" type="string" />
+      </change>
+    </modify>
+    <modify src="Order">
+      <change>
+        <field name="id" width="100" type="string" />
+      </change>
+    </modify>
+    <modify src="OrgFolder$items">
+      <change>
+        <field name="name" type="string" data="ID" width="100"/>
+      </change>
+    </modify>
+    <modify src="Org$contacts">
+      <change>
+        <field name="id" type="string" width="100" />
+      </change>
+    </modify>
+    <modify src="Incass">
+      <change>
+        <field name="id" type="string" width="100" />
+      </change>
+    </modify>
+  </objects>
+</serverDefs>

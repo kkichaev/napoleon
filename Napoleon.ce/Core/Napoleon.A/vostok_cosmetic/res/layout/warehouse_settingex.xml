@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView 
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:fillViewport="true"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent" 
+>
+<LinearLayout
+  android:orientation="vertical"
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content" android:padding="7dp">
+  
+    <TableLayout android:layout_width="fill_parent" 
+    	android:layout_height="wrap_content" 
+    	android:stretchColumns="1">
+        <TableRow
+        	android:layout_width="wrap_content" 
+        	android:layout_height="wrap_content">
+       	    <CheckBox 
+		    	android:text="Вложен." 
+		    	android:id="@+id/cbInclude" 
+		    	android:layout_width="wrap_content" 
+		    	android:layout_height="wrap_content">
+		    </CheckBox>
+		    <CheckBox 
+		    	android:text="Склад" 
+		    	android:id="@+id/cbRest" 
+		    	android:layout_width="wrap_content" 
+		    	android:layout_height="wrap_content">
+		    </CheckBox>
+		    <CheckBox 
+		    	android:text="Остаток" 
+		    	android:id="@+id/cbDocRest" 
+		    	android:layout_width="wrap_content" 
+		    	android:layout_height="wrap_content">
+		    </CheckBox>
+		 </TableRow>
+        <TableRow
+        	android:layout_width="wrap_content" 
+        	android:layout_height="wrap_content">
+		    <CheckBox 
+		    	android:text="Цена" 
+		    	android:id="@+id/cbCost" 
+		    	android:layout_width="wrap_content" 
+		    	android:layout_height="wrap_content">
+		    </CheckBox>
+		    <CheckBox 
+		    	android:text="Заказ" 
+		    	android:id="@+id/cbOrder" 
+		    	android:layout_width="wrap_content" 
+		    	android:layout_height="wrap_content">
+		    </CheckBox>		    		    
+        </TableRow>
+        <TableRow
+            android:visibility="gone"
+        	android:id="@+id/trColumn2" 
+        	android:layout_width="wrap_content" 
+        	android:layout_height="wrap_content">
+            
+            <TextView android:layout_width="wrap_content" 
+            	android:layout_height="wrap_content" 
+            	android:layout_marginLeft="3dp" 
+            	android:layout_marginRight="10dp" 
+            	android:text="Колонка 2"/>
+            	
+            <Spinner android:id="@+id/spColumn2" 
+            	android:layout_width="wrap_content" 
+            	android:layout_height="wrap_content" android:entries="@array/warehouse_column_values"/>
+        </TableRow>
+        
+        <TableRow 
+            android:visibility="gone"
+        	android:id="@+id/trColumn3" 
+        	android:layout_width="wrap_content" 
+        	android:layout_height="wrap_content">
+        	
+        	<TextView android:layout_width="wrap_content" 
+            	android:layout_height="wrap_content" 
+            	android:layout_marginLeft="3dp" 
+            	android:text="Колонка 3"/>
+            	
+            <Spinner android:id="@+id/spColumn3" 
+            	android:layout_width="wrap_content" 
+            	android:layout_height="wrap_content" android:entries="@array/warehouse_column_values"/>
+            	
+        </TableRow>
+        <TableRow 
+        	android:id="@+id/trItemID" 
+        	android:visibility="gone"
+        	android:layout_width="wrap_content" 
+        	android:layout_height="wrap_content">
+        	
+        	<TextView android:layout_width="wrap_content" 
+            	android:layout_height="wrap_content" 
+            	android:layout_marginLeft="3dp" 
+            	android:text=""/>
+            	
+            <CheckBox android:id="@+id/cbItemID" 
+            	android:text="Код товара"
+            	android:layout_width="wrap_content" 
+            	android:layout_height="wrap_content" />
+            	
+        </TableRow>
+    </TableLayout>
+    
+    <LinearLayout 
+     	android:id="@+id/trColumn4"
+       	android:orientation="horizontal" 
+       	android:layout_width="fill_parent" 
+       	android:layout_height="wrap_content">
+        	
+       	<TextView android:layout_width="wrap_content" 
+           	android:layout_height="wrap_content" 
+           	android:layout_marginLeft="3dp" 
+           	android:text="Интервал автозаказа, дней"/>
+        <EditText android:id="@+id/edAODays" 
+            android:layout_weight="1"
+            android:inputType="number"
+          	android:layout_width="wrap_content" 
+           	android:layout_height="wrap_content"/>	
+    </LinearLayout>
+    <CheckBox
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="Проверять остатки"
+		android:gravity="center_vertical"
+		android:id="@+id/checkPrice"/>
+    
+     <CheckBox android:layout_width="wrap_content" 
+    	android:layout_height="wrap_content" 
+    	android:id="@+id/cbComplexSalesHistory" 
+    	android:text="Сложная история продаж"/>
+    
+     <CheckBox android:layout_width="wrap_content" 
+    	android:layout_height="wrap_content" 
+    	android:id="@+id/cbPackView" 
+    	android:text="Показывать упаковками в заявке"/>
+
+     <CheckBox android:layout_width="wrap_content" 
+    	android:layout_height="wrap_content" 
+    	android:id="@+id/cbRestInAutoOrder" 
+    	android:text="Использовать остатки в автозаказе"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/nav_type"
+        android:textSize="16sp" />
+
+    <Spinner
+        android:id="@+id/spNavType"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/nav_type_items" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/assort_range_str" 
+        android:textSize="16sp" />
+
+    <Spinner
+        android:id="@+id/spAssortRange"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" 
+        android:entries="@array/assort_range"/>
+
+</LinearLayout>
+</ScrollView>

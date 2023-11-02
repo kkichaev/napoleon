@@ -1,0 +1,45 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+  <objects>
+    <modify src="Delivery">
+      <add>
+        <field name="tag" type="string" />
+      </add>
+    </modify>
+    <modify src="Incass$items">
+      <add>
+        <field name="tag" type="string" width="50" data="TAG_I" />
+      </add>
+    </modify>
+    
+    <modify src="OrgRemnants">
+      <change>
+        <sources>
+          <source name="DBFCatalogTable">
+            <param name="tableName">$object.table + $user.id</param>
+            <param name="catalog">"id"</param>
+            <param name="ordered">1</param>
+          </source>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+      <add>
+        <event type="put">
+          <action name="WriteInternal">$object.type</action>
+          <action name="WriteToLog">$object.type;$object.date</action>
+        </event>
+      </add>
+    </modify>
+    <modify src="OrgRemnants$items">
+      <change>
+        <sources>
+          <source name="DBFCatalogItemTable"/>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+      <add>
+        <field name="exists" type="number" width="1" />
+      </add>
+    </modify>
+  </objects>
+</serverDefs>

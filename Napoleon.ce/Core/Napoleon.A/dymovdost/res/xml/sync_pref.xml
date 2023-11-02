@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+    <ListPreference
+        android:key="@string/sync_time_pref"
+        android:title="@string/gps_sync_title"
+        android:dialogTitle="@string/gps_sync_title"
+        android:entries="@array/sync_time_entry"
+        android:entryValues="@array/sync_time_entry"
+        android:defaultValue="@string/sync_time_def_val" />
+</PreferenceScreen>

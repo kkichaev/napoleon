@@ -1,0 +1,1 @@
+"C:\Program Files (x86)\pscp.exe"  -pw xAGcyhWv6mfy ubuntu@51.68.175.104:/home/ubuntu/client/%1 %1

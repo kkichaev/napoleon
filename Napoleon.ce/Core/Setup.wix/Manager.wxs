@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding="windows-1251"?>
+<Wix xmlns='http://schemas.microsoft.com/wix/2006/wi'>
+   <Fragment Id='Manager'>
+      <Feature Id='Manager' Title='Наполеон-Менеджер' Description='Программа контроля за работой торговых агентов' Level='1' Display='5'
+               ConfigurableDirectory='_PRODUCT' Absent='allow'>
+         <ComponentRef Id='ManagerComponents' />
+         <ComponentGroupRef Id='WebView' />
+        <ComponentRef Id='ManagerDocs' />
+         <ComponentRef Id='GRPacket' />
+        <ComponentGroupRef Id='Docs' />
+        <Condition Level='10000'>
+          <![CDATA[Not(Installed OR NETFRAMEWORK20)]]>
+        </Condition>
+      </Feature>
+
+      <DirectoryRef Id='_PRODUCT' >
+         <Component Id='ManagerComponents' Guid='12CF7270-7264-410f-9060-2C9E44B75E88'>
+           <File Id='NapoleonManager_exe' Name='NapoleonManager.exe' DiskId='1' Source='NapoleonManager.exe'  KeyPath='yes'>
+               <Shortcut Id='NapoleonManagerShc' Directory='ProgramMenuDir' Name='Менеджер'
+                         Description='Программа контроля за работой торговых агентов' WorkingDirectory='_PRODUCT' Advertise='yes'/>
+            </File>
+           <File Id='Microsoft.Web.WebView2.Core.dll' Name='Microsoft.Web.WebView2.Core.dll' DiskId='1' Source='Microsoft.Web.WebView2.Core.dll' />
+           <File Id='Microsoft.Web.WebView2.WinForms.dll' Name='Microsoft.Web.WebView2.WinForms.dll' DiskId='1' Source='Microsoft.Web.WebView2.WinForms.dll' />
+         </Component>
+        <Component Id='ManagerDocs' Guid='873B3C87-2F14-48cd-BC23-B133FA78290F'>
+          <File Id='ManagerDoc' Name='Manager.pdf' DiskId='1' Source='Manager.pdf' KeyPath='yes'>
+            <Shortcut Id='ManagerDoc' Directory='Docs' Name='Менеджер'
+                      Description='Руководство пользователя для программы Наполеон-Менеджер' Advertise='yes' />
+          </File>
+        </Component>
+      </DirectoryRef>
+   </Fragment>
+</Wix>

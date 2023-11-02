@@ -1,0 +1,654 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="about" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="about_hint" xml:space="preserve">
+    <value>About the program (Ctrl+O)</value>
+  </data>
+  <data name="accuracy" xml:space="preserve">
+    <value>Accuracy</value>
+  </data>
+  <data name="action" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="add" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="address" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="add_description" xml:space="preserve">
+    <value>Add note</value>
+  </data>
+  <data name="add_hint" xml:space="preserve">
+    <value>Add note (F8)</value>
+  </data>
+  <data name="agent" xml:space="preserve">
+    <value>Agent</value>
+  </data>
+  <data name="agents_in_field" xml:space="preserve">
+    <value>Where is the agent</value>
+  </data>
+  <data name="agents_in_field_descrition" xml:space="preserve">
+    <value>Users on map</value>
+  </data>
+  <data name="agents_in_field_hint" xml:space="preserve">
+    <value>Where is the agent (Ctrl+A)</value>
+  </data>
+  <data name="attachments" xml:space="preserve">
+    <value>Attachments</value>
+  </data>
+  <data name="attachments_description" xml:space="preserve">
+    <value>Tap to add attachments to the task</value>
+  </data>
+  <data name="attachments_hint" xml:space="preserve">
+    <value>Add file</value>
+  </data>
+  <data name="browser" xml:space="preserve">
+    <value>Browser</value>
+  </data>
+  <data name="browser_description" xml:space="preserve">
+    <value>Open browser</value>
+  </data>
+  <data name="browser_hint" xml:space="preserve">
+    <value>Open browser</value>
+  </data>
+  <data name="cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="clear" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="clear_description" xml:space="preserve">
+    <value>Clear data</value>
+  </data>
+  <data name="clear_hint" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="client" xml:space="preserve">
+    <value>Client</value>
+  </data>
+  <data name="clients_templates" xml:space="preserve">
+    <value>Clients templates</value>
+  </data>
+  <data name="close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="contact" xml:space="preserve">
+    <value>Contact</value>
+  </data>
+  <data name="content" xml:space="preserve">
+    <value>Content</value>
+  </data>
+  <data name="copy" xml:space="preserve">
+    <value>Copy</value>
+  </data>
+  <data name="copy_description" xml:space="preserve">
+    <value>Copy note</value>
+  </data>
+  <data name="copy_hint" xml:space="preserve">
+    <value>Copy</value>
+  </data>
+  <data name="created" xml:space="preserve">
+    <value>Created</value>
+  </data>
+  <data name="cut" xml:space="preserve">
+    <value>Cut</value>
+  </data>
+  <data name="cut_description" xml:space="preserve">
+    <value>Cut note</value>
+  </data>
+  <data name="cut_hint" xml:space="preserve">
+    <value>Cut</value>
+  </data>
+  <data name="date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="del" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="del_description" xml:space="preserve">
+    <value>Delete note</value>
+  </data>
+  <data name="del_hint" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="disallow_edit" xml:space="preserve">
+    <value>Disallow editing</value>
+  </data>
+  <data name="distance" xml:space="preserve">
+    <value>Distance</value>
+  </data>
+  <data name="distance_gone" xml:space="preserve">
+    <value>Covered distance</value>
+  </data>
+  <data name="edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="excel" xml:space="preserve">
+    <value>Excel</value>
+  </data>
+  <data name="filter" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="fio" xml:space="preserve">
+    <value>Full name</value>
+  </data>
+  <data name="from" xml:space="preserve">
+    <value>From</value>
+  </data>
+  <data name="help_description" xml:space="preserve">
+    <value>Help base</value>
+  </data>
+  <data name="help_hint" xml:space="preserve">
+    <value>Help base</value>
+  </data>
+  <data name="hide" xml:space="preserve">
+    <value>Hide</value>
+  </data>
+  <data name="history" xml:space="preserve">
+    <value>History</value>
+  </data>
+  <data name="input_password" xml:space="preserve">
+    <value>Input password</value>
+  </data>
+  <data name="interval_min" xml:space="preserve">
+    <value>Interval, min</value>
+  </data>
+  <data name="ip" xml:space="preserve">
+    <value>IP</value>
+  </data>
+  <data name="log" xml:space="preserve">
+    <value>Log</value>
+  </data>
+  <data name="login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="management" xml:space="preserve">
+    <value>Manage users</value>
+  </data>
+  <data name="management_description" xml:space="preserve">
+    <value>Manage users</value>
+  </data>
+  <data name="management_hint" xml:space="preserve">
+    <value>Managment</value>
+  </data>
+  <data name="managers" xml:space="preserve">
+    <value>Managers</value>
+  </data>
+  <data name="map" xml:space="preserve">
+    <value>Map</value>
+  </data>
+  <data name="message" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="message_description" xml:space="preserve">
+    <value>Send message</value>
+  </data>
+  <data name="message_for" xml:space="preserve">
+    <value>Message for</value>
+  </data>
+  <data name="message_hint" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="message_history" xml:space="preserve">
+    <value>Message history</value>
+  </data>
+  <data name="mileage" xml:space="preserve">
+    <value>Mileage</value>
+  </data>
+  <data name="mileage_description" xml:space="preserve">
+    <value>Mileage report</value>
+  </data>
+  <data name="mileage_hint" xml:space="preserve">
+    <value>Mileage report (Ctrl+K)</value>
+  </data>
+  <data name="minutes" xml:space="preserve">
+    <value>Minutes</value>
+  </data>
+  <data name="myphone" xml:space="preserve">
+    <value>+7(4852)599-368</value>
+  </data>
+  <data name="name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="ok" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="operation" xml:space="preserve">
+    <value>Administration</value>
+  </data>
+  <data name="orders" xml:space="preserve">
+    <value>Orders</value>
+  </data>
+  <data name="orders_description" xml:space="preserve">
+    <value>Orders information</value>
+  </data>
+  <data name="orders_extended" xml:space="preserve">
+    <value>Orders for additional work</value>
+  </data>
+  <data name="orders_hint" xml:space="preserve">
+    <value>Orders for additional work (Ctrl+U)</value>
+  </data>
+  <data name="password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="performer" xml:space="preserve">
+    <value>Worker</value>
+  </data>
+  <data name="performers" xml:space="preserve">
+    <value>Workers</value>
+  </data>
+  <data name="phone" xml:space="preserve">
+    <value>Phone</value>
+  </data>
+  <data name="photo" xml:space="preserve">
+    <value>Photo</value>
+  </data>
+  <data name="photo_report" xml:space="preserve">
+    <value>Photoreport</value>
+  </data>
+  <data name="please_wait" xml:space="preserve">
+    <value>Please,wait...</value>
+  </data>
+  <data name="port" xml:space="preserve">
+    <value>Port</value>
+  </data>
+  <data name="programm_name" xml:space="preserve">
+    <value>ATLANT</value>
+  </data>
+  <data name="put" xml:space="preserve">
+    <value>Put</value>
+  </data>
+  <data name="put_descrition" xml:space="preserve">
+    <value>Put in</value>
+  </data>
+  <data name="put_hint" xml:space="preserve">
+    <value>Put in</value>
+  </data>
+  <data name="refresh" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
+  <data name="refresh_description" xml:space="preserve">
+    <value>Load data from server</value>
+  </data>
+  <data name="refresh_hint" xml:space="preserve">
+    <value>Refresh (F5)</value>
+  </data>
+  <data name="report" xml:space="preserve">
+    <value>Report</value>
+  </data>
+  <data name="report_by_distance" xml:space="preserve">
+    <value>Mileage report</value>
+  </data>
+  <data name="route" xml:space="preserve">
+    <value>Route</value>
+  </data>
+  <data name="route2" xml:space="preserve">
+    <value>Route</value>
+  </data>
+  <data name="route_description" xml:space="preserve">
+    <value>Users track on the map</value>
+  </data>
+  <data name="route_hint" xml:space="preserve">
+    <value>Route</value>
+  </data>
+  <data name="route_points" xml:space="preserve">
+    <value>Route points</value>
+  </data>
+  <data name="save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="save_description" xml:space="preserve">
+    <value>Save data</value>
+  </data>
+  <data name="save_hint" xml:space="preserve">
+    <value>Load photo</value>
+  </data>
+  <data name="saving_process" xml:space="preserve">
+    <value>Saving process...</value>
+  </data>
+  <data name="search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="select_period" xml:space="preserve">
+    <value>Select period</value>
+  </data>
+  <data name="send" xml:space="preserve">
+    <value>Send</value>
+  </data>
+  <data name="settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="settings_hint" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="setting_connect" xml:space="preserve">
+    <value>Setting connect</value>
+  </data>
+  <data name="status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="task" xml:space="preserve">
+    <value>Task</value>
+  </data>
+  <data name="task_journal" xml:space="preserve">
+    <value>Task journal</value>
+  </data>
+  <data name="task_journal_descrition" xml:space="preserve">
+    <value>View all tasks</value>
+  </data>
+  <data name="task_journal_hint" xml:space="preserve">
+    <value>Task journal</value>
+  </data>
+  <data name="template" xml:space="preserve">
+    <value>Template</value>
+  </data>
+  <data name="template_description" xml:space="preserve">
+    <value>Clients template</value>
+  </data>
+  <data name="template_hint" xml:space="preserve">
+    <value>Clients template</value>
+  </data>
+  <data name="time" xml:space="preserve">
+    <value>Time</value>
+  </data>
+  <data name="time_fact" xml:space="preserve">
+    <value>Time fact</value>
+  </data>
+  <data name="time_plan" xml:space="preserve">
+    <value>Time plan</value>
+  </data>
+  <data name="titlename" xml:space="preserve">
+    <value>Titlename</value>
+  </data>
+  <data name="to" xml:space="preserve">
+    <value>To</value>
+  </data>
+  <data name="users" xml:space="preserve">
+    <value>Users</value>
+  </data>
+  <data name="version" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="web_site" xml:space="preserve">
+    <value>Website</value>
+  </data>
+  <data name="work_time_from" xml:space="preserve">
+    <value>Work time from</value>
+  </data>
+  <data name="all" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="done" xml:space="preserve">
+    <value>Done</value>
+  </data>
+  <data name="inwork" xml:space="preserve">
+    <value>Inwork</value>
+  </data>
+  <data name="progress" xml:space="preserve">
+    <value>Progress</value>
+  </data>
+  <data name="undone" xml:space="preserve">
+    <value>Undone</value>
+  </data>
+  <data name="ask_to_delete" xml:space="preserve">
+    <value>Delete note?</value>
+  </data>
+  <data name="ask_to_save" xml:space="preserve">
+    <value>Save?</value>
+  </data>
+  <data name="check_interval" xml:space="preserve">
+    <value>Check date interval</value>
+  </data>
+  <data name="error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="information" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="not" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="question" xml:space="preserve">
+    <value>Question</value>
+  </data>
+  <data name="save_complete" xml:space="preserve">
+    <value>Changes are saved</value>
+  </data>
+  <data name="save_error" xml:space="preserve">
+    <value>Save error</value>
+  </data>
+  <data name="paste" xml:space="preserve">
+    <value>Paste</value>
+  </data>
+  <data name="apply_task_status" xml:space="preserve">
+    <value>Accepted</value>
+  </data>
+  <data name="inwork_task_status" xml:space="preserve">
+    <value>In process</value>
+  </data>
+  <data name="new_task_status" xml:space="preserve">
+    <value>Unaccepted</value>
+  </data>
+  <data name="reject_task_status" xml:space="preserve">
+    <value>Refused</value>
+  </data>
+  <data name="resolved_task_status" xml:space="preserve">
+    <value>Resolved</value>
+  </data>
+  <data name="stop" xml:space="preserve">
+    <value>Stop</value>
+  </data>
+  <data name="write_message" xml:space="preserve">
+    <value>Write message</value>
+  </data>
+  <data name="notify_interval" xml:space="preserve">
+    <value>NO,15,30,45,60</value>
+  </data>
+  <data name="gps_off" xml:space="preserve">
+    <value>GPS  Off</value>
+  </data>
+  <data name="gps_on" xml:space="preserve">
+    <value>GPS On</value>
+  </data>
+  <data name="pda_off" xml:space="preserve">
+    <value>Device Off</value>
+  </data>
+  <data name="pda_on" xml:space="preserve">
+    <value>Device On</value>
+  </data>
+  <data name="pda_status" xml:space="preserve">
+    <value>Device Status</value>
+  </data>
+  <data name="pragramm_crashed" xml:space="preserve">
+    <value>Programm crashed</value>
+  </data>
+  <data name="programm_finish" xml:space="preserve">
+    <value>Napoleon Exit</value>
+  </data>
+  <data name="programm_start" xml:space="preserve">
+    <value>Napoleon Start</value>
+  </data>
+  <data name="time_changed" xml:space="preserve">
+    <value>Time is changed</value>
+  </data>
+  <data name="created_by_napoleon" xml:space="preserve">
+    <value>Created by Napoleon</value>
+  </data>
+  <data name="distance_report" xml:space="preserve">
+    <value>Mileage report</value>
+  </data>
+  <data name="km" xml:space="preserve">
+    <value>km</value>
+  </data>
+  <data name="m" xml:space="preserve">
+    <value>m</value>
+  </data>
+  <data name="range" xml:space="preserve">
+    <value>Period</value>
+  </data>
+  <data name="add_agent" xml:space="preserve">
+    <value>Add user</value>
+  </data>
+  <data name="add_division" xml:space="preserve">
+    <value>Add division</value>
+  </data>
+  <data name="add_manager" xml:space="preserve">
+    <value>Add manager</value>
+  </data>
+  <data name="del_agent" xml:space="preserve">
+    <value>Remove user</value>
+  </data>
+  <data name="del_division" xml:space="preserve">
+    <value>Remove division</value>
+  </data>
+  <data name="del_manager" xml:space="preserve">
+    <value>Remove manager</value>
+  </data>
+  <data name="main_division" xml:space="preserve">
+    <value>Main division</value>
+  </data>
+  <data name="new_agent" xml:space="preserve">
+    <value>New agent</value>
+  </data>
+  <data name="new_division" xml:space="preserve">
+    <value>New division</value>
+  </data>
+  <data name="new_manager" xml:space="preserve">
+    <value>New manager</value>
+  </data>
+  <data name="division" xml:space="preserve">
+    <value>Division</value>
+  </data>
+  <data name="manage_divisions" xml:space="preserve">
+    <value>Manage divisions</value>
+  </data>
+  <data name="select_agents" xml:space="preserve">
+    <value>Select agents</value>
+  </data>
+  <data name="admpwd" xml:space="preserve">
+    <value>Config password</value>
+  </data>
+</root>

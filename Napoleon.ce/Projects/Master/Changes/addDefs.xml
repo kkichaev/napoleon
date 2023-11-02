@@ -1,0 +1,104 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+   <objects>
+      <object name="DailyRoute">
+         <sources>
+            <source name="SQTable" type="internal" />
+         </sources>
+
+         <member name="primaryKey">"userid,date"</member>
+
+         <field name="date" type="date" />
+         <field name="userid" type="string" />
+
+         <field name="items" type="collection">
+            <data>
+               <object name="DailyRouteItem">
+                  <sources>
+                     <source name="SQTable" type="internal">
+                        <param name="readFilter">"userid = '" + $user.id + "'"</param>
+                     </source>
+                  </sources>
+                  <field name="id" type="string" />
+               </object>
+            </data>
+         </field>
+      </object>
+      
+      <object name="WorkTime">
+          <sources>
+            <source name="SQTable" type="internal" />
+         </sources>
+
+         <member name="primaryKey">"userid,id,start"</member>
+         <field name="userid" type="string" execOn="Put">$user.id</field>
+         <field name="id" type="string" />
+         <field name="start" type="timestamp" />
+         <field name="stop" type="timestamp" />
+      </object>
+
+     <object name="OrgType">
+       <sources>
+         <source name="SQTable" type="internal" />
+       </sources>
+
+       <member name="primaryKey">"id"</member>
+       <field name="id" type="string" />
+       <field name="name" type="string" />
+     </object>
+
+     <object name="OrgMem">
+       <sources>
+         <source name="SQTable" type="internal" />
+       </sources>
+
+       <member name="primaryKey">"id"</member>
+       <field name="id" type="string" />
+       <field name="type" type="string" />
+     </object>
+
+     <object name="CheckPhoto">
+       <sources>
+         <source name="SQLQuery">
+           <param name="stmt">"select DISTINCT v.id, Visit$date as date, Visit$userid as userid from Visit v, Visit$items vi 
+              where v.date = vi.Visit$date and v.userid = vi.Visit$userid and
+              Visit$date > $01 and Visit$date &lt; $02 and Visit$userid in ($03)"</param>
+         </source>
+       </sources>
+
+       <field name="date" type="date" />
+       <field name="userid" type="string" />
+       <field name="id" type="string" />
+     </object>
+
+     <object name="OrgActions">
+       <sources>
+         <source name="DBFTableSet">
+           <param name="userTable">"ACT"</param>
+           <param name="commonTable">"ACTIONS"</param>
+           <param name="catalog">"id,ido;items;0"</param>
+         </source>
+       </sources>
+
+       <field name="id" type="string" />
+       <field name="ido" type="string" data="ID_O" />
+       <field name="items" type="collection">
+         <data>
+           <object name="ActionItem">
+             <field name="id" type="string" width="40" data="ID_I" />
+             <field name="start" type="date" />
+             <field name="end" type="date" />
+             <field name="cost" type="number" prec="2" />
+           </object>
+         </data>
+       </field>
+     </object>
+
+     <modify src="Org">
+       <add>
+         <field name="ido" type="string" data="ID_O" />
+       </add>
+     </modify>
+     
+   </objects>
+</serverDefs>

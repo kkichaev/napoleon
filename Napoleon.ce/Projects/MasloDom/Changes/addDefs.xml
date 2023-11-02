@@ -1,0 +1,184 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+  <objects>
+    <object name="OrgDiscounts">
+      <sources>
+        <source name="DBFTable">
+          <param name="tableName">"DISCOUNTS"</param>
+        </source>
+      </sources>
+
+      <field name="discount" type="number" prec="2" width="5" />
+      <field name="id_f" type="string" width="20" />
+      <field name="id" type="string" width="20" />
+    </object>
+
+    <object name="AllDlv">
+      <sources>
+        <source name="DBFMaskReader">
+          <param name="tableName">"DLV*"</param>
+        </source>
+      </sources>
+      <field name="id" type="string" />
+      <field name="sumD" type="number" prec="2" />
+      <field name="date" type="date" />
+      <field name="payDate" type="date" />
+    </object>
+    <object name="OrdConfig">
+      <sources>
+        <source name="KeyValueTable">
+          <param name="fileName">"ord"+$user.id+".cfg"</param>
+        </source>
+        <source name="KeyValueTable">
+          <param name="fileName">"order.cfg"</param>
+        </source>
+      </sources>
+
+      <field name="key" type="string" />
+      <field name="value" type="string" />
+    </object>
+
+    <object name="Skalds">
+      <sources>
+        <source name="KeyValueDBFTable">
+          <param name="fileName">"SKLADS"+$user.id</param>
+          <param name="key">"Склады"</param>
+          <param name="itemName">"NAME"</param>
+          <param name="itemKey">"ID"</param>
+        </source>
+        <source name="KeyValueDBFTable">
+          <param name="fileName">"SKLADS"</param>
+          <param name="key">"Склады"</param>
+          <param name="itemName">"NAME"</param>
+          <param name="itemKey">"ID"</param>
+        </source>
+      </sources>
+      <field name="key" type="string" />
+      <field name="value" type="string" />
+    </object>
+
+    <object name="Config">
+      <sources>
+        <source name="ObjectUnion">
+          <param>"OrdConfig"</param>
+          <param>"Skalds"</param>
+        </source>
+      </sources>
+      <field name="key" type="string" />
+      <field name="value" type="string" />
+    </object>
+
+    <object name="OrgStop">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"id"</member>
+      <field name="id" type="string" />
+    </object>
+    <object name="Competitor">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+      <member name="primaryKey">"key"</member>
+      <field name="key" type="string" />
+      <field name="value" type="string" />
+    </object>
+
+    <object name="Spancop">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+      <member name="primaryKey">"id,userid"</member>
+
+      <field name="id" type="string" />
+      <field name="userid" type="string" execOn="Put">$user.id</field>
+      <field name="realclient" type="number" />
+      <field name="category" type="string" />
+      <field name="segment" type="string" />
+      <field name="first" type="timestamp" />
+      <field name="success" type="string" />
+      <field name="chance" type="string" />
+      <field name="cub" type="number" pres="3" />
+      <field name="s" type="timestamp" />
+      <field name="p1" type="timestamp" />
+      <field name="a" type="timestamp" />
+      <field name="n" type="timestamp" />
+      <field name="c" type="timestamp" />
+      <field name="o" type="timestamp" />
+      <field name="p2" type="timestamp" />
+      <field name="remark" type="string" />
+      <field name="holding" type="string" />
+      <field name="clientLevel" type="string" />
+      <field name="competitor" type="string" />
+    </object>
+    <modify src="Competitor" dest="ClientLevel" table="ClientLevel"></modify>
+    <modify src="Competitor" dest="Chance" table="Chance"></modify>
+    <modify src="Competitor" dest="CategoryProduct" table="CategoryProduct"></modify>
+    <modify src="Competitor" dest="Segment" table="Segment"></modify>
+    <modify src="Delivery">
+      <add>
+        <field name="payDate" type="date" />
+      </add>
+    </modify>
+    <modify src="PotenzialOrg">
+      <add>
+        <field name="color" type="number" execOn="Get" data="">GetColor($object.id,"org","face",0)</field>
+      </add>
+    </modify>
+    <modify src="Monitoring$items">
+      <add>
+        <field name="cost" type="number" prec="2"/>
+      </add>
+    </modify>
+    <modify src="Order">
+      <add>
+        <field name="whCode" type="string" width="20" data="ID_WH" />
+      </add>
+    </modify>
+    <modify src="Order$items">
+      <add>
+        <field name="discount" type="number" prec="2" data="DSC_I" />
+      </add>
+    </modify>
+    <modify src="Price">
+      <add>
+        <field name="whQty" type="collection">
+          <data>
+            <object name="CostItem">
+              <sources>
+                <source name="Sequence">
+                  <param name="source">$parent.source</param>
+                  <param name="startIndex">2</param>
+                </source>
+              </sources>
+              <field name="qty" type="number" prec="2" />
+            </object>
+          </data>
+        </field>
+      </add>
+    </modify>
+    <modify src="Org">
+      <add>
+        <field name="firm" type="number" />
+        <field name="limit" type="number" prec="2"/>
+        <field name="discounts" type="collection">
+          <data>
+            <object name="Discounts">
+              <sources>
+                <source name="DBFTableSet">
+                  <param name="userTable">"DSC"</param>
+                  <param name="commonTable">"DISCOUNTS"</param>
+                  <param name="filter">"[ID] = $parent.id"</param>
+                </source>
+              </sources>
+
+              <field name="discount" type="number" prec="2" />
+              <field name="id" type="string" data="ID_F" />
+            </object>
+          </data>
+        </field>
+      </add>
+    </modify>
+  </objects>
+</serverDefs>

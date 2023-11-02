@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        style="@style/mainSelectableItemBackground" >
+
+        <RelativeLayout
+            android:id="@+id/iv_feature_img_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:id="@+id/iv_task_status"
+                    android:layout_width="@dimen/univ_ab_height"
+                    android:layout_height="@dimen/univ_ab_height"
+                    android:paddingLeft="@dimen/univ_padding"
+                    android:paddingBottom="@dimen/univ_padding"
+                    android:paddingTop="@dimen/univ_padding"
+                    android:paddingRight="@dimen/univ_padding_small" />
+
+                <ImageView
+                    android:id="@+id/iv_feature_img_custom"
+                    android:layout_width="@dimen/univ_ab_height"
+                    android:layout_height="@dimen/univ_ab_height"
+                    android:paddingLeft="@dimen/univ_padding"
+                    android:paddingBottom="@dimen/univ_padding"
+                    android:paddingTop="@dimen/univ_padding"
+                    android:paddingRight="@dimen/univ_padding_small"
+                    android:visibility="gone"/>
+
+                <RelativeLayout
+                    android:id="@+id/img_user_container"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginRight="8dp">
+
+                    <ImageView
+                        android:id="@+id/img_user"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:padding="1dp"/>
+
+                    <ImageView
+                        android:id="@+id/img_user_custom"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:visibility="gone"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/img_user_two_container"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="8dp"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:id="@+id/img_user_two"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:padding="1dp"
+                        android:visibility="gone"/>
+
+                    <ImageView
+                        android:id="@+id/img_user_custom_two"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:visibility="gone"/>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.46"
+            android:gravity="center_vertical"
+            android:minHeight="@dimen/univ_ab_height"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/univ_padding_small"
+            android:layout_marginBottom="@dimen/univ_padding_small">
+
+            <TextView
+                android:id="@+id/tv_feature_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:paddingRight="@dimen/univ_padding_small"
+                android:scrollHorizontally="false"
+                android:singleLine="true"
+                android:textSize="@dimen/text_size_normalSP" />
+
+            <TextView
+                android:id="@+id/tv_feature_sub_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:paddingRight="@dimen/univ_padding_small"
+                android:singleLine="true"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/text_size_lessSP"
+                android:visibility="gone" />
+
+            <RelativeLayout
+                android:id="@+id/info_flow_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:paddingBottom="@dimen/univ_padding_small"
+                android:layout_marginRight="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center_vertical|right"
+                    android:gravity="center_vertical|right"
+                    android:layout_marginRight="3dp">
+
+                    <ImageView
+                        android:id="@+id/attached_files"
+                        style="@style/tvnIv"
+                        android:src="@drawable/attached_files"/>
+
+                    <ImageView
+                        android:id="@+id/img_comments_text"
+                        style="@style/tvnIv"
+                        android:src="@drawable/comment_task" />
+
+                    <ImageView
+                        android:id="@+id/img_messages"
+                        style="@style/tvnIv"
+                        android:src="@drawable/message_task" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>

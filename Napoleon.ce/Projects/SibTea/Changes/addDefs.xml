@@ -1,0 +1,103 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+  <objects>
+    <object name="PlanReport">
+      <sources>
+        <source name="DBFTable">
+          <param name="tableName">"PLN" + $user.id</param>
+        </source>
+      </sources>
+      <field name="report" type="file" data="FILE" />
+    </object>
+    <object name="Arrival">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"ARV"</param>
+          <param name="commonTable">"ARRIVAL"</param>
+          <param name="catalog">"number;items;0"</param>
+        </source>
+      </sources>
+      <field name="items" type="collection">
+        <data>
+          <object name="ArrivalItem">
+            <field name="id" type="string" data="ID_I" />
+            <field name="qty" type="number" prec="3" />
+            <field name="sum" type="number" prec="2" />
+          </object>
+        </data>
+      </field>
+      <field name="number" type="string" />
+      <field name="date" type="date" />
+    </object>
+
+    <object name="OrgFDiscount">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"OFD"</param>
+          <param name="commonTable">"OFDS"</param>
+          <param name="catalog">"id;items;0"</param>
+        </source>
+      </sources>
+      <field name="items" type="collection">
+        <data>
+          <object name="OrgFDiscountItem">
+            <field name="fid" type="string" data="ID_I" hidden="true"/>
+            <field name="folder" type="number" execOn="Get">FolderID($object.fid)</field>
+            <field name="nac" type="number" prec="2"/>
+          </object>
+        </data>
+      </field>
+      <field name="id" type="string" />
+    </object>
+    <object name="OrgPDiscount">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"OWD"</param>
+          <param name="commonTable">"OWDS"</param>
+          <param name="catalog">"id;items;0"</param>
+        </source>
+      </sources>
+      <field name="items" type="collection">
+        <data>
+          <object name="OrgWDiscountItem">
+            <field name="id" type="string" data="ID_I" />
+            <field name="nac" type="number" prec="2"/>
+          </object>
+        </data>
+      </field>
+      <field name="id" type="string" />
+    </object>
+    <modify src="Org">
+      <add>
+        <field name="ido" type="string" />
+        <field name="delay" type="number" />
+        <field name="balance" type="number" prec="2" />
+      </add>
+    </modify>
+    <modify src="Delivery">
+      <add>
+        <field name="payDate" type="date" />
+      </add>
+    </modify>
+
+    <modify src="Price">
+      <add>
+        <field name="reserv" type="number" prec="3" />
+      </add>
+    </modify>
+    <modify src="Price$cost">
+      <add>
+        <field name="oldCost" type="number" prec="2" data="OCOST" />
+      </add>
+    </modify>
+
+    <modify src="Order">
+      <add>
+        <field name="payType" type="string" width="50" />
+        <field name="docType" type="string" width="50" />
+        <field name="dover" type="number" width="1" />
+        <field name="pickUp" type="number" wisth="1" />
+      </add>
+    </modify>
+  </objects>
+</serverDefs>

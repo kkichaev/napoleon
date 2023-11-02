@@ -1,0 +1,19 @@
+data: 29.01.14 10:37
+project=Trodos
+version=3.1.1.10 Тродос
+model=LG-E612
+android=4.1.2
+stack:
+java.lang.NullPointerException
+	at com.grsoft.napoleon.PricePresentationFolder$PriceFrag$1.onClick(PricePresentationFolder.java:182)
+	at android.view.View.performClick(View.java:4101)
+	at android.view.View$PerformClick.run(View.java:17082)
+	at android.os.Handler.handleCallback(Handler.java:615)
+	at android.os.Handler.dispatchMessage(Handler.java:92)
+	at android.os.Looper.loop(Looper.java:137)
+	at android.app.ActivityThread.main(ActivityThread.java:4940)
+	at java.lang.reflect.Method.invokeNative(Native Method)
+	at java.lang.reflect.Method.invoke(Method.java:511)
+	at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:798)
+	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:565)
+	at dalvik.system.NativeStart.main(Native Method)

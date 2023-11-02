@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+   <objects>
+      
+     <modify src="Order">
+       <add>
+         <field name="delay" type="number" prec="0" data="" />
+         <field name="paydate" type="date" execOn="Put" data="DELAY">AdjustDate($object.date,$object.delay,"day")</field>
+         <field name="ctype" type="string" width="30" execOn="Put" data="COST_T">ConfigReader("ВидЦены",$object.sumType)</field>
+         <field name="firma" type="string" width="30" execOn="Put" data="ORG">ConfigReader("Организация",$object.supplyer)</field>
+       </add>
+     </modify>
+   </objects>
+</serverDefs>

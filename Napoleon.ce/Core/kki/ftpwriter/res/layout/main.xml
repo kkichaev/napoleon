@@ -1,0 +1,55 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/edFile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/file"
+        android:ems="10" />
+
+    <EditText
+        android:id="@+id/edServer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/server"
+        android:ems="10" />
+    
+    <EditText
+        android:id="@+id/edUser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/user"
+        android:ems="10" />
+    
+    <EditText
+        android:id="@+id/edPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/password"
+        android:ems="10" />
+    
+    <EditText
+        android:id="@+id/edPath"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/folder"
+        android:ems="10" />
+    
+    <EditText
+        android:id="@+id/edText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/text"
+        android:ems="10" />
+
+    <Button
+        android:id="@+id/btnSend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/send" />
+
+</LinearLayout>

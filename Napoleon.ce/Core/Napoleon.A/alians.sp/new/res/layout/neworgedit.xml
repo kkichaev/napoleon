@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/forma"
+                android:textColor="@color/black"
+                android:textSize="@dimen/title_text_sz" />
+
+            <Button
+                android:id="@+id/btnForma"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Forma" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/row_margin"
+                android:text="@string/inn"
+                android:textColor="@color/black"
+                android:textSize="@dimen/title_text_sz" />
+
+            <EditText
+                android:id="@+id/edINN"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/row_margin"
+                android:text="@string/raschet"
+                android:textColor="@color/black"
+                android:textSize="@dimen/title_text_sz" />
+
+            <CheckBox
+                android:id="@+id/cbCash"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cash"
+                android:textColor="@color/black"
+                android:textSize="@dimen/title_text_sz" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/row_margin"
+                android:text="@string/numberdogovor"
+                android:textColor="@color/black"
+                android:textSize="@dimen/title_text_sz" />
+
+            <EditText
+                android:id="@+id/edNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/coordGPS"
+                android:textColor="@color/black"
+                android:textSize="@dimen/title_text_sz" />
+
+            <Button
+                android:id="@+id/btnGPS"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="GPS" />
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/row_margin"
+                android:text="@string/nameTT"
+                android:textColor="@color/black"
+                android:textSize="@dimen/title_text_sz" />
+
+            <EditText
+                android:id="@+id/edName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10" />
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/row_margin"
+                android:text="@string/region"
+                android:textColor="@color/black"
+                android:textSize="@dimen/title_text_sz" />
+
+            <EditText
+                android:id="@+id/edRegion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10" />
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/row_margin"
+                android:text="@string/city"
+                android:textColor="@color/black"
+                android:textSize="@dimen/title_text_sz" />
+
+            <EditText
+                android:id="@+id/edCity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10" />
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/row_margin"
+                android:text="@string/punkt"
+                android:textColor="@color/black"
+                android:textSize="@dimen/title_text_sz" />
+
+            <EditText
+                android:id="@+id/edPunkt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10" />
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/row_margin"
+                android:text="@string/street"
+                android:textColor="@color/black"
+                android:textSize="@dimen/title_text_sz" />
+
+            <EditText
+                android:id="@+id/edStreet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10" />
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/row_margin"
+                android:text="@string/dom"
+                android:textColor="@color/black"
+                android:textSize="@dimen/title_text_sz" />
+
+            <EditText
+                android:id="@+id/edDom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10" />
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/row_margin"
+                android:text="@string/kvartira"
+                android:textColor="@color/black"
+                android:textSize="@dimen/title_text_sz" />
+
+            <EditText
+                android:id="@+id/edKvartira"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10" />
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/classTT"
+                android:textColor="@color/black"
+                android:textSize="@dimen/title_text_sz" />
+
+            <Button
+                android:id="@+id/btnClassTT"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Класс ТТ" />
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/visitDay"
+                android:textColor="@color/black"
+                android:textSize="@dimen/title_text_sz" />
+
+            <Button
+                android:id="@+id/btnVisitDay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="День посещения" />
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/prevOrg"
+                android:textColor="@color/black"
+                android:textSize="@dimen/title_text_sz" />
+
+            <Button
+                android:id="@+id/btnPrevOrg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="День посещения" />
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/deliveryRoute"
+                android:textColor="@color/black"
+                android:textSize="@dimen/title_text_sz" />
+
+            <Button
+                android:id="@+id/btnDeliveryRoute"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="День посещения" />
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/timeOUT"
+                android:textColor="@color/black"
+                android:textSize="@dimen/title_text_sz" />
+
+            <Button
+                android:id="@+id/btnTimeOut"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="День посещения" />
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/timeIN"
+                android:textColor="@color/black"
+                android:textSize="@dimen/title_text_sz" />
+
+            <Button
+                android:id="@+id/btnTimeIN"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="День посещения" />
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/discountPercent"
+                android:textColor="@color/black"
+                android:textSize="@dimen/title_text_sz" />
+
+            <EditText
+                android:id="@+id/edDiscount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:ems="10" />
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/delays"
+                android:textColor="@color/black"
+                android:textSize="@dimen/title_text_sz" />
+
+            <Button
+                android:id="@+id/btnDelay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Отсрочка" />
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/contactName"
+                android:textColor="@color/black"
+                android:textSize="@dimen/title_text_sz" />
+
+            <EditText
+                android:id="@+id/edCName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10" />
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/contactName2"
+                android:textColor="@color/black"
+                android:textSize="@dimen/title_text_sz" />
+
+            <EditText
+                android:id="@+id/edCName2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10" />
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/contactName3"
+                android:textColor="@color/black"
+                android:textSize="@dimen/title_text_sz" />
+
+            <EditText
+                android:id="@+id/edCName3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10" />
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/phone"
+                android:textColor="@color/black"
+                android:textSize="@dimen/title_text_sz" />
+
+            <EditText
+                android:id="@+id/edPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="phone"
+                android:ems="10" />
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/staff"
+                android:textColor="@color/black"
+                android:textSize="@dimen/title_text_sz" />
+
+            <Button
+                android:id="@+id/btnDutie"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Отсрочка" />
+            
+             <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/previewPhotoHightControl"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:id="@+id/btnPhoto"
+                        android:src="@drawable/ic_add_a_photo_black_48dp"
+                        android:background="@drawable/button_selector"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/btnok" />
+                    
+                    <HorizontalScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <LinearLayout
+                            android:id="@+id/preview"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal" >
+                        </LinearLayout>
+                    </HorizontalScrollView>
+                </LinearLayout>
+            
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

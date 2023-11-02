@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:id="@+id/itConfig" 
+    	android:title="Настройки" 
+    	android:icon="@drawable/config" />
+    	
+    <item android:id="@+id/itUpdate" 
+    	android:title="Синхронизация" 
+    	android:icon="@drawable/update"/>
+    
+    <item android:id="@+id/itClose"
+        android:title="Выход"
+        android:icon="@drawable/close" />
+    
+    <item android:id="@+id/itUserOrder"
+        android:title="Заказ"
+        android:icon="@drawable/orders" />
+    
+    <item android:id="@+id/itStartWorking"
+        android:title="Начать работу"
+        android:icon="@drawable/ic_media_play" />
+    
+    <item android:id="@+id/itMessages"
+        android:title="Сообщения"
+        android:icon="@drawable/ic_message" />
+    
+    <item android:id="@+id/itEndWorking"
+        android:title="Закончить работу"
+        android:icon="@drawable/ic_media_pause" />
+    
+    <item android:id="@+id/itAbout"
+        android:title="О программе"
+       	android:icon="@drawable/ic_dialog_info"/>
+</menu>

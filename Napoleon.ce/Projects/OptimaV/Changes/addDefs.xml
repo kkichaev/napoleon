@@ -1,0 +1,81 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+  <objects>
+    <object name="HandledDocuments">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"DCN"</param>
+          <param name="commonTable">"DOCNUMBERS"</param>
+        </source>
+      </sources>
+      <field name="created" type="timestamp" />
+      <field name="pdaNumber" type="string" data="PDANUM" />
+      <field name="baseNumber" type="string" data="DOCNUM" />
+      <field name="type" type="string" />
+    </object>
+    <object name="OrgDiscount">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"DIS"</param>
+          <param name="commonTable">"DISCOUNTS"</param>
+          <param name="catalog">"id;items;1"</param>
+        </source>
+      </sources>
+      <field name="id" type="string" />
+      <field name="items" type="collection">
+        <data>
+          <object name="OrgDiscountItem">
+            <field name="fid" type="string" data="ID_F" hidden="true" />
+            <field name="folderID" type="number" execOn="Get">FolderID($object.fid)</field>
+            <field name="costype" type="number" />
+            <field name="discount" type="number" prec="2" />
+          </object>
+        </data>
+      </field>
+    </object>
+    <modify src="Order">
+      <add>
+        <field name="firmCode" type="string" width="55" data="FIRMA" />
+      </add>
+    </modify>
+    <modify src="Sales">
+      <add>
+        <field name="printCount" type="number" data="PRC_CNT" />
+      </add>
+    </modify>
+    <modify dest="Movement" src="Order" table="Movments">
+      <change>
+        <member name="table">"MOV"</member>
+      </change>
+    </modify>
+    <modify src="Org">
+      <add>
+        <field name="credit" type="number" prec="2" />
+        <field name="applyCreditLimit" type="number" data="ACL"/>
+        <field name="period" type="number" />
+        <field name="applyPeriodLimit" type="number" data="APL"/>
+        <field name="postadr" type="string" />
+      </add>
+      <change>
+        <field name="legalAddress" type="string" data="YURADR" />
+      </change>
+    </modify>
+    <modify src="Delivery">
+      <add>
+        <field name="payDate" type="timestamp" />
+      </add>
+    </modify>
+    <modify src="Firm">
+      <change>
+        <sources>
+          <source name="DBFTable">
+            <param name="tableName">"FRM" + $user.id</param>
+          </source>
+          <source name="DBFTable">
+            <param name="tableName">"FIRMS"</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+  </objects>
+</serverDefs>

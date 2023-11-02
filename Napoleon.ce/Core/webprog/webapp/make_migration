@@ -1,0 +1,5 @@
+flask db migrate -m "Tarif count by doc"
+flask db upgrade
+
+#flask db downgrade
+

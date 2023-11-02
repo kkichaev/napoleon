@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <TableLayout
+            android:id="@+id/LinearLayout01"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            tools:ignore="UselessParent" >
+
+            <TableRow>
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:paddingRight="5dp"
+                    android:text="@string/ip"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/edIp"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:imeOptions="actionNext"
+                    tools:ignore="TextFields" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:paddingRight="5dp"
+                    android:text="@string/ip2"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/edIp2"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:imeOptions="actionNext"
+                    tools:ignore="TextFields" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:paddingRight="5dp"
+                    android:text="@string/port"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/edPort"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:imeOptions="actionNext"
+                    android:inputType="number" />
+            </TableRow>
+
+            <TableRow
+                android:visibility="gone"
+                >
+
+                <TextView
+                    android:id="@+id/TextView03"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:paddingRight="5dp"
+                    android:text="@string/login"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/edLogin"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:imeOptions="actionNext"
+                    tools:ignore="TextFields" />
+            </TableRow>
+
+            <TableRow 
+                android:visibility="gone"
+                >
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:text="@string/passw"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/edPassw"
+                    android:layout_gravity="center_vertical"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:imeOptions="actionDone"
+                    tools:ignore="TextFields" />
+            </TableRow>
+            
+            <TableRow 
+                android:id="@+id/trPassw"
+                >
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right|center_vertical"
+        			tools:ignore="HardcodedText"
+                    android:text="Пароль\nадмин."
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/edAdmPassw"
+                    android:layout_gravity="center_vertical"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:inputType="textPassword"
+                    android:imeOptions="actionDone"
+                    tools:ignore="TextFields" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/trOnLine"
+                android:visibility="gone" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:paddingTop="5dp"
+                    android:text="@string/on_line_ip"
+                    android:textSize="16sp" />
+
+                <Spinner
+                    android:id="@+id/spOnLine"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:entries="@array/on_line_items" />
+            </TableRow>
+        </TableLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btnRegister"
+        android:layout_marginTop="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        tools:ignore="HardcodedText"
+        android:text="Зарегистрировать" />
+
+    <TextView
+        android:id="@+id/tvRegInfo"
+        android:padding="10dp"
+        android:layout_gravity="center_horizontal"
+        android:textSize="16sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/textView1"
+            android:gravity="right"
+            android:paddingRight="5dp"
+            android:paddingLeft="5dp"
+            android:textSize="16sp"
+            android:layout_gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+        	tools:ignore="HardcodedText"
+            android:text="Точка" />
+
+        <Spinner
+            android:id="@+id/spOrg"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+</LinearLayout>

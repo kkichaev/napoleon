@@ -1,0 +1,108 @@
+{
+  "_from": "@intlify/core-base@9.3.0-beta.14-77e850b",
+  "_id": "@intlify/core-base@9.3.0-beta.14-77e850b",
+  "_inBundle": false,
+  "_integrity": "sha512-Eb8CeN+s/Och1whMLzW8ds1dkYgEuu5Vf26IYz+GVYstx1rPICnh5HNvgTyQvQMUsvVei5ujz2gx/LcPxxRymQ==",
+  "_location": "/@intlify/core-base",
+  "_phantomChildren": {
+    "source-map": "0.6.1"
+  },
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "@intlify/core-base@9.3.0-beta.14-77e850b",
+    "name": "@intlify/core-base",
+    "escapedName": "@intlify%2fcore-base",
+    "scope": "@intlify",
+    "rawSpec": "9.3.0-beta.14-77e850b",
+    "saveSpec": null,
+    "fetchSpec": "9.3.0-beta.14-77e850b"
+  },
+  "_requiredBy": [
+    "/@intlify/vue-devtools",
+    "/vue-i18n"
+  ],
+  "_resolved": "https://registry.npmjs.org/@intlify/core-base/-/core-base-9.3.0-beta.14-77e850b.tgz",
+  "_shasum": "dbfdb9e9fe9688f64bf344961430c75cad9d693a",
+  "_spec": "@intlify/core-base@9.3.0-beta.14-77e850b",
+  "_where": "/home/devteam/prog/webfront/node_modules/vue-i18n",
+  "author": {
+    "name": "kazuya kawaguchi",
+    "email": "kawakazu80@gmail.com"
+  },
+  "bugs": {
+    "url": "https://github.com/intlify/vue-i18n-next/issues"
+  },
+  "buildOptions": {
+    "name": "IntlifyCoreBase",
+    "formats": [
+      "mjs",
+      "browser",
+      "cjs",
+      "global"
+    ]
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "@intlify/devtools-if": "9.3.0-beta.14-77e850b",
+    "@intlify/message-compiler": "9.3.0-beta.14-77e850b",
+    "@intlify/shared": "9.3.0-beta.14-77e850b",
+    "@intlify/vue-devtools": "9.3.0-beta.14-77e850b"
+  },
+  "deprecated": false,
+  "description": "@intlify/core-base",
+  "engines": {
+    "node": ">= 14"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/core-base.d.ts",
+      "import": "./dist/core-base.mjs",
+      "browser": "./dist/core-base.esm-browser.js",
+      "node": {
+        "import": {
+          "production": "./dist/core-base.prod.cjs",
+          "development": "./dist/core-base.mjs",
+          "default": "./dist/core-base.mjs"
+        },
+        "require": {
+          "production": "./dist/core-base.prod.cjs",
+          "development": "./dist/core-base.cjs",
+          "default": "./index.js"
+        }
+      }
+    },
+    "./dist/*": "./dist/*",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "index.js",
+    "dist"
+  ],
+  "funding": "https://github.com/sponsors/kazupon",
+  "homepage": "https://github.com/intlify/vue-i18n-next/tree/master/packages/core-base#readme",
+  "jsdelivr": "dist/core-base.global.js",
+  "keywords": [
+    "core",
+    "fundamental",
+    "i18n",
+    "internationalization",
+    "intlify"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "module": "dist/core-base.mjs",
+  "name": "@intlify/core-base",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/intlify/vue-i18n-next.git",
+    "directory": "packages/core"
+  },
+  "sideEffects": false,
+  "types": "dist/core-base.d.ts",
+  "unpkg": "dist/core-base.global.js",
+  "version": "9.3.0-beta.14-77e850b"
+}

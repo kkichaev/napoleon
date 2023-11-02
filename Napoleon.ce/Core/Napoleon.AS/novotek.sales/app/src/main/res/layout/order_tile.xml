@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    app:cardCornerRadius="4dp"
+    android:layout_marginTop="8dp"
+    android:elevation="2dp"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/order_body"
+        android:layout_margin="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/order_status"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:id="@+id/order_number"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            tools:text="Заказ № 123458"
+            />
+
+        <TextView
+            android:id="@+id/order_status"
+            app:layout_constraintLeft_toRightOf="@id/order_number"
+            app:layout_constraintBaseline_toBaselineOf="@id/order_number"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Заказ в обработке"
+            android:textColor="@color/black"
+            android:drawablePadding="8dp"
+            android:drawableLeft="@drawable/ic_order"
+            />
+
+
+        <TextView
+            android:layout_marginTop="8dp"
+            android:id="@+id/order"
+            app:layout_constraintTop_toBottomOf="@id/order_number"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/order_col"
+            android:textColor="@color/black"
+            android:drawablePadding="8dp"
+            />
+        <TextView
+            android:id="@+id/order_info"
+            app:layout_constraintBaseline_toBaselineOf="@id/order"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="20 товаров 4777 Р"
+            android:textColor="@color/black"
+            />
+
+
+        <TextView
+            android:layout_marginTop="8dp"
+            android:id="@+id/order_dlv"
+            app:layout_constraintTop_toBottomOf="@id/order"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/order_delivery"
+            android:textColor="@color/black"
+            android:drawablePadding="8dp"
+            />
+        <TextView
+            android:id="@+id/order_dlv_info"
+            app:layout_constraintBaseline_toBaselineOf="@id/order_dlv"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="24 июня"
+            android:textColor="@color/black"
+            />
+
+        <TextView
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@id/order_dlv"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp"
+            android:textSize="18sp"
+            android:id="@+id/button1"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:background="@drawable/rounded_order_gray"
+            android:text="@string/cancel"
+            android:gravity="center_horizontal"
+            />
+
+        <TextView
+            app:layout_constraintBaseline_toBaselineOf="@id/button1"
+            app:layout_constraintRight_toRightOf="parent"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp"
+            android:textSize="18sp"
+            android:id="@+id/button2"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:text="@string/copy_order"
+            android:gravity="center_horizontal"
+            android:background="@drawable/rounded_order_primary"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

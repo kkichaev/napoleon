@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp" 
+        style="@style/formHeader">
+
+        <TextView
+            android:id="@+id/tvOrg"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:width="160dp"
+            android:paddingRight="5dp"
+            android:textSize="22sp"
+            android:text="@string/itogo" />
+        
+    </LinearLayout>
+    
+    <ExpandableListView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1" >
+    </ExpandableListView>
+    
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:width="160dp"
+        android:gravity="right"
+        android:paddingRight="5dp"
+        android:textSize="18sp"
+        android:text="@string/itogo" />
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/mainCalendarBack" 
+        android:orientation="horizontal">
+        
+        <TextView
+            android:id="@+id/tvComment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:lines="1"
+            android:text="tvComment"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            android:visibility="gone"/>
+
+        <View android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+        
+        <TextView
+            android:id="@+id/tvQty"
+            android:minWidth="80dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="tvQty"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            android:gravity="right"
+            android:paddingRight="15dp"
+            android:visibility="gone"/>
+        
+        <TextView
+            android:id="@+id/tvSum"
+            android:minWidth="80dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="tvSum"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            android:gravity="right"
+            android:paddingRight="5dp"/>
+    </LinearLayout>
+
+</LinearLayout>

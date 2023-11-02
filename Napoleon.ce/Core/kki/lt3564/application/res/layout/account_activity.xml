@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+               xmlns:tools="http://schemas.android.com/tools"
+               xmlns:app="http://schemas.android.com/apk/res-auto"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:orientation="vertical"
+               tools:context="com.ashberrysoft.leadertask.modern.activity.AccountActivity">
+
+    <include layout="@layout/toolbar"/>
+
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                 android:layout_width="match_parent"
+                 android:layout_height="3dp"
+                 android:minHeight="3dp"
+                 android:background="@color/primary_color_line_properties"/>
+
+    <LinearLayout
+        android:id="@+id/bg_account"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/profile"
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="150dp"
+            android:gravity="center_vertical"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/selector_menu_item_white"
+            android:clickable="true">
+
+            <ImageView
+                android:id="@+id/image_view"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="@dimen/univ_padding_small"
+                android:layout_gravity="center_horizontal"/>
+
+            <TextView
+                android:id="@+id/profile_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_link"
+                android:textStyle="bold"
+                android:textColor="@color/navigator_calendar_text_color"
+                android:layout_gravity="center_horizontal"/>
+
+            <TextView
+                android:id="@+id/profile_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_about"
+                android:textColor="@color/navigator_calendar_text_color2"
+                android:layout_gravity="center_horizontal"/>
+
+            <Button
+                android:id="@+id/acc_item_change_user"
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/selector_bg_btn_white"
+                android:text="@string/account_exit"
+                android:textColor="@color/navigator_calendar_text_color"
+                android:textSize="@dimen/text_size_about"
+                android:layout_gravity="center"
+                android:textAllCaps="false"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="24dp"
+                style="?android:attr/borderlessButtonStyle"  />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/main_container"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/univ_padding">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingRight="@dimen/univ_padding_small"
+                android:paddingLeft="@dimen/univ_padding_small"
+                android:paddingBottom="@dimen/univ_padding_small">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toLeftOf="@+id/premium"
+                        android:layout_toStartOf="@+id/premium">
+
+                        <TextView
+                            android:id="@+id/acc_license_main_user_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/text_size_small"
+                            android:text="@string/account_license_director"
+                            android:textColor="@color/navigator_calendar_text_color"
+                            android:textStyle="bold"
+                            android:paddingLeft="@dimen/univ_padding"
+                            android:paddingTop="@dimen/univ_padding"
+                            android:paddingRight="@dimen/univ_padding_small"/>
+
+                        <TextView
+                            android:id="@+id/acc_license_main_user"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/text_size_about"
+                            android:textColor="@color/navigator_calendar_text_color"
+                            android:paddingLeft="@dimen/univ_padding"
+                            android:paddingRight="@dimen/univ_padding_small"/>
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/premium"
+                        android:layout_width="@dimen/univ_ab_height"
+                        android:layout_height="@dimen/univ_ab_height"
+                        android:src="@drawable/premium"
+                        android:layout_marginRight="10dp"
+                        android:visibility="gone"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"/>
+
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/acc_license_org_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_size_small"
+                    android:text="@string/account_license_org"
+                    android:visibility="gone"
+                    android:textColor="@color/navigator_calendar_text_color"
+                    android:textStyle="bold"
+                    android:paddingLeft="@dimen/univ_padding"
+                    android:paddingRight="@dimen/univ_padding_small"/>
+
+                <TextView
+                    android:id="@+id/acc_license_org"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_size_aboutX"
+                    android:visibility="gone"
+                    android:textColor="@color/navigator_calendar_text_color"
+                    android:paddingLeft="@dimen/univ_padding"
+                    android:paddingRight="@dimen/univ_padding_small"/>
+
+                <TextView
+                    android:id="@+id/acc_license_text_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_size_small"
+                    android:text="@string/account_license_expires"
+                    android:textColor="@color/navigator_calendar_text_color"
+                    android:textStyle="bold"
+                    android:paddingLeft="@dimen/univ_padding"
+                    android:paddingRight="@dimen/univ_padding_small"/>
+
+                <TextView
+                    android:id="@+id/acc_license_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_size_aboutX"
+                    android:textColor="@color/navigator_calendar_text_color"
+                    android:paddingLeft="@dimen/univ_padding"
+                    android:paddingRight="@dimen/univ_padding_small"/>
+
+                <TextView
+                    android:id="@+id/acc_text_cont_emps_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_size_small"
+                    android:text="@string/account_cont_emps"
+                    android:textColor="@color/navigator_calendar_text_color"
+                    android:textStyle="bold"
+                    android:paddingLeft="@dimen/univ_padding"
+                    android:paddingRight="@dimen/univ_padding_small"/>
+
+                <TextView
+                    android:id="@+id/acc_cont_emps"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_size_aboutX"
+                    android:textColor="@color/navigator_calendar_text_color"
+                    android:paddingLeft="@dimen/univ_padding"
+                    android:paddingRight="@dimen/univ_padding_small"/>
+
+                <TextView
+                    android:id="@+id/acc_license_server_size_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_size_small"
+                    android:text="@string/account_license_spase_server"
+                    android:textColor="@color/navigator_calendar_text_color"
+                    android:textStyle="bold"
+                    android:paddingLeft="@dimen/univ_padding"
+                    android:paddingRight="@dimen/univ_padding_small"/>
+
+                <TextView
+                    android:id="@+id/acc_license_server_size"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_size_aboutX"
+                    android:textColor="@color/navigator_calendar_text_color"
+                    android:paddingLeft="@dimen/univ_padding"
+                    android:paddingRight="@dimen/univ_padding_small"/>
+
+            </LinearLayout>
+
+
+            <Button
+                android:id="@+id/acc_license_button"
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/selector_bg_btn_orange"
+                android:text="@string/l_input"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_about"
+                android:layout_gravity="center"
+                android:textAllCaps="false"
+                android:layout_marginTop="10dp"
+                style="?android:attr/borderlessButtonStyle"  />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/profile_container"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone">
+
+            <EditText
+                android:id="@+id/profile_name_edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_aboutX"
+                android:hint="@string/reg_fill_name"
+                android:textColor="@color/navigator_calendar_text_color"
+                android:imeOptions="actionNext"
+                android:singleLine="true"
+                android:layout_marginLeft="@dimen/univ_padding_norm2"
+                android:layout_marginRight="@dimen/univ_padding_norm2"
+                android:layout_gravity="center_horizontal"
+                android:textCursorDrawable="@null"/>
+
+            <EditText
+                android:id="@+id/profile_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_aboutX"
+                android:hint="@string/comm_phone"
+                android:textColor="@color/navigator_calendar_text_color"
+                android:imeOptions="actionDone"
+                android:singleLine="true"
+                android:layout_marginLeft="@dimen/univ_padding_norm2"
+                android:layout_marginRight="@dimen/univ_padding_norm2"
+                android:layout_gravity="center_horizontal"
+                android:textCursorDrawable="@null"
+                android:inputType="phone"
+                android:digits="0123456789+"/>
+
+            <TextView
+                android:id="@+id/profile_change_password"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:textSize="@dimen/text_size_link"
+                android:textColor="@color/navigator_calendar_text_color2"
+                android:text="@string/account_password"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:background="@drawable/selector_menu_item"/>
+
+            <EditText
+                android:id="@+id/account_old_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_aboutX"
+                android:hint="@string/account_old_password"
+                android:visibility="gone"
+                android:inputType="textPassword"
+                android:imeOptions="actionNext"
+                android:fontFamily="sans-serif"
+                android:textColor="@color/navigator_calendar_text_color"
+                android:layout_marginLeft="@dimen/univ_padding_norm2"
+                android:layout_marginRight="@dimen/univ_padding_norm2"
+                android:layout_gravity="center_horizontal"
+                android:textCursorDrawable="@null"/>
+
+            <EditText
+                android:id="@+id/account_new_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_aboutX"
+                android:hint="@string/account_new_password"
+                android:visibility="gone"
+                android:inputType="textPassword"
+                android:imeOptions="actionNext"
+                android:fontFamily="sans-serif"
+                android:textColor="@color/navigator_calendar_text_color"
+                android:layout_marginLeft="@dimen/univ_padding_norm2"
+                android:layout_marginRight="@dimen/univ_padding_norm2"
+                android:layout_gravity="center_horizontal"
+                android:textCursorDrawable="@null"/>
+
+            <EditText
+                android:id="@+id/account_new_password_again"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_aboutX"
+                android:hint="@string/account_new_password_again"
+                android:visibility="gone"
+                android:inputType="textPassword"
+                android:imeOptions="actionDone"
+                android:fontFamily="sans-serif"
+                android:textColor="@color/navigator_calendar_text_color"
+                android:layout_marginLeft="@dimen/univ_padding_norm2"
+                android:layout_marginRight="@dimen/univ_padding_norm2"
+                android:layout_gravity="center_horizontal"
+                android:textCursorDrawable="@null"/>
+
+            <Button
+                android:id="@+id/profile_save"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/selector_bg_btn_orange"
+                android:text="@string/menu_save_task"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_link"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:textAllCaps="false"
+                android:layout_marginTop="10dp"
+                style="?android:attr/borderlessButtonStyle"  />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

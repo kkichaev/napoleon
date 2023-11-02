@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:background="#FFFFFF"
+  android:orientation="vertical"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent">
+
+    <TableLayout android:layout_width="fill_parent" 
+    	android:id="@+id/tableLayout1" 
+    	android:layout_height="wrap_content" 
+    	android:layout_weight="0">
+        <TableRow android:id="@+id/tableRow1" 
+	    	android:padding="2dp"
+        	android:layout_width="wrap_content" 
+        	android:layout_height="wrap_content">
+			<TextView android:id="@+id/TextView04" 
+				android:layout_height="wrap_content" 
+				android:textColor="#000000" 
+				android:text="Спец.усл." 
+				android:layout_marginLeft="5dp" 
+				android:layout_marginRight="5dp"
+				android:layout_width="wrap_content" android:layout_gravity="center_vertical"></TextView>	
+		
+			<Spinner android:layout_height="wrap_content" 
+				android:layout_weight="0.5" android:id="@+id/spSpecCond" android:layout_width="wrap_content"></Spinner>
+		</TableRow>
+        <TableRow android:id="@+id/tableRow1" 
+	    	android:padding="2dp"
+        	android:layout_width="wrap_content" 
+        	android:layout_height="wrap_content">
+			<TextView android:id="@+id/TextView04" 
+				android:layout_height="wrap_content" 
+				android:textColor="#000000" 
+				android:text="" 
+				android:layout_marginLeft="5dp" 
+				android:layout_marginRight="5dp"
+				android:layout_width="wrap_content" android:layout_gravity="center_vertical"></TextView>	
+		
+			<EditText android:id="@+id/edDiscount"
+				android:layout_height="wrap_content" 
+				android:layout_width="wrap_content"
+				android:minLines="1" android:lines="1"></EditText>
+	</TableRow>
+</TableLayout>
+
+<EditText android:layout_weight="1" 
+	android:layout_height="fill_parent" 
+	android:layout_width="fill_parent" 
+	android:id="@+id/edNotes" 
+	android:gravity="top|left" android:minLines="2" android:lines="2"></EditText>
+
+</LinearLayout>

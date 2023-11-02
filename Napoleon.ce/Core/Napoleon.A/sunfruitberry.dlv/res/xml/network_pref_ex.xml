@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+    <EditTextPreference
+           android:key="@string/ip1_pref"
+           android:title="@string/ip" />
+    <EditTextPreference
+           android:key="@string/ip2_pref"
+           android:title="@string/ip2" />
+    <EditTextPreference
+           android:key="@string/port_pref"
+           android:title="@string/port"
+           android:defaultValue="@string/def_port_val"
+           android:numeric="integer" />
+    <EditTextPreference
+           android:key="@string/login_pref"
+           android:title="@string/login_pref_tytle" />
+    <EditTextPreference
+           android:key="@string/pass_pref"
+           android:title="@string/pass_pref_tytle" />
+    
+    <ListPreference
+			android:key="@string/restoreDocsMonth"
+			android:title="Восстановить историю за, мес"
+			android:summary="Восстановить историю за, мес"
+			android:defaultValue="1"
+			android:entries="@array/restoreMonths"
+			android:entryValues="@array/restoreMonths"
+			android:dialogTitle="Выберите период восстановления" />
+
+    <Preference android:title="Восстановить"
+                android:key="@string/restoreDocs"
+                android:summary="Восттановление базы"/>
+    
+    
+</PreferenceScreen>

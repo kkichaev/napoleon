@@ -1,0 +1,118 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+  <objects>
+
+    <object name="GwinnerAgentTask">
+      <sources>
+        <source name="DBFCatalogTable">
+          <param name="tableName">"TSK" + $user.id</param>
+          <param name="catalog">"id"</param>
+          <param name="ordered">1</param>
+        </source>
+        <source name="SQTable" type="internal"  />
+      </sources>
+
+      <member name="primaryKey">"userid,created"</member>
+
+      <field name="userid" type="string" execOn="Put" width="30">$user.id</field>
+      <field name="created" type="timestamp" />
+      <field name="date" type="date" />
+      <field name="done" type="timestamp" />
+      <field name="isComplete" type="number" width="1" data="CMPL" />
+      <field name="id" type="string" width="55" />
+      <field name="task" type="string" />
+
+      <events>
+        <event type="put">
+          <action name="WriteInternal">$object.type</action>
+        </event>
+      </events>
+    </object>
+    
+
+    <object name="OrgInfo">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"Info"</param>
+          <param name="commonTable">"InfoOrg"</param>
+        </source>
+      </sources>
+      <field name="id" type="string" />
+      <field name="sectionID" type="number" data="ID_SEC" />
+      <field name="paramID" type="number" data="ID_PAR" />
+      <field name="sectionName" type="string" data="NAME_SEC" />
+      <field name="paramName" type="string" data="NAME_PAR" />
+      <field name="paramValue" type="string" data="VALUE" />
+    </object>
+
+    <object name="OrdConfig">
+      <sources>
+        <source name="KeyValueTable">
+          <param name="fileName">"order.cfg"</param>
+        </source>
+      </sources>
+
+      <field name="key" type="string" />
+      <field name="value" type="string" />
+    </object>
+
+    <object name="Sklads">
+      <sources>
+        <source name="KeyValueDBFTable">
+          <param name="fileName">"SKLADS"</param>
+          <param name="key">"Склады"</param>
+          <param name="itemName">"NAME"</param>
+          <param name="itemKey">"ID"</param>
+        </source>
+      </sources>
+
+      <field name="key" type="string" />
+      <field name="value" type="string" />
+    </object>
+
+    <object name="Config">
+      <sources>
+        <source name="ObjectUnion">
+          <param>"OrdConfig"</param>
+          <param>"Sklads"</param>
+        </source>
+      </sources>
+
+      <field name="key" type="string" />
+      <field name="value" type="string" />
+    </object>
+
+    <modify src="Price">
+      <add>
+        <field name="whQty" type="collection">
+          <data>
+            <object name="QtyItem">
+              <sources>
+                <source name="Sequence">
+                  <param name="source">$parent.source</param>
+                </source>
+              </sources>
+              <field name="qty" type="number" prec="3" />
+            </object>
+          </data>
+        </field>
+      </add>
+    </modify>
+
+    <modify src="Order">
+      <add>
+        <field name="whCode" type="string" width="20" data="ID_WH" />
+      </add>
+    </modify>
+    <modify src="Delivery">
+      <add>
+        <field name="payDate" type="date" />
+      </add>
+    </modify>
+    <modify src="Monitoring$items">
+      <add>
+        <field name="cost" type="number" prec="2" />
+      </add>
+    </modify>
+  </objects>
+</serverDefs>

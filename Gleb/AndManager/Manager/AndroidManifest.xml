@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.grsoft.napoleon.manager"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="8" />
+
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>  
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+     
+    <application
+        android:icon="@drawable/pictograms"
+        android:allowBackup="true"        
+        android:label="@string/app_name"
+        android:theme="@style/ManagerTheme"
+        android:name="com.grsoft.napoleon.manager.ManagerApp" >
+        <activity
+            android:name="com.grsoft.napoleon.manager.Manager"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>            
+        </activity>
+        <activity android:name="com.grsoft.napoleon.manager.TestActivity">
+        </activity>
+        
+<!--          <activity android:name=".ScreenSlideActivity"
+            android:label="@string/title_screen_slide"
+            android:parentActivityName=".MainActivity"
+            android:uiOptions="splitActionBarWhenNarrow">
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>-->        
+        
+        <activity android:name="com.grsoft.napoleon.manager.ManagerConfiguration"/>
+        <activity android:name="com.grsoft.napoleon.UpdateDBEx"/>          
+        <activity android:name="com.grsoft.napoleon.manager.AgentRoute"/>
+        <activity android:name="EditorsItems"/>
+        <activity android:name="Editors"/>
+        <activity android:name="RatingActionEdit"/>
+        <activity android:name="Preview" />
+        
+       <service android:name="com.grsoft.napoleon.Shared"
+           	android:exported="true"
+            android:process=":shared">
+            <intent-filter >
+                <action android:name="com.grsoft.napoleon.ExchangeService"/>
+                 <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </service>
+    </application>
+
+</manifest>

@@ -1,0 +1,76 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+    <modify src="PricePhoto">
+      <change>
+        <sources>
+          <source name="DBFCatalogTable">
+            <param name="tableName">"PHOTOS"</param>
+            <param name="catalog">"[PATH]"</param>
+            <param name="ordered">0</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="Price">
+      <add>
+        <field name="group" type="string" />
+        <field name="related" type="collection">
+          <data>
+            <object name="Item">
+              <sources>
+                <source name="DBFTableSet">
+                  <param name="userTable">"RLP"</param>
+                  <param name="commonTable">"RELATED"</param>
+                  <param name="filter">"[ID] = $parent.id"</param>
+                </source>
+              </sources>
+
+              <field name="id" type="string" data="ID_I" />
+              <field name="qty" type="number" prec="3" />
+            </object>
+          </data>
+        </field>
+      </add>
+    </modify>
+
+    <modify src="Org">
+      <add>
+        <field name="groupType" type="collection">
+          <data>
+            <object name="Item">
+              <sources>
+                <source name="DBFTableSet">
+                  <param name="userTable">"GRP"</param>
+                  <param name="commonTable">"GRPTC"</param>
+                  <param name="filter">"[ID] = $parent.id"</param>
+                </source>
+              </sources>
+
+              <field name="group" type="string" prec="2" />
+              <field name="costype" type="number" />
+            </object>
+          </data>
+        </field>
+        <field name="itemCost" type="collection">
+          <data>
+            <object name="Item">
+              <sources>
+                <source name="DBFTableSet">
+                  <param name="userTable">"PRC"</param>
+                  <param name="commonTable">"ORGPRICE"</param>
+                  <param name="filter">"[ID] = $parent.id"</param>
+                </source>
+              </sources>
+
+              <field name="id" type="string" width="55" data="ID_I" />
+              <field name="limit" type="number" prec="2" />
+              <field name="discount" type="number" prec="2" />
+            </object>
+          </data>
+        </field>
+      </add>
+    </modify>
+	</objects>
+</serverDefs>

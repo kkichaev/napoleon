@@ -1,0 +1,161 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+  <objects>
+    <object name="TimeTracking">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"month,year"</member>
+      <field name="month" type="number"/>
+      <field name="year" type="number"/>
+      <field name="cost" type="number" prec="2"  />
+
+      <field name="items" type="collection">
+        <data>
+          <object name="TimeTrackingItem">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+            <field name="date" type="timestamp" />
+            <field name="userid" type="string"/>
+            <field name="start" type="string" />
+            <field name="finish" type="string"/>
+            <field name="km" type="number" prec="3"  />
+          </object>
+        </data>
+      </field>
+    </object>
+    
+    <object name="TypeDistrib">
+        <sources>
+            <source name="SQTable" type="internal" >
+                <param name="readFilter">"rem=0"</param>
+             </source>   
+        </sources>
+        
+        <member name="primaryKey">"id"</member>
+        
+        <field name="id" type="string" />
+        <field name="text" type="string" />
+        <field name="rem" type="number" />
+    </object>
+
+    <modify src="Org">
+      <add>
+        <field name="supplCode" type="string" data="FIRMA" width="55"/>
+        <field name="prcType" type="string" width="40" />
+      </add>
+    </modify>
+
+    <modify src="Price">
+      <add>
+        <field name="isOurProduct" type="number" data="IS_OUR" />
+      </add>
+    </modify>
+
+    <modify src="Visit$items">
+      <add>
+        <field name="dval" type="string" />
+        <field name="did" type="string" />
+      </add>
+    </modify>
+
+    <modify src="Order$items" feature="MAIN_SERVER">
+      <add>
+        <field name="isOurProduct" type="number" data="IS_OUR" />
+      </add>
+    </modify>
+
+    <modify src="Order" feature="!MAIN_SERVER">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+    </modify>
+    <modify src="Order$items" feature="!MAIN_SERVER">
+      <add>
+        <field name="isOurProduct" type="number" data="IS_OUR" />
+      </add>
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="OrderProceeded" dest="SyncPOD">
+      <change>
+        <sources>
+          <source name="DBFTableSet">
+            <param name="userTable">"POD"</param>
+            <param name="commonTable">"PODS"</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="Price" feature="!MAIN_SERVER">
+      <change>
+        <field name="cost" type="collection">
+          <data>
+            <object name="CostItem">
+              <sources>
+                <source name="DBFTableSet">
+                  <param name="userTable">"WCT"</param>
+                  <param name="commonTable">"WCOST"</param>
+                  <param name="filter">"[ID] = $parent.id"</param>
+                </source>
+              </sources>
+              <field name="id" type="string" width="55" />
+              <field name="cost" type="number" prec="2" />
+            </object>
+          </data>
+        </field>
+      </change>
+    </modify>
+
+    <modify src="ManagerPrice" feature="!MAIN_SERVER">
+      <change>
+        <field name="cost" type="collection">
+          <data>
+            <object name="CostItem">
+              <sources>
+                <source name="DBFTableSet">
+                  <param name="userTable">"WCT"</param>
+                  <param name="commonTable">"WCOST"</param>
+                  <param name="filter">"[ID] = $parent.id"</param>
+                </source>
+              </sources>
+              <field name="id" type="string" width="55" />
+              <field name="cost" type="number" prec="2" />
+            </object>
+          </data>
+        </field>
+      </change>
+    </modify>
+
+    <modify src="Payment" dest="SyncPay">
+      <change>
+        <sources>
+          <source name="DBFTableSet">
+            <param name="userTable">"PAY"</param>
+            <param name="commonTable">"PAYMENT"</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="Config" dest="SyncConfig">
+      <change>
+        <sources>
+          <source name="KeyValueTable">
+            <param name="fileName">"order.cfg"</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+
+  </objects>
+</serverDefs>

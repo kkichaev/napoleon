@@ -1,0 +1,67 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+    <modify src="Price">
+      <add>
+        <field name="noDsc" type="number" data="NO_DSC" />
+      </add>
+    </modify>
+    
+    <modify src="Org">
+      <add>
+        <field name="nac" type="number" prec="2"/>
+        
+        <field name="discount" type="collection">
+          <data>
+            <object name="OrgDiscountItem">
+              <sources>
+                <source name="DBFTableSet">
+                  <param name="userTable">"OFD"</param>
+                  <param name="commonTable">"ORGFD"</param>
+                  <param name="filter">"[ID] = $parent.id"</param>
+                </source>
+              </sources>
+
+              <field name="id" data="ID_I" type="string" />
+              <field name="discount" data="DISC" type="number" prec="2"/>
+            </object>
+          </data>
+        </field>
+
+        <field name="price" type="collection">
+          <data>
+            <object name="OrgPriceItem">
+              <sources>
+                <source name="DBFTableSet">
+                  <param name="userTable">"OWD"</param>
+                  <param name="commonTable">"ORGWD"</param>
+                  <param name="filter">"[ID] = $parent.id"</param>
+                </source>
+              </sources>
+
+              <field name="id" data="ID_I" type="string" />
+              <field name="discount" data="DISC" type="number" prec="2"/>
+            </object>
+          </data>
+        </field>
+        
+        <field name="nacen" type="collection">
+          <data>
+            <object name="OrgNacenItem">
+              <sources>
+                <source name="DBFTableSet">
+                  <param name="userTable">"OND"</param>
+                  <param name="commonTable">"ORGND"</param>
+                  <param name="filter">"[ID] = $parent.id"</param>
+                </source>
+              </sources>
+
+              <field name="id" data="ID_I" type="string" />
+              <field name="nac" data="NAC" type="number" prec="2"/>
+            </object>
+          </data>
+        </field>
+      </add>
+    </modify>
+  </objects>
+</serverDefs>

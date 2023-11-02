@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/black"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal" >
+
+    <TextView
+        android:id="@+id/tvFirm"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:textColor="@color/black"
+        android:width="@dimen/firm_width"
+        android:paddingLeft="2dp"
+        android:textSize="16sp"
+        android:gravity="center_vertical"
+        tools:ignore="HardcodedText"
+        android:background="@color/white"
+        android:text="" />
+    
+    <TextView
+        android:id="@+id/tvBrand"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:textColor="@color/black"
+        android:width="@dimen/brand_width"
+        android:paddingLeft="2dp"
+        android:textSize="16sp"
+        android:layout_marginLeft="1dp"
+        android:gravity="center_vertical"
+        tools:ignore="HardcodedText"
+        android:background="@color/white"
+        android:text="" />
+    
+    <TextView
+        android:id="@+id/tvMark"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:width="20dp"
+        android:layout_marginLeft="1dp"
+        android:paddingLeft="2dp"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:background="@color/white"
+        android:gravity="center"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:paddingLeft="2dp"
+        tools:ignore="HardcodedText"
+        android:gravity="center_vertical"
+        android:background="@color/white"
+        android:text="Name" />
+
+    <TextView
+        android:id="@+id/tvCost"
+        style="@style/WarehouseNumItem"
+        android:text="Cost"
+        tools:ignore="HardcodedText" />
+    
+    <TextView
+        android:id="@+id/tvPrevRestQty"
+        style="@style/WarehouseNumItem"
+        android:text="PrvRQ"
+        tools:ignore="HardcodedText" />
+    
+    <TextView
+        android:id="@+id/tvPrevOrdQty"
+        style="@style/WarehouseNumItem"
+        android:text="PrvOQ"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/tvRestQty"
+        style="@style/WarehouseNumItem"
+        android:text="RQ"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/tvAutoOrdQty"
+        style="@style/WarehouseNumItem"
+        android:text="AOQ"
+        tools:ignore="HardcodedText" />
+    
+    <TextView
+        android:id="@+id/tvOrdQty"
+        style="@style/WarehouseNumItem"
+        android:text="OQ"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/tvPlanQty"
+        style="@style/WarehouseNumItem"
+        android:text="PQ"
+        tools:ignore="HardcodedText" />
+    
+    <TextView
+        android:id="@+id/tvFactQty"
+        style="@style/WarehouseNumItem"
+        android:text="FQ"
+        tools:ignore="HardcodedText" />
+</LinearLayout>

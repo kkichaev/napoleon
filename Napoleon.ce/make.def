@@ -1,0 +1,121 @@
+#
+# Добавление в CFLAGS проекта фичей и флагов
+#
+# ert 26/03/2008 creating
+#
+
+##################################################
+##                ADD DEFINES
+
+ifdef PROJECT
+Proj = $(subst -,_,$(subst .,_,$(PROJECT)))
+CFLAGS += /D "_Project_$(Proj)" /D "PROJECT_NAME=L""$(Proj)"""
+RC_FLAGS += /d "$(Proj)" 
+CS_FLAGS += /define:$(Proj)
+DefineConstants = $(Proj);
+else
+CFLAGS += /D "PROJECT_NAME=L"""""
+DefineConstants = Base;
+endif
+
+ifdef VariantBase
+VarBase = $(subst -,_,$(subst .,_,$(VariantBase)))
+CFLAGS += /D "$(VarBase)"
+RC_FLAGS += /d "$(VarBase)" 
+CS_FLAGS += /define:$(VarBase)
+DefineConstants += $(VariantBase);
+endif
+
+ifdef FEATURES
+CFLAGS += $(foreach var,$(FEATURES), /D "$(var)")
+RC_FLAGS += $(foreach var,$(FEATURES), /d "$(var)")
+CS_FLAGS += $(foreach var,$(FEATURES), $(if $(findstring =,$(var)),,/define:$(var)))
+DefineConstants += $(foreach var,$(FEATURES),$(var););
+endif
+
+ifdef PREFERENCE_NAME
+CFLAGS +=/DPREFERENCE_NAME=L"""$(PREFERENCE_NAME)"""
+endif
+
+ifdef PROG_CLASS_NAME
+RC_FLAGS += /d PROG_CLASS_NAME="""$(PROG_CLASS_NAME)"""
+endif
+
+ifdef NATIVE_CE
+RC_FLAGS += /d NATIVE_CE
+endif
+
+ifdef MAX_VISIT_PHOTO
+CFLAGS += /D "MAX_VISIT_PHOTO=$(MAX_VISIT_PHOTO)"
+endif
+
+ifdef WCE_PLATFORM_MC3000C50B
+RC_FLAGS += /d WCE_PLATFORM_MC3000C50B /d NATIVE_CE
+CFLAGS += /D "WCE_PLATFORM_MC3000C50B" /D "NATIVE_CE"
+endif
+
+ifdef MAX_NUM_COST
+CFLAGS += /D "MAX_NUM_COST=$(MAX_NUM_COST)"
+endif
+
+ifdef SALES_FROM_ORDERS
+CFLAGS += /D "SALES_FROM_ORDERS=$(SALES_FROM_ORDERS)"
+endif
+
+ifdef BASE_VERSION
+CFLAGS += /D "BASE_VERSION=$(BASE_VERSION)"
+endif
+
+ifdef SAVE_IN_PACK
+CFLAGS += /D "SAVE_IN_PACK=$(SAVE_IN_PACK)"
+endif
+
+ifdef LINE_IN_PRICE
+CFLAGS += /D "LINE_IN_PRICE=$(LINE_IN_PRICE)"
+endif
+
+ifdef LINE_IN_ORGS
+CFLAGS += /D "LINE_IN_ORGS=$(LINE_IN_ORGS)"
+endif
+
+ifdef MARK_SYNCED
+CFLAGS += /D "MARK_SYNCED=$(MARK_SYNCED)"
+endif
+
+ifdef TMP_MGR_LICENSE_COUNT
+CFLAGS += /D "TMP_MGR_LICENSE_COUNT=$(TMP_MGR_LICENSE_COUNT)"
+endif
+
+ifdef TMP_MGR_TILL
+CFLAGS += /D "TMP_MGR_TILL=$(TMP_MGR_TILL)"
+endif
+
+ifdef TMP_PDA_LICENSE_COUNT
+CFLAGS += /D "TMP_PDA_LICENSE_COUNT=$(TMP_PDA_LICENSE_COUNT)"
+endif
+
+ifdef X64
+CFLAGS += /D "X64"
+endif
+
+ifdef TMP_PDA_TILL
+CFLAGS += /D "TMP_PDA_TILL=$(TMP_PDA_TILL)"
+endif
+
+ifdef TMP_ADS_LICENSE_COUNT
+CFLAGS += /D "TMP_ADS_LICENSE_COUNT=$(TMP_ADS_LICENSE_COUNT)"
+endif
+
+ifdef TMP_ADS_TILL
+CFLAGS += /D "TMP_ADS_TILL=$(TMP_ADS_TILL)"
+endif
+
+ifneq ($(findstring ADS, $(FEATURES)),)
+CFLAGS += /D "ADS_DEF"
+endif
+
+ifdef DEMO_PERIOD
+CFLAGS += /D "DEMO_PERIOD=$(DEMO_PERIOD)"
+endif
+
+####################################################

@@ -1,0 +1,1 @@
+c:\Works\Napoleon.ce\bin\Release\VinStyle\MkUpdate.exe .\ "grlicense" "3.0.30.1" license

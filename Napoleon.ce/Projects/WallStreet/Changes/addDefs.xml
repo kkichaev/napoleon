@@ -1,0 +1,269 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+  <objects>
+    <object name="Category" >
+      <sources>
+        <source name="DBFTable">
+          <param name="tableName">"CATEGORY"</param>
+        </source>
+      </sources>
+
+      <field name="id" type="string" />
+      <field name="name" type="string" />
+    </object>
+
+    <object name="OrgAssortimentMatrix">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"category,id"</member>
+
+      <field name="id" type="string" />
+      <field name="category" type="string" />
+
+      <field name="items" type="collection">
+        <data>
+          <object name="MatrixItem">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+            <field name="id" type="string" width="20" />
+          </object>
+        </data>
+      </field>
+    </object>
+
+    <object name="DistrDoc">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"userid,created"</member>
+
+      <field name="id" type="string" width="30" />
+      <field name="date" type="timestamp" />
+      <field name="created" type="timestamp" />
+      <field name="timeZone" type="number" />
+      <field name="serverTimeZone" type="number" data="S_TZ" execOn="Put" features="USE_TIMEZONE">ServerTimeZone()</field>
+      <field name="remark" type="string" width="100" />
+      <field name="userid" type="string" execOn="Put" data="USER_ID" >$user.id</field>
+      <field name="sended" type="timestamp" execOn="Put">Now()</field>
+
+      <field name="ourFaces" type="number" />
+      <field name="theirFaces" type="number" />
+
+      <field name="latitude" type="number" prec="5" />
+      <field name="longitude" type="number" prec="5" />
+
+      <events>
+        <event type="put">
+          <action name="WriteToLog">$object.type;$object.date</action>
+        </event>
+      </events>
+    </object>
+
+    <object name="DeliveryDay" sendAlways="true">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"DDV"</param>
+          <param name="commonTable">"DDDLV"</param>
+          <param name="catalog">"number;items;1"</param>
+          <param name="filter">"[id] in $Org.id"</param>
+        </source>
+      </sources>
+
+      <member name="table">"DDV"</member>
+
+      <field name="items" type="collection">
+        <data>
+          <object name="DeliveryItem">
+            <field name="id" type="string" data="ID_I"/>
+            <field name="qty" type="number" prec="3" />
+            <field name="sum" type="number" prec="2" />
+          </object>
+        </data>
+      </field>
+
+      <field name="id" type="string" />
+      <field name="number" type="string" data="NUM" />
+      <field name="date" type="date" />
+      <field name="created" type="timestamp" />
+    </object>
+
+    <object name="CostTypes">
+      <sources>
+        <source name="DBFTable">
+          <param name="tableName">"CST" + $user.id</param>
+        </source>
+      </sources>
+
+      <field name="id" type="string" />
+      <field name="idOrg" type="string" data="IDC" />
+      <field name="idCost" type="string" />
+      <field name="priority" type="number" />
+      <field name="start" type="date" />
+      <field name="end" type="date" />
+    </object>
+    
+    <object name="Cost" feature="COST_MANAGER">
+      <sources>
+        <source name="DBFCostReader">
+          <param name="cost">"CS" + $user.id</param>
+          <param name="costType">"CST" + $user.id</param>
+        </source>
+      </sources>
+
+      <field name="data" type="binary" />
+    </object>
+
+    <object name="ActionCost" >
+      <sources>
+        <source name="DBFTable">
+          <param name="tableName">"ACS" + $user.id</param>
+        </source>
+        <source name="DBFTable">
+          <param name="tableName">"ACTCOST"</param>
+        </source>
+      </sources>
+
+      <field name="id" type="string" />
+      <field name="idOrg" type="string" data="IDC" />
+      <field name="cost" type="number" prec="2" />
+      <field name="priority" type="number" />
+      <field name="idCost" type="string" />
+
+      <field name="start" type="date" />
+      <field name="end" type="date" />
+
+    </object>
+
+    <object name="WorkTime">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"userid,id,start"</member>
+      <field name="userid" type="string" execOn="Put">$user.id</field>
+      <field name="id" type="string" />
+      <field name="start" type="timestamp" />
+      <field name="stop" type="timestamp" />
+    </object>
+
+    <object name="Odometr">
+      <sources>
+        <!--<source name="DBFTable">
+          		<param name="tableName">"ODO" + $user.id</param>
+        	</source>-->
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"userid,start"</member>
+
+      <field name="start" type="timestamp"/>
+      <field name="start_lat" type="number" prec="4"  data="SLAT" />
+      <field name="start_long" type="number" prec="4"  data="SLON" />
+      <field name="start_odo" type="number" data="SODO"/>
+      <field name="start_rest" type="number" data="SREST"/>
+
+      <field name="end" type="timestamp"/>
+      <field name="end_lat" type="number" prec="4"  data="ELAT" />
+      <field name="end_long" type="number" prec="4"  data="ELON" />
+      <field name="end_odo" type="number" data="EODO"/>
+      <field name="end_rest" type="number" data="EREST"/>
+      <field name="refuel" type="number" />
+      <field name="userid" type="string" data="USER_ID" execOn="Put">$user.id</field>
+
+      <events>
+        <event type="put">
+          <!--<action name="WriteInternal">$object.type</action>-->
+          <action name="WriteToLog">$object.type;$object.date</action>
+        </event>
+      </events>
+    </object>
+
+    <modify src="OrgRemnants$items">
+      <add>
+        <field name="qtyBoard" type="number" prec="3" />
+        <field name="qtyWh" type="number" prec="3" />
+      </add>
+    </modify>
+
+    <modify src="Order$items">
+      <add>
+        <field name="costidx" type="number" width="1" data="TYPE_I" />
+      </add>
+    </modify>
+
+    <modify src="Price">
+      <add>
+        <field name="pack" type="number" />
+        <field name="license" type="number" />
+        <field name="mult" type="collection">
+          <data>
+            <object name="Matrix">
+              <sources>
+                <source name="DBFTableSet">
+                  <param name="userTable">"MW"</param>
+                  <param name="commonTable">"MPCY"</param>
+                  <param name="filter">"[ID] = $parent.id"</param>
+                </source>
+              </sources>
+              <field name="category" type="string" />
+              <field name="pack" type="number" />
+            </object>
+          </data>
+        </field>
+      </add>
+    </modify>
+
+    <modify src="Org">
+      <add>
+        <field name="info" type="string" />
+        <field name="delay" type="number" />
+        <field name="category" type="string" />
+        <field name="license" type="date" />
+        <field name="stop" type="number" hidden="true" />
+        <field name="flags" type="number" execOn="Get">EncodeFlag($object.stop,2)</field>
+        <field name="matrix" type="collection">
+          <data>
+            <object name="Matrix">
+              <sources>
+                <source name="DBFTableSet">
+                  <param name="userTable">"OMX"</param>
+                  <param name="commonTable">"ORG_MATRIX"</param>
+                  <param name="filter">"[ID] = $parent.id"</param>
+                </source>
+              </sources>
+              <field name="id" type="string" width="55" data="ID_I" />
+              <field name="order" type="number" data="rowid" />
+            </object>
+          </data>
+        </field>
+        <field name="reject" type="collection">
+          <data>
+            <object name="Matrix">
+              <sources>
+                <source name="DBFTableSet">
+                  <param name="userTable">"ORJ"</param>
+                  <param name="commonTable">"ORG_REJECT"</param>
+                  <param name="filter">"[ID] = $parent.id"</param>
+                </source>
+              </sources>
+              <field name="id" type="string" width="55" data="ID_I" />
+              <field name="order" type="number" data="rowid" />
+            </object>
+          </data>
+        </field>
+      </add>
+    </modify>
+
+    <modify src="Order$items">
+      <add>
+        <field name="costidx" type="number" />
+        <field name="useact" type="number" />
+      </add>
+    </modify>
+
+  </objects>
+</serverDefs>

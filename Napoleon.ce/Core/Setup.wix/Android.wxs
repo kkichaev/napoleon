@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding="windows-1251"?>
+<Wix xmlns='http://schemas.microsoft.com/wix/2006/wi'>
+   <Fragment Id='Android'>
+      <Feature Id='Android' Title='Наполеон-Андроид' Description='Руководство пользователя на КПК Андроид' Level='1' Display='3'
+               ConfigurableDirectory='_PRODUCT' Absent='allow'>
+         <ComponentRef Id='AndroidPdaComponents' />
+        <ComponentGroupRef Id='Docs' />
+      </Feature>
+
+      <DirectoryRef Id='_PRODUCT' >
+         <Component Id='AndroidPdaComponents' Guid='1DCA0B8E-1311-4c01-9895-20F115AB328F'>
+           <File Id='AndroidPdaDoc' Name='Android.pdf' DiskId='1' Source='Android.pdf' KeyPath='yes'>
+               <Shortcut Id='AndroidPdaDoc' Directory='Docs' Name='Android'
+                         Description='Руководство пользователя на КПК Андроид' Advertise='yes'/>
+            </File>
+         </Component>
+      </DirectoryRef>
+   </Fragment>
+</Wix>

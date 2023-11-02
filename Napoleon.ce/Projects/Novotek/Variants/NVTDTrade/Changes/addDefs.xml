@@ -1,0 +1,240 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+  <objects>
+  <object name="NewClient">
+      <sources>
+        <source name="DBFCatalogTable">
+          <param name="tableName">$object.table + $user.id</param>
+          <param name="catalog">"id"</param>
+          <param name="ordered">1</param>
+        </source>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="table">"NCL"</member>
+      <member name="primaryKey">"userid,created"</member>
+      <memberArray name="index">"created"</memberArray>
+
+      <field name="userid" type="string" data="USER_ID" execOn="Put">$user.id</field>
+      <field name="date" type="timestamp" data="NUM"/>
+      <field name="created" type="timestamp" />
+      <field name="timeZone" type="number" />
+      <field name="serverTimeZone" type="number" data="S_TZ" execOn="Put" feature="USE_TIMEZONE">ServerTimeZone()</field>
+      <field name="sended" type="timestamp" data="S_DATE" execOn="Put">Now()</field>
+      <field name="id" width="55" type="string" />
+      <field name="remark" type="string" />
+      <field name="latitude" type="number" prec="4" />
+      <field name="longitude" type="number" prec="4" />
+      <field name="stltime" type="number" />
+      <field name="inn" width="55" type="string" />
+      <field name="name" width="55" type="string" />
+      <field name="address" width="155" type="string" />
+      <field name="phone" width="20" type="string" />
+      <field name="salesChannel" width="55" type="string" data="CHANNEL"/>
+      <field name="profile" width="55" type="string" />
+      <field name="typeTT" width="55" type="string" />
+      <field name="time1" width="15" type="string" />
+      <field name="time2" width="12" type="string" />
+      <field name="fio" width="55" type="string" />
+
+      <events>
+        <event type="put">
+          <action name="WriteInternal">$object.type</action>
+          <action name="WriteToLog">$object.type;$object.created</action>
+        </event>
+      </events>
+    </object>
+    
+    <object name="Sklads">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"SKLADS"</param>
+          <param name="commonTable">"SKLADS"</param>
+        </source>
+      </sources>
+
+      <field name="key" type="string" data="ID"/>
+      <field name="value" type="string" data="NAME"/>
+      <field name="canDiv" type="number" data="CAN_DIV" />
+      <field name="cosType" type="number" data="CT" />
+      <field name="useDiscount" type="number" data="DSC" />
+    </object>
+    
+    <modify src="Delivery">
+      <add>
+        <field name="baseType" type="string" data="BT" />
+        <field name="address" type="string" data="ADDR"/>
+      </add>
+    </modify>
+    
+    <modify src="Org">
+      <add>
+        <field name="firmCode" type="string" data="FIRMA" />
+        <field name="balance" type="number" prec="2" />
+        <field name="stop" type="number" hidden="true" />
+        <field name="flags" type="number" execOn="Get">EncodeFlag($object.stop,2)</field>
+        <field name="matrix" type="collection">
+          <data>
+            <object name="OrgMatrix">
+              <sources>
+                <source name="DBFTableSet">
+                  <param name="userTable">"OMX"</param>
+                  <param name="commonTable">"ORGMTX"</param>
+                  <param name="filter">"[ID] = $parent.id"</param>
+                </source>
+              </sources>
+
+              <field name="id" data="ID_I" type="string" />
+            </object>
+          </data>
+        </field>
+        
+        <field name="segments" type="collection">
+          <data>
+            <object name="OrgSegment">
+              <sources>
+                <source name="DBFTableSet">
+                  <param name="userTable">"OS"</param>
+                  <param name="commonTable">"ORSG"</param>
+                  <param name="filter">"[ID] = $parent.id"</param>
+                </source>
+              </sources>
+
+              <field name="sgmid" type="string" />
+            </object>
+          </data>
+        </field>
+      </add>
+    </modify>
+    
+    <modify src="Order">
+      <add>
+        <field name="paytype" type="string" data="PTYPE" width="25"/>
+        <field name="action" type="string" width="25"/>
+        <field name="whCode" type="string" width="40" data="ID_WH" />
+        <field name="ctype" type="string" width="30" execOn="Put">KeyValueReader("ord" + $user.id + ".cfg","ВидЦены",$object.sumType)</field>
+        <field name="firmCode" type="string" width="30" />
+        <field name="chitem" type="number" width="1" />
+        <field name="pickup" type="number" width="1" />
+        <field name="canDiv" type="number" data="" />
+      </add>
+      <remove>
+        <field name="firma" />
+      </remove>
+    </modify>
+    
+    <modify src="Price">
+      <add>
+        <field name="whQty" type="collection">
+          <data>
+            <object name="QtyItem">
+              <sources>
+                <source name="Sequence">
+                  <param name="source">$parent.source</param>
+                  <param name="startIndex">2</param>
+                </source>
+              </sources>
+              <field name="qty" type="number" prec="3" />
+            </object>
+          </data>
+        </field>
+        <field name="units" type="collection">
+          <data>
+            <object name="Units">
+              <sources>
+                <source name="DBFTableSet">
+                  <param name="userTable">"WU"</param>
+                  <param name="commonTable">"WUNITS"</param>
+                  <param name="filter">"[ID_I] = $parent.id"</param>
+                </source>
+              </sources>
+              <field name="id" type="string" />
+              <field name="name" type="string" />
+              <field name="inpack" type="number" prec="3" />
+            </object>
+          </data>
+        </field>
+        <field name="piece" type="number"/>
+        <field name="kgCost" type="number" prec="2" />
+        <field name="bkgcolor" type="number" execOn="Get">GetColor($object.id,"price","back",0)</field>
+        
+        <field name="segments" type="collection">
+          <data>
+            <object name="PriceSegment">
+              <sources>
+                <source name="DBFTableSet">
+                  <param name="userTable">"WS"</param>
+                  <param name="commonTable">"WHSG"</param>
+                  <param name="filter">"[ID] = $parent.id"</param>
+                </source>
+              </sources>
+
+              <field name="sgmid" type="string" />
+            </object>
+          </data>
+        </field>
+        
+      </add>
+    </modify>
+    
+    <modify src="Returns">
+      <add>
+        <field name="firmCode" type="string" width="30" />
+      </add>
+    </modify>
+    <modify src="Order$items">
+      <add>
+        <field name="unit" type="string" data="ID_WU" />
+      </add>
+    </modify>
+    <object name="Action">
+      <sources>
+        <source name="DBFTable">
+          <param name="tableName">"ACT"+$user.id</param>
+        </source>
+      </sources>
+
+      <member name="primaryKey">"id"</member>
+
+      <field name="id" type="string" width="20" />
+      <field name="name" type="string" width="50" />
+    </object>
+    
+    <object name="Discount">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"DSC"</param>
+          <param name="commonTable">"DISCOUNT"</param>
+        </source>
+      </sources>
+
+      <field name="orgSgmID" type="string" data="OSGID" />
+      <field name="priceSgmID" type="string" data="PSGID" />
+      <field name="discount" type="number" prec="1" data="DISC" />
+    </object>
+    
+    <modify src="OrderProceeded" >
+      <add>
+      </add>
+    </modify>
+
+    <modify src="ScanLocationDoc">
+      <change>
+        <sources>
+          <source name="DBFTable">
+            <param name="tableName">"LOC" + $user.id</param>
+          </source>
+
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+      <add>
+        <events>
+          <event type="put">
+            <action name="WriteInternal">$object.type</action>
+          </event>
+        </events>
+      </add>
+    </modify>  
+  </objects>
+</serverDefs>

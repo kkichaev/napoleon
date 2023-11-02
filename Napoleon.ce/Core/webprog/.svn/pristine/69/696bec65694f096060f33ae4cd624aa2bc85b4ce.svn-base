@@ -1,0 +1,75 @@
+import { api } from "boot/axios";
+import { useBackendStore } from "src/stores/backend";
+
+
+export function registerUser(user) {
+  const headers = {
+    "Content-Type": "application/json;charset=UTF-8",
+  };
+
+  const url = "/api/users";
+
+  return api.post(url, user, {
+    headers,
+    withCredentials: true,
+  })
+}
+
+//http://localhost/confirm?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtraWNoYWV2QHlhbmRleC5ydSIsIm5hbWUiOiJcdTA0MTJcdTA0MzBcdTA0NDFcdTA0NGYiLCJwYXNzd29yZCI6IjEyMzQ1NiIsInN1cm5hbWUiOiJcdTA0MWZcdTA0NDNcdTA0M2ZcdTA0M2FcdTA0MzhcdTA0M2QiLCJjb21tYW5kIjoiY3JlYXRlX3VzZXIiLCJleHAiOjE2NzgyMDA2OTAuMDQwMzA5N30.bSVR0CssBgQ6j9q7sllbqD9d6hKGswT7oh7MsX3kO1A
+
+
+export function sendRegToken(token){
+  console.log('sendRegToken')
+  const headers = {
+    "Content-Type": "application/json;charset=UTF-8",
+  };
+
+  const url = "/auth/cnf_email/" + token;
+  api.get(url, {
+    headers,
+    withCredentials: true
+  })
+    .then((resopnce)=>{console.log('success: ', resopnce)})
+    .catch((error)=>{console.log('error: ', error)})
+}
+
+export async function isAuth(){
+  console.log('sendRegToken')
+  const headers = {
+    "Content-Type": "application/json;charset=UTF-8",
+  };
+
+  const url = "/auth/user";
+
+  try{
+    var result = await api.get(url, {
+      headers,
+      withCredentials: true,
+    })
+    console.log("auth success: " + result)
+    return true
+  }catch(error){
+    return false
+    console.log("auth error: " + error)
+  }
+}
+
+export async function loginUser(baseUrl, user){
+  console.log('login: ', user )
+  const headers = {
+    "Content-Type": "application/json;charset=UTF-8",
+  };
+
+  const url = baseUrl + "/auth/login";
+
+  try{
+    return await axios.post(url, {email: user.email, password: user.password, remember: user.remember},
+      {
+        headers,
+        withCredentials: true
+      })
+
+  }catch(error){
+    throw(error)
+  }
+}

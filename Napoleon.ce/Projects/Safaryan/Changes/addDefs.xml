@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+    <modify src="Delivery">
+      <change>
+        <sources>
+          <sources>
+            <source name="DBFTableSet">
+              <param name="userTable">"DLV"</param>
+              <param name="commonTable">"DELIVERY"</param>
+              <param name="catalog">"number,id;items;1"</param>
+              <param name="filter">"[id] in $Org.id"</param>
+            </source>
+          </sources>
+        </sources>
+      </change>
+    </modify>
+	</objects>
+</serverDefs>

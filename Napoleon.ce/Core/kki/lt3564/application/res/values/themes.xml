@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Application theme. -->
+    <style name="leadertask.AppTheme.Light" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:textColor">#ff000000</item>
+        <item name="android:windowBackground">@android:color/white</item>
+        <item name="android:itemTextAppearance">@style/leadertask.MyColorTheme</item>
+        <item name="android:colorPrimary">@color/primary_color</item>
+        <!-- This is the interesting part -->
+        <item name="android:dialogTheme">@style/AlertDialogCustom</item>
+        <item name="dialogTheme">@style/AlertDialogCustom</item>
+        <item name="android:alertDialogTheme">@style/AlertDialogCustom</item>
+        <item name="alertDialogTheme">@style/AlertDialogCustom</item>
+        <item name="colorAccent">@color/primary_color</item>
+        <item name="android:colorEdgeEffect">@color/primary_color</item>
+        <item name="windowActionModeOverlay">true</item>
+        <item name="android:windowActionModeOverlay">true</item>
+        <item name="actionModeStyle">@style/CustomActionMode</item>
+        <item name="drawerArrowStyle">@style/WhiteDrawerIconStyle</item>
+        <item name="android:autoCompleteTextViewStyle">@style/cursorColor</item>
+    </style>
+
+    <style name="leadertask.Theme.AppCompat.Translucent" parent="leadertask.AppTheme.Light">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation</item>
+    </style>
+
+    <style name="cursorColor" parent="Widget.AppCompat.AutoCompleteTextView">
+        <item name="android:textCursorDrawable">@drawable/cursor</item>
+    </style>
+
+    <style name="WhiteDrawerIconStyle" parent="Widget.AppCompat.DrawerArrowToggle">
+        <item name="spinBars">true</item>
+        <item name="color">@android:color/white</item>
+    </style>
+
+    <style name="CustomActionMode" parent="@style/Widget.AppCompat.ActionMode">
+        <item name="background">@color/primary_color</item>
+    </style>
+
+    <style name="leadertask.MyColorTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <style name="AlertDialogCustom" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorAccent">@color/primary_color</item>
+    </style>
+
+    <style name="MyToolbarTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:textColorPrimary">@color/toolbar_prop_color_text</item>
+        <item name="android:textColorSecondary">@color/toolbar_prop_color_text</item>
+        <item name="android:textColor">@color/toolbar_prop_color_text</item>
+        <item name="actionMenuTextColor">@color/toolbar_prop_color_text</item>
+    </style>`
+
+    <style name="TextAppearance.Widget.DropDownItem" parent="TextAppearance.Widget.DropDownItem">
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <style name="OverFlow" parent="Widget.AppCompat.ActionButton.Overflow">
+        <item name="android:src">@drawable/ic_menu_moreoverflow_white</item>
+    </style>
+
+    <style name="Theme.LTmain" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:actionOverflowButtonStyle">@style/OverFlow</item>
+        <item name="ptrHeaderStyle">@style/Widget.Custom.PtrHeader</item>
+    </style>
+
+    <style name="Theme.LTmain.Transparent" parent="@style/Theme.LTmain">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <style name="ToolbarStyle" parent="Widget.AppCompat.Toolbar">
+        <item name="navigationContentDescription">@string/abc_action_bar_up_description</item>
+        <item name="android:minHeight">56dp</item>
+        <item name="android:background">@color/primary_color</item>
+        <item name="android:titleTextStyle">@color/white</item>
+    </style>
+
+    <style name="ToolbarStyleWhite" parent="Widget.AppCompat.Toolbar">
+        <item name="navigationContentDescription">@string/abc_action_bar_up_description</item>
+        <item name="android:minHeight">56dp</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:titleTextStyle">@color/toolbar_prop_color_text</item>
+    </style>
+</resources>

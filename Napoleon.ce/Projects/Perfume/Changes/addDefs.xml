@@ -1,0 +1,69 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+    <object name="FID">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"pid"</member>
+      <field name="pid" type="string" />
+      <field name="fid" type="string" />
+    </object>
+    <object name="AgentPlan">
+      <sources>
+        <source name="SQTable" type="internal" >
+          <param name="readFilter">'"userid"=' + "'" + $user.id + "'"</param>
+        </source>
+      </sources>
+      <member name="primaryKey">"userid,begin"</member>
+      <field name="userid" type="string" />
+      <field name="begin" type="date" />
+      <field name="end" type="date" />
+      <field name="items" type="collection">
+        <data>
+          <object name="AgemtPlanItems">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+            <field name="id" type="string" />
+            <field name="value" type="number" prec="3" />
+          </object>
+        </data>
+      </field>
+    </object>
+  <modify src="Delivery">
+	        <add>
+	            <field name="payDate" type="date" />
+	        </add>
+	    </modify>
+	    <modify src="Org">
+	        <add>
+	            <field name="payType" type="string" width="20"/>
+                <field name="chexp" type="timestamp"/>
+	        </add>
+	    </modify>
+	    <modify src="Order">
+	        <add>
+	            <field name="payType" type="string" width="20"/>
+	        </add>
+	    </modify>
+	    <modify src="Monitoring$items">
+	        <add>
+	            <field name="cost" type="number" prec="2"/>
+	        </add>
+	    </modify>
+    <modify src="Price">
+      <change>
+        <field name="fid" type="string" data="folder" hidden="true" execOn="Get" pass="1">GetFolderID($object.id)</field>
+        <field name="folderID" type="number" execOn="Get" pass="2">FolderID($object.fid)</field>
+      </change>
+    </modify>
+    <modify src="ManagerPrice">
+      <change>
+        <field name="fid" type="string" data="folder" execOn="Get" pass="1">GetFolderID($object.id)</field>
+        <field name="folderID" type="number" execOn="Get" pass="2">FolderID($object.fid)</field>
+      </change>
+    </modify>
+  </objects>
+</serverDefs>

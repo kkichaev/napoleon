@@ -1,0 +1,610 @@
+﻿!name Openstreet;
+-----------------------------------------------------------------------------------------------
+!beginmap orgaddress
+<!DOCTYPE html "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+<meta http-equiv='X-UA-Compatible' content='IE=Edge'/>
+<title></title>
+<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAjuQiUAlecbUWCdh1QCnZzrWq37EPqPE0&sensor=false" type="text/javascript"></script>
+<script type="text/javascript">
+function initialize() {
+   var mapTypeIds = [];
+   
+   for(var type in google.maps.MapTypeId) {
+       mapTypeIds.push(google.maps.MapTypeId[type]);
+   }
+   
+   mapTypeIds.push("OSM");
+
+   var map = new google.maps.Map(document.getElementById("map_canvas"),
+   {
+      mapTypeId: "OSM",
+      mapTypeControlOptions: {
+         mapTypeIds: mapTypeIds
+   }});
+   
+   var marker = new google.maps.Marker({ 
+         position: new google.maps.LatLng(##latitude##, ##longitude##),
+         map: map
+      });
+      
+   google.maps.event.addListener(marker, 'click', function() {
+      new google.maps.InfoWindow({
+         content: "##name##"
+      }).open(map,marker);
+   });
+   
+   map.mapTypes.set("OSM", new google.maps.ImageMapType({
+       getTileUrl: function(coord, zoom) {
+           return "http://tile.openstreetmap.org/" + zoom + "/" + coord.x + "/" + coord.y + ".png";
+       },
+       tileSize: new google.maps.Size(256, 256),
+       name: "OpenStreetMap",
+       maxZoom: 18
+   }));
+            
+   map.setCenter(new google.maps.LatLng(##latitude##, ##longitude##));
+   map.setZoom(12);
+}
+
+</script>
+<style type="text/css">
+ body, html { width:100%; height:100%; margin:0; padding:0; overflow:hidden;}
+ .infomsg { display:none; }
+</style>
+</head>
+<body onload="initialize()">
+<div id="map_canvas" style="width: 100%; height:100%"></div>
+</body>
+</html>
+!endmap
+
+-----------------------------------------------------------------------------------------------
+!beginmap docorgaddress
+<!DOCTYPE html "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+<meta http-equiv='X-UA-Compatible' content='IE=Edge'/>
+<title></title>
+<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAjuQiUAlecbUWCdh1QCnZzrWq37EPqPE0&sensor=false" type="text/javascript"></script>
+<script type="text/javascript">
+function initialize() {
+   var mapTypeIds = [];
+   
+   for(var type in google.maps.MapTypeId) {
+       mapTypeIds.push(google.maps.MapTypeId[type]);
+   }
+   
+   mapTypeIds.push("OSM");
+
+   var map = new google.maps.Map(document.getElementById("map_canvas"),
+   {
+      mapTypeId: "OSM",
+      mapTypeControlOptions: {
+         mapTypeIds: mapTypeIds
+   }});
+   
+   var bounds = new google.maps.LatLngBounds();
+   !var
+      point = new google.maps.LatLng(##latitude##, ##longitude##);
+      bounds.extend(point);
+      
+      bounds.extend(new google.maps.LatLng(##latitude##, ##longitude##));
+      var marker##number## = new google.maps.Marker({ 
+         position: new google.maps.LatLng(##latitude##, ##longitude##),
+         icon: "http://grsoft.ru/markers/##color##/marker1.png", 
+         map: map
+      });
+      
+      google.maps.event.addListener(marker##number##, 'click', function() {
+         new google.maps.InfoWindow({
+            content: "##name##"
+         }).open(map,marker##number##);
+      });
+   !endvar
+   
+   map.mapTypes.set("OSM", new google.maps.ImageMapType({
+       getTileUrl: function(coord, zoom) {
+           return "http://tile.openstreetmap.org/" + zoom + "/" + coord.x + "/" + coord.y + ".png";
+       },
+       tileSize: new google.maps.Size(256, 256),
+       name: "OpenStreetMap",
+       maxZoom: 18
+   }));
+            
+   map.setCenter(bounds.getCenter());
+   map.fitBounds(bounds);
+}
+
+</script>
+<style type="text/css">
+ body, html { width:100%; height:100%; margin:0; padding:0; overflow:hidden;}
+ .infomsg { display:none; }
+</style>
+</head>
+<body onload="initialize()">
+<div id="map_canvas" style="width: 100%; height:100%"></div>
+</body>
+</html>
+!endmap
+
+-----------------------------------------------------------------------------------------------
+!beginmap route
+<!DOCTYPE html "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+<meta http-equiv='X-UA-Compatible' content='IE=Edge'/>
+<title></title>
+<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAjuQiUAlecbUWCdh1QCnZzrWq37EPqPE0&sensor=false" type="text/javascript"></script>
+<script type="text/javascript">
+function havePoint(ar, point) {
+index = 0;
+for( ; index < ar.length; index++ ) {
+  pt = ar[index];
+  if( pt.lat() == point.lat() && pt.lng() == point.lng() )
+    return true;
+}
+return false;
+}
+function initialize() {
+   var mapTypeIds = [];
+   
+   for(var type in google.maps.MapTypeId) {
+       mapTypeIds.push(google.maps.MapTypeId[type]);
+   }
+   
+   mapTypeIds.push("OSM");
+
+   var map = new google.maps.Map(document.getElementById("map_canvas"),
+   {
+      mapTypeId: "OSM",
+      mapTypeControlOptions: {
+         mapTypeIds: mapTypeIds
+   }});
+   
+   var bounds = new google.maps.LatLngBounds();
+   var plRoute = [];
+
+   !var
+      point = new google.maps.LatLng(##latitude##, ##longitude##);
+      if( !havePoint(plRoute, point) ) {
+	plRoute.push(point);
+      bounds.extend(point);
+      
+      bounds.extend(new google.maps.LatLng(##latitude##, ##longitude##));
+      var marker##number## = new google.maps.Marker({ 
+         position: new google.maps.LatLng(##latitude##, ##longitude##),
+         icon: "http://grsoft.ru/markers/green/marker##number##.png", 
+         map: map
+      });
+      
+      google.maps.event.addListener(marker##number##, 'click', function() {
+         new google.maps.InfoWindow({
+            content: "##name##"
+         }).open(map,marker##number##);
+      });
+    }
+   !endvar
+
+   map.mapTypes.set("OSM", new google.maps.ImageMapType({
+       getTileUrl: function(coord, zoom) {
+           return "http://tile.openstreetmap.org/" + zoom + "/" + coord.x + "/" + coord.y + ".png";
+       },
+       tileSize: new google.maps.Size(256, 256),
+       name: "OpenStreetMap",
+       maxZoom: 18
+   }));
+   
+      var pl1 = new google.maps.Polyline({
+      path: plRoute,
+      icons: [{ icon: {path: 'M -1,2 0,-1 1,2 0,1'},offset: '50%', repeat: '150px' }],
+      strokeColor: "#707070",
+      strokeWeight: 3,
+      strokeOpacity: 1});
+      pl1.setMap(map);
+
+   map.setCenter(bounds.getCenter());
+   map.fitBounds(bounds);
+}
+</script>
+<style type="text/css">
+ body, html { width:100%; height:100%; margin:0; padding:0; overflow:hidden;}
+ .infomsg { display:none; }
+</style>
+</head>
+<body onload="initialize()">
+<div id="map_canvas" style="width: 100%; height:100%"></div>
+</body>
+</html>
+
+!endmap
+
+-----------------------------------------------------------------------------------------------
+!beginmap traceroute
+!colorGPS=#ff0000;
+!colorGSM=#b000b0;
+<!DOCTYPE html "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+<meta http-equiv='X-UA-Compatible' content='IE=Edge'/>
+<title></title>
+<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAjuQiUAlecbUWCdh1QCnZzrWq37EPqPE0&sensor=false" type="text/javascript"></script>
+<script type="text/javascript">
+var map;
+var markers = {};
+var infowindow = null;
+
+function ShowInfo(lat,long) {
+  try{
+     if (infowindow != null) 
+        infowindow.close();
+
+     var m = markers[lat+long];
+     google.maps.event.trigger(m, 'click');
+     map.setCenter(m.position);
+  }catch(err){
+    
+  }
+}
+
+function initialize() {
+   var mapTypeIds = [];
+   
+   for(var type in google.maps.MapTypeId) {
+       mapTypeIds.push(google.maps.MapTypeId[type]);
+   }
+   
+   mapTypeIds.push("OSM");
+
+   map = new google.maps.Map(document.getElementById("map_canvas"),
+   {
+      mapTypeId: "OSM",
+      mapTypeControlOptions: {
+         mapTypeIds: mapTypeIds
+   }});
+   
+   var bounds = new google.maps.LatLngBounds();
+
+   !var
+      bounds.extend(new google.maps.LatLng(##latitude##, ##longitude##));
+   
+      var marker##number## = new google.maps.Marker({ 
+         position: new google.maps.LatLng(##latitude##, ##longitude##),
+         title: '##name##',
+         icon: "http://grsoft.ru/markers/##iconcolor##/marker##icon##.png", 
+         map: map
+      });
+
+		google.maps.event.addListener(marker##number##, 'click', function() {
+         infowindow = new google.maps.InfoWindow({
+            content: '##descr##'
+         });
+         
+         infowindow.open(map,marker##number##);
+      });
+
+      markers["##latitude####longitude##"]=marker##number##;
+   !endvar
+
+   !var
+      var pl##number## = new google.maps.Polyline({
+      path: [
+            !cont
+               new google.maps.LatLng(##latitude##, ##longitude##)
+            !endcont
+            ],
+      icons: [{ icon: {path: 'M -1,2 0,-1 1,2 0,1'},offset: '50%', repeat: '150px' }],
+      strokeColor: "##color##",
+      strokeWeight: 5,
+      strokeOpacity: 1});
+      pl##number##.setMap(map);
+   !endvar
+
+   !var
+      bounds.extend(new google.maps.LatLng(##latitude##, ##longitude##));
+      var markerP##number## = new google.maps.Marker({ 
+         position: new google.maps.LatLng(##latitude##, ##longitude##),
+         icon: "http://grsoft.ru/markers/blue/marker##number##.png", 
+         map: map
+      });
+      
+      google.maps.event.addListener(markerP##number##, 'click', function() {
+         new google.maps.InfoWindow({
+            content: '##descr##'
+         }).open(map,markerP##number##);
+      });
+   !endvar
+
+   !var
+      bounds.extend(new google.maps.LatLng(##latitude##, ##longitude##));
+      var markerO##number## = new google.maps.Marker({ 
+         position: new google.maps.LatLng(##latitude##, ##longitude##),
+         icon: "http://grsoft.ru/markers/red/marker##number##.png", 
+         map: map
+      });
+      
+      google.maps.event.addListener(markerO##number##, 'click', function() {
+         new google.maps.InfoWindow({
+            content: '##descr##'
+         }).open(map,markerO##number##);
+      });
+   !endvar
+
+
+   map.mapTypes.set("OSM", new google.maps.ImageMapType({
+       getTileUrl: function(coord, zoom) {
+           return "http://tile.openstreetmap.org/" + zoom + "/" + coord.x + "/" + coord.y + ".png";
+       },
+       tileSize: new google.maps.Size(256, 256),
+       name: "OpenStreetMap",
+       maxZoom: 18
+   }));
+   map.setCenter(bounds.getCenter());
+   map.fitBounds(bounds);
+}
+</script>
+<style type="text/css">
+ body, html { width:100%; height:100%; margin:0; padding:0; overflow:hidden;}
+ .infomsg { display:none; }
+</style>
+</head>
+<body onload="initialize()">
+<div id="map_canvas" style="width: 100%; height:100%"></div>
+</body>
+</html>
+
+!endmap
+
+-----------------------------------------------------------------------------------------------
+!beginmap coverarea
+<!DOCTYPE html "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+<meta http-equiv='X-UA-Compatible' content='IE=Edge'/>
+<title></title>
+<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAjuQiUAlecbUWCdh1QCnZzrWq37EPqPE0&sensor=false" type="text/javascript"></script>
+<script type="text/javascript">
+function initialize() {
+   var mapTypeIds = [];
+   
+   for(var type in google.maps.MapTypeId) {
+       mapTypeIds.push(google.maps.MapTypeId[type]);
+   }
+   
+   mapTypeIds.push("OSM");
+
+   var map = new google.maps.Map(document.getElementById("map_canvas"),
+   {
+      mapTypeId: "OSM",
+      mapTypeControlOptions: {
+         mapTypeIds: mapTypeIds
+   }});
+   
+   var bounds = new google.maps.LatLngBounds();
+
+   !var
+      bounds.extend(new google.maps.LatLng(##latitude##, ##longitude##));
+   
+      var marker##number## = new google.maps.Marker({ 
+         position: new google.maps.LatLng(##latitude##, ##longitude##),
+         icon: "http://grsoft.ru/markers/##color##/marker##number##.png", 
+         map: map
+      });
+   !endvar
+
+   map.mapTypes.set("OSM", new google.maps.ImageMapType({
+       getTileUrl: function(coord, zoom) {
+           return "http://tile.openstreetmap.org/" + zoom + "/" + coord.x + "/" + coord.y + ".png";
+       },
+       tileSize: new google.maps.Size(256, 256),
+       name: "OpenStreetMap",
+       maxZoom: 18
+   }));
+   
+   map.setCenter(bounds.getCenter());
+   map.fitBounds(bounds);
+}
+</script>
+<style type="text/css">
+ body, html { width:100%; height:100%; margin:0; padding:0; overflow:hidden;}
+ .infomsg { display:none; }
+</style>
+</head>
+<body onload="initialize()">
+<div id="map_canvas" style="width: 100%; height:100%"></div>
+</body>
+</html>
+
+!endmap
+-----------------------------------------------------------------------------------------------
+!beginmap changeorgaddress
+<!DOCTYPE html "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+<meta http-equiv='X-UA-Compatible' content='IE=Edge'/>
+<title></title>
+<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAjuQiUAlecbUWCdh1QCnZzrWq37EPqPE0&sensor=false" type="text/javascript"></script>
+<script type="text/javascript">
+var map = 0;
+var marker;
+var infoWindow;
+
+function ShowOrg(lat, lng, name, updateBounds) {
+  if( map == 0 )
+     return;
+  var pos = new google.maps.LatLng(lat, lng);
+  marker.setPosition(pos);
+  infoWindow.setContent(name);
+  if( updateBounds )
+    map.setCenter(pos);
+}
+
+function initialize() {
+  var cur = window.external.GetCurrentOrg('lat');
+  var startLat = 57.612053, startLng = 39.830773, startName = "Клиент";
+
+  if( cur != 0 ) {
+    startLat = cur;
+    startLng = window.external.GetCurrentOrg('lng');
+    startName = window.external.GetCurrentOrg('org');
+  }  
+   var mapTypeIds = [];
+   
+   for(var type in google.maps.MapTypeId) {
+       mapTypeIds.push(google.maps.MapTypeId[type]);
+   }
+   
+   mapTypeIds.push("OSM");
+
+   map = new google.maps.Map(document.getElementById("map_canvas"),
+   {
+      disableDoubleClickZoom: true,
+      mapTypeId: "OSM",
+      mapTypeControlOptions: {
+         mapTypeIds: mapTypeIds
+   }});
+   
+   marker = new google.maps.Marker({ 
+         position: new google.maps.LatLng(startLat, startLng),
+         map: map
+      });
+      
+   infoWindow = new google.maps.InfoWindow({content: startName });
+   google.maps.event.addListener(marker, 'click', function() {
+      infoWindow.open(map,marker);
+   });
+   google.maps.event.addListener(map, 'dblclick', function(e) {
+      e.stop();
+      window.external.SetNewLocation(e.latLng.lat(), e.latLng.lng());
+   });
+   
+   map.mapTypes.set("OSM", new google.maps.ImageMapType({
+       getTileUrl: function(coord, zoom) {
+           return "http://tile.openstreetmap.org/" + zoom + "/" + coord.x + "/" + coord.y + ".png";
+       },
+       tileSize: new google.maps.Size(256, 256),
+       name: "OpenStreetMap",
+       maxZoom: 18
+   }));
+            
+   map.setCenter(new google.maps.LatLng(startLat, startLng));
+   map.setZoom(12);
+}
+
+</script>
+<style type="text/css">
+ body, html { width:100%; height:100%; margin:0; padding:0; overflow:hidden;}
+ .infomsg { display:none; }
+</style>
+</head>
+<body onload="initialize()">
+<div id="map_canvas" style="width: 100%; height:100%"></div>
+</body>
+</html>
+!endmap
+-----------------------------------------------------------------------------------------------
+!beginmap userlocation
+<!DOCTYPE html "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+<meta http-equiv='X-UA-Compatible' content='IE=Edge'/>
+<title></title>
+<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAjuQiUAlecbUWCdh1QCnZzrWq37EPqPE0&sensor=false" type="text/javascript"></script>
+<script type="text/javascript">
+var map;
+var markers = {};
+var infowindow = null;
+
+function ShowInfo(lat,long) {
+  try{
+     if (infowindow != null) 
+        infowindow.close();
+
+     var m = markers[lat+long];
+     google.maps.event.trigger(m, 'click');
+     map.setCenter(m.position);
+  }catch(err){
+    
+  }
+}
+
+function initialize() {
+   var mapTypeIds = [];
+   
+   for(var type in google.maps.MapTypeId) {
+       mapTypeIds.push(google.maps.MapTypeId[type]);
+   }
+   
+   mapTypeIds.push("OSM");
+
+   var map = new google.maps.Map(document.getElementById("map_canvas"),
+   {
+      mapTypeId: "OSM",
+      mapTypeControlOptions: {
+         mapTypeIds: mapTypeIds
+   }});
+   
+   var bounds = new google.maps.LatLngBounds();
+   !var
+      point = new google.maps.LatLng(##latitude##, ##longitude##);
+      bounds.extend(point);
+      
+      bounds.extend(new google.maps.LatLng(##latitude##, ##longitude##));
+      var marker##number## = new google.maps.Marker({ 
+         position: new google.maps.LatLng(##latitude##, ##longitude##),
+         icon: "http://grsoft.ru/markers/##color##/marker##number##.png", 
+         map: map
+      });
+      
+      google.maps.event.addListener(marker##number##, 'click', function() {
+         infowindow = new google.maps.InfoWindow({
+            content: '##name##'
+         });
+         
+         infowindow.open(map,marker##number##);
+      });
+
+      markers["##latitude####longitude##"]=marker##number##;
+   !endvar
+   
+   map.mapTypes.set("OSM", new google.maps.ImageMapType({
+       getTileUrl: function(coord, zoom) {
+           return "http://tile.openstreetmap.org/" + zoom + "/" + coord.x + "/" + coord.y + ".png";
+       },
+       tileSize: new google.maps.Size(256, 256),
+       name: "OpenStreetMap",
+       maxZoom: 18
+   }));
+            
+   map.setCenter(bounds.getCenter());
+   map.fitBounds(bounds);
+}
+
+</script>
+<style type="text/css">
+ body, html { width:100%; height:100%; margin:0; padding:0; overflow:hidden;}
+ .infomsg { display:none; }
+</style>
+</head>
+<body onload="initialize()">
+<div id="map_canvas" style="width: 100%; height:100%"></div>
+</body>
+</html>
+!endmap
+
+-----------------------------------------------------------------------------------------------

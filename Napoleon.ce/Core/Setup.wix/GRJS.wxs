@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding="windows-1251"?>
+<Wix xmlns='http://schemas.microsoft.com/wix/2006/wi'>
+   <Fragment Id='GRJS'>
+      <Feature Id='GRJS' Title='GRSoft Join Server' Description='Руководство по работе через JoinServer' 
+               Absent='allow' ConfigurableDirectory='_PRODUCT' Level='1' >
+         <ComponentRef Id='GRJS' />
+        <ComponentGroupRef Id='Docs' />
+      </Feature>
+
+      <DirectoryRef Id='_PRODUCT' >
+         <Component Id='GRJS' Guid='957FA99F-3F4E-4D29-AC6A-B64705060DA0'>
+           <File Id='GRJS_pdf' Name='GRJS.pdf' DiskId='1' Source='GRJS.pdf' KeyPath='yes'>
+             <Shortcut Id='GRJSDoc' Name='GRJS' Directory='Docs' Description='Руководство по работе через JoinServer' Advertise='yes' />
+           </File>
+         </Component>
+      </DirectoryRef>
+   </Fragment>
+</Wix>

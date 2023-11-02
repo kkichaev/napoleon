@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+   <meta name="viewport" content="width=device-width,height=device-height, user-scalable=no"/>
+   
+   <title>Yandex Map</title>
+
+   <style type="text/css">
+      body, html {
+         width: 100%;
+         height: 100%;
+         margin: 0;
+         padding: 0;
+         overflow: hidden;
+      }
+
+      #map {
+         height: 100%;
+      }
+   </style>
+
+   <script src="http://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+
+   <script type="text/javascript">
+   	  ymaps.ready(initialize);
+   
+      var map;
+
+      function initialize() {
+    	  map = new ymaps.Map("map", {
+              center: [57.611453, 39.83032],
+              zoom: 10
+          }, {
+              searchControlProvider: 'yandex#search'
+          });
+
+    	  if (!loadData('DATASECTION')){
+    		  map = document.getElementById("map");
+    		  map.innerHTML = "<div style='position: absolute;left: 50%;top: 50%;transform: translateX(-50%) translateY(-50%);'><font color='gray'>Нет данных о торговых точках</font></div>";
+    	  }
+      }
+
+      function drawPoint(docs) {
+         if (docs != null) {
+            docs.forEach(function (p) {
+               marker = new ymaps.Placemark([p.mLatitude, p.mLongitude], 
+            		   {iconContent: "<font color='blue'><b>" + p.idx + "</b></font>",
+            	        balloonContent: p.name + "<br>" + p.address},
+            		   {preset: "islands#dotCircleIcon", iconColor: p.color});
+               
+               marker.events.add('click', function () {
+   				 Android.handle(p.id);
+			   });
+			   
+               map.geoObjects.add(marker);
+            });
+         }
+      }
+      
+      function loadData(json) {
+    	 result = false
+    	 
+         try {
+            var data = JSON.parse(json)
+
+            if (data != null && data.map != null  && data.map.length > 0) {
+               drawPoint(data.map);
+               result = true;
+            }
+         } catch (err) {
+            console.log(err);
+         }
+         
+         if (data.mypos != null){
+         	c = [data.mypos.mLatitude, data.mypos.mLongitude];
+         	marker = new ymaps.Placemark(c, 
+            	{iconContent: "Z"},{preset: "islands#bluePersonIcon"});
+          	map.geoObjects.add(marker);
+          	map.setBounds(map.geoObjects.getBounds());
+          	map.setCenter(c);
+         }else
+        	map.setBounds(map.geoObjects.getBounds());
+         
+         return result;
+      }
+   </script>
+</head>
+
+<body>
+   <div id="map"></div>
+</body>
+</html>

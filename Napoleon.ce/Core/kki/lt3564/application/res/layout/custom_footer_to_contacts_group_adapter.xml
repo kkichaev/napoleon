@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/ll_tv_add_user_to_project"
+        style="@style/fppLl" >
+
+        <ImageView
+            android:id="@+id/im_tv_add_user"
+            android:src="@drawable/add_black"
+            style="@style/fppCb" />
+
+        <TextView
+            android:id="@+id/tv_add_user_to_project"
+            style="@style/fppTv"
+            android:text="@string/contacts_group_add_performer"
+            android:textColor="@android:color/black"/>
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/divFavorite_add_user_to_project"
+        style="@style/dividerSmall" />
+
+</LinearLayout>

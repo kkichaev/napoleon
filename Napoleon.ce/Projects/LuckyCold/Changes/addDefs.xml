@@ -1,0 +1,39 @@
+<?xml version="1.0" ?>
+<serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
+	<objects>
+    <object name="OrgFS">
+      <sources>
+        <source name="DBFTableSet">
+          <param name="userTable">"FS"</param>
+          <param name="commonTable">"FSORG"</param>
+        </source>
+      </sources>
+
+      <field name="id" type="number" key="true" data="rowid" />
+      <field name="fid" type="string" data="id" width="15" />
+      <field name="name" type="string" />
+      <field name="level" type="number" width="9" />
+    </object>
+	    
+    <modify src="Org">
+      <add>
+        <field name="prcType" type="string" />
+        <field name="folder" type="string" />
+      </add>
+    </modify>
+
+    <modify src="Order">
+      <add>
+        <field name="prcCode" type="string" width="25" />
+        <field name="firmCode" type="string" width="25" />
+      </add>
+    </modify>
+
+    <modify src="Price">
+      <add>
+        <field name="usePack" type="number" />
+        <field name="urgent" type="number" />
+      </add>
+    </modify>
+  </objects>
+</serverDefs>

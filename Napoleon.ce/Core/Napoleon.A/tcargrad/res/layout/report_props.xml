@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/white"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/LinearLayout01"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/footer"
+            android:paddingBottom="10dp"
+            android:paddingTop="5dp" >
+
+		    <TextView
+		        android:id="@+id/tvName"
+		        android:padding="3sp"
+			    android:textSize="16sp"
+			    android:textColor="@color/black"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="" />		</LinearLayout>
+
+    <LinearLayout
+	    android:background="@color/blue"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/textView1"
+		    android:background="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+	        android:textColor="@color/black"
+	        android:textSize="16sp"
+	        android:layout_marginTop="1dp"
+	        android:layout_marginBottom="1dp"
+	        android:layout_weight="0.5"
+            android:gravity="center"
+            android:text="Название" />
+
+        <TextView
+            android:id="@+id/textView2"
+    		android:background="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+	        android:textColor="@color/black"
+	        android:textSize="16sp"
+	        android:layout_marginTop="1dp"
+	        android:layout_marginLeft="1dp"
+	        android:layout_marginBottom="1dp"
+	        android:layout_weight="0.5"
+            android:gravity="center"
+            android:text="Значение" />
+
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/lvItems"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+    </ListView>
+
+</LinearLayout>

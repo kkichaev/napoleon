@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+   
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+ 	android:layout_height="fill_parent" 
+ 	android:layout_width="fill_parent" 
+ 	android:background="#FFFFFF" 
+ 	android:orientation="vertical">
+ 	
+	<TextView android:layout_height="wrap_content" 
+		android:layout_weight="0" 
+		android:layout_width="fill_parent" 
+		android:text="Имя организации" 
+		android:textStyle="bold" 
+		android:textColor="#0000FF" 
+		android:textSize="20sp" android:id="@+id/tvOrgName" 
+		android:ellipsize="end" 
+		android:lines="1" 
+		android:scrollHorizontally="true"></TextView>
+	
+   <TableLayout android:layout_width="fill_parent" 
+    	android:stretchColumns="1"
+    	android:id="@+id/tableLayout1" 
+    	android:layout_height="wrap_content" 
+    	android:layout_weight="0">
+	
+       <TableRow
+	    	android:padding="2dp"
+        	android:layout_width="wrap_content" 
+        	android:layout_height="wrap_content">
+			
+			<TextView
+                android:id="@+id/tvDocNumber"
+				android:layout_height="wrap_content" 
+				android:text="№ Док." 
+				android:textColor="#000000" 
+				android:layout_marginLeft="5dp" 
+				android:layout_marginRight="5dp" android:layout_width="wrap_content" 
+				android:layout_gravity="center_vertical"/>
+						
+			<EditText android:id="@+id/edNumber"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:layout_marginRight="3dp">
+			</EditText>
+			
+	   </TableRow>
+
+      	<TableRow 
+        	android:layout_width="wrap_content" 
+        	android:layout_height="wrap_content">
+			
+			<TextView 		           
+			    android:id="@+id/tvDogInfo"
+				android:layout_height="wrap_content" 
+				android:textColor="#000000" 
+				android:text=""
+				android:layout_span="2" 
+				android:layout_marginLeft="5dp" 
+				android:layout_marginRight="5dp" android:layout_width="wrap_content" 
+				></TextView>
+				
+		</TableRow>		
+       
+       <TableRow android:id="@+id/trFirm"
+	    	android:padding="2dp"
+        	android:layout_width="wrap_content" 
+        	android:layout_height="wrap_content">
+			
+			<TextView android:id="@+id/TextView03" 
+				android:layout_height="wrap_content" 
+				android:text="Фирма" 
+				android:textColor="#000000" 
+				android:layout_marginLeft="5dp" 
+				android:layout_marginRight="5dp" android:layout_width="wrap_content" 
+				android:layout_gravity="center_vertical"></TextView>
+						
+			<Spinner android:layout_height="wrap_content" 
+				android:layout_weight="1" 
+				android:id="@+id/spFirma" android:layout_width="fill_parent"></Spinner>
+			
+		</TableRow>
+
+      	<TableRow 
+	    	android:padding="2dp"
+        	android:layout_width="wrap_content" 
+        	android:layout_height="wrap_content">
+			
+			<TextView android:id="@+id/TextView04" 
+				android:layout_height="wrap_content" 
+				android:textColor="#000000" 
+				android:text="Договор" 
+				android:layout_marginLeft="5dp" 
+				android:layout_marginRight="5dp" android:layout_width="wrap_content" 
+				android:layout_gravity="center_vertical"></TextView>
+				
+		    <Spinner
+		        android:id="@+id/spDogovor"
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content" />
+		</TableRow>		
+       
+       <TableRow android:id="@+id/trCost"
+	    	android:padding="2dp"
+        	android:layout_width="wrap_content" 
+        	android:layout_height="wrap_content">
+			
+			<TextView  
+				android:layout_height="wrap_content" 
+				android:textColor="#000000" 
+				android:text="Цена" 
+				android:layout_marginLeft="5dp" 
+				android:layout_marginRight="5dp" android:layout_width="wrap_content" 
+				android:layout_gravity="center_vertical"></TextView>	
+			<Spinner android:layout_height="wrap_content" 
+				android:layout_weight="1" android:id="@+id/spPrices" android:layout_width="fill_parent"></Spinner>
+		</TableRow>		
+	</TableLayout>
+	
+	<LinearLayout android:id="@+id/LinearLayout07" 
+		android:layout_height="wrap_content" 
+		android:layout_width="fill_parent" 
+		android:layout_weight="1">
+		
+		<EditText 
+			android:layout_height="fill_parent" 
+			android:layout_width="fill_parent" 
+			android:id="@+id/edCreateOrderNotes" 
+			android:gravity="top|left" android:minLines="2" android:lines="2">
+		    
+		    <requestFocus></requestFocus>
+		    
+		</EditText>
+	</LinearLayout>
+	
+	<LinearLayout android:id="@+id/LinearLayout08" 
+		android:layout_height="wrap_content" 
+		android:layout_width="fill_parent" 
+		android:layout_weight="0" android:padding="5dp" android:background="@color/button_panel">
+		
+		<Button android:layout_width="wrap_content" 
+			android:layout_height="wrap_content" 
+			android:layout_weight="1" 
+			android:text="Отмена" android:id="@+id/btnCancel"></Button>
+		
+		<Button android:layout_width="wrap_content" 
+			android:layout_height="wrap_content" 
+			android:text="ОК" android:id="@+id/btnOK" 
+			android:layout_weight="3" 
+			android:textStyle="bold"></Button>
+	</LinearLayout>
+</LinearLayout>

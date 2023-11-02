@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/LinearLayout01"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/footer"
+        android:paddingBottom="10dp"
+        android:paddingTop="5dp" >
+
+        <TextView
+            android:id="@+id/tvOrg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="OrgName"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            tools:ignore="HardcodedText" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0"
+        android:padding="4dp"
+        android:text="Name"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        tools:ignore="HardcodedText" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0" >
+
+        <LinearLayout
+            android:id="@+id/llKeyboard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false" >
+
+            <TableLayout
+                android:id="@+id/tableLayout1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:background="@color/white"
+                android:shrinkColumns="*"
+                tools:ignore="UselessParent" >
+
+                <TableRow
+                    android:id="@+id/tableRow1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <ImageButton
+                        android:id="@+id/btn1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/digit"
+                        android:src="@drawable/k1"
+                        android:tag="1" />
+
+                    <ImageButton
+                        android:id="@+id/btn2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/digit"
+                        android:src="@drawable/k2"
+                        android:tag="2" />
+
+                    <ImageButton
+                        android:id="@+id/btn3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/digit"
+                        android:src="@drawable/k3"
+                        android:tag="3" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/tableRow2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <ImageButton
+                        android:id="@+id/btn4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/digit"
+                        android:src="@drawable/k4"
+                        android:tag="4" />
+
+                    <ImageButton
+                        android:id="@+id/btn5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/digit"
+                        android:src="@drawable/k5"
+                        android:tag="5" />
+
+                    <ImageButton
+                        android:id="@+id/btn6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/digit"
+                        android:src="@drawable/k6"
+                        android:tag="6" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <ImageButton
+                        android:id="@+id/btn7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/digit"
+                        android:src="@drawable/k7"
+                        android:tag="7" />
+
+                    <ImageButton
+                        android:id="@+id/btn8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/digit"
+                        android:src="@drawable/k8"
+                        android:tag="8" />
+
+                    <ImageButton
+                        android:id="@+id/btn9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/digit"
+                        android:src="@drawable/k9"
+                        android:tag="9" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <ImageButton
+                        android:id="@+id/btnDel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/digit"
+                        android:src="@drawable/del"
+                        android:tag="7" />
+
+                    <ImageButton
+                        android:id="@+id/btn0"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/digit"
+                        android:src="@drawable/k0"
+                        android:tag="0" />
+
+                    <ImageButton
+                        android:id="@+id/btnComma"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/digit"
+                        android:src="@drawable/zap"
+                        android:tag="," />
+                </TableRow>
+            </TableLayout>
+        </LinearLayout>
+
+        <View 
+            android:layout_width="0dip"
+            android:layout_height="0dip"
+            android:layout_weight="1"
+            tools:ignore="NestedWeights"
+            />
+        
+        <EditText
+            android:id="@+id/edCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            style="@style/RejectActEdit">
+        </EditText>
+        
+        <View 
+            android:layout_width="0dip"
+            android:layout_height="0dip"
+            android:layout_weight="1"
+            tools:ignore="NestedWeights"
+            />
+        
+        
+        <ImageButton
+            android:id="@+id/btnOK"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/RjectActOKButton"
+            android:contentDescription="@string/ok"
+            android:src="@drawable/ok" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnChangeOrient"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/swap_loc"
+        android:padding="4dp"
+        tools:ignore="HardcodedText" />
+
+</LinearLayout>

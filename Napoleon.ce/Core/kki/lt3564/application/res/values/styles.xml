@@ -1,0 +1,281 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="Widget.Custom.PtrHeader" parent="android:Widget">
+        <item name="ptrProgressBarHeight">@dimen/divider_big</item>
+        <item name="ptrPullText">@string/menu_synchronize</item>
+        <item name="ptrRefreshingText">@string/synchronize_start</item>
+        <item name="ptrReleaseText">@string/synchronize_end</item>
+    </style>
+
+    <style name="Main">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="Horizontal">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="Settings">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="Settings.About">
+        <item name="android:textColor">#515151</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">none</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="Settings.Link">
+        <item name="android:textColor">#559de5</item>
+        <item name="android:padding">@dimen/univ_padding</item>
+        <item name="android:textSize">@dimen/text_size_link</item>
+    </style>
+
+    <style name="Header"></style>
+
+    <!-- CALENDAR -->
+    <style name="cDateSelector" parent="@style/mainSelectableItemBackground">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:padding">@dimen/univ_padding</item>
+    </style>
+
+    <style name="cDaysOfWeek">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/navigator_calendar_bg_week1</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="cDaysOfWeek2">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/navigator_calendar_bg_week2</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="cDaysOfWeek3">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/navigator_calendar_bg_week3</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- FRAGMENT TASK EDIT NEW -->
+
+    <style name="listViewTasks">
+        <item name="android:cacheColorHint">@android:color/transparent</item>
+        <item name="android:fadingEdge">none</item>
+        <item name="android:clipToPadding">false</item>
+        <item name="android:scrollbarStyle">outsideOverlay</item>
+        <item name="android:divider">@color/subtasks_list_fragment_custom_list_view_divider</item>
+        <item name="android:listSelector">@drawable/selector_task_item</item>
+        <item name="android:dividerHeight">1dp</item>
+    </style>
+
+    <style name="lvSimple">
+        <item name="android:cacheColorHint">@android:color/transparent</item>
+        <item name="android:paddingLeft">@dimen/univ_padding_small</item>
+        <item name="android:paddingRight">@dimen/univ_padding_small</item>
+        <item name="android:fadingEdge">none</item>
+        <item name="android:clipToPadding">false</item>
+        <item name="android:scrollbarStyle">outsideOverlay</item>
+    </style>
+
+    <style name="lvMain" parent="@style/lvSimple">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:divider">@null</item>
+    </style>
+
+    <style name="etAssignTaskEdit">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">@dimen/univ_ab_height</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:padding">@dimen/univ_padding_small</item>
+        <item name="android:singleLine">false</item>
+        <item name="android:ellipsize">none</item>
+        <item name="android:autoLink">all</item>
+        <item name="android:linksClickable">true</item>
+        <item name="android:background">@null</item>
+        <item name="android:imeOptions">actionDone</item>
+        <item name="android:textCursorDrawable">@null</item>
+        <item name="android:textSize">@dimen/text_size_aboutX</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:inputType">textCapSentences</item>
+    </style>
+    
+    <style name="etAssignTaskText" parent="@style/etAssignTaskEdit" >
+        <item name="android:singleLine">false</item>
+        <item name="android:inputType">textCapSentences|textMultiLine</item>
+    </style>
+
+    <style name="dividerBase">
+        <item name="android:id">@id/divider</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@color/divider_gray</item>
+    </style>
+
+    <style name="dividerBig" parent="@style/dividerBase">
+        <item name="android:layout_height">@dimen/divider_big</item>
+    </style>
+
+    <style name="dividerSmall" parent="@style/dividerBase">
+        <item name="android:layout_height">@dimen/divider_small</item>
+    </style>
+
+    <style name="tvFileNameBase" parent="@style/mainTextColorLink">
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:padding">@dimen/divider_big</item>
+    </style>
+
+
+    <style name="tvFileSize" parent="@style/tvFileNameBase">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">top</item>
+        <item name="android:textColor">@color/gray_task_complete</item>
+        <item name="android:textSize">@dimen/text_size_less</item>
+    </style>
+
+    <!-- TASK VIEW NEW -->
+
+    <style name="tvnIv" parent="@style/tvFileNameBase">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingLeft">@dimen/univ_padding_small</item>
+        <item name="android:visibility">gone</item>
+    </style>
+
+    <style name="tvnTv" parent="@style/tvFileNameBase">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:visibility">gone</item>
+    </style>
+
+    <!-- FRAGMENT PROJECT PROPERTIES -->
+    <style name="fppEt">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/univ_ab_height</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:padding">@dimen/univ_padding_small</item>
+        <item name="android:textCursorDrawable">@null</item>
+        <item name="android:inputType">textCapSentences</item>
+        <item name="android:background">@null</item>
+    </style>
+
+    <style name="fppLl" parent="@style/mainSelectableItemBackground">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/univ_ab_height</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="fppTv">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:padding">@dimen/univ_padding_small</item>
+    </style>
+
+    <style name="fppCb">
+        <item name="android:layout_width">@dimen/univ_ab_height</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">@dimen/univ_padding_small</item>
+    </style>
+
+    <style name="mainSelectableItemBackground">
+        <item name="android:background">@drawable/divider_gray</item>
+    </style>
+
+    <style name="mainTextColorLink">
+        <item name="android:textColor">@color/blue_url_api10</item>
+    </style>
+
+    <style name="myCustomMenuTextApearance" parent="@android:style/TextAppearance.Widget.IconMenu.Item">
+        <item name="android:textColor">@android:color/primary_text_dark</item>
+    </style>
+
+    <style name="mainProgressBar" parent="@style/Widget.AppCompat.ProgressBar">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerInParent">true</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:visibility">invisible</item>
+    </style>
+
+    <style name="fppView">
+        <item name="android:layout_width">@dimen/univ_ab_height_half</item>
+        <item name="android:layout_height">@dimen/univ_ab_height_half</item>
+        <item name="android:layout_marginLeft">@dimen/univ_padding</item>
+        <item name="android:layout_marginRight">@dimen/univ_padding</item>
+        <item name="android:layout_gravity">center_vertical</item>
+    </style>
+
+    <style name="fppView2">
+        <item name="android:layout_width">35dp</item>
+        <item name="android:layout_height">35dp</item>
+        <item name="android:layout_marginLeft">@dimen/univ_padding</item>
+        <item name="android:layout_gravity">center_vertical</item>
+    </style>
+
+    <style name="fab_layout_match_width_match_height_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="fab_action_button_base_style" parent="fab_layout_wrap_width_wrap_height_style" />
+    <style name="fab_action_button_style" parent="fab_action_button_base_style">
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_marginRight">@dimen/fab_margin</item>
+        <item name="android:layout_marginBottom">@dimen/fab_margin</item>
+    </style>
+
+    <style name="fab_action_button_style_unread_bottom" parent="fab_action_button_base_style">
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_marginRight">@dimen/fab_margin</item>
+        <item name="android:layout_marginBottom">@dimen/fab_margin</item>
+    </style>
+
+    <style name="fab_action_button_style_unread_top" parent="fab_action_button_base_style">
+        <item name="android:layout_alignParentTop">true</item>
+        <item name="android:layout_marginRight">@dimen/fab_margin</item>
+        <item name="android:layout_marginBottom">@dimen/fab_margin</item>
+    </style>
+
+    <style name="fab_layout_wrap_width_wrap_height_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="Toolbar.TitleTextStyle" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">22sp</item>
+
+    </style>
+
+</resources>
