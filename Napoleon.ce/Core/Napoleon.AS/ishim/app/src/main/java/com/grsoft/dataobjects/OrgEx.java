@@ -15,7 +15,5 @@ public class OrgEx extends Org {
 	
 	public int delay;
 	
-	public String prcType;
-	
-	public List<OrgDiscount> discounts = new ArrayList<OrgDiscount>(); 
+	public List<OrgDiscount> discounts = new ArrayList<OrgDiscount>();
 }

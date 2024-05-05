@@ -183,29 +183,8 @@ public class CreateOrder extends BaseActivity
 			e.printStackTrace();
 		}
 		config.close();
-		
-		if( Features.DELIVERY_ADDRESS ) {
-			View v = findViewById(R.id.ftrAddress);
-			if( v != null ) {
-				Spinner spAddress = (Spinner) findViewById(R.id.spAddress);
-				if( spAddress != null ) {
-					v.setVisibility(View.VISIBLE);
-					ArrayList<KeyValue> addresses = new ArrayList<KeyValue>();
-					int selected = -1;
-					for(OrgAddress addr : oi.getData().orgAddress) {
-						KeyValue kv = new KeyValue(addr.id, addr.name);
-						if( kv.key.toString().equals(o.adrCode))
-							selected = addresses.size();
-						addresses.add(kv);
-					}
-					ArrayAdapter<KeyValue> aa = new ArrayAdapter<KeyValue>(this, R.layout.simple_spinner_layout, addresses);
-					spAddress.setAdapter(aa);
-					if( selected >= 0 && selected < spAddress.getCount())
-						spAddress.setSelection(selected);
-				}
-			}
-		}
-		
+		config.close();
+
 		EditText remark = (EditText)findViewById(R.id.edCreateOrderNotes);
 		remark.setText(o.remark);
 
@@ -401,15 +380,7 @@ public class CreateOrder extends BaseActivity
 			CharSequence kv = (CharSequence)spPayType.getSelectedItem();
 			if(kv != null)
 				o.payType = kv.toString();
-			
-			if( Features.DELIVERY_ADDRESS ) {
-				Spinner spAddress = (Spinner) findViewById(R.id.spAddress);
-				if( spAddress != null ) {
-					KeyValue sel = (KeyValue) spAddress.getSelectedItem();
-					if( sel != null )
-						o.adrCode = sel.key.toString();
-				}
-			}
+
 			if (updateSumType)
 				order.updateItemsCost(o.sumType);
 			else

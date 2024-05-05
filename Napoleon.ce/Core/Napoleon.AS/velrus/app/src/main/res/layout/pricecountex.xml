@@ -1,75 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.gesture.GestureOverlayView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/gestures"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:eventsInterceptionEnabled="true"
-    android:gestureColor="#00000000"
-    android:gestureStrokeType="single"
-    android:orientation="vertical"
-    android:uncertainGestureColor="#00000000" >
-
     <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:background="@color/white"
         android:baselineAligned="false"
         android:orientation="vertical" >
 
-        <LinearLayout
-            android:id="@+id/linearLayout1"
-            android:layout_width="fill_parent"
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/blue" >
+
+        <TextView
+            android:id="@+id/tvPriceName"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@color/blue" >
+            android:layout_marginBottom="2dp"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:minLines="2"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="10dp"
+            android:textColor="#000000"
+            android:textSize="@dimen/label_text_sz"/>
 
-            <TextView
-                android:id="@+id/tvPriceName"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="2dp"
-                android:layout_weight="1"
-                android:background="@color/white"
-                android:minLines="2"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-                android:paddingTop="10dp"
-                android:textColor="#000000" />
-
-            <ImageView
-                android:id="@+id/ivPresent"
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:layout_marginBottom="2dp"
-                android:background="@color/white"
-                android:paddingTop="4dp"
-                android:src="@drawable/image"
-                tools:ignore="ContentDescription" />
-        </LinearLayout>
-        
-        <Spinner
-            android:id="@+id/spPrices"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content" 
-            android:visibility="gone"/>
+        <ImageView
+            android:id="@+id/ivPresent"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_marginBottom="2dp"
+            android:background="@color/white"
+            android:paddingTop="4dp"
+            android:paddingRight="5dp"
+            android:src="@drawable/image"
+            tools:ignore="ContentDescription" />
+    </LinearLayout>
+s
 
         <LinearLayout
             android:id="@+id/linearLayout2"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:baselineAligned="false"
             android:orientation="horizontal"
-            android:padding="3dp" >
+             >
 
             <TableLayout
+                android:padding="4dp"
                 android:id="@+id/tableLayout2"
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:stretchColumns="*"
                 tools:ignore="NestedWeights" >
 
                 <TableRow
+                    android:paddingTop="4dp"
                     android:id="@+id/trQty"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" >
@@ -79,10 +68,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/onWh"
+                        android:textSize="@dimen/label_text_sz"
                         android:textColor="@color/black" />
 
                     <TextView
                         android:id="@+id/tvQty"
+                        android:textSize="@dimen/label_text_sz"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="right"
@@ -93,12 +84,14 @@
                 </TableRow>
 
                 <TableRow
+                    android:paddingTop="4dp"
                     android:id="@+id/trCost"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" >
 
                     <TextView
                         android:id="@+id/textView2"
+                        android:textSize="@dimen/label_text_sz"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/cost"
@@ -106,6 +99,7 @@
 
                     <TextView
                         android:id="@+id/tvPrice"
+                        android:textSize="@dimen/label_text_sz"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="right"
@@ -116,18 +110,21 @@
                 </TableRow>
 
                 <TableRow
+                    android:paddingTop="4dp"
                     android:id="@+id/trMinCost"
                     android:visibility="gone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" >
 
                     <TextView
+                        android:textSize="@dimen/label_text_sz"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/min_cost"
                         android:textColor="@color/black" />
 
                     <TextView
+                        android:textSize="@dimen/label_text_sz"
                         android:id="@+id/tvMinCost"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -139,11 +136,13 @@
                 </TableRow>
 
                 <TableRow
+                    android:paddingTop="4dp"
                     android:id="@+id/tableRow6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" >
 
                     <TextView
+                        android:textSize="@dimen/label_text_sz"
                         android:id="@+id/textView3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -151,6 +150,7 @@
                         android:textColor="@color/black" />
 
                     <TextView
+                        android:textSize="@dimen/label_text_sz"
                         android:id="@+id/tvQtyInPack"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -162,11 +162,13 @@
                 </TableRow>
 
                 <TableRow
+                    android:paddingTop="4dp"
                     android:id="@+id/trSum"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" >
 
                     <TextView
+                        android:textSize="@dimen/label_text_sz"
                         android:id="@+id/textView4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -174,6 +176,7 @@
                         android:textColor="@color/black" />
 
                     <TextView
+                        android:textSize="@dimen/label_text_sz"
                         android:id="@+id/tvSum"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -187,11 +190,11 @@
             </TableLayout>
 
             <TableLayout
+                android:padding="4dp"
                 android:id="@+id/tableLayout3"
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:paddingLeft="3dp"
                 android:stretchColumns="1" >
 
                 <TableRow
@@ -217,11 +220,13 @@
                 </TableRow>
 
                 <TableRow
+                    android:paddingTop="4dp"
                     android:id="@+id/tableRow8"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" >
 
                     <TextView
+                        android:textSize="@dimen/label_text_sz"
                         android:id="@+id/textView6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -238,11 +243,14 @@
                 </TableRow>
 
                 <TableRow
-                    android:id="@+id/tableRow9"
+                    android:paddingLeft="4dp"
+                    android:paddingRight="4dp"
+                    android:paddingTop="4dp"                    android:id="@+id/tableRow9"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" >
 
                     <CheckBox
+                        android:textSize="@dimen/label_text_sz"
                         android:id="@+id/cbPackets"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -253,24 +261,15 @@
             </TableLayout>
         </LinearLayout>
 
-        <LinearLayout android:id="@+id/layoutAction"
-            android:layout_height="0dp"
+        <ListView
+            android:padding="4dp"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="10dp"
+            android:id="@+id/actions"
             android:layout_width="match_parent"
-            android:orientation="vertical"
-            android:layout_weight="1">
-
-            <CheckBox
-                android:id="@+id/cbApplyAction"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Применить акцию"/>
-
-            <TextView
-                android:id="@+id/tvActionDescr"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-        </LinearLayout>
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            />
 
         <com.grsoft.napoleon.StripedLinearLayout
             android:id="@+id/llSilesHistory"
@@ -282,182 +281,181 @@
             android:id="@+id/llKeyboard"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:background="@color/blue" >
+            android:background="@color/blue"
+            android:baselineAligned="false">
 
             <LinearLayout
-            	android:layout_width="0dip"
-            	android:layout_weight="1"
-            	android:layout_height="wrap_content"
-            	>
-                                        
-            <TableLayout
-                android:id="@+id/tableLayout1"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_marginTop="2dp"
-                android:background="@color/white"
-                android:shrinkColumns="*"
-                android:stretchColumns="*" >
+                android:layout_width="0dip"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                >
 
-                <TableRow
-                    android:id="@+id/tableRow1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" >
+                <TableLayout
+                    android:id="@+id/tableLayout1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginTop="2dp"
+                    android:background="@color/white"
+                    android:shrinkColumns="*"
+                    android:stretchColumns="*"
+                    tools:ignore="UselessParent" >
 
-                    <ImageButton
-                        android:id="@+id/btn1"
+                    <TableRow
+                        android:id="@+id/tableRow1"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:contentDescription="@string/digit"
-                        android:src="@drawable/k1"
-                        android:tag="1" />
+                        android:layout_height="wrap_content" >
 
-                    <ImageButton
-                        android:id="@+id/btn2"
+                        <ImageButton
+                            android:id="@+id/btn1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="@string/digit"
+                            android:src="@drawable/k1"
+                            android:tag="1" />
+
+                        <ImageButton
+                            android:id="@+id/btn2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="@string/digit"
+                            android:src="@drawable/k2"
+                            android:tag="2" />
+
+                        <ImageButton
+                            android:id="@+id/btn3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="@string/digit"
+                            android:src="@drawable/k3"
+                            android:tag="3" />
+
+                        <ImageButton
+                            android:id="@+id/btn4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="@string/digit"
+                            android:src="@drawable/k4"
+                            android:tag="4" />
+
+                        <ImageButton
+                            android:id="@+id/btn5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="@string/digit"
+                            android:src="@drawable/k5"
+                            android:tag="5" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/tableRow2"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:contentDescription="@string/digit"
-                        android:src="@drawable/k2"
-                        android:tag="2" />
+                        android:layout_height="wrap_content" >
 
-                    <ImageButton
-                        android:id="@+id/btn3"
+                        <ImageButton
+                            android:id="@+id/btn6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="@string/digit"
+                            android:src="@drawable/k6"
+                            android:tag="6" />
+
+                        <ImageButton
+                            android:id="@+id/btn7"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="@string/digit"
+                            android:src="@drawable/k7"
+                            android:tag="7" />
+
+                        <ImageButton
+                            android:id="@+id/btn8"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="@string/digit"
+                            android:src="@drawable/k8"
+                            android:tag="8" />
+
+                        <ImageButton
+                            android:id="@+id/btn9"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="@string/digit"
+                            android:src="@drawable/k9"
+                            android:tag="9" />
+
+                        <ImageButton
+                            android:id="@+id/btn0"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="@string/digit"
+                            android:src="@drawable/k0"
+                            android:tag="0" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/tableRow3"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:contentDescription="@string/digit"
-                        android:src="@drawable/k3"
-                        android:tag="3" />
+                        android:layout_height="wrap_content" >
 
-                    <ImageButton
-                        android:id="@+id/btn4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:contentDescription="@string/digit"
-                        android:src="@drawable/k4"
-                        android:tag="4" />
+                        <ImageButton
+                            android:id="@+id/btnDel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="@string/digit"
+                            android:src="@drawable/del"
+                            android:tag="7" />
 
-                    <ImageButton
-                        android:id="@+id/btn5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:contentDescription="@string/digit"
-                        android:src="@drawable/k5"
-                        android:tag="5" />
+                        <ImageButton
+                            android:id="@+id/btnComma"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="@string/digit"
+                            android:src="@drawable/zap"
+                            android:tag="," />
 
-                </TableRow>
-
-                <TableRow
-                    android:id="@+id/tableRow2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" >
-
-                    <ImageButton
-                        android:id="@+id/btn6"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:contentDescription="@string/digit"
-                        android:src="@drawable/k6"
-                        android:tag="6" />
-
-                    <ImageButton
-                        android:id="@+id/btn7"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:contentDescription="@string/digit"
-                        android:src="@drawable/k7"
-                        android:tag="7" />
-
-                    <ImageButton
-                        android:id="@+id/btn8"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:contentDescription="@string/digit"
-                        android:src="@drawable/k8"
-                        android:tag="8" />
-
-                    <ImageButton
-                        android:id="@+id/btn9"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:contentDescription="@string/digit"
-                        android:src="@drawable/k9"
-                        android:tag="9" />
-
-                    <ImageButton
-                        android:id="@+id/btn0"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:contentDescription="@string/digit"
-                        android:src="@drawable/k0"
-                        android:tag="0" />
-
-                </TableRow>
-
-                <TableRow
-                    android:id="@+id/tableRow3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" >
-
-                    <ImageButton
-                        android:id="@+id/btnDel"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:contentDescription="@string/digit"
-                        android:src="@drawable/del"
-                        android:tag="7" />
-
-                    <ImageButton
-                        android:id="@+id/btnComma"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:contentDescription="@string/digit"
-                        android:src="@drawable/zap"
-                        android:tag="," />
-
-                    <ImageButton
-                        android:id="@+id/btnOK"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_span="3"
-                        android:contentDescription="@string/ok"
-                        android:src="@drawable/ok" />
-                </TableRow>
-            </TableLayout>
+                        <ImageButton
+                            android:id="@+id/btnOK"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_span="3"
+                            android:contentDescription="@string/ok"
+                            android:src="@drawable/ok" />
+                    </TableRow>
+                </TableLayout>
 
             </LinearLayout>
-            
-              <LinearLayout
+
+            <LinearLayout
                 android:background="@color/white"
                 android:layout_marginTop="2dp"
                 android:orientation="vertical"
-            	android:layout_width="wrap_content"
-            	android:layout_height="fill_parent"
-            	>
-            
-                    <ImageButton
-                        android:visibility="gone"
-                        android:id="@+id/btnMovePrev"
-                        android:layout_width="wrap_content"
-                        android:layout_weight="0.5"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical|center_horizontal"
-                        android:contentDescription="@string/digit"
-                        android:src="@drawable/price_prev"
-                        >
-                    </ImageButton>
-                    <ImageButton
-                        android:visibility="gone"
-                        android:id="@+id/btnMoveNext"
-                        android:layout_width="wrap_content"
-                        android:layout_weight="0.5"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical|center_horizontal"
-                        android:contentDescription="@string/digit"
-                        android:src="@drawable/price_next"
-                        />
-                    
-              	</LinearLayout>            
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                >
+
+                <ImageButton
+                    android:visibility="gone"
+                    android:id="@+id/btnMovePrev"
+                    android:layout_width="wrap_content"
+                    android:layout_weight="0.5"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:contentDescription="@string/digit"
+                    android:src="@drawable/price_prev"
+                    >
+                </ImageButton>
+                <ImageButton
+                    android:visibility="gone"
+                    android:id="@+id/btnMoveNext"
+                    android:layout_width="wrap_content"
+                    android:layout_weight="0.5"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:contentDescription="@string/digit"
+                    android:src="@drawable/price_next"
+                    />
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-
-</android.gesture.GestureOverlayView>

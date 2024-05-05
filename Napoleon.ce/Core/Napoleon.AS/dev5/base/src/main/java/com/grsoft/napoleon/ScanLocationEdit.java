@@ -342,6 +342,9 @@ public class ScanLocationEdit extends BaseSimpleActivity implements GpsStatus.Li
 
     @Override
     public boolean closeDocument() {
+        if(document.isEmpty()) {
+            document.delete();
+        }
         return true;
     }
 

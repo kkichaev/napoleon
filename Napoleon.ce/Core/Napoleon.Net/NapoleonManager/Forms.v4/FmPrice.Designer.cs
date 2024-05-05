@@ -65,10 +65,12 @@
          this.dialog = new System.Windows.Forms.OpenFileDialog();
          this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
          this.toolStrip1.SuspendLayout();
+         ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
          this.splitContainer1.Panel1.SuspendLayout();
          this.splitContainer1.Panel2.SuspendLayout();
          this.splitContainer1.SuspendLayout();
          ((System.ComponentModel.ISupportInitialize)(this.tgvPrice)).BeginInit();
+         ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
          this.splitContainer2.Panel1.SuspendLayout();
          this.splitContainer2.Panel2.SuspendLayout();
          this.splitContainer2.SuspendLayout();
@@ -97,7 +99,7 @@
             this.tsbNewPrice});
          this.toolStrip1.Location = new System.Drawing.Point(0, 0);
          this.toolStrip1.Name = "toolStrip1";
-         this.toolStrip1.Size = new System.Drawing.Size(645, 39);
+         this.toolStrip1.Size = new System.Drawing.Size(958, 39);
          this.toolStrip1.TabIndex = 0;
          // 
          // cbAgents
@@ -181,9 +183,10 @@
          // 
          // statusStrip1
          // 
-         this.statusStrip1.Location = new System.Drawing.Point(0, 432);
+         this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+         this.statusStrip1.Location = new System.Drawing.Point(0, 578);
          this.statusStrip1.Name = "statusStrip1";
-         this.statusStrip1.Size = new System.Drawing.Size(645, 22);
+         this.statusStrip1.Size = new System.Drawing.Size(958, 22);
          this.statusStrip1.TabIndex = 2;
          this.statusStrip1.Text = "statusStrip1";
          // 
@@ -208,8 +211,8 @@
          this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
          this.splitContainer1.Panel2.Controls.Add(this.statusStrip2);
          this.splitContainer1.Panel2.Controls.Add(this.toolStrip2);
-         this.splitContainer1.Size = new System.Drawing.Size(645, 393);
-         this.splitContainer1.SplitterDistance = 360;
+         this.splitContainer1.Size = new System.Drawing.Size(958, 539);
+         this.splitContainer1.SplitterDistance = 534;
          this.splitContainer1.TabIndex = 4;
          // 
          // tgvPrice
@@ -217,6 +220,7 @@
          this.tgvPrice.AllowUserToAddRows = false;
          this.tgvPrice.AllowUserToDeleteRows = false;
          this.tgvPrice.AllowUserToResizeRows = false;
+         this.tgvPrice.ColumnHeadersHeight = 29;
          this.tgvPrice.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.FPName,
             this.FPCost,
@@ -228,8 +232,9 @@
          this.tgvPrice.MultiSelect = false;
          this.tgvPrice.Name = "tgvPrice";
          this.tgvPrice.RowHeadersVisible = false;
+         this.tgvPrice.RowHeadersWidth = 51;
          this.tgvPrice.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-         this.tgvPrice.Size = new System.Drawing.Size(360, 393);
+         this.tgvPrice.Size = new System.Drawing.Size(534, 539);
          this.tgvPrice.TabIndex = 3;
          // 
          // FPName
@@ -238,6 +243,7 @@
          this.FPName.DefaultNodeImage = null;
          this.FPName.FillWeight = 300F;
          this.FPName.HeaderText = "Папка/Наименование";
+         this.FPName.MinimumWidth = 6;
          this.FPName.Name = "FPName";
          this.FPName.Resizable = System.Windows.Forms.DataGridViewTriState.True;
          this.FPName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -246,6 +252,7 @@
          // 
          this.FPCost.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
          this.FPCost.HeaderText = "Цена";
+         this.FPCost.MinimumWidth = 6;
          this.FPCost.Name = "FPCost";
          this.FPCost.Resizable = System.Windows.Forms.DataGridViewTriState.True;
          this.FPCost.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -254,6 +261,7 @@
          // 
          this.FPQty.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
          this.FPQty.HeaderText = "Кол-во";
+         this.FPQty.MinimumWidth = 6;
          this.FPQty.Name = "FPQty";
          this.FPQty.Resizable = System.Windows.Forms.DataGridViewTriState.True;
          this.FPQty.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -261,7 +269,7 @@
          // splitContainer2
          // 
          this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-         this.splitContainer2.Location = new System.Drawing.Point(0, 25);
+         this.splitContainer2.Location = new System.Drawing.Point(0, 28);
          this.splitContainer2.Name = "splitContainer2";
          this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
          // 
@@ -272,8 +280,8 @@
          // splitContainer2.Panel2
          // 
          this.splitContainer2.Panel2.Controls.Add(this.lvPic);
-         this.splitContainer2.Size = new System.Drawing.Size(281, 346);
-         this.splitContainer2.SplitterDistance = 173;
+         this.splitContainer2.Size = new System.Drawing.Size(420, 489);
+         this.splitContainer2.SplitterDistance = 244;
          this.splitContainer2.TabIndex = 5;
          // 
          // dgvItems
@@ -289,7 +297,8 @@
          this.dgvItems.Location = new System.Drawing.Point(0, 0);
          this.dgvItems.Name = "dgvItems";
          this.dgvItems.RowHeadersVisible = false;
-         this.dgvItems.Size = new System.Drawing.Size(281, 173);
+         this.dgvItems.RowHeadersWidth = 51;
+         this.dgvItems.Size = new System.Drawing.Size(420, 244);
          this.dgvItems.TabIndex = 4;
          // 
          // dgvItemsName
@@ -297,19 +306,21 @@
          this.dgvItemsName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
          this.dgvItemsName.DataPropertyName = "Name";
          this.dgvItemsName.HeaderText = "Наименование";
+         this.dgvItemsName.MinimumWidth = 6;
          this.dgvItemsName.Name = "dgvItemsName";
          // 
          // menuItems
          // 
+         this.menuItems.ImageScalingSize = new System.Drawing.Size(20, 20);
          this.menuItems.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuDelItem});
          this.menuItems.Name = "menuItems";
-         this.menuItems.Size = new System.Drawing.Size(119, 26);
+         this.menuItems.Size = new System.Drawing.Size(135, 28);
          // 
          // mnuDelItem
          // 
          this.mnuDelItem.Name = "mnuDelItem";
-         this.mnuDelItem.Size = new System.Drawing.Size(118, 22);
+         this.mnuDelItem.Size = new System.Drawing.Size(134, 24);
          this.mnuDelItem.Text = "Удалить";
          // 
          // lvPic
@@ -322,53 +333,56 @@
          this.lvPic.Location = new System.Drawing.Point(0, 0);
          this.lvPic.MultiSelect = false;
          this.lvPic.Name = "lvPic";
-         this.lvPic.Size = new System.Drawing.Size(281, 169);
+         this.lvPic.Size = new System.Drawing.Size(420, 241);
          this.lvPic.TabIndex = 3;
          this.lvPic.UseCompatibleStateImageBehavior = false;
          // 
          // menuPic
          // 
+         this.menuPic.ImageScalingSize = new System.Drawing.Size(20, 20);
          this.menuPic.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuDelPic,
             this.miSetting});
          this.menuPic.Name = "menuPic";
-         this.menuPic.Size = new System.Drawing.Size(135, 48);
+         this.menuPic.Size = new System.Drawing.Size(154, 52);
          // 
          // mnuDelPic
          // 
          this.mnuDelPic.Name = "mnuDelPic";
-         this.mnuDelPic.Size = new System.Drawing.Size(134, 22);
+         this.mnuDelPic.Size = new System.Drawing.Size(153, 24);
          this.mnuDelPic.Text = "Удалить";
          // 
          // miSetting
          // 
          this.miSetting.Name = "miSetting";
-         this.miSetting.Size = new System.Drawing.Size(134, 22);
+         this.miSetting.Size = new System.Drawing.Size(153, 24);
          this.miSetting.Text = "Настройки";
          // 
          // statusStrip2
          // 
+         this.statusStrip2.ImageScalingSize = new System.Drawing.Size(20, 20);
          this.statusStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.label});
-         this.statusStrip2.Location = new System.Drawing.Point(0, 371);
+         this.statusStrip2.Location = new System.Drawing.Point(0, 517);
          this.statusStrip2.Name = "statusStrip2";
-         this.statusStrip2.Size = new System.Drawing.Size(281, 22);
+         this.statusStrip2.Size = new System.Drawing.Size(420, 22);
          this.statusStrip2.TabIndex = 2;
          this.statusStrip2.Text = "statusStrip2";
          // 
          // label
          // 
          this.label.Name = "label";
-         this.label.Size = new System.Drawing.Size(0, 17);
+         this.label.Size = new System.Drawing.Size(0, 16);
          // 
          // toolStrip2
          // 
+         this.toolStrip2.ImageScalingSize = new System.Drawing.Size(20, 20);
          this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnAdd,
             this.cbSizes});
          this.toolStrip2.Location = new System.Drawing.Point(0, 0);
          this.toolStrip2.Name = "toolStrip2";
-         this.toolStrip2.Size = new System.Drawing.Size(281, 25);
+         this.toolStrip2.Size = new System.Drawing.Size(420, 28);
          this.toolStrip2.TabIndex = 0;
          this.toolStrip2.Text = "toolStrip2";
          // 
@@ -378,13 +392,13 @@
          this.btnAdd.Image = global::GRSoft.NapoleonManager.Properties.Resources.add;
          this.btnAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
          this.btnAdd.Name = "btnAdd";
-         this.btnAdd.Size = new System.Drawing.Size(23, 22);
+         this.btnAdd.Size = new System.Drawing.Size(29, 25);
          this.btnAdd.Text = "Добавить";
          // 
          // cbSizes
          // 
          this.cbSizes.Name = "cbSizes";
-         this.cbSizes.Size = new System.Drawing.Size(121, 25);
+         this.cbSizes.Size = new System.Drawing.Size(121, 28);
          // 
          // dialog
          // 
@@ -397,13 +411,14 @@
          this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
          this.dataGridViewTextBoxColumn1.DataPropertyName = "Name";
          this.dataGridViewTextBoxColumn1.HeaderText = "Наименование";
+         this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
          this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
          // 
          // FmPrice
          // 
-         this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
+         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
          this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-         this.ClientSize = new System.Drawing.Size(645, 454);
+         this.ClientSize = new System.Drawing.Size(958, 600);
          this.Controls.Add(this.splitContainer1);
          this.Controls.Add(this.statusStrip1);
          this.Controls.Add(this.toolStrip1);
@@ -416,10 +431,12 @@
          this.splitContainer1.Panel1.ResumeLayout(false);
          this.splitContainer1.Panel2.ResumeLayout(false);
          this.splitContainer1.Panel2.PerformLayout();
+         ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
          this.splitContainer1.ResumeLayout(false);
          ((System.ComponentModel.ISupportInitialize)(this.tgvPrice)).EndInit();
          this.splitContainer2.Panel1.ResumeLayout(false);
          this.splitContainer2.Panel2.ResumeLayout(false);
+         ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
          this.splitContainer2.ResumeLayout(false);
          ((System.ComponentModel.ISupportInitialize)(this.dgvItems)).EndInit();
          this.menuItems.ResumeLayout(false);

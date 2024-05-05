@@ -14,14 +14,23 @@ namespace GRSoft.NapoleonManager
 {
    public partial class FmFirstDocTime : Form
    {
+      public static RightToken writeAgentSched = new RightToken("FirstDocTime", "Может редактировать работу агентов");
+
       SimpleDataSet<FirstDocTime> dsDocTime = new SimpleDataSet<FirstDocTime>(FirstDocTime.OBJECT_NAME, false);
       Dictionary<string, Item> data = new Dictionary<string, Item>();
+      bool readOnly = false;
 
       public FmFirstDocTime()
       {
          InitializeComponent();
          dgvItems.AutoGenerateColumns = false;
          cbDivision.SelectedIndexChanged += CbDivision_SelectedIndexChanged;
+         Manager dm = CurrentUser.user as Manager;
+         if (!dm.HaveRight(writeAgentSched, RightActions.Write))
+         {
+            tsLabel.Text = "Редактирование запрещено";
+            readOnly = true;
+         }
       }
 
       private void CbDivision_SelectedIndexChanged(object sender, EventArgs e)
@@ -113,7 +122,7 @@ namespace GRSoft.NapoleonManager
 
       public void SetDirty(bool dirty)
       {
-         btnSave.Enabled = dirty;
+         btnSave.Enabled = !readOnly && dirty;
       }
 
       protected override void OnClosing(CancelEventArgs e)

@@ -20,6 +20,9 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Environment;
 import com.grsoft.database.PricePhotoHitching;
+import com.grsoft.dataobjects.Price;
+import com.grsoft.dataobjects.PriceEx;
+import com.grsoft.dataobjects.impl.DbObject;
 import com.grsoft.dataobjects.impl.OrderImpl;
 import com.grsoft.napoleon.util.CfgNpl;
 import com.grsoft.napoleon.util.ConfigManager;
@@ -34,7 +37,19 @@ public class NapoleonApp extends NapoleonAppBase {
 			CreateOrder.open(ctx, order, isOldOrder);
 		}
 	}
-	
+
+	@Override
+	protected void defineNewType() {
+		super.defineNewType();
+		DbObject.regNewDataType(Price.class, PriceEx.class);
+	}
+
+	@Override
+	protected void initChildActivity() {
+		super.initChildActivity();
+		Warehouse.activity = WarehouseEx.class;
+	}
+
 	@Override
 	public void onCreate() {
 		ConfigManager.initConfig(new CfgNpl());

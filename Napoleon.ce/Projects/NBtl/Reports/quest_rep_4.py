@@ -86,7 +86,12 @@ class Quest:
       elif n.type == QuestHelper.DATASET_TYPE:
         val = ''
         if n.remark == QuestHelper.ORG_DATASET_TYPE:
-          val = r.orgs[n.answer].name if n.answer in r.orgs else n.answer
+          org = r.orgs.getOrg(n.answer, d.userid)
+          if not org:
+            val = n.answer
+          else:
+            val = 'ã.' + org.cid + ', ' + org.name
+          # val = r.orgs[n.answer].name if n.answer in r.orgs else n.answer
         
         self.putItemValue(a, ReportData.KEY_FMT.format(d.question, n.iditem), val)
       else: 
@@ -94,14 +99,18 @@ class Quest:
      
     self.answers.append(a)
     curOrg = r.orgs.getOrg(d.id, d.userid)
-    orgName = "{0} {1}".format(curOrg.name, curOrg.address) if curOrg != None else d.id
+    orgName = getOrgName(curOrg) if curOrg != None else d.id
     self.orgs.append(orgName)
     
   def putItemValue(self, items, key, value):
     if key in self.rowidx:
       idx = self.rowidx[key]
       items[idx] = value
-    
+
+def getOrgName(curOrg) -> str:
+  return " ã. {0}, {1} {2}".format(curOrg.cid, curOrg.name, curOrg.address)
+
+
 class ReportData:
   KEY_FMT =  "{0}\t{1}"
   ITEM_KEY_FMT = "{0}\t{1}\t{2}"
@@ -136,7 +145,7 @@ class ReportData:
           curOrg = self.orgs.orgs[org] 
 
           if curOrg.sid == self.server.Params[0].slsnet and curOrg.cid == self.server.Params[0].city:
-            self.quests[q].orgs.append("{0} {1}".format(curOrg.name, curOrg.address))
+            self.quests[q].orgs.append(getOrgName(curOrg))
             answ = ["x"] * len(self.quests[q].answers[-1])
             self.quests[q].answers.append(answ)
     

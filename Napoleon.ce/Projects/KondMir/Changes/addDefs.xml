@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
-   <objects>
-      <object name="Category" >
+  <objects>
+    <object name="Category" >
       <sources>
         <source name="DBFTable">
           <param name="tableName">"CATEGORY"</param>
@@ -11,24 +11,36 @@
       <field name="id" type="string" />
       <field name="name" type="string" />
     </object>
-      
+
     <modify src="Order">
-       <change>
-          <field name="firma" type="string" width="70" execOn="Put">KeyValueReader("order.cfg","Организация",$object.supplyer)</field>
-       </change>
+      <change>
+        <field name="firma" type="string" width="70" execOn="Put">KeyValueReader("order.cfg","Организация",$object.supplyer)</field>
+      </change>
     </modify>
     <modify src="Org">
-       <add>
-          <field name="discount" type="number" prec="2" />
-          <field name="costype" type="number" prec="0" />
-          <field name="firm" type="number" prec="0" />
-       </add>
+      <add>
+        <field name="discount" type="number" prec="2" />
+        <field name="costype" type="number" prec="0" />
+        <field name="firm" type="number" prec="0" />
+      </add>
+    </modify>
+
+    <modify src="Incass">
+      <add>
+        <field name="firma" type="string" width="70" execOn="Put">KeyValueReader("order.cfg","Организация",$object.supplyer)</field>
+      </add>
     </modify>
     
-	  <modify src="Incass">
-         <add>
-			<field name="firma" type="string" width="70" execOn="Put">KeyValueReader("order.cfg","Организация",$object.supplyer)</field>
-         </add>
-      </modify>
-   </objects>
+    <modify src="PricePhoto">
+      <change>
+        <sources>
+          <source name="DBFCatalogTable">
+            <param name="tableName">"PHOTOS"</param>
+            <param name="catalog">"[PATH]"</param>
+            <param name="ordered">0</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+  </objects>
 </serverDefs>

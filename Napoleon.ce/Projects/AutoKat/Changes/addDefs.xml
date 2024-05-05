@@ -172,7 +172,7 @@
       <field name="longitude" type="number" prec="4" />
       <field name="stltime" type="number" />
       <field name="payType" type="string" />
-      
+
       <events>
         <event type="put">
           <action name="WriteToLog">$object.type;$object.date</action>
@@ -197,6 +197,10 @@
       <field name="id" width="55" type="string" />
       <field name="remark" type="string" />
       <field name="bmark" type="number" />
+      
+      <!-- 1 - cash, 2 - bank -->
+      <field name="payType" type="string" />
+      
       <field name="items" type="collection">
         <data>
           <object name="Item">

@@ -2,8 +2,8 @@ export
 
 #Variant = MichelK
 #Variant = MichelK2
-#Variant = MichelK3
-Variant = MichelK4
+Variant = MichelK3
+#Variant = MichelK4
 #Variant = MichelkDost
 
 ifeq ($(Variant),)

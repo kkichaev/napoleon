@@ -42,26 +42,23 @@ public class WarehouseEx extends Warehouse {
         textView.setTextColor(Color.BLACK);
 
         ViewGroup vg = (ViewGroup) textView.getParent();
-        TextViewCrossOut src = vg.findViewById(textView.getId() == R.id.tvClmn1 ? R.id.tvoClmn1 : R.id.tvoClmn2);
-        if(src != null) {
-            src.setVisibility(View.GONE);
-        }
+//        TextViewCrossOut src = vg.findViewById(textView.getId() == R.id.tvClmn1 ? R.id.tvoClmn1 : R.id.tvoClmn2);
+//        if(src != null) {
+//            src.setVisibility(View.GONE);
+//        }
 
         if((type == COLUMN_COST || type == COLUMN_COST_SUM) && document instanceof OrderImpl) {
-            int cost = Features.COST_MANAGER.getCost(price.id, document.getSumType());
-            int regCost = ((CostManagerImplEx)Features.COST_MANAGER).getCurCost().regularCost;
-            if(cost != 0 && regCost != 0) {
-                textView.setTextColor(getResources().getColor(R.color.red));
-
-                if(src != null) {
-                    if(type == COLUMN_COST_SUM) {
-                        int qty = ((OrderImpl) document).getItemQty(price);
-                        if (qty != 0) {
-                            regCost = (int)((long)regCost * qty / Consts.QTY_SCALE);
-                        }
-                    }
-                    src.setText(Util.IntToScaleStr(regCost, Consts.SUM_SCALE, Util.DEC_DELIM, false));
-                    src.setVisibility(View.VISIBLE);
+            long sum = ((OrderImpl)document).getItemSum(price);
+            if(type == COLUMN_COST || sum == 0) {
+                int cost = Features.COST_MANAGER.getCost(price.id, document.getSumType());
+                int regCost = ((CostManagerImplEx)Features.COST_MANAGER).getCurCost().regularCost;
+                if( cost != 0 && regCost != 0) {
+                    String text = Util.IntToScaleStr(cost, Consts.SUM_SCALE, Util.DEC_DELIM, false);
+                    text += "\u2026" + Util.IntToScaleStr(regCost, Consts.SUM_SCALE, Util.DEC_DELIM, false);
+                    textView.setText(text);
+                    textView.setTextColor(getResources().getColor(R.color.green_cost));
+//                    textView.setTextColor(0x04CB12);
+                    return;
                 }
             }
         }

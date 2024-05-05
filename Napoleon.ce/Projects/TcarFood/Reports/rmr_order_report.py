@@ -128,7 +128,7 @@ def loadData(params, server):
     unpack(params.userids))
   
   ord = server.Get('Order', where)
-  price = server.Get('Price', '', 'id')
+  price = server.Get('Price', 'setqtyfilter(false)', 'id')
   folder = server.Get('Folder', '', 'fid')
   
   r.orgs, r.cellidx = collectOrgs(server, params.userids, ord)

@@ -31,9 +31,6 @@ namespace GRSoft.NapoleonManager
 
       internal static System.Type GetFormType(System.Type baseType)
       {
-         if (baseType == typeof(MainForm))
-            return typeof(MainFormEx);
-
          return baseType;
       }
    }

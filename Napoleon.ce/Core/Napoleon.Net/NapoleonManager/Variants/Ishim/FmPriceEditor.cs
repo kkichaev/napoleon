@@ -118,7 +118,7 @@ namespace GRSoft.NapoleonManager
          tvFolders.ResumeLayout();
       }
 
-      void LoadFoldersData(TreeNodeCollection nodes, int level, String folderID, SimpleDataSet<ManagerFolder> folders)
+      void LoadFoldersData(TreeNodeCollection nodes, int level, string folderID, SimpleDataSet<ManagerFolder> folders)
       {
          foreach(TreeNode tn in nodes)
          {
@@ -127,6 +127,7 @@ namespace GRSoft.NapoleonManager
             {
                mf.level = level;
                mf.name = tn.Text;
+               mf.parent = folderID;
                folders.Add(mf);
                LoadFoldersData(tn.Nodes, level + 1, mf.id, folders);
             }

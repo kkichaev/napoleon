@@ -8,7 +8,8 @@
       <q-card-section
         v-if="registerError"
         class="error-message text-center login-card-section"
-        style="margin-top: 8px">
+        style="margin-top: 8px"
+      >
         {{ errorMessage }}
       </q-card-section>
 
@@ -19,31 +20,34 @@
             v-model="email"
             :label="$t('login.emailLabel')"
             filled
-            :rules="[val => !!val || $t('field_is_required')]"
-            hide-bottom-space/>
+            :rules="[(val) => testEmail(val) || $t('enter_email')]"
+            hide-bottom-space
+          />
 
           <q-input
             style="margin-top: 32px"
             v-model="name"
             :label="$t('register.nameLabel')"
             filled
-            :rules="[val => !!val || $t('field_is_required')]"
-            hide-bottom-space/>
+            :rules="[(val) => !!val || $t('field_is_required')]"
+            hide-bottom-space
+          />
 
           <q-input
             style="margin-top: 32px"
             v-model="servername"
             :label="$t('register.projectName')"
             filled
-            :rules="[val => !!val || $t('field_is_required')]"
-            hide-bottom-space/>
+            :rules="[(val) => !!val || $t('field_is_required')]"
+            hide-bottom-space
+          />
 
           <q-input
             style="margin-top: 32px"
             :label="$t('login.passwordLabel')"
             filled
             v-model="password"
-            :rules="[val => !!val || $t('field_is_required')]"
+            :rules="[(val) => !!val || $t('field_is_required')]"
             hide-bottom-space
           />
 
@@ -52,7 +56,7 @@
             :label="$t('register.passwordConfirmLabel')"
             filled
             v-model="password2"
-            :rules="[val => !!val || $t('field_is_required')]"
+            :rules="[(val) => !!val || $t('field_is_required')]"
             hide-bottom-space
           />
         </q-form>
@@ -68,33 +72,42 @@
       </q-card-section>
 
       <q-card-section v-if="regSuccess" login-card-section>
-        <div class="text-center" style="margin-top: 40px">Проект и ваши данные успешно зарегестрированы</div>
-        <div class="text-center" style="margin-top: 36px">На указанный email было отправлено письмо. Вам необходимо подтвердить свой адрес</div>
-        <div class="text-center">после этого можно будет авторизироваься</div>
-
+        <div class="text-center" style="margin-top: 40px">
+          {{ $t("register.regSuccess") }}
+        </div>
+        <div class="text-center" style="margin-top: 36px">
+          {{ $t("register.emailSent") }}
+        </div>
+        <div class="text-center">{{ $t("register.thenLogin") }}</div>
       </q-card-section>
 
-      <q-card-section v-if="regSuccess">
+      <q-card-section v-if="regSuccess"> </q-card-section>
 
-      </q-card-section>
-
-      <q-card-section class="text-center login-card-section" style="margin-top: 32px">
+      <q-card-section
+        class="text-center login-card-section"
+        style="margin-top: 32px"
+      >
         <q-btn
           class="login-form-text"
           flat
           :label="$t('register.autorization')"
           no-caps
           padding="0px"
-          :to="{name: 'Login'}"
+          :to="{ name: 'Login' }"
         />
       </q-card-section>
 
-      <q-card-section class="text-center login-card-section" style="margin-top: 32px">
-        <q-btn class="login-form-text"
+      <q-card-section
+        class="text-center login-card-section"
+        style="margin-top: 32px"
+      >
+        <q-btn
+          class="login-form-text"
           flat
           no-caps
           padding="0px"
-          href="mailto:info@grsoft.app">
+          :href="mailto()"
+        >
           <u>{{ $t("login.supportEmail") }}</u>
         </q-btn>
       </q-card-section>
@@ -104,45 +117,59 @@
 
 <script setup>
 import { ref, computed, watch } from "vue";
-import { registerUser } from "../backend/backend";
+import { registerUser } from "../backend/user";
+import { testEmail, mailto } from "../backend/helper";
 import { useQuasar } from "quasar";
 import { useI18n } from "vue-i18n";
 
-const name=ref('')
-const servername=ref('')
+const name = ref("");
+const servername = ref("");
 const email = ref("");
 const password = ref("");
 const password2 = ref("");
-const regSuccess = ref(false)
-const $q = useQuasar()
-const form = ref(null)
-const registerError = ref(false)
-const errorMessage = ref('')
-const i18n = useI18n()
+const regSuccess = ref(false);
+const $q = useQuasar();
+const form = ref(null);
+const registerError = ref(false);
+const errorMessage = ref("");
+const i18n = useI18n();
 
 function register() {
-  form.value.validate().then((success)=>{
-    if (success){
+  form.value.validate().then((success) => {
+    if (success) {
+      $q.loading.show();
+
       registerUser({
         email: email.value.toLocaleLowerCase(),
         name: name.value,
-        password: password.value, surname: "", servername: servername.value, locale: i18n.locale.value})
-        .then((responce)=>{
-          console.log("register success: " + responce)
-          regSuccess.value = true
-        })
-        .catch((error)=>{
-          registerError.value = true
-          errorMessage.value = error
+        password: password.value,
+        surname: "",
+        servername: servername.value,
+        locale: i18n.locale.value,
+      })
+        .then((responce) => {
+          $q.loading.hide();
 
-          for (var e of error.response.data){
-            if (e.name == 'ServerAnswer' && e.data[0].message == 'email_already_exists'){
-              errorMessage.value = i18n.t('register.emailAlreadyExists')
+          console.log("register success: " + responce);
+          regSuccess.value = true;
+        })
+        .catch((error) => {
+          $q.loading.hide();
+
+          registerError.value = true;
+          errorMessage.value = error;
+
+          for (var e of error.response.data) {
+            if (
+              e.name == "ServerAnswer" &&
+              e.data[0].message == "email_already_exists"
+            ) {
+              errorMessage.value = i18n.t("register.emailAlreadyExists");
             }
           }
-        })
+        });
     }
-  })
+  });
 }
 
 // watch([hasError, regSuccess], ()=>{

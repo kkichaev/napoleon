@@ -13,9 +13,11 @@ import com.grsoft.util.InputNumber;
 import com.grsoft.util.Util;
 
 import android.os.Bundle;
+import android.text.Html;
 import android.text.InputType;
 import android.text.SpannableString;
 import android.text.TextWatcher;
+import android.text.method.LinkMovementMethod;
 import android.text.style.UnderlineSpan;
 import android.view.View;
 import android.widget.CheckBox;
@@ -182,6 +184,29 @@ public class PriceCountEx extends PriceCount {
 			actionLayout.setVisibility(View.GONE);
 			baseLayout.setVisibility(View.GONE);
 		}
+	}
+
+	@Override
+	protected void refreshData() {
+		super.refreshData();
+
+		int vsbl =View.GONE;
+		View llbc = findViewById(R.id.llBC);
+		String bc = ((PriceEx)price.getData()).barcode;
+		if(bc.length() > 0) {
+			String text ="";
+			vsbl = View.VISIBLE;
+			for(String el : bc.split(",")) {
+				if(text.length() > 0) text += ", ";
+				text += String.format("<a href=\"https://www.google.com/search?q=%1$s\">%1$s</a>", el);
+			}
+			TextView tv = ((TextView)findViewById(R.id.tvBC));
+			tv.setText(Html.fromHtml(text));
+			tv.setClickable(true);
+			tv.setMovementMethod(LinkMovementMethod.getInstance());
+
+		}
+		llbc.setVisibility(vsbl);
 	}
 
 	void updateNac() {

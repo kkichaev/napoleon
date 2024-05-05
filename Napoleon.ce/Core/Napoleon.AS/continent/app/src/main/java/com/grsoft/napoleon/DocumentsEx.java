@@ -10,6 +10,7 @@ import com.grsoft.napoleon.documents.Document;
 import com.grsoft.napoleon.documents.OrderDoc;
 import com.grsoft.util.GpsCoord;
 
+import android.app.Dialog;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.MenuItem;
@@ -18,7 +19,11 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.Toast;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class DocumentsEx extends Documents {
+	Timer alertTimer = null;
 	@Override
 	public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
 		if (DocType.getCurDoc() == DebtDocEx.instance())
@@ -30,7 +35,44 @@ public class DocumentsEx extends Documents {
 			menu.add(android.view.Menu.NONE, R.id.itReqUPD, android.view.Menu.NONE, R.string.request_upd);
 		}
 	}
-	
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		checkAlert();
+	}
+
+	void checkAlertInterval() {
+		long ai = SyncAlert.alertInterval(this);
+		if(ai != 0) {
+			if(alertTimer != null){alertTimer.cancel();}
+
+			alertTimer = new Timer();
+			alertTimer.schedule(new TimerTask() {
+				@Override public void run() {
+					alertTimer = null;
+					runOnUiThread(() -> checkAlert());
+				}
+			}, ai);
+		}
+	}
+
+	@Override
+	protected void onStop() {
+		super.onStop();
+		if(alertTimer != null){alertTimer.cancel();}
+	}
+
+	void checkAlert() {
+		Dialog d = SyncAlert.showAlert(false, this, (res) -> {
+			if(!res) {
+				checkAlertInterval();
+			}
+		});
+		if (d != null)
+			d.show();
+	}
+
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
 		if (item.getItemId() == R.id.itReqUPD) {

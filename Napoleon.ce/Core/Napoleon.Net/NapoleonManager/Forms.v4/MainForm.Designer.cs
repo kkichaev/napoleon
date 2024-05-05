@@ -591,7 +591,7 @@
       private System.ComponentModel.IContainer components;
       private System.Windows.Forms.ToolStripButton btnRouteAp;
       protected System.Windows.Forms.DataGridViewTextBoxColumn UniqOrders;
-      private System.Windows.Forms.ToolStripButton btnReport;
+      protected System.Windows.Forms.ToolStripButton btnReport;
       public System.Windows.Forms.ToolStripButton tsbCoverArea;
       protected System.Windows.Forms.ToolStripButton btnUserLocation;
    }

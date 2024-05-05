@@ -59,7 +59,7 @@ import com.grsoft.view.BaseActivity;
 public class CreateOrder extends BaseActivity
 {
 	private OrderImpl order = (OrderImpl)OrderDoc.instance().create();
-	
+
 	private static final int DIALOG_DATE_PICKER_ID = 0;
 	private static final int DIALOG_TIME_PICKER_ID = 1;
 	
@@ -147,31 +147,19 @@ public class CreateOrder extends BaseActivity
 			} catch (Exception e) {
 			}
 		}
-
-		config.close();
-		
-		if( Features.DELIVERY_ADDRESS ) {
-			View v = findViewById(R.id.ftrAddress);
-			if( v != null ) {
-				Spinner spAddress = (Spinner) findViewById(R.id.spAddress);
-				if( spAddress != null ) {
-					v.setVisibility(View.VISIBLE);
-					ArrayList<KeyValue> addresses = new ArrayList<KeyValue>();
-					int selected = -1;
-					for(OrgAddress addr : oi.getData().orgAddress) {
-						KeyValue kv = new KeyValue(addr.id, addr.name);
-						if( kv.key.toString().equals(o.adrCode))
-							selected = addresses.size();
-						addresses.add(kv);
-					}
-					ArrayAdapter<KeyValue> aa = new ArrayAdapter<KeyValue>(this, R.layout.simple_spinner_layout, addresses);
-					spAddress.setAdapter(aa);
-					if( selected >= 0 && selected < spAddress.getCount())
-						spAddress.setSelection(selected);
+		sb = new StringBuilder();
+		if(config.getValue(sb, "СамовывозРазрешен")) {
+			try {
+				if(Integer.parseInt(sb.toString()) == 1) {
+					findViewById(R.id.trPickup).setVisibility(View.VISIBLE);
+					((CheckBox)findViewById(R.id.cbPickup)).setChecked(o.pickUp > 0);
 				}
+			} catch (Exception e) {
 			}
 		}
-		
+
+		config.close();
+
 		TextView tvDelay = (TextView) findViewById(R.id.tvDelay); 
 		tvDelay.setOnClickListener(new DelayClickListener());
 		
@@ -185,7 +173,7 @@ public class CreateOrder extends BaseActivity
 			
 			@Override
 			public void onClick(View v) {
-				Intent i = CalendarActivityEx.open(CreateOrder.this, order.getDate(), CreateOrder.this::isDateEnabled);
+				Intent i = CalendarActivity.open(CreateOrder.this, order.getDate(), CreateOrder.this::isDateEnabled);
 //				Intent i = new Intent(CreateOrder.this, CalendarActivityEx.class);
 //				i.putExtra(ExtrasConst.DATE_TAG, order.getDate().getTime());
 				startActivityForResult(i, DIALOG_DATE_PICKER_ID);
@@ -200,7 +188,7 @@ public class CreateOrder extends BaseActivity
 		btnOK.setOnClickListener(new OKClickListener());
 
         findViewById(R.id.btnCancel).setOnClickListener(new CancelClickListener());
-        updateDisplayDelay();
+		updateDisplayDelay();
 		refreshDate();
 
 		if(!editMode)
@@ -278,17 +266,18 @@ public class CreateOrder extends BaseActivity
 //				}
 //			}
 		}
-		
-		switch(ConfigHelper.getDateType()){
-		case workday:
-			dateworkday(o);
-			break;
-		case nextday:
-			datenextday(o);
-			break;
-		default:
-			break;
-		}
+
+		datenextday(o);
+//		switch(ConfigHelper.getDateType()){
+//		case workday:
+//			dateworkday(o);
+//			break;
+//		case nextday:
+//			datenextday(o);
+//			break;
+//		default:
+//			break;
+//		}
 	}
 	
 	private void datenextday(Order o) {
@@ -420,14 +409,7 @@ public class CreateOrder extends BaseActivity
 		@Override
 		public void onClick(View v) {
 			super.onClick(v);
-			
-			Spinner spPrices = (Spinner) findViewById(R.id.spPrices);
-			int costType = spPrices.getSelectedItemPosition();
-			
-			if (editMode && (order.getSumType() != costType && costType >= 0))
-				askToApplyNewSumType(v.getContext(), costType);
-			else 
-				okDone(false);
+			okDone(false);
 		}
 		
 		private void okDone(boolean updateSumType) {
@@ -444,6 +426,7 @@ public class CreateOrder extends BaseActivity
 			int costType = spPrices.getSelectedItemPosition();
 
 			o.retDoc = ((CheckBox)findViewById(R.id.cbReturn)).isChecked() ? 1 : 0;
+			o.pickUp = ((CheckBox)findViewById(R.id.cbPickup)).isChecked() ? 1 : 0;
 
 			if( suppl >= 0 ) 
 			{
@@ -473,15 +456,7 @@ public class CreateOrder extends BaseActivity
 
 			EditText remark = (EditText)findViewById(R.id.edCreateOrderNotes);
 			o.remark = remark.getText().toString();
-			
-			if( Features.DELIVERY_ADDRESS ) {
-				Spinner spAddress = (Spinner) findViewById(R.id.spAddress);
-				if( spAddress != null ) {
-					sel = (KeyValue) spAddress.getSelectedItem();
-					if( sel != null )
-						o.adrCode = sel.key.toString();
-				}
-			}
+
 			if (updateSumType)
 				order.updateItemsCost(o.sumType);
 			else
@@ -491,30 +466,6 @@ public class CreateOrder extends BaseActivity
 				Warehouse.open(CreateOrder.this, order, false);
 			
 			finish();
-		}
-		
-		private void askToApplyNewSumType(Context context, final int newSumType){
-			AlertDialog.Builder builder = new AlertDialog.Builder(context);
-			builder.setTitle("Внимание");
-			builder.setMessage("Тип цены был изменен, пересчитать заказ?");
-
-			builder.setPositiveButton("Пересчитать", new DialogInterface.OnClickListener() {
-				
-				@Override
-				public void onClick(DialogInterface dialog, int which) {
-					okDone(true);
-				}
-			});
-			
-			builder.setNegativeButton("Оставить", new DialogInterface.OnClickListener() {
-				
-				@Override
-				public void onClick(DialogInterface dialog, int which) {
-					okDone(false);
-				}
-			});
-			
-			builder.create().show();
 		}
 	}
 	

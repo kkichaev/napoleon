@@ -21,7 +21,7 @@ public class CostStrategyEx extends CostStrategy {
 	}
 	
 	@Override
-	public int getItemCost(Price p, Document<?> doc) {
+	public long getItemCost(Price p, Document<?> doc) {
 		if(doc != null) {
 			UpdateOrg(doc.getId());
 			int ct = -1;

@@ -1,4 +1,3 @@
-import datetime
 
-def doo():
-    pass
+def run(server):
+    print('test')

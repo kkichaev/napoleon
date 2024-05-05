@@ -164,8 +164,10 @@ public class Price extends BaseFragment implements InputDlg.InputDlgControl{
                         allItems.add(p);
                     }
                 }
+            } else {
+                allItems.addAll(items);
             }
-//            allItems.addAll(items);
+            filter(this.filter);
         }
 
         @NonNull

@@ -25,6 +25,8 @@ namespace GRSoft.NapoleonAdmin
          public string Agent { get; set; }
          public string Version { get; set; }
          public int Action { get; set; }
+
+         public bool IsAgent { get; set; }
       }
 
       DataGridView grid;
@@ -32,8 +34,15 @@ namespace GRSoft.NapoleonAdmin
       SortableBindingList<Data> filter = new SortableBindingList<Data>();
       ToolStripTextBox tbSearch;
       ToolStripComboBox cbAction;
+      ToolStripComboBox cbView;
       DataSet<string, NewVersionAction> dsAction = new DataSet<string, NewVersionAction>(NewVersionAction.OBJECT_NAME);
       ToolStripButton save;
+      ContextMenuStrip managerRights = new ContextMenuStrip();
+      DataGridViewTextBoxColumn clmnManagerRight = new DataGridViewTextBoxColumn();
+
+      public static RightToken writeScript = RightTokens.Get("ScriptDef");
+      public static RightToken writeQuest = RightTokens.Get("Question");
+      public static RightToken writeAgentSched = new RightToken("FirstDocTime", "Может редактировать работу агентов");
 
       class Action
       {
@@ -87,7 +96,14 @@ namespace GRSoft.NapoleonAdmin
          tbSearch.Size = new System.Drawing.Size(150, 25);
          tbSearch.TextChanged += TbSearch_TextChanged;
 
+         cbView = new ToolStripComboBox();
+         cbView.Items.Add("Агенты");
+         cbView.Items.Add("Менеджеры");
+         cbView.SelectedIndex = 0;
+         cbView.SelectedIndexChanged += CbView_SelectedIndexChanged;
+         
          ts.Items.Add(tbSearch);
+         ts.Items.Add(cbView);
 
          ToolStripLabel label2 = new ToolStripLabel();
          label2.Text = "Для всех";
@@ -101,13 +117,17 @@ namespace GRSoft.NapoleonAdmin
          cbAction.Items.Add(new Action { ID = 1, Title = "Блокировка" });
          cbAction.SelectedIndex = 0;
 
+
          ToolStripButton btnAction = new ToolStripButton();
          btnAction.DisplayStyle = ToolStripItemDisplayStyle.Text;
          btnAction.Name = "btnAction";
          btnAction.Size = new System.Drawing.Size(100, 22);
          btnAction.Text = "Применить";
+         btnAction.Margin = new Padding(0, 0, 20, 0);
          btnAction.Alignment = ToolStripItemAlignment.Right;
          btnAction.Click += new System.EventHandler(Action_Click);
+
+         this.version.Left -= 20;
 
          ts.Items.Add(btnAction);
          ts.Items.Add(cbAction);
@@ -164,6 +184,38 @@ namespace GRSoft.NapoleonAdmin
          clmnMinInterface.Width = 90;
          usersView.Columns.Add(clmnMinInterface);
 
+         ToolStripMenuItem mi = new ToolStripMenuItem();
+         mi.Text = "Права";
+         mi.Size = new System.Drawing.Size(134, 24);
+         mi.Name = "miManagerRight";
+         mi.Click += Mi_Click;
+         managerRights.Items.Add(mi);
+         managerRights.Size =  new System.Drawing.Size(135, 28);
+
+         clmnManagerRight.HeaderText = "Права";
+         clmnManagerRight.DataPropertyName = "RightText";
+         clmnManagerRight.Width = 90;
+         clmnManagerRight.Visible = false;
+         usersView.Columns.Add(clmnManagerRight);
+      }
+
+      private void CbView_SelectedIndexChanged(object sender, EventArgs e)
+      {
+         LoadData(cbView.SelectedIndex == 0);
+      }
+
+      private void Mi_Click(object sender, EventArgs e)
+      {
+         if (usersView.CurrentRow == null)
+            return;
+         UserDataItem udi = usersView.CurrentRow.DataBoundItem as UserDataItem;
+         FmManagerRights form = new FmManagerRights();
+         form.Manager = udi.Manager;
+         if( form.ShowDialog() == DialogResult.OK)
+         {
+            IsDirty = true;
+            usersView.InvalidateRow(usersView.CurrentRow.Index);
+         }
       }
 
       protected override void usersView_CurrentCellDirtyStateChanged(object sender, EventArgs e)
@@ -179,6 +231,9 @@ namespace GRSoft.NapoleonAdmin
 
          if (clmnMinInterface != null)
             clmnMinInterface.Visible = agentView;
+         usersView.ContextMenuStrip = agentView ? null : managerRights;
+         if (clmnManagerRight != null)
+            clmnManagerRight.Visible = !agentView;
       }
 
       private void Grid_CurrentCellDirtyStateChanged(object sender, EventArgs e)
@@ -193,6 +248,45 @@ namespace GRSoft.NapoleonAdmin
          textWait = new System.Threading.Timer(new TimerCallback(TimePassed), ((ToolStripTextBox)sender).Text, 500, 0);
       }
 
+      void LoadData(bool agents)
+      {
+         data.Clear();
+         filter.Clear();
+
+         if (agents)
+         {
+            foreach (Agent a in dsAgents.Values)
+            {
+               Data d = new Data
+               {
+                  ID = a.id,
+                  Agent = a.Name,
+                  Version = GetVersion(a.id),
+                  Action = GetAction(a.id),
+                  IsAgent = true,
+               };
+
+               data.Add(d);
+            }
+         } else
+         {
+            foreach (DivisionManager dm in dsManagers.Data)
+            {
+               Data d = new Data
+               {
+                  ID = dm.login,
+                  Agent = dm.name.Length == 0 ? dm.login : dm.name,
+                  Version = GetVersion(dm.login),
+                  Action = GetAction(dm.login),
+                  IsAgent = false,
+               };
+
+               data.Add(d);
+            }
+         }
+         data.ForEach(d => filter.Add(d));
+      }
+
       private void Sync_Click(object sender, EventArgs e)
       {
          IsDirty = false;
@@ -200,6 +294,7 @@ namespace GRSoft.NapoleonAdmin
          DBConnection conn = config.GetConnection();
          List<IDataSet> upd = new List<IDataSet>(new IDataSet[] { 
             dsAgents, 
+            dsManagers,
             dsUserActivity, 
             dsAction});
 
@@ -207,24 +302,9 @@ namespace GRSoft.NapoleonAdmin
 
          conn.ReceiveTimeout = 3 * 60 * 1000;
          DataModule.RefreshGiveSets(conn, upd, null).Join();
-         
-         data.Clear();
-         filter.Clear();
 
-         foreach (Agent a in dsAgents.Values)
-         {
-            Data d = new Data
-            {
-               ID = a.id,
-               Agent = a.Name,
-               Version = GetVersion(a.id),
-               Action = GetAction(a.id),
-            };
+         LoadData(cbView.SelectedIndex == 0);
 
-            data.Add(d);
-         }
-
-         data.ForEach(d => filter.Add(d));
          tbSearch.Text = "";
       }
 
@@ -271,7 +351,10 @@ namespace GRSoft.NapoleonAdmin
          MessageBox.Show(ret ? "Изменения сохранены" : "Ошибка при записи изменений");
 
          if (ret)
+         {
             save.Enabled = false;
+            data.ForEach((d) => dsAction[d.ID] = new NewVersionAction { action = d.Action, userid = d.ID });
+         }
       }
 
       private IDataSet CollectActionDataSet()

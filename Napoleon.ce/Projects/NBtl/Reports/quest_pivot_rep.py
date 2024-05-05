@@ -69,7 +69,11 @@ class Quest:
       elif n.type == QuestHelper.DATASET_TYPE:
         val = ''
         if n.remark == QuestHelper.ORG_DATASET_TYPE:
-          val = r.orgs[n.answer].name if n.answer in r.orgs else n.answer
+          org = r.orgs.getOrg(n.answer, d.userid)
+          if not org:
+            val = n.answer
+          else:
+            val = org.name
         
         self.putItemValue(a, ReportData.KEY_FMT.format(d.question, n.iditem), val)
       else: 

@@ -131,7 +131,7 @@ namespace GRSoft.NapoleonManager
             }
          }
 
-         const string LABEL_TEXT = "Обработно запросов: {0} из {1}";
+         const string LABEL_TEXT = "Обработано запросов: {0} из {1}";
 
          foreach (VisitInfo i in dsVisitInfo.Values)
          {

@@ -31,6 +31,47 @@ namespace GRSoft.NapoleonManager
          minVisitDuration.Width = 85;
 
          childUserList.Columns.Add(minVisitDuration);
+
+         ContextMenuStrip cms = new ContextMenuStrip();
+         ToolStripMenuItem tsi = new ToolStripMenuItem();
+         tsi.Size = new System.Drawing.Size(173, 22);
+         tsi.Text = "Перенести данные агента";
+         tsi.Click += MoveAgentData;
+         cms.Size = new System.Drawing.Size(174, 26);
+         cms.Items.Add(tsi);
+
+         childUserList.ContextMenuStrip = cms;
+         childUserList.MouseDown += ChildUserList_MouseDown;
+      }
+
+      private void MoveAgentData(object sender, System.EventArgs e)
+      {
+         if (childUserList.SelectedRows.Count == 0)
+            return;
+
+         DataItem di = childUserList.SelectedRows[0].DataBoundItem as DataItem;
+         Agent a = di.agent;
+         FmMoveAgentData form = new FmMoveAgentData();
+         form.SrcAgent = a;
+         form.SrcDivision = division;
+         if(form.ShowDialog() == DialogResult.OK)
+         {
+            parent.GetData(true);
+            RefreshDataSets();
+         }
+      }
+
+      private void ChildUserList_MouseDown(object sender, MouseEventArgs e)
+      {
+         if(e.Button == MouseButtons.Right)
+         {
+            var ht = childUserList.HitTest(e.X, e.Y);
+            if(ht.RowIndex >= 0)
+            {
+               childUserList.ClearSelection();
+               childUserList.Rows[ht.RowIndex].Selected = true;
+            }
+         }
       }
 
       void CurrentCellDirtyStateChanged(object sender, System.EventArgs e)

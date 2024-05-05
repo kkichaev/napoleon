@@ -20,7 +20,7 @@ reload(sys);
 #sys.setdefaultencoding("cp1251")
 
 class Report:
-  __slots__ = {"divname", "start" , "finish", "items", "agents"}
+  __slots__ = {"divname", "start" , "finish", "items", "agents", "date"}
   
   def __init__(self):
       self.date = datetime.now()
@@ -93,7 +93,7 @@ def initAgentData(server, params, item):
     td2 = timedelta(hours=int(t[0]), minutes=int(t[1]))
     finish = finish + td2
 
-  where = '"userid"="{0}" and "created" >= ToDate("{1}") and "created" <= ToDate("{2}")'.format(item.id, 
+  where = '"userid"={0} and "created" >= ToDate("{1}") and "created" <= ToDate("{2}")'.format("'"+item.id+"'", 
     start.strftime("%d/%m/%Y 00:00:00"), finish.strftime("%d/%m/%Y 23:59:59"))
   
   docNames = ["Order", "VisitInfo", "OrgRemnants", "Answer", "Incass", "TaskDone", "Sales", "Answer", "Facing"]
@@ -145,7 +145,7 @@ def initAgentData(server, params, item):
   
   item.progress = float(len(route_doc)) / float(len(route_ids)) if len(route_ids) != 0 else 0.0
   
-  where = '"userid"="{0}" and "date" >= ToDate("{1}") and "date" <= ToDate("{2}")'.format(item.id, 
+  where = '"userid"={0} and "date" >= ToDate("{1}") and "date" <= ToDate("{2}")'.format("'"+item.id+"'", 
     start.strftime("%d/%m/%Y %H:%M:00"), finish.strftime("%d/%m/%Y %H:%M:00"))
 
   ulog = server.Get("UserLog", where)

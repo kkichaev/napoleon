@@ -28,8 +28,8 @@ public class UpdateDB extends UpdateDBW {
 	@Override protected Hitching getOrgHitching() {
 		CostStrategy.refreshCash();
 		return new OrgHitching();
-	};
-	
+	}
+
 	@Override
 	protected List<Hitching> getGenDataHitchings() throws RuntimeException {
 		List<Hitching> res = super.getGenDataHitchings();

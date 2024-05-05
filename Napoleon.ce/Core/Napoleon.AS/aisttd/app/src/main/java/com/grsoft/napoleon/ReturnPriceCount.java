@@ -191,7 +191,7 @@ public class ReturnPriceCount extends PriceCount implements OrderImplBase.Update
 			InputNumberDlg.open(v.getContext(), new InputNumber() {
 				
 				@Override
-				public int getValue() {
+				public long getValue() {
 					Integer value = dlvQtys.get(doc);
 					return value == null ? 0 : value;
 				}

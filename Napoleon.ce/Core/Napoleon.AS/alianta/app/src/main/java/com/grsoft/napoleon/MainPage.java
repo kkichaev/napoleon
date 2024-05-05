@@ -173,21 +173,21 @@ public class MainPage extends Activity {
 		
 		return true;
 	}
-}
 
-class ContactEx {
-	Contact contact;
-	public ContactEx(Contact c) {
-		contact = c;
+	static class ContactEx {
+		Contact contact;
+		public ContactEx(Contact c) {
+			contact = c;
+		}
+
+		@Override
+		public String toString() {
+			String ret = contact.name;
+			if(ret.length() > 0)
+				ret += " тел.: " + contact.phone;
+			return ret;
+		}
+
+		public Contact getContact() { return contact; }
 	}
-	
-	@Override
-	public String toString() {
-		String ret = contact.name;
-		if(ret.length() > 0)
-			ret += " тел.: " + contact.phone;
-		return ret;
-	}
-	
-	public Contact getContact() { return contact; } 
 }

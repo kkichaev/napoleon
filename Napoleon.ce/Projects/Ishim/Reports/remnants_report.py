@@ -1,5 +1,5 @@
 import logging
-
+import sys
 from grsoft.xl_base import XLBuilder
 from openpyxl import Workbook
 from openpyxl.cell import get_column_letter
@@ -49,10 +49,11 @@ class OrgItem:
         "=IFERROR(C{0}/B{0},0)".format(row)]       
     
 class Item:
-    __slots__ = ['aid', 'username', 'data']
+    __slots__ = ['userid', 'username', 'data', 'aid']
     
     def __init__(self):
         self.userid = ''
+        self.aid = ''
         self.username = ''
         self.data = []
         
@@ -189,13 +190,13 @@ def loadData(params, server):
       if len(item.data) > 0:      
         data.data.append(item)
         
-    data.data = sorted(data.data, cmp=lambda lhs, rhs: cmp(lhs.username, rhs.username))    
+    data.data = sorted(data.data, key=lambda x: x.username)    
     
     for d in data.data:
-      d.data = sorted(d.data, cmp=lambda lhs, rhs: cmp(lhs.name, rhs.name))    
+      d.data = sorted(d.data, key=lambda x: x.name)    
       
       for y in d.data:
-        y.data = sorted(y.data, cmp=lambda lhs, rhs: cmp(lhs.name, rhs.name))    
+        y.data = sorted(y.data, key=lambda x: x.name)    
       
     return data
     

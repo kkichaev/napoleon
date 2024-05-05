@@ -17,7 +17,7 @@ def run(server):
     connectStr = server.Config('1C_Connect')
     conn = server.GetCachedCOM(connectStr)
     if conn == None:
-       o = server.CreateObject("V82.COMConnector") 
+       o = server.CreateObject(server.Config('1C_COM_Connector'))
        conn = None
        try:
            conn = o.Connect(connectStr)

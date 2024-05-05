@@ -119,11 +119,20 @@
         </event>
       </add>
     </modify>
+
+    <modify src="Order$items">
+      <add>
+        <field name="discount" type="number" prec="2" data="DSC" />
+        <field name="costWOD" type="number" prec="2" />
+      </add>
+    </modify>
+    
     <modify src="Price">
       <add>
         <field name="changes" type="number" />
         <field name="boxed" type="number" />
         <field name="priceGroup" type="string" data="PRC_GRP" />
+        <field name="minCost" type="number" prec="2" />
       </add>
     </modify>
     <modify src="PriceRemnants">

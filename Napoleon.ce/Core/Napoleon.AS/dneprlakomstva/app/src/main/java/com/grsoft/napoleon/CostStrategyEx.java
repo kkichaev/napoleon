@@ -18,7 +18,7 @@ public class CostStrategyEx extends CostStrategy {
 	static public void clearCache() { id = ""; groups = new ArrayList<OrgPrcGroup>(); }
 	
 	@Override
-	public int getItemCost(Price p, Document<?> doc) {
+	public long getItemCost(Price p, Document<?> doc) {
 		if( doc != null ) {
 			if( !id.equals(doc.getId())) {
 				OrgImpl oi = new OrgImpl();

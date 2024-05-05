@@ -24,11 +24,11 @@ implements Cloneable{
 	@Scale(value=Consts.SUM_SCALE)
 	public int taxSum;
 
-	@FieldOrder(order=7)
-	@Scale(value=Consts.SUM_SCALE)
-	public int sum;
+//	@FieldOrder(order=7)
+//	@Scale(value=Consts.SUM_SCALE)
+//	public int sum;
 
-	@FieldOrder(order=8)
+	@FieldOrder(order=7)
 	@Scale(value=Consts.SUM_SCALE)
 	public int costWOtax;
 

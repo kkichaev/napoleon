@@ -446,7 +446,7 @@ IDataSource::IReader* SQLFolderCreator::CreateReader(const ParamList& parameters
              (stmtf == NULL || session.Parse(&stmt, stmtf->value, &object))
             )
          {
-            ret = new FolderTreeReader(object, *spf, *scf, sridf, stmt, filters, GetHDBC(), flavor, (pdebug == NULL));
+            ret = new FolderTreeReader(object, *spf, *scf, sridf, stmt, filters, GetHDBC(), flavor, (pdebug != NULL));
          }
          delete spf;
          delete scf;

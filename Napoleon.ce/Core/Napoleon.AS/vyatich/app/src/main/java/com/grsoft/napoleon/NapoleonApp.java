@@ -15,6 +15,7 @@ import com.grsoft.database.HitchingCtor;
 import com.grsoft.database.OrgNotesHitching;
 import com.grsoft.database.PlanogramHitching;
 import com.grsoft.database.PriceMovieHitching;
+import com.grsoft.database.RcvNewHitching;
 import com.grsoft.database.RestoreDocProceeded;
 import com.grsoft.database.RestoreDocProceededEx;
 import com.grsoft.dataobjects.DataObjectInfo;
@@ -26,6 +27,7 @@ import com.grsoft.dataobjects.Order;
 import com.grsoft.dataobjects.OrderEx;
 import com.grsoft.dataobjects.OrderProceeded;
 import com.grsoft.dataobjects.OrderProceededEx;
+import com.grsoft.dataobjects.OrderProperties;
 import com.grsoft.dataobjects.Org;
 import com.grsoft.dataobjects.OrgEx;
 import com.grsoft.dataobjects.OrgNotes;
@@ -141,6 +143,7 @@ public class NapoleonApp extends NapoleonAppBase {
                         new RestoreDocProceededEx(1),
                         new Hitching(Fridge.class),
                         new PlanogramHitching(getApplicationContext()),
+                        new RcvNewHitching(OrderProperties.class),
                 };
                 return Arrays.asList(h);
             }

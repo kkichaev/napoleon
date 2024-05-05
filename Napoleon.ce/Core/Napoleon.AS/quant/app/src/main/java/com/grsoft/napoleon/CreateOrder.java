@@ -57,10 +57,7 @@ public class CreateOrder extends BaseActivity
 	private static final int DIALOG_TIME_PICKER_ID = 1;
 	
 	private boolean editMode = false;
-	
-	private ArrayList<CharSequence> firms = new ArrayList<CharSequence>();
-	private ArrayList<CharSequence> priceType = new ArrayList<CharSequence>();
-	
+
 //	DateHandler dateHandler;
 	TimeHandler timeHandler;
 	
@@ -109,10 +106,10 @@ public class CreateOrder extends BaseActivity
 		ConfigImpl config = new ConfigImpl();
 		
 		Spinner spFirma = (Spinner) findViewById(R.id.spFirma);
-		DialogHelper.loadSpinnerFromConfig(config, "ќрганизаци€", firms, spFirma, o.supplyer);
+		DialogHelper.loadSpinnerFromConfig(config, "ќрганизаци€", new ArrayList<>(), spFirma, o.supplyer);
 
 		Spinner spPrices = (Spinner) findViewById(R.id.spPrices);
-		DialogHelper.loadSpinnerFromConfig(config, "¬ид÷ены", priceType, spPrices, o.sumType);
+		DialogHelper.loadSpinnerWithKey(config, "¬ид÷ены", new ArrayList<>(), spPrices, o.prcType);
 
 		View trSklads = findViewById(R.id.trSklads);
 
@@ -335,7 +332,7 @@ public class CreateOrder extends BaseActivity
 			Spinner spPrices = (Spinner) findViewById(R.id.spPrices);
 			int costType = spPrices.getSelectedItemPosition();
 			
-			if (editMode && (order.getSumType() != costType && costType >= 0))
+			if (editMode && (order.getSumType() != costType && costType >= 0 && !order.isEmpty()))
 				askToApplyNewSumType(v.getContext(), costType);
 			else 
 				okDone(false);
@@ -356,8 +353,10 @@ public class CreateOrder extends BaseActivity
 
 			if( suppl >= 0 )
 				o.supplyer = suppl;
-			if( costType >= 0 )
+			if( costType >= 0 ) {
 				o.sumType = costType;
+				o.prcType = ((KeyValue)spPrices.getSelectedItem()).key.toString();
+			}
 
 			if (Features.WH_QTY) {
 				Spinner spSklads = (Spinner) findViewById(R.id.spSklad);

@@ -29,7 +29,7 @@ public class OrderDetailEx extends OrderDetail{
                 MessageBox.show(this, "Отправка заказа", oai.getData().remark, dialog -> {
                     OrderDeliveryDetailEx.open(this, doc);
                     finish();
-                });
+                }, false);
             }
         }
 

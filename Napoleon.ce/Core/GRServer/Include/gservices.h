@@ -19,6 +19,7 @@ struct ISession;
 struct IObjectDef
 {
    enum Flags { RemoveOnCommit = 1, SendAlways = 2, Internal = 4, HaveEFields = 8 };
+   enum AccessFlags { ReadAccess = 0x10, NonAccess = 0x20, AccFlags = 0x30 };
 
    //virtual bool Load(const std::string& fileName) = 0;
    virtual const IObjectData* Get(const std::wstring& objName) = 0;

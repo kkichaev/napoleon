@@ -18,7 +18,9 @@ import com.grsoft.util.ZeroPositionFilter;
 public class WarehouseEx extends Warehouse {
 	@Override
 	protected Filter createZeroPositionFilter() {
-		return new ZeroQtyFilter();
+		if(document instanceof OrderImplEx)
+			return new ZeroQtyFilter();
+		return super.createZeroPositionFilter();
 	}
 	
 	class ZeroQtyFilter extends Filter {

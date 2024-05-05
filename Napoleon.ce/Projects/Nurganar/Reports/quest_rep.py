@@ -1,4 +1,3 @@
-# -*- coding: cp1251 -*-
 from importlib import reload
 import logging
 from grsoft.route import AgentRoute
@@ -8,21 +7,20 @@ from grsoft.xl_base import XLBuilder
 from openpyxl import Workbook
 from openpyxl.cell import get_column_letter
 from openpyxl.style import Border, Color, Fill, Alignment
+from orgmap import OrgMap
 
 import datetime
 from datetime import timedelta
 
-
 import sys;
-reload(sys);
-#sys.setdefaultencoding("cp1251")
-
 
 class QuestHelper:
-  LIST_TYPE = 2
+  SET_TYPE = 2
   DATASET_TYPE = 5
   PHOTO_TYPE = 7
-  ORG_DATASET_TYPE = "Организация"
+  ORG_DATASET_TYPE = "РћСЂРіР°РЅРёР·Р°С†РёСЏ"
+  PRICE_DATASET_TYPE = 'РџСЂР°Р№СЃ'
+  BOOL_TYPE = 4
   NUMBER_LIST_TYPE = 8
 
 class Item:
@@ -48,7 +46,7 @@ class Item:
     return res
     
 class ReportData:
-  __slots__ = ['items', 'quests', 'orgs', 'agents', "cellidx", 'photos']
+  __slots__ = ['items', 'quests', 'orgs', 'agents', "cellidx", 'photos','price']
   KEY_FMT =  "{0}\t{1}"
   ITEM_KEY_FMT = "{0}\t{1}\t{2}"
 
@@ -101,7 +99,7 @@ class ReportData:
         quest.items.sort(key= lambda x: x.number)
           
         for i in quest.items:
-          if i.type == QuestHelper.LIST_TYPE or i.type == QuestHelper.NUMBER_LIST_TYPE:
+          if i.type == QuestHelper.SET_TYPE or i.type == QuestHelper.BOOL_TYPE or i.type == QuestHelper.NUMBER_LIST_TYPE:
             for v in i.values:
               key = self.ITEM_KEY_FMT.format(quest.idquest, i.iditem, v.value)
               if not key in self.cellidx:
@@ -118,19 +116,30 @@ class ReportData:
           else:
             key = self.KEY_FMT.format(quest.idquest, i.iditem)
             self.cellidx[key] = idx      
-            idx += 1    
-    print('test ', self.cellidx)
+            idx += 1
+    print('cells',self.cellidx)               
 
-  def loadDocs(self, docs, pics, href):
+  def loadDocs(self, docs, pics, href, orgLocation):
+  
     for d in docs:
       i = Item()
       i.created = d.created
       
-      if d.id in self.orgs:
-        i.address = self.orgs[d.id].address
-        i.org = self.orgs[d.id].name
+      org = self.orgs.getOrg(d.id, d.userid)
+      
+      if org != None:
+        i.address = org.address
+        i.org = org.name
         i.orgcode = d.id
-        i.orgData = self.orgs[d.id]
+        i.orgData = org
+        
+        try:
+          lp = orgLocation.getLocation(org)
+          if lp != None:
+            i.orgData.latitude = lp.latitude
+            i.orgData.longitude = lp.longitude
+        except:
+          pass
       
       if d.userid in self.agents:
         i.user = self.agents[d.userid].name
@@ -139,15 +148,17 @@ class ReportData:
       
       photoCount = dict()
       for n in d.items:
-        if n.type == QuestHelper.LIST_TYPE:
+        if n.type == QuestHelper.SET_TYPE:
           self.putItemValue(i.items, self.ITEM_KEY_FMT.format(d.question, n.iditem, n.answer), "X")
           
         elif n.type == QuestHelper.NUMBER_LIST_TYPE:
           self.putItemValue(i.items, self.ITEM_KEY_FMT.format(d.question, n.iditem, n.answer), n.remark)
+        elif n.type == QuestHelper.BOOL_TYPE :
+          self.putItemValue(i.items, self.ITEM_KEY_FMT.format(d.question, n.iditem, n.answer), n.answer)    
           
         elif n.type == QuestHelper.PHOTO_TYPE:
           ctr = photoCount[n.iditem] if n.iditem in photoCount else 0
-          val = '=HYPERLINK("{0}{1}", "Фото")'.format(href, pics[n.answer].name) if n.answer in pics else "Фото не найдено!"
+          val = '=HYPERLINK("{0}{1}", "Р¤РѕС‚Рѕ")'.format(href, pics[n.answer].name) if n.answer in pics else "Р¤РѕС‚Рѕ РЅРµ РЅР°Р№РґРµРЅРѕ!"
           key = self.KEY_FMT.format(d.question, n.iditem + str(ctr))
           self.putItemValue(i.items, key, val)
           ctr += 1
@@ -155,8 +166,12 @@ class ReportData:
             
         elif n.type == QuestHelper.DATASET_TYPE:
           val = ''
+          # print('rem', n.remark)
           if n.remark == QuestHelper.ORG_DATASET_TYPE:
-            val = self.orgs[n.answer].name if n.answer in self.orgs else n.answer
+            org = self.orgs.getOrg(n.answer, d.userid)
+            val = org.name if org != None else n.answer
+          elif n.remark == QuestHelper.PRICE_DATASET_TYPE:
+            val =  self.price[n.answer].name if n.answer in self.price else n.answer
           
           self.putItemValue(i.items, self.KEY_FMT.format(d.question, n.iditem), val)
         else: 
@@ -167,7 +182,6 @@ class ReportData:
   def putItemValue(self, items, key, value):
     if key in self.cellidx:
         idx = self.cellidx[key]
-#        if idx >= len(items): print(idx, ' ', self.cellidx, ' ', key)
         items[idx] = value
 
 class XLB(XLBuilder):
@@ -193,7 +207,7 @@ class XLB(XLBuilder):
     self.staticTitles = cix
     
     sheet.merge_cells(start_row=row, start_column=0, end_row=row, end_column=cix - 1)
-    self.printCell(sheet, row, 0, "Анкеты", XLB.YELLOW)
+    self.printCell(sheet, row, 0, "РђРЅРєРµС‚С‹", XLB.YELLOW)
     
     for x in range(0, cix):
       sheet.merge_cells(start_row=row + 1, start_column=x, end_row=row + 2, end_column=x)
@@ -217,7 +231,7 @@ class XLB(XLBuilder):
     for i in quest.items:
       self.printCell(sheet, row + 1, cv, i.id, color)
       
-      if i.type == QuestHelper.LIST_TYPE or i.type == QuestHelper.NUMBER_LIST_TYPE:
+      if i.type == QuestHelper.SET_TYPE or i.type == QuestHelper.BOOL_TYPE or i.type == QuestHelper.NUMBER_LIST_TYPE:
         s = cv
         
         for v in i.values:
@@ -273,26 +287,14 @@ class XLB(XLBuilder):
     fill.start_color = color
     
 def loadData(data, params, server):
-    orgs = dict()
-    porg = server.Get("PotenzialOrg", 'not "userid" is null', "id")
     data.agents = server.Get("Agents", "", "id")
     quests = server.Get("Question", '"idquest" is null or "idquest" is not null', "idquest")
     where = '"created" >= ToDate("{0} 0:0:0") and "created" <= ToDate("{1} 0:0:0")'.format(params.start.strftime('%d.%m.%Y'), (params.finish + timedelta(days=1)).strftime('%d.%m.%Y'))
 
     pictures = server.Get("PicStoreSrc", where, "id")
-    orgs.update(porg)
-    data.orgs = orgs
-    
-    if params.param == 0:
-      for item in params.userids:
-        server.ChangeUser(item.id)
-        aorgs = server.Get("Org", '', 'id')
-        server.RestoreUser()
-        
-        if aorgs != None:
-            data.orgs.update(aorgs)
+    data.orgs = OrgMap(server)
+    data.price = server.Get('Price', "", "id")
 
-    
     if len(params.userids) > 0:
       arr = ''
       
@@ -315,45 +317,32 @@ def loadData(data, params, server):
       
       where = '{0} and "question" in ({1})'.format(where, arr)
     
-    
     answers = server.Get("Answer" if params.param == 0 else "MAnswer", where)
     
-    if params.param == 1:
-      data.agents = server.Get("DivisionManager", "", "login")
-      ids = []
-      for a in answers:
-        if len(a.id) > 0 and not a.id in ids: 
-          ids.append(a.id)
-          aorgs = server.Get("Org", '"id"=\'{0}\''.format(a.id), 'id')
-          
-          if aorgs != None:
-            data.orgs.update(aorgs)
-    
     data.prepare(answers, quests)
-    data.orgs = orgs
-    
+
     href = params.hrefBase
-    data.loadDocs(answers, pictures, href)
+    data.loadDocs(answers, pictures, href, OrgLocation(server))
     
     return data
 
 def printOut(data, params):
     wb = Workbook(False, 'cp1251')
     sheet = wb.get_active_sheet()
-    sheet.title = "Отчет"
+    sheet.title = "РћС‚С‡РµС‚"
     
     xlb = XLB()
     
     c = sheet.cell(row=0, column=0)
-    c.value = "Отчет по анкетам"  
+    c.value = "РћС‚С‡РµС‚ РїРѕ Р°РЅРєРµС‚Р°Рј"  
     c.style.font.bold = True
     c.style.font.size = 18
 
     c = sheet.cell(row=1, column=0)
-    c.value = "Интервал: c {0} по {1}".format(params.start.strftime('%d.%m.%Y'), params.finish.strftime('%d.%m.%Y'))  
+    c.value = "РРЅС‚РµСЂРІР°Р»: c {0} РїРѕ {1}".format(params.start.strftime('%d.%m.%Y'), params.finish.strftime('%d.%m.%Y'))  
     
     r = 2
-    arr = ["Наименование", "Код ТТ", "Координаты", "Адрес", "Дата", "Торговый представитель"]
+    arr = ["РќР°РёРјРµРЅРѕРІР°РЅРёРµ", "РљРѕРґ РўРў", "РљРѕРѕСЂРґРёРЅР°С‚С‹", "РђРґСЂРµСЃ", "Р”Р°С‚Р°", "РўРѕСЂРіРѕРІС‹Р№ РїСЂРµРґСЃС‚Р°РІРёС‚РµР»СЊ"]
     r += xlb.printHead(r, arr, sheet, data);
     
     for i in data.items:

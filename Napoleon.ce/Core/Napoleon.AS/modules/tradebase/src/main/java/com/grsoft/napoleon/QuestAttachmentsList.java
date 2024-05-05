@@ -95,7 +95,7 @@ public class QuestAttachmentsList extends Activity implements OnItemClickListene
 		arg.ip2 = cfg.address2;
 		arg.port1 = cfg.port;
 		
-		arg.indata.add(new AttachmentHitching(i.id));
+		arg.indata.add(new AttachmentHitching(i.id, this));
 		p.execute(arg);
 	}
 	

@@ -53,12 +53,6 @@ public class Order extends CreateDocDataObject
 	
 	public List<OrderFocusedItem> focusedItems = new ArrayList<OrderFocusedItem>();
 
-	/**
-	 * код адреса доставки
-	 */
-	@Feature(feature="DELIVERY_ADDRESS")
-	public String adrCode = "";	
-	
 	public String firmCode = "";
 	public String prcType = "";
 
@@ -87,8 +81,11 @@ public class Order extends CreateDocDataObject
 		long res = 0;
 		
 		if(items != null) {
-			for (OrderItem oi: items)
-				res += (long)oi.cost * oi.qty / Consts.QTY_SCALE;
+			for (OrderItem oi: items) {
+				if(oi.sum == 0)
+					oi.sum = (long) oi.cost * oi.qty / Consts.QTY_SCALE;
+				res += oi.sum;
+			}
 		}
 		
 		return res;

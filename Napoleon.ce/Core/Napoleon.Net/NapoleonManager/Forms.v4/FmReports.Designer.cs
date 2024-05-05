@@ -934,6 +934,6 @@
       protected System.Windows.Forms.Panel panel11;
       private System.Windows.Forms.Panel panel9;
       protected System.Windows.Forms.Panel panel10;
-      private System.Windows.Forms.Label label8;
+      public System.Windows.Forms.Label label8;
    }
 }

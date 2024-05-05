@@ -10,6 +10,7 @@ package com.grsoft.napoleon;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -27,6 +28,8 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import com.grsoft.dataobjects.Delivery;
 import com.grsoft.dataobjects.Order;
 import com.grsoft.dataobjects.OrderEx;
 import com.grsoft.dataobjects.Org;
@@ -36,9 +39,13 @@ import com.grsoft.dataobjects.ParamState;
 import com.grsoft.dataobjects.impl.ConfigImpl;
 import com.grsoft.dataobjects.impl.OrderImpl;
 import com.grsoft.dataobjects.impl.OrgImpl;
+import com.grsoft.napoleon.documents.DeliveryDoc;
+import com.grsoft.napoleon.documents.Document;
 import com.grsoft.napoleon.documents.OrderDoc;
+import com.grsoft.util.Consts;
 import com.grsoft.util.ExtrasConst;
 import com.grsoft.util.OnClickListenerToNotify;
+import com.grsoft.util.Util;
 import com.grsoft.util.view.dialog_helper.DialogHelper;
 import com.grsoft.util.view.dialog_helper.KeyValue;
 import com.grsoft.util.view.dialog_helper.TimeHandler;
@@ -129,31 +136,47 @@ public class CreateOrder extends BaseActivity
 		}
 		config.close();
 		
-		if( Features.DELIVERY_ADDRESS ) {
-			View v = findViewById(R.id.ftrAddress);
-			if( v != null ) {
-				Spinner spAddress = (Spinner) findViewById(R.id.spAddress);
-				if( spAddress != null ) {
-					v.setVisibility(View.VISIBLE);
-					ArrayList<KeyValue> addresses = new ArrayList<KeyValue>();
-					int selected = -1;
-					for(OrgAddress addr : oi.getData().orgAddress) {
-						KeyValue kv = new KeyValue(addr.id, addr.name);
-						if( kv.key.toString().equals(o.adrCode))
-							selected = addresses.size();
-						addresses.add(kv);
-					}
-					ArrayAdapter<KeyValue> aa = new ArrayAdapter<KeyValue>(this, R.layout.simple_spinner_layout, addresses);
-					spAddress.setAdapter(aa);
-					if( selected >= 0 && selected < spAddress.getCount())
-						spAddress.setSelection(selected);
-				}
-			}
-		}
+//		if( Features.DELIVERY_ADDRESS ) {
+//			View v = findViewById(R.id.ftrAddress);
+//			if( v != null ) {
+//				Spinner spAddress = (Spinner) findViewById(R.id.spAddress);
+//				if( spAddress != null ) {
+//					v.setVisibility(View.VISIBLE);
+//					ArrayList<KeyValue> addresses = new ArrayList<KeyValue>();
+//					int selected = -1;
+//					for(OrgAddress addr : oi.getData().orgAddress) {
+//						KeyValue kv = new KeyValue(addr.id, addr.name);
+//						if( kv.key.toString().equals(o.adrCode))
+//							selected = addresses.size();
+//						addresses.add(kv);
+//					}
+//					ArrayAdapter<KeyValue> aa = new ArrayAdapter<KeyValue>(this, R.layout.simple_spinner_layout, addresses);
+//					spAddress.setAdapter(aa);
+//					if( selected >= 0 && selected < spAddress.getCount())
+//						spAddress.setSelection(selected);
+//				}
+//			}
+//		}
 		
 		//TextView tvDelay = (TextView) findViewById(R.id.tvDelay); 
 		//tvDelay.setOnClickListener(new DelayClickListener());
-		
+
+		CheckBox van = findViewById(R.id.cbVan);
+		CheckBox vanPrn = findViewById(R.id.cbVanPrn);
+		van.setEnabled(order.isEditable());
+		vanPrn.setEnabled(order.isEditable());
+		van.setOnCheckedChangeListener((buttonView, isChecked) -> {
+			if(isChecked)
+				vanPrn.setChecked(false);
+		});
+		vanPrn.setOnCheckedChangeListener((buttonView, isChecked) -> {
+			if(isChecked)
+				van.setChecked(false);
+		});
+		vanPrn.setChecked(o.vanPrn > 0);
+		van.setChecked(o.vanSell > 0);
+
+
 		EditText remark = (EditText)findViewById(R.id.edCreateOrderNotes);
 		remark.setText(o.remark);
 
@@ -177,12 +200,47 @@ public class CreateOrder extends BaseActivity
 		btnOK.setEnabled(order.isEditable());
 		btnOK.setOnClickListener(new OKClickListener());
 
-		TextView tv = (TextView)findViewById(R.id.tvLimit);
-		tv.setText(getString(R.string.org_limit, ((OrgEx)org).limit));
-		
+		showLimit((OrgEx) org);
+
         findViewById(R.id.btnCancel).setOnClickListener(new CancelClickListener());
-        updateDisplayDelay();
+		updateDisplayDelay();
 		refreshDate();
+		loadDesTime(o, order.isEditable());
+	}
+
+	void loadDesTime(OrderEx o, boolean enabled) {
+		Spinner sp = findViewById(R.id.spDesTime);
+		List<String> vals = new ArrayList<>();
+		int sel = 0;
+		vals.add("");
+		for(int i = 7; i<= 23; i++) {
+			if(i == o.desTime)
+				sel = vals.size();
+			vals.add(Integer.toString(i));
+		}
+		sp.setEnabled(enabled);
+
+		ArrayAdapter<String> aa = new ArrayAdapter<>(this, R.layout.simple_spinner_layout, vals);
+		aa.setDropDownViewResource(R.layout.simple_spinner_layout_drop_down);
+		sp.setAdapter(aa);
+		sp.setSelection(sel);
+	}
+
+	void showLimit(OrgEx o) {
+		TextView tv = (TextView)findViewById(R.id.tvLimit);
+		long limit = Util.StrToScale(o.limit.replaceAll("\\s", ""), Consts.SUM_SCALE);
+		long sum = limit;
+
+		for(Document<?> d : DeliveryDoc.instance().docList(o.id)) {
+			sum -= ((Delivery)d.getData()).sumD;
+		}
+
+		String limitTxt = String.format("Лимит точки: %s<br/>Остаток лимита %s"
+				,o.limit
+				,Util.spacingDigitGroup(Util.IntToScaleStr(sum, Consts.SUM_SCALE))
+		);
+
+		tv.setText(Html.fromHtml(limitTxt));
 	}
 	
 	@Override
@@ -367,15 +425,26 @@ public class CreateOrder extends BaseActivity
 			Spinner spShipping = (Spinner) findViewById(R.id.spShipping);
 			Object i = spShipping.getSelectedItem();
 			o.shipping = i != null ? i.toString() : "";
-			
-			if( Features.DELIVERY_ADDRESS ) {
-				Spinner spAddress = (Spinner) findViewById(R.id.spAddress);
-				if( spAddress != null ) {
-					KeyValue sel = (KeyValue) spAddress.getSelectedItem();
-					if( sel != null )
-						o.adrCode = sel.key.toString();
-				}
+
+			o.vanPrn = ((CheckBox)findViewById(R.id.cbVanPrn)).isChecked() ? 1 : 0;
+			o.vanSell = ((CheckBox)findViewById(R.id.cbVan)).isChecked() ? 1 : 0;
+
+			String desSel = (String) ((Spinner)findViewById(R.id.spDesTime)).getSelectedItem();
+			if(desSel != null) {
+				if(desSel.length() > 0)
+					o.desTime = Integer.parseInt(desSel);
+				else
+					o.desTime = 0;
 			}
+
+//			if( Features.DELIVERY_ADDRESS ) {
+//				Spinner spAddress = (Spinner) findViewById(R.id.spAddress);
+//				if( spAddress != null ) {
+//					KeyValue sel = (KeyValue) spAddress.getSelectedItem();
+//					if( sel != null )
+//						o.adrCode = sel.key.toString();
+//				}
+//			}
 			if (updateSumType)
 				order.updateItemsCost(o.sumType);
 			else

@@ -35,6 +35,7 @@ import com.grsoft.util.Util;
 import com.grsoft.view.BackgroudProcess;
 import com.grsoft.view.RunnableProcess;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -54,6 +55,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.core.content.FileProvider;
 
@@ -165,25 +167,21 @@ public class RequestedDocList extends Activity implements OnClickListener {
 			startActivity(i);
 		} catch (Exception e) {
 		    e.printStackTrace();
+			Toast.makeText(this, "Ошибка при открытии документа\n" + e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
 		}
 	}
 
 	protected void loadAttachment(final String id, final AttachmentImpl impl) {
-		UpdateProcess p = new UpdateProcess(this) {
-			@Override
-			protected void onPreExecute() {
-				showDialog(R.id.wait_dlg);
+		UpdateProcess p = new Upd(this, result -> {
+			if(result) {
+				result = impl.read("id", id);
 			}
-			
-			@Override
-			protected void onPostExecute(Boolean result) {
-				if (result) {
-					dismissDialog(R.id.wait_dlg);
-					if (impl.read("id", id)) 
-						preview(impl.getData().path);
-				}
+			if(result) {
+				preview(impl.getData().path);
+			} else {
+				Toast.makeText(this, "Ошибка при получении документа", Toast.LENGTH_LONG).show();
 			}
-		};
+		});
 		
 		Config cfg = ConfigManager.getConfig();
 		UpdateProcess.Params arg = new UpdateProcess.Params();
@@ -193,7 +191,7 @@ public class RequestedDocList extends Activity implements OnClickListener {
 		arg.ip2 = cfg.address2;
 		arg.port1 = cfg.port;
 		
-		arg.indata.add(new AttachmentHitching(id));
+		arg.indata.add(new AttachmentHitching(id, this));
 		p.execute(arg);
 	}
 
@@ -348,6 +346,7 @@ public class RequestedDocList extends Activity implements OnClickListener {
 				new RunnableProcess()
 				{
 					
+					@SuppressLint("Range")
 					@Override
 					public void run()
 					{
@@ -395,22 +394,36 @@ public class RequestedDocList extends Activity implements OnClickListener {
 		((Adapter)list.getAdapter()).notifyDataSetChanged();
 	}
 
+	static class Upd extends UpdateProcess {
+
+		interface Handler {
+			void finish(Boolean result);
+		}
+
+		Handler handler;
+		public Upd(RequestedDocList context, Handler handler) {
+			super(context);
+			this.handler = handler;
+		}
+
+		@Override
+		protected void onPreExecute() {((Activity)context).showDialog(R.id.wait_dlg);}
+
+		@Override
+		protected void onPostExecute(Boolean result) {
+			try {
+				((Activity) context).dismissDialog(R.id.wait_dlg);
+				handler.finish(result);
+			} catch (Exception e) {}
+		}
+	}
+
 	private void send() {
-		UpdateProcess p = new UpdateProcess(this) {
-			@Override
-			protected void onPreExecute() {
-				showDialog(R.id.wait_dlg);
-			}
-			
-			@Override
-			protected void onPostExecute(Boolean result) {
-				if (result) {
-					dismissDialog(R.id.wait_dlg);
-					((Adapter)list.getAdapter()).notifyDataSetChanged();
-				}
-			}
-		};
-		
+		UpdateProcess p = new Upd(this, result -> {
+			if(result)
+				((Adapter)list.getAdapter()).notifyDataSetChanged();
+		});
+
 		Config cfg = ConfigManager.getConfig();
 		UpdateProcess.Params arg = new UpdateProcess.Params();
 		arg.login = cfg.login;

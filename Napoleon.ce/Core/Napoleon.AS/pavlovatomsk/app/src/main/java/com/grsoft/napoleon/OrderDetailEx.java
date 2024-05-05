@@ -43,8 +43,7 @@ public class OrderDetailEx extends OrderDetail {
 
 	@Override
 	public void send() {
-		String objName = ((OrderEx)doc.getData()).needDecision() ? ReqOrderDoc.instance().getObjectName() :
-				docType.getObjectName();
+		String objName = ((OrderEx)doc.getData()).objName();
 		new DocumentSender(OrderDetailEx.this, btnSend,
 				objName, doc,
 				doc.getRowid(), this).execute((Void[])null);

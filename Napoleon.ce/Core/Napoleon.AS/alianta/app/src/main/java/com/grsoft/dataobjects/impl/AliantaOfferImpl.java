@@ -84,8 +84,8 @@ public class AliantaOfferImpl extends CreatableDocument<AliantaOffer> implements
 	public void addItem(Price item) {
 		OfferItem oi = new OfferItem();
 		oi.id = item.id;
-		oi.priceCost = CostStrategy.defaultInstance.getItemCost(item, this);
-		oi.cost = CostStrategy.costWithDiscount(oi.priceCost, data.discount, Consts.SUM_SCALE);
+		oi.priceCost = (int)CostStrategy.defaultInstance.getItemCost(item, this);
+		oi.cost = (int)CostStrategy.costWithDiscount(oi.priceCost, data.discount, Consts.SUM_SCALE);
 		data.items.add(oi);
 	}
 
@@ -93,7 +93,7 @@ public class AliantaOfferImpl extends CreatableDocument<AliantaOffer> implements
 	public void applyDiscount(int newDiscount) {
 		if(isEditable()) {
 			for(OfferItem oi : data.items) {
-				oi.cost = CostStrategy.costWithDiscount(oi.priceCost, newDiscount, Consts.SUM_SCALE);
+				oi.cost = (int)CostStrategy.costWithDiscount(oi.priceCost, newDiscount, Consts.SUM_SCALE);
 				oi.discount = newDiscount;
 			}
 			data.discount = newDiscount;
@@ -109,7 +109,7 @@ public class AliantaOfferImpl extends CreatableDocument<AliantaOffer> implements
 
 		final List<WhData> years = DbReader.fetch(WhData.class, "id='" + pi.getData().id + "' and qty > 0 and year > 0");
 		
-		int prcCost = CostStrategy.defaultInstance.getItemCost(pi.getData(), this); 
+		int prcCost = (int)CostStrategy.defaultInstance.getItemCost(pi.getData(), this);
 		final OfferItem oi = (OfferItem) findItem(pi.getData().id);
 		final int cost = oi == null ? prcCost : oi.priceCost;
 
@@ -118,12 +118,12 @@ public class AliantaOfferImpl extends CreatableDocument<AliantaOffer> implements
 		DiscountInputDlg.open(context, new InputNumber(cost) {
 			
 			@Override
-			public int getValue() { return oi == null ? data.discount : oi.discount; }
+			public long getValue() { return oi == null ? data.discount : oi.discount; }
 			
 			@Override
 			public void applayInput(int value, Object... params) {
 				value = -value;
-				int newCost = CostStrategy.costWithDiscount(cost, value, Consts.SUM_SCALE);
+				int newCost = (int)CostStrategy.costWithDiscount(cost, value, Consts.SUM_SCALE);
 				if(oi == null) {
 					OfferItem ti = new OfferItem();
 					ti.id = pi.getData().id;
@@ -229,8 +229,9 @@ public class AliantaOfferImpl extends CreatableDocument<AliantaOffer> implements
 		return oi == null ? 0 : oi.cost;
 	}
 
+
 	@Override
-	public boolean updateQty(PriceImpl priceImpl, int qty, int cost, boolean inPack) {
+	public boolean updateQty(PriceImpl priceImpl, int qty, long cost, boolean inPack) {
 		return false;
 	}
 

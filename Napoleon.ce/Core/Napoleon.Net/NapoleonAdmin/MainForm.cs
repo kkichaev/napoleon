@@ -45,6 +45,8 @@ namespace GRSoft.NapoleonAdmin
 
       public Config config;
 
+      System.Windows.Forms.Timer tmrFind = new System.Windows.Forms.Timer();
+
       List<DataGridViewCheckBoxColumn> managerRightColumns = new List<DataGridViewCheckBoxColumn>();
 
       const int TIMEOUT = 60 * 1000;
@@ -144,7 +146,36 @@ namespace GRSoft.NapoleonAdmin
          cbAgentSyncInfo.SelectedIndex = 0;
          dgvSyncInfo.AutoGenerateColumns = false;
 
+         tmrFind.Interval = 500;
+         tmrFind.Tick += TmrFind_Tick;
+
          Init();
+      }
+
+      private void TmrFind_Tick(object sender, EventArgs e)
+      {
+         tmrFind.Stop();
+
+         UserData src = null;
+         string text = tsFind.Text.Trim().ToUpper();
+         if(text.Length == 0)
+         {
+            src = userData;
+         }
+         else
+         {
+            src = new UserData(dsServerConfig);
+            foreach(UserDataItem udi in userData)
+            {
+               if(udi.Name.ToUpper().Contains(text))
+               {
+                  src.Add(udi);
+               }
+            }
+         }
+
+         makeDataSource(src);
+
       }
 
       private void Init()
@@ -576,8 +607,9 @@ namespace GRSoft.NapoleonAdmin
             }
          }
 
+         tsFind.Text = "";
          usersView.AutoGenerateColumns = false;
-         usersViewUpdateBindingSource();
+         makeDataSource(userData);
 
          sortUsersView(usersView.Columns[0]);
          usersView.ResumeLayout();
@@ -694,7 +726,7 @@ namespace GRSoft.NapoleonAdmin
          }
       }
 
-      protected void usersViewUpdateBindingSource()
+      protected void makeDataSource(UserData ud)
       {
          BindingSource bs = new BindingSource();
          ////bs.DataSource = userData;
@@ -706,9 +738,9 @@ namespace GRSoft.NapoleonAdmin
 
          object param;
          if (t != typeof(UserDataItem))
-            param = userData.ConvertAll(c => Convert.ChangeType(c, t));
+            param = ud.ConvertAll(c => Convert.ChangeType(c, t));
          else
-            param = userData;
+            param = ud;
          bs.DataSource = param;
          usersView.DataSource = bs;
 
@@ -1215,7 +1247,7 @@ namespace GRSoft.NapoleonAdmin
          }
 
          userData.DoSort(column.DataPropertyName, curOrder);
-         usersViewUpdateBindingSource();
+         makeDataSource(userData);
          //usersView.Refresh();
 
          column.HeaderCell.SortGlyphDirection = curOrder;
@@ -1343,7 +1375,7 @@ namespace GRSoft.NapoleonAdmin
          if (info != null)
          {
             AddAgent(info.CreateAgent());
-            usersViewUpdateBindingSource();
+            makeDataSource(userData);
             userChangesSave.Enabled = true;
          }
 #endif
@@ -1738,6 +1770,12 @@ namespace GRSoft.NapoleonAdmin
          {
             return duration - other.duration;
          }
+      }
+
+      private void tsFind_TextChanged(object sender, EventArgs e)
+      {
+         tmrFind.Stop();
+         tmrFind.Start();
       }
    }
 }

@@ -17,12 +17,15 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.grsoft.database.DataBaseManager;
+import com.grsoft.database.DbReader;
 import com.grsoft.dataobjects.DataObjectInfo;
 import com.grsoft.dataobjects.Delivery;
 import com.grsoft.dataobjects.Fridge;
+import com.grsoft.dataobjects.Org;
 import com.grsoft.dataobjects.OrgEx;
 import com.grsoft.dataobjects.Sales;
 import com.grsoft.dataobjects.SalesEx;
+import com.grsoft.dataobjects.VelrusPlan;
 import com.grsoft.dataobjects.impl.SalesImpl;
 import com.grsoft.napoleon.documents.SalesDoc;
 import com.grsoft.util.ExtrasConst;
@@ -39,6 +42,17 @@ public class DocumentsEx extends Documents {
 
 		i.putExtra(ExtrasConst.ORG_ID_STR, doc.id);
 		context.startActivity(i);
+	}
+
+	@Override
+	protected String orgInfo(Org o) {
+		String ret = super.orgInfo(o);
+		String where=String.format("id='%s'", o.id);
+		for (VelrusPlan p : DbReader.fetch(VelrusPlan.class, where)) {
+			ret += String.format("<br/>План %d / Факт %s", p.plan, p.fact);
+			break;
+		}
+		return ret;
 	}
 
 	@Override

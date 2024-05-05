@@ -192,7 +192,26 @@ static void RemoveExisting(ExchangeList *list, ServObject* src)
    }
 }
 
-STDMETHODIMP CObjCol::WriteInt(BSTR userid, bool haveUserid)
+
+static bool CheckWriteAnswer(CServer* server, Socket* socket, DWORD timeout)
+{
+   bool ret = false;
+   ObjCreator& creator = server->GetObjCreator();
+   ExchangeList obj(creator.GetFormatList());
+   if (obj.Read(socket, timeout, 0, &creator) && obj.size() > 0)
+   {
+      ServObject* so = obj.at(0);
+      if (so->size() > 1 && so->Name().compare(SERVER_ANSWER) == 0)
+      {
+         Object* o = so->at(1);
+         ret = ((*o)[RESPONSE_MEMBER]->number > 0);
+      }
+   }
+
+   return ret;
+}
+
+STDMETHODIMP CObjCol::WriteInt(BSTR userid, bool haveUserid, VARIANT_BOOL* result)
 {
    HRESULT res = S_FALSE;
    if( servObject == NULL || server == NULL )
@@ -228,35 +247,31 @@ STDMETHODIMP CObjCol::WriteInt(BSTR userid, bool haveUserid)
       PrepareWithUserID(&el, FORCE_PUT, servObject, cd);
    }
 
-   bool ret;
    Socket s;
    if( s.Connect(cd.address, cd.port) )
    {
       el.Write(&s);
-      if( ReadAnswer(&s, cd.timeout, &ret, NULL) )
-      {
-         cd.SendCommand(&s, BYE_COMMAND, L"");
-         if( ret )
-            res = S_OK;
-      } else
-         server->SetErrorMessage(L"Ошибка при записи");
+      *result = CheckWriteAnswer(server, &s, cd.timeout) ? VARIANT_TRUE : VARIANT_FALSE;
+      cd.SendCommand(&s, BYE_COMMAND, L"");
+      if( *result )
+         res = S_OK;
    }
 
    RemoveExisting(&el, servObject);
    return res;
 }
 
-STDMETHODIMP CObjCol::WriteDirect()
+STDMETHODIMP CObjCol::WriteDirect(VARIANT_BOOL* res)
 {
-	return WriteInt(L"", false);
+	return WriteInt(L"", false, res);
 }
 
-STDMETHODIMP CObjCol::Write(BSTR userid)
+STDMETHODIMP CObjCol::Write(BSTR userid, VARIANT_BOOL* res)
 {
-	return WriteInt(userid, true);
+	return WriteInt(userid, true, res);
 }
 
-STDMETHODIMP CObjCol::Replace(BSTR userid)
+STDMETHODIMP CObjCol::Replace(BSTR userid, VARIANT_BOOL* result)
 {
    if( *userid == L'\0' )
    {
@@ -305,12 +320,11 @@ STDMETHODIMP CObjCol::Replace(BSTR userid)
    if( s.Connect(cd.address, cd.port) )
    {
       el.Write(&s);
-      if( ReadAnswer(&s, cd.timeout, &ret, NULL) )
-      {
-         cd.SendCommand(&s, BYE_COMMAND, L"");
-         if( ret )
+      *result = CheckWriteAnswer(server, &s, cd.timeout) ? VARIANT_TRUE : VARIANT_FALSE;
+      cd.SendCommand(&s, BYE_COMMAND, L"");
+      if( *result )
             res = S_OK;
-      } else
+      else
          server->SetErrorMessage(L"Ошибка при выполнениие команды Replace");
    }
    el.at(2) = NULL;
@@ -318,7 +332,7 @@ STDMETHODIMP CObjCol::Replace(BSTR userid)
    return res;
 }
 
-STDMETHODIMP CObjCol::ReplaceDirect(BSTR where)
+STDMETHODIMP CObjCol::ReplaceDirect(BSTR where, VARIANT_BOOL* result)
 {
    if (servObject == NULL || server == NULL)
    {
@@ -355,12 +369,10 @@ STDMETHODIMP CObjCol::ReplaceDirect(BSTR where)
    if (s.Connect(cd.address, cd.port))
    {
       el.Write(&s);
-      if (ReadAnswer(&s, cd.timeout, &ret, NULL))
-      {
-         cd.SendCommand(&s, BYE_COMMAND, L"");
-         if (ret)
-            res = S_OK;
-      }
+      *result = CheckWriteAnswer(server, &s, cd.timeout) ? VARIANT_TRUE : VARIANT_FALSE;
+      cd.SendCommand(&s, BYE_COMMAND, L"");
+      if (*result)
+         res = S_OK;
       else
          server->SetErrorMessage(L"Ошибка при выполнениие команды Replace");
    }

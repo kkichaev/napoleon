@@ -13,20 +13,20 @@ namespace GRSoft.NapoleonManager
    {
       static string ORG_DISPOSITION_KEY = "ORG_DISPOSITION_DOCS";
 
-      Dictionary<string, ObjType> availDocs = new Dictionary<string, ObjType>();
+      List<ScriptDocument> availDocs = new List<ScriptDocument>();
 
       DataSet<int, CommonConfig> dsConfig;
 
       public void __Initing()
       {
-
-         foreach (string d in AvailDocs)
-            availDocs.Add(d, new ObjType(d));
+         InitAvailDocs();
       }
 
-      public virtual string[] AvailDocs 
+      public virtual void InitAvailDocs()
       {
-         get { return new string[]{"Order", "Incass", "Visit"};}
+         availDocs.Add(new OrderDoc());
+         availDocs.Add(new IncassDoc());
+         availDocs.Add(new VisitDoc());
       }
 
       public void SetConfig(DataSet<int, CommonConfig> dsCommonConfig)
@@ -34,7 +34,7 @@ namespace GRSoft.NapoleonManager
          dsConfig = dsCommonConfig;
 
          foreach(var item in availDocs) 
-            lvItems.Items.Add(item.Value);
+            lvItems.Items.Add(item);
          
          foreach (CommonConfig cc in dsConfig.Values)
          {
@@ -43,12 +43,14 @@ namespace GRSoft.NapoleonManager
                string[] docs = cc.value.Split(new char[] {','});
                foreach(string doc in docs)
                {
-                  ObjType ot;
-                  if (availDocs.TryGetValue(doc, out ot))
+                  foreach(ScriptDocument sd in availDocs)
                   {
-                     int idx = lvItems.Items.IndexOf(ot);
-                     if (idx >= 0)
-                        lvItems.SetItemChecked(idx, true);
+                     if(sd.type == doc)
+                     {
+                        int idx = lvItems.Items.IndexOf(sd);
+                        if (idx >= 0)
+                           lvItems.SetItemChecked(idx, true);
+                     }
                   }
                }
             }
@@ -58,11 +60,11 @@ namespace GRSoft.NapoleonManager
       private void toolStripButton1_Click(object sender, EventArgs e)
       {
          string value = "";
-         foreach(ObjType ot in lvItems.CheckedItems)
+         foreach(ScriptDocument ot in lvItems.CheckedItems)
          {
             if (value.Length > 0)
                value += ",";
-            value += ot.ObjName;
+            value += ot.type;
          }
          bool added = false;
          foreach (CommonConfig cc in dsConfig.Values)

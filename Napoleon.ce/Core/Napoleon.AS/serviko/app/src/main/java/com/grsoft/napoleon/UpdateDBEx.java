@@ -30,7 +30,7 @@ public class UpdateDBEx extends UpdateDB {
 	@Override
 	protected List<Hitching> getPrezentHitching() {
 		List<Hitching> ret = new ArrayList<Hitching>();
-		ret.add(new PrezentHitching());
+		ret.add(new PrezentHitching(this));
 
 
 		SendPhotoCountHitching.handler = count -> {

@@ -110,6 +110,7 @@ import com.grsoft.util.Util;
 import com.grsoft.util.ViewInitializer;
 import com.grsoft.util.gps.GPSUtilNew;
 import com.grsoft.view.SimpleMessageBox;
+import com.itextpdf.text.BuildConfig;
 
 import android.app.Activity;
 import android.content.ComponentName;
@@ -123,6 +124,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.text.Html;
@@ -138,6 +140,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.os.BuildCompat;
 
 public class UpdateDBW extends Activity implements ProgressHelper.ButtonAction{
 	public static Class<? extends Activity> activity = UpdateDBW.class;
@@ -172,7 +175,7 @@ public class UpdateDBW extends Activity implements ProgressHelper.ButtonAction{
 	protected String errMessage = null;
 	String errKind = "";
 
-	private static final String RUN_SYNC = "run_sync";  
+	protected static final String RUN_SYNC = "run_sync";
 	public static ViewInitializer initUI = new ViewInitializer();
 	
 	private boolean serviceBound = false;
@@ -328,6 +331,9 @@ public class UpdateDBW extends Activity implements ProgressHelper.ButtonAction{
 	}
 
 	boolean canRestoreDocuments() {
+		if(BuildConfig.DEBUG) {
+			return true;
+		}
 		String[] docTables = new String[] {
 			new Order().getTableName(),
 			new Sales().getTableName(),
@@ -512,13 +518,15 @@ public class UpdateDBW extends Activity implements ProgressHelper.ButtonAction{
 		return new ServerInfoHitching();
 	}
 
+	protected String agentConfigName() { return "Config"; }
+
 	protected List<Hitching> getGenDataHitchings() throws RuntimeException {
 		Log.d(TAG, "UpdateProcessEx.getHitchings");
 
 		List<Hitching> result = new ArrayList<Hitching>();
 		
 		// конфиг должен прийти перед прайсом (это надо для приема прайса Сервико)
-		result.add(new Hitching(com.grsoft.dataobjects.Config.class, "Config"));
+		result.add(new Hitching(com.grsoft.dataobjects.Config.class, agentConfigName()));
 		result.add(new Hitching(com.grsoft.dataobjects.Config.class, "ServerConfig"));
 
 		for (HitchingCtor ctor : genDataHitchingCtors)
@@ -1033,15 +1041,15 @@ public class UpdateDBW extends Activity implements ProgressHelper.ButtonAction{
 					Log.d(TAG, "END UPDATE");
 					return res;
 				} catch (Exception exception) {
+					try {
 					SQLiteDatabase dataBase = DataBaseManager.getDataBase();
 					
 					if (dataBase.isDbLockedByCurrentThread()
 							|| dataBase.isDbLockedByOtherThreads()) {
-						try {
-							dataBase.endTransaction();
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
+						dataBase.endTransaction();
+					}
+					} catch (Exception e) {
+						e.printStackTrace();
 					}
 
 					errMessage = exception.getMessage();

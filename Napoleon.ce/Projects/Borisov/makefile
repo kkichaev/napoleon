@@ -1,7 +1,7 @@
 export
 
-Variant = Borisov
-#Variant = Borisov1
+#Variant = Borisov
+Variant = Borisov1
 
 include make.vars 
 

@@ -50,7 +50,7 @@ def render_iframe():
     contextKey = request.args.get('contextKey')
 
     # context = {'uid':'uid', 'shortFio':'fio','accountId':"id",'permissions':{'admin':{'view':True}}}
-    context = getUserContext(contextKey)
+    context = getUserContext(contextKey, version=1)
     if context is None:
         abort(400)
     
@@ -423,7 +423,7 @@ def putDataToServer(accountId):
     AccLog.add(account.accid, _('Put data to the server'))
     stat = {'agents':len(agents), 'orgs':orgCount, 'price':priceCount, 'dlv':dlvCount}
         
-    setAppStatus('Activated', account)
+    setAppStatus('Activated', account, version=1)
     return jsonify({'error':False, 'stat':stat})
 
 
@@ -642,7 +642,9 @@ class IncassLoader(DocLoader):
         
         order.update({
             'operations':items,
-            'sum':src['sum'] * 100.0
+            'sum':src['sum'] * 100.0,
+            # проведение документа
+            'applicable':False,
         })
 
         # print('incass', order)
@@ -689,7 +691,7 @@ def test_iframe():
     context = {
         'uid' : '1',
         'shortFio':'test',
-        'accountId':'8d260a43-df5c-11ed-0a80-06f1000048a0',
+        'accountId':'8fd4459f-9551-11ed-0a80-0bdd00011654',
         'permissions':{'admin':{'view':True}},        
     }
 

@@ -50,15 +50,15 @@ public class DialogHelper {
 		loadSpinnerWithKeyW(config, key, values, s, selected, false);
 	}
 
-	public static <T extends DataObject> void loadSpinnerFromDataObject(Spinner s, Class<T> dataClass, Selected<T> selected, boolean addEmpty) {
-		loadSpinnerFromDataObject(s, dataClass, selected, addEmpty, null);
+	public static <T extends DataObject> List<T> loadSpinnerFromDataObject(Spinner s, Class<T> dataClass, Selected<T> selected, boolean addEmpty) {
+		return loadSpinnerFromDataObject(s, dataClass, selected, addEmpty, null);
 	}
 
-	public static <T extends DataObject> void loadSpinnerFromDataObject(Spinner s, Class<T> dataClass, Selected<T> selected, boolean addEmpty, String order) {
-		loadSpinnerFromDataObject(s, dataClass, selected, addEmpty, order, null);
+	public static <T extends DataObject> List<T> loadSpinnerFromDataObject(Spinner s, Class<T> dataClass, Selected<T> selected, boolean addEmpty, String order) {
+		return loadSpinnerFromDataObject(s, dataClass, selected, addEmpty, order, null);
 	}
 	
-	public static <T extends DataObject> void loadSpinnerFromDataObject(Spinner s, final Class<T> dataClass, final Selected<T> selected, boolean addEmpty, String order, String where) {
+	public static <T extends DataObject> List<T> loadSpinnerFromDataObject(Spinner s, final Class<T> dataClass, final Selected<T> selected, boolean addEmpty, String order, String where) {
 		final List<T> values = new ArrayList<T>();
 
 		if(addEmpty) {
@@ -95,6 +95,8 @@ public class DialogHelper {
 		s.setAdapter(aa);
 		if( sh.assigned() )
 			s.setSelection(sh.getSelected());
+
+		return values;
 	}
 
 	public static void loadSpinnerWithKeyW(ConfigImpl config, String key,

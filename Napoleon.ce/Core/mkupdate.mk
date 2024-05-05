@@ -5,7 +5,7 @@ CONSOLE=1
 
 PROGRAM=MkUpdate
 
-SOURCE=AES C32 Key MkUpdate
+SOURCE=AESEnc C32 Key MkUpdate
 
 RESOURCE=MkUpdate
 

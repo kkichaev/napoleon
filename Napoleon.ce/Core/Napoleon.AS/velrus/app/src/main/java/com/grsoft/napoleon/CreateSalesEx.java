@@ -25,6 +25,8 @@ public class CreateSalesEx extends CreateSales {
         SalesEx sales = (SalesEx) salesImpl.getData();
         ((CheckBox)findViewById(R.id.cbBlack)).setChecked(sales.black > 0);
 
+        ((CheckBox)findViewById(R.id.cbBlackBonus)).setChecked(sales.blackBonus > 0);
+
         View v = findViewById(R.id.trCost);
         if( v != null )
             v.setVisibility(View.VISIBLE);
@@ -56,6 +58,8 @@ public class CreateSalesEx extends CreateSales {
             sales.prcType = ct.id;
         }
 
-        ((SalesEx)sales).black = ((CheckBox)findViewById(R.id.cbBlack)).isChecked() ? 1 : 0;
+        boolean isBlack = ((CheckBox)findViewById(R.id.cbBlack)).isChecked();
+        ((SalesEx)sales).black = isBlack ? 1 : 0;
+        ((SalesEx)sales).blackBonus = (isBlack || ((CheckBox)findViewById(R.id.cbBlackBonus)).isChecked()) ? 1 : 0;
     }
 }

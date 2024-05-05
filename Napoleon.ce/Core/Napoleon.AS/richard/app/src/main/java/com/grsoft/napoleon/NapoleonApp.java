@@ -74,6 +74,14 @@ public class NapoleonApp extends NapoleonAppBase {
 		}
 	}
 
+	protected Hitching[] genDataRcv() {
+		Hitching[] h = new Hitching[] {
+				new RcvNewHitching(PlanRichard.class),
+				new RcvNewHitching(FirmEx.class),
+		};
+		return h;
+	}
+
 	@Override
 	protected void defineNewType() {
 		super.defineNewType();
@@ -97,14 +105,9 @@ public class NapoleonApp extends NapoleonAppBase {
 		UpdateDB.addHitchingCtor(new HitchingCtor() {
 			@Override
 			public List<Hitching> createList() {
-				Hitching[] h = new Hitching[] {
-						new RcvNewHitching(PlanRichard.class),
-						new RcvNewHitching(FirmEx.class),
-				};
+				Hitching[] h = genDataRcv();
 				return Arrays.asList(h);
 			}
-
-//			@Override public Hitching create() { return new RcvNewHitching(AgentPlan.class, "AgentPlan"); }
 		}, UpdateDB.GEN_DATA_HITCHING);
 
 		UpdateDB.addHitchingCtor(new HitchingCtor() {

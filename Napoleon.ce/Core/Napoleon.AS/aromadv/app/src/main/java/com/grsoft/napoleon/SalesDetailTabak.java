@@ -79,7 +79,8 @@ public class SalesDetailTabak extends SalesDetailEx implements SalesImplEx.AddEv
     int ctr = 0;
     private void doTest() {
         if(ctr == 0) {
-            handler.onRead("02900046794476tuBEi<kAAAA0fbB");
+            handler.onRead("010400639609812221RU11120524025172419");
+//            handler.onRead("02900046794476tuBEi<kAAAA0fbB");
 //            handler.onRead("010460564802437921l/wnTl=934vlU");
 //            ctr++;
         } else {

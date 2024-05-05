@@ -11,6 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -24,6 +25,7 @@ import android.text.style.UnderlineSpan;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -38,6 +40,7 @@ import com.grsoft.dataobjects.Order;
 import com.grsoft.dataobjects.OrderEx;
 import com.grsoft.dataobjects.Org;
 import com.grsoft.dataobjects.OrgAddress;
+import com.grsoft.dataobjects.OrgDogovor;
 import com.grsoft.dataobjects.OrgEx;
 import com.grsoft.dataobjects.ParamState;
 import com.grsoft.dataobjects.impl.ConfigImpl;
@@ -82,6 +85,32 @@ public class CreateOrder extends BaseActivity
 		i.putExtra(ExtrasConst.DOC_ROW_ID_STR, order.getRowid());
 
 		context.startActivity(i);		
+	}
+
+	void loadSpinner(int id, List<OrgDogovor> data, String selected, String firm, boolean addBlank) {
+		List<OrgDogovor> values = new ArrayList<>();
+		int sel = -1;
+		if(addBlank) {
+			values.add(new OrgDogovor());
+			sel = 0;
+		}
+
+		for(OrgDogovor od : data) {
+			if(!od.idFirm.equals(firm))
+				continue;
+
+			if(od.id.equals(selected))
+				sel = values.size();
+			values.add(od);
+		}
+
+		ArrayAdapter<OrgDogovor> aa = new ArrayAdapter<>(this, R.layout.simple_spinner_layout, values);
+		Spinner sp = findViewById(id);
+		sp.setAdapter(aa);
+		if(sel < 0 && aa.getCount() > 0)
+			sel = 0;
+		if(sel >= 0)
+			sp.setSelection(sel);
 	}
 	
 	private void init() {
@@ -133,6 +162,22 @@ public class CreateOrder extends BaseActivity
 			e.printStackTrace();
 		}
 		config.close();
+
+		loadSpinner(R.id.spDogovor, org.dogovors, o.dogovor, o.firmCode, false);
+		loadSpinner(R.id.spAgrmnts, org.agreements, o.agreement, o.firmCode, false);
+
+		spFirma.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+			@Override
+			public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+				Firm kv = (Firm) parent.getAdapter().getItem(position);
+				String code = kv == null ? "" : kv.id;
+				loadSpinner(R.id.spDogovor, org.dogovors, o.dogovor, code, false);
+				loadSpinner(R.id.spAgrmnts, org.agreements, o.agreement, code, false);
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> parent) {}
+		});
 
 		EditText remark = (EditText)findViewById(R.id.edCreateOrderNotes);
 		remark.setText(o.remark);
@@ -297,6 +342,16 @@ public class CreateOrder extends BaseActivity
 
 			CheckBox cbeml = findViewById(R.id.cbSendEmail);
 			o.sendByEmail = cbeml.isChecked() ? 1 : 0;
+
+			OrgDogovor ods = (OrgDogovor) ((Spinner)findViewById(R.id.spDogovor)).getSelectedItem();
+			if(ods == null || ods.id.length() == 0) {
+				Toast.makeText(CreateOrder.this, "Выберите договор", Toast.LENGTH_SHORT).show();
+				return;
+			}
+			o.dogovor = ods.id;
+
+			ods = (OrgDogovor) ((Spinner)findViewById(R.id.spAgrmnts)).getSelectedItem();
+			o.agreement = ods == null ? "" : ods.id;
 
 //			if (Features.WH_QTY) {
 //				Spinner spSklads = (Spinner) findViewById(R.id.spSklad);

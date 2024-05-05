@@ -4,9 +4,9 @@ include make.vars
 
 #Variant = Pavlov
 #Variant = PavlovStore
-#Variant = PavlovKonovalova
+Variant = PavlovKonovalova
 #Variant=Smirnova
-Variant = SmirnovaSharia
+#Variant = SmirnovaSharia
 
 
 include ..\..\make.rull

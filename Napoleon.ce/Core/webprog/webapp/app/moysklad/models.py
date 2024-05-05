@@ -2,6 +2,7 @@ from time import time
 from typing import Collection, Self
 
 import requests
+import collections.abc
 from app import db
 from app.fcgi_client import FCGIManager, get_result_data
 import urllib.parse
@@ -42,6 +43,46 @@ class AccLog(db.Model):
         db.session.add(a)
         db.session.commit()
 
+class AccTaskStatus(db.Model):
+    STATUS_RUN = 1
+    STATUS_FINISH = 2
+    STATUS_NONE = 0
+
+    LOAD_DATA_TASK = 'load_data'
+
+    __tablename__ = 'mskl_acctask'
+
+    id = db.Column(db.Integer, primary_key=True)
+    accid = db.Column(db.String(100), index=True)
+    taskid = db.Column(db.String(100))
+    date = db.Column(db.Integer, index=True)
+    status = db.Column(db.Integer) 
+    info = db.Column(db.String(1000))
+
+    def to_dict(self):
+        return {'id':self.id,'accid':self.accid,'taskid':self.taskid,'date':self.date,'status':self.status,'info':self.info}
+
+    @staticmethod
+    def get(accid:str, taskid:str) -> Self:
+        return AccTaskStatus.query.filter_by(accid=accid,taskid=taskid).first()
+
+    @staticmethod
+    def task_status(accid:str, taskid:str) -> int:
+        r = AccTaskStatus.get(accid, taskid)
+        return AccTaskStatus.STATUS_NONE if not r else r.status
+    
+    @staticmethod
+    def set_status(accid:str, taskid:str, status:int, info:str=""):
+        st = AccTaskStatus.query.filter_by(accid=accid,taskid=taskid).first()
+        if st :
+            st.date = time()
+            st.status = status
+            st.info = info
+        else :
+            ac = AccTaskStatus(accid=accid,taskid=taskid,status=status,info=info,date=time())
+            db.session.add(ac)
+        db.session.commit()
+
 class MetaObject:
     def __init__(self, metaSrc:dict[str,any]) -> None: 
         src = metaSrc['meta'] if 'meta' in metaSrc else metaSrc
@@ -62,9 +103,9 @@ class MetaObject:
             self.href = ''
             self.id = ''
 
-
 class BaseObject:
-    MOY_SKLAD_HREF = 'https://online.moysklad.ru/api/remap/1.2/'
+    # MOY_SKLAD_HREF = 'https://online.moysklad.ru/api/remap/1.2/'
+    MOY_SKLAD_HREF = 'https://api.moysklad.ru/api/remap/1.2/'
 
     def __init__(self, src:dict[str,any] = None) -> None:
         self.src = src or {}
@@ -107,6 +148,58 @@ class BaseObject:
         return {'meta':v}
 
     @classmethod
+    def getMoySkladSlice(cls, account:Account, offset:int, filter:str = None) -> tuple[list[Self],int]:
+        el:BaseObject = cls()
+        uri = BaseObject.MOY_SKLAD_HREF + el.uriMoySklad()
+        return el.readMoySkladSlice(uri, account, offset, filter)
+    
+    @classmethod
+    def readMoySkladSlice(cls, uri:str, account:Account, offset:int, filter:str = None) -> tuple[list[Self],int]:
+        headers:dict[str,any] = {
+            "Accept-Encoding": "gzip",
+            "Authorization": "Bearer " + account.json_token,
+            'Content-Type': 'application/json',
+        }
+
+        ret:list[Self] = []
+
+        size = 0
+        params = cls.uriParams()
+
+        if filter:
+            params.update({'filter':filter})
+            # uri += "?filter=" + filter
+        if offset != 0:
+            params.update({'offset':offset})
+        
+        res = requests.get(uri, params=params, headers=headers)
+            # print(res.url)
+
+        if res.status_code < 300:
+            jres = res.json()
+            if 'meta' in jres:
+                rowsData = jres['meta']
+
+                size = rowsData['size']
+                offset = rowsData['offset']
+                # limit = rowsData['limit']
+
+            if 'rows' in jres:
+                for ri in jres['rows']:
+                    dst = cls(ri)
+                    ret.append(dst)
+            elif isinstance(jres, dict):
+                dst = cls(jres)
+                ret.append(dst)
+            elif isinstance(jres, Collection):
+                for ri in jres:
+                    dst = cls(ri)
+                    ret.append(dst)
+
+        return (ret, size)
+
+
+    @classmethod
     def getMoySklad(cls, account:Account, filter:str = None) -> list[Self]:
         el:BaseObject = cls()
         uri = BaseObject.MOY_SKLAD_HREF + el.uriMoySklad()
@@ -115,6 +208,7 @@ class BaseObject:
     @classmethod
     def readMoySklad(cls, uri:str, account:Account, filter:str = None) -> list[Self]:
         headers:dict[str,any] = {
+            "Accept-Encoding": "gzip",
             "Authorization": "Bearer " + account.json_token,
             'Content-Type': 'application/json',
         }
@@ -300,7 +394,7 @@ class Price(BaseObject):
 
         return ret
 
-    def makeCost(self, prcTypes:list[any]) -> list[any]:
+    def makeCost(self, prcTypes:list[any], dataVersion:int = 0) -> list[any]:
         ret = []
 
         if 'salePrices' in self.src:
@@ -310,7 +404,7 @@ class Price(BaseObject):
                 if not ptp in prcTypes:
                     continue
 
-                ret.append({'id':pid, 'idItem':self.id, 'cost':pi['value'] / 100.0})
+                ret.append({'id':pid, 'idItem':self.id, 'cost':pi['value'] / 100.0, 'dataVersion':dataVersion})
 
         return ret
 
@@ -333,7 +427,7 @@ class Bundle(Price):
             # print('Bundle id', res)
         return res
     
-    def loadStock(self, account:Account, qtyData:list, stockData:dict) :
+    def loadStock(self, account:Account, qtyData:list, stockData:dict, dataVersion:int = 0) :
         components = BundleComponents.load(self, account)
         stock : dict[str,float] = {}
         
@@ -356,7 +450,7 @@ class Bundle(Price):
         itemId = self.id
         for storeId,qty in stock.items():
             if qty > 0:
-                v = {'id':storeId, 'qty':qty, 'idItem':itemId}
+                v = {'id':storeId, 'qty':qty, 'idItem':itemId, 'dataVersion':dataVersion}
                 qtyData.append(v)
 
 
@@ -379,10 +473,10 @@ class Service(Price):
         idx = res.find('|')
         return res if idx < 0 else res[:idx]
     
-    def loadStock(self, qtyData:list, stores:list[str]) :
+    def loadStock(self, qtyData:list, stores:list[str], dataVersion:int = 0) :
         itemId = self.id
         for storeId in stores:
-            v = {'id':storeId, 'qty':9999, 'idItem':itemId}
+            v = {'id':storeId, 'qty':9999, 'idItem':itemId, 'dataVersion':dataVersion}
             # print("Service", v)
             qtyData.append(v)
 
@@ -397,6 +491,30 @@ class BundleComponents(BaseObject):
 class Stock(BaseObject):
     @staticmethod
     def uriMoySklad() -> str: return 'report/stock/bystore'
+
+    @staticmethod
+    def getCurrent(account:Account, dataVersion:int) -> list[dict[str:any]] | None :
+        headers:dict[str,any] = {
+            "Accept-Encoding": "gzip",
+            "Authorization": "Bearer " + account.json_token,
+            'Content-Type': 'application/json',
+        }
+        uri = BaseObject.MOY_SKLAD_HREF + 'report/stock/bystore/current'
+        res = requests.get(uri, headers=headers)
+        if res.status_code >= 300: return None
+        jres = res.json()
+        if not isinstance(jres, collections.abc.Sequence): return None
+
+        data = []
+        for el in jres:
+            try:
+                dest = {'idItem':el['assortmentId'], 'id':el['storeId'], 'qty':el['stock'], 'dataVersion':dataVersion}
+                data.append(dest)
+            except:
+                pass
+
+        return data
+
 
     def __init__(self, src:dict[str,any] = None) -> None:
         self.src = src or {}

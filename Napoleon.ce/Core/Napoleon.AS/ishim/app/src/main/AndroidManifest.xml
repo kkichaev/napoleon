@@ -84,7 +84,7 @@
         </receiver>
 
         <activity
-            android:name="com.grsoft.napoleon.Main"
+            android:name="com.grsoft.napoleon.MainEx"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:label="@string/app_name"
             android:launchMode="singleTask"
@@ -381,7 +381,8 @@
          <activity android:name="com.grsoft.napoleon.PriceCountEx" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
          <activity android:name="com.grsoft.napoleon.DocumentsEx" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
          <activity android:name="com.grsoft.napoleon.OrderDetailEx" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
-         <activity android:name="com.grsoft.napoleon.AgentPlan" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
-    </application>
+         <activity android:name="com.grsoft.napoleon.PlanView" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
+         <activity android:name="com.grsoft.napoleon.WarehouseEx" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
+	</application>
 
 </manifest>

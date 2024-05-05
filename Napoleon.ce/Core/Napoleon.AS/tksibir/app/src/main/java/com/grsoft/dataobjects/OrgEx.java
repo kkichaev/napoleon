@@ -10,4 +10,5 @@ public class OrgEx extends Org {
 	@Scale(value=Consts.SUM_SCALE)
 	public int discount = 0;
 	public List<OrgDiscountItem> folderDsc = new ArrayList<OrgDiscountItem>();
+	public List<OrgDiscountItem> priceDsc = new ArrayList<OrgDiscountItem>();
 }

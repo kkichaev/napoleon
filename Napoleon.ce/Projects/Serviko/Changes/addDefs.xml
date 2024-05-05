@@ -1,7 +1,78 @@
 <?xml version="1.0" ?>
 <serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
   <objects>
-    <object name="FirstDocTime">
+    <modify src="ScriptDef" defaultAccess="read" />
+    <modify src="Question" defaultAccess="read" />
+
+    <object name="ShelfShare">
+      <sources>
+        <source name="SQTable" type="internal">
+          <param name="readFilter">'"userid"=' + "'" + $user.id + "'"</param>
+        </source>
+      </sources>
+
+      <member name="primaryKey">"userid,id"</member>
+      <field name="userid" type="string" />
+      <field name="id" type="string" />
+      <field name="share" type="number" prec="2" />
+      <field name="name" type="string" />
+    </object>
+
+    <object name="ShelfShareDoc">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"userid,created"</member>
+      <memberArray name="index">"created"</memberArray>
+
+      <field name="created" type="timestamp" />
+      <field name="timeZone" type="number" />
+      <field name="serverTimeZone" type="number" execOn="Put" feature="USE_TIMEZONE">ServerTimeZone()</field>
+      <field name="userid" type="string" execOn="Put">$user.id</field>
+      <field name="id" type="string" width="55" />
+      <field name="date" type="date" />
+      <field name="sended" type="timestamp" data="S_DATE" execOn="Put">Now()</field>
+      <field name="latitude" type="number" prec="5" />
+      <field name="longitude" type="number" prec="5" />
+      <field name="stltime" type="number" />
+
+      <field name="remark" type="string" />
+
+      <field name="items" type="collection">
+        <data>
+          <object name="Item">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+            <field name="id" type="string"/>
+            <field name="qty_other" type="number" prec="3" />
+            <field name="qty_our" type="number" prec="3" />
+          </object>
+        </data>
+      </field>
+
+      <events>
+        <event type="put">
+          <action name="WriteInternal">$object.type</action>
+          <action name="WriteToLog">$object.type;$object.created</action>
+        </event>
+      </events>
+    </object>
+
+    <object name="PriceSortWeight">
+      <sources>
+        <source name="SQTable" type="internal">
+          <param name="readFilter">"id in (select id from [WH" + user.id + "]) and firm in (select id from [FI" + $user.id + "])"</param>
+        </source>
+      </sources>
+      <member name="primaryKey">"firm,id"</member>
+      <field name="id" type="string" />
+      <field name="firm" type="string" />
+      <field name="weight" type="number" />
+    </object>
+    
+    <object name="FirstDocTime" defaultAccess="read">
       <sources>
         <source name="SQTable" type="internal" />
       </sources>
@@ -18,6 +89,9 @@
         </event>
       </events>
     </object>
+
+    <modify dest="CopyFirstDocTime" src="FirstDocTime" table="FirstDocTime" defaultAccess="write">      
+    </modify>
     
     <object name="Banner">
       <sources>
@@ -584,6 +658,7 @@
       <add>
         <field name="whCode" type="string" width="20" data="ID_WH" />
         <field name="retDoc" type="number" width="1" />
+        <field name="pickup" type="number" width="1" />
       </add>
     </modify>
 

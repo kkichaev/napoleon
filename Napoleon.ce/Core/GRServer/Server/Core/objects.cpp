@@ -11,8 +11,117 @@
 #include <ServerDefs.h>
 #include "objdef.h"
 #include "session.h"
+#include "creators.h"
 
 using namespace GRServer;
+
+class ManagerRightsReader : public IDataSource::IReader
+{
+   struct Data
+   {
+      std::wstring token;
+      double type;
+      double right;
+   };
+
+public:
+   ManagerRightsReader(IDataSource::IReader* _src, const ISessionObject& obj);
+   virtual ~ManagerRightsReader() { Close(); }
+
+   virtual bool MoveNext(Object* parentObject);
+   virtual bool Get(Object* o) const;
+
+   virtual bool SetFilter(const wchar_t* filter, const ISessionObject& object) { return src->SetFilter(filter, object); }
+   virtual void Remove() { src->Remove(); }
+   virtual void Close() 
+   { 
+      if (src != NULL)
+      {
+         src->Close();
+         delete src;
+      }
+      src = NULL;
+   }
+
+   virtual const MemberFormat* Type(const wchar_t* name) const { return src->Type(name); }
+   virtual const Member* Value(const wchar_t* name) const { return src->Value(name); }
+
+private:
+   GRServer::Format* format;
+   Object* curParent;
+   int iToken, iType, iRight;
+   mutable std::vector<Data> data;
+   IDataSource::IReader* src;
+};
+
+ManagerRightsReader::ManagerRightsReader(IDataSource::IReader* _src, const ISessionObject& obj) : src(_src)
+{
+   format = obj.Self()->format;
+   iToken = format->FindMember(L"token");
+   iType = format->FindMember(L"type");
+   iRight = format->FindMember(L"right");
+
+   curParent = (Object*)1;
+}
+
+bool ManagerRightsReader::MoveNext(Object* parentObject)
+{
+   if (parentObject != curParent)
+   {
+      Object* obj = Create(*format);
+
+      data.clear();
+      curParent = parentObject;
+      std::map<std::wstring, int> defRight(*ObjectDef::RestrictObjects());
+      while (src->MoveNext(parentObject))
+      {
+         if (src->Get(obj))
+         {
+            Data d;
+            d.right = obj->at(iRight).number;
+            d.token = (const std::wstring&)*obj->at(iToken).str;
+            d.type = obj->at(iType).number;
+            data.push_back(d);
+            defRight.erase(d.token);
+         }
+      }
+
+      auto di = defRight.begin();
+      for (; di != defRight.end(); di++)
+      {
+         Data d;
+         d.right = di->second;
+         d.token = di->first;
+         d.type = 0;
+         data.push_back(d);
+      }
+   }
+
+   return data.size() > 0;
+}
+
+bool ManagerRightsReader::Get(Object* o) const
+{
+   const Data& src = data.front();
+
+   o->at(iToken).str->assign(src.token);
+   o->at(iType).number = src.type;
+   o->at(iRight).number = src.right;
+
+   data.erase(data.begin());
+   return true;
+}
+
+IDataSource::IReader* ManagerRightsCreator::CreateReader(const ParamList& parameters, const ISessionObject& object) const
+{
+   IDataSource::IReader* r = dataSource->CreateReader(parameters, object);
+   if (r != NULL)
+   {
+      return new ManagerRightsReader(r, object);
+   }
+
+   return NULL;
+}
 
 //
 //----------------------------------------------- UserRights ---------------------------------------
@@ -23,12 +132,24 @@ UserRights* UserRights::LoadRights(const wchar_t* user, Session* s)
 	std::wstring filter(L"\"DivisionManager$login\"='");
 	filter += user; filter += L"'";
 
-	ISessionObject *so = s->LoadObject(L"DivisionManager$rights", NULL, filter.c_str());
+   return UserRights::Load(s, L"DivisionManager$rights", filter);
 
-	UserRights* ur = new UserRights();
-	ur->Load(so);
+	//ISessionObject *so = s->LoadObject(L"DivisionManager$rights", NULL, filter.c_str());
 
-	return ur;
+	//UserRights* ur = new UserRights();
+	//ur->Load(so);
+
+	//return ur;
+}
+
+UserRights* UserRights::Load(Session* s, const std::wstring& object, const std::wstring& filter)
+{
+   ISessionObject* so = s->LoadObject(object, NULL, filter.c_str());
+
+   UserRights* ur = new UserRights();
+   ur->Load(so);
+
+   return ur;
 }
 
 UserRights::UserRights()
@@ -118,6 +239,12 @@ User::~User()
 {
 	delete rights;
 	rights = NULL;
+}
+
+void User::LoadRights(const std::wstring& object, const std::wstring& filter)
+{
+   delete rights;
+   rights = UserRights::Load(session, object, filter);
 }
 
 void User::Assign(const std::wstring& id, int division, DWORD duration, const std::wstring& version)
@@ -285,7 +412,7 @@ static const wchar_t* AdminObjects[] =
    L"UserActivity", L"LicensedUsers", L"LicenseCountEx", L"LicenseCount", L"Agents", L"Division", L"DivisionManager",
    L"UserLog", L"LogData", L"ServerConfig", L"ManagerConfig", L"LicenseProjectData", L"LicenseType", L"LicensingUsersData", 
 	L"ContractDef", L"NBTLViewer", L"SyncInfo", L"%ActiveUsers", L"AgentActivity", L"UserPinData",	L"Suppliers", L"ProgramSettings",
-   L"NewVersionAction", L"ServerTaskSchedulerUpdate", L"ServerTaskParams",L"ServerTaskLog",
+   L"NewVersionAction", L"ServerTaskSchedulerUpdate", L"ServerTaskParams",L"ServerTaskLog",L"Slsnet",
 #ifdef _Project_PavlovStore
    L"Server",
 #endif

@@ -86,8 +86,8 @@
                   </RibbonGallery>
                </RibbonComboBox>
 
-               <RibbonCheckBox Label="{Binding Source={x:Static p:Resources.route_points}}" x:Name="routePointUseInterval" Visibility="Hidden"/>
-               <RibbonTextBox Label="{Binding Source={x:Static p:Resources.interval_min}}" x:Name="routePointInterval" TextBoxWidth="25" Visibility="Hidden"/>
+               <RibbonCheckBox Label="{Binding Source={x:Static p:Resources.route_points}}" x:Name="routePointUseInterval" />
+               <RibbonTextBox Label="{Binding Source={x:Static p:Resources.interval_min}}" x:Name="routePointInterval" TextBoxWidth="25"/>
             </RibbonGroup>
 
             <RibbonGroup Header="{Binding Source={x:Static p:Resources.select_period}}">

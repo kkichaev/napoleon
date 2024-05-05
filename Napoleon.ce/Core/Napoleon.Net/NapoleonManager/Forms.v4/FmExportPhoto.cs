@@ -127,7 +127,7 @@ namespace GRSoft.NapoleonManager
             }
          }
 
-         const string LABEL_TEXT = "Обработно запросов: {0} из {1}";
+         const string LABEL_TEXT = "Обработано запросов: {0} из {1}";
 
          foreach (VisitInfo i in dsVisitInfo.Values)
          {
@@ -304,7 +304,7 @@ namespace GRSoft.NapoleonManager
                int cnt = 1;
                foreach (Visit.VisitItem item in v.items)
                {
-                  if (item.id == null)
+                  if (!CheckItem(item))
                      continue;
 
                   SavePicture(item.id, scriptStep, font, drawBrush, parent, v, cnt);
@@ -312,6 +312,11 @@ namespace GRSoft.NapoleonManager
                }
             }
          }
+      }
+
+      protected virtual bool CheckItem(Visit.VisitItem vi)
+      {
+         return vi.id != null;
       }
 
       private void SavePicture(byte[] picture, string scriptStep, Font font, Brush brush, string parent, BaseDocument doc, int step)
@@ -334,8 +339,13 @@ namespace GRSoft.NapoleonManager
             // Не удаляйте этот код, если не нужет будет 
             // просто закоментировать!
             Graphics g = Graphics.FromImage(image);
+            string text = "";
+            if (scriptStep.Length > 0) text += scriptStep;
+            text += doc.OrgName;
+            if (!doc.OrgName.Contains(doc.Address))
+               text += "," + doc.Address;
+            text += ", " + doc.created.ToString("dd/MM/yyyy HH:mm");
 
-            string text = scriptStep + doc.OrgName + "," + doc.Address + ", " + doc.created.ToString("dd/MM/yyyy HH:mm");
             SizeF textSz = g.MeasureString(text, font);
             //PointF drawPoint = new PointF(image.Width - textSz.Width - 5, image.Height - textSz.Height);
             RectangleF rect = new RectangleF(0, 0, image.Width, image.Height);
@@ -391,7 +401,7 @@ namespace GRSoft.NapoleonManager
                   dir.Append(getValue(2, doc));
                }
 
-               if (cbLevel4.Checked)
+               if (cbLevel4.Checked && scriptStep.Length > 0)
                {
                   dir.Append("\\");
                   dir.Append(WinChar(scriptStep));
@@ -404,9 +414,13 @@ namespace GRSoft.NapoleonManager
                ////   WinChar(scriptStep), cnt);
                //string file = string.Format(@"{0}\{1}{2}{3}{4}{5}.jpg", dir.ToString(), WinChar(doc.OrgName), "", WinChar(doc.Created.ToString("dd.MM.yyyy_HH.mm.ss") + " "),
                //   WinChar(scriptStep), step);
-               string file = MakeFileName(dir.ToString(), doc, scriptStep, step);
+               string file = MakeFileName(doc, scriptStep, step);
+
+               string cdir = Directory.GetCurrentDirectory();
+               Directory.SetCurrentDirectory(dir.ToString());
 
                image.Save(file, ImageFormat.Jpeg);
+               Directory.SetCurrentDirectory(cdir);
             }
             catch (Exception e)
             {
@@ -415,11 +429,23 @@ namespace GRSoft.NapoleonManager
          }
       }
 
-      protected virtual string MakeFileName(string dir, BaseDocument doc, string scriptStep, int step)
+      protected virtual string MakeFileName(BaseDocument doc, string scriptStep, int step)
       {
-         return string.Format(@"{0}\{1}{2}{3}{4}{5}.jpg", dir.ToString(), WinChar(doc.OrgName), "", WinChar(doc.Created.ToString("dd.MM.yyyy_HH.mm.ss") + " "),
+         if(scriptStep.Length == 0)
+         {
+            return string.Format(@"{0}{1}{2}{3}.jpg", WinChar(doc.OrgName), "", 
+               WinChar(doc.Created.ToString("dd.MM.yyyy_HH.mm.ss") + " "),
+               step);
+         }
+         return string.Format(@"{0}{1}{2}{3}{4}.jpg", WinChar(doc.OrgName), "", WinChar(doc.Created.ToString("dd.MM.yyyy_HH.mm.ss") + " "),
             WinChar(scriptStep), step);
       }
+
+      //protected virtual string MakeFileName(string dir, BaseDocument doc, string scriptStep, int step)
+      //{
+      //   return string.Format(@"{0}\{1}{2}{3}{4}{5}.jpg", dir.ToString(), WinChar(doc.OrgName), "", WinChar(doc.Created.ToString("dd.MM.yyyy_HH.mm.ss") + " "),
+      //      WinChar(scriptStep), step);
+      //}
 
       Font font = new System.Drawing.Font("Arial", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
       SolidBrush drawBrush = new SolidBrush(Color.Red);
@@ -508,11 +534,12 @@ namespace GRSoft.NapoleonManager
       {
          Manager m = CurrentUser.user as Manager;
 
+         List<Agent> agsrc = new List<Agent>();
          if (m != null)
          {
             foreach (Division.DivisionAgent a in m.Division.GetAllAgents())
-               if (a.agent != null && cbAgent.Items.Contains(a.agent) == false)
-                  cbAgent.Items.Add(a.agent);
+               if (a.agent != null && agsrc.Contains(a.agent) == false)
+                  agsrc.Add(a.agent);
 
             cbDivision.Items.Add(m.Division);
             foreach (Division d in m.Childs)
@@ -524,6 +551,9 @@ namespace GRSoft.NapoleonManager
 
          if (cbDivision.Items.Count > 0)
             cbDivision.SelectedIndex = 0;
+
+         agsrc.Sort();
+         cbAgent.Items.AddRange(agsrc.ToArray());
 
          cbAgent.Enabled = false;
          cbDivision.Enabled = false;

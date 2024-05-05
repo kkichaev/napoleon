@@ -6,14 +6,14 @@
         <source name="SQLQuery">
           <param name="stmt">
             "select doc.qty, doc.aikos, ld.id
-            from 
-            (select d.qty, d.date, ISNULL( f.qty, 0) as aikos from 
-              (SELECT sum([qty]) as qty, [OrgRemnants$date] as date FROM [OrgRemnants$items]
-                where [OrgRemnants$userid] = '$01'
-                group by OrgRemnants$userid, OrgRemnants$date) d left join
-              (SELECT sum([qty]) as qty ,[OrgRemnants$date] as date FROM [OrgRemnants$items]
-                where face = 1 and [OrgRemnants$userid] = '$01'
-                group by OrgRemnants$userid, OrgRemnants$date) f on d.date = f.date
+            from
+            (select d.qty, d.date, ISNULL( f.qty, 0) as aikos from
+            (SELECT sum([qty]) as qty, [OrgRemnants$date] as date FROM [OrgRemnants$items]
+            where [OrgRemnants$userid] = '$01'
+            group by OrgRemnants$userid, OrgRemnants$date) d left join
+            (SELECT sum([qty]) as qty ,[OrgRemnants$date] as date FROM [OrgRemnants$items]
+            where face = 1 and [OrgRemnants$userid] = '$01'
+            group by OrgRemnants$userid, OrgRemnants$date) f on d.date = f.date
             ) doc,
             (select max(date) as date, id from OrgRemnants where userid = '$01' group by id) ld
             where doc.date = ld.date"
@@ -25,19 +25,19 @@
       <field name="id" type="string" />
       <field name="aikos" type="number" />
     </object>
-    
+
     <object name="DivisionStock">
       <sources>
         <source name="SQTable" type="internal" />
       </sources>
-    
+
       <member name="primaryKey">"division,id"</member>
-    
+
       <field name="division" type="string" />
       <field name="id" type="string" />
       <field name="qty" type="number" prec="3" />
     </object>
-    
+
     <object name="Brand">
       <sources>
         <source name="SQTable" type="internal" />
@@ -48,6 +48,36 @@
       <field name="id" type="string" />
       <field name="name" type="string"  />
       <field name="pos" type="number" />
+    </object>
+
+    <object name="BillRequest">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"userid,created"</member>
+
+      <field name="userid" type="string" execOn="Put">$user.id</field>
+      <field name="created" type="timestamp"  />
+      <field name="fileId" type="string" />
+
+      <events>
+        <event type="writeCommit">
+          <action name="RequestBill"/>
+        </event>
+      </events>
+    </object>
+
+    <object name="FileStorage">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"id"</member>
+
+      <field name="id" type="string" />
+      <field name="type" type="string"  />
+      <field name="data" type="file" src="id" />
     </object>
 
     <object name="Supplier">
@@ -66,8 +96,8 @@
     <object name="Balance">
       <sources>
         <source name="SQTable" type="internal">
-            <param name="readFilter">"id in (select id from AgentData where type='Org' and userid = '$01')"</param>
-            <param name="$01">$user.id</param>
+          <param name="readFilter">"id in (select id from AgentData where type='Org' and userid = '$01')"</param>
+          <param name="$01">$user.id</param>
         </source>
       </sources>
 
@@ -75,27 +105,27 @@
 
       <field name="id" type="string" />
       <field name="sum" type="number" prec="2"  />
-      
+
       <field name="documents" type="collection">
         <data>
           <object name="Item">
             <sources>
               <source name="SQTable" type="internal" />
             </sources>
-            
-              <field name="uid" type="string" />
-              <field name="number" type="string"  />
-              <field name="date" type="date" />
-              <field name="payDate" type="date" />
-              <field name="sum" type="number" prec="2" />
-              <field name="sumDoc" type="number" prec="2"  />
-              <field name="title" type="string"  />
-              <field name="type" type="string"  />
+
+            <field name="uid" type="string" />
+            <field name="number" type="string"  />
+            <field name="date" type="date" />
+            <field name="payDate" type="date" />
+            <field name="sum" type="number" prec="2" />
+            <field name="sumDoc" type="number" prec="2"  />
+            <field name="title" type="string"  />
+            <field name="type" type="string"  />
           </object>
         </data>
       </field>
     </object>
-    
+
     <object name="CPlan">
       <sources>
         <source name="SQTable" type="internal" />
@@ -114,7 +144,7 @@
       <field name="d17_18Winter" type="number" prec="2" />
       <field name="lgsh" type="number" prec="2" />
     </object>
-  
+
     <object name="CMonitoring">
       <sources>
         <source name="SQTable" type="internal" />
@@ -155,20 +185,20 @@
         </event>
       </events>
     </object>
-    
+
     <object name="TimeSheetQuery">
       <sources>
         <source name="SQLQuery">
           <param name="stmt">
-            'select division.id as divid, division.description as divname, agents.name, agents.id, 
-              sheet.day1, sheet.day2, sheet.day3, sheet.day4, sheet.day5, sheet.day6, sheet.day7, sheet.day8, sheet.day9, sheet.day10,
-              sheet.day11, sheet.day12, sheet.day13, sheet.day14, sheet.day15, sheet.day16, sheet.day17, sheet.day18, sheet.day19, sheet.day20,
-              sheet.day21, sheet.day22, sheet.day23, sheet.day24, sheet.day25, sheet.day26, sheet.day27, sheet.day28, sheet.day29, sheet.day30, sheet.day31,
-              sheet.notWorkCount, sheet.start
-              from  Division as division 
-              left join Division$agents as divagent on division.id = divagent.Division$id 
-              left join Agents as agents on divagent.id = agents.id
-              left join TimeSheet as sheet on (agents.id = sheet.userid and sheet.start = $01)
+            'select division.id as divid, division.description as divname, agents.name, agents.id,
+            sheet.day1, sheet.day2, sheet.day3, sheet.day4, sheet.day5, sheet.day6, sheet.day7, sheet.day8, sheet.day9, sheet.day10,
+            sheet.day11, sheet.day12, sheet.day13, sheet.day14, sheet.day15, sheet.day16, sheet.day17, sheet.day18, sheet.day19, sheet.day20,
+            sheet.day21, sheet.day22, sheet.day23, sheet.day24, sheet.day25, sheet.day26, sheet.day27, sheet.day28, sheet.day29, sheet.day30, sheet.day31,
+            sheet.notWorkCount, sheet.start
+            from  Division as division
+            left join Division$agents as divagent on division.id = divagent.Division$id
+            left join Agents as agents on divagent.id = agents.id
+            left join TimeSheet as sheet on (agents.id = sheet.userid and sheet.start = $01)
           </param>
           <param name="$01">ToDate(FormatDate(Now(),"DD.MM.YYYY"))</param>
           <param name="debug"/>
@@ -181,7 +211,7 @@
       <field name="divname" type="string" />
       <field name="start" type="date" />
       <field name="notWorkCount" type="number" />
-      
+
       <field name="day1" type="number" />
       <field name="day2" type="number" />
       <field name="day3" type="number" />
@@ -224,7 +254,8 @@
       <field name="userid" type="string" />
       <field name="start" type="date" />
 
-      <field name="notWorkCount" type="number" /> <!--выходных и праздничных дней -->
+      <field name="notWorkCount" type="number" />
+      <!--выходных и праздничных дней -->
 
       <!--
         положительные числа - кол-во отработанных часов
@@ -263,7 +294,7 @@
       <field name="day31" type="number" />
 
     </object>
-    
+
     <object name="OrgRegion">
       <sources>
         <source name="SQTable" type="internal" />
@@ -318,8 +349,8 @@
     <object name="PriceTypes">
       <sources>
         <source name="SQTable" type="internal">
-            <param name="readFilter">"id in (select id from AgentData where type='PriceTypes' and userid = '$01')"</param>
-            <param name="$01">$user.id</param>
+          <param name="readFilter">"id in (select id from AgentData where type='PriceTypes' and userid = '$01')"</param>
+          <param name="$01">$user.id</param>
         </source>
       </sources>
 
@@ -332,23 +363,25 @@
     <object name="PriceCost">
       <sources>
         <source name="SQTable" type="internal">
-            <param name="readFilter">"id in (select id from AgentData where type='PriceTypes' and userid = '$01') 
-            and idItem in (select id from AgentData where type='Price' and userid = '$01')"</param>
-            <param name="$01">$user.id</param>
+          <param name="readFilter">
+            "id in (select id from AgentData where type='PriceTypes' and userid = '$01')
+            and idItem in (select id from AgentData where type='Price' and userid = '$01')"
+          </param>
+          <param name="$01">$user.id</param>
         </source>
       </sources>
       <member name="primaryKey">"id,idItem"</member>
-      
+
       <field name="id" type="string" />
       <field name="idItem" type="string" />
       <field name="cost" type="number" prec="2" />
     </object>
-      
+
     <object name="Stores">
       <sources>
         <source name="SQTable" type="internal">
-            <param name="readFilter">"id in (select id from AgentData where type='Stores' and userid = '$01')"</param>
-            <param name="$01">$user.id</param>
+          <param name="readFilter">"id in (select id from AgentData where type='Stores' and userid = '$01')"</param>
+          <param name="$01">$user.id</param>
         </source>
       </sources>
 
@@ -357,13 +390,15 @@
       <field name="id" type="string" />
       <field name="name" type="string" />
     </object>
-    
+
     <object name="StoreQty">
       <sources>
         <source name="SQTable" type="internal">
-            <param name="readFilter">"id in (select id from AgentData where type='Stores' and userid = '$01') 
-              and idItem in (select id from AgentData where type='Price' and userid = '$01')"</param>
-            <param name="$01">$user.id</param>
+          <param name="readFilter">
+            "id in (select id from AgentData where type='Stores' and userid = '$01')
+            and idItem in (select id from AgentData where type='Price' and userid = '$01')"
+          </param>
+          <param name="$01">$user.id</param>
         </source>
       </sources>
 
@@ -373,7 +408,7 @@
       <field name="idItem" type="string" />
       <field name="qty" type="number" prec="3" />
     </object>
-      
+
     <object name="AgentData">
       <sources>
         <source name="SQTable" type="internal" />
@@ -383,7 +418,7 @@
       <field name="id" type="string" />
       <field name="userid" type="string" />
       <field name="type" type="string" />
-    
+
     </object>
 
     <modify src="Org">
@@ -397,7 +432,7 @@
       </change>
       <add>
         <member name="primaryKey">"id"</member>
-        
+
         <field name="regionID" type="string"/>
         <field name="cityID" type="string"/>
         <field name="nameFakt" type="string"/>
@@ -411,6 +446,31 @@
         <field name="faceCoordiant" type="number" prec="2"/>
         <field name="nameYur" type="string"/>
         <field name="email" type="string"/>
+
+        <field name="agreements" type="collection">
+          <data>
+            <object>
+              <sources>
+                <source name="SQTable" type="internal" />
+              </sources>
+              <field name="id" type="string" />
+              <field name="idFirm" type="string" />
+              <field name="name" type="string" />
+            </object>
+          </data>
+        </field>
+        <field name="dogovors" type="collection">
+          <data>
+            <object>
+              <sources>
+                <source name="SQTable" type="internal" />
+              </sources>
+              <field name="id" type="string" />
+              <field name="idFirm" type="string" />
+              <field name="name" type="string" />
+            </object>
+          </data>
+        </field>
       </add>
     </modify>
 
@@ -426,7 +486,7 @@
         <field name="staffPositionID" type="string"/>
       </add>
     </modify>
-    
+
     <modify src="Delivery">
       <change>
         <sources>
@@ -441,7 +501,7 @@
         <member name="primaryKey">"date,id,number"</member>
       </add>
     </modify>
-    
+
     <modify src="Delivery$items">
       <change>
         <sources>
@@ -449,7 +509,7 @@
         </sources>
       </change>
     </modify>
-    
+
     <modify src="VisitInfo">
       <change>
         <field name="remark" type="string" width="300" />
@@ -468,6 +528,8 @@
         </event>
         <field name="email" type="string" />
         <field name="sendByEmail" type="number" />
+        <field name="agreement" type="string" />
+        <field name="dogovor" type="string" />
       </add>
     </modify>
 
@@ -482,7 +544,7 @@
         <field name="whCode" type="string" />
       </add>
     </modify>
-    
+
     <modify src="Incass">
       <change>
         <sources>
@@ -531,7 +593,7 @@
       </change>
       <add>
         <member name="primaryKey">"uid"</member>
-        
+
         <field name="uid" type="string" />
         <field name="items" type="collection">
           <data>
@@ -582,7 +644,7 @@
         <field name="date" type="date" />
       </add>
     </modify>
-    
+
     <modify src="Config">
       <change>
         <sources>
@@ -591,18 +653,18 @@
         <field name="value" type="string" width="4000" />
       </change>
     </modify>
-    
+
     <modify src="Firm">
       <change>
         <sources>
           <source name="SQTable" type="internal">
-			      <param name="readFilter">"id in (select id from AgentData where type='Firm' and userid = '$01')"</param>
+            <param name="readFilter">"id in (select id from AgentData where type='Firm' and userid = '$01')"</param>
             <param name="$01">$user.id</param>
           </source>
         </sources>
       </change>
     </modify>
-    
+
     <modify src="Agents">
       <change>
         <sources>
@@ -614,7 +676,7 @@
         <field name="password" type="string" width="30" />
       </change>
     </modify>
-    
+
     <modify src="Agents" dest="AgentUpdate" table="Agents">
       <remove>
         <field name="login" />
@@ -626,21 +688,21 @@
       <change>
         <sources>
           <source name="SQTable" type="internal">
-			      <param name="readFilter">"id in (select id from AgentData where type='Price' and userid = '$01')"</param>
+            <param name="readFilter">"id in (select id from AgentData where type='Price' and userid = '$01')"</param>
             <param name="$01">$user.id</param>
           </source>
         </sources>
       </change>
       <add>
         <member name="primaryKey">"id"</member>
-        
+
         <field name="width" type="number" />
         <field name="wall" type="number" />
         <field name="diameter" type="number" />
         <field name="brand" type="string" />
         <field name="subbrand" type="string" />
         <field name="autoType" type="string" />
-        
+
         <!-- 1 - Зима, 2 - Лето,  3 - Всесезонка -->
         <field name="season" type="number" />
 
@@ -667,7 +729,7 @@
         <field name="fid" type="string" data="fid" hidden="true" />
       </add>
     </modify>
-    
+
     <modify src="Folder">
       <change>
         <sources>
@@ -737,7 +799,7 @@
         <field name="userid" type="string" />
       </add>
     </modify>
-    
+
     <modify src="CommonMatrix$items">
       <change>
         <sources>
@@ -745,7 +807,7 @@
         </sources>
       </change>
     </modify>
-    
+
     <modify src="Matrix">
       <change>
         <sources>
@@ -784,7 +846,7 @@
         <field name="mrcChanged" type="number" />
       </add>
     </modify>
-  
+
     <modify src="Order" dest="NewOrders">
       <change>
         <sources>
@@ -794,6 +856,24 @@
               where dc."created" is null and o."created" > $01'
             </param>
             <param name="$01">ToDate(FormatDate(AdjustDate(Now(), -3, "day"),"DD.MM.YYYY"))</param>
+          </source>
+        </sources>
+        <field name="created" type="timestamp" />
+        <field name="userid" type="string" />
+        <field name="whCode" type="string" />
+      </change>
+    </modify>
+
+    <modify src="Order" dest="NewAgentOrders">
+      <change>
+        <sources>
+          <source name="SQLQuery">
+            <param name="stmt">
+              'select o.* from "Order" o left join "OrderCommitted" dc on o."userid" = dc."userid" and o."created" = dc."created"
+              where dc."created" is null and o."created" > $02 and o.userid=' + "'$01'"
+            </param>
+            <param name="$01">$user.id</param>
+            <param name="$02">ToDate(FormatDate(AdjustDate(Now(), -3, "day"),"DD.MM.YYYY"))</param>
           </source>
         </sources>
         <field name="created" type="timestamp" />
@@ -832,4 +912,13 @@
       </change>
     </modify>
   </objects>
+  
+  <actions>
+    <action name="RequestBill">
+      <do>
+        <runReport name="request_bill" />
+      </do>
+    </action>
+
+  </actions>
 </serverDefs>

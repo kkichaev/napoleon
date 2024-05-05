@@ -157,7 +157,10 @@ public class PriceCountTabak extends PriceCount implements OrderImplBase.UpdateQ
         se.packQty = (int)Util.StrToScale(((EditText)findViewById(R.id.edCountPack)).getText().toString(), Consts.QTY_SCALE);
 
         ((SalesEx)order).useTax = 1;
-        se.countTax((Sales) order, price.getData().tax1);
+        int tax = price.getData().tax1;
+        if(tax == 0)
+            tax = 20;
+        se.countTax((Sales) order, tax);
     }
 
     PCQtyData getPCQty() {

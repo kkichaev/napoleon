@@ -193,7 +193,7 @@ public class WarehouseEx extends Warehouse {
 		if( type == COLUMN_COST ) {
 			int changes = 0;//((PriceEx)price).changes;
 			if( lastPrice.containsKey(price.id) )
-				changes = getCost(price) - lastPrice.get(price.id);
+				changes = (int)getCost(price) - lastPrice.get(price.id);
 
 //			textView.setBackgroundColor(changes == 0 ? Color.TRANSPARENT : changes > 0 ? Color.GREEN : Color.RED );
 			textView.setTextColor(changes == 0 ? Color.BLACK : changes > 0 ? 0xFF006400 : Color.RED );

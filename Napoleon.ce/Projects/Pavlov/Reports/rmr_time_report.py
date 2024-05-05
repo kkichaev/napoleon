@@ -5,6 +5,7 @@ import sys
 
 import logging
 import locale
+from datetime import timedelta
 
 from xlbuilder import XlBuilder
 from xlsxwriter.utility import xl_rowcol_to_cell
@@ -74,9 +75,8 @@ def loadData(server, params) -> Agents:
       if curDay == None or curDay != d.created.date(): 
           curDay = d.created.date()
       else:
-          moveTime = d.created - prevDoc
+          moveTime = d.created - prevDoc if d.created > prevDoc else timedelta(seconds=0)
 
-      prevDoc = d.created
 
       docList = data[key]
       
@@ -91,6 +91,8 @@ def loadData(server, params) -> Agents:
           if endTime < di.date: endTime = di.date
 
       docList.append(DocData(d, startTime, endTime, moveTime))
+      prevDoc = endTime
+    
 
     return data
 class XlBuilderEx(XlBuilder):
@@ -115,11 +117,15 @@ def printOut(params, data: Agents, name, server):
         return res
 
     def writeFormulaCell(sheet, start_row, end_row, format):
-        sheet.write_formula(end_row, 5, '{=SUM(%s:%s)}' % (xl_rowcol_to_cell(start_row, 5),
-            xl_rowcol_to_cell(end_row-1, 5)), format)
+      for col in range(5,8) :
+         sheet.write_formula(end_row, col, '{=SUM(%s:%s)}' % (xl_rowcol_to_cell(start_row, col),
+               xl_rowcol_to_cell(end_row-1, col)), format)
 
-        sheet.write_formula(end_row, 6, '{=SUM(%s:%s)}' % (xl_rowcol_to_cell(start_row, 6),
-            xl_rowcol_to_cell(end_row-1, 6)), format)    
+      #   sheet.write_formula(end_row, 6, '{=SUM(%s:%s)}' % (xl_rowcol_to_cell(start_row, 6),
+      #       xl_rowcol_to_cell(end_row-1, 6)), format)    
+
+      #   sheet.write_formula(end_row, 6, '{=SUM(%s:%s)}' % (xl_rowcol_to_cell(start_row, 6),
+      #       xl_rowcol_to_cell(end_row-1, 6)), format)    
 
     xl = XlBuilderEx('WorkTime.xlsx')
     

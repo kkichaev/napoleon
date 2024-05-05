@@ -3,7 +3,8 @@
     flat
     :label="getLocaleLabel($i18n.locale)"
     no-caps
-    dropdown-icon="img: /img/arrow-white.png">
+    dropdown-icon="img: /img/arrow-white.png"
+  >
     <q-list>
       <q-item
         v-for="opt in locales"
@@ -23,9 +24,12 @@
 <script setup>
 import { useQuasar, Quasar, LocalStorage } from "quasar";
 import { useI18n } from "vue-i18n";
+import { useMainStore } from "../stores/main-store";
+import { updateLocale } from "src/backend/user";
 
-const $q = useQuasar()
-const i18n = useI18n()
+const $q = useQuasar();
+const i18n = useI18n();
+const store = useMainStore();
 
 const locales = [
   { value: "en-US", label: "En" },
@@ -51,19 +55,19 @@ function getLocaleLabel(key) {
 function selectLocale(key) {
   i18n.locale.value = key;
 
-  const langList = import.meta.glob('../../node_modules/quasar/lang/*.mjs')
+  const langList = import.meta.glob("../../node_modules/quasar/lang/*.mjs");
 
   try {
-    langList[ `../../node_modules/quasar/lang/${ key }.mjs` ]().then(lang => {
-      Quasar.lang.set(lang.default)
-    })
+    langList[`../../node_modules/quasar/lang/${key}.mjs`]().then((lang) => {
+      Quasar.lang.set(lang.default);
+    });
 
-    console.log("lang changed: " + key)
-  }
-  catch (err) {
-    console.log("lang error: " + err)
+    updateLocale(store.user, key);
+    console.log("lang changed: " + key);
+  } catch (err) {
+    console.log("lang error: " + err);
   }
 
-  LocalStorage.set('locale', key)
+  LocalStorage.set("locale", key);
 }
 </script>

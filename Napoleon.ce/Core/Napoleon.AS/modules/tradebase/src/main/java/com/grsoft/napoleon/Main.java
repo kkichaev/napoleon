@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.DialogFragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -42,6 +43,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
@@ -160,6 +162,8 @@ public class Main extends BaseActivity implements Selector, DialogOwner {
 		initData();
 		initView();
 		postInit();
+
+		// must be before check prmission
 		checkBatteryOptimization();
 		checkApplicationPermission();
 
@@ -175,7 +179,7 @@ public class Main extends BaseActivity implements Selector, DialogOwner {
 	}
 
 	private void checkBatteryOptimization() {
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+		if (Features.IGNORE_BATTERY_OPTIMIZATION && Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 			PowerManager pm = (PowerManager) getSystemService(POWER_SERVICE);
 			if (!pm.isIgnoringBatteryOptimizations(getPackageName())) {
 				Intent intent = new Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS, Uri.parse("package:" + getPackageName()));
@@ -188,33 +192,140 @@ public class Main extends BaseActivity implements Selector, DialogOwner {
 	}
 
 	private void checkApplicationPermission(){
-		if(Build.VERSION.SDK_INT >= 23) {
+		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 			List<String> pms = new ArrayList<>();
-			pms.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+
+			if(Build.VERSION.SDK_INT < Build.VERSION_CODES.R)
+				pms.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+
 			pms.add(Manifest.permission.CALL_PHONE);
 			pms.add(Manifest.permission.CAMERA);
 			pms.add(Manifest.permission.READ_PHONE_STATE);
 
-			pms.add(Manifest.permission.ACCESS_FINE_LOCATION);
-			if (Build.VERSION.SDK_INT >= 29 && Build.VERSION.SDK_INT < 31) {
-				pms.add(Manifest.permission.ACCESS_BACKGROUND_LOCATION);
-			}
-
-			pms.addAll(ADD_PERMISSIONS);
-
+			List<String> needAsk = new ArrayList<>();
 			for(String p : pms) {
 				if(ContextCompat.checkSelfPermission(this, p) != PackageManager.PERMISSION_GRANTED) {
-					ActivityCompat.requestPermissions(this, pms.toArray(new String[]{}), PERMISSION_REQUEST);
-					break;
+					needAsk.add(p);
 				}
 			}
 
-//			if (ContextCompat.checkSelfPermission(this,Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED ||
-//					ContextCompat.checkSelfPermission(this,Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
-//					ContextCompat.checkSelfPermission(this,Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED ||
-//					ContextCompat.checkSelfPermission(this,Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED ){
-//				ActivityCompat.requestPermissions(this, pms.toArray(new String[]{}), PERMISSION_REQUEST);
-//			}
+			if(needAsk.size() > 0)
+				ActivityCompat.requestPermissions(this, needAsk.toArray(new String[]{}), PERMISSION_REQUEST);
+			else
+				requestLocationPermissions();
+		}
+	}
+
+	void requestBackgroundLocation() {
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+			if (shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_BACKGROUND_LOCATION)) {
+				showPermissionRationale(Manifest.permission.ACCESS_BACKGROUND_LOCATION);
+			}
+		}
+	}
+
+	void showPermissionRationale(String permission) {
+		String message = "";
+		String[] reqp = permission == Manifest.permission.ACCESS_FINE_LOCATION ?
+				new String[] {
+						Manifest.permission.ACCESS_FINE_LOCATION
+						,Manifest.permission.ACCESS_COARSE_LOCATION
+				} :
+				new String[] {Manifest.permission.ACCESS_BACKGROUND_LOCATION};
+
+		if(permission == Manifest.permission.ACCESS_FINE_LOCATION) {
+			message = getString(R.string.req_location_rational);
+		} else { //ACCESS_BACKGROUND_LOCATION
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+				message = getString(R.string.req_background_rational,
+						getPackageManager().getBackgroundPermissionOptionLabel().toString());
+			}
+		}
+
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+			PermissionDialog pd = new PermissionDialog();
+			pd.setPermission(this, permission, message, () -> {
+					requestPermissions(reqp, PERMISSION_REQUEST);
+			});
+			pd.show(getFragmentManager(), "");
+		}
+	}
+
+	static public class PermissionDialog extends DialogFragment {
+		String permission;
+		String message;
+		Context context;
+		Handler handler;
+
+		public interface Handler {
+			void onOK();
+		}
+
+		public PermissionDialog() {
+		}
+
+		public void setPermission(Context context, String p, String m, Handler h) {
+			permission = p;
+			this.context = context;
+			message = m;
+			handler = h;
+		}
+
+		@Override
+		public Dialog onCreateDialog(Bundle savedInstanceState) {
+			AlertDialog.Builder b = new AlertDialog.Builder(context);
+			b.setTitle(R.string.allow_permission_title);
+
+			b.setMessage(message);
+			b.setPositiveButton(android.R.string.ok, (dialog, which) -> {
+				handler.onOK();
+			});
+			return b.create();
+		}
+	}
+
+	void requestLocationPermissions() {
+		// check if fine location granted
+		// check if coarse location granted
+		//   yes - ask to precise location https://developer.android.com/training/location/permissions#upgrade-to-precise
+		//   no - shouldShowRequestPermissionRationale()
+		//         explain
+
+		if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+				== PackageManager.PERMISSION_GRANTED) {
+			requestBackgroundLocation();
+			return;
+		}
+
+		if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
+				== PackageManager.PERMISSION_GRANTED) {
+			askToPreciseLocation();
+			return;
+		}
+
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+			if (shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_FINE_LOCATION)) {
+				showPermissionRationale(Manifest.permission.ACCESS_FINE_LOCATION);
+				return;
+			}
+			// You can directly ask for the permission.
+			requestPermissions(new String[] {
+							Manifest.permission.ACCESS_FINE_LOCATION
+							,Manifest.permission.ACCESS_COARSE_LOCATION},
+					PERMISSION_REQUEST);
+		}
+	}
+
+	void askToPreciseLocation() {
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+			if (shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_FINE_LOCATION)) {
+				showPermissionRationale(Manifest.permission.ACCESS_FINE_LOCATION);
+				return;
+			}
+			// You can directly ask for the permission.
+			requestPermissions(new String[] {
+							Manifest.permission.ACCESS_FINE_LOCATION},
+					PERMISSION_REQUEST);
 		}
 	}
 
@@ -222,10 +333,6 @@ public class Main extends BaseActivity implements Selector, DialogOwner {
 	public void onRequestPermissionsResult(int rc, String[] permissions, int[] result) {
 		if(rc == PERMISSION_REQUEST) {
 			for(int i = 0; i < result.length; i++)
-//				if (result[i] != PackageManager.PERMISSION_GRANTED) {
-//					showDialog(R.id.permission_not_set_dialog);
-//					break;
-//				}else
 				if (permissions[i].equals(Manifest.permission.CAMERA)){
 					Config cfg = ConfigManager.getConfig();
 
@@ -234,6 +341,7 @@ public class Main extends BaseActivity implements Selector, DialogOwner {
 						ConfigManager.save();
 					}
 				}
+			checkApplicationPermission();
 		}
 	}
 
@@ -702,27 +810,36 @@ public class Main extends BaseActivity implements Selector, DialogOwner {
 		}
 
 		if(Features.MARK_OVERDUE_DEBTS) {
-			overdueDebtOrgs.clear();
-
-			SQLiteDatabase db = DataBaseManager.getDataBase();
-
-			String table = DataObjectInfo.getInstance().getTableName(Delivery.class);
-			String sql = "SELECT id FROM " + table + " WHERE paydate < ? and sumD <> 0 GROUP BY id";
-
-			Date curDate = new Date();
-			String[] args = { Long.toString(curDate.getTime()) };
-
-			try {
-				Cursor c = db.rawQuery(sql, args);
-				while( c.moveToNext() )
-					overdueDebtOrgs.add(c.getString(0));
-				c.close();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			makeOverdueSet();
 		}
 	}
-	
+
+	protected void makeOverdueSet() {
+		overdueDebtOrgs.clear();
+
+		SQLiteDatabase db = DataBaseManager.getDataBase();
+
+		String sql = getOverdueSql();
+
+		Date curDate = new Date();
+		String[] args = { Long.toString(curDate.getTime()) };
+
+		try {
+			Cursor c = db.rawQuery(sql, args);
+			while( c.moveToNext() )
+				overdueDebtOrgs.add(c.getString(0));
+			c.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@NonNull
+	protected String getOverdueSql() {
+		String table = DataObjectInfo.getInstance().getTableName(Delivery.class);
+		return String.format("SELECT id FROM [%s] WHERE paydate < ? and sumD > 0", table);
+	}
+
 	protected void openDocumentsFormStartStop(String orgId) {
 		OrgImpl oi = new OrgImpl();
 		oi.getData().id = orgId;
@@ -992,7 +1109,7 @@ public class Main extends BaseActivity implements Selector, DialogOwner {
 			openUpdateActivity();
 	}
 	
-	private void openScriptList() { ScriptsList.open(this); }
+	protected void openScriptList() { ScriptsList.open(this); }
 	
 	public static void showAbout(final Activity owner) 
 	{

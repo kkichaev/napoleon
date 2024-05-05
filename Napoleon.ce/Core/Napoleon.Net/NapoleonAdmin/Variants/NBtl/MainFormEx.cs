@@ -11,20 +11,34 @@ namespace GRSoft.NapoleonAdmin
       DataSet<string, Contracts> dsConstracts = new DataSet<string, Contracts>(Contracts.OBJECT_NAME, false);
       DataSet<string, NBTLViewer> dsViewers = new DataSet<string, NBTLViewer>(NBTLViewer.OBJECT_NAME, false);
 
+      SimpleDataSet<WholesaleNetwork> whNet = new SimpleDataSet<WholesaleNetwork>(WholesaleNetwork.OBJECT_NAME, false);
+
       DataGridViewButtonColumn clmnLicense;
+      DataGridViewButtonColumn clmnWhNet;
       DataGridViewComboBoxColumn clmnDivision;
 
       DataGridViewCheckBoxColumn clmnCanMnageContracts;
+      DataGridViewCheckBoxColumn clmnViewReports;
+
+      public static RightToken ViewReports = RightTokens.Get("FmReports");
 
       public MainFormEx()
       {
+         RightTokens.Tokens.Add(ViewReports);
+
          cbUserType.Items.Add("Зрители");
 
          clmnLicense = new DataGridViewButtonColumn();
          clmnLicense.Text = "Контракты";
          clmnLicense.HeaderText = "Контракты";
          clmnLicense.Visible = false;
-         clmnLicense.Width = 100;
+         clmnLicense.Width = 80;
+
+         clmnWhNet = new DataGridViewButtonColumn();
+         clmnWhNet.Text = "Сети";
+         clmnWhNet.HeaderText = "Сети";
+         clmnWhNet.Visible = false;
+         clmnWhNet.Width = 70;
 
          clmnDivision = new DataGridViewComboBoxColumn();
          clmnDivision.HeaderText = "Подразделение";
@@ -36,6 +50,7 @@ namespace GRSoft.NapoleonAdmin
 
          usersView.Columns.Insert(5, clmnDivision);
          usersView.Columns.Add(clmnLicense);
+         usersView.Columns.Add(clmnWhNet);
          usersView.CellContentClick += usersView_CellContentClick;
 
          clmnCanMnageContracts = new DataGridViewCheckBoxColumn();
@@ -46,6 +61,15 @@ namespace GRSoft.NapoleonAdmin
          clmnCanMnageContracts.Width = 90;
 
          usersView.Columns.Add(clmnCanMnageContracts);
+
+         clmnViewReports = new DataGridViewCheckBoxColumn();
+         clmnViewReports.DataPropertyName = "CanViewReports";
+         clmnViewReports.HeaderText = "Просмотр отчетов";
+         clmnViewReports.Name = "clmnViewReports";
+         clmnViewReports.Visible = false;
+         clmnViewReports.Width = 90;
+
+         usersView.Columns.Add(clmnViewReports);
 
          btnAdd.Visible = true;
          btnDel.Visible = true;
@@ -115,33 +139,58 @@ namespace GRSoft.NapoleonAdmin
          userData.Add(udi);
          userChangesSave.Enabled = true;
 
-         usersViewUpdateBindingSource();
+         makeDataSource(userData);
       }
 
       void usersView_CellContentClick(object sender, DataGridViewCellEventArgs e)
       {
-         if( cbUserType.SelectedIndex == 2 && e.ColumnIndex == clmnLicense.Index && usersView.CurrentRow != null )
+         if(cbUserType.SelectedIndex == 2 && usersView.CurrentRow != null)
          {
             UserDataItem udi = usersView.CurrentRow.DataBoundItem as UserDataItem;
             NBTLViewer v = udi.refObject as NBTLViewer;
-            List<string> usedContracts = new List<string>();
-            v.contracts.ForEach(x => { usedContracts.Add(x.id); });
-            List<ContractEx> contracts = new List<ContractEx>();
-            foreach (Contracts c in dsConstracts.Data)
-               contracts.Add(new ContractEx(c, usedContracts.Contains(c.id)));
-
-            SetContracts sc = new SetContracts();
-            sc.Contracts = contracts;
-            if( sc.ShowDialog() == System.Windows.Forms.DialogResult.OK )
+            
+            if (e.ColumnIndex == clmnWhNet.Index)
             {
-               v.contracts.Clear();
-               foreach (ContractEx c in sc.Contracts)
-               {
-                  if (c.Used)
-                     v.contracts.Add(new NBTLViewer.Item(c.ID));
-               }
+               List<string> used = new List<string>();
+               v.whnetwork.ForEach(x => { used.Add(x.id); });
+               List<WhNetEx> list = new List<WhNetEx>();
+               foreach (WholesaleNetwork c in whNet.Data)
+                  list.Add(new WhNetEx(c, used.Contains(c.id)));
 
-               userChangesSave.Enabled = true;
+               SetWhNet sc = new SetWhNet();
+               sc.Data = list;
+               if (sc.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+               {
+                  v.whnetwork.Clear();
+                  foreach (WhNetEx el in sc.Data)
+                  {
+                     if (el.Used)
+                        v.whnetwork.Add(new NBTLViewer.Item(el.ID));
+                  }
+
+                  userChangesSave.Enabled = true;
+               }
+            } else if (e.ColumnIndex == clmnLicense.Index)
+            {
+               List<string> usedContracts = new List<string>();
+               v.contracts.ForEach(x => { usedContracts.Add(x.id); });
+               List<ContractEx> contracts = new List<ContractEx>();
+               foreach (Contracts c in dsConstracts.Data)
+                  contracts.Add(new ContractEx(c, usedContracts.Contains(c.id)));
+
+               SetContracts sc = new SetContracts();
+               sc.Contracts = contracts;
+               if (sc.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+               {
+                  v.contracts.Clear();
+                  foreach (ContractEx c in sc.Contracts)
+                  {
+                     if (c.Used)
+                        v.contracts.Add(new NBTLViewer.Item(c.ID));
+                  }
+
+                  userChangesSave.Enabled = true;
+               }
             }
          }
       }
@@ -163,17 +212,21 @@ namespace GRSoft.NapoleonAdmin
          user.ReadOnly = !selectViewer;
          if (clmnDivision != null)
             clmnDivision.Visible = selectViewer;
+         if(clmnViewReports != null)
+            clmnViewReports.Visible = selectViewer;
+         if (clmnWhNet != null)
+            clmnWhNet.Visible = selectViewer;
+         if (clmnLicense != null)
+            clmnLicense.Visible = selectViewer;
 
          if (selectViewer)
          {
-            clmnCanMnageContracts.Visible = false;
             tracking.Visible = false;
+            clmnViewReports.Visible = true;
             user.HeaderText = "Наименование";
 
             usersView.SuspendLayout();
 
-            if (clmnLicense != null)
-               clmnLicense.Visible = true;
             userData.Clear();
             foreach(NBTLViewer view in dsViewers.Data)
             {
@@ -183,6 +236,7 @@ namespace GRSoft.NapoleonAdmin
                dm.password = view.password;
                dm.name = view.name;
                dm.division = view.division;
+               dm.rights = view.rights;
 
                UserDataItem udi = AddManager(dm);
                userData.Add(udi);
@@ -190,14 +244,13 @@ namespace GRSoft.NapoleonAdmin
 
                udi.refObject = view;
             }
-            usersViewUpdateBindingSource();
+            makeDataSource(userData);
+
             usersView.ResumeLayout();
             userChangesSave.Enabled = false;
          }
          else
          {
-            if (clmnLicense != null)
-               clmnLicense.Visible = false;
             base.RefreshUserData();
          }
 
@@ -236,6 +289,8 @@ namespace GRSoft.NapoleonAdmin
                nv.name = udi.Name;
                nv.division = udi.Division;
                nv.contracts = ((NBTLViewer)udi.refObject).contracts;
+               nv.whnetwork = ((NBTLViewer)udi.refObject).whnetwork;
+               nv.rights = udi.Manager.rights;
 
                usedViwers.Remove(nv.id);
                saveUsers.Add(nv);
@@ -276,6 +331,7 @@ namespace GRSoft.NapoleonAdmin
          dsConstracts.Filter = "not \"id\" is null";
          upd.Add(dsConstracts);
          upd.Add(dsViewers);
+         upd.Add(whNet);
       }
 
       class TreeNode

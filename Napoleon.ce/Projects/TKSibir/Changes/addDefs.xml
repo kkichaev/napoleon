@@ -73,6 +73,22 @@
               </object>
             </data>
           </field>
+          <field name="priceDsc" type="collection">
+            <data>
+              <object name="OrgPrice">
+                <sources>
+                  <source name="DBFTableSet">
+                    <param name="userTable">"OPD"</param>
+                    <param name="commonTable">"ORGPRC"</param>
+                    <param name="filter">"[ID] = $parent.id"</param>
+                  </source>
+                </sources>
+                
+                <field name="id" data="ID_I" type="string" />
+                <field name="discount" data="DISC" type="number" prec="2"/>
+              </object>
+            </data>
+          </field>
         </add>
       </modify>
 

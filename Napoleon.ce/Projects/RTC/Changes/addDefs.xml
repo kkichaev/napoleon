@@ -50,7 +50,7 @@
       <add>
         <field name="payType" type="string" />
         <field name="pickup" type="number" width="1" />
-        <field name="actionID" type="number" data="AID" />
+        <field name="actionID" type="string" data="AID" width="55" />
         <field name="dlgGroupID" type="string" data="GID" width="10"/>
       </add>
     </modify>

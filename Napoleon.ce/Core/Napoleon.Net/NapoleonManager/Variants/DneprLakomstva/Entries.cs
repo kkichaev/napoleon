@@ -11,7 +11,7 @@ namespace GRSoft.NapoleonManager
    {
       internal static DivisionForm OpenDivisionForm()
       {
-         return new DivisionForm();
+         return new DivisionFormEx();
       }
 
       internal static FmDetail OpenDetailForm(FmDetailData data)

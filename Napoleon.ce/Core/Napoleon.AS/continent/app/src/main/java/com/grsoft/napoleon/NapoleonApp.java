@@ -19,6 +19,8 @@ import com.grsoft.database.HitchingCtor;
 import com.grsoft.database.PODHitching;
 import com.grsoft.database.SPODHitching;
 import com.grsoft.dataobjects.DataObjectInfo;
+import com.grsoft.dataobjects.Inventory;
+import com.grsoft.dataobjects.InventoryItem;
 import com.grsoft.dataobjects.MovementAnswer;
 import com.grsoft.dataobjects.Order;
 import com.grsoft.dataobjects.OrderAnswer;
@@ -55,6 +57,7 @@ import com.grsoft.napoleon.documents.WSOrderDoc;
 import com.grsoft.napoleon.modules.CostManagerImpl;
 import com.grsoft.napoleon.modules.print.NPrinter;
 import com.grsoft.napoleon.util.CfgNpl;
+import com.grsoft.napoleon.util.CfgNplEx;
 import com.grsoft.napoleon.util.ConfigManager;
 import com.grsoft.network.ReadService;
 import com.grsoft.network.ServerCommand;
@@ -91,6 +94,7 @@ public class NapoleonApp extends NapoleonAppBase {
 		DataObjectInfo.getInstance().replaceListType(ReturnEx.class, "items", ReturnItemEx.class);
 		DataObjectInfo.getInstance().replaceListType(OrderEx.class, "items", OrderItemEx.class);
 		DataObjectInfo.getInstance().replaceListType(Sales.class, "items", SalesItem.class);
+		DataObjectInfo.getInstance().replaceListType(Inventory.class, "items", InventoryItem.class);
 		DataObjectInfo.getInstance().replaceListType(Visit.class, "items", VisitItemEx.class);
 
 		NPrinter.forms.put("Перемещение на борт", "ws_order");
@@ -134,6 +138,8 @@ public class NapoleonApp extends NapoleonAppBase {
 		PricePresentationFolder.activity = PricePresentationFolderEx.class;
 		PricePresentation.activity = PricePresentationFolderEx.class;
 		CreateReturn.activity = CreateReturnEx.class;
+		Setting.BehaviorSettingActivity = BehaviorSettingEx.class;
+		UpdateDB.activity = UpdateDBEx.class;
 	}
 
 	@Override
@@ -153,8 +159,10 @@ public class NapoleonApp extends NapoleonAppBase {
 		Features.SYNC_INFO = true;
 		Features.OPEN_LAST_MATRIX = true;
 		Features.INCASS_DEBET_DISTRIB = true;
+		Features.MARK_OVERDUE_DEBTS = true;
 		Features.MIN_FOTO_HEIGHT = 1200;
 		Features.MIN_FOTO_WIDTH = 1200;
+		Features.CONFIG_CHECK_PRICE_QTY = false;
 
 		CostStrategy.defaultInstance = new CostStrategyEx();
 		Features.COST_MANAGER = new CostManagerImpl();
@@ -178,6 +186,7 @@ public class NapoleonApp extends NapoleonAppBase {
 				Hitching[] h = new Hitching[] {
 						new DocumentRestore(WSOrderDoc.instance()),
 						new DocumentRestore(SalesDoc.instance()),
+						new DocumentRestore(RequestdocDoc.instance()),
 				};
 				return Arrays.asList(h);
 			}
@@ -267,7 +276,7 @@ public class NapoleonApp extends NapoleonAppBase {
 
 	@Override
 	public void onCreate() {
-		ConfigManager.initConfig(new CfgNpl());
+		ConfigManager.initConfig(new CfgNplEx());
 		super.onCreate();
 
 		AssortmentMatrixAdapter.PERIOD_IN_MONTH = 3;

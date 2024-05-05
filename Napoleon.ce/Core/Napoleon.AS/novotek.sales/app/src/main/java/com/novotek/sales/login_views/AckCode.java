@@ -1,14 +1,11 @@
 package com.novotek.sales.login_views;
 
 import android.os.Bundle;
-import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -42,7 +39,7 @@ public class AckCode extends Fragment {
 
         final View doButton = v.findViewById(R.id.doButton);
         doButton.setOnClickListener(view -> {
-            makeCall();
+            reqCode();
         });
 
         model.getRequestInProgress().observe(getViewLifecycleOwner(), inProgress -> {
@@ -68,7 +65,7 @@ public class AckCode extends Fragment {
         return v;
     }
 
-    void makeCall() {
+    void reqCode() {
         if(model.getRequestInProgress().getValue()) {
             return;
         }

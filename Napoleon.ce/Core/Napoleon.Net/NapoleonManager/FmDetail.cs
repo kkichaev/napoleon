@@ -496,6 +496,13 @@ namespace GRSoft.NapoleonManager
                      if( doc != null )
                         SetControlData((DataObjectViewer)tp.Controls[0], doc);
                   }
+
+                  if (i.type == Answer.OBJECT_NAME)
+                  {
+                     Answer a = i.Document as Answer;
+                     if (a != null)
+                        AddAnswerPhotos(htmlBuilder, a);
+                  }
                }
                index++;
             }
@@ -649,7 +656,7 @@ namespace GRSoft.NapoleonManager
                }
             }
 
-            LoadPotenzialOrgVisit(cond, oneDay);
+            //LoadPotenzialOrgVisit(cond, oneDay);
 
             filtersAvailable.Add(new ObjType(ObjType.TObjType.Script));
          }

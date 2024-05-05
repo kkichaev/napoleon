@@ -2,7 +2,6 @@
 #define __PACKET_H
 
 #include <string>
-#include <map>
 
 #ifdef WIN32
 
@@ -15,6 +14,23 @@
 
 #endif
 
+class Packet
+{
+public:
+	Packet();
+	~Packet();
+
+	bool ReadHeader(SOCKET socket);
+	bool ReadData(SOCKET socket, unsigned timeout);
+
+	DWORD userid;
+	DWORD deviceid;
+	DWORD command;
+	DWORD datalen;
+	
+	unsigned char* data;
+};
+
 using namespace std;
 
 #define PING_CMD			"PING"
@@ -22,26 +38,53 @@ using namespace std;
 #define ACCEPT_CMD		"ACCEPT"
 #define LOST_CONNECTION_CMD  "LOST CONNECTION"
 
-class NetStream;
-struct Config;
-struct ConnectionData;
-struct DataBuffer;
-
-class Packet
+class NetStream
 {
 public:
-	Packet(const Config& config);
-	~Packet();
+	NetStream(int timeout);
+	~NetStream();
 
-	bool Read(ConnectionData* data, SOCKET socket, int timeout = -1);
-	bool Send(SOCKET socket, const ConnectionData& data);
+	void SetSocket(SOCKET socket) { this->socket = socket; }
 
-	bool SendBuf(SOCKET socket, const DataBuffer& data);
-	bool ReadBuf(DataBuffer *data, NetStream& stream);
+	char GetChar();
+	bool ReadUntil(std::string* buf, char stopSym);
+	bool Read(unsigned char* buf, int len);
 
-        void PrepareHeader(std::string *header, const ConnectionData& data, unsigned long dataLen, bool isLast);
+	int DataLength() const { return size - cp; }
+	bool HaveData() const { return cp < size; }
+
+	bool ReadData();
 private:
-	const Config& config;
+	SOCKET socket;
+	int timeout;
+
+	char* buf;
+	int size;
+	int cp;
+};
+
+class PacketOld
+{
+public:
+	PacketOld();
+	~PacketOld();
+
+	bool Read(NetStream &stream);
+	bool Send(SOCKET socket);
+
+	bool SendBuf(SOCKET socket);
+	bool ReadBuf(NetStream& stream);
+
+	void FreeBuffer();
+
+	std::string command;
+	std::string deviceID;
+
+	int datalen;
+	unsigned char* data;
+
+private:
+	void LoadOption(const std::string& key, const std::string& value);
 };
 
 int AvailRead(SOCKET socket);

@@ -200,7 +200,6 @@
                     </Spinner>
                 </TableRow>
 
-
                 <TableRow
                     android:id="@+id/trPrices"
                     android:layout_width="wrap_content"
@@ -221,6 +220,53 @@
 
                     <Spinner
                         android:id="@+id/spPrices"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" >
+                    </Spinner>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="2dp" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:text="@string/dogovor"
+                        android:textColor="#000000"
+                        android:textSize="16sp" >
+                    </TextView>
+
+                    <Spinner
+                        android:id="@+id/spDogovor"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" >
+                    </Spinner>
+                </TableRow>
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="2dp" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:text="@string/agreement"
+                        android:textColor="#000000"
+                        android:textSize="16sp" >
+                    </TextView>
+
+                    <Spinner
+                        android:id="@+id/spAgrmnts"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1" >

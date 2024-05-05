@@ -363,9 +363,11 @@ namespace GRSoft.Network
             Add(new RightToken("LimitEditRoute", "Сохранение маршрута"));
             Add(new RightToken("DisableEditDivision", "Запрет редактирования"));
             Add(new RightToken("CanManageContracts", "Редактирование посещений"));
-            Add(new RightToken("DisableCopy", "Запрет копировать в БД документы"));
-            Add(new RightToken("DisableDelete", "Запрет удалять документы"));
-            Add(new RightToken("DisableLook", "Запрет просмотр фото"));
+
+            Add(new RightToken("ScriptDef", "Может редактировать сценарии"));
+            Add(new RightToken("Question", "Может редактировать анкеты"));
+
+            Add(new RightToken("FmReports", "Доступен просмотр отчетов"));
          }
 
       }

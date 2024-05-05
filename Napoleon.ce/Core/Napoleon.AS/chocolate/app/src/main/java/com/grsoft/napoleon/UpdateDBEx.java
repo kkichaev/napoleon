@@ -44,11 +44,11 @@ public class UpdateDBEx extends UpdateDB{
 	@Override
 	protected List<Hitching> getGenDataHitchings() throws RuntimeException {
 		List<Hitching> ret = super.getGenDataHitchings();
-//		ret.add(new RcvNewHitching(OrgDogovor.class, "OrgDogovors"));
+		ret.add(new RcvNewHitching(OrgDogovor.class, "OrgDogovors"));
 		ret.add(new RcvNewHitching(OrgTypeCost.class, "OrgTypeCost"));
 		ret.add(new RcvNewHitching(PriceCost.class, "PriceCost"));
 		ret.add(new RcvNewHitching(PriceQty.class, "PriceQty"));
-		ret.add(new RcvNewHitching(AgentRcv.class, "AgentsRcv"));
+		ret.add(new RcvNewHitching(AgentRcv.class, "AgentPda"));
 		
 		CostStrategyEx.clearCache();
 		return ret;

@@ -34,6 +34,8 @@ namespace GRSoft.NapoleonManager
       {
          if (baseType == typeof(FmStopOrgList))
             return typeof(FmStopEx);
+         if (baseType == typeof(FmReports))
+            return typeof(FmReportsEx);
          return baseType;
       }
    }

@@ -9,4 +9,5 @@ public class OrderEx extends Order {
 
 	public int locChecked = 0;
 	public int retDoc = 0;
+	public int pickUp = 0;
 }

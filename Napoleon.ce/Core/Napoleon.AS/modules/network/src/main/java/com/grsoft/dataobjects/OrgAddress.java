@@ -8,4 +8,6 @@ public class OrgAddress extends DataObject {
 	
 	@FieldOrder(order=1)
 	public String name;
+
+	@Override public String toString() {return name;}
 }

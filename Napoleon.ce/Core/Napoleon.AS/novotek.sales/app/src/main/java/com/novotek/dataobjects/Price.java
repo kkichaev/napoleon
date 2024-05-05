@@ -23,6 +23,8 @@ public class Price implements Comparable<Price> {
     public float qty = 0;
     public float price = 0;
 
+    public int expirationDate = 0;
+
     public List<String> barcode = new ArrayList<>();
 
     public boolean haveBC(String bc) {

@@ -53,7 +53,8 @@ namespace GRSoft.NapoleonManager
          string CONTRACT_FILTER = "\"start\" <= ToDate('{0:dd/MM/yyyy}') and \"finish\" >= ToDate('{1:dd/MM/yyyy}')";
 
 #if NbtlMonitor
-         CONTRACT_FILTER += " and id in (" + ((MainFormEx)MainForm.Instance).ViewerContracts() + ")";
+         NBTLViewer v = ((MainFormEx)MainForm.Instance).CurViewer();
+         CONTRACT_FILTER += " and id in (" + ((MainFormEx)MainForm.Instance).ViewerContracts(v) + ")";
 #endif
 
          dsContract.Filter = string.Format(CONTRACT_FILTER, finish.AddDays(1), start);

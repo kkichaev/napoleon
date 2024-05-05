@@ -73,7 +73,7 @@ public class PresentationList extends ArrayList<PresentationData> {
 				.append("\" ph on price.id = ph.id");
 			
 			if(where != null && where.trim().length() > 0)
-				sql.append(" and ").append(where);
+				sql.append(" where ").append(where);
 
 			Cursor cursor = null;
 			try{

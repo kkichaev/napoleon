@@ -95,7 +95,10 @@ public class Selling extends BaseFragment implements InputDlg.InputDlgControl {
         rv.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
         updateTotal();
 
-        String title = doc.getData().title;
+        String title = model.getStepTitle();
+//        ((TextView)v.findViewById(R.id.doc_title)).setText(title);
+
+//        title = doc.getData().title;
         if(title.length() > 0) {
             TextView tv = (TextView)v.findViewById(R.id.sales_title);
             tv.setText(title);

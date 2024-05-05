@@ -94,6 +94,15 @@ namespace GRSoft.NapoleonManager
       public string Cause { get { return cause; } }
    }
 
+   public partial class Order
+   {
+      public string firmCode = "";
+      public string whCode = "";
+      public int supplyer = 0;
+      public int sumType = 0;
+      public string prcType = "";
+   }
+
    public partial class OrderItem
    {
       public double discount = 0.0;

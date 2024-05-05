@@ -43,19 +43,19 @@ namespace GRSoft.NapoleonManager
          this.cbDivision = new System.Windows.Forms.ComboBox();
          this.rbDivision = new System.Windows.Forms.RadioButton();
          this.rbAgent = new System.Windows.Forms.RadioButton();
-         this.cbAgent = new CheckedComboBox();
          this.groupBox1 = new System.Windows.Forms.GroupBox();
          this.cbLevel4 = new System.Windows.Forms.CheckBox();
          this.cbLevel3 = new System.Windows.Forms.CheckBox();
          this.cbLevel2 = new System.Windows.Forms.CheckBox();
          this.cbLevel1 = new System.Windows.Forms.CheckBox();
-         this.dpv = new GRSoft.NapoleonManager.DatePeriodView();
          this.groupBox3 = new System.Windows.Forms.GroupBox();
          this.scriptItems = new System.Windows.Forms.ListView();
          this.imageList1 = new System.Windows.Forms.ImageList(this.components);
          this.scripts = new System.Windows.Forms.ComboBox();
          this.cbScript = new System.Windows.Forms.CheckBox();
          this.lblInfo = new System.Windows.Forms.Label();
+         this.cbAgent = new GRSoft.NapoleonManager.Utils.CheckedComboBox();
+         this.dpv = new GRSoft.NapoleonManager.DatePeriodView();
          this.groupBox2.SuspendLayout();
          this.groupBox1.SuspendLayout();
          this.groupBox3.SuspendLayout();
@@ -65,7 +65,7 @@ namespace GRSoft.NapoleonManager
          // 
          this.tbPath.Location = new System.Drawing.Point(61, 6);
          this.tbPath.Name = "tbPath";
-         this.tbPath.Size = new System.Drawing.Size(323, 23);
+         this.tbPath.Size = new System.Drawing.Size(323, 20);
          this.tbPath.TabIndex = 0;
          // 
          // label1
@@ -73,7 +73,7 @@ namespace GRSoft.NapoleonManager
          this.label1.AutoSize = true;
          this.label1.Location = new System.Drawing.Point(18, 9);
          this.label1.Name = "label1";
-         this.label1.Size = new System.Drawing.Size(47, 16);
+         this.label1.Size = new System.Drawing.Size(37, 14);
          this.label1.TabIndex = 1;
          this.label1.Text = "Папка";
          // 
@@ -89,6 +89,7 @@ namespace GRSoft.NapoleonManager
          // 
          // btnStart
          // 
+         this.btnStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
          this.btnStart.Location = new System.Drawing.Point(21, 381);
          this.btnStart.Name = "btnStart";
          this.btnStart.Size = new System.Drawing.Size(75, 23);
@@ -129,7 +130,7 @@ namespace GRSoft.NapoleonManager
             | System.Windows.Forms.AnchorStyles.Right)));
          this.tbOrg.Location = new System.Drawing.Point(40, 177);
          this.tbOrg.Name = "tbOrg";
-         this.tbOrg.Size = new System.Drawing.Size(234, 23);
+         this.tbOrg.Size = new System.Drawing.Size(234, 20);
          this.tbOrg.TabIndex = 6;
          // 
          // rbOrg
@@ -137,7 +138,7 @@ namespace GRSoft.NapoleonManager
          this.rbOrg.AutoSize = true;
          this.rbOrg.Location = new System.Drawing.Point(17, 153);
          this.rbOrg.Name = "rbOrg";
-         this.rbOrg.Size = new System.Drawing.Size(89, 20);
+         this.rbOrg.Size = new System.Drawing.Size(72, 18);
          this.rbOrg.TabIndex = 5;
          this.rbOrg.TabStop = true;
          this.rbOrg.Text = "магазину";
@@ -151,7 +152,7 @@ namespace GRSoft.NapoleonManager
          this.cbDivision.FormattingEnabled = true;
          this.cbDivision.Location = new System.Drawing.Point(40, 112);
          this.cbDivision.Name = "cbDivision";
-         this.cbDivision.Size = new System.Drawing.Size(275, 24);
+         this.cbDivision.Size = new System.Drawing.Size(275, 22);
          this.cbDivision.TabIndex = 4;
          // 
          // rbDivision
@@ -159,7 +160,7 @@ namespace GRSoft.NapoleonManager
          this.rbDivision.AutoSize = true;
          this.rbDivision.Location = new System.Drawing.Point(17, 89);
          this.rbDivision.Name = "rbDivision";
-         this.rbDivision.Size = new System.Drawing.Size(134, 20);
+         this.rbDivision.Size = new System.Drawing.Size(104, 18);
          this.rbDivision.TabIndex = 1;
          this.rbDivision.TabStop = true;
          this.rbDivision.Text = "подразделению";
@@ -171,22 +172,12 @@ namespace GRSoft.NapoleonManager
          this.rbAgent.AutoSize = true;
          this.rbAgent.Location = new System.Drawing.Point(17, 26);
          this.rbAgent.Name = "rbAgent";
-         this.rbAgent.Size = new System.Drawing.Size(103, 20);
+         this.rbAgent.Size = new System.Drawing.Size(84, 18);
          this.rbAgent.TabIndex = 0;
          this.rbAgent.TabStop = true;
          this.rbAgent.Text = "сотруднику";
          this.rbAgent.UseVisualStyleBackColor = true;
          this.rbAgent.CheckedChanged += new System.EventHandler(this.rbAgent_CheckedChanged);
-         // 
-         // cbAgent
-         // 
-         this.cbAgent.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-         this.cbAgent.FormattingEnabled = true;
-         this.cbAgent.Location = new System.Drawing.Point(40, 49);
-         this.cbAgent.Name = "cbAgent";
-         this.cbAgent.Size = new System.Drawing.Size(275, 24);
-         this.cbAgent.TabIndex = 3;
          // 
          // groupBox1
          // 
@@ -208,7 +199,7 @@ namespace GRSoft.NapoleonManager
          this.cbLevel4.CheckState = System.Windows.Forms.CheckState.Checked;
          this.cbLevel4.Location = new System.Drawing.Point(6, 112);
          this.cbLevel4.Name = "cbLevel4";
-         this.cbLevel4.Size = new System.Drawing.Size(111, 20);
+         this.cbLevel4.Size = new System.Drawing.Size(91, 18);
          this.cbLevel4.TabIndex = 6;
          this.cbLevel4.Text = "Этап визита";
          this.cbLevel4.UseVisualStyleBackColor = true;
@@ -220,7 +211,7 @@ namespace GRSoft.NapoleonManager
          this.cbLevel3.CheckState = System.Windows.Forms.CheckState.Checked;
          this.cbLevel3.Location = new System.Drawing.Point(6, 83);
          this.cbLevel3.Name = "cbLevel3";
-         this.cbLevel3.Size = new System.Drawing.Size(87, 20);
+         this.cbLevel3.Size = new System.Drawing.Size(71, 18);
          this.cbLevel3.TabIndex = 2;
          this.cbLevel3.Text = "Клиенты";
          this.cbLevel3.UseVisualStyleBackColor = true;
@@ -232,7 +223,7 @@ namespace GRSoft.NapoleonManager
          this.cbLevel2.CheckState = System.Windows.Forms.CheckState.Checked;
          this.cbLevel2.Location = new System.Drawing.Point(6, 53);
          this.cbLevel2.Name = "cbLevel2";
-         this.cbLevel2.Size = new System.Drawing.Size(77, 20);
+         this.cbLevel2.Size = new System.Drawing.Size(64, 18);
          this.cbLevel2.TabIndex = 1;
          this.cbLevel2.Text = "Агенты";
          this.cbLevel2.UseVisualStyleBackColor = true;
@@ -244,23 +235,15 @@ namespace GRSoft.NapoleonManager
          this.cbLevel1.CheckState = System.Windows.Forms.CheckState.Checked;
          this.cbLevel1.Location = new System.Drawing.Point(6, 26);
          this.cbLevel1.Name = "cbLevel1";
-         this.cbLevel1.Size = new System.Drawing.Size(133, 20);
+         this.cbLevel1.Size = new System.Drawing.Size(104, 18);
          this.cbLevel1.TabIndex = 0;
          this.cbLevel1.Text = "Подразделение";
          this.cbLevel1.UseVisualStyleBackColor = true;
          // 
-         // dpv
-         // 
-         this.dpv.Finish = new System.DateTime(2015, 1, 12, 0, 0, 0, 0);
-         this.dpv.Location = new System.Drawing.Point(18, 32);
-         this.dpv.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-         this.dpv.Name = "dpv";
-         this.dpv.Size = new System.Drawing.Size(367, 27);
-         this.dpv.Start = new System.DateTime(2015, 1, 12, 0, 0, 0, 0);
-         this.dpv.TabIndex = 3;
-         // 
          // groupBox3
          // 
+         this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
          this.groupBox3.Controls.Add(this.scriptItems);
          this.groupBox3.Controls.Add(this.scripts);
          this.groupBox3.Controls.Add(this.cbScript);
@@ -273,6 +256,8 @@ namespace GRSoft.NapoleonManager
          // 
          // scriptItems
          // 
+         this.scriptItems.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
          this.scriptItems.CheckBoxes = true;
          this.scriptItems.HideSelection = false;
          this.scriptItems.LargeImageList = this.imageList1;
@@ -295,7 +280,7 @@ namespace GRSoft.NapoleonManager
          this.scripts.FormattingEnabled = true;
          this.scripts.Location = new System.Drawing.Point(110, 18);
          this.scripts.Name = "scripts";
-         this.scripts.Size = new System.Drawing.Size(192, 24);
+         this.scripts.Size = new System.Drawing.Size(192, 22);
          this.scripts.TabIndex = 1;
          this.scripts.SelectedIndexChanged += new System.EventHandler(this.scripts_SelectedIndexChanged);
          // 
@@ -304,7 +289,7 @@ namespace GRSoft.NapoleonManager
          this.cbScript.AutoSize = true;
          this.cbScript.Location = new System.Drawing.Point(6, 21);
          this.cbScript.Name = "cbScript";
-         this.cbScript.Size = new System.Drawing.Size(97, 20);
+         this.cbScript.Size = new System.Drawing.Size(75, 18);
          this.cbScript.TabIndex = 0;
          this.cbScript.Text = "Сценарий";
          this.cbScript.UseVisualStyleBackColor = true;
@@ -312,18 +297,44 @@ namespace GRSoft.NapoleonManager
          // 
          // lblInfo
          // 
+         this.lblInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
          this.lblInfo.AutoSize = true;
          this.lblInfo.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
          this.lblInfo.ForeColor = System.Drawing.Color.Red;
          this.lblInfo.Location = new System.Drawing.Point(20, 327);
          this.lblInfo.Name = "lblInfo";
-         this.lblInfo.Size = new System.Drawing.Size(65, 24);
+         this.lblInfo.Size = new System.Drawing.Size(54, 19);
          this.lblInfo.TabIndex = 10;
          this.lblInfo.Text = "label2";
          // 
+         // cbAgent
+         // 
+         this.cbAgent.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+         this.cbAgent.CheckOnClick = true;
+         this.cbAgent.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+         this.cbAgent.DropDownHeight = 1;
+         this.cbAgent.FormattingEnabled = true;
+         this.cbAgent.IntegralHeight = false;
+         this.cbAgent.Location = new System.Drawing.Point(40, 49);
+         this.cbAgent.Name = "cbAgent";
+         this.cbAgent.Size = new System.Drawing.Size(275, 21);
+         this.cbAgent.TabIndex = 3;
+         this.cbAgent.ValueSeparator = ", ";
+         // 
+         // dpv
+         // 
+         this.dpv.Finish = new System.DateTime(2015, 1, 12, 0, 0, 0, 0);
+         this.dpv.Location = new System.Drawing.Point(18, 32);
+         this.dpv.Margin = new System.Windows.Forms.Padding(4);
+         this.dpv.Name = "dpv";
+         this.dpv.Size = new System.Drawing.Size(367, 27);
+         this.dpv.Start = new System.DateTime(2015, 1, 12, 0, 0, 0, 0);
+         this.dpv.TabIndex = 3;
+         // 
          // FmExportPhoto
          // 
-         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+         this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
          this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
          this.ClientSize = new System.Drawing.Size(666, 420);
          this.Controls.Add(this.lblInfo);

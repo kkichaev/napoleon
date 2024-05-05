@@ -1,5 +1,8 @@
 rm webapp.tar.gz
 docker save webapp | gzip > webapp.tar.gz
+# echo "Copy aceteam.app"
 #scp webapp.tar.gz ert@aceteam.app:/srv/napoleon/dockers/
+echo "Copy napmobile.ru"
 scp webapp.tar.gz ert@napmobile.ru:/srv/napoleon/dockers/
-#scp webapp.tar.gz devteam@dev.aceteam.app:/home/devteam/prog/
+# echo "Copy dev.aceteam.app"
+# scp webapp.tar.gz devteam@dev.aceteam.app:/home/devteam/prog/

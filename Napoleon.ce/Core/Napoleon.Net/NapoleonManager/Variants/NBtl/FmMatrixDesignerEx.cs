@@ -137,14 +137,14 @@ namespace GRSoft.NapoleonManager
          else
          {
             instance.BringToFront();
-            instance.RefreshData();
+            instance.RefreshData(true);
          }
       }
 
       protected override void OnLoad(EventArgs e)
       {
          base.OnLoad(e);
-         RefreshData();
+         RefreshData(true);
       }
 
       protected override void OnClosed(EventArgs e)
@@ -153,7 +153,7 @@ namespace GRSoft.NapoleonManager
          instance = null;
       }
 
-      protected override void RefreshData()
+      protected override void RefreshData(bool reload)
       {
          dsMatrix.Filter = "\"cdef\" = '" + contractId + "'";
          dsPrice.Filter = "\"cdef\" = '" + contractId + "'";

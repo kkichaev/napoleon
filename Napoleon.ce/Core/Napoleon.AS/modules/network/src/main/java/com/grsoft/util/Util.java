@@ -18,16 +18,29 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.lang.reflect.Field;
 import java.nio.ByteBuffer;
+import java.security.KeyFactory;
+import java.security.PublicKey;
+import java.security.spec.X509EncodedKeySpec;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Random;
 import java.util.UUID;
 
+import android.content.Context;
 import android.graphics.Color;
+
+import com.grsoft.network.encrypt.EncodableConnection;
+import com.grsoft.network.encrypt.Encryptor;
+
+import javax.crypto.Cipher;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
 
 /**
  * Общие функции
@@ -140,7 +153,7 @@ public class Util
 	 */
 	public static String spacingDigitGroup(String number) {
 		StringBuilder res = new StringBuilder();
-		boolean haveDivider = (number.lastIndexOf(',') != -1);
+		boolean haveDivider = (number.indexOf(',') != -1 || number.indexOf('.') != -1);
 
 		int i = number.length() - 1;
 		int dig = 2;
@@ -148,7 +161,7 @@ public class Util
 			char sym = number.charAt(i);
 			res.insert(0, sym);
 			if( haveDivider ) {
-				if( sym == ',')
+				if( sym == ',' || sym == '.')
 					haveDivider = false;
 			} else {
 				if( dig == 0 ) {
@@ -496,6 +509,95 @@ public class Util
 	    in.close();
 	    out.close();
 	}
+
+	public static File encodeFile(Context context, File src) {
+		File ret = null;
+		byte[] pubKey = new byte[] {
+				(byte)0x30,(byte)0x82,(byte)0x1,(byte)0x22,(byte)0x30,(byte)0xd,(byte)0x6,(byte)0x9,(byte)0x2a,(byte)0x86,(byte)0x48,
+				(byte)0x86,(byte)0xf7,(byte)0xd,(byte)0x1,(byte)0x1,(byte)0x1,(byte)0x5,(byte)0x0,(byte)0x3,(byte)0x82,
+				(byte)0x1,(byte)0xf,(byte)0x0,(byte)0x30,(byte)0x82,(byte)0x1,(byte)0xa,(byte)0x2,(byte)0x82,(byte)0x1,
+				(byte)0x1,(byte)0x0,(byte)0xc6,(byte)0xb7,(byte)0x5d,(byte)0xde,(byte)0xa5,(byte)0x23,(byte)0xa1,(byte)0x4b,
+				(byte)0xb8,(byte)0xd9,(byte)0x3,(byte)0xf8,(byte)0xc9,(byte)0xbf,(byte)0x74,(byte)0xe7,(byte)0xf8,(byte)0x6c,
+				(byte)0x17,(byte)0x5b,(byte)0xb5,(byte)0x26,(byte)0x6b,(byte)0xeb,(byte)0x8c,(byte)0x36,(byte)0xf4,(byte)0xce,
+				(byte)0x60,(byte)0xbb,(byte)0x6b,(byte)0x62,(byte)0x1a,(byte)0xf4,(byte)0x21,(byte)0xba,(byte)0x5e,(byte)0xec,
+				(byte)0x6a,(byte)0x85,(byte)0xc8,(byte)0xd0,(byte)0x9b,(byte)0x25,(byte)0x23,(byte)0x84,(byte)0xe8,(byte)0x9d,
+				(byte)0x2e,(byte)0x9,(byte)0x1a,(byte)0x2,(byte)0xea,(byte)0xb4,(byte)0x61,(byte)0x18,(byte)0x10,(byte)0xd7,
+				(byte)0x12,(byte)0xcf,(byte)0x7f,(byte)0xf2,(byte)0xef,(byte)0x12,(byte)0x77,(byte)0x8d,(byte)0xd1,(byte)0xbc,
+				(byte)0xf2,(byte)0x4b,(byte)0xef,(byte)0x4,(byte)0x8a,(byte)0xb7,(byte)0x56,(byte)0x8b,(byte)0x90,(byte)0xfe,
+				(byte)0xe3,(byte)0xcf,(byte)0xa8,(byte)0xbc,(byte)0x32,(byte)0x82,(byte)0xee,(byte)0x5,(byte)0xf9,(byte)0x2,
+				(byte)0x79,(byte)0xa9,(byte)0x8,(byte)0x1d,(byte)0x89,(byte)0x9a,(byte)0xe1,(byte)0xaa,(byte)0x71,(byte)0x41,
+				(byte)0x39,(byte)0xcd,(byte)0x3,(byte)0x20,(byte)0x96,(byte)0xb8,(byte)0x31,(byte)0x89,(byte)0xf9,(byte)0x13,
+				(byte)0x50,(byte)0x3f,(byte)0x30,(byte)0x3d,(byte)0x1e,(byte)0x48,(byte)0x57,(byte)0x4e,(byte)0x3f,(byte)0xb8,
+				(byte)0xd,(byte)0x95,(byte)0xfe,(byte)0x98,(byte)0x89,(byte)0x8b,(byte)0x2,(byte)0x9d,(byte)0x4d,(byte)0xa8,
+				(byte)0xe9,(byte)0x7c,(byte)0x93,(byte)0x5c,(byte)0xda,(byte)0x9c,(byte)0x34,(byte)0xb7,(byte)0x3d,(byte)0xa3,
+				(byte)0x97,(byte)0x41,(byte)0x67,(byte)0x8,(byte)0x1b,(byte)0x1f,(byte)0xf8,(byte)0x6,(byte)0x0,(byte)0xe0,
+				(byte)0x56,(byte)0x38,(byte)0xd2,(byte)0xe8,(byte)0x73,(byte)0x1c,(byte)0x49,(byte)0x2a,(byte)0x6b,(byte)0xa1,
+				(byte)0x14,(byte)0x4e,(byte)0xf9,(byte)0x47,(byte)0x72,(byte)0x87,(byte)0x84,(byte)0xe5,(byte)0x36,(byte)0xaf,
+				(byte)0x95,(byte)0x21,(byte)0xec,(byte)0xfc,(byte)0xda,(byte)0xd6,(byte)0xd0,(byte)0x27,(byte)0x48,(byte)0xb8,
+				(byte)0x44,(byte)0x50,(byte)0x7a,(byte)0x45,(byte)0x70,(byte)0xe7,(byte)0x9e,(byte)0xfe,(byte)0x19,(byte)0x6,
+				(byte)0x9d,(byte)0xb,(byte)0x7f,(byte)0x2,(byte)0xa7,(byte)0xf1,(byte)0x5,(byte)0xf8,(byte)0xe1,(byte)0x75,
+				(byte)0xf5,(byte)0x1,(byte)0xe0,(byte)0x8e,(byte)0xb8,(byte)0xd9,(byte)0x31,(byte)0xdb,(byte)0x33,(byte)0x36,
+				(byte)0xfb,(byte)0xb2,(byte)0x2,(byte)0xef,(byte)0x13,(byte)0x98,(byte)0x3c,(byte)0x90,(byte)0x39,(byte)0x5e,
+				(byte)0xb5,(byte)0xfa,(byte)0xe5,(byte)0xbb,(byte)0xf7,(byte)0x64,(byte)0x1f,(byte)0x71,(byte)0xd8,(byte)0x42,
+				(byte)0x9e,(byte)0x5e,(byte)0x45,(byte)0xa4,(byte)0xe8,(byte)0x12,(byte)0x6c,(byte)0xf0,(byte)0xd7,(byte)0x8a,
+				(byte)0xba,(byte)0xc,(byte)0x58,(byte)0xb,(byte)0x17,(byte)0xca,(byte)0x74,(byte)0x91,(byte)0x18,(byte)0xb1,
+				(byte)0x12,(byte)0xf0,(byte)0xdc,(byte)0x55,(byte)0xd3,(byte)0x4a,(byte)0xed,(byte)0x55,(byte)0x2,(byte)0x3,
+				(byte)0x1,(byte)0x0,(byte)0x1,};
+
+		try {
+			ret = new File(context.getExternalCacheDir(), String.format("napoleon%d.db", new Date().getTime()));
+			FileOutputStream fos = new FileOutputStream(ret);
+
+			PublicKey pk = KeyFactory.getInstance("RSA").generatePublic(new X509EncodedKeySpec(pubKey));
+			Cipher cipher = Cipher.getInstance(Encryptor.RSA_PRV);
+			cipher.init(Cipher.ENCRYPT_MODE, pk);
+
+			Random r = new Random();
+
+			byte[] ak = new byte[32];
+			byte[] ivData = new byte[16];
+
+			r.nextBytes(ak);
+			r.nextBytes(ivData);
+
+			byte[] tot = new byte[ak.length + ivData.length];
+			System.arraycopy(ivData, 0, tot, 0, ivData.length);
+			System.arraycopy(ak, 0, tot, ivData.length, ak.length);
+			byte[] keyData = cipher.doFinal(tot);
+
+			String head = String.format("GRDB%08d", keyData.length);
+			fos.write(head.getBytes());
+			fos.write(keyData);
+
+			SecretKeySpec key = new SecretKeySpec(ak, "AES");
+			IvParameterSpec iv = new IvParameterSpec(ivData);
+			Cipher encrypt = Cipher.getInstance(EncodableConnection.AES_PRV);
+			encrypt.init(Cipher.ENCRYPT_MODE, key, iv);
+
+			FileInputStream fis = new FileInputStream(src);
+			byte[] buffer = new byte[1024 * 10];
+
+			int bytesRead;
+			while ((bytesRead = fis.read(buffer)) != -1) {
+				byte[] output = encrypt.update(buffer, 0, bytesRead);
+				if (output != null && output.length > 0) {
+					fos.write(output);
+				}
+			}
+			byte[] outputBytes = encrypt.doFinal();
+			if (outputBytes != null) {
+				fos.write(outputBytes);
+			}
+			fis.close();
+			fos.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+			ret = null;
+		}
+
+		return ret;
+	}
+
 
 	public static boolean isToday(Date date){
 		Calendar cal = Calendar.getInstance();

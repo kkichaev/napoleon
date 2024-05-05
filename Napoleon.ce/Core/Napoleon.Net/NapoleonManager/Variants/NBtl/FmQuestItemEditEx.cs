@@ -14,6 +14,8 @@ namespace GRSoft.NapoleonManager
       List<Org> orgsSelected = new List<Org>();
       List<Org> sel = new List<Org>();
 
+      CheckBox cbShowOnPhoto = new CheckBox();
+
       public FmQuestItemEditEx() 
       {
          Size = new System.Drawing.Size(600, 430);
@@ -48,6 +50,17 @@ namespace GRSoft.NapoleonManager
 
          splitContainer1.Panel1.Controls.Add(label);
          splitContainer1.Panel1.Controls.Add(tbAltText);
+
+         this.cbShowOnPhoto.AutoSize = true;
+         this.cbShowOnPhoto.Location = new System.Drawing.Point(150, 215);
+         this.cbShowOnPhoto.Name = "cbShowOnPhoto";
+         this.cbShowOnPhoto.Size = new System.Drawing.Size(135, 18);
+         this.cbShowOnPhoto.TabIndex = 9;
+         this.cbShowOnPhoto.Text = "Отображать на фото";
+         this.cbShowOnPhoto.UseVisualStyleBackColor = true;
+         cbShowOnPhoto.Visible = true;
+
+         splitContainer1.Panel1.Controls.Add(cbShowOnPhoto);
       }
 
       private void ShowClients(object sender, EventArgs e)
@@ -80,6 +93,7 @@ namespace GRSoft.NapoleonManager
             QuestItemType result = base.Quest;
             result.altText = tbAltText.Text.Trim();
             result.clients = GetClients();
+            result.showInPhoto = cbShowOnPhoto.Checked ? 1 : 0;
             return result;
          }
       }
@@ -100,6 +114,8 @@ namespace GRSoft.NapoleonManager
       {
          tbAltText.Text = questionItem.altText;
          tbClients.Text += GetClients(questionItem.clients);
+         cbShowOnPhoto.Enabled = questionItem.type == QuestionItem.TEXT;
+         cbShowOnPhoto.Checked = questionItem.showInPhoto != 0;
 
          return base.ShowDialog(questionItem);
       }
@@ -132,5 +148,6 @@ namespace GRSoft.NapoleonManager
    {
       public string altText = string.Empty;
       public string clients = string.Empty;
+      public int showInPhoto = 0;
    }
 }

@@ -25,8 +25,8 @@ namespace GRSoft.NapoleonManager
       protected DataSet<string, PricePhoto> dsNewPhotos;
       protected DataSet<string, PricePhoto> dsDelPhotos;
 
-      private bool agentsLoading = true;
-      private bool expanded = false;
+      protected bool agentsLoading = true;
+      protected bool expanded = false;
       private SettingFmPrice setting = null;
 
       public void __Initing()
@@ -92,7 +92,7 @@ namespace GRSoft.NapoleonManager
          pictures.ImageSize = sz;
       }
 
-      private void FillAgents()
+      protected virtual void FillAgents()
       {
          cbAgents.Items.Clear();
          List<Agent> list = new List<Agent>();
@@ -108,10 +108,14 @@ namespace GRSoft.NapoleonManager
          cbAgents.SelectedIndex = 0;
 
          expanded = false;
+         agentsLoading = false;
       }
 
       private void btnRefresh_Click(object sender, EventArgs e)
       {
+         if (cbAgents.SelectedIndex < 0)
+            return;
+
          DataModule.SetDataRepsonceHandlers(DataProcessed, DataConnectionError);
 
          List<IDataSet> updSet = new List<IDataSet>();
@@ -182,7 +186,6 @@ namespace GRSoft.NapoleonManager
                if (agentsLoading)
                {
                   FillAgents();
-                  agentsLoading = false;
                }
 
                CreatePriceTree();
@@ -303,6 +306,7 @@ namespace GRSoft.NapoleonManager
          TreeView tmpTree = new TreeView();
          ArticlesTreeConstructor treeCnt = new ArticlesTreeConstructor(tmpTree, dsFolder, dsPrice);
          treeCnt.MakeArticlesTree();
+         treeCnt.RemoveEmptyNodes();
 
          tgvPrice.SuspendLayout();
          tgvPrice.Nodes.Clear();

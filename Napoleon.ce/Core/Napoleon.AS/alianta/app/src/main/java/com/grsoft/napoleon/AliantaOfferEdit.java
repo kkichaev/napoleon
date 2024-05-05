@@ -165,7 +165,7 @@ import androidx.core.content.FileProvider;
 			@Override public void onClick(View arg0) {
 				DiscountInputDlg.open(AliantaOfferEdit.this, new InputNumber() {
 					
-					@Override public int getValue() { return doc.getData().discount; }
+					@Override public long getValue() { return doc.getData().discount; }
 					
 					@Override
 					public void applayInput(int value, Object... params) {

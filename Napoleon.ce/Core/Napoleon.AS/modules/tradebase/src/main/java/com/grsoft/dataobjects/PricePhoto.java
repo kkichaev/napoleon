@@ -20,7 +20,6 @@ public class PricePhoto extends DataObject {
 	/***
 	 * Фотография
 	 */
-	@BlobSource
 	public byte[] photo;
 }
 

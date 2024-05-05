@@ -59,7 +59,7 @@ namespace GRSoft.NapoleonManager
          timeZone = doc.timeZone;
          serverTimeZone = doc.serverTimeZone;
 
-#if FIND_DOC_LOCAION
+#if FIND_DOC_LOCATION
          docLocation = new Location(doc.latitude, doc.longitude);
          if (doc.org != null)
             orgLocation = Route.GetLocation(doc.org);
@@ -203,18 +203,18 @@ namespace GRSoft.NapoleonManager
       }
 
       // problem with FmRoute. It contains WebView reference
-      //public void CheckDocLocation(DataSet<DateTime, GPSPos> dsGPSPos)
-      //{
-      //   if (dsGPSPos != null && docLocation.IsEmpty)
-      //   {
-      //      GPSPos pos = FmRoute.GetBestLocation(dateCreated, dsGPSPos);
-      //      if(pos != null)
-      //      {
-      //         docLocation.Latitude = pos.latitude;
-      //         docLocation.Longitude = pos.longitude;
-      //      }
-      //   }
-      //}
+      public void CheckDocLocation(DataSet<DateTime, GPSPos> dsGPSPos)
+      {
+         if (dsGPSPos != null && docLocation != null && docLocation.IsEmpty)
+         {
+            GPSPos pos = FmRoute.GetBestLocation(dateCreated, dsGPSPos);
+            if (pos != null)
+            {
+               docLocation.Latitude = pos.latitude;
+               docLocation.Longitude = pos.longitude;
+            }
+         }
+      }
 
       public int Qty { get { return qty; } }
 
@@ -428,7 +428,7 @@ namespace GRSoft.NapoleonManager
    public class OrgRouteOrder : IComparable
    {
       private DateTime objDate;
-      private DateTime date;
+      public DateTime date;
       private int pos;
       bool outRoute;
       List<OrderDetailRepresentation> owner;

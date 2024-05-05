@@ -97,6 +97,7 @@ public class NapoleonApp extends NapoleonAppBase {
 		UpdateDB.activity = UpdateDBEx.class;
 		Warehouse.activity = WarehouseEx.class;
 		Documents.activity = DocumentsEx.class;
+		PriceCount.activity = PriceCountEx.class;
 		OrderDeliveryDetail.activity = OrderDeliveryDetailEx.class;
 	}
 
@@ -106,9 +107,7 @@ public class NapoleonApp extends NapoleonAppBase {
 	}
 
 	@Override
-	protected Class<? extends OrderImplBase<? extends Order>> orderImplType() {
-		return OrderImplEx.class;
-	}
+	protected Class<? extends OrderImplBase<? extends Order>> orderImplType() { return OrderImplEx.class; }
 
 	@Override
 	protected void initChildDocTypes() {

@@ -1,7 +1,7 @@
 export
 
-Variant = Rzdhv1
-#Variant = Rzdhv2
+#Variant = Rzdhv1
+Variant = Rzdhv2
 
 ifeq ($(Variant),)
 $(error "Set variant before")

@@ -670,6 +670,12 @@
     <Compile Include="Variants\Ishim\FmOrgProp.Designer.cs">
       <DependentUpon>FmOrgProp.cs</DependentUpon>
     </Compile>
+    <Compile Include="Variants\Ishim\FmPlanEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Variants\Ishim\FmPlanEditor.Designer.cs">
+      <DependentUpon>FmPlanEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Variants\Ishim\FmPriceEditor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -687,6 +693,9 @@
     </Compile>
     <Compile Include="Variants\Ishim\FmEditors.Designer.cs">
       <DependentUpon>FmEditors.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Variants\Ishim\FmReportsEx.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Variants\Ishim\FmStringCauseEdit.cs">
       <SubType>Form</SubType>
@@ -1033,6 +1042,9 @@
     </Compile>
     <EmbeddedResource Include="Variants\Ishim\FmOrgProp.resx">
       <DependentUpon>FmOrgProp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Variants\Ishim\FmPlanEditor.resx">
+      <DependentUpon>FmPlanEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Variants\Ishim\FmPriceEditor.resx">
       <DependentUpon>FmPriceEditor.cs</DependentUpon>

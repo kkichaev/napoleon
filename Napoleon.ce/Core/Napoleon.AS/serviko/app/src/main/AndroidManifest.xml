@@ -415,6 +415,11 @@
         <activity android:name="com.grsoft.napoleon.BannerView"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+
+        <activity android:name="com.grsoft.napoleon.Main" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
+        <activity android:name="com.grsoft.napoleon.ShelfItemEdit" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
+        <activity android:name="com.grsoft.napoleon.ShelfShareEdit" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
+        <activity android:name="com.grsoft.napoleon.ShelfDocList" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
     </application>
 
 </manifest>

@@ -33,8 +33,10 @@ public class WarehouseEx extends Warehouse  {
             String orgId = document.getId();
             com.grsoft.napoleon.documents.DocList dl = DeliveryDoc.instance().docList(orgId);
             for(Document<?> d : dl) {
-                for(DeliveryItem di : ((DeliveryImpl)d).getData().items)
-                    ids.add(di.id);
+                for(DeliveryItem di : ((DeliveryImpl)d).getData().items) {
+                    if(di.qty > 0)
+                        ids.add(di.id);
+                }
             }
 
             dl.close();

@@ -70,7 +70,7 @@ android {
         variant ->
             if (variant.buildType.name == "release")
                 variant.outputs.all {
-                    outputFileName = "NapoleonDev4.apk"
+                    outputFileName = "Agisa3.apk"
                 }
             if (variant.buildType.name == "market")
                 variant.outputs.all {

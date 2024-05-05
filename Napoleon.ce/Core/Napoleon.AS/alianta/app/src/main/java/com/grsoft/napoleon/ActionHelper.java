@@ -9,6 +9,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
+import com.grsoft.database.DbReader;
 import com.grsoft.dataobjects.Action;
 import com.grsoft.dataobjects.ActionItem;
 import com.grsoft.dataobjects.DataTraveler;
@@ -22,7 +23,7 @@ public class ActionHelper {
 	static String id = "";
 	static Date date = new Date();
 	static Map<String, List<ActionData>> data = new HashMap<String, List<ActionData>>();
-	static List<Set<String>> analogs = new ArrayList<>();
+	static List<Set<String>> analogs = null;
 	
 	public static class ActionData {
 		public ActionData(Action data, ActionItem ai) {
@@ -51,16 +52,40 @@ public class ActionHelper {
 	public static void resetCache() {
 		id = "";
 		data.clear();
-		analogs.clear();
+		analogs = null;
 	}
-	
+
+	public static void loadAll(Date date) {
+		id = "";
+
+		data.clear();
+
+		String dateStr = Long.toString(date.getTime());
+		String where = "\"start\" <= " + dateStr + " and \"end\" >= " + dateStr + " and cfo in (select distinct cfo from org where cfo <> '')";
+		for(Action a : DbReader.fetch(Action.class, where)) {
+			for(ActionItem ai : a.items) {
+				List<ActionData> ad = data.get(ai.id);
+				if(ad == null) {
+					ad = new ArrayList<ActionHelper.ActionData>();
+					data.put(ai.id, ad);
+					putAnalogs(data, ai.id, ad);
+				}
+				ad.add(new ActionData(a, ai));
+			}
+		}
+	}
+
+	public static Set<String> items() {
+		return data.keySet();
+	}
+
+	public static List<ActionData> getCurrentActions(String itemId) {
+		return data.get(itemId);
+	}
+
 	static void load(String orgId, Date date) {
 		date = Util.getDayStart(date);
 		if(!id.equals(orgId) || !ActionHelper.date.equals(date)) {
-			if(analogs.size() == 0) {
-				analogs = GoodsAnalogs.analogs();
-			}
-
 			id = orgId;
 			ActionHelper.date = date;
 			
@@ -96,6 +121,10 @@ public class ActionHelper {
 	}
 
 	private static void putAnalogs(Map<String, List<ActionData>> data, String id, List<ActionData> ad) {
+		if(analogs == null) {
+			analogs = GoodsAnalogs.analogs();
+		}
+
 		for(Set<String> set : analogs) {
 			if(set.contains(id)) {
 				for(String sid : set) {

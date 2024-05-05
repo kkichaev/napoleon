@@ -1,6 +1,110 @@
 <?xml version="1.0" ?>
 <serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
-	<objects>
+  <objects>
+    <object name="IshimPlan">
+      <sources>
+        <source name="SQTable" type="internal">
+          <param name="readFilter">'"begin" &gt;= $01'</param>
+          <param name="$01">ToDate(FormatDate(AdjustDate(Now(), -1, "month"),"DD.MM.YYYY"))</param>
+        </source>
+      </sources>
+      
+      <member name="primaryKey">"begin"</member>
+
+      <field name="begin" type="date" />
+
+      <field name="plans" type="collection">
+        <data>
+          <object name="PlanItem">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+
+            <member name="primaryKey">"id"</member>
+
+            <field name="id" type="string" />
+            <field name="name" type="string" />
+
+            <field name="items" type="collection">
+              <data>
+                <object name="Item">
+                  <sources>
+                    <source name="SQTable" type="internal" />
+                  </sources>
+                  
+                  <field name="id" type="string" />
+                </object>
+              </data>
+            </field>
+          </object>
+        </data>
+      </field>
+    </object>
+
+    <object name="AgentPlan">
+      <sources>
+        <source name="SQTable" type="internal">
+          <param name="readFilter">"userid='$01' and " + '"begin" &gt;= $02'</param>
+          <param name="$01">$user.id</param>
+          <param name="$02">ToDate(FormatDate(AdjustDate(Now(), -1, "month"),"DD.MM.YYYY"))</param>
+        </source>
+      </sources>
+
+      <member name="primaryKey">"begin,userid"</member>
+
+      <field name="begin" type="date" />
+      <field name="userid" type="string" />
+
+      <field name="items" type="collection">
+        <data>
+          <object name="Item">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+
+            <field name="id" type="string" />
+            <field name="weight" type="number" prec="3" />
+            <field name="akb" type="number" />
+          </object>
+        </data>
+      </field>
+    </object>
+    
+    <object name="AgentPlanRcv">
+      <sources>
+        <source name="SQLQuery">
+          <param name="stmt">
+            "select ap.id, ap.akb, ap.weight, ap.AgentPlan$begin begin, ip.name, ipi.id itemId
+            from AgentPlan$items ap, IshimPlan$plans ip, IshimPlan$plans$items ipi
+            where 
+            ap.AgentPlan$begin = ip.IshimPlan$begin and ap.id = ip.id and ip.id = ipi.IshimPlan$plans$id
+            and ap.AgentPlan$userid = '$01' and ap.AgentPlan$begin &gt;= $02
+            order by begin, ap.id
+            "</param>
+          <param name="$01">$user.id</param>
+          <param name="$02">ToDate(FormatDate(AdjustDate(Now(), -1, "month"),"DD.MM.YYYY"))</param>
+        </source>
+      </sources>
+      <field name="begin" type="date" />
+      <field name="id" type="string" />
+      <field name="name" type="string" />
+      <field name="weight" type="number" prec="3" />
+      <field name="akb" type="number" />
+    
+      <field name="items" type="collection">
+        <data>
+          <object name="Item">
+            <sources>
+              <source name="SQLQuery">
+                <param name="keyFields">"begin,id"</param>
+              </source>
+            </sources>
+            <field name="id" type="string" data="itemId" />
+          </object>
+        </data>
+      </field>
+    </object>
+
     <object name="PriceFolderOrder">
       <sources>
         <source name="SQTable" type="internal" />
@@ -11,7 +115,7 @@
       <field name="folderID" type="number" execOn="Get">FolderID($object.fid)</field>
       <field name="ord" type="number" />
     </object>
-    
+
     <object name="OrderCommitted">
       <sources>
         <source name="DBFTableSet">
@@ -32,7 +136,7 @@
           <param name="tableName">"Sklads"</param>
         </source>
       </sources>
-      
+
       <field name="id" type="string" />
       <field name="name" type="string" />
     </object>
@@ -47,36 +151,14 @@
       <field name="idwh" type="string" />
     </object>
 
-    <object name="AgentPlan">
-      <sources>
-        <source name="SQTable" type="internal" >
-          <param name="readFilter">'"userid"=' + "'" + $user.id + "'"</param>
-        </source>
-      </sources>
-      <member name="primaryKey">"userid,begin"</member>
-      <field name="userid" type="string" />
-      <field name="begin" type="date" />
-      <field name="end" type="date" />
-      <field name="items" type="collection">
-        <data>
-          <object name="AgemtPlanItems">
-            <sources>
-              <source name="SQTable" type="internal" />
-            </sources>
-            <field name="id" type="string" />
-            <field name="value" type="number" prec="3" />
-          </object>
-        </data>
-      </field>
-    </object>
-    
+
     <object name="OrgProp">
       <sources>
         <source name="SQTable" type="internal" >
           <param name="readFilter">'"userid"=' + "'" + $user.id + "'"</param>
         </source>
       </sources>
-      
+
       <member name="primaryKey">"userid,id"</member>
 
       <field name="id" type="string" />
@@ -84,28 +166,28 @@
       <field name="script" type="number" />
       <field name="matrix" type="string" />
     </object>
-    
+
     <object name="StringCause">
-        <sources>
-            <source name="SQTable" type="internal" >
-                <param name="readFilter">"rem=0"</param>
-             </source>   
-        </sources>
-        
-        <member name="primaryKey">"id"</member>
-        
-        <field name="id" type="string" />
-        <field name="text" type="string" />
-        <field name="rem" type="number" />
+      <sources>
+        <source name="SQTable" type="internal" >
+          <param name="readFilter">"rem=0"</param>
+        </source>
+      </sources>
+
+      <member name="primaryKey">"id"</member>
+
+      <field name="id" type="string" />
+      <field name="text" type="string" />
+      <field name="rem" type="number" />
     </object>
-    
+
     <modify src="Org">
       <add>
         <field name="balance" type="number" prec="2" />
         <field name="prcType" type="string" />
         <field name="delay" type="number" />
         <field name="limit" type="number" prec="2" />
-        
+
         <field name="discounts" type="collection">
           <data>
             <object name="OrgDsc">
@@ -167,7 +249,7 @@
         <field name="cause" type="string" width="20" />
       </add>
     </modify>
-    
+
     <modify src="Folder">
       <add>
         <field name="parent" type="string" />
@@ -179,11 +261,18 @@
             <param name="parentField">"parent"</param>
             <param name="childField">"fid"</param>
             <param name="rowidField">"id"</param>
+            <param name="readFilter">'"userid"=' + "'" + $user.id + "'"</param>
+          </source>
+          <source name="SQLFolder" type="internal">
+            <param name="parentField">"parent"</param>
+            <param name="childField">"fid"</param>
+            <param name="rowidField">"id"</param>
+            <param name="readFilter">'"userid"=' + "''"</param>
           </source>
         </sources>
       </change>
     </modify>
-    
+
     <modify src="ManagerFolder">
       <add>
         <field name="id" type="string" execOn="Get">$object.fid</field>
@@ -196,7 +285,12 @@
           <source name="SQLFolder" type="internal">
             <param name="parentField">"parent"</param>
             <param name="childField">"fid"</param>
-            <!--<param name="readFilter">'"division" in (select "Division$id" from "Division$agents" where id = ' + "'" + $user.id + "')"</param>-->
+            <param name="readFilter">'"userid"=' + "'" + $user.id + "'"</param>
+          </source>
+          <source name="SQLFolder" type="internal">
+            <param name="parentField">"parent"</param>
+            <param name="childField">"fid"</param>
+            <param name="readFilter">'"userid"=' + "''"</param>
           </source>
         </sources>
       </change>

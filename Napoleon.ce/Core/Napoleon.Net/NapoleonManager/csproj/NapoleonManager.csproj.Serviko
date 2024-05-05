@@ -673,6 +673,12 @@
     <Compile Include="Variants\Serviko\FmFirstDocTime.Designer.cs">
       <DependentUpon>FmFirstDocTime.cs</DependentUpon>
     </Compile>
+    <Compile Include="Variants\Serviko\FmMoveAgentData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Variants\Serviko\FmMoveAgentData.Designer.cs">
+      <DependentUpon>FmMoveAgentData.cs</DependentUpon>
+    </Compile>
     <Compile Include="Variants\Serviko\TimeColumn.cs" />
     <Compile Include="WebView.cs">
       <SubType>Component</SubType>
@@ -984,6 +990,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Variants\Serviko\FmFocusMtx.resx">
       <DependentUpon>FmFocusMtx.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Variants\Serviko\FmMoveAgentData.resx">
+      <DependentUpon>FmMoveAgentData.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WebViewWarning.resx">
       <DependentUpon>WebViewWarning.cs</DependentUpon>

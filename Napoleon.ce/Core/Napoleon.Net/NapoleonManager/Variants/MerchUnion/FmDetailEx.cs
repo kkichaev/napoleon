@@ -116,6 +116,29 @@ namespace GRSoft.NapoleonManager
       //{
       //   get { return true; }
       //}
+#else
+      //Color bkColor = Color.Black;
+      protected override void CellFormatting(DataGridViewCellFormattingEventArgs e)
+      {
+         if (e.RowIndex < 0 || e.RowIndex >= dgvDetail.Rows.Count || refreshing)
+            return;
+         //if (bkColor == Color.Black)
+         //   bkColor = e.CellStyle.BackColor;
+
+         base.CellFormatting(e);
+
+         Color bkColor = e.CellStyle.BackColor;
+         OrderDetailRepresentation odr = dgvDetail.Rows[e.RowIndex].DataBoundItem as OrderDetailRepresentation;
+         ScriptDoc sd = odr.StoreObject as ScriptDoc;
+         if(sd != null && sd.fake > 0)
+         {
+            e.CellStyle.BackColor = Color.FromArgb(0xff, 0x44, 0xe6, 0);
+            e.CellStyle.ForeColor = Color.FromArgb(0xff, 0x20,0x20,0x20);
+         } else
+         {
+            //e.CellStyle.BackColor = bkColor;
+         }
+      }
 #endif
 
       protected override void AdjustFilterForDS(string agentID, DateTime dateBegin, DateTime dateEnd)

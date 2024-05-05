@@ -8,400 +8,412 @@ using System.Windows.Forms;
 using GRSoft.Network;
 using System.Threading;
 using System.Collections;
-
+using System.Reflection;
 
 namespace GRSoft.NapoleonManager
 {
    public partial class FmAgentPlans : Form
    {
-      DateTime curPlanDate;
+      IshimPlan plan = new IshimPlan();
+      List<AgentPlan> agentPlans = new List<AgentPlan>();
+
+      Dictionary<AgentEx, AgentPlan> changedPlans = new Dictionary<AgentEx, AgentPlan>();
+
+      SimpleDataSet<IshimPlan> rcvPlan;
+      SimpleDataSet<AgentPlan> rcvAgentPlans;
+
+      DateTime lastPlanDate;
 
       public FmAgentPlans()
       {
          InitializeComponent();
          dgvPlans.AutoGenerateColumns = false;
-         dtPlanDate.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
-         LoadData(dtPlanDate.Value);
+         lastPlanDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+         dtPlanDate.Value = lastPlanDate;
+
+         dtPlanDate.CloseUp += dtPlanDate_ValueChanged;
+         dtPlanDate.LostFocus += dtPlanDate_ValueChanged;
       }
 
-      SimpleDataSet<AgentPlan> plans = new SimpleDataSet<AgentPlan>(AgentPlan.OBJECT_NAME, false);
-      SimpleDataSet<Order> orders = new SimpleDataSet<Order>(Order.OBJECT_NAME, false);
-      DataSet<string, Price> price;
-
-      void LoadData(DateTime date)
+      protected override void OnLoad(EventArgs e)
       {
-         Config c = Config.GetConfig();
-         if (!c.CheckLogin())
-            return;
+         base.OnLoad(e);
+         RefreshData();
 
-         DBConnection conn = c.GetConnection();
-         List<IDataSet> upd = new List<IDataSet>();
-         Agents a = Agents.GetDataSet();
-         if (a.Count == 0)
-         {
-            upd.Add(a);
-            upd.Add(DivisionList.GetDataSet());
-            CurrentUser.InitCurrentUser(upd, true);
-         }
-
-         if (price == null)
-         {
-            price = (DataSet<string, Price>)DataModule.Get(Price.OBJECT_NAME) ??
-               new DataSet<string, Price>(Price.OBJECT_NAME, true);
-         }
-         if (price.Count == 0)
-            upd.Add(price);
-
-         curPlanDate = date.Date;
-         DateTime endDate = curPlanDate.AddMonths(1);
-
-         const String FILTER = "\"{0}\" >= ToDate('{1:dd/MM/yyyy}') and \"{0}\" < ToDate('{2:dd/MM/yyyy}')";
-
-         plans.Filter = String.Format(FILTER, "begin", curPlanDate, endDate);
-         upd.Add(plans);
-
-         orders.Filter = String.Format(FILTER, "created", curPlanDate, endDate);
-         upd.Add(orders);
-
-         DataModule.OnDataResponceError += new EventDataResponseError(DataError);
-         DataModule.DataProcessed += new EventHandler(DataReceived);
-
-         Thread t = DataModule.RefreshGiveSets(conn, upd, FmWait.ProgressIndicator);         
-         FmWait.ShowForm(this, t);
-      }
-
-      void DataReceived(object sender, EventArgs e)
-      {
-         DataModule.ClearEvents();
-         FmWait.CloseForm();
-
-         if (CurrentUser.user == null)
-         {
-            CurrentUser.SetCurrentUser(false);
-            if (!(CurrentUser.user is Manager))
-            {
-               MessageBox.Show(this, "Возможно, пользователь не менеджер или в программе отсутствют подразделения",
-                  "Ошибка",MessageBoxButtons.OK, MessageBoxIcon.Error);
-               
-               return;
-            }
-         }
-         Invoke(new EmptyParamHandler(delegate() {
-            RefreshData();
-         }));
-      }
-
-      int CmpPlans(PlanItem i1, PlanItem i2)
-      {
-         return i1.Name.CompareTo(i2.Name);
-      }
-
-      void OnPlanItemChanged(object sender, EventArgs args)
-      {
-         PlanItem item = (PlanItem)sender;
-         
-         AgentPlan plan = null;
-         foreach (AgentPlan ap in plans.Data)
-         {
-            if (ap.userid.CompareTo(item.agent.id) == 0)
-            {
-               plan = ap;
-               break;
-            }
-         }
-
-         if (plan == null)
-         {
-            plan = new AgentPlan();
-            plan.userid = item.agent.id;
-            plan.agent = item.agent;
-            plan.begin = curPlanDate;
-            plan.end = curPlanDate.AddMonths(1);
-            plans.Add(plan);
-            plan.items = new List<AgentPlanItem>();
-         } else
-            plan.items.Clear();
-
-         AgentPlanItem pi = new AgentPlanItem();
-         pi.id = AgentPlan.PLAN1_TAG;
-         pi.value = item.Plan1;
-         plan.items.Add(pi);
-
-         pi = new AgentPlanItem();
-         pi.id = AgentPlan.PLAN2_TAG;
-         pi.value = item.Plan2;
-         plan.items.Add(pi);
-
-         tbSave.Enabled = true;
-      }      
-
-      void RefreshData()
-      {
-         List<PlanItem> items = new List<PlanItem>();
-         Manager m = CurrentUser.user as Manager;
-         if (m == null)
-            return;
-         Agents a = m.GetAgents();
-         foreach (Agent agent in a.Data)
-         {
-            PlanItem pi = new PlanItem(agent, curPlanDate);
-            pi.FillAgentPlans(agent, plans.Data, orders.Data, price);
-            pi.changed += new EventHandler(OnPlanItemChanged);
-            items.Add(pi);
-         }
-         items.Sort(CmpPlans);
-
-         clmnPlan1.ReadOnly = !CanEditPlan();
-         clmnPlan2.ReadOnly = !CanEditPlan();
-         dgvPlans.DataSource = items;
-      }
-
-      private bool CanEditPlan()
-      {
-         DateTime check = new DateTime(curPlanDate.Year, curPlanDate.Month, 1);
-         DateTime now = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
-         return (check.CompareTo(now) >= 0);
-      }
-
-      void DataError(EDataResponse e)
-      {
-         DataModule.ClearEvents();
-         FmWait.CloseForm();
-         MessageBox.Show(e.Msg);
       }
 
       protected override void OnClosing(CancelEventArgs e)
       {
-         if (tbSave.Enabled)
-         {
-            DialogResult res = MessageBox.Show(this, "Сохранить изменения?", "Вопрос", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
-            if (res == DialogResult.Cancel || (res == DialogResult.Yes && !SaveData()))
-            {
-               e.Cancel = true;
-               return;
-            }
-         }
+         if (!CheckChanges())
+            return;
+
          base.OnClosing(e);
       }
 
-      bool SaveData()
+      void RefreshAgents()
       {
-         Config c = Config.GetConfig();
-         String filter = plans.Name + ":" + plans.Filter;
-         bool ret = DataModule.ReplaceDataSet(plans, c.GetConnection(), filter);
-         if (!ret)
-            MessageBox.Show("Ошибка при записи планов");
-         else
-            tbSave.Enabled = false;
+         AgentEx[] src = new AgentEx[cbAgents.Items.Count];
+         int idx = cbAgents.SelectedIndex;
+         cbAgents.Items.CopyTo(src, 0);
+
+         cbAgents.BeginUpdate();
+         cbAgents.SelectedIndexChanged -= cbAgents_SelectedIndexChanged;
+         cbAgents.Items.Clear();
+         cbAgents.Items.AddRange(src);
+         cbAgents.SelectedIndex = idx;
+         cbAgents.SelectedIndexChanged += cbAgents_SelectedIndexChanged;
+         cbAgents.EndUpdate();
+      }
+
+      public void SetDirty()
+      {
+         tbSave.Enabled = true;
+         dtPlanDate.Enabled = false;
+
+         AgentEx a = cbAgents.SelectedItem as AgentEx;
+         changedPlans[a] = GeteAgentPlan(a);
+
+         RefreshAgents();
+      }
+
+      void ClearDirty()
+      {
+         tbSave.Enabled = false;
+         dtPlanDate.Enabled = true;
+         changedPlans.Clear();
+         RefreshAgents();
+      }
+
+      void RefreshData()
+      {
+         List<IDataSet> upd = new List<IDataSet>();
+         DateTime planDate = dtPlanDate.Value;
+
+         string filter = string.Format("begin=ToDate('01.{0:MM/yyyy}')", planDate);
+         rcvPlan = new SimpleDataSet<IshimPlan>(IshimPlan.OBJECT_NAME, false);
+         rcvAgentPlans = new SimpleDataSet<AgentPlan>(AgentPlan.OBJECT_NAME, false);
+
+         rcvPlan.Filter = filter;
+         rcvAgentPlans.Filter = filter;
+         
+         upd.Add(rcvPlan);
+         upd.Add(rcvAgentPlans);
+
+         FmWait.StdDataRefresh(this, upd, DoLoadData);
+      }
+
+      void DoLoadData()
+      {
+         if(cbDivisions.Items.Count == 0)
+         {
+            Manager m = CurrentUser.user as Manager;
+            if (m == null)
+               return;
+
+            foreach(Division d in m.AllDivisions)
+            {
+               cbDivisions.Items.Add(d);
+            }
+            if(cbDivisions.Items.Count > 0)
+            {
+               cbDivisions.SelectedIndex = 0;
+            }
+         }
+
+         if(rcvPlan.Count == 0 && !plan.Empty)
+         {
+            DialogResult r = MessageBox.Show("Нет плана на выбранную дату. Скопировать текущий?", "Вопрос", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if( r == DialogResult.No)
+            {
+               SetReceivedPlan();
+            }
+            else
+            {
+               SavePlan();
+               SetDirty();
+            }
+         } else
+         {
+            SetReceivedPlan();
+         }
+      }
+
+      private void SavePlan()
+      {
+         Dictionary<string, string> idcnv = new Dictionary<string, string>();
+
+         SimpleDataSet<IshimPlan> wr = new SimpleDataSet<IshimPlan>(IshimPlan.OBJECT_NAME, false);
+         List<IDataSet> wrs = new List<IDataSet>();
+         wrs.Add(wr);
+         plan.begin = PlanDate;
+         foreach(IshimPlan.PlanItem pi in plan.plans)
+         {
+            string newId = Guid.NewGuid().ToString().Replace("-", "");
+            idcnv[pi.id] = newId;
+            pi.id = newId;
+         }
+         wr.Add(plan);
+
+         SimpleDataSet<AgentPlan> ap = PrepareToWrite(agentPlans, idcnv);
+         if(ap.Count > 0)
+         {
+            wrs.Add(ap);
+         }
+
+         if(DataModule.UpdateDataSet(wrs, null, null, Config.GetConfig().GetConnection()))
+         {
+            ClearDirty();
+         }
+      }
+
+      void SetReceivedPlan()
+      {
+         plan = new IshimPlan();
+         foreach (IshimPlan ip in rcvPlan.Data)
+         {
+            plan = ip;
+            break;
+         }
+
+         agentPlans.Clear();
+         foreach(AgentPlan ap in rcvAgentPlans.Data)
+         {
+            agentPlans.Add(ap);
+         }
+
+         ClearDirty();
+         RefreshPlan();
+      }
+
+      bool CheckChanges()
+      {
+         if (!tbSave.Enabled)
+            return true;
+
+         DialogResult dr = MessageBox.Show("Сохранить изменения?", "Вопрос", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+         if (dr == DialogResult.No)
+            return true;
+         if (dr == DialogResult.Cancel)
+            return false;
+
+         return SaveChanges(false);
+      }
+
+      SimpleDataSet<AgentPlan> PrepareToWrite(IEnumerable<AgentPlan> plans, Dictionary<string, string> idcnv = null)
+      {
+         DateTime planDate = PlanDate;
+         SimpleDataSet<AgentPlan> aps = new SimpleDataSet<AgentPlan>(AgentPlan.OBJECT_NAME, false);
+         foreach (AgentPlan api in plans)
+         {
+            AgentPlan dst = new AgentPlan();
+            dst.begin = planDate;
+            dst.userid = api.userid;
+            foreach (AgentPlan.Item pi in api.items)
+            {
+               if (idcnv != null)
+                  pi.id = idcnv[pi.id];
+               if (!pi.Empty)
+                  dst.items.Add(pi);
+            }
+            if (dst.items.Count > 0)
+               aps.Add(dst);
+         }
+
+         return aps;
+      }
+
+      bool SaveChanges(bool showDialog)
+      {
+         DateTime planDate = PlanDate;
+         if(!dgvPlans.EndEdit())
+         {
+            dgvPlans.CancelEdit();
+         }
+         //if (!dgvPlans.CommitEdit(DataGridViewDataErrorContexts.Commit))
+         //{
+         //}
+
+         SimpleDataSet<AgentPlan> aps = PrepareToWrite(changedPlans.Values);
+         List<IDataSet> wr = new List<IDataSet>();
+         wr.Add(aps);
+
+         bool ret = DataModule.UpdateDataSet(wr, null, null, Config.GetConfig().GetConnection());
+
+         if (showDialog)
+         {
+            MessageBox.Show(ret ? "Изменения сохранены" : "Ошибка при записи изменений");
+         }
+
+         if (ret)
+            ClearDirty();
          return ret;
       }
 
       private void tbSave_Click(object sender, EventArgs e)
       {
-         SaveData();
+         SaveChanges(true);
       }
 
       private void tbRefresh_Click(object sender, EventArgs e)
       {
-         LoadData(dtPlanDate.Value.Date);
+         if (!CheckChanges())
+            return;
+
+         RefreshData(); 
       }
 
-      private void tbReport_Click(object sender, EventArgs e)
+      private void tsbEditPlan_Click(object sender, EventArgs e)
       {
-         FmAgentPlanReport rep = new FmAgentPlanReport();
-         rep.ShowDialog();
-      }
-   }
-
-   class PlanItem : IComparable<PlanItem>
-   {
-      public Agent agent;
-      double plan1, plan2;
-      double fact1, fact2;
-      double predict1, predict2;
-      DateTime begin;
-
-      public PlanItem(Agent agent, DateTime begin)
-      {
-         this.agent = agent;
-         this.begin = begin;
-      }
-
-      public void FillAgentPlans(Agent a, ICollection planData, OrderData factData)
-      {
-         LoadPlan(a, planData);
-         if (factData != null)
+         DateTime pd = dtPlanDate.Value;
+         FmPlanEditor form = new FmPlanEditor();
+         form.PlanDate = pd;
+         if(form.ShowDialog() == DialogResult.OK)
          {
-            fact1 = factData.fact1;
-            fact2 = factData.fact2;
+            plan = form.Plan;
+            RefreshPlan();
          }
       }
 
-      public DateTime Begin { get { return begin; } }
+      public bool IsPlanChanged(AgentEx a) { return changedPlans.ContainsKey(a); }
 
-      void LoadPlan(Agent a, ICollection planData)
+      private void cbDivisions_SelectedIndexChanged(object sender, EventArgs e)
       {
-         foreach (AgentPlan p in planData)
+         Division d = cbDivisions.SelectedItem as Division;
+         if(d != null)
          {
-            if (p.userid.CompareTo(a.id) == 0 && p.begin.CompareTo(begin) == 0)
+            List<AgentEx> src = new List<AgentEx>();
+            foreach(Division.DivisionAgent da in d.agents)
             {
-               foreach (AgentPlanItem pi in p.items)
+               if (da.agent != null)
                {
-                  if (pi.id.StartsWith(AgentPlan.PLAN1_TAG))
-                     plan1 = pi.value;
-                  else if (pi.id.StartsWith(AgentPlan.PLAN2_TAG))
-                     plan2 = pi.value;
+                  AgentEx a = new AgentEx(da.agent, this);
+                  src.Add(a);
                }
+            }
+            src.Sort();
+            cbAgents.Items.Clear();
+            cbAgents.Items.AddRange(src.ToArray());
+            if (cbAgents.Items.Count > 0)
+               cbAgents.SelectedIndex = 0;
+         }
+      }
+
+      private void cbAgents_SelectedIndexChanged(object sender, EventArgs e)
+      {
+         RefreshPlan();
+      }
+
+      AgentPlan GeteAgentPlan(AgentEx a)
+      {
+         AgentPlan cplan = null;
+         foreach (AgentPlan ap in agentPlans)
+         {
+            if (ap.userid == a.ID)
+            {
+               cplan = ap;
                break;
             }
          }
+         if (cplan == null)
+         {
+            cplan = new AgentPlan();
+            cplan.begin = PlanDate;
+            cplan.userid = a.ID;
+            agentPlans.Add(cplan);
+         }
+
+         return cplan;
       }
 
-      public void FillAgentPlans(Agent a, ICollection planData, ICollection orderData, DataSet<string, Price> price)
-      {
-         LoadPlan(a, planData);
+      DateTime PlanDate { get { return new DateTime(dtPlanDate.Value.Year, dtPlanDate.Value.Month, 1); } }
 
-         fact1 = 0;
-         fact2 = 0;
-         foreach (Order order in orderData)
+      void RefreshPlan()
+      {
+         List<DataItem> src = new List<DataItem>();
+         AgentEx a = cbAgents.SelectedItem as AgentEx;
+
+         AgentPlan cplan = GeteAgentPlan(a);
+
+         Dictionary<string, AgentPlan.Item> dict = new Dictionary<string, AgentPlan.Item>();
+         foreach(AgentPlan.Item pi in cplan.items)
          {
-            if (order.AgentID.CompareTo(a.id) == 0)
+            dict[pi.id] = pi;
+         }
+
+         plan.plans.Sort();
+         foreach(IshimPlan.PlanItem cpi in plan.plans)
+         {
+            DataItem di = new DataItem();
+            di.owner = this;
+            di.plan = cpi;
+
+            AgentPlan.Item api;
+            if(!dict.TryGetValue(cpi.id, out api))
             {
-               double f1 = 0, f2 = 0;
-               foreach (OrderItem oi in order.items)
-               {
-                  if (price.ContainsKey(oi.id))
-                  {
-                     double weight = price[oi.id].weight * oi.qty;
-                     if (oi.id.StartsWith(AgentPlan.PLAN1_TAG))
-                        f1 += weight;
-                     else if (oi.id.StartsWith(AgentPlan.PLAN2_TAG))
-                        f2 += weight;
-                  }
-               }
-
-               fact1 += f1/1000;
-               fact2 += f2/1000;
+               api = new AgentPlan.Item();
+               api.id = cpi.id;
+               cplan.items.Add(api);
             }
-         }
-
-         if (DateTime.Now.Month == begin.Month && DateTime.Now.Year == begin.Year)
-         {
-            DateTime lastMontDate = (new DateTime(begin.Year, begin.Month, 1)).AddMonths(1).AddDays(-1);
-            CalcPredict(DateTime.Now.Day, lastMontDate.Day);
-         }
-      }
-
-      public void CalcPredict(int curDate, int lastDate)
-      {
-         predict1 = fact1 * lastDate / curDate;
-         predict2 = fact2 * lastDate / curDate;
-      }
-
-      public string Name { get { return agent.Name; } }
-
-      public event EventHandler changed;
-
-      public double Plan1
-      {
-         get { return plan1; }
-         set
-         {
-            plan1 = value;
-            if (changed != null)
-               changed.Invoke(this, EventArgs.Empty);
-         }
-      }
-
-      public double Plan2
-      {
-         get { return plan2; }
-         set
-         {
-            plan2 = value;
-            if (changed != null)
-               changed.Invoke(this, EventArgs.Empty);
-         }
-      }
-
-      public string Fact1
-      {
-         get
-         {
-            if( predict1 == 0 )
-               return String.Format("{0:N3}", fact1);
-
-            return String.Format("{0:N3} / {1:N3}",  fact1, predict1);
-         }
-      }
-
-      public string Fact2
-      {
-         get
-         {
-            if (predict2 == 0)
-               return String.Format("{0:N3}", fact2);
-
-            return String.Format("{0:N3} / {1:N3}", fact2, predict2);
-         }
-      }
-
-      #region Члены IComparable<PlanItem>
-
-      public int CompareTo(PlanItem other)
-      {
-         return Name.CompareTo(other.Name);
-      }
-
-      #endregion
-   }
-
-   class OrderData
-   {
-      public double fact1;
-      public double fact2;
-
-      internal void Add(Order order, DataSet<string, Price> price)
-      {
-         double f1 = 0, f2 = 0;
-         foreach (OrderItem oi in order.items)
-         {
-            if (price.ContainsKey(oi.id))
+            else
             {
-               double weight = price[oi.id].weight * oi.qty;
-               if (oi.id.StartsWith(AgentPlan.PLAN1_TAG))
-                  f1 += weight;
-               else if (oi.id.StartsWith(AgentPlan.PLAN2_TAG))
-                  f2 += weight;
+               dict.Remove(cpi.id);
             }
+            di.agent = api;
+
+            src.Add(di);
          }
 
-         fact1 += f1 / 1000;
-         fact2 += f2 / 1000;
+         foreach(KeyValuePair<string, AgentPlan.Item> kv in dict)
+         {
+            cplan.items.Remove(kv.Value);
+         }
+
+         dgvPlans.DataSource = src;
       }
-   }
 
-   class AgentPlanItem : GRSoft.Network.DataObject
-   {
-      public string id;
-      public double value;
-   }
+      public class AgentEx : IComparable<AgentEx>
+      {
+         FmAgentPlans owner;
+         Agent agent;
 
-   class AgentPlan : GRSoft.Network.DataObject
-   {
-      public static readonly string OBJECT_NAME = "AgentPlan";
-      public string userid = "";
+         public AgentEx(Agent a, FmAgentPlans owner) { this.agent = a; this.owner = owner; }
 
-      public static readonly string PLAN1_TAG = "1\t";
-      public static readonly string PLAN2_TAG = "2\t";
+         public override string ToString()
+         {
+            return owner.IsPlanChanged(this) ? "* " + agent.name : agent.name;
+         }
 
-      [Reference("Agents", "userid")]
-      public Agent agent = null;
+         public int CompareTo(AgentEx other)
+         {
+            return agent.CompareTo(other.agent);
+         }
 
-      public DateTime begin = DateTime.MinValue;
-      public DateTime end = DateTime.MinValue;
+         public string ID {  get { return agent.id; } }
+      }
+       
+      class DataItem
+      {
+         public FmAgentPlans owner;
 
-      [ItemType(typeof(AgentPlanItem))]
-      public List<AgentPlanItem> items = null;
+         public IshimPlan.PlanItem plan;
+         public AgentPlan.Item agent;
+
+         public string Name { get { return plan.name; } }
+         public double Weight { get { return agent.weight; } set { agent.weight = value; owner.SetDirty(); } }
+         public int AKB { get { return agent.akb; } set { agent.akb = value; owner.SetDirty(); } }
+      }
+
+      private void dtPlanDate_ValueChanged(object sender, EventArgs e)
+      {
+         if (lastPlanDate != PlanDate)
+         {
+            lastPlanDate = PlanDate;
+            RefreshData();
+         }
+      }
+
+      private void dgvPlans_DataError(object sender, DataGridViewDataErrorEventArgs e)
+      {
+      }
    }
 }

@@ -1,4 +1,5 @@
 # -*- coding: cp1251 -*-
+from importlib import reload
 import logging
 
 from grsoft.xl_base import XLBuilder
@@ -12,7 +13,7 @@ import datetime
 
 import sys;
 reload(sys);
-sys.setdefaultencoding("cp1251")
+#sys.setdefaultencoding("cp1251")
 
 class Item:
     __slots__ = ['userid', 'username', 'org_in_route', 'visit_in_route', 'visit_out_route', 'order_count', 'order_in_route' 'sum', 'start', 'finish']
@@ -65,8 +66,8 @@ def loadData(params, server):
       item.username = server.CurrentUser().name
       server.RestoreUser()
       
-      where = '"userid"="{0}" and "created" >= ToDate("{1}") and "created" <= ToDate("{2}")'.format(
-          a.id,
+      where = '"userid"={0} and "created" >= ToDate("{1}") and "created" <= ToDate("{2}")'.format(
+          "'"+a.id+"'",
           params.date.strftime("%d/%m/%Y 0:0:0"),
           params.date.strftime("%d/%m/%Y 23:59:59"))
 
@@ -140,7 +141,7 @@ def loadData(params, server):
       
       data.data.append(item)
       
-    data.data = sorted(data.data, cmp=lambda lhs, rhs: cmp(lhs.username, rhs.username))
+    data.data = sorted(data.data, cmp=lambda lhs: lhs.username)
     
     return data
     

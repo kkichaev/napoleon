@@ -41,6 +41,7 @@ import com.grsoft.dataobjects.ConfigHelper;
 import com.grsoft.dataobjects.Order;
 import com.grsoft.dataobjects.Org;
 import com.grsoft.dataobjects.OrgAddress;
+import com.grsoft.dataobjects.OrgEx;
 import com.grsoft.dataobjects.impl.ConfigImpl;
 import com.grsoft.dataobjects.impl.OrderImpl;
 import com.grsoft.dataobjects.impl.OrderImplEx;
@@ -104,7 +105,7 @@ public class CreateOrder extends BaseActivity
 		oi.read();
 		oi.close();
 
-		Org org = oi.getData();
+		OrgEx org = (OrgEx) oi.getData();
 		String ret = org.name;
 		if(Features.SHOW_ORG_ADDRESS && org.address.length() > 0 ) {
 			ret += "<br><i>" + org.address + "</i>";
@@ -113,6 +114,8 @@ public class CreateOrder extends BaseActivity
 
 		if( !editMode )
 			initOrder(o, org);
+
+		((TextView)findViewById(R.id.tvDelay)).setText(Integer.toString(o.delay) + " дн.");
 
 		ConfigImpl config = new ConfigImpl();
 		
@@ -139,31 +142,6 @@ public class CreateOrder extends BaseActivity
 
 		config.close();
 
-		if( Features.DELIVERY_ADDRESS ) {
-			View v = findViewById(R.id.ftrAddress);
-			if( v != null ) {
-				Spinner spAddress = (Spinner) findViewById(R.id.spAddress);
-				if( spAddress != null ) {
-					v.setVisibility(View.VISIBLE);
-					ArrayList<KeyValue> addresses = new ArrayList<KeyValue>();
-					int selected = -1;
-					for(OrgAddress addr : oi.getData().orgAddress) {
-						KeyValue kv = new KeyValue(addr.id, addr.name);
-						if( kv.key.toString().equals(o.adrCode))
-							selected = addresses.size();
-						addresses.add(kv);
-					}
-					ArrayAdapter<KeyValue> aa = new ArrayAdapter<KeyValue>(this, R.layout.simple_spinner_layout, addresses);
-					spAddress.setAdapter(aa);
-					if( selected >= 0 && selected < spAddress.getCount())
-						spAddress.setSelection(selected);
-				}
-			}
-		}
-		
-		TextView tvDelay = (TextView) findViewById(R.id.tvDelay); 
-		tvDelay.setOnClickListener(new DelayClickListener());
-		
 		EditText remark = (EditText)findViewById(R.id.edCreateOrderNotes);
 		remark.setText(o.remark);
 
@@ -190,7 +168,7 @@ public class CreateOrder extends BaseActivity
 		btnOK.setOnClickListener(new OKClickListener());
 
         findViewById(R.id.btnCancel).setOnClickListener(new CancelClickListener());
-        updateDisplayDelay();
+
 		refreshDate();
 	}
 
@@ -214,12 +192,13 @@ public class CreateOrder extends BaseActivity
 	 * инициализаци€ дополнительных полей за€вки (индивидуально дл€ проекта)
 	 * @param o
 	 */
-	private void initOrder(Order o, Org org) {
+	private void initOrder(Order o, OrgEx org) {
 		if(deliveryFlag != 0 && (deliveryFlag & 0x7f) < 0x7f) {
 			return;
 		}
 		//o.sumType = org.costype;
 		o.prcType = org.prcType;
+		o.delay = org.delay;
 		
 		switch(ConfigHelper.getDateType()){
 		case workday:
@@ -276,13 +255,6 @@ public class CreateOrder extends BaseActivity
 		o.date = c.getTime();
 	}
 
-	private void updateDisplayDelay() {
-		String text =  "отсрочка: " + order.getData().delay;
-		SpannableString ss = new SpannableString(text);
-		ss.setSpan(new UnderlineSpan(), 0, text.length(), 0);
-		((TextView)findViewById(R.id.tvDelay)).setText(ss);
-	}
-
 	@Override
 	protected Dialog onCreateDialog(int id) {
 		switch(id) {
@@ -299,76 +271,7 @@ public class CreateOrder extends BaseActivity
 		order.close();
 		super.onStop();
 	}
-	
-	class DelayClickListener implements OnClickListener {
 
-		@Override
-		public void onClick(View v) {
-			AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
-			builder.setTitle("ќтсрочка");
-			View dialogView = View.inflate(v.getContext(), R.layout.counter, null);
-			
-			builder.setView(dialogView);
-			final AlertDialog dialog = builder.create();
-
-			Button btnCounterUp = (Button) dialogView.findViewById(R.id.btnCounterUp);
-			Button btnCounterDown = (Button) dialogView.findViewById(R.id.btnCounterDown);
-			Button btnCounterOK = (Button) dialogView.findViewById(R.id.btnCounterOk);
-			Button btnCounterCancel = (Button) dialogView.findViewById(R.id.btnCounterCancel);
-			final  TextView  tvCounter = (TextView) dialogView.findViewById(R.id.edCounter);
-			tvCounter.setText(Integer.toString(order.getData().delay));
-			tvCounter.setFocusable(false);
-			
-			btnCounterUp.setOnClickListener(new OnClickListenerToNotify() {
-				
-				@Override
-				public void onClick(View v) {
-					super.onClick(v);
-					int val = Integer.parseInt(tvCounter.getText().toString());
-					++val;
-					tvCounter.setText(Integer.toString(val));
-				}
-			});
-
-			btnCounterOK.setOnClickListener((x)->{});
-
-			btnCounterDown.setOnClickListener(new OnClickListenerToNotify() {
-				@Override
-				public void onClick(View v) {
-					super.onClick(v);
-					int val = Integer.parseInt(tvCounter.getText().toString());
-					
-					if (val > 0)
-						--val;
-					
-					tvCounter.setText(Integer.toString(val));
-				}
-			});
-			
-			btnCounterOK.setOnClickListener(new OnClickListenerToNotify() {
-				
-				@Override
-				public void onClick(View v) {
-					super.onClick(v);
-					order.getData().delay = Integer.parseInt(tvCounter.getText().toString());
-					updateDisplayDelay();
-					dialog.hide();
-				}
-			});
-			
-			btnCounterCancel.setOnClickListener(new OnClickListenerToNotify() {
-				
-				@Override
-				public void onClick(View v) {
-					super.onClick(v);
-					dialog.hide();
-				}
-			});
-		
-			dialog.show();
-		}
-	}
-	
 	class CancelClickListener extends OnClickListenerToNotify {
 		@Override
 		public void onClick(View v) {
@@ -441,14 +344,6 @@ public class CreateOrder extends BaseActivity
 			EditText remark = (EditText)findViewById(R.id.edCreateOrderNotes);
 			o.remark = remark.getText().toString();
 			
-			if( Features.DELIVERY_ADDRESS ) {
-				Spinner spAddress = (Spinner) findViewById(R.id.spAddress);
-				if( spAddress != null ) {
-					KeyValue sel = (KeyValue) spAddress.getSelectedItem();
-					if( sel != null )
-						o.adrCode = sel.key.toString();
-				}
-			}
 			if (refreshOrderSum)
 				order.refreshSum();
 			order.write();

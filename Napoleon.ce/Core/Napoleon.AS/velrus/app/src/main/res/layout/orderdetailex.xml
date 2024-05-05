@@ -97,7 +97,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/order_to_target_price"
-                    android:textColor="#FF0000"></Button>
+                    android:textColor="#FF0000"/>
 
 
             </LinearLayout>
@@ -137,17 +137,18 @@
             style="?footerButton" />
 
         <ImageButton
-            android:id="@+id/btnSend"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/send"
-            style="?footerButton"  />
-
-        <ImageButton
+            android:visibility="gone"
             android:id="@+id/btnAction"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/bonus"
+            style="?footerButton"  />
+
+        <ImageButton
+            android:id="@+id/btnSend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/send"
             style="?footerButton"  />
 
         <TextView

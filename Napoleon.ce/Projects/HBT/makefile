@@ -1,7 +1,7 @@
 export
 
-Variant = Himbytorg
-# Variant = HBTLipezk
+#Variant = Himbytorg
+Variant = HBTLipezk
 #Variant = HBTKaluga
 
 ifeq ($(Variant),)

@@ -25,6 +25,14 @@ namespace GRSoft.NapoleonManager
          dsScriptDef.Filter = "\"userid\" is null or not \"userid\" is null";
          afterEdit = new FmScriptEdit.PostProcess(delegate(int id) { selectedScriptId = id; btnRefresh_Click(null, null); });
          dgvSrcipts.AutoGenerateColumns = false;
+
+         Manager dm = CurrentUser.user as Manager;
+         if (!dm.HaveRight(RightTokens.Get("ScriptDef"), RightActions.Write))
+         {
+            tsLabel.Text = "Редактирование запрещено";
+            btnAdd.Enabled = false;
+            btnDel.Enabled = false;
+         }
       }
 
       protected override void OnLoad(EventArgs e)

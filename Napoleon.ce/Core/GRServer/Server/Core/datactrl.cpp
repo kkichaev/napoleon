@@ -251,6 +251,9 @@ bool DataController::GetDivisionManager(User** user, std::wstring* message, cons
 						else
 							(*user)->AssignRootDivision(login, duration, (const std::wstring&)*mver->str);
                   (*user)->SetLicense(L"monitor");
+                  std::wstring filter(L"\"NBTLViewer$id\"='");
+                  filter.append(login).append(L"'");
+                  (*user)->LoadRights(L"NBTLViewer$rights\"", filter);
 					}
 				}
 			}

@@ -99,7 +99,7 @@
          // 
          // openFileDialog1
          // 
-         this.openFileDialog1.Filter = "Excel files|*.xls";
+         this.openFileDialog1.Filter = "Excel files|*.xlsx";
          // 
          // FmOrgLoad
          // 

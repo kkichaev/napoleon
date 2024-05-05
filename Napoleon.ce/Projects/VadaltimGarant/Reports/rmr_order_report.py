@@ -9,6 +9,7 @@ from openpyxl.cell import get_column_letter
 from openpyxl.style import Fill, Color, Alignment, NumberFormat, Border
 from datetime import datetime, date, timedelta
 from rmr_report_style import XLBuilderCommon
+from orgmap import OrgMap
 
 reload(sys);
 #sys.setdefaultencoding("cp1251")
@@ -71,26 +72,13 @@ class PriceItem(Item):
   def __init__(self):
     Item.__init__(self)
 
-def getUsersOrgs(server, userids):
-  orgs = None
+def filterDocsOrgs(server, docs):
+  map = {}
+  orgMap = OrgMap(server)
   
-  for item in userids:
-    server.ChangeUser(item.id)
-    aorgs = server.Get("Org", '', 'id')
-    server.RestoreUser()  
-    
-    if orgs == None:
-      orgs = aorgs
-    else:
-      orgs.update(aorgs)
-  
-  return orgs
-
-def filterDocsOrgs(orgs, docs):
-  map = dict()
   for d in docs:
-    if not d.id in map and d.id in orgs:
-      map[d.id] = orgs[d.id]
+    o = orgMap.getOrg(d.id, d.userid)
+    map[d.id] = o
   
   return map
   
@@ -106,8 +94,7 @@ def cellIdxOrgs(map):
   return cellidx
     
 def collectOrgs(server, userids, docs):
-  orgs = getUsersOrgs(server, userids)
-  map = filterDocsOrgs(orgs, docs)
+  map = filterDocsOrgs(server, docs)
   cellidx = cellIdxOrgs(map)
     
   return map, cellidx  
@@ -141,7 +128,7 @@ def loadData(params, server):
     unpack(params.userids))
   
   ord = server.Get('Order', where)
-  price = server.Get('Price', '', 'id')
+  price = server.Get('Price', 'setqtyfilter(false)', 'id')
   folder = server.Get('Folder', '', 'fid')
   
   r.orgs, r.cellidx = collectOrgs(server, params.userids, ord)

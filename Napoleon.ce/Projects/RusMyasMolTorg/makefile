@@ -2,8 +2,8 @@ export
 
 #Variant=RusMyasMolTorg
 #Variant=RMMTSahalin
-#Variant=RMMT_VV
-Variant=RMMT_Us
+Variant=RMMT_VV
+#Variant=RMMT_Us
 
 include make.vars 
 

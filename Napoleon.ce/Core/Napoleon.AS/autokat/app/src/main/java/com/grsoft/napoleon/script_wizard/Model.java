@@ -124,6 +124,11 @@ public class Model extends ViewModel {
         return docs == null || curStep.getValue() == docs.length - 1;
     }
 
+    public String getStepTitle() {
+        int ci = curStep.getValue();
+        return scriptDef != null && ci < scriptDef.items.size() ? scriptDef.items.get(ci).name : "";
+    }
+
     /**
      * ¬озвращает документ. ≈сли документа нет, он создаетс€ и инициализируетс€, но не записываетс€
      * @param context

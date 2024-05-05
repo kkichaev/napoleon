@@ -1,11 +1,13 @@
 from functools import wraps
 import traceback
 from typing import Self
-from flask import current_app, jsonify, request
+from flask import current_app, jsonify, render_template, request
+from flask_babel import gettext as _, force_locale, format_number
 
 from flask_login import current_user, login_required
 from app import db
 from app.api import api
+from app.email import send_email
 from app.auth.models import User, Account
 from app.api.error import bad_request, good_response
 from datetime import datetime, timezone
@@ -38,7 +40,7 @@ def strToTimestamp(src:str) -> int:
 
 def nowTimestamp(notime:bool = True) -> int:
     dt = datetime.combine(datetime.now().date(), datetime.min.time())  if notime else datetime.now()
-    return dt.replace(tzinfo=timezone.utc).timestamp()
+    return int(dt.replace(tzinfo=timezone.utc).timestamp())
 
 def timestampToDate(ts:int) -> datetime:
     return datetime.fromtimestamp(ts, tz=timezone.utc)
@@ -251,7 +253,7 @@ class AccPayments(db.Model):
 
     bonusid = db.Column(db.Integer)
 
-    # id плательщика (null или код партнера)
+    # id плательщика (null или код партнера user.id)
     payerid = db.Column(db.Integer)
 
     @staticmethod
@@ -363,22 +365,25 @@ class ServerWorkData:
         self.data : dict[str, dict[int:ServerWorkData.Data]] = {}
 
         uri = '/call/docs_summary'
-        servdata = {"start":start.strftime("%Y%m%d"), "finish":finish.strftime("%Y%m%d")}
+        param = {"start":start.strftime("%Y%m%d"), "finish":finish.strftime("%Y%m%d")}
         fcgm = FCGIManager.get()
         for si in servers:
-            res = fcgm.send_to_server(si, uri, method='POST', post_data=servdata)
+            servdata = {}
+            self.data[si] = servdata
+
+            res = fcgm.send_to_server(si, uri, method='POST', post_data=param, no_wakeup = True)
             answ, data = get_result_data(res)
             if not answ.ok:
-                print('ServerWokData load err ', answ.message)
+                print('No server ' + si + ' ' + answ.message)
+                continue
             
             docs = data.get_list('RepData') if data else []
-            servdata = {}
             if docs:
+                # print('Server ', si, ' serverWokrData len',len(docs))
                 for di in docs:
                     date = datetime.strptime(di['day'], '%Y%m%d%H%M%S')
                     day = date.replace(tzinfo=timezone.utc).timestamp()
                     servdata[day] = ServerWorkData.Data(di)
-            self.data[si] = servdata
 
     def get(self, serverid:str, day:int) -> Data:
         if serverid in self.data:
@@ -483,11 +488,74 @@ class Balance(db.Model):
 
         # update balance on server
         fcgm = FCGIManager.get()
-        blocked = [] if cbalance.sum >= 0 else [user.id]
-        for si in servers:
-            fcgm.send_to_manager('connection_info', {'code':si, 'blocked':blocked})
+        blocked = 0 if cbalance.sum >= 0 else 1
+        fcgm.send_to_manager('set_blocked', {'blocked':blocked, 'userid':user.id})
 
         return cbalance
+    
+    @staticmethod
+    def check_balance():
+        now_time = nowTimestamp()
+        seven_days = now_time - 3600 * 24 * 7
+        one_day = now_time - 3600 * 24
+
+        serv_stat = select(func.sum(ServerStat.expense).label('expense'), ServerStat.acctarifid) \
+            .filter(ServerStat.date > seven_days) \
+            .group_by(ServerStat.acctarifid)
+        # alert only if user work today
+        serv_one_stat = select(func.sum(ServerStat.expense).label('expense1'), ServerStat.acctarifid) \
+            .filter(ServerStat.date >= one_day) \
+            .group_by(ServerStat.acctarifid) 
+        users = select(
+            User.email, User.name, User.id.label('userid'), Account.currency, Account.locale,
+                Account.id.label('accountid'), AccTarif.id.label('at_id')) \
+                .filter(User.id == Account.userid, Account.id == AccTarif.accountid)
+        balance = select(Balance.sum, Balance.accountid).filter(Balance.date > now_time)
+        stmt = select(serv_stat.c.expense, users.c.email, users.c.name, users.c.locale, users.c.currency, users.c.userid, balance.c.sum) \
+            .filter(serv_stat.c.acctarifid == users.c.at_id, \
+                    balance.c.accountid == users.c.accountid, \
+                    serv_one_stat.c.acctarifid == users.c.at_id, \
+                    serv_one_stat.c.expense1 > 0)
+        stmt = stmt.filter(serv_stat.c.expense >= balance.c.sum)
+        print(':date1', seven_days, ':date2', one_day, ':date3', now_time)
+        print('stmt',stmt)
+        # return
+    
+        have_alerts = False
+        info_text = 'Balance alerts\n'
+        for el in db.session.execute(stmt).all():
+            expense = el._mapping['expense']
+            email = el._mapping['email']
+            name = el._mapping['name']
+            currency = el._mapping['currency']
+            userid = el._mapping['userid']
+            sum = el._mapping['sum']
+            locale = el._mapping['locale'] or 'ru'
+
+            have_alerts = True
+
+            info_text += f"Email: {email}, User: {name}, currency: {currency}, week expence: {expense}, balance: {sum}\n"
+
+            with force_locale(locale):
+                body = render_template('api/balance_alert.txt', name=name, sum=format_number(sum))
+                title = _('AceTeam Balance Alert')
+
+                send_email(title
+                           ,[email]
+                           ,text_body=body
+                           ,html_body=''
+                )
+                # print(body)
+
+        # print(info_text)
+        if have_alerts:
+            info_addr = 'info@grsoft.ru'
+            send_email('Balance alert'
+                ,[info_addr]
+                ,text_body=info_text
+                ,html_body=''
+            )
+
 
 class ServerStat(db.Model):
     __tablename__ = 'server_stats'
@@ -559,10 +627,15 @@ class ServerStat(db.Model):
 
                 if not tarifs:tarifs = TarifData(a.currency)
                 serverdata = ServerWorkData([serverid], cdate, finish)
+                # if len(serverdata.data) > 0: print(serverdata.data)
 
                 while date <= finishVal:
                     sdata = serverdata.get(serverid, date)
+                    # if len(serverdata.data) > 0 and sdata == None:
+                    #     print(date, serverdata.data)
+                    #     break
                     if sdata:
+                        # print('get stat')
                         atrf = acctarifs.get(serverid, date)
                         
                         if tarif.id != atrf.tarifid:

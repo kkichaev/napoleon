@@ -20,8 +20,6 @@ import com.grsoft.napoleon.documents.OrderDoc;
 import com.grsoft.napoleon.documents.WSOrderDoc;
 import com.grsoft.napoleon.modules.print.BaseDataSource;
 import com.grsoft.napoleon.modules.print.DataSource;
-import com.grsoft.napoleon.util.CfgNplW;
-import com.grsoft.napoleon.util.ConfigManager;
 import com.grsoft.types.Scale;
 import com.grsoft.util.Consts;
 import com.grsoft.util.ExtrasConst;
@@ -47,11 +45,6 @@ public class WSOrderDetail extends OrderDetail {
 			@Override public void onClick(View v) { print(); }
 		});
 	};
-	
-	@Override
-	protected void updateTotalSum(){
-		updateTotalSum(doc.sum(), doc.weight(), doc.countPack());
-	}
 	
 	@Override
 	protected Dialog onCreateDialog(int id) {

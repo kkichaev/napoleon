@@ -10,7 +10,7 @@ public class BarcodeData {
 
     public String checkItemCode = "";
 
-    public String incomeCode = "";
+//    public String incomeCode = "";
 
     public BarcodeData(String _bc) {
         String bc = _bc;
@@ -27,18 +27,20 @@ public class BarcodeData {
                 int idx = bc.indexOf("8005");
                 if(idx > 0 && bc.length() >= idx + 10) {
                     String costCode = bc.substring(idx + 4, idx + 10);
-                    incomeCode = itemBC + costCode;
+//                    incomeCode = itemBC + costCode;
                     cost = Integer.parseInt(costCode);
                 } else {
-                    idx = bc.indexOf("240");
-                    if(idx > 0) {
+                    idx = bc.indexOf("240", 16);
+                    if(idx > 0 && bc.length() >= idx + 11) {
                         String boxCode = bc.substring(idx + 3, idx + 11);
-                        incomeCode = itemBC + boxCode;
-                        itemBC = incomeCode;
+                        // 240 may appear in other places< so we check if itemBC doesn't match
+                        checkItemCode = itemBC;
+                        itemBC += boxCode;
                         isBox = true;
                     } else {
                         if(haveBlockData(bc, "21") && haveBlockData(bc, "93")) {
 //                            isBox = true;
+                            mayByBoxed = true; // для выбора между сигариллами и коробками без указания серий
                         } else {
                             isItemCode = true;
                             mayByBoxed = true; // для выбора между сигариллами и коробками без указания серий

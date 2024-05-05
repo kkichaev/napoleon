@@ -36,8 +36,8 @@ public class CostStrategyEx extends CostStrategy {
 	}
 
 	@Override
-	public int getCostInt(Price p, Document<?> doc, int sumType) {
-		int cost = super.getCostInt(p, doc, sumType);
+	public long getCostInt(Price p, Document<?> doc, int sumType) {
+		long cost = super.getCostInt(p, doc, sumType);
 		if( ((PriceEx)p).noDiscount != 1 && doc != null) {
 			boolean updated = false;
 			refreshCach(doc.getId());
@@ -54,6 +54,13 @@ public class CostStrategyEx extends CostStrategy {
 			}			
 			if( !updated )
 				cost = costWithDiscount(cost, org.discount, Consts.SUM_SCALE);
+
+			for(OrgDiscountItem odi : org.priceDsc) {
+				if(odi.id.equals(p.id)) {
+					cost = costWithDiscount(cost, odi.discount, Consts.SUM_SCALE);
+					break;
+				}
+			}
 		}
 		return cost;
 	}

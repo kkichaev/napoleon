@@ -89,6 +89,19 @@
         <field name="ido" type="string" />
       </add>
     </modify>
+
+    <modify src="Delivery">
+      <change>
+        <sources>
+          <source name="DBFTableSet">
+            <param name="userTable">"DLV"</param>
+            <param name="commonTable">"DELIVERY"</param>
+            <param name="catalog">"number,id;items;1"</param>
+            <param name="filter">"[id] in $Org.ido"</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
   </objects>
 
   <actions>

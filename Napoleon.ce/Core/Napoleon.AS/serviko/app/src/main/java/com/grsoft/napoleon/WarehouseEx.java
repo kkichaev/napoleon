@@ -24,12 +24,14 @@ import com.grsoft.napoleon.documents.Document;
 import com.grsoft.util.Consts;
 import com.grsoft.util.Filter;
 import com.grsoft.util.FoldersAdapter;
+import com.grsoft.util.PriceComparer;
 import com.grsoft.util.Util;
 import com.grsoft.util.WarehouseManager;
 import com.grsoft.util.ZeroPositionFilter;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.MenuItem;
@@ -72,8 +74,27 @@ public class WarehouseEx extends Warehouse {
 		if (item.getItemId() == R.id.itColorFilter) {
 			doColorFilter();
 			return true;
-		}else
+		} else if (item.getItemId() == R.id.itSort) {
+			sortDialog();
+			return true;
+		} else
 			return super.onOptionsItemSelected(item);
+	}
+
+	void sortDialog() {
+		AlertDialog.Builder b = new AlertDialog.Builder(this);
+		b.setTitle("Варианты сортировки");
+		String[] vals = new String[] {
+			"По продажам", "По алфавиту"
+		};
+		int sel = ((PriceComparer)FoldersAdapter.TreeNodeComparator).getSortByName() ? 1 : 0;
+		b.setSingleChoiceItems(vals, sel, (dialog, which) -> {
+			((PriceComparer)FoldersAdapter.TreeNodeComparator).setSortByName(which == 1, WarehouseEx.this);
+			sortingPriceList(adapter.getRootNode().getChilds());
+			adapter.notifyDataSetChanged();
+			dialog.dismiss();
+		});
+		b.create().show();
 	}
 
 	private void doColorFilter() {
@@ -271,6 +292,12 @@ public class WarehouseEx extends Warehouse {
 //		}
 	}
 
+	@Override
+	protected void readDocument() {
+		super.readDocument();
+		((PriceComparer)FoldersAdapter.TreeNodeComparator).setDocument(document instanceof OrderImplEx ? (OrderImplEx) document : null);
+	}
+
 	private void filterAction(View view) {
 		if (adapter.getFilter(ActionFilterName) == null) {
 			showDialog(R.id.action_filter_dlg);
@@ -279,6 +306,12 @@ public class WarehouseEx extends Warehouse {
 			selectedActions.clear();
 			adapter.buildSet();
 		}
+	}
+
+	@Override
+	protected void onStop() {
+		super.onStop();
+		((PriceComparer)FoldersAdapter.TreeNodeComparator).setDocument(null);
 	}
 
 	@Override protected int getItemLayoutId() { return R.layout.priceitemrowex; }

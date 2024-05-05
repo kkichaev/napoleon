@@ -161,6 +161,56 @@
                         tools:ignore="HardcodedText"
                         android:textSize="@dimen/label_text_sz"/>
                 </TableRow>
+
+                <TableRow
+                    android:visibility="gone"
+                    android:id="@+id/trDiscount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="12dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/discount"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/label_text_sz"/>
+
+                    <TextView
+                        android:id="@+id/tvDiscount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:text="TextView"
+                        android:textColor="@color/blue"
+                        tools:ignore="HardcodedText"
+                        android:textSize="@dimen/label_text_sz"/>
+                </TableRow>
+
+                <TableRow
+                    android:visibility="gone"
+                    android:id="@+id/trMinCost"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="12dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/minCost"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/label_text_sz"/>
+
+                    <TextView
+                        android:id="@+id/tvMinCost"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:text="TextView"
+                        android:textColor="@color/black"
+                        tools:ignore="HardcodedText"
+                        android:textSize="@dimen/label_text_sz"/>
+                </TableRow>
             </TableLayout>
 
             <TableLayout

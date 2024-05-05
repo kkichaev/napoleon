@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-07-27 13:36+0400\n"
+"POT-Creation-Date: 2024-02-09 18:49+0300\n"
 "PO-Revision-Date: 2023-01-06 14:04+0400\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ru\n"
@@ -19,6 +19,18 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.11.0\n"
 
+#: app/api/balance.py:529
+msgid "AceTeam Balance Alert"
+msgstr "AceTeam предупреждение о балансе"
+
+#: app/api/bills.py:35
+msgid "add funds to account"
+msgstr "пополнение баланса"
+
+#: app/api/bills.py:37
+msgid "paying for client"
+msgstr "оплата за клиента"
+
 #: app/api/req_connects.py:21
 msgid "req connect haven't req fields"
 msgstr "нет необходимых полей в запросе"
@@ -28,16 +40,47 @@ msgid "no valid code"
 msgstr "время ссылки истекло"
 
 #: app/api/server_auth.py:25
-#, fuzzy
 msgid "No server code"
 msgstr "Нет кода сервера"
 
-#: app/api/users.py:34
+#: app/api/users.py:35
 msgid "EMail confirmation"
 msgstr "Подтверждение адреса электронной почты"
 
+#: app/api/templates/api/balance_alert.txt:1
+#, python-format
+msgid "Hello %(username)s."
+msgstr "Уважаемый %(username)s."
+
+#: app/api/templates/api/balance_alert.txt:3
+#, python-format
+msgid ""
+"We inform you that the remaining balance in your personal account of the "
+"AceTeam service is %(balance)s."
+msgstr ""
+"Сообщаем вам, что остаток баланса в вашем личном кабинете сервиса AceTeam"
+" составляет  %(balance)s."
+
+#: app/api/templates/api/balance_alert.txt:4
+msgid "To avoid stopping the service, we recommend add funds to your balance."
+msgstr "Во избежание остановки работы сервиса рекомендуем пополнить баланс https://napmobile.ru/balance."
+
+#: app/api/templates/api/balance_alert.txt:5
+msgid ""
+"To clarify the available options, contact your manager or write to us at "
+"info@grsoft.ru"
+msgstr ""
+"Для уточнения доступных вариантов пополнения баланса свяжитесь с вашим "
+"менеджером или напишите нам на info@grsoft.ru"
+
+#: app/api/templates/api/balance_alert.txt:7
+msgid "Best regards, AceTeam."
+msgstr "С уважением, AceTeam."
+
 #: app/api/templates/api/confirm_email.html:1
 #: app/api/templates/api/confirm_email.txt:1
+#: app/auth/templates/auth/clr_pwd_email.html:1
+#: app/auth/templates/auth/clr_pwd_email.txt:1
 #, python-format
 msgid "Dear  %(username)s,"
 msgstr "Уважаемый  %(username)s,"
@@ -47,10 +90,12 @@ msgid "To confirm email"
 msgstr "Для подтверждения почты"
 
 #: app/api/templates/api/confirm_email.html:5
+#: app/auth/templates/auth/clr_pwd_email.html:5
 msgid "click here"
 msgstr "нажмите на ссылку"
 
 #: app/api/templates/api/confirm_email.html:8
+#: app/auth/templates/auth/clr_pwd_email.html:8
 msgid ""
 "Alternatively, you can paste the following link in your browser's address"
 " bar:"
@@ -58,22 +103,66 @@ msgstr "Так же Вы можете скопировать ссылку в а�
 
 #: app/api/templates/api/confirm_email.html:10
 #: app/api/templates/api/confirm_email.txt:7
-msgid "If you have not requested a password reset simply ignore this message."
-msgstr "Если Вы не запрашиваил смену пароля, просто игнорируйте это письмо"
-
-#: app/api/templates/api/confirm_email.html:11
-#: app/api/templates/api/confirm_email.txt:9
+#: app/auth/templates/auth/clr_pwd_email.html:11
+#: app/auth/templates/auth/clr_pwd_email.txt:9
+#: app/auth/templates/auth/password_email.html:9
+#: app/auth/templates/auth/password_email.txt:11
 msgid "Sincerely"
 msgstr "С уважением"
 
-#: app/api/templates/api/confirm_email.html:12
-#: app/api/templates/api/confirm_email.txt:11
+#: app/api/templates/api/confirm_email.html:11
+#: app/api/templates/api/confirm_email.txt:9
+#: app/auth/templates/auth/clr_pwd_email.html:12
+#: app/auth/templates/auth/clr_pwd_email.txt:11
+#: app/auth/templates/auth/password_email.html:10
+#: app/auth/templates/auth/password_email.txt:13
 msgid "The GRSoft Team"
 msgstr "GRSoft"
 
 #: app/api/templates/api/confirm_email.txt:3
 msgid "To confirm email click on the following link:"
 msgstr "Для подтверждения email пройдите по ссылке"
+
+#: app/auth/routes.py:115
+msgid "Request password reset"
+msgstr "Запрос сброса пароля"
+
+#: app/auth/routes.py:241
+msgid "The AceTeam account created"
+msgstr "AceTeam аккаунт создан"
+
+#: app/auth/templates/auth/clr_pwd_email.html:3
+msgid "To reset email"
+msgstr "Для сброса email"
+
+#: app/auth/templates/auth/clr_pwd_email.html:10
+#: app/auth/templates/auth/clr_pwd_email.txt:7
+msgid "If you have not requested a password reset simply ignore this message."
+msgstr "Если Вы не запрашиваил смену пароля, просто игнорируйте это письмо"
+
+#: app/auth/templates/auth/clr_pwd_email.txt:3
+msgid "To reset email click on the following link:"
+msgstr "Для сброса email пройдите по ссылке"
+
+#: app/auth/templates/auth/password_email.html:1
+#: app/auth/templates/auth/password_email.txt:1
+msgid "Hello"
+msgstr "Здравствуйте"
+
+#: app/auth/templates/auth/password_email.html:3
+#: app/auth/templates/auth/password_email.txt:3
+msgid "The AceTeam account just created"
+msgstr "Ваш аккаунт в AceTeam создан"
+
+#: app/auth/templates/auth/password_email.html:5
+#: app/auth/templates/auth/password_email.txt:5
+msgid "Use your email and this password"
+msgstr "Используйте ваш email и этот пароль"
+
+#: app/auth/templates/auth/password_email.html:7
+#: app/auth/templates/auth/password_email.txt:9
+msgid "to login into AceTeam account"
+msgstr "для входа в AceTeam"
 
 #: app/auth/templates/auth/user_create_error.html:4
 msgid "Error while creating user:"
@@ -83,146 +172,301 @@ msgstr "Ошибка при создании пользователя"
 msgid "User created successfully:"
 msgstr "Пользователь успешно создан"
 
-#: app/moysklad/iframe.py:156
+#: app/moysklad/iframe.py:212 app/moysklad/iframe_v2.py:310
 msgid "RootFolder"
 msgstr "Каталог товаров"
 
-#: app/moysklad/iframe.py:265
+#: app/moysklad/iframe.py:350 app/moysklad/iframe_v2.py:465
 msgid "Delivery"
 msgstr "Реализация"
 
-#: app/moysklad/iframe.py:291 app/moysklad/iframe.py:323
-#: app/moysklad/iframe.py:525
+#: app/moysklad/iframe.py:378 app/moysklad/iframe.py:435
+#: app/moysklad/iframe.py:657 app/moysklad/iframe_v2.py:525
+#: app/moysklad/iframe_v2.py:585 app/moysklad/iframe_v2.py:817
 msgid "No account"
 msgstr "Не найден проект"
 
-#: app/moysklad/iframe.py:311
+#: app/moysklad/iframe.py:423 app/moysklad/iframe_v2.py:885
+#: app/moysklad/iframe_v2.py:934 app/moysklad/iframe_v2.py:937
 msgid "Put data to the server"
 msgstr "Выгрузка данных на сервер"
 
-#: app/moysklad/iframe.py:327
-#, fuzzy
+#: app/moysklad/iframe.py:439 app/moysklad/iframe_v2.py:589
 msgid "No project code"
 msgstr "Нет кода проекта"
 
-#: app/moysklad/iframe.py:531
+#: app/moysklad/iframe.py:663 app/moysklad/iframe_v2.py:823
 msgid "No firms"
 msgstr "Не выбрана ни одна организация"
 
-#: app/moysklad/iframe.py:535
+#: app/moysklad/iframe.py:667 app/moysklad/iframe_v2.py:827
 msgid "No stores"
 msgstr "Не выбран ни один склад"
 
-#: app/moysklad/iframe.py:549
+#: app/moysklad/iframe.py:681 app/moysklad/iframe_v2.py:841
 #, python-format
 msgid "Orders %d, Returns %d, Incass %d"
 msgstr "заявок %d, возвратов %d, пко %d"
 
-#: app/moysklad/iframe.py:550
+#: app/moysklad/iframe.py:682 app/moysklad/iframe_v2.py:842
 msgid "Load docs"
 msgstr "Загрузить документы"
 
+#: app/moysklad/iframe_v2.py:892
+msgid "Price: {0} / {1}, Clients: {2} / {3}, Stock: {4} / {5}, Docs: {6} / {7}"
+msgstr ""
+"Товары: {0} / {1}, Клиенты: {2} / {3}, Остатки: {4} / {5}, Документы: {6}"
+" / {7}"
+
 #: app/moysklad/templates/moysklad/iframe.html:6
+#: app/moysklad/templates/moysklad/iframe_v2.html:6
 msgid "Moy Sklad settings"
 msgstr "Настройки обмена с AceTeam"
 
-#: app/moysklad/templates/moysklad/iframe.html:85
+#: app/moysklad/templates/moysklad/iframe.html:84
 msgid "Load new docs"
 msgstr "Загрузить документы"
 
-#: app/moysklad/templates/moysklad/iframe.html:86
+#: app/moysklad/templates/moysklad/iframe.html:85
+#: app/moysklad/templates/moysklad/iframe_v2.html:98
 msgid "Put data"
 msgstr "Выгрузить данные"
 
+#: app/moysklad/templates/moysklad/iframe.html:88
+#: app/moysklad/templates/moysklad/iframe_v2.html:101
+msgid "Applications"
+msgstr "Приложения"
+
 #: app/moysklad/templates/moysklad/iframe.html:89
-msgid "Quick start"
-msgstr "Быстрый старт"
+#: app/moysklad/templates/moysklad/iframe_v2.html:100
+msgid "AceTeam Personal Area"
+msgstr "Личный кабинет AceTeam"
 
 #: app/moysklad/templates/moysklad/iframe.html:94
+#: app/moysklad/templates/moysklad/iframe_v2.html:105
 msgid "Auto syncing"
 msgstr "Автоматический обмен"
 
+#: app/moysklad/templates/moysklad/iframe.html:103
+#: app/moysklad/templates/moysklad/iframe_v2.html:113
+msgid "Resources AceTeam"
+msgstr "AceTeam ресурсы"
+
+#: app/moysklad/templates/moysklad/iframe.html:109
+#: app/moysklad/templates/moysklad/iframe_v2.html:117
+msgid "Mobile application for agent"
+msgstr "Мобильное приложение агента"
+
+#: app/moysklad/templates/moysklad/iframe.html:111
+#: app/moysklad/templates/moysklad/iframe_v2.html:119
+msgid "Copy link"
+msgstr "Скопировать ссылку"
+
 #: app/moysklad/templates/moysklad/iframe.html:112
+#: app/moysklad/templates/moysklad/iframe_v2.html:120
+msgid "(to send to a mobile device)"
+msgstr "(для отправки на устройство в мессенджере)"
+
+#: app/moysklad/templates/moysklad/iframe.html:117
+#: app/moysklad/templates/moysklad/iframe_v2.html:126
+msgid "Manager prog and manuals"
+msgstr "Рабочее место руководителя и мануалы"
+
+#: app/moysklad/templates/moysklad/iframe.html:118
+#: app/moysklad/templates/moysklad/iframe_v2.html:125
+msgid "Copy archive"
+msgstr "Скачать архив"
+
+#: app/moysklad/templates/moysklad/iframe.html:120
+#: app/moysklad/templates/moysklad/iframe_v2.html:128
+msgid "Step-by-step manuals"
+msgstr "Пошаговая инструкция по запуску системы"
+
+#: app/moysklad/templates/moysklad/iframe.html:121
+#: app/moysklad/templates/moysklad/iframe_v2.html:127
+msgid "Open AceTeam site"
+msgstr "Перейти на сайт разработчика"
+
+#: app/moysklad/templates/moysklad/iframe.html:124
+#: app/moysklad/templates/moysklad/iframe_v2.html:132
+#: app/moysklad/templates/moysklad/iframe_v2.html:168
+#: app/moysklad/templates/moysklad/iframe_v2.html:187
+#: app/moysklad/templates/moysklad/iframe_v2.html:208
+msgid "Close"
+msgstr "Закрыть"
+
+#: app/moysklad/templates/moysklad/iframe.html:143
+#: app/moysklad/templates/moysklad/iframe_v2.html:223
 msgid "Project code"
 msgstr "Код проекта"
 
-#: app/moysklad/templates/moysklad/iframe.html:114
+#: app/moysklad/templates/moysklad/iframe.html:145
+#: app/moysklad/templates/moysklad/iframe_v2.html:224
 msgid "Enter code"
 msgstr "Введите код проекта"
 
-#: app/moysklad/templates/moysklad/iframe.html:121
+#: app/moysklad/templates/moysklad/iframe.html:152
+#: app/moysklad/templates/moysklad/iframe_v2.html:230
 msgid "Agents"
 msgstr "Агенты"
 
-#: app/moysklad/templates/moysklad/iframe.html:132
+#: app/moysklad/templates/moysklad/iframe.html:163
+#: app/moysklad/templates/moysklad/iframe_v2.html:244
 msgid "Firms"
 msgstr "Организации"
 
-#: app/moysklad/templates/moysklad/iframe.html:145
+#: app/moysklad/templates/moysklad/iframe.html:176
+#: app/moysklad/templates/moysklad/iframe_v2.html:261
 msgid "Stores"
 msgstr "Склады"
 
-#: app/moysklad/templates/moysklad/iframe.html:156
+#: app/moysklad/templates/moysklad/iframe.html:187
+#: app/moysklad/templates/moysklad/iframe_v2.html:275
 msgid "Folders"
 msgstr "Папки товаров"
 
-#: app/moysklad/templates/moysklad/iframe.html:170
+#: app/moysklad/templates/moysklad/iframe.html:201
+#: app/moysklad/templates/moysklad/iframe_v2.html:293
+#: app/moysklad/templates/moysklad/iframe_v2.html:297
 msgid "Set as primary"
 msgstr "Сделать основным"
 
-#: app/moysklad/templates/moysklad/iframe.html:176
+#: app/moysklad/templates/moysklad/iframe.html:207
+#: app/moysklad/templates/moysklad/iframe_v2.html:302
 msgid "There isn't right to view settings"
 msgstr "Просмотр настроек доступен только администратору"
 
-#: app/moysklad/templates/moysklad/iframe.html:205
-#, fuzzy
+#: app/moysklad/templates/moysklad/iframe.html:236
 msgid "Unloaded agents"
 msgstr "Выгружено агентов"
 
-#: app/moysklad/templates/moysklad/iframe.html:206
-#, fuzzy
+#: app/moysklad/templates/moysklad/iframe.html:237
 msgid "Orgs"
 msgstr "Контаргентов"
 
-#: app/moysklad/templates/moysklad/iframe.html:207
+#: app/moysklad/templates/moysklad/iframe.html:238
 msgid "Goods"
 msgstr "Товаров"
 
-#: app/moysklad/templates/moysklad/iframe.html:208
-#, fuzzy
+#: app/moysklad/templates/moysklad/iframe.html:239
 msgid "Deliveries"
 msgstr "Накладных"
 
-#: app/moysklad/templates/moysklad/iframe.html:213
+#: app/moysklad/templates/moysklad/iframe.html:244
 msgid "Unload data success"
 msgstr "Данные выгружены"
 
-#: app/moysklad/templates/moysklad/iframe.html:223
-#, fuzzy
+#: app/moysklad/templates/moysklad/iframe.html:254
+#: app/moysklad/templates/moysklad/iframe_v2.html:393
 msgid "Load orders"
 msgstr "Загружено заказов"
 
-#: app/moysklad/templates/moysklad/iframe.html:224
+#: app/moysklad/templates/moysklad/iframe.html:255
+#: app/moysklad/templates/moysklad/iframe_v2.html:394
 msgid "Load returns"
 msgstr "Загружено возвратов"
 
-#: app/moysklad/templates/moysklad/iframe.html:225
-#, fuzzy
+#: app/moysklad/templates/moysklad/iframe.html:256
+#: app/moysklad/templates/moysklad/iframe_v2.html:395
 msgid "Load incass"
 msgstr "Загружено ПКО"
 
-#: app/moysklad/templates/moysklad/iframe.html:230
-#, fuzzy
+#: app/moysklad/templates/moysklad/iframe.html:261
+#: app/moysklad/templates/moysklad/iframe_v2.html:400
 msgid "Load docs success"
 msgstr "Документы загружены"
 
-#: app/moysklad/templates/moysklad/iframe.html:326
 #: app/moysklad/templates/moysklad/iframe.html:358
+#: app/moysklad/templates/moysklad/iframe.html:390
+#: app/moysklad/templates/moysklad/iframe_v2.html:498
 msgid "Enter project code"
 msgstr ""
 "Сервер не работает. Введите код сервера и нажмите на кнопку <b>Выгрузить "
 "данные</b> для начала работы"
 
+#: app/moysklad/templates/moysklad/iframe.html:452
+#: app/moysklad/templates/moysklad/iframe_v2.html:570
+msgid "Copied"
+msgstr "Скопировано"
+
+#: app/moysklad/templates/moysklad/iframe_v2.html:141
+msgid "Welcome to AceTeam"
+msgstr "Добро пожаловать в AceTeam"
+
+#: app/moysklad/templates/moysklad/iframe_v2.html:144
+msgid "To continue setup connection to the AceTeam:"
+msgstr "Для того, чтобы продолжить настроку AceTeam:"
+
+#: app/moysklad/templates/moysklad/iframe_v2.html:150
+msgid "Create a new account in the AceTeam"
+msgstr "Создайте новый аккаунт AceTeam"
+
+#: app/moysklad/templates/moysklad/iframe_v2.html:151
+msgid "We register a new user and send password to"
+msgstr "Мы создадим нового пользователя и вышлем пароль на"
+
+#: app/moysklad/templates/moysklad/iframe_v2.html:158
+msgid "If you already have a project code"
+msgstr "Если у вас уже есть код проекта"
+
+#: app/moysklad/templates/moysklad/iframe_v2.html:158
+msgid "use the instructions"
+msgstr "воспользуйтесь инструкцией"
+
+#: app/moysklad/templates/moysklad/iframe_v2.html:159
+msgid "for setting up communication between MoySklad and AceTeam"
+msgstr "по настройки связи МойСклад и AceTeam"
+
+#: app/moysklad/templates/moysklad/iframe_v2.html:177
+msgid "Your account in the AceTeam has been created"
+msgstr "Ваш аккаунт в AceTeam создан"
+
+#: app/moysklad/templates/moysklad/iframe_v2.html:180
+msgid "We just created new account for you"
+msgstr "Мы только что создали новый аккаунт в AceTeam"
+
+#: app/moysklad/templates/moysklad/iframe_v2.html:180
+msgid "the credentials was sent to your email"
+msgstr "данные для входа были отправлены на ваш адрес"
+
+#: app/moysklad/templates/moysklad/iframe_v2.html:182
+msgid ""
+"Folow <a href=\"https://grsoft.ru/mobilnaya-torgovlya-i-moysklad/\" "
+"target=\"_blank\">the instruction</a> to complete setup AceTeam"
+msgstr ""
+"Откройте <a href=\"https://grsoft.ru/mobilnaya-torgovlya-i-moysklad/\" "
+"target=\"_blank\">инструкцию</a> и выполните оставшиеся действия"
+
+#: app/moysklad/templates/moysklad/iframe_v2.html:196
+msgid "There are an error occurred"
+msgstr "Непредвиденная ошибка"
+
+#: app/moysklad/templates/moysklad/iframe_v2.html:199
+msgid "There are an error occurred while account created"
+msgstr "В процессе создания аккаунта проихошла ошибка"
+
+#: app/moysklad/templates/moysklad/iframe_v2.html:203
+msgid ""
+"Follow <a href=\"https://grsoft.ru/mobilnaya-torgovlya-i-moysklad/\" "
+"target=\"_blank\">the instruction</a> to create account manually"
+msgstr ""
+"Следуйте <a href=\"https://grsoft.ru/mobilnaya-torgovlya-i-moysklad/\" "
+"target=\"_blank\">инструкции</a> и создайте аккаунт вручную"
+
+#: app/moysklad/templates/moysklad/iframe_v2.html:324
+msgid "Syncing "
+msgstr "Синхронизация данных "
+
+#: app/moysklad/templates/moysklad/iframe_v2.html:328
+msgid "Last sync "
+msgstr "Последняя выгрузка "
+
 #~ msgid "No project"
 #~ msgstr "Не найден код проекта"
+
+#~ msgid "Quick start"
+#~ msgstr "Быстрый старт"
+
+#~ msgid "You password is"
+#~ msgstr "Ваш пароль"
 

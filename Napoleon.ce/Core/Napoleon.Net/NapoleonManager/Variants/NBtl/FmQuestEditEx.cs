@@ -15,13 +15,19 @@ namespace GRSoft.NapoleonManager
       
       public FmQuestEditEx(Question question) : base(question)
       {
-         dsOrg.Filter = "\"id\" is null or \"id\" is not null";
+         string filter = "\"id\" is null or \"id\" is not null";
+         if (dsOrg.Filter != filter)
+         {
+            dsOrg.Filter = filter;
+            dsOrg.Clear();
+         }
       }
 
       protected override void UpdateItem(QuestItemType qyt, QuestionItem qi)
       {
          qi.altText = qyt.altText;
          qi.clients = qyt.clients;
+         qi.showInPhoto = qyt.showInPhoto;
          base.UpdateItem(qyt, qi);
       }
 
@@ -30,7 +36,8 @@ namespace GRSoft.NapoleonManager
          base.OnLoad(e);
 
          List<IDataSet> upd = new List<IDataSet>();
-         upd.Add(dsOrg);
+         if(dsOrg.Count == 0)
+            upd.Add(dsOrg);
 
          if (upd.Count == 0)
             DoLoadData();

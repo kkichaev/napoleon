@@ -1,7 +1,7 @@
 export
 
-#Variant = Hope03
-Variant = HopeChab
+Variant = Hope03
+#Variant = HopeChab
 
 ifeq ($(Variant),)
 $(error "Set variant before")

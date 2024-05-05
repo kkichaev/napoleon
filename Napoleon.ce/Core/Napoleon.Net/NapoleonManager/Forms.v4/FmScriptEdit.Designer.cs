@@ -47,6 +47,7 @@
          this.panel1 = new System.Windows.Forms.Panel();
          this.splitContainer1 = new System.Windows.Forms.SplitContainer();
          this.panel2 = new System.Windows.Forms.Panel();
+         this.cbOrgType = new System.Windows.Forms.ToolStripComboBox();
          this.groupBox1.SuspendLayout();
          this.toolStrip1.SuspendLayout();
          this.groupBox2.SuspendLayout();
@@ -117,7 +118,8 @@
          this.toolStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
          this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnSave,
-            this.lblInfo});
+            this.lblInfo,
+            this.cbOrgType});
          this.toolStrip1.Location = new System.Drawing.Point(0, 0);
          this.toolStrip1.Name = "toolStrip1";
          this.toolStrip1.Size = new System.Drawing.Size(617, 49);
@@ -247,6 +249,16 @@
          this.panel2.Size = new System.Drawing.Size(32, 393);
          this.panel2.TabIndex = 0;
          // 
+         // cbOrgType
+         // 
+         this.cbOrgType.Font = new System.Drawing.Font("Segoe UI", 11F);
+         this.cbOrgType.Items.AddRange(new object[] {
+            "сценария для обычных точек",
+            "сценарий для потеницальных точек",
+            "сценария для всех типов точек"});
+         this.cbOrgType.Name = "cbOrgType";
+         this.cbOrgType.Size = new System.Drawing.Size(300, 49);
+         // 
          // FmScriptEdit
          // 
          this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
@@ -296,5 +308,6 @@
       protected System.Windows.Forms.Panel panel2;
       protected System.Windows.Forms.GroupBox groupBox1;
       private System.Windows.Forms.ToolStripLabel lblInfo;
+      private System.Windows.Forms.ToolStripComboBox cbOrgType;
    }
 }

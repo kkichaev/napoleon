@@ -213,6 +213,7 @@ public abstract class OrderImplBase<T extends Order> extends CreatableDocument<T
 				}
 			
 				item.cost = (int)cost;
+				item.sum = cost * qty / Consts.QTY_SCALE;
 				item.id = price.id;
 				item.qty = qty;
 				
@@ -238,6 +239,7 @@ public abstract class OrderImplBase<T extends Order> extends CreatableDocument<T
 				if( item.qty != qty ) {
 					item.qty = qty;
 					item.cost = (int)cost;
+					item.sum = cost * qty / Consts.QTY_SCALE;
 					if(inPack) item.flags |= OrderItem.IN_PACK;
 					else item.flags &= (~OrderItem.IN_PACK);
 				} else if( item.cost != cost ) {

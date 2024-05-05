@@ -11,6 +11,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.grsoft.dataobjects.BalanceDoc;
+import com.grsoft.dataobjects.Contact;
 import com.grsoft.dataobjects.impl.BalanceDocImpl;
 import com.grsoft.napoleon.documents.DebtDoc;
 import com.grsoft.napoleon.documents.DocType;
@@ -28,6 +29,10 @@ public class BalanceView extends DocumentsBase {
         i.putExtra(ExtrasConst.ORG_ID_STR, orgId);
         ctx.startActivity(i);
     }
+
+    ContactView cv = new ContactView();
+    @Override protected int getContactViewid() {return cv.getResourceID();}
+    @Override public void setContactView(Contact contact, View view) {cv.setContactView(this, contact, view);}
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

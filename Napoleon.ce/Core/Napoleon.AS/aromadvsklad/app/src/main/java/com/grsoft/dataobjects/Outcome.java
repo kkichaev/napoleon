@@ -175,10 +175,15 @@ public class Outcome extends CreateDocDataObject {
         }
 
         boolean bdo = false;
-        if(bd.isBox)
+        if(bd.isBox) {
             bdo = r.select(pe, pe.getTableName(), where);
-        if(bdo) {
-            have = true;
+            if (bdo) {
+                have = true;
+            } else {
+                where = String.format("bcBox LIKE '%%%s%%'", bd.checkItemCode);
+                if(r.select(pe, pe.getTableName(), where))
+                    have = true;
+            }
         }
 
         if(!have) {

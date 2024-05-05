@@ -32,7 +32,7 @@
 
 
     <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+<!--    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />-->
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
@@ -85,7 +85,7 @@
         </receiver>
 
         <activity
-            android:name="com.grsoft.napoleon.MainV5"
+            android:name="com.grsoft.napoleon.Main"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:label="@string/app_name"
             android:launchMode="singleTask"
@@ -371,7 +371,6 @@
             android:label="@string/distanceactivity_title"/>
 		 <activity android:name="com.grsoft.napoleon.TaskListView" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
         <activity android:name="com.grsoft.napoleon.ConnectionSettings" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
-        <activity android:name="com.grsoft.napoleon.Main" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
         <activity android:name="com.grsoft.napoleon.ReturnPriceCount" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
         <activity android:name="com.grsoft.napoleon.BalanceView" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
     </application>

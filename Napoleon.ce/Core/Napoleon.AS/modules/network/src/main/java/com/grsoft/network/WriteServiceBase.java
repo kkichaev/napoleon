@@ -241,7 +241,8 @@ public class WriteServiceBase {
 
 //		ByteStream stream = winner.getByteStream();
 
-		SocketConnection winConnect = null;
+		winConnect = null;
+//		SocketConnection winConnect = null;
 		if(Features.ENCODE_CONNECTION) {
 			Encryptor enc = new Encryptor();
 			winConnect = enc.startSession(context, userInfo);

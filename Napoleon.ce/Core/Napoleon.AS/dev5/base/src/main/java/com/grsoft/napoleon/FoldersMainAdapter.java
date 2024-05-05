@@ -28,6 +28,7 @@ implements Main.MainAdapter, FilterAdapter {
     public Schedule current = null;
     public List<ScheduleItem> filtered = null;
     public OrgImpl org = new OrgImpl();
+    String filter = "";
     public SimpleDateFormat weekDayName = new SimpleDateFormat("EEEE");
 
     public static final int DAY_ITEM_ID = 0;
@@ -40,6 +41,7 @@ implements Main.MainAdapter, FilterAdapter {
 
     public FoldersMainAdapter(Main main){
         this.main = main;
+        reload();
     }
 
     static class ViewData{
@@ -49,10 +51,11 @@ implements Main.MainAdapter, FilterAdapter {
 
     @Override
     void reload() {
-        current = null;
+//        current = null;
         data.clear();
 
         Calendar cal = Calendar.getInstance();
+
         cal.set(Calendar.HOUR_OF_DAY, 0);
         cal.clear(Calendar.MINUTE);
         cal.clear(Calendar.SECOND);
@@ -65,6 +68,18 @@ implements Main.MainAdapter, FilterAdapter {
 
         String where = String.format("date>=%d and date<=%d",start.getTime(), cal.getTimeInMillis());
         DbReader.fetch(Schedule.class, where, "date").forEach((s)->{data.add(s);});
+
+        if(current != null) {
+            Schedule sel = null;
+            for(Schedule si : data) {
+                if(si.date.equals(current.date)) {
+                    sel = si;
+                    break;
+                }
+            }
+            current = sel;
+        }
+        applyFilter(filter);
     }
 
     @Override
@@ -131,6 +146,7 @@ implements Main.MainAdapter, FilterAdapter {
         Schedule sc = (Schedule) getItem(position);
         FoldersMainAdapter.ViewData res = new FoldersMainAdapter.ViewData();
         res.name = weekDayName.format(sc.date);
+        sc.items.forEach(si -> res.ids.add(si.id));
         return res;
     }
 
@@ -207,7 +223,7 @@ implements Main.MainAdapter, FilterAdapter {
     }
 
     public void applyFilterLow(String value) {
-        if (value.length() == 0) {
+        if (value == null || value.length() == 0) {
             if (filtered != null)
                 filtered = null;
             return;
@@ -248,6 +264,7 @@ implements Main.MainAdapter, FilterAdapter {
 
     @Override
     public void applyFilter(String value) {
+        filter = value;
         applyFilterLow(value);
         super.notifyDataSetChanged();
     }

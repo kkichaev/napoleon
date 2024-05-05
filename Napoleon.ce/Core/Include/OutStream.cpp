@@ -11,6 +11,7 @@
 
 #include <servobj.h>
 
+
 void OutStream::AppendQuoted(const std::wstring& tstr)
 {
    Append(L'"');
@@ -99,7 +100,7 @@ void OutStream::Append(double value, int fraction)
             *sig = '\0';
             ival = (__int64)(value + 0.5);
          }
-         _swprintf(buf,  L"%s%d%09d", sig, (DWORD)(ival / 1000000000), (DWORD)(ival % 1000000000));
+         _swprintf(buf,  L"%s%d%09u", sig, (DWORD)(ival / 1000000000), (DWORD)(ival % 1000000000));
       }
 
 #endif
@@ -188,6 +189,8 @@ Binary* Compress(const Binary &srcBuf)
    return destBuf;
 }
 
+
+
 //
 // return NULL если все сделано
 //
@@ -219,7 +222,7 @@ static Binary* MakeOp(const Binary& src, const std::wstring& op, std::wstring* h
 
 //static unsigned pcktCount = 0;
 
-Packet* Packet::MakePacket(OutStream& stream, const wchar_t* opts)
+Packet* Packet::MakePacket(OutStream& stream, const wchar_t* opts, const unsigned char* key)
 {
 	const std::wstring& str = stream.ToString();
 
@@ -263,13 +266,29 @@ Packet* Packet::MakePacket(OutStream& stream, const wchar_t* opts)
       }
    }
 
-   if( head.find(GZIP_OPT) == std::wstring::npos )
+   if (key != NULL)
    {
-      Binary *next = MakeOp(*current, CRC_OPT, &head);
-      if( next != NULL )
+      //printf("Encode packet \n");
+
+      Binary* next = EncodePacket(*current, key);
+      if (next != NULL)
       {
          delete current;
          current = next;
+         std::wstring tag(CRYPT_TAG); tag += L";";
+         head = tag + head;
+      }
+   }
+   else
+   {
+      if (head.find(GZIP_OPT) == std::wstring::npos)
+      {
+         Binary* next = MakeOp(*current, CRC_OPT, &head);
+         if (next != NULL)
+         {
+            delete current;
+            current = next;
+         }
       }
    }
 

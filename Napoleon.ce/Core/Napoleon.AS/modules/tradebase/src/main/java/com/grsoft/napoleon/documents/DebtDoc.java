@@ -38,12 +38,11 @@ public class DebtDoc extends DocType
 	protected DebtDoc(String name, Class<? extends Document<?>> docClass) {
 		super(name, docClass);
 	}
-	
+
 	@Override
 	public int getViewTextColor(Context context, Document<?> doc) {
 		if(Features.MARK_OVERDUE_DEBTS && doc instanceof DeliveryImpl) {
-			Delivery d = (Delivery)doc.getData();
-			if(d.sumD > 0 && (new Date()).compareTo(d.payDate) > 0)
+			if(((Delivery)doc.getData()).isOverdue())
 				return Color.RED;
 		}
 		return super.getViewTextColor(context, doc);

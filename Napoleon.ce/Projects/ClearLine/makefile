@@ -1,7 +1,7 @@
 export
 
-#Variant=ClearLineBaltic
-Variant=ClearLine
+Variant=ClearLineBaltic
+#Variant=ClearLine
 #Variant=Aproyan
 #Variant=Charhifalakyan
 #Variant=Chotulidi

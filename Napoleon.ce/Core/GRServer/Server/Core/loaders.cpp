@@ -104,6 +104,14 @@ ObjectLoader::ObjectLoader(ObjectDef::ObjectSet* objectSet, IXmlHandler* prevHan
       object->sendLimit = _wtoi(tvalue.c_str());
 	if (atts.Find(&tvalue, L"debug"))
 		object->needDebug = ((_wcsicmp(tvalue.c_str(), L"true") == 0 || _wtoi(tvalue.c_str()) == 1));
+   if (atts.Find(&tvalue, L"defaultAccess"))
+   {
+      DWORD flg = (tvalue.compare(L"read") == 0) ? IObjectDef::AccessFlags::ReadAccess :
+         (tvalue.compare(L"none") == 0) ? IObjectDef::AccessFlags::NonAccess :
+         0;
+      object->flags &= (~IObjectDef::AccessFlags::AccFlags);
+      object->flags |= flg;
+   }
 	atts.Find(&object->alias, L"alias");
 }
 

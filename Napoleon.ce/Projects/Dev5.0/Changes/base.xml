@@ -9,6 +9,7 @@
     <fieldTemplate name="fid" template="id" fieldName="fid" />
     <fieldTemplate name="qty" type="number" prec="3" />
     <fieldTemplate name="cost" type="number" prec="2" />
+    <fieldTemplate name="dataVersion" type="number" />
 
     <object name="ServerTaskParams">
       <sources>
@@ -157,6 +158,7 @@
       <field template="userid" />
       <field template="id" />
       <field name="type" type="string" />
+      <field template="dataVersion" />
 
       <member name="primaryKey">"userid,id,type"</member>
     </object>
@@ -197,6 +199,8 @@
 
       <field name="folderID" type="number" execOn="Get">FolderID($object.fid)</field>
       <field name="color" type="number" execOn="Get">GetColor($object.id,"price","face",0)</field>
+
+      <field template="dataVersion" />
     </object>
 
     <object name="Folder">
@@ -293,6 +297,7 @@
       <field name="longitude" type="number" prec="5" />
       <field name="latitude" type="number" prec="5" />
 
+      <field template="dataVersion" />
     </object>
 
     <modify src="Org" dest="CommonOrgs">

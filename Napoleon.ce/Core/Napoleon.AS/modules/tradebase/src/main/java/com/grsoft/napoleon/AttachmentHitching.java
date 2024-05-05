@@ -9,18 +9,21 @@ import com.grsoft.network.BytesMember;
 import com.grsoft.network.RawObject;
 import com.grsoft.network.exception.RuntimeException;
 
+import android.content.Context;
 import android.os.Environment;
 
 public class AttachmentHitching extends HitchOnSelect {
-	public static final String ATTACH_DIRECTORY = Environment.getExternalStorageDirectory() + "/Napoleon/files/attachments/";
 	private boolean enableExternalStore = false;
-	
-	public AttachmentHitching(String id) {
+	String ATTACH_DIRECTORY = null;
+
+	public AttachmentHitching(String id, Context context) {
 		super(Attachment.class, "Attachment");
 		setCondition(String.format("id='%s'", id));
 		
 		if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){
 			enableExternalStore = true;
+			ATTACH_DIRECTORY = context.getExternalFilesDir(null) + "/attachments/";
+
 			File photoDir = new File(ATTACH_DIRECTORY);
 		
 			if (!photoDir.exists()){

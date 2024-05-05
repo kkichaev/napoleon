@@ -38,6 +38,8 @@ public:
    static bool Fire(Event::Type type, Session* session, SessionObject* param = NULL);
 	static bool HaveEvent(Event::Type type);
 
+   static std::map<std::wstring, int>* RestrictObjects();
+
    static IObjectDef* GetService();
 
    static void Clear();

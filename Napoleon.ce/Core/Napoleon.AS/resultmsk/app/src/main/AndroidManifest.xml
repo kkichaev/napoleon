@@ -84,7 +84,7 @@
         </receiver>
 
         <activity
-            android:name="com.grsoft.napoleon.Main"
+            android:name="com.grsoft.napoleon.MainEx"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:label="@string/app_name"
             android:launchMode="singleTask"
@@ -390,7 +390,12 @@
         <activity android:name="com.grsoft.napoleon.DocumentsEx" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
         <activity android:name="com.grsoft.napoleon.WarehouseSettingEx" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
         <activity android:name="com.grsoft.napoleon.PresentationFolderEx" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
-
+        <activity
+            android:name="com.grsoft.napoleon.OrderDetailEx"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
+        <activity
+            android:name="com.grsoft.napoleon.ReportParamsEx"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
     </application>
 
 </manifest>

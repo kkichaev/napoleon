@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.novotek.dataobjects.CommonData;
 import com.novotek.sales.BuildConfig;
 import com.novotek.sales.MainActivity;
 import com.novotek.sales.R;
@@ -36,7 +37,7 @@ public class Profile extends BaseView{
             tv.setText(partner.name);
 
             tv = v.findViewById(R.id.phone);
-            tv.setText(com.novotek.sales.login_views.Model.phoneNumber(getContext()));
+            tv.setText(CommonData.getPhone(getContext()));
         });
 
         v.findViewById(R.id.title).setOnClickListener(view ->{

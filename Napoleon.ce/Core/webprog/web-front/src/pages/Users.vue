@@ -24,6 +24,7 @@
               :options="projects"
               option-value="code"
               option-label="name"
+              @update:model-value="(value) => onChangedProjetc(value)"
             />
           </div>
         </div>
@@ -179,7 +180,6 @@ const editDivisionDlg = ref(false);
 const divlist = ref([]);
 const seldiv = ref();
 const selected = ref();
-const servercode = ref();
 const divisions = ref();
 const project = ref("");
 const projects = ref();
@@ -306,6 +306,27 @@ const onChangedUserType = (value) => {
   }
 };
 
+const onChangedProjetc = (value) => {
+  $q.loading.show();
+  reqConnects(project.value.code)
+    .then((data) => (reqConn.value = data))
+    .then(() =>
+      queryObjects(project.value.code, [
+          { name: "Division" },
+          { name: "DivisionManager" },
+          { name: "Agents" },
+          { name: "UserActivity" },
+          { name: "LinkedUsers" }
+        ]))
+    .then((response) => setData(response))
+    .catch((error) => {
+      console.log("getServers ERROR! " + error);
+    })
+    .finally(() => {
+      $q.loading.hide()
+    })
+}
+
 const okEditDivision = () => {
   if (seldiv.value) {
     var ags = [];
@@ -325,7 +346,7 @@ const okEditDivision = () => {
     updateDivision.push(seldiv.value);
     ags.forEach((id) => seldiv.value.agents.push({ id: id }));
 
-    postObjects(servercode.value, "Division", updateDivision).then(() => {
+    postObjects(project.value.code, "Division", updateDivision).then(() => {
       console.log("updated SUCCES");
       selected.value.forEach((el) => (el.division = seldiv.value));
       selected.value = undefined;
@@ -349,12 +370,11 @@ onMounted(() => {
     .then((response) => {
       projects.value = response;
       project.value = response[0];
-      servercode.value = response[0].code;
-      return reqConnects(servercode.value);
+      return reqConnects(project.value.code);
     })
     .then((data) => (reqConn.value = data))
     .then(() =>
-      queryObjects(servercode.value, [
+      queryObjects(project.value.code, [
         { name: "Division" },
         { name: "DivisionManager" },
         { name: "Agents" },
@@ -373,7 +393,7 @@ onMounted(() => {
 
 const requestConnection = (value, row) => {
   if (!row.link)
-    setConnects(servercode.value, value, { id: row.id, type: row.type })
+    setConnects(project.value.code, value, { id: row.id, type: row.type })
       .then((response) => {
         if (value) {
           if (response.data && response.data) {
@@ -389,7 +409,7 @@ const requestConnection = (value, row) => {
       .catch((error) => console.log(error));
   else
     deleteObjects(
-      servercode.value,
+      project.value.code,
       "LinkedUsers",
       `"id"="${row.link.id}"`
     ).then(() => (row.link = undefined));
@@ -466,6 +486,7 @@ const setData = (value) => {
     }
   });
 
+  agentRows.value = []
   Object.entries(agentData).forEach(([key, val]) => {
     agentRows.value.push(
       createRow(
@@ -489,6 +510,7 @@ const setData = (value) => {
     }
   });
 
+  managerRows.value = []
   Object.entries(managerData).forEach(([key, val]) => {
     managerRows.value.push(
       createRow(
@@ -527,6 +549,7 @@ const setData = (value) => {
 
   travelTree(divisionTree[1]);
 
+  rows.splice(0, rows.length);
   agentRows.value.forEach((el) => rows.push(el));
 };
 </script>

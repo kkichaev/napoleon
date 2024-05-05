@@ -11,9 +11,11 @@ import android.widget.CheckBox;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.grsoft.dataobjects.DataObject;
 import com.grsoft.dataobjects.OrderItemEx;
 import com.grsoft.dataobjects.Price;
 import com.grsoft.dataobjects.PriceEx;
+import com.grsoft.dataobjects.SalesItemEx;
 import com.grsoft.dataobjects.UnitEx;
 import com.grsoft.dataobjects.UnitItem;
 import com.grsoft.dataobjects.impl.ConfigImpl;
@@ -36,9 +38,11 @@ public class PriceCountEx extends PriceCount {
 			
 			List<UnitItem> units = ((PriceEx)p).units;
 			if( document != null ) {
-				OrderItemEx oi = (OrderItemEx) getDocItem(p);;
-				if( oi != null )
-					scode = oi.unit;
+				DataObject di = getDocItem(price.getData());
+				if(di instanceof OrderItemEx)
+					scode = ((OrderItemEx)di).unit;
+				else if(di instanceof SalesItemEx)
+					scode = ((SalesItemEx) di).unit;
 			} else if( units.size() > 0 ) {
 				scode = units.get(0).id;
 			}
@@ -93,11 +97,16 @@ public class PriceCountEx extends PriceCount {
 		super.onResume();
 		
 		if( document != null ) {
-			OrderItemEx oie = (OrderItemEx) getDocItem(price.getData());
-			
-			if (oie != null) {
+			String unitId = null;
+			DataObject di = getDocItem(price.getData());
+			if(di instanceof OrderItemEx)
+				unitId = ((OrderItemEx) di).unit;
+			else if(di instanceof SalesItemEx)
+				unitId = ((SalesItemEx) di).unit;
+
+			if (unitId != null) {
 				for(UnitEx unit : units)
-					if (unit.id.equals(oie.unit)){
+					if (unit.id.equals(unitId)){
 						spUnits.setSelection(units.indexOf(unit));
 						onUnitChanged(unit);
 						break;
@@ -139,12 +148,20 @@ public class PriceCountEx extends PriceCount {
 	@Override
 	protected boolean updateOrder() {
 		boolean ret = super.updateOrder();
-		
-		OrderItemEx oie = (OrderItemEx) getDocItem(price.getData());
-		if( oie != null && selected != null ) {
-			oie.unit = selected.id;
-			oie.unitInpack = selected.inpack;
-			document.write();
+
+		if(selected != null) {
+			DataObject di = getDocItem(price.getData());
+			if (di instanceof OrderItemEx) {
+				OrderItemEx oie = (OrderItemEx) di;
+				oie.unit = selected.id;
+				oie.unitInpack = selected.inpack;
+				document.write();
+			} else if (di instanceof SalesItemEx) {
+				SalesItemEx oie = (SalesItemEx) di;
+				oie.unit = selected.id;
+				oie.unitInpack = selected.inpack;
+				document.write();
+			}
 		}
 
 		return ret;

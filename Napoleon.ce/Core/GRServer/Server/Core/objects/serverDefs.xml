@@ -174,7 +174,7 @@
         <data>
           <object name="DivisionManagerRights">
             <sources>
-              <source name="SQTable" type="internal" />
+              <source name="ManagerRights" type="internal" />
             </sources>
             <field name="token" type="string" />
             <field name="type" type="number" />
@@ -249,7 +249,7 @@
                 <param name="startIndex">2</param>
               </source>
             </sources>
-            <field name="qty" type="number" prec="2" />
+            <field name="qty" type="number" prec="3" />
           </object>
         </data>
       </field>
@@ -917,6 +917,7 @@
 
             <field name="id" width="40" type="string" data="ID_I"/>
             <field name="qty" type="number" prec="3" />
+            <field name="sum" type="number" prec="2" data="SUM_I" />
             <field name="discount" type="number" width="6" prec="1" feature="ORD_ITEM_DISCOUNT" />
             <field name="cost" type="number" prec="2" />
             <field name="flags" type="number" width="9" prec="0" data="" />
@@ -937,8 +938,8 @@
       <field name="prcType" type="string" width="55"/>
       <field name="sumType" type="number" />
 
-      <field name="latitude" type="number" prec="5" />
-      <field name="longitude" type="number" prec="5" />
+      <field name="latitude" type="number" prec="5" data="LAT" />
+      <field name="longitude" type="number" prec="5" data="LNG" />
       <field name="stltime" type="number" />
       <field name="supplyer" type="number" />
 
@@ -1484,6 +1485,8 @@
       <field name="userid" type="string" />
       <field name="name" type="string" />
       <field name="rem" type="number" />
+      <!--  0 - script for org, 1 - script for potenzial orgs, 2 - scripts for both -->
+      <field name="flags" type="number" />
     </object>
 
     <object name="ScriptDoc" feature="SCRIPT_DOC">

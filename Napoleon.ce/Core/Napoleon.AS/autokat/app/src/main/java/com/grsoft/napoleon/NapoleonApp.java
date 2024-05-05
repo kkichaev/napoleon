@@ -32,6 +32,7 @@ import com.grsoft.napoleon.documents.PurchaseDoc;
 import com.grsoft.napoleon.documents.QuestionDoc;
 import com.grsoft.napoleon.documents.ScriptPropDoc;
 import com.grsoft.napoleon.documents.SellingDoc;
+import com.grsoft.napoleon.documents.SellingTotalDoc;
 import com.grsoft.napoleon.modules.print.NPrinter;
 import com.grsoft.napoleon.quest_control.QuestControlsFactoryEx;
 import com.grsoft.napoleon.util.CfgNplEx;
@@ -108,6 +109,7 @@ public class NapoleonApp extends NapoleonAppBase {
         DocType.addType(ScriptDoc.instance(scriptImplType()));
         DocType.addType(ScriptPropDoc.instance());
         DocType.addType(QuestionDoc.instance(AnswerImplEx.class));
+        DocType.addType(SellingTotalDoc.instance());
     }
 
     @Override

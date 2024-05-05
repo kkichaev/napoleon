@@ -41,7 +41,6 @@ import com.grsoft.util.Consts;
 import com.grsoft.util.ExtrasConst;
 import com.grsoft.util.Pair;
 import com.grsoft.util.Util;
-import com.itextpdf.text.BuildConfig;
 
 import java.io.IOException;
 import java.util.ArrayList;

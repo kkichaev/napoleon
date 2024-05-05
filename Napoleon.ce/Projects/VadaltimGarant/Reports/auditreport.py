@@ -20,7 +20,7 @@ reload(sys);
 #sys.setdefaultencoding("cp1251")
 
 class Report:
-  __slots__ = {"divname", "start" , "finish", "items", "agents"}
+  __slots__ = {"divname", "start" , "finish", "items", "agents", "date"}
   
   def __init__(self):
       self.date = datetime.now()

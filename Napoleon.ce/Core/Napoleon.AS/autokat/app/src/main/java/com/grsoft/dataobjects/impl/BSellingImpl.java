@@ -16,5 +16,6 @@ public class BSellingImpl extends SellingImpl {
         super.initDoc(context, gpsCoord, owner, item);
         data.bmark = 1;
         data.title = item.name;
+        data.payType = Selling.PAY_TYPE_CASH;
     }
 }

@@ -13,6 +13,7 @@ import com.grsoft.dataobjects.Price;
 import com.grsoft.dataobjects.impl.OrderImplEx;
 import com.grsoft.dataobjects.OrgAsmMatrix;
 import com.grsoft.dataobjects.impl.OrgImpl;
+import com.grsoft.dataobjects.impl.PriceImpl;
 import com.grsoft.napoleon.documents.Itemsable;
 import com.grsoft.util.AssortmentMatrixAdapter;
 import com.grsoft.util.FoldersAdapter;
@@ -81,9 +82,19 @@ public class WarehouseEx extends Warehouse {
     protected BaseAdapter createListAdapter() {
         OrgImpl org = new OrgImpl();
         org.read("id", document.getId());
-        assortment = ((OrgEx)org.getData()).matrix;
+        assortment = new ArrayList<>();
+
+        PriceImpl pi = new PriceImpl();
+        for(MatrixItem mi : ((OrgEx)org.getData()).matrix) {
+            pi.getData().id = mi.id;
+            if(pi.read()) {
+                assortment.add(mi);
+            }
+        }
+//        assortment = ((OrgEx)org.getData()).matrix;
 
         if(needCheckItems == null) {
+            needCheckItems = false;
             if(document instanceof OrderImplEx && OrgAsmMatrix.needCheckAssortment(document.getId())) {
                 needCheckItems = !((OrderImplEx) document).isComplete(assortment);
             }
@@ -91,6 +102,7 @@ public class WarehouseEx extends Warehouse {
 
         if(needCheckItems) {
             writeTime = true;
+            FoldersAdapter.resetCache();
             return new MatrixItemsAdapter(this, assortment);
         }
 

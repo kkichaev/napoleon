@@ -202,7 +202,7 @@ public:
 
 	size_t CurrentMemory() const { return curMemory; }
 
-   bool CheckProgVersion(const wchar_t* project, const User& command);
+   bool CheckProgVersion(const wchar_t* project, const User& command, const CString* category);
 
 protected:
    AckReturn ReadPreviousVersion(Binary* packet);

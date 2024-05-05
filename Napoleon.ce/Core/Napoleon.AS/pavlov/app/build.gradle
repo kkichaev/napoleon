@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 31
 
     defaultConfig {
         applicationId "com.grsoft.napoleon"
-        minSdkVersion 15
-        targetSdkVersion 29
+        minSdkVersion 24
+        targetSdkVersion 31
         versionCode 16
         versionName "16"
     }
@@ -56,6 +56,25 @@ android {
         }
     }
 
+    buildTypes {
+        debug {
+            manifestPlaceholders.access_background_location = "android.permission.ACCESS_BACKGROUND_LOCATION"
+            manifestPlaceholders.request_install_packages = "android.permission.REQUEST_INSTALL_PACKAGES"
+        }
+
+        release {
+            signingConfig signingConfigs.release
+            manifestPlaceholders.access_background_location = "android.permission.ACCESS_BACKGROUND_LOCATION"
+            manifestPlaceholders.request_install_packages = "android.permission.REQUEST_INSTALL_PACKAGES"
+        }
+
+        market {
+            signingConfig signingConfigs.market
+            manifestPlaceholders.access_background_location = "fake.name"
+            manifestPlaceholders.request_install_packages ="fake.name"
+        }
+    }
+	
     flavorDimensions "version"
     productFlavors{
         apk1{
@@ -102,6 +121,9 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation project(':tradebase')
+    implementation project(':camera')
+
+    implementation 'com.google.mlkit:barcode-scanning-common:17.0.0'
 
     implementation 'androidx.appcompat:appcompat:1.0.0'
 

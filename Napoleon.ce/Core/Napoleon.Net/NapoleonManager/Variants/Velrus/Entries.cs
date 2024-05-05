@@ -21,7 +21,7 @@ namespace GRSoft.NapoleonManager
 
       internal static UserForm OpenUserForm(Divisions owner)
       {
-         return new UserForm(owner);
+         return new UserFormEx(owner);
       }
 
       internal static FmCensus OpenCensusForm()

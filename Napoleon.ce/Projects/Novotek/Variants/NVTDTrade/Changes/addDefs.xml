@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
   <objects>
-  <object name="NewClient">
+    <object name="NewClient">
       <sources>
         <source name="DBFCatalogTable">
           <param name="tableName">$object.table + $user.id</param>
@@ -23,8 +23,8 @@
       <field name="sended" type="timestamp" data="S_DATE" execOn="Put">Now()</field>
       <field name="id" width="55" type="string" />
       <field name="remark" type="string" />
-      <field name="latitude" type="number" prec="4" />
-      <field name="longitude" type="number" prec="4" />
+      <field name="latitude" type="number" prec="5" />
+      <field name="longitude" type="number" prec="5" />
       <field name="stltime" type="number" />
       <field name="inn" width="55" type="string" />
       <field name="name" width="55" type="string" />

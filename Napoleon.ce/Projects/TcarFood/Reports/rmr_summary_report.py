@@ -65,8 +65,10 @@ class DivItem(Item):
       self.incVals(a)
       
     sz = len(self.childs) + len(self.agents)
-    self.order_progress /= sz
-    self.progress /= sz
+
+    if sz != 0:
+      self.order_progress /= sz
+      self.progress /= sz
   
   def incVals(self, v):
     self.visit += v.visit
@@ -89,6 +91,7 @@ def loadData(params, server):
   map = dict()
   
   while curDate < endDate: 
+    #print("curDate", curDate)
     dayRep = summary.dailyReport(server, divAgents, curDate)
     
     for key, value in dayRep.items():
@@ -104,17 +107,17 @@ def loadData(params, server):
       item.dist += summary.computeDist(server,curDate,key) / 1000
       
       if len(value.plan) > 0:
-        item.progress = value.plannedVisits / float(len(value.plan))
-        item.order_progress = item.order / item.visit if item.visit != 0 else 0
-            
+        item.progress += value.plannedVisits / float(len(value.plan))
+        item.order_progress += item.order / item.visit if item.visit != 0 else 0
+
     curDate = curDate + timedelta(1)
-    
-  for v in map.values():
+
+  for k,v in map.items():
     d = (params.finish - params.start).days
-    
+
     if d > 0:
-      item.progress /= d
-      item.order_progress /= d
+      v.progress /= d
+      v.order_progress /= d
       
   r = Report()
   dm = dict()

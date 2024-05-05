@@ -1,10 +1,15 @@
 package com.grsoft.dataobjects.impl;
 
 import com.grsoft.dataobjects.IncassEx;
+import com.grsoft.dataobjects.OrderEx;
 import com.grsoft.napoleon.documents.CreatableDocument;
+import com.grsoft.napoleon.documents.DocSendListner;
 import com.grsoft.napoleon.documents.IncassDoc;
+import com.grsoft.network.DocExportListener;
 import com.grsoft.script.dataobjects.ScriptItem;
 import com.grsoft.script.dataobjects.impl.ScriptImpl;
+
+import java.util.List;
 
 
 public class ScriptImplEx extends ScriptImpl {
@@ -47,5 +52,13 @@ public class ScriptImplEx extends ScriptImpl {
 		}
 		
 		return result;
+	}
+
+	@Override
+	protected DocSendListner createDocSender(ScriptItem si, CreatableDocument<?> doc) {
+		if(doc instanceof OrderImplEx) {
+			return new DocSendListner(((OrderEx)doc.getData()).objName(), doc);
+		}
+		return super.createDocSender(si, doc);
 	}
 }

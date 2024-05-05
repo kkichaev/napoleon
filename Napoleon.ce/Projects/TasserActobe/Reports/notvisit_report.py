@@ -1,4 +1,5 @@
 # -*- coding: cp1251 -*-
+from importlib import reload
 import logging
 
 from grsoft.xl_base import XLBuilder
@@ -14,7 +15,7 @@ import datetime
 
 import sys;
 reload(sys);
-sys.setdefaultencoding("cp1251")
+#sys.setdefaultencoding("cp1251")
 
 NOT_VISIT_CODE = 1
 OUT_ROUT_CODE = 2
@@ -64,13 +65,12 @@ def loadData(params, server):
         for r in route:
           route_ids.append(r.id)
 
-        where = '"userid"="{0}" and "created" >= ToDate("{1}") and "created" <= ToDate("{2}")'.format(
-            aid,
+        where = '"userid"={0} and "created" >= ToDate("{1}") and "created" <= ToDate("{2}")'.format(
+            "'"+aid+"'",
             date.strftime("%d/%m/%Y 0:0:0"),
             date.strftime("%d/%m/%Y 23:59:59"))
         
-#        docNames = ["Order", "VisitInfo", "OrgRemnants", "Answer", "Incass", "TaskDone"]
-        docNames = ["VisitInfo"]
+        docNames = ["Order", "VisitInfo", "OrgRemnants", "Answer", "Incass", "TaskDone"]
 
         for name in docNames:
           docList = server.Get(name, where)
@@ -93,7 +93,7 @@ def loadData(params, server):
         date += timedelta(days=1)
       
      
-    data.data = sorted(data.data, cmp=lambda lhs, rhs: cmp(lhs.name, rhs.name))
+    data.data = sorted(data.data, cmp=lambda lhs: lhs.name)
     
     return data
       

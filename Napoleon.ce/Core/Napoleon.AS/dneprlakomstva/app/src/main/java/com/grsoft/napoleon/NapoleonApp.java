@@ -29,6 +29,7 @@ import com.grsoft.dataobjects.Incass;
 import com.grsoft.dataobjects.IncassDebDistrEx;
 import com.grsoft.dataobjects.Order;
 import com.grsoft.dataobjects.OrderEx;
+import com.grsoft.dataobjects.OrderItemEx;
 import com.grsoft.dataobjects.Org;
 import com.grsoft.dataobjects.OrgEx;
 import com.grsoft.dataobjects.OrgLocation;
@@ -89,9 +90,11 @@ public class NapoleonApp extends NapoleonAppBase {
 		DbObject.regNewDataType(Org.class, OrgEx.class);
 		DbObject.regNewDataType(Incass.class, IncassDebDistrEx.class);
 		DbObject.regNewDataType(Return.class, ReturnEx.class);
-		
-		DataObjectInfo.getInstance().replaceListType(Delivery.class, "items", DeliveryItemEx.class);
-		DataObjectInfo.getInstance().replaceListType(ReturnEx.class, "items", ReturnItemEx.class);
+
+		DataObjectInfo doi = DataObjectInfo.getInstance();
+		doi.replaceListType(Delivery.class, "items", DeliveryItemEx.class);
+		doi.replaceListType(ReturnEx.class, "items", ReturnItemEx.class);
+		doi.replaceListType(OrderEx.class, "items", OrderItemEx.class);
 
 		Hitching ddh = new DayDeliveryHitching();
 		Hitching dbdh = new DlvMoveDayHitching(); 

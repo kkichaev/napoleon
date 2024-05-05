@@ -13,10 +13,10 @@ ENV FLASK_APP webapp.py
 RUN chown -R ert:ert app/ migrations/ webapp.py config.py
 USER ert
 
-RUN printf '#!/bin/bash\\\nsource prog/bin/activate\\\nflask count_balance' >> prog/count_balance
+RUN printf '#!/bin/bash\\\nsource prog/bin/activate\\\nflask count_balance\\\nflask check_balance' >> prog/count_balance
 RUN chmod +x prog/count_balance
 
-RUN printf '#!/bin/bash\\\nsource prog/bin/activate\\\nflask db upgrade\\\nflask populate_data\\\nexec gunicorn -b :9000 --access-logfile - --error-logfile - webapp:app' >> prog/start_prog
+RUN printf '#!/bin/bash\\\nsource prog/bin/activate\\\nflask db upgrade\\\nflask populate_data\\\nexec gunicorn -b :9000 --timeout 600 --access-logfile - --error-logfile - webapp:app' >> prog/start_prog
 RUN chmod +x prog/start_prog
 
 CMD prog/start_prog

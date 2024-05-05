@@ -17,7 +17,7 @@ from manager.task import taskReportXLS
     
 def run(server):
 
-    print "start"
+    print("start")
     
     param = server.Params[0];
     if param.mode == "report" :
@@ -27,5 +27,5 @@ def run(server):
     else :
         taskList(server, param)
     
-    print "done"
+    print("done")
    

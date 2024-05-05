@@ -90,7 +90,7 @@ public:
 
 	STDMETHOD(Connect)(BSTR name, USHORT port, BSTR login, BSTR password, BSTR category, VARIANT_BOOL* result);
    STDMETHOD(Get)(BSTR name, BSTR filter, IDispatch** collection);
-   STDMETHOD(Delete)(BSTR name, BSTR filter);
+   STDMETHOD(Delete)(BSTR name, BSTR filter, VARIANT_BOOL* result);
    STDMETHOD(New)(BSTR name, IDispatch** collection);
    STDMETHOD(get_ErrorMessage)(BSTR* pVal);
    STDMETHOD(Report)(BSTR name, IDispatch *params, IDispatch** collection);

@@ -1,37 +1,7 @@
 <?xml version="1.0" ?>
 <serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
   <objects>
-
-    <object name="DailyPlan">
-      <sources>
-        <source name="SQTable" type="internal">
-          <param name="readFilter">'"userid"=' + "'" + $user.id + "' and " + '"date" &gt;= ToDate("' + FormatDate(Now(),"DD.MM.YYYY") + '")'</param>
-        </source>
-      </sources>
-      <member name="primaryKey">"userid,created"</member>
-      <memberArray name="index">"created"</memberArray>
-      <memberArray name="index">"userid,date"</memberArray>
-
-      <field name="userid" type="string" execOn="Put">$user.id</field>
-      <field name="created" type="timestamp" />
-      <field name="id" type="string" />
-      <field name="date" type="date" />
-      <field name="remark" type="string" />
-      <field name="items" type="collection">
-        <data>
-          <object name="Item">
-            <sources>
-              <source name="SQTable" type="internal" />
-            </sources>
-
-            <field name="id" type="string" />
-            <field name="weight" type="number" prec="3" />
-          </object>
-        </data>
-      </field>
-    </object>
-
-
+    
     <!-- хочу миллион -->
     <object name="ItemGroups">
       <sources>
@@ -424,7 +394,6 @@
         <field name="whCode" type="string" width="20" data="ID_WH" />
         <field name="outOrder" type="number" width="1" />
         <field name="outOrderRemark" type="string" data="OUT_REM" />
-        <field name="id2" type="string" width="55"/>
         <!--<field name="whRemark" type="string" data="SKL_REM" />
         <field name="otherRemark" type="string" data="OTH_REM" />-->
         
@@ -510,7 +479,7 @@
         <field name="orgid" type="string"/>
         <field name="color" type="hex" />
         <field name="packname" type="string" data="PN"/>
-        <field name="descr" type="string" data="DESC"/>
+        <field name="desc" type="string"/>
         <field name="article" type="string" />
         <field name="cantdiv" type="number" />
         <field name="itemGroup" type="string" data="ID_IG" />

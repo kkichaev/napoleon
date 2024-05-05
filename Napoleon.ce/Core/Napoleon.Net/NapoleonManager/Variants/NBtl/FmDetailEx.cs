@@ -169,7 +169,7 @@ namespace GRSoft.NapoleonManager
 
          string docFilter = String.Format(COMMON_FILTER_STR, "created", dateBegin, dateEnd, agentID);
 #if NbtlMonitor
-         dsScriptDoc.Filter = String.Format(filterBase + " and " + ((MainFormEx)MainForm.Instance).ScriptFilter(), "created", dateBegin, dateEnd, agentID);
+         dsScriptDoc.Filter = String.Format(filterBase + " and " + ((MainFormEx)MainForm.Instance).ScriptFilter(""), "created", dateBegin, dateEnd, agentID);
 #endif
 
          dsContract.Filter = docFilter;

@@ -20,7 +20,7 @@ reload(sys);
 
 
 class QuestHelper:
-  LIST_TYPE = 2
+  SET_TYPE = 2
   DATASET_TYPE = 5
   PHOTO_TYPE = 7
   ORG_DATASET_TYPE = "Организация"
@@ -102,7 +102,7 @@ class ReportData:
         quest.items.sort(key= lambda x: x.number)
           
         for i in quest.items:
-          if i.type == QuestHelper.LIST_TYPE or i.type == QuestHelper.NUMBER_LIST_TYPE:
+          if i.type == QuestHelper.SET_TYPE or i.type == QuestHelper.NUMBER_LIST_TYPE:
             for v in i.values:
               key = self.ITEM_KEY_FMT.format(quest.idquest, i.iditem, v.value)
               if not key in self.cellidx:
@@ -150,7 +150,7 @@ class ReportData:
       
       photoCount = dict()
       for n in d.items:
-        if n.type == QuestHelper.LIST_TYPE:
+        if n.type == QuestHelper.SET_TYPE:
           self.putItemValue(i.items, self.ITEM_KEY_FMT.format(d.question, n.iditem, n.answer), "X")
           
         elif n.type == QuestHelper.NUMBER_LIST_TYPE:
@@ -228,7 +228,7 @@ class XLB(XLBuilder):
     for i in quest.items:
       self.printCell(sheet, row + 1, cv, i.id, color)
       
-      if i.type == QuestHelper.LIST_TYPE or i.type == QuestHelper.NUMBER_LIST_TYPE:
+      if i.type == QuestHelper.SET_TYPE or i.type == QuestHelper.NUMBER_LIST_TYPE:
         s = cv
         
         for v in i.values:

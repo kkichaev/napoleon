@@ -235,28 +235,13 @@
 			<LinearLayout android:id="@+id/LinearLayout07" 
 				android:layout_height="wrap_content" 
 				android:layout_width="fill_parent" 
-				android:layout_weight="1"
-				android:orientation="vertical">
+				android:layout_weight="1">
 				
-				<EditText android:layout_weight="0.5"
+				<EditText android:layout_weight="1" 
 					android:layout_height="fill_parent" 
 					android:layout_width="fill_parent" 
-					android:id="@+id/edCmtWH"
-					android:gravity="top|left"
-					android:minLines="2"
-					android:lines="2"
-					android:hint="Комментарий для склада"
-					android:layout_marginBottom="1dp"/>
-
-				<EditText android:layout_weight="0.5"
-					android:layout_height="fill_parent"
-					android:layout_width="fill_parent"
-					android:id="@+id/edCmtDlv"
-					android:gravity="top|left"
-					android:minLines="2"
-					android:lines="2"
-					android:hint="Комментарий для доставки"
-					android:layout_marginTop="1dp"/>
+					android:id="@+id/edCreateOrderNotes" 
+					android:gravity="top|left" android:minLines="2" android:lines="2"></EditText>
 			</LinearLayout>
 		</LinearLayout>
 	</ScrollView>

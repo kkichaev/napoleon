@@ -22,6 +22,8 @@
 #define VERSION_MEMBER     L"version"
 #define DURATION_MEMBER    L"duration"
 #define PROGID_MEMBER      L"progid"
+#define PROJECT_MEMBER     L"project"
+#define KIND_MEMBER			L"kind"
 
 #define SERVER_ANSWER      L"ServerAnswer"
 #define RESPONSE_MEMBER    L"response"

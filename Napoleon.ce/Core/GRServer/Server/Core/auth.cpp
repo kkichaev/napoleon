@@ -110,6 +110,8 @@ bool Version::IsGreaterThan(const Version& v) const
    {
       if (*s > *d)
          return true;
+      if (*d > *s)
+         return false;
 
       s++;
       d++;
@@ -133,7 +135,7 @@ DWORD VerUpdateThread::Execute()
 
       if (verMutex.Acquire(1000))
       {
-         std::regex line("<tr>\\W*<td>(.*?)</td>\\W*<td>(.*?)</td>.*?</tr>", std::regex_constants::ECMAScript | std::regex_constants::icase);
+         std::regex line("<tr>\\W*<td>(.*?)</td>\\W*<td>(.*?)</td>\\W*<td>(.*?)</td>.*?</tr>", std::regex_constants::ECMAScript | std::regex_constants::icase);
 
          std::cmatch match;
          const char* p = msgBuf.c_str();
@@ -143,11 +145,14 @@ DWORD VerUpdateThread::Execute()
          {
             std::string project(match[1].first, match[1].second - match[1].first);
             std::string version(match[2].first, match[2].second - match[2].first);
+            std::string category(match[3].first, match[3].second - match[3].first);
             //gServer->AddLog(IErrorLogger::Full, "Version %s", version.c_str());
 
             if (version.find('.') != std::string::npos)
             {
                Version v(version);
+               if (category.compare("Android") != 0)
+                  project = category + project;
                versions.insert(std::map<std::wstring, Version>::value_type(A2W(project.c_str()), v));
             }
             p = match[0].second;
@@ -262,7 +267,7 @@ Session::UserVersionActions Session::GetUserUpdateAction(const User& user)
 
 const wchar_t* UPDATE_KIND = L"update";
 
-bool Session::CheckProgVersion(const wchar_t* project, const User& user)
+bool Session::CheckProgVersion(const wchar_t* project, const User& user, const CString* category)
 {
    bool ret = true;
 
@@ -275,11 +280,20 @@ bool Session::CheckProgVersion(const wchar_t* project, const User& user)
    if (!*ver)
       return true;
 
-   if (dispatcher->IsOldVersion(project, ver))
+   std::wstring prj(project);
+   if (category && category->compare(L"manager") == 0)
+   {
+      prj = L"Manager";
+      prj.append(PROJECT_NAME);
+   }
+
+   if (dispatcher->IsOldVersion(prj.c_str(), ver))
    {
       if (action == UserVersionActions::Forbidden)
       {
          ret = false;
+         if (answer != NULL)
+            answer->clear();
          AddAnswer(false,  FORBIDDEN_TEXT, UPDATE_KIND);
       }
       else if(action == UserVersionActions::Warning)
@@ -319,6 +333,7 @@ bool Session::Auth()
    if (retVal)
    {
       const Member* vm = command[PROJECT_MEMBER];
+      const Member* cm = command[CATEGORY_MEMBER];
 
 #ifdef Serviko
       const wchar_t* project = vm == NULL ? L"Serviko" : vm->str->c_str();
@@ -328,7 +343,7 @@ bool Session::Auth()
 
       if (project != NULL)
       {
-         if (!CheckProgVersion(project, *user))
+         if (!CheckProgVersion(project, *user, cm->str))
          {
             retVal = false;
 

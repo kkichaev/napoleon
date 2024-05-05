@@ -38,19 +38,18 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
     <uses-permission android:name="oppo.permission.OPPO_COMPONENT_SAFE" />
     <uses-permission android:name="com.huawei.permission.external_app_settings.USE_COMPONENT" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
-    <uses-permission android:name="android.permission.ACTION_MANAGE_OVERLAY_PERMISSION"/>
     <uses-permission android:name="Manifest.permission.FOREGROUND_SERVICE"/>
 
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="${access_background_location}"/>
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/>
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
 
     <!--
     	<uses-permission android:name="android.permission.FLASHLIGHT"/>
@@ -75,7 +74,8 @@
         <receiver
             android:name="com.grsoft.util.BootUpReceiver"
             android:enabled="true"
-            android:permission="android.permission.RECEIVE_BOOT_COMPLETED">
+            android:permission="android.permission.RECEIVE_BOOT_COMPLETED"
+            android:exported="true">
 
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
@@ -84,10 +84,11 @@
         </receiver>
 
         <activity
-            android:name="com.grsoft.napoleon.Main"
+            android:name="com.grsoft.napoleon.MainEx"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:label="@string/app_name"
-            android:launchMode="singleTask">
+            android:launchMode="singleTask"
+            android:exported="true">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -120,11 +121,6 @@
             android:label="@string/document_activity" />
 
         <activity
-            android:name="com.grsoft.napoleon.DocumentsEx"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
-            android:label="@string/document_activity" />
-
-        <activity
             android:name="com.grsoft.napoleon.CreateOrder"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:label="@string/createorder_activity"
@@ -136,24 +132,9 @@
             android:label="@string/warehouse_activity" />
 
         <activity
-            android:name="com.grsoft.napoleon.WarehouseEx"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
-            android:label="@string/warehouse_activity" />
-        <activity
             android:name="com.grsoft.napoleon.PriceCount"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
-        <activity
-            android:name="com.grsoft.napoleon.ReturnPriceCount"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
-        <activity
-            android:name="com.grsoft.napoleon.PriceCountEx"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
-        <activity
-            android:name="com.grsoft.napoleon.OrderDetail"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
-        <activity
-            android:name="com.grsoft.napoleon.OrderDetailEx"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+
         <activity
             android:name="com.grsoft.napoleon.DeliveryDetail"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
@@ -187,11 +168,12 @@
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
 
         <activity
-            android:name="com.grsoft.napoleon.OrderDeliveryDetail"
+            android:name="com.grsoft.napoleon.OrderDetail"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
-            android:label="@string/orderdeliverydetail_title"/>
+            android:label="@string/orderdetail_title"/>
+
         <activity
-            android:name="com.grsoft.napoleon.OrderDeliveryDetailEx"
+            android:name="com.grsoft.napoleon.OrderDeliveryDetail"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:label="@string/orderdeliverydetail_title"/>
         <activity
@@ -207,13 +189,7 @@
             android:name="com.grsoft.napoleon.PresentationFolder"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
         <activity
-            android:name="com.grsoft.napoleon.PresentationFolderEx"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
-        <activity
             android:name="com.grsoft.napoleon.PricePresentationFolder"
-            android:configChanges="keyboardHidden|orientation|screenSize" />
-        <activity
-            android:name="com.grsoft.napoleon.PricePresentationFolderEx"
             android:configChanges="keyboardHidden|orientation|screenSize" />
         <activity
             android:name="com.grsoft.napoleon.WarehouseSetting"
@@ -226,7 +202,9 @@
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
         <activity
             android:name="com.grsoft.napoleon.PotenzialOrg"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+            android:label="@string/new_org"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
             android:name="com.grsoft.napoleon.TaskForm"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
@@ -252,9 +230,6 @@
             android:name="com.grsoft.napoleon.CreateReturn"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
         <activity
-            android:name="com.grsoft.napoleon.CreateReturnEx"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
-        <activity
             android:name="com.grsoft.napoleon.CalendarActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
         <activity
@@ -270,7 +245,10 @@
             android:name="com.grsoft.napoleon.OrgTaskList"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
 
-        <receiver android:name="com.grsoft.napoleon.StartFromManager">
+        <receiver
+            android:name="com.grsoft.napoleon.StartFromManager"
+            android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -280,7 +258,8 @@
 
         <receiver
             android:name="com.grsoft.util.SystemActionReciever"
-            android:permission="android.permission.RECEIVE_BOOT_COMPLETED">
+            android:permission="android.permission.RECEIVE_BOOT_COMPLETED"
+            android:exported="true">
 
             <intent-filter>
                 <action android:name="android.location.PROVIDERS_CHANGED" />
@@ -387,28 +366,41 @@
          <activity android:name="com.grsoft.napoleon.UpdateDBPrint" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
          <activity android:name="com.grsoft.napoleon.TextPrinterSetting" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
          <activity android:name="com.grsoft.napoleon.CreateSales" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
-        <activity android:name="com.grsoft.napoleon.CreateSalesEx" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
          <activity android:name="com.grsoft.napoleon.MonitoringEdit" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
          <activity android:name="com.grsoft.napoleon.PaInfo" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
          <activity android:name="com.grsoft.napoleon.PkoInfo" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
          <activity android:name="com.grsoft.napoleon.VanRestReport" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
          <activity android:name="com.grsoft.napoleon.DocumentsPrint" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
          <activity android:name="com.grsoft.napoleon.SalesDetail" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
-        <activity android:name="com.grsoft.napoleon.SalesDetailEx" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
          <activity android:name="com.grsoft.napoleon.DistanceActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:label="@string/distanceactivity_title"/>
-        <activity android:name="com.grsoft.napoleon.InventoryList" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
-        <activity android:name="com.grsoft.napoleon.InventoryDetail" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
-        <activity android:name="com.grsoft.napoleon.NewClientEdit" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
-        <activity android:name="com.grsoft.napoleon.NewClientList" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
-        <activity android:name="com.grsoft.napoleon.RepView" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
-        <activity android:name="com.grsoft.napoleon.RequestedDocList" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
-        <activity android:name="com.grsoft.napoleon.WSOrderDetail" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
-        <activity android:name="com.grsoft.napoleon.WSOrderEdit" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
-        <activity android:name="com.grsoft.napoleon.WSOrderList" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
+		 <activity android:name="com.grsoft.napoleon.TaskListView" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
+        <activity android:name="com.grsoft.napoleon.CreateReturnEx" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
+         <activity android:name="com.grsoft.napoleon.CreateSalesEx" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
+         <activity android:name="com.grsoft.napoleon.PresentationFolderEx" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
+         <activity android:name="com.grsoft.napoleon.PriceCountEx" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
+         <activity android:name="com.grsoft.napoleon.ReturnPriceCount" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
          <activity android:name="com.grsoft.napoleon.RepEdit" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
-         <activity android:name="com.grsoft.napoleon.TaskListView" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
-	</application>
+         <activity android:name="com.grsoft.napoleon.WarehouseEx" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
+         <activity android:name="com.grsoft.napoleon.DocumentsEx" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
+         <activity android:name="com.grsoft.napoleon.OrderDeliveryDetailEx" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
+         <activity android:name="com.grsoft.napoleon.SalesDetailEx" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
+         <activity android:name="com.grsoft.napoleon.InventoryDetail" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
+         <activity android:name="com.grsoft.napoleon.OrderDetailEx" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
+         <activity android:name="com.grsoft.napoleon.WSOrderDetail" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
+         <activity android:name="com.grsoft.napoleon.InventoryList" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
+         <activity android:name="com.grsoft.napoleon.NewClientEdit" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
+         <activity android:name="com.grsoft.napoleon.NewClientList" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
+         <activity android:name="com.grsoft.napoleon.RepView" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
+         <activity android:name="com.grsoft.napoleon.RequestedDocList" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
+         <activity android:name="com.grsoft.napoleon.WSOrderEdit" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
+         <activity android:name="com.grsoft.napoleon.WSOrderList" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
+         <activity android:name="com.grsoft.napoleon.PricePresentationFolderEx" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
+        <activity android:name="com.grsoft.napoleon.BehaviorSettingEx" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
+        <activity android:name="com.grsoft.napoleon.UpdateDBEx" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
+        <activity android:name="com.grsoft.napoleon.InvPriceCount" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
+
+    </application>
 
 </manifest>

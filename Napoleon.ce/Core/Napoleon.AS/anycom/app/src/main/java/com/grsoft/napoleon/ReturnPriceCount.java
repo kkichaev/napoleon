@@ -158,7 +158,7 @@ public class ReturnPriceCount extends PriceCount {
 				Delivery dlv = (Delivery) d.getData();
 
 				for(DeliveryItem di : ((DeliveryImpl)d).getData().items)
-					if(di.id.equals(itemId))
+					if(di.id.equals(itemId) && di.qty > 0)
 						docs.add(new DlvData((Delivery)d.getData(), (DeliveryItemEx) di));
 
 			}

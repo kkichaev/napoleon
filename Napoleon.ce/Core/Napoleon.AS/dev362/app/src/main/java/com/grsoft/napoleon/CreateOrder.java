@@ -44,6 +44,7 @@ import com.grsoft.dataobjects.impl.OrgImpl;
 import com.grsoft.napoleon.documents.OrderDoc;
 import com.grsoft.util.ExtrasConst;
 import com.grsoft.util.OnClickListenerToNotify;
+import com.grsoft.util.Util;
 import com.grsoft.util.view.dialog_helper.DialogHelper;
 import com.grsoft.util.view.dialog_helper.KeyValue;
 import com.grsoft.util.view.dialog_helper.TimeHandler;
@@ -137,27 +138,6 @@ public class CreateOrder extends BaseActivity
 		}
 		config.close();
 		
-		if( Features.DELIVERY_ADDRESS ) {
-			View v = findViewById(R.id.ftrAddress);
-			if( v != null ) {
-				Spinner spAddress = (Spinner) findViewById(R.id.spAddress);
-				if( spAddress != null ) {
-					v.setVisibility(View.VISIBLE);
-					ArrayList<KeyValue> addresses = new ArrayList<KeyValue>();
-					int selected = -1;
-					for(OrgAddress addr : oi.getData().orgAddress) {
-						KeyValue kv = new KeyValue(addr.id, addr.name);
-						if( kv.key.toString().equals(o.adrCode))
-							selected = addresses.size();
-						addresses.add(kv);
-					}
-					ArrayAdapter<KeyValue> aa = new ArrayAdapter<KeyValue>(this, R.layout.simple_spinner_layout, addresses);
-					spAddress.setAdapter(aa);
-					if( selected >= 0 && selected < spAddress.getCount())
-						spAddress.setSelection(selected);
-				}
-			}
-		}
 		
 		TextView tvDelay = (TextView) findViewById(R.id.tvDelay); 
 		tvDelay.setOnClickListener(new DelayClickListener());
@@ -172,8 +152,7 @@ public class CreateOrder extends BaseActivity
 			
 			@Override
 			public void onClick(View v) {
-				Intent i = new Intent(CreateOrder.this, CalendarActivity.class);
-				i.putExtra(ExtrasConst.DATE_TAG, order.getDate().getTime());
+				Intent i = CalendarActivity.open(CreateOrder.this, order.getDate(), CreateOrder.this::isDateEnabled);
 				startActivityForResult(i, DIALOG_DATE_PICKER_ID);
 			}
 		});
@@ -189,7 +168,12 @@ public class CreateOrder extends BaseActivity
         updateDisplayDelay();
 		refreshDate();
 	}
-	
+
+	boolean isDateEnabled(Date date) {
+		Date cdate = Util.getDate();
+		return date.compareTo(cdate) >= 0;
+	}
+
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if( data != null && requestCode == DIALOG_DATE_PICKER_ID ) {
@@ -405,14 +389,6 @@ public class CreateOrder extends BaseActivity
 			EditText remark = (EditText)findViewById(R.id.edCreateOrderNotes);
 			o.remark = remark.getText().toString();
 			
-			if( Features.DELIVERY_ADDRESS ) {
-				Spinner spAddress = (Spinner) findViewById(R.id.spAddress);
-				if( spAddress != null ) {
-					KeyValue sel = (KeyValue) spAddress.getSelectedItem();
-					if( sel != null )
-						o.adrCode = sel.key.toString();
-				}
-			}
 			if (updateSumType)
 				order.updateItemsCost(o.sumType);
 			else

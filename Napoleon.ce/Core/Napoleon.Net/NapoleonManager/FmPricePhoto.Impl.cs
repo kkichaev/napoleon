@@ -21,8 +21,8 @@ namespace GRSoft.NapoleonManager
       int ImageCellIndex;
       protected DataSet<string, Price> dsPrice, dsCommonPrice;
       protected DataSet<string, ManagerFolder> dsFolder, dsCommonFolder;
-      private DataSet<string, Agent> dsAgent;
-      private DataSet<string, PricePhoto> dsPhotos;
+      protected DataSet<string, Agent> dsAgent;
+      protected DataSet<string, PricePhoto> dsPhotos;
 
       Color folderBackColor = Color.LightGray;
 
@@ -35,7 +35,6 @@ namespace GRSoft.NapoleonManager
 
       TreeGridNode[] priceNodes;
 
-      private bool agentsLoading = true;
       private bool expanded = false;
       bool clearing = false, inPriceMode = true;
       private SettingFmPricePhoto setting = null;
@@ -105,13 +104,16 @@ namespace GRSoft.NapoleonManager
          clmnPhoto.Width = setting.szX;
       }
 
-      private void FillAgents()
+      protected virtual void FillAgents()
       {
-         cbAgents.Items.Clear();
+         if (cbAgents.Items.Count > 0)
+            return;
+
          List<Agent> list = new List<Agent>();
 
-         foreach (Agent a in DataModule.Get(Agent.OBJECT_NAME).Data)
-            list.Add(a);
+         if (CurrentUser.user != null)
+            foreach (Agent a in CurrentUser.user.GetAgents().Data)
+               list.Add(a);
 
          if (list.Count > 0)
          {
@@ -127,6 +129,9 @@ namespace GRSoft.NapoleonManager
 
       private void btnRefresh_Click(object sender, EventArgs e)
       {
+         if (cbAgents.SelectedIndex < 0)
+            return;
+
          DataModule.SetDataRepsonceHandlers(DataProcessed, DataConnectionError);
 
          List<IDataSet> updSet = new List<IDataSet>();
@@ -145,9 +150,8 @@ namespace GRSoft.NapoleonManager
          }
          if (agent != null)
          {
-            String filter = String.Format("\"userid\" in ('{0}')", agent.id); ;
-            dsPrice.Filter = filter;
-            dsFolder.Filter = filter;
+            dsPrice = DataModule.GetUserDataSet(agent.id, Price.OBJECT_NAME, typeof(DataSet<string, Price>), true) as DataSet<string, Price>;
+            dsFolder = DataModule.GetUserDataSet(agent.id, ManagerFolder.OBJECT_NAME, typeof(DataSet<string, ManagerFolder>), true) as DataSet<string, ManagerFolder>;
 
             updSet.Add(dsPrice);
             updSet.Add(dsFolder);
@@ -156,7 +160,6 @@ namespace GRSoft.NapoleonManager
          if (dsAgent.Count == 0)
          {
             updSet.Add(dsAgent);
-            agentsLoading = true;
          }
 
          updSet.Add(dsPhotos);
@@ -192,11 +195,7 @@ namespace GRSoft.NapoleonManager
             {
                BeforeProceeded();
 
-               if (agentsLoading)
-               {
-                  FillAgents();
-                  agentsLoading = false;
-               }
+               FillAgents();
 
                LoadPic();
                CreatePriceTree();
@@ -277,6 +276,7 @@ namespace GRSoft.NapoleonManager
          TreeView tmpTree = new TreeView();
          ArticlesTreeConstructor treeCnt = new ArticlesTreeConstructor(tmpTree, dsFolder, dsPrice);
          treeCnt.MakeArticlesTree();
+         treeCnt.RemoveEmptyNodes();
 
          tgvPrice.SuspendLayout();
          tgvPrice.Nodes.Clear();

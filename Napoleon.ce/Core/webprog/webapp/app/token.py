@@ -4,6 +4,7 @@ import jwt
 from flask import current_app
 
 CREATE_USER_COMMAND = 'create_user'
+CLEAR_PASSWORD_COMMAND = 'clear_password'
 
 def create_token(userdata, command, expires_in = 600) -> str:
     userdata['command'] = command

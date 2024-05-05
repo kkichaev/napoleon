@@ -1,8 +1,11 @@
 package com.grsoft.napoleon;
 
 import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Filter;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,7 +17,7 @@ public class AddressAdapter extends ArrayAdapter<String> {
     List<String> src;
 
     public AddressAdapter(Context context) {
-        super(context, R.layout.setting_list_item);
+        super(context, R.layout.address_suggest);
         src = new ArrayList<>();
     }
 
@@ -27,6 +30,17 @@ public class AddressAdapter extends ArrayAdapter<String> {
     @Override
     public int getCount() {
         return src.size();
+    }
+
+    @NonNull
+    @Override
+    public View getView(int position, @Nullable View view, @NonNull ViewGroup parent) {
+        if(view == null) {
+            view = View.inflate(getContext(), R.layout.address_suggest, null);
+        }
+        String el = getItem(position);
+        ((TextView)view.findViewById(R.id.text)).setText(el);
+        return view;
     }
 
     @NonNull

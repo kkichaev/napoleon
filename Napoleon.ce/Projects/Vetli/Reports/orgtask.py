@@ -12,16 +12,20 @@
 
 from manager.task import taskReport
 from manager.task import taskList
+from manager.task import taskReportXLS
+
     
 def run(server):
 
-    print "start"
+    print("start")
     
     param = server.Params[0];
     if param.mode == "report" :
         taskReport(server, param)
+    elif param.mode == "reportXLS" :
+        taskReportXLS(server, param)
     else :
         taskList(server, param)
     
-    print "done"
+    print("done")
    

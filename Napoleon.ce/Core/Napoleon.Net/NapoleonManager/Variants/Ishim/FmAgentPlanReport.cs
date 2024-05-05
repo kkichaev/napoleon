@@ -99,123 +99,123 @@ namespace GRSoft.NapoleonManager
 
       void DataReceived(object sender, EventArgs e)
       {
-         DataModule.ClearEvents();
-         FmWait.CloseForm();
+         //DataModule.ClearEvents();
+         //FmWait.CloseForm();
 
-         Manager m = CurrentUser.user as Manager;
-         Agents a = m.GetAgents();
+         //Manager m = CurrentUser.user as Manager;
+         //Agents a = m.GetAgents();
 
-         Dictionary<OrderKey, OrderData> orderData = new Dictionary<OrderKey, OrderData>();
-         foreach(Order o in orders.Data)
-         {
-            OrderData od = null;
-            OrderKey ok = new OrderKey(o);
-            if (orderData.ContainsKey(ok))
-               od = orderData[ok];
-            else
-            {
-               od = new OrderData();
-               orderData.Add(ok, od);
-            }
-            od.Add(o, price);
-         }
+         //Dictionary<OrderKey, OrderData> orderData = new Dictionary<OrderKey, OrderData>();
+         //foreach(Order o in orders.Data)
+         //{
+         //   OrderData od = null;
+         //   OrderKey ok = new OrderKey(o);
+         //   if (orderData.ContainsKey(ok))
+         //      od = orderData[ok];
+         //   else
+         //   {
+         //      od = new OrderData();
+         //      orderData.Add(ok, od);
+         //   }
+         //   od.Add(o, price);
+         //}
 
-         Dictionary<Agent, List<PlanItem>> data = new Dictionary<Agent, List<PlanItem>>();
-         foreach (Agent agent in a.Data)
-         {
-            List<PlanItem> planItems = new List<PlanItem>();
-            for (DateTime cur = begin; cur.CompareTo(end) < 0; cur = cur.AddMonths(1))
-            {
-               PlanItem pi = new PlanItem(agent, cur);
+         //Dictionary<Agent, List<PlanItem>> data = new Dictionary<Agent, List<PlanItem>>();
+         //foreach (Agent agent in a.Data)
+         //{
+         //   List<PlanItem> planItems = new List<PlanItem>();
+         //   for (DateTime cur = begin; cur.CompareTo(end) < 0; cur = cur.AddMonths(1))
+         //   {
+         //      PlanItem pi = new PlanItem(agent, cur);
 
-               OrderKey ok = new OrderKey(agent, cur);
-               OrderData odata = (orderData.ContainsKey(ok) ? orderData[ok] : null);
-               pi.FillAgentPlans(agent, plans.Data, odata);
-               planItems.Add(pi);
-            }
+         //      OrderKey ok = new OrderKey(agent, cur);
+         //      OrderData odata = (orderData.ContainsKey(ok) ? orderData[ok] : null);
+         //      pi.FillAgentPlans(agent, plans.Data, odata);
+         //      planItems.Add(pi);
+         //   }
 
-            data.Add(agent, planItems);
-         }
+         //   data.Add(agent, planItems);
+         //}
 
-         string fileName;
-         if (reportType == 0)
-         {
-            fileName = PrintData(data);
-            OpenLink.NewWindow(String.Format("\"{0}\"", fileName));
-         }
-         else
-         {
-            fileName = DoCSV(data);
-            OpenLink.OpenFile(String.Format("\"{0}\"", fileName));
-         }
-         Invoke(new EmptyParamHandler(delegate() { Close(); }));
+         //string fileName;
+         //if (reportType == 0)
+         //{
+         //   fileName = PrintData(data);
+         //   OpenLink.NewWindow(String.Format("\"{0}\"", fileName));
+         //}
+         //else
+         //{
+         //   fileName = DoCSV(data);
+         //   OpenLink.OpenFile(String.Format("\"{0}\"", fileName));
+         //}
+         //Invoke(new EmptyParamHandler(delegate() { Close(); }));
       }
 
-      private string DoCSV(Dictionary<Agent, List<PlanItem>> data)
-      {
-         StringBuilder sb = new StringBuilder();
-         foreach (KeyValuePair<Agent, List<PlanItem>> kv in data)
-         {
-            foreach (PlanItem pi in kv.Value)
-            {
-               sb.AppendFormat("{0};{1:MMMM yyyy};\"Заморозка\";{2};{3};", kv.Key.Name, pi.Begin, pi.Plan1, pi.Fact1)
-                 .Append(Environment.NewLine)
-                 .AppendFormat("{0};{1:MMMM yyyy};\"Колбасы\";{2};{3};", kv.Key.Name, pi.Begin, pi.Plan2, pi.Fact2)
-                 .Append(Environment.NewLine);
-            }
-         }
-         string fileName = String.Format("agent_plan_report{0}.csv", ++doc_number);
-         string result = System.IO.Path.GetTempPath() + fileName;
-         using (StreamWriter sw = new StreamWriter(result, false, Encoding.GetEncoding("Windows-1251")))
-         {
-            sw.Write(sb.ToString());
-            sw.Flush();
-         }
+      //private string DoCSV(Dictionary<Agent, List<PlanItem>> data)
+      //{
+      //   StringBuilder sb = new StringBuilder();
+      //   foreach (KeyValuePair<Agent, List<PlanItem>> kv in data)
+      //   {
+      //      foreach (PlanItem pi in kv.Value)
+      //      {
+      //         sb.AppendFormat("{0};{1:MMMM yyyy};\"Заморозка\";{2};{3};", kv.Key.Name, pi.Begin, pi.Plan1, pi.Fact1)
+      //           .Append(Environment.NewLine)
+      //           .AppendFormat("{0};{1:MMMM yyyy};\"Колбасы\";{2};{3};", kv.Key.Name, pi.Begin, pi.Plan2, pi.Fact2)
+      //           .Append(Environment.NewLine);
+      //      }
+      //   }
+      //   string fileName = String.Format("agent_plan_report{0}.csv", ++doc_number);
+      //   string result = System.IO.Path.GetTempPath() + fileName;
+      //   using (StreamWriter sw = new StreamWriter(result, false, Encoding.GetEncoding("Windows-1251")))
+      //   {
+      //      sw.Write(sb.ToString());
+      //      sw.Flush();
+      //   }
 
-         return result;
-      }
+      //   return result;
+      //}
 
-      private string PrintData(Dictionary<Agent, List<PlanItem>> data)
-      {
-         StringBuilder sb = new StringBuilder();
-         sb.Append("<html><head><meta http-equiv='content-type' content='text/html; charset=utf-8'>" +
-           "</head><body><FONT FACE='Arial'>")
-         .Append("<H2>Отчет по планам </H2>")
-         .AppendFormat("<FONT SIZE='2'>Период: <b>{0:MMMM yyyy} - {1:MMMM yyyy}</b></FONT>", begin, end.AddMonths(-1));
-         foreach(KeyValuePair<Agent, List<PlanItem>> kv in data)
-         {
-            sb.AppendFormat("<h3>Торговый агент: {0}</h3>", kv.Key.Name)
-              .Append("<table cellpadding=5 CELLSPACING=0 border=1 BORDERCOLOR='#000000'><tr BGCOLOR='#CCCCCC' >")
-              .Append("<td rowspan='2'><FONT SIZE='2'><b>Название</b></td>");
+      //private string PrintData(Dictionary<Agent, List<PlanItem>> data)
+      //{
+      //   StringBuilder sb = new StringBuilder();
+      //   sb.Append("<html><head><meta http-equiv='content-type' content='text/html; charset=utf-8'>" +
+      //     "</head><body><FONT FACE='Arial'>")
+      //   .Append("<H2>Отчет по планам </H2>")
+      //   .AppendFormat("<FONT SIZE='2'>Период: <b>{0:MMMM yyyy} - {1:MMMM yyyy}</b></FONT>", begin, end.AddMonths(-1));
+      //   foreach(KeyValuePair<Agent, List<PlanItem>> kv in data)
+      //   {
+      //      sb.AppendFormat("<h3>Торговый агент: {0}</h3>", kv.Key.Name)
+      //        .Append("<table cellpadding=5 CELLSPACING=0 border=1 BORDERCOLOR='#000000'><tr BGCOLOR='#CCCCCC' >")
+      //        .Append("<td rowspan='2'><FONT SIZE='2'><b>Название</b></td>");
 
-            StringBuilder head2 = new StringBuilder("</tr><tr BGCOLOR='#CCCCCC' >");
-            StringBuilder row1 = new StringBuilder("</tr><tr>");
-            StringBuilder row2 = new StringBuilder("</tr><tr>");
-            row1.AppendFormat("<td>{0}</td>", "Заморозка");
-            row2.AppendFormat("<td>{0}</td>", "Колбасы");
-            foreach(PlanItem pi in kv.Value)
-            {
-               sb.AppendFormat("<td colspan='2'><FONT SIZE='2'><b>{0:MMMM yyyy}</b></td>", pi.Begin);
-               head2.Append("<td><FONT SIZE='2'><b>План</b></td><td><FONT SIZE='2'><b>Факт</b></td>");
-               row1.AppendFormat("<td>{0}</td><td>{1}</td>", pi.Plan1, pi.Fact1);
-               row2.AppendFormat("<td>{0}</td><td>{1}</td>", pi.Plan2, pi.Fact2);
-            }
+      //      StringBuilder head2 = new StringBuilder("</tr><tr BGCOLOR='#CCCCCC' >");
+      //      StringBuilder row1 = new StringBuilder("</tr><tr>");
+      //      StringBuilder row2 = new StringBuilder("</tr><tr>");
+      //      row1.AppendFormat("<td>{0}</td>", "Заморозка");
+      //      row2.AppendFormat("<td>{0}</td>", "Колбасы");
+      //      foreach(PlanItem pi in kv.Value)
+      //      {
+      //         sb.AppendFormat("<td colspan='2'><FONT SIZE='2'><b>{0:MMMM yyyy}</b></td>", pi.Begin);
+      //         head2.Append("<td><FONT SIZE='2'><b>План</b></td><td><FONT SIZE='2'><b>Факт</b></td>");
+      //         row1.AppendFormat("<td>{0}</td><td>{1}</td>", pi.Plan1, pi.Fact1);
+      //         row2.AppendFormat("<td>{0}</td><td>{1}</td>", pi.Plan2, pi.Fact2);
+      //      }
 
-            sb.Append(head2).Append(row1).Append(row2).Append("</table>");
-         }
+      //      sb.Append(head2).Append(row1).Append(row2).Append("</table>");
+      //   }
 
-         sb.Append("<SUB>Построен в системе \"Наполеон\" <a href=http://grsoft.ru/>http://grsoft.ru/</a></SUB></body></html>");
+      //   sb.Append("<SUB>Построен в системе \"Наполеон\" <a href=http://grsoft.ru/>http://grsoft.ru/</a></SUB></body></html>");
 
-         string fileName = String.Format("agent_plan_report{0}.html", ++doc_number);
-         string result = System.IO.Path.GetTempPath() + fileName;
-         using (StreamWriter sw = new StreamWriter(result))
-         {
-            sw.Write(sb.ToString());
-            sw.Flush();
-         }
+      //   string fileName = String.Format("agent_plan_report{0}.html", ++doc_number);
+      //   string result = System.IO.Path.GetTempPath() + fileName;
+      //   using (StreamWriter sw = new StreamWriter(result))
+      //   {
+      //      sw.Write(sb.ToString());
+      //      sw.Flush();
+      //   }
 
-         return result;
-      }
+      //   return result;
+      //}
 
       static int doc_number;
 

@@ -42,13 +42,15 @@ namespace GRSoft.NapoleonManager
 
          ToolStripButton rttReport = new System.Windows.Forms.ToolStripButton();
          rttReport.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-         rttReport.Image = Properties.Resources.qty2report;
+         rttReport.Image = Properties.Resources.plan_editor;
          rttReport.ImageTransparentColor = System.Drawing.Color.Magenta;
          rttReport.Name = "qty2report";
          rttReport.Size = new System.Drawing.Size(23, 22);
          rttReport.Text = "Товар под заказ производителю";
          rttReport.Click += new System.EventHandler(qty2Report_Click);
+         form.tsbConfig.Items.Add(rttReport);
 
+/*
          ToolStripButton dlvrpt = new System.Windows.Forms.ToolStripButton();
          dlvrpt.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
          dlvrpt.Image = Properties.Resources.debt_doc;
@@ -57,9 +59,8 @@ namespace GRSoft.NapoleonManager
          dlvrpt.Size = new System.Drawing.Size(23, 22);
          dlvrpt.Text = "Отчет по накладным";
          dlvrpt.Click += new System.EventHandler(dlvrpt_Click);
-
-         form.tsbConfig.Items.Add(rttReport);
          form.tsbConfig.Items.Add(dlvrpt);
+*/
       }
 
       private void dlvrpt_Click(object sender, EventArgs e)

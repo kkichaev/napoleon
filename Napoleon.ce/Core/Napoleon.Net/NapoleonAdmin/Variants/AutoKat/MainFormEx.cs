@@ -16,7 +16,7 @@ namespace GRSoft.NapoleonAdmin
       DataGridViewCheckBoxColumn clmnAllowDelete = new DataGridViewCheckBoxColumn();
       DataGridViewCheckBoxColumn clmnAllowLookPhoto = new DataGridViewCheckBoxColumn();
 
-      DataGridViewTextBoxColumn clmnId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      DataGridViewTextBoxColumn clmnKISId = new System.Windows.Forms.DataGridViewTextBoxColumn();
       DataGridViewCheckBoxColumn[] rightColumns;
       ToolStripButton btn;
 
@@ -56,11 +56,11 @@ namespace GRSoft.NapoleonAdmin
          // 
          // clmnId
          // 
-         clmnId.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-         clmnId.DataPropertyName = "KISID";
-         clmnId.HeaderText = "Код 1с";
-         clmnId.Name = "KISID";
-         clmnId.Width = 150;
+         clmnKISId.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+         clmnKISId.DataPropertyName = "KISID";
+         clmnKISId.HeaderText = "Код 1с";
+         clmnKISId.Name = "KISID";
+         clmnKISId.Width = 150;
 
          rightColumns = new DataGridViewCheckBoxColumn[] 
          { 
@@ -70,7 +70,7 @@ namespace GRSoft.NapoleonAdmin
                clmnAllowLookPhoto
          };
          usersView.Columns.AddRange(rightColumns);
-         usersView.Columns.Insert(1, clmnId);
+         usersView.Columns.Insert(1, clmnKISId);
 
          btn = new ToolStripButton();
          btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -178,7 +178,7 @@ namespace GRSoft.NapoleonAdmin
          clmnAllowCopy.Visible = visible;
          clmnAllowLookPhoto.Visible = visible;
          clmnAllowDelete.Visible = visible;  
-         clmnId.Visible = agentView;
+         clmnKISId.Visible = agentView;
       }
 
    }

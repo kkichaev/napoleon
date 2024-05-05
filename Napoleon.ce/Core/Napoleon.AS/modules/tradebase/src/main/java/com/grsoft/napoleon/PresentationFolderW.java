@@ -88,7 +88,7 @@ public class PresentationFolderW extends BaseActivity implements WarehouseManage
 	String selection;
 	boolean buildingProcess = false;
 	
-	Document<?> doc = null;
+	protected Document<?> doc = null;
 	
 	protected GridView gvPresentation;
 	protected FoldersAdapter adapter;

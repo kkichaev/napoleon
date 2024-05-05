@@ -306,8 +306,8 @@
         <sources>
           <source name="SQTable" type="internal">
             <!--readFilter используется для чтения по умолчанию (когда идет команда Get)-->
-            <!--<param name="readFilter">'"id" in (select "id" from "Org" where "userid"= ' + "'" + $user.id + "')"</param>-->
-            <param name="readFilter">'"userid"=' + "'" + $user.id + "'"</param>
+            <param name="readFilter">'"id" in (select "id" from "Org" where "userid"= ' + "'" + $user.id + "')"</param>
+            <!--<param name="readFilter">'"userid"=' + "'" + $user.id + "'"</param>-->
           </source>
         </sources>
       </change>

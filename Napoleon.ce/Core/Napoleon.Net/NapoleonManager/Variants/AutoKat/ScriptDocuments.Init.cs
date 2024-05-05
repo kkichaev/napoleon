@@ -14,6 +14,7 @@ namespace GRSoft.NapoleonManager
          docs.Add(new PurchaseDoc());
          docs.Add(new SellingDoc());
          docs.Add(new BlackSellingDoc());
+         docs.Add(new SellingTotalDoc());
          docs.Add(new ScriptPropDoc());
       }
    }
@@ -37,7 +38,7 @@ namespace GRSoft.NapoleonManager
    internal class SellingDoc : ScriptDocument
    {
       internal SellingDoc()
-         : base("SellingDoc", "Продажа сопутствующих товаров", Resources.visit_doc)
+         : base("SellingDoc", "Продажа (ЧЕК)", Resources.visit_doc)
       {
       }
    }
@@ -45,14 +46,22 @@ namespace GRSoft.NapoleonManager
    internal class BlackSellingDoc : ScriptDocument
    {
       internal BlackSellingDoc()
-         : base("BSellingDoc", "Продажа наличная", Resources.visit_doc)
+         : base("BSellingDoc", "Продажа", Resources.visit_doc)
       {
       }
    }
+   internal class SellingTotalDoc : ScriptDocument
+   {
+      internal SellingTotalDoc()
+         : base("SellingTotal", "Продажа (сумма)", Resources.visit_doc)
+      {
+      }
+   }
+
    internal class ScriptPropDoc : ScriptDocument
    {
       internal ScriptPropDoc()
-         : base("ScriptPropDoc", "Проверка информации о закупуке", Resources.remnants_doc)
+         : base("ScriptPropDoc", "Проверка информации о закупке", Resources.remnants_doc)
       {
       }
    }

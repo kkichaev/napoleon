@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties.v4</AppDesignerFolder>
     <RootNamespace>GRSoft.NapoleonManager</RootNamespace>
     <AssemblyName>NapoleonManager</AssemblyName>
-    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ApplicationIcon>napoleon.ico</ApplicationIcon>
     <IsWebBootstrapper>false</IsWebBootstrapper>
@@ -28,16 +28,18 @@
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;CAN_ADD_ORG_TO_CENSUS;SQL_ORG_ROUTE;ORG_REMNANTS;Dev3_5;CAN_ADD_ORG_TO_CENSUS;SCRIPT_DOC;SELECT_ORG_LOCATION;SCRIPT_DOC;QUESTION;QUESTION_REPORT;STD_QUESTION_REPORT;QUESTION_IN_SCRIPTS;AGENT_ORG_TASK;PRESENTATION_EDITOR;ADD_NOT_VISITED_IN_REPORT;ORG_DISPOSITION;QUESTION_REPORT_PYTHON;QUESTION_DOC;RGPS_Test;SELECT_ORG_LOCATION</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;CAN_ADD_ORG_TO_CENSUS;SQL_ORG_ROUTE;ORG_REMNANTS;Dev3_5;CAN_ADD_ORG_TO_CENSUS;SCRIPT_DOC;SELECT_ORG_LOCATION;SCRIPT_DOC;QUESTION;QUESTION_REPORT;STD_QUESTION_REPORT;QUESTION_IN_SCRIPTS;AGENT_ORG_TASK;PRESENTATION_EDITOR;ADD_NOT_VISITED_IN_REPORT;ORG_DISPOSITION;QUESTION_REPORT_PYTHON;QUESTION_DOC;RGPS_Test;SELECT_ORG_LOCATION;ADD_NOT_VISITED_IN_REPORT</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>AnyCPU</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -46,9 +48,18 @@
     <DefineConstants>TRACE;Stepup;AGENT_ORG_TASK</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Microsoft.Web.WebView2.Core, Version=1.0.1108.44, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Web.WebView2.1.0.1108.44\lib\net45\Microsoft.Web.WebView2.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.WebView2.WinForms, Version=1.0.1108.44, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Web.WebView2.1.0.1108.44\lib\net45\Microsoft.Web.WebView2.WinForms.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -343,6 +354,12 @@
     </Compile>
     <Compile Include="Modules\Quest\FmQuestionary.Impl.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MoneyProxyDetail.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MoneyProxyDetail.Designer.cs">
+      <DependentUpon>MoneyProxyDetail.cs</DependentUpon>
     </Compile>
     <Compile Include="OrgLocation.cs" />
     <Compile Include="FmAgentTaskEdit.cs">
@@ -646,6 +663,15 @@
     <Compile Include="OpenLink.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties.v4\AssemblyInfo.cs" />
+    <Compile Include="WebView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WebViewWarning.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WebViewWarning.Designer.cs">
+      <DependentUpon>WebViewWarning.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AckName.resx">
       <DependentUpon>AckName.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -799,6 +825,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\Quest\FmQuestionReport.resx">
       <DependentUpon>FmQuestionReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MoneyProxyDetail.resx">
+      <DependentUpon>MoneyProxyDetail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReturnOverview.resx">
       <DependentUpon>ReturnOverview.cs</DependentUpon>
@@ -960,6 +989,10 @@
     <EmbeddedResource Include="Variants\PavlovaTomsk\FmWorkReport.resx">
       <DependentUpon>FmWorkReport.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="WebViewWarning.resx">
+      <DependentUpon>WebViewWarning.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.config" />
     <None Include="Properties.v4\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -581,6 +581,7 @@ namespace GRSoft.NapoleonManager
          if (odr != null && odr.dataObject != null)
          {
             itDeleteDoc.Visible = odr.dataObject is Purchase || odr.dataObject is Selling;
+            miMakeDup.Text = odr.dataObject is Selling ? "Экспорт в УТ" : "Экспорт в ERP";
          }
          else
             itDeleteDoc.Visible = false;

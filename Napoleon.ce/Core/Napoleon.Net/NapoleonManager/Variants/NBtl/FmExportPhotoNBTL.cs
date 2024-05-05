@@ -18,9 +18,13 @@ namespace GRSoft.NapoleonManager
       protected DataSet<int, VisitInfo> dsVisitInfo;
       SimpleDataSet<ScriptDef> dsScriptDef;
       SimpleDataSet<ScriptDoc> dsScripts;
+      SimpleDataSet<Question> questions;
+      SimpleDataSet<Answer> answers;
 
       private DataSet<string, Org> dsOrg;
       private SettingFmExportPhotoNBTL setting;
+
+      Dictionary<int, List<string>> answOnPhoto = new Dictionary<int, List<string>>();
 
       Dictionary<int, ScriptDef> scriptDefs = new Dictionary<int, ScriptDef>();
 
@@ -40,6 +44,9 @@ namespace GRSoft.NapoleonManager
          dsOrg = (DataSet<string, Org>) DataModule.Get(Org.OBJECT_NAME) ?? new DataSet<string, Org>(Org.OBJECT_NAME);
          dsContract = (DataSet<string, ContractDef>)DataModule.Get(ContractDef.OBJECT_NAME) ?? new DataSet<string, ContractDef>(ContractDef.OBJECT_NAME);
          dsVisitInfo = (DataSet<int, VisitInfo>)DataModule.Get(VisitInfo.V_OBJECT_NAME) ?? new DataSet<int, VisitInfo>(VisitInfo.V_OBJECT_NAME);
+         
+         questions = new SimpleDataSet<Question>(Question.OBJECT_NAME, false);
+         answers = new SimpleDataSet<Answer>(Answer.OBJECT_NAME, false);
 
          dsScriptDef = new SimpleDataSet<ScriptDef>(ScriptDef.OBJECT_NAME, false);
          dsScripts = new SimpleDataSet<ScriptDoc>(ScriptDoc.OBJECT_NAME, false);
@@ -98,6 +105,8 @@ namespace GRSoft.NapoleonManager
          dsVisitInfo.Filter = String.Format(COMMON_FILTER_STR, "date", dpv.Start.Date, dpv.Finish.Date);
          dsScripts.Filter = String.Format(COMMON_FILTER_STR, "created", dpv.Start.Date, dpv.Finish.Date);
          dsScriptDef.Filter = "\"userid\" is null or not \"userid\" is null";
+         questions.Filter = "not \"id\" is null";
+         answers.Filter = string.Format(COMMON_FILTER_STR, "created", dpv.Start.Date, dpv.Finish.Date);
 
          const string PERIOD_FILTER_STR = "\"start\" < ToDate('{1:dd/MM/yyyy}') and \"finish\" >= ToDate('{0:dd/MM/yyyy}')";
          DateTime finish = dpv.Finish.AddDays(1);
@@ -116,14 +125,60 @@ namespace GRSoft.NapoleonManager
 
          upd.Add(dsScripts);
          upd.Add(dsScriptDef);
+         upd.Add(questions);
+         upd.Add(answers);
 
          FmWait.StdDataRefresh(this, upd, DoLoadDataLow);
       }
 
+      void PrepareArnswers()
+      {
+         // idquest => [idIitem]
+         Dictionary<string, List<string>> photoItems = new Dictionary<string, List<string>>();
+
+         foreach (Question q in questions.Data)
+            foreach (QuestionItem qi in q.items)
+            {
+               if (qi.showInPhoto != 0)
+               {
+                  List<string> items;
+                  if (!photoItems.TryGetValue(q.idquest, out items))
+                  {
+                     items = new List<string>();
+                     photoItems[q.idquest] = items;
+                  }
+
+                  items.Add(qi.iditem);
+               }
+            }
+
+         foreach (ScriptDef sd in dsScriptDef.Data)
+         {
+            scriptDefs[sd.id] = sd;
+            foreach (ScriptDefItem sdi in sd.items)
+            {
+               if (sdi.curType == Answer.OBJECT_NAME)
+               {
+                  List<string> items;
+                  if (!photoItems.TryGetValue(sdi.condParam, out items))
+                     continue;
+
+                  List<string> dest;
+                  if (!answOnPhoto.TryGetValue(sd.id, out dest))
+                  {
+                     dest = new List<string>();
+                     answOnPhoto[sd.id] = dest;
+                  }
+                  dest.AddRange(items);
+               }
+            }
+         }
+      }
+
       private void DoLoadDataLow()
       {
-         foreach (ScriptDef sd in dsScriptDef.Data)
-            scriptDefs[sd.id] = sd;
+         PrepareArnswers();
+
 
          int c = 1;
          int sz = dsVisitInfo.Count;
@@ -154,9 +209,54 @@ namespace GRSoft.NapoleonManager
          }
       }
 
-      string GetScriptStep(Visit v)
+      Dictionary<string,string> FindAnswers(ScriptDoc sd)
       {
-         string ret = "";
+         Dictionary<string, string> ret = new Dictionary<string, string>();
+
+         foreach (ScriptDocItem sdi in sd.items)
+         {
+            if(sdi.type == Answer.OBJECT_NAME)
+               foreach (Answer a in answers.Data)
+               {
+                  if (a.userid == sd.userid && a.created == sdi.date)
+                  {
+                     foreach(AnswerItem ai in a.items)
+                     {
+                        ret[ai.iditem] = ai.answer;
+                     }
+                  }
+               }
+         }
+         return ret;
+      }
+
+      List<string> GetPhotoText(ScriptDoc sd)
+      {
+         List<string> ret = new List<string>();
+         List<string> items;
+         if(answOnPhoto.TryGetValue(sd.scriptId, out items))
+         {
+            Dictionary<string, string> answ = FindAnswers(sd);
+            foreach(string item in items)
+            {
+               if(answ.ContainsKey(item))
+               {
+                  ret.Add(answ[item]);
+               }
+            }
+         }
+         return ret;
+      }
+
+      class ScriptData
+      {
+         public string name = "";
+         public List<string> answers = new List<string>();
+      }
+
+      ScriptData GetScriptStep(Visit v)
+      {
+         ScriptData ret = new ScriptData();
 
          foreach(ScriptDoc sd in dsScripts.Data)
          {
@@ -169,7 +269,10 @@ namespace GRSoft.NapoleonManager
                   {
                      ScriptDef def = scriptDefs[sd.scriptId];
                      if (def.items.Count > cnt)
-                        ret = def.items[cnt].Name;
+                     {
+                        ret.name = def.items[cnt].Name;
+                        ret.answers = GetPhotoText(sd);
+                     }
                   }
                   break;
                }
@@ -186,13 +289,14 @@ namespace GRSoft.NapoleonManager
          list.AddRange(dsVisit.Values);
          list.Sort((lhs, rhs) => lhs.AgentName.CompareTo(rhs.AgentName));
          string parent = tbPath.Text.Trim();
-         const string saveName = @"{0}\{1}_{2}_{3}_{4}({5}_{6}).jpg";
+         const string saveName = @"{0}_{1}_{2}_{3}_({4}_{5})";
          Font font = new System.Drawing.Font("Arial", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
          SolidBrush drawBrush = new SolidBrush(Color.Red);
 
          foreach (Visit v in list)
          {
-            string scriptStep = GetScriptStep(v);
+            ScriptData scriptData = GetScriptStep(v);
+            string scriptStep = scriptData.name;
             if (scriptStep.Length > 0)
                scriptStep += ' ';
             if (v.items != null && v.items.Count > 0 && v.contract != null)
@@ -213,7 +317,13 @@ namespace GRSoft.NapoleonManager
                      // просто закоментировать!
                      Graphics g = Graphics.FromImage(image);
 
+                     string phText = string.Join(",", scriptData.answers.ToArray());
                      string text = scriptStep + v.OrgName + "," + v.OrgAddr + ", " + item.date.ToString("dd/MM/yyyy HH:mm");
+                     if(phText.Length > 0)
+                     {
+                        text += "\n" + phText;
+                     }
+
                      SizeF textSz = g.MeasureString(text, font);
                      //PointF drawPoint = new PointF(image.Width - textSz.Width - 5, image.Height - textSz.Height);
                      RectangleF rect = new RectangleF(0, 0, image.Width, image.Height);
@@ -283,10 +393,29 @@ namespace GRSoft.NapoleonManager
 
                         string cname = scriptStep.Replace(' ', '_');
                         cname += WinChar(v.contract.Name);
-                        string file = string.Format(saveName, dir.ToString(), cname, 
+
+                        string curDir = Directory.GetCurrentDirectory();
+                        Directory.SetCurrentDirectory(dir.ToString());
+
+                        string file = string.Format(saveName, cname, 
                            WinChar(v.OrgName), WinChar(v.OrgAddr), WinChar(v.Created.ToString("dd.MM.yyyy")), cnt_v, cnt);
 
+                        if(phText.Length > 0)
+                        {
+                           int l = file.Length + phText.Length;
+                           if(l > 250)
+                           {
+                              file += phText.Substring(0, 250 - file.Length);
+                           }
+                           else
+                           {
+                              file += phText;
+                           }
+                        }
+                        file += ".jpg";
                         image.Save(file);
+
+                        Directory.SetCurrentDirectory(curDir);
                      }
                      catch (Exception e)
                      {

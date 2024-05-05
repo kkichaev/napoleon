@@ -222,6 +222,25 @@ struct SQLExecutorCreator : public IDataSource::ICreator
 	virtual IDataSource::IRemover* CreateRemover(IDataSource::IRemover* parent, const ParamList& parameters, const ISessionObject& object) const { return NULL; }
 };
 
+struct ManagerRightsCreator : public IDataSource::ICreator
+{
+   IDataSource::ICreator* dataSource;
+   ManagerRightsCreator(IDataSource::ICreator* src) { dataSource = src; }
+
+   virtual const wchar_t* Name() const { return L"ManagerRights"; }
+
+   virtual IDataSource::IReader* CreateReader(const ParamList& parameters, const ISessionObject& object) const;
+   
+   virtual IDataSource::IWriter* CreateWriter(IDataSource::IWriter* parent, const ParamList& parameters, const ISessionObject& object) const 
+   {
+      return dataSource->CreateWriter(parent, parameters, object);
+   }
+
+   virtual IDataSource::IRemover* CreateRemover(IDataSource::IRemover* parent, const ParamList& parameters, const ISessionObject& object) const
+   {
+      return dataSource->CreateRemover(parent, parameters, object);
+   }
+};
 
 //bool SQLiteInitializer(const GRServer::ServerConfig& config);
 //void SQLiteCleanup();

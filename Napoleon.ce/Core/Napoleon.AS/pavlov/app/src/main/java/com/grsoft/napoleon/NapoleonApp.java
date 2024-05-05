@@ -99,6 +99,7 @@ public class NapoleonApp extends NapoleonAppBase {
 		super.initChildActivity();
 		PriceCount.activity = PriceCountEx.class;
 		ReturnDetail.activity = ReturnDetailEx.class;
+		Warehouse.activity = WarehouseEx.class;
 	}
 
 	@Override
@@ -109,11 +110,15 @@ public class NapoleonApp extends NapoleonAppBase {
 
 	@Override
 	protected void initChildFeature() {
+		Features.VER_4_1 = true;
+
 		super.initChildFeature();
+
 		Features.DELIVERY_ADDRESS = true;
 //		Features.BLOCK_IN_STOP_LIST = true;
 		Features.ID_COLUMN_IN_PRICE_LIST = true;
 		Features.CAN_CHANGE_COST = true;
 		Features.USE_COST_IN_RETURNS = true;
+		Features.LOAD_FULL_PRICE = true;
 	}
 }

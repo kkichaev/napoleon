@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.MenuItem;
 
 import com.grsoft.database.BannerRcv;
+import com.grsoft.database.HitchOnSelect;
 import com.grsoft.database.Hitching;
 import com.grsoft.database.HitchingCtor;
 import com.grsoft.database.RcvNewHitching;
@@ -39,8 +40,10 @@ import com.grsoft.dataobjects.PresentEx;
 import com.grsoft.dataobjects.Price;
 import com.grsoft.dataobjects.PriceEx;
 import com.grsoft.dataobjects.PriceHitchingEx;
+import com.grsoft.dataobjects.PriceWeight;
 import com.grsoft.dataobjects.ServikoAction;
 import com.grsoft.dataobjects.ServikoActionItems;
+import com.grsoft.dataobjects.ShelfShare;
 import com.grsoft.dataobjects.SppAgent;
 import com.grsoft.dataobjects.UserAssortMtx;
 import com.grsoft.dataobjects.impl.DbObject;
@@ -53,15 +56,18 @@ import com.grsoft.napoleon.documents.ClientCardDoc;
 import com.grsoft.napoleon.documents.DocType;
 import com.grsoft.napoleon.documents.IncassDocEx;
 import com.grsoft.napoleon.documents.KupecDoc;
+import com.grsoft.napoleon.documents.ShelfShareDoc;
 import com.grsoft.napoleon.util.CfgNpl;
 import com.grsoft.napoleon.util.CfgNplEx;
 import com.grsoft.network.ServerCommand;
 import com.grsoft.script.ScriptEdit;
 import com.grsoft.script.dataobjects.impl.ScriptImpl;
 import com.grsoft.util.DocFilterOnClickListener;
+import com.grsoft.util.FoldersAdapter;
 import com.grsoft.util.MenuActionHandler;
 import com.grsoft.util.MenuHandler;
 import com.grsoft.util.MenuPrepareHitching;
+import com.grsoft.util.PriceComparer;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -95,6 +101,7 @@ public class NapoleonApp extends NapoleonAppBase {
         setProgrammVersion();
 
         alertSender = new AlertSender(this);
+        FoldersAdapter.TreeNodeComparator = new PriceComparer(getApplicationContext());
 
         //NapoleonChat.init(this);
 
@@ -134,6 +141,7 @@ public class NapoleonApp extends NapoleonAppBase {
             }
         });
 
+//        String pwFilter = "id in (select id from [WH$CURRENT_USERID]) and  firm in (select id from [FI$CURRENT_USERID])";
         UpdateDB.addHitchingCtor(new HitchingCtor() {
             @Override
             public List<Hitching> createList() {
@@ -142,6 +150,9 @@ public class NapoleonApp extends NapoleonAppBase {
                 res.add(new RcvNewHitching(SppAgent.class));
                 res.add(new RcvNewHitching(KupecAction.class));
                 res.add(new BannerRcv(getApplicationContext()));
+//                res.add(new HitchOnSelect(PriceWeight.class, "PriceSortWeight", pwFilter, true));
+                res.add(new RcvNewHitching(PriceWeight.class));
+                res.add(new RcvNewHitching(ShelfShare.class));
                 return res;
             }
         }, UpdateDB.GEN_DATA_HITCHING);
@@ -227,6 +238,7 @@ public class NapoleonApp extends NapoleonAppBase {
 
         // conflict with Action matrix
         Features.OPEN_LAST_MATRIX = false;
+        Features.CHECK_UNCOMPLETE_SCRIPTS = true;
     }
 
     @Override
@@ -251,6 +263,7 @@ public class NapoleonApp extends NapoleonAppBase {
         DocType.addType(ClientCardDoc.instance());
         DocType.addType(KupecDoc.instance());
         DocType.addType(BankDoc.instance());
+        DocType.addType(ShelfShareDoc.instance());
     }
 
 }

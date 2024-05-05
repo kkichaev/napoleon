@@ -7,6 +7,8 @@
  */
 package com.grsoft.dataobjects;
 
+import android.location.Location;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
@@ -135,4 +137,23 @@ public class Org extends DataObject
 	}
 	
 	@Override public String toString() { return name; }
+
+	public Location getLocation() {
+		int lat = latitude;
+		int lon = longitude;
+		if(lat == 0 && lon == 0) {
+			String where = String.format("id = '%s'", id);
+			for(OrgLocation ol : DbReader.fetch(OrgLocation.class, where)) {
+				lat = ol.latitude;
+				lon = ol.longitude;
+			}
+		}
+		Location ret = null;
+		if(lat != 0 || lon != 0) {
+			ret = new Location((String)null);
+			ret.setLatitude(((double)lat) / Consts.GPS_SCALE );
+			ret.setLongitude(((double)lon) / Consts.GPS_SCALE );
+		}
+		return ret;
+	}
 }

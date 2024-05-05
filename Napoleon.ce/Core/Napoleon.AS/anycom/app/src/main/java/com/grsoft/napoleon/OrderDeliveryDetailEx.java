@@ -31,7 +31,7 @@ public class OrderDeliveryDetailEx extends OrderDeliveryDetail {
 
     @Override
     protected void drawItem(View view, DeliveryItem dlvItem, OrderItem ordItem, int color) {
-        String text = remarks.get(dlvItem.id);
+        String text = remarks.get(ordItem.id);
         TextView tv = view.findViewById(R.id.remark);
         tv.setText(text == null ? "" : text);
         tv.setTextColor(color);

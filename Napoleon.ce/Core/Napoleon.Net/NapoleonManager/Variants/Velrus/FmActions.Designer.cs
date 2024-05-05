@@ -28,25 +28,25 @@
       /// </summary>
       private void InitializeComponent()
       {
-         System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-         System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
          System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
          System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+         System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+         System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
          System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FmActions));
          this.toolStrip1 = new System.Windows.Forms.ToolStrip();
          this.btnRefresh = new System.Windows.Forms.ToolStripButton();
          this.btnAdd = new System.Windows.Forms.ToolStripButton();
+         this.btnEdit = new System.Windows.Forms.ToolStripButton();
          this.btnDel = new System.Windows.Forms.ToolStripButton();
          this.grid = new System.Windows.Forms.DataGridView();
-         this.btnEdit = new System.Windows.Forms.ToolStripButton();
-         this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-         this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-         this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-         this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
          this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
          this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
          this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
          this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+         this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+         this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+         this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+         this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
          this.toolStrip1.SuspendLayout();
          ((System.ComponentModel.ISupportInitialize)(this.grid)).BeginInit();
          this.SuspendLayout();
@@ -85,6 +85,16 @@
          this.btnAdd.Text = "Добавить";
          this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
          // 
+         // btnEdit
+         // 
+         this.btnEdit.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+         this.btnEdit.Image = global::GRSoft.NapoleonManager.Properties.Resources.edit;
+         this.btnEdit.ImageTransparentColor = System.Drawing.Color.Magenta;
+         this.btnEdit.Name = "btnEdit";
+         this.btnEdit.Size = new System.Drawing.Size(36, 36);
+         this.btnEdit.Text = "Изменить";
+         this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
+         // 
          // btnDel
          // 
          this.btnDel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -112,48 +122,7 @@
          this.grid.RowHeadersVisible = false;
          this.grid.Size = new System.Drawing.Size(842, 357);
          this.grid.TabIndex = 1;
-         // 
-         // btnEdit
-         // 
-         this.btnEdit.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-         this.btnEdit.Image = global::GRSoft.NapoleonManager.Properties.Resources.edit;
-         this.btnEdit.ImageTransparentColor = System.Drawing.Color.Magenta;
-         this.btnEdit.Name = "btnEdit";
-         this.btnEdit.Size = new System.Drawing.Size(36, 36);
-         this.btnEdit.Text = "Изменить";
-         this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
-         // 
-         // dataGridViewTextBoxColumn1
-         // 
-         this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-         this.dataGridViewTextBoxColumn1.DataPropertyName = "Name";
-         this.dataGridViewTextBoxColumn1.HeaderText = "Название";
-         this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-         // 
-         // dataGridViewTextBoxColumn2
-         // 
-         this.dataGridViewTextBoxColumn2.DataPropertyName = "Start";
-         dataGridViewCellStyle3.Format = "d";
-         dataGridViewCellStyle3.NullValue = null;
-         this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle3;
-         this.dataGridViewTextBoxColumn2.HeaderText = "дата с";
-         this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-         // 
-         // dataGridViewTextBoxColumn3
-         // 
-         this.dataGridViewTextBoxColumn3.DataPropertyName = "Finish";
-         dataGridViewCellStyle4.Format = "d";
-         dataGridViewCellStyle4.NullValue = null;
-         this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle4;
-         this.dataGridViewTextBoxColumn3.HeaderText = "дата по";
-         this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-         // 
-         // dataGridViewTextBoxColumn4
-         // 
-         this.dataGridViewTextBoxColumn4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-         this.dataGridViewTextBoxColumn4.DataPropertyName = "Descr";
-         this.dataGridViewTextBoxColumn4.HeaderText = "Описание";
-         this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+         this.grid.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grid_CellDoubleClick);
          // 
          // Column1
          // 
@@ -186,6 +155,38 @@
          this.Column4.DataPropertyName = "Descr";
          this.Column4.HeaderText = "Описание";
          this.Column4.Name = "Column4";
+         // 
+         // dataGridViewTextBoxColumn1
+         // 
+         this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+         this.dataGridViewTextBoxColumn1.DataPropertyName = "Name";
+         this.dataGridViewTextBoxColumn1.HeaderText = "Название";
+         this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+         // 
+         // dataGridViewTextBoxColumn2
+         // 
+         this.dataGridViewTextBoxColumn2.DataPropertyName = "Start";
+         dataGridViewCellStyle3.Format = "d";
+         dataGridViewCellStyle3.NullValue = null;
+         this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle3;
+         this.dataGridViewTextBoxColumn2.HeaderText = "дата с";
+         this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+         // 
+         // dataGridViewTextBoxColumn3
+         // 
+         this.dataGridViewTextBoxColumn3.DataPropertyName = "Finish";
+         dataGridViewCellStyle4.Format = "d";
+         dataGridViewCellStyle4.NullValue = null;
+         this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle4;
+         this.dataGridViewTextBoxColumn3.HeaderText = "дата по";
+         this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+         // 
+         // dataGridViewTextBoxColumn4
+         // 
+         this.dataGridViewTextBoxColumn4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+         this.dataGridViewTextBoxColumn4.DataPropertyName = "Descr";
+         this.dataGridViewTextBoxColumn4.HeaderText = "Описание";
+         this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
          // 
          // FmActions
          // 

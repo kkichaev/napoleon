@@ -1,17 +1,64 @@
 <template>
-  <q-page padding>
-      <h3>Манагер Майн!</h3>
-      <apexchart type="bar" height="350" :options="chartOptions" :series="series"></apexchart>
+  <q-page class="page">
+    <q-card class="page-content-full-hight">
+      <div class="page-header">{{ $t("manager.title") }}</div>
 
-      <div class="row no-wrap" style="background-color: green; padding: 10px; min-height: 75px;">
-        <div style="background-color: blue;">column 1</div>
-        <div class="col-grow" style="background-color: brown;">column 2</div>
-        <div class="col-shrink" style="background-color: yellow; min-width: 400px;">column 3 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium quidem veniam ad eaque distinctio accusamus aliquam, voluptatibus omnis, incidunt aut commodi doloremque et minus unde odio quaerat cumque autem at.</div>
+      <div class="row">
+        <div class="col">
+          <apexchart type="bar" height="350" :options="chartOptions" :series="series"></apexchart>
+        </div>
+        <div class="col">
+          <apexchart type="bar" height="350" :options="chartOptions" :series="series"></apexchart>
+        </div>
       </div>
+
+      <q-table
+        :columns="columns"/>
+    </q-card>
   </q-page>
 </template>
 
 <script setup>
+import { useI18n } from "vue-i18n";
+const i18n = useI18n();
+
+const columns = [
+  {
+    name: "division",
+    label: "Подраздление",
+    align: "left",
+    field: "division",
+    sortable: true,
+  },
+  {
+    name: "user",
+    label: "Пользователь",
+    align: "left",
+    field: "user",
+    sortable: true,
+  },
+  {
+    name: "visits",
+    label: "Визиты",
+    align: "left",
+    field: "visits",
+    sortable: true,
+  },
+  {
+    name: "sum",
+    label: "Сумма",
+    align: "left",
+    field: "sum",
+    sortable: true,
+  },
+  {
+    name: "access",
+    label: "Доступ",
+    align: "left",
+    field: "access",
+    sortable: true,
+  },
+]
 const series = [{
             data: [400, 430, 448, 470, 540, 580, 690, 1100, 1200, 1380]
           }]

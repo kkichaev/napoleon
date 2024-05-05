@@ -11,7 +11,6 @@ using System.Threading;
 using System.Windows.Forms;
 
 using ExcelLibrary;
-using ExcelLibrary.SpreadSheet;
 
 namespace GRSoft.NapoleonManager
 {
@@ -66,60 +65,85 @@ namespace GRSoft.NapoleonManager
       {
          try
          {
-            Workbook wb = Workbook.Load(fileName);
-            Worksheet ws = wb.Worksheets[0];
-
-            SimpleDataSet<Org> ds = new SimpleDataSet<Org>(Org.OBJECT_NAME, false);
-            for (int r = ws.Cells.FirstRowIndex+1; r <= ws.Cells.LastRowIndex; r++)
+            Workbook wb = new Workbook();
+            wb.Open(fileName);
+            foreach(Sheet ws in wb.Sheets)
             {
-               Row row = ws.Cells.Rows[r];
-               Org o = new Org();
-               o.name = row.GetCell(0).StringValue;
-               o.address = row.GetCell(1).StringValue;
-
-               if (!orgLoaded.Contains(o.name.ToUpper() + o.address.ToUpper()))
+               SimpleDataSet<Org> ds = new SimpleDataSet<Org>(Org.OBJECT_NAME, false);
+               bool firstRow = true;
+               foreach(Row row in ws.Rows)
                {
-                  o.id = Guid.NewGuid().ToString().Replace("-", "");
-                  o.userid = agent.id;
-                  ds.Add(o);
+                  if(firstRow)
+                  {
+                     firstRow = false;
+                     continue;
+                  }
+                  Org o = new Org();
+                  o.name = row.Cell(1).Value;
+                  o.address = row.Cell(2).Value;
+
+                  if (!orgLoaded.Contains(o.name.ToUpper() + o.address.ToUpper()))
+                  {
+                     o.id = Guid.NewGuid().ToString().Replace("-", "");
+                     o.userid = agent.id;
+                     ds.Add(o);
+                  }
                }
-            }
+               //for (int r = ws.Cells.FirstRowIndex + 1; r <= ws.Cells.LastRowIndex; r++)
+               //{
+               //   Row row = ws.Cells.Rows[r];
+               //   Org o = new Org();
+               //   o.name = row.GetCell(0).StringValue;
+               //   o.address = row.GetCell(1).StringValue;
 
-            if (ds.Count > 0)
-            {
-               List<IDataSet> update = new List<IDataSet>();
-               update.Add(ds);
+               //   if (!orgLoaded.Contains(o.name.ToUpper() + o.address.ToUpper()))
+               //   {
+               //      o.id = Guid.NewGuid().ToString().Replace("-", "");
+               //      o.userid = agent.id;
+               //      ds.Add(o);
+               //   }
+               //}
 
-               Config cfg = Config.GetConfig();
+               if (ds.Count > 0)
+               {
+                  List<IDataSet> update = new List<IDataSet>();
+                  update.Add(ds);
 
-               if (DataModule.UpdateDataSet(update, null, null, cfg.GetConnection()))
-                  Invoke(new InvokeDelegate(
-                  delegate
-                  {
-                     if (owner != null)
+                  Config cfg = Config.GetConfig();
+
+                  if (DataModule.UpdateDataSet(update, null, null, cfg.GetConnection()))
+                     Invoke(new InvokeDelegate(
+                     delegate
                      {
-                        owner.btnRefresh.PerformClick();
-                     }
-                     MessageBox.Show("Данные загружены успешно!", "Информация", MessageBoxButtons.OK,
-                              MessageBoxIcon.Information);
+                        if (owner != null)
+                        {
+                           owner.btnRefresh.PerformClick();
+                        }
+                        MessageBox.Show("Данные загружены успешно!", "Информация", MessageBoxButtons.OK,
+                                 MessageBoxIcon.Information);
 
-                     foreach (Org o in ds.Values)
+                        foreach (Org o in ds.Values)
+                        {
+                           string key = o.name.ToUpper() + o.address.ToUpper();
+
+                           if (!orgLoaded.Contains(key))
+                              orgLoaded.Add(key);
+                        }
+
+                     }));
+                  else
+                     Invoke(new InvokeDelegate(
+                     delegate
                      {
-                        string key = o.name.ToUpper() + o.address.ToUpper();
-
-                        if (!orgLoaded.Contains(key))
-                           orgLoaded.Add(key);
-                     }
-
-                  }));
-               else
-                  Invoke(new InvokeDelegate(
-                  delegate
-                  {
-                     MessageBox.Show("Ошибка записи в базу данных.", "Ошибка", MessageBoxButtons.OK,
-                              MessageBoxIcon.Error);
-                  }));
+                        MessageBox.Show("Ошибка записи в базу данных.", "Ошибка", MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error);
+                     }));
+               }
+               break;
             }
+            //Worksheet ws = wb.Worksheets[0];
+
+
          }
          catch(Exception e)
          {

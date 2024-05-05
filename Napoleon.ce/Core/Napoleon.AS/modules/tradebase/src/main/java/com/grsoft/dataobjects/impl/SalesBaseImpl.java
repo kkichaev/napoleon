@@ -214,8 +214,8 @@ public class SalesBaseImpl<T extends Sales> extends OrderImplBase<T> implements 
 
 		for(OrderItem oi : data.items) {
 			pp.id = oi.id;
-			pi.read();
-			((SalesItem)oi).countTax(data, pp.tax1);
+			if(pi.read())
+				((SalesItem)oi).countTax(data, pp.tax1);
 		}
 
 		pi.close();
@@ -282,8 +282,11 @@ public class SalesBaseImpl<T extends Sales> extends OrderImplBase<T> implements 
 	public long sum() {
 		long result = 0;
 		if( data.items != null ) {
-			for (OrderItem item: data.items)
-				result += ((SalesItem)item).sum;
+			for (OrderItem item: data.items) {
+				if(item.sum == 0)
+					item.sum = ((SalesItem)item)._sum;
+				result += item.sum;
+			}
 		}
 		return result;
 	}

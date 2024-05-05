@@ -63,22 +63,22 @@ public class LoadedOrders extends DataObject {
 		}, where);
 		return data;
 	}
-}
 
-class ValueData {
-	int qty;
-	int sum;
-	
-	public ValueData(LoadedOrderItem i) {
-		qty =i.qty;
-		sum = i.sum;
-	}
-	
-	public boolean isSame(OrderItem oi) {
-		if(qty != oi.qty)
-			return false;
-		
-		int osum = (int)((long)oi.qty * oi.cost / Consts.QTY_SCALE);
-		return sum == osum;
+	static class ValueData {
+		int qty;
+		int sum;
+
+		public ValueData(LoadedOrderItem i) {
+			qty =i.qty;
+			sum = i.sum;
+		}
+
+		public boolean isSame(OrderItem oi) {
+			if(qty != oi.qty)
+				return false;
+
+			int osum = (int)((long)oi.qty * oi.cost / Consts.QTY_SCALE);
+			return sum == osum;
+		}
 	}
 }

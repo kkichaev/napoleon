@@ -155,12 +155,16 @@ public class CostStrategyEx extends CostStrategy {
 	}
 	
 	public ItemActionData getActionData(Price p, Document<?> doc) {
+		return getActionData(p.id, doc);
+	}
+
+	public ItemActionData getActionData(String priceId, Document<?> doc) {
 		if(!(doc instanceof OrderImpl))
 			return null;
-		
+
 		OrderEx order = (OrderEx) doc.getData();
 		loadActions(order.id, order.whCode);
-		return actions.get(p.id);
+		return actions.get(priceId);
 	}
 	
 	public List<String> getActionItems(Document<?> doc) {

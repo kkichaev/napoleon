@@ -16,6 +16,9 @@
 #define HEAD_END_TAG  L"DATA"
 #define GZIP_OPT      L"GZIP"
 #define CRC_OPT       L"CRC"
+#define REQSK         L"REQSK"
+#define GETSK         L"GETSK"
+#define CRYPT_TAG     L"CRPT"
 
 class OutStream
 {
@@ -63,7 +66,7 @@ struct Packet
    ~Packet() { delete data; }
 
    // opts разделены через ';'
-   static Packet* MakePacket(OutStream& stream, const wchar_t* opts);
+   static Packet* MakePacket(OutStream& stream, const wchar_t* opts, const unsigned char* key);
 };
 
 struct PacketOperator
@@ -90,5 +93,8 @@ struct PacketOperator
 
    static const wchar_t Separator = L';';
 };
+
+Binary* DecodePacket(const Binary& srcB, const unsigned char* key);
+Binary* EncodePacket(const Binary& srcB, const unsigned char* key);
 
 #endif

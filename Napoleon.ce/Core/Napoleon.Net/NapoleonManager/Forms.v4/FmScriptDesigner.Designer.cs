@@ -40,7 +40,9 @@
          this.dgvScriptsDocs = new System.Windows.Forms.DataGridViewTextBoxColumn();
          this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
          this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+         this.tsLabel = new System.Windows.Forms.ToolStripStatusLabel();
          this.toolStrip1.SuspendLayout();
+         this.statusStrip1.SuspendLayout();
          ((System.ComponentModel.ISupportInitialize)(this.dgvSrcipts)).BeginInit();
          this.SuspendLayout();
          // 
@@ -101,9 +103,12 @@
          // 
          // statusStrip1
          // 
-         this.statusStrip1.Location = new System.Drawing.Point(0, 369);
+         this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+         this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsLabel});
+         this.statusStrip1.Location = new System.Drawing.Point(0, 367);
          this.statusStrip1.Name = "statusStrip1";
-         this.statusStrip1.Size = new System.Drawing.Size(642, 22);
+         this.statusStrip1.Size = new System.Drawing.Size(642, 24);
          this.statusStrip1.TabIndex = 1;
          this.statusStrip1.Text = "statusStrip1";
          // 
@@ -120,8 +125,9 @@
          this.dgvSrcipts.Location = new System.Drawing.Point(0, 39);
          this.dgvSrcipts.Name = "dgvSrcipts";
          this.dgvSrcipts.RowHeadersVisible = false;
+         this.dgvSrcipts.RowHeadersWidth = 51;
          this.dgvSrcipts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-         this.dgvSrcipts.Size = new System.Drawing.Size(642, 330);
+         this.dgvSrcipts.Size = new System.Drawing.Size(642, 328);
          this.dgvSrcipts.TabIndex = 2;
          this.dgvSrcipts.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSrcipts_CellDoubleClick);
          // 
@@ -131,6 +137,7 @@
          this.dgvScriptsName.DataPropertyName = "Name";
          this.dgvScriptsName.FillWeight = 30F;
          this.dgvScriptsName.HeaderText = "Название";
+         this.dgvScriptsName.MinimumWidth = 6;
          this.dgvScriptsName.Name = "dgvScriptsName";
          // 
          // dgvScriptsDocs
@@ -138,6 +145,7 @@
          this.dgvScriptsDocs.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
          this.dgvScriptsDocs.DataPropertyName = "DocsStr";
          this.dgvScriptsDocs.HeaderText = "Документы";
+         this.dgvScriptsDocs.MinimumWidth = 6;
          this.dgvScriptsDocs.Name = "dgvScriptsDocs";
          // 
          // dataGridViewTextBoxColumn1
@@ -146,6 +154,7 @@
          this.dataGridViewTextBoxColumn1.DataPropertyName = "Name";
          this.dataGridViewTextBoxColumn1.FillWeight = 30F;
          this.dataGridViewTextBoxColumn1.HeaderText = "Название";
+         this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
          this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
          // 
          // dataGridViewTextBoxColumn2
@@ -153,11 +162,17 @@
          this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
          this.dataGridViewTextBoxColumn2.DataPropertyName = "DocsStr";
          this.dataGridViewTextBoxColumn2.HeaderText = "Документы";
+         this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
          this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+         // 
+         // tsLabel
+         // 
+         this.tsLabel.Name = "tsLabel";
+         this.tsLabel.Size = new System.Drawing.Size(0, 18);
          // 
          // FmScriptDesigner
          // 
-         this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
+         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
          this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
          this.ClientSize = new System.Drawing.Size(642, 391);
          this.Controls.Add(this.dgvSrcipts);
@@ -170,6 +185,8 @@
          this.Load += new System.EventHandler(this.FmScriptDesigner_Load);
          this.toolStrip1.ResumeLayout(false);
          this.toolStrip1.PerformLayout();
+         this.statusStrip1.ResumeLayout(false);
+         this.statusStrip1.PerformLayout();
          ((System.ComponentModel.ISupportInitialize)(this.dgvSrcipts)).EndInit();
          this.ResumeLayout(false);
          this.PerformLayout();
@@ -189,5 +206,6 @@
       private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
       private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
       protected System.Windows.Forms.DataGridView dgvSrcipts;
+      private System.Windows.Forms.ToolStripStatusLabel tsLabel;
    }
 }

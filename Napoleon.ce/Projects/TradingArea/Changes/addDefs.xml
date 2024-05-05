@@ -1,5 +1,50 @@
 <?xml version="1.0" ?>
 <serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
 	<objects>
+    <object name="ReturnCause">
+      <sources>
+        <source name="SQTable" type="internal" >
+          <param name="readFilter">'"rem" = 0'</param>
+        </source>
+      </sources>
+
+      <member name="primaryKey">"id"</member>
+
+      <field name="id" type="string" />
+      <field name="text" type="string" />
+      <field name="rem" type="number" />
+    </object>
+    
+    <modify src="Delivery$items">
+      <add>
+        <field name="prodDate" type="date" />
+        <field name="cost" type="number" prec="2" />
+      </add>
+    </modify>
+    
+    <modify src="Returns$items">
+      <add>
+        <field name="uid" type="string" data="" />
+        <field name="cause" type="string" />
+        <field name="items" type="collection">
+          <data>
+            <object name="ReturnDlv">
+              <sources>
+                <source name="DBFCatalogItemTable"/>
+                <source name="SQTable" type="internal" />
+              </sources>
+
+              <field name="number" width="40" type="string" data="NUM_I"/>
+              <field name="date" type="date" data="DATE_I"/>
+              <field name="prodDate" type="date" />
+              <field name="qty" type="number" prec="3" data="QTY_I"/>
+              <field name="cost" type="number" prec="2" data="COST_I"/>
+              <field name="docflag" width="1" type="number" execOn="Put">FirstItem($object)</field>
+            </object>
+          </data>
+        </field>
+        <member name="primaryKey">"uid"</member>
+      </add>
+    </modify>
 	</objects>
 </serverDefs>

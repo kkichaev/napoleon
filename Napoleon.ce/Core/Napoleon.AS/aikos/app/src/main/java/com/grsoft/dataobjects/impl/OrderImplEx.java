@@ -17,7 +17,8 @@ public class OrderImplEx extends OrderImpl{
     public Map<String, Integer> getItems(String id) {
         Map<String, Integer> ret = new HashMap<>();
         for(OrderItem oi : data.items) {
-            ret.put(((OrderItemEx)oi).whCode, oi.qty);
+            if(oi.id.equals(id))
+                ret.put(((OrderItemEx)oi).whCode, oi.qty);
         }
         return ret;
     }

@@ -1,46 +1,71 @@
 package com.grsoft.napoleon.documents;
 
-import java.util.Collections;
-import java.util.Comparator;
+import android.app.Activity;
+import android.graphics.Color;
+import android.view.View;
+import android.widget.Adapter;
+import android.widget.TextView;
+
+import com.grsoft.dataobjects.DataObject;
+import com.grsoft.dataobjects.Delivery;
+import com.grsoft.napoleon.R;
+import com.grsoft.util.Util;
 
 public class DebtDocEx extends DebtDoc {
-	public static void init() {
-		instance = new DebtDocEx();
+	
+	public static void initialize() {
+//		if( instance != null )
+//			throw new RuntimeException("DebtDoc уже создан!");
+		instance = new DebtDocEx(DOC_NAME, Debt.class);
 	}
 	
-	@Override
-	protected String getOrgWhere(String orgId) {
-		String ret = super.getOrgWhere(orgId);
-		if(orgId != null && orgId.length() > 0) {
-			ret += " and hidden = 0";
-		}
-		return ret;
+	protected DebtDocEx(String name, Class<? extends Document<?>> docClass) {
+		super(name, docClass);
 	}
-	
-	@Override
-	protected DebtDocList createDebtDocList(String where, String order, boolean LoadDelivery) {
-		return new DebtDocListEx(where, order, LoadDelivery);
-	}
-	
-	class DebtDocListEx extends DebtDocList {
-		
-		public DebtDocListEx(String where, String order, boolean LoadDelivery) {
-			super(where, order, LoadDelivery);
-		}
-		
-		@Override
-		protected void orderDocuments() {
-			Collections.sort(items, new Comparator<DebetItem>() {
 
-				@Override
-				public int compare(DebetItem arg0, DebetItem arg1) {
-					if(arg0.isDelivery) {
-						return arg1.isDelivery ? arg0.index - arg1.index : 1;
-					}
+	@Override
+	public void viewClosed(Activity documentsView) {
+		TextView tv;
+		tv = (TextView)documentsView.findViewById(R.id.DateTitle);
+		if( tv != null )
+			tv.setText("Дата");
+	}
+
+	@Override
+	public void viewOpened(Activity documentsView) {
+		TextView tv;
+		tv = (TextView)documentsView.findViewById(R.id.DateTitle);
+		if( tv != null )
+			tv.setText("Дата/Оплата");
+	}
+	
+	@Override
+	public void setView(Adapter adapter, View view, Document<?> doc) {
+		super.setView(adapter, view, doc);
+
+		Delivery d = null;
+		DataObject dobj = doc.getData();
+		if( dobj instanceof Delivery )
+			d = (Delivery)dobj;
+
+		if( d == null )
+			return;
+
+		String str;
+		int color = d.isOverdue() ? Color.RED : Color.BLACK;
+		TextView tv;
+		
+		tv = (TextView)view.findViewById(R.id.tvDate);
+		tv.setTextColor(color);
+		str = Util.simpleDateFormat.format(d.date);
+		str += "\n";
+		str += Util.simpleDateFormat.format(d.payDate);
+		tv.setText(str);
+		
+		tv = (TextView)view.findViewById(R.id.tvSum);
+		tv.setTextColor(color);
 					
-					return (arg1.isDelivery) ? -1 : arg0.index - arg1.index;
-				}
-			});
-		}
+		tv = (TextView)view.findViewById(R.id.tvOther);
+		tv.setTextColor(color);
 	}
 }

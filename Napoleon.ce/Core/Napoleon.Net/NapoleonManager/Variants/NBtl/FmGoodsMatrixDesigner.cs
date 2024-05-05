@@ -50,7 +50,7 @@ namespace GRSoft.NapoleonManager
          tstbFind.Text = string.Empty;
       }
 
-      protected override void RefreshData()
+      protected override void RefreshData(bool refresh)
       {
          List<IDataSet> upd = new List<IDataSet>();
          dsPrice.Filter = Price.GOODS_FILTER;

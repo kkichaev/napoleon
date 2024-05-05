@@ -212,7 +212,7 @@ public class SalesImplEx extends SalesImpl {
     }
 
     @Override
-    public boolean updateQty(PriceImpl priceImpl, int qty, int cost, boolean inPack) {
+    public boolean updateQty(PriceImpl priceImpl, int qty, long cost, boolean inPack) {
         if (!isEditable())
             return true;
 

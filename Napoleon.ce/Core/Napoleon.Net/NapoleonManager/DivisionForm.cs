@@ -24,7 +24,7 @@ namespace GRSoft.NapoleonManager
    public partial class DivisionForm : UserControl
    {
       public Divisions parent = null;
-      private Division division = null;
+      protected Division division = null;
       RefreshableSource userSource = new RefreshableSource();
       RefreshableSource divisionSource = new RefreshableSource();
       public DataSet<int, CommonConfig> dsCommonConfig = null;

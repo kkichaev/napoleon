@@ -27,8 +27,11 @@ import com.grsoft.dataobjects.Order;
 import com.grsoft.dataobjects.OrderEx;
 import com.grsoft.dataobjects.impl.DbObject;
 import com.grsoft.dataobjects.impl.OrderImpl;
+import com.grsoft.dataobjects.impl.OrderImplBase;
+import com.grsoft.dataobjects.impl.OrderImplEx;
 import com.grsoft.napoleon.documents.OrderDocEx;
 import com.grsoft.napoleon.util.CfgNpl;
+import com.grsoft.napoleon.util.ConfigImplEx;
 import com.grsoft.napoleon.util.ConfigManager;
 import com.grsoft.napoleon.util.debug.Path;
 import com.grsoft.network.ServerCommand;
@@ -73,10 +76,15 @@ public class NapoleonApp extends NapoleonAppBase {
 	}
 
 	@Override
+	protected Class<? extends OrderImplBase<? extends Order>> orderImplType() {
+		return OrderImplEx.class;
+	}
+
+	@Override
 	public void onCreate() {
 		Features.VER_4_1 = true;
 
-		ConfigManager.initConfig(new CfgNpl());
+		ConfigManager.initConfig(new ConfigImplEx());
 		super.onCreate();
 
 		OrderImpl.OrderEditor = new OrderEditor();

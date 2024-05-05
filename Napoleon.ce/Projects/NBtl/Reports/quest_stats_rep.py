@@ -155,7 +155,10 @@ class ReportData:
               if q.idquest == d.question:
                 for qi in q.items:
                   if qi.iditem == n.iditem and len(qi.values) > 1:
-                    val = float(qi.values[0].value2) / 100
+                    try:
+                      val = float(qi.values[0].value2) / 100
+                    except:
+                      val = 0
                     break
                     
               if val != '':

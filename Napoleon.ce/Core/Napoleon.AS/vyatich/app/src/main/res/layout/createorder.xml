@@ -233,22 +233,30 @@
                 </TableRow>
             </TableLayout>
 
-            <LinearLayout
-                android:id="@+id/LinearLayout07"
-                android:layout_width="fill_parent"
+            <Button
+                android:id="@+id/org_props"
+                android:layout_margin="8dp"
+                android:layout_gravity="center_horizontal"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:paddingRight="16dp"
+                android:paddingLeft="16dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" >
+                android:text="@string/org_props"
+                />
+
 
                 <EditText
                     android:id="@+id/edCreateOrderNotes"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
                     android:layout_weight="1"
                     android:gravity="top|left"
+                    android:hint="@string/remark"
                     android:lines="2"
                     android:minLines="2">
                 </EditText>
-            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 

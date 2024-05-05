@@ -166,6 +166,53 @@ namespace GRSoft.NapoleonManager
          cbOrg.EndUpdate();
       }
 
+      TimeSpan ScriptSpan(ScriptDoc d)
+      {
+         DateTime dt = d.created.AddMinutes(1);
+         foreach(ScriptDocItem sdi in d.items)
+         {
+            if (!sdi.Inited) continue;
+            if (dt < sdi.date)
+               dt = sdi.date;
+         }
+         return dt - d.created;
+      }
+
+      const string COMMON_FILTER_STR = "\"{0}\" >= ToDate('{1:dd/MM/yyyy HH:mm:00}') and \"{0}\" <= ToDate('{2:dd/MM/yyyy HH:mm:00}') and \"userid\"='{3}'";
+
+      bool IntersectsTime(ScriptDoc d, DateTime st, DateTime end)
+      {
+         DateTime d1 = d.created;
+         DateTime d2 = d1 + ScriptSpan(d);
+
+         if (end < d1 || st > d2) return false;
+         return true;
+      }
+
+      ScriptDoc HasIntersects(DateTime dt, string userid)
+      {
+         SimpleDataSet<ScriptDoc> docs = new SimpleDataSet<ScriptDoc>(ScriptDoc.OBJECT_NAME, false);
+         docs.Filter = string.Format(COMMON_FILTER_STR, "created", dt.Date, dt.Date.AddDays(1), userid);
+
+         List<IDataSet> upd = new List<IDataSet>();
+         upd.Add(docs);
+
+         Config cfg = Config.GetConfig();
+         DataModule.RefreshGiveSets(cfg.GetConnection(), upd, null).Join();
+
+         TimeSpan cdSpan = ScriptSpan(document);
+         DateTime stDate = dt;
+         DateTime enDate = dt + cdSpan;
+
+         foreach(ScriptDoc sd in docs.Data)
+         {
+            if (IntersectsTime(sd, stDate, enDate))
+               return sd;
+         }
+
+         return null;
+      }
+
       private void toolStripButton1_Click(object sender, EventArgs e)
       {
          if (((Org)cbOrg.SelectedItem) == null)
@@ -175,6 +222,14 @@ namespace GRSoft.NapoleonManager
          }
 
          string userid = ((Agent)cbAgents.SelectedItem).id;
+         ScriptDoc sd = HasIntersects(dateTimePicker1.Value, userid);
+         if(sd != null)
+         {
+            string msg = string.Format("Время пересекается со сценарием {0:dd/MM/yyyy HH:mm}", sd.created);
+            MessageBox.Show(msg);
+            return;
+         }
+
          string old_userid = string.Empty;
 
          DataSet<int, ScriptDoc> script = new DataSet<int, ScriptDoc>(ScriptDoc.OBJECT_NAME, false);
@@ -189,7 +244,6 @@ namespace GRSoft.NapoleonManager
          DataSet<int, OrgRemnants> upd_remnants = new DataSet<int, OrgRemnants>(OrgRemnants.OBJECT_NAME, false);
          DataSet<int, VisitItemDoc> addItems = new DataSet<int, VisitItemDoc>(VisitItemDoc.OBJECT_NAME, false);
 
-         const string COMMON_FILTER_STR = "\"{0}\" >= ToDate('{1:dd/MM/yyyy HH:mm:00}') and \"{0}\" <= ToDate('{2:dd/MM/yyyy HH:mm:00}') and \"userid\"='{3}'";
          string fltr = String.Format(COMMON_FILTER_STR, "created", dateTimePicker1.Value, dateTimePicker1.Value.AddMinutes(2), userid);
          string vfltr = String.Format(COMMON_FILTER_STR, "date", dateTimePicker1.Value, dateTimePicker1.Value.AddMinutes(2), userid);
 
@@ -212,6 +266,8 @@ namespace GRSoft.NapoleonManager
          Random rnd = new Random();
          TimeSpan ts = document.sended.CompareTo(document.created) > 0 ? document.sended.Subtract(document.created) : new TimeSpan((long)rnd.Next(15 * 60) * 10000000);
 
+         TimeSpan crSpan = created.Subtract(document.created);
+
          document.created = created;
          document.date = created;
          document.userid = userid;
@@ -228,7 +284,8 @@ namespace GRSoft.NapoleonManager
 
          for (int i = 0; i < document.items.Count; i++)
          {
-            created = created.AddSeconds(1);
+            //created = created.AddSeconds(1);
+            created = document.items[i].date + crSpan;
 
             ScriptDocItem item = document.items[i];
 

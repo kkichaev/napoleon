@@ -100,15 +100,18 @@
   border-bottom: 2px solid $controls;
   padding-left: 6px;
   min-height: 50px;
+  background-color: #126E821A;
 }
 
 .list_with_caption_form{
   border: 2px solid $controls;
   min-height: calc((100vh - 100px) - 50px);
+  max-height: calc((100vh - 100px) - 50px);
   margin-right: 4px;
 
   @media (max-width: $breakpoint-sm-max){
     min-height: calc(100vh / 2 - 100px);
+    max-height: calc(100vh / 2 - 100px);
     margin-right: 0px;
   }
 }
@@ -126,4 +129,17 @@
 
 .page-header{
   margin-bottom: 16px;
+}
+
+.control_base {
+  background-color: #d9d9d966;
+}
+
+.control {
+  @extend .control_base;
+  width: 216px !important;
+}
+
+.controls_place {
+  padding: 16px;
 }

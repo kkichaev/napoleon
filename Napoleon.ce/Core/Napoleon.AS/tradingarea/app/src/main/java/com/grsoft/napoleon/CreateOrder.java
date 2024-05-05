@@ -121,28 +121,6 @@ public class CreateOrder extends BaseActivity
 		}
 		config.close();
 		
-		if( Features.DELIVERY_ADDRESS ) {
-			View v = findViewById(R.id.ftrAddress);
-			if( v != null ) {
-				Spinner spAddress = (Spinner) findViewById(R.id.spAddress);
-				if( spAddress != null ) {
-					v.setVisibility(View.VISIBLE);
-					ArrayList<KeyValue> addresses = new ArrayList<KeyValue>();
-					int selected = -1;
-					for(OrgAddress addr : oi.getData().orgAddress) {
-						KeyValue kv = new KeyValue(addr.id, addr.name);
-						if( kv.key.toString().equals(o.adrCode))
-							selected = addresses.size();
-						addresses.add(kv);
-					}
-					ArrayAdapter<KeyValue> aa = new ArrayAdapter<KeyValue>(this, R.layout.simple_spinner_layout, addresses);
-					spAddress.setAdapter(aa);
-					if( selected >= 0 && selected < spAddress.getCount())
-						spAddress.setSelection(selected);
-				}
-			}
-		}
-		
 		TextView tvDelay = (TextView) findViewById(R.id.tvDelay); 
 		tvDelay.setOnClickListener(new DelayClickListener());
 		
@@ -372,15 +350,7 @@ public class CreateOrder extends BaseActivity
 
 			EditText remark = (EditText)findViewById(R.id.edCreateOrderNotes);
 			o.remark = remark.getText().toString();
-			
-			if( Features.DELIVERY_ADDRESS ) {
-				Spinner spAddress = (Spinner) findViewById(R.id.spAddress);
-				if( spAddress != null ) {
-					KeyValue sel = (KeyValue) spAddress.getSelectedItem();
-					if( sel != null )
-						o.adrCode = sel.key.toString();
-				}
-			}
+
 			if (updateSumType)
 				order.updateItemsCost(o.sumType);
 			else

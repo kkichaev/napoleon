@@ -9,7 +9,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.novotek.dataobjects.DataState;
 import com.novotek.dataobjects.Partner;
+import com.novotek.dataobjects.ProjectData;
 import com.novotek.sales.MainActivity;
 import com.novotek.sales.R;
 import com.novotek.sales.SelectPartner;
@@ -59,7 +61,25 @@ public class Main extends BaseView {
                 .commit();
 
 
+        model.getDataState().observe(getViewLifecycleOwner(), dataState -> {
+            if(dataState.state == DataState.State.Parsed) {
+                if(ProjectData.getCurrent() == null) {
+                    SelectPartner.open(getActivity(), false);
+                }
+            }
+        });
         return v;
+    }
+
+    public void refreshData() {
+        if( model.haveNewestData(getContext()))
+            model.readData(getContext());
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        refreshData();
     }
 
     void onNewPartner(Partner partner) {

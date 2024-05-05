@@ -19,6 +19,8 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -26,8 +28,11 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.grsoft.database.DbReader;
+import com.grsoft.dataobjects.DataObjectInfo;
 import com.grsoft.dataobjects.OrderEx;
 import com.grsoft.dataobjects.Org;
+import com.grsoft.dataobjects.OrgDogovor;
 import com.grsoft.dataobjects.ParamState;
 import com.grsoft.dataobjects.impl.ConfigImpl;
 import com.grsoft.dataobjects.impl.OrderImpl;
@@ -39,6 +44,7 @@ import com.grsoft.util.ExtrasConst;
 import com.grsoft.util.OnClickListenerToNotify;
 import com.grsoft.util.view.dialog_helper.DateHandler;
 import com.grsoft.util.view.dialog_helper.DialogHelper;
+import com.grsoft.util.view.dialog_helper.KeyValue;
 import com.grsoft.util.view.dialog_helper.TimeHandler;
 import com.grsoft.view.BaseActivity;
 
@@ -51,6 +57,7 @@ public class CreateOrder extends BaseActivity
 	private static final int DIALOG_TIME_PICKER_ID = 1;
 	
 	private boolean editMode = false;
+	boolean loading = true;
 	
 	private ArrayList<CharSequence> priceType = new ArrayList<CharSequence>();
 	private ArrayList<CharSequence> sklads = new ArrayList<CharSequence>();
@@ -78,33 +85,33 @@ public class CreateOrder extends BaseActivity
 		context.startActivity(i);		
 	}
 	
-//	void loadDogovors(int suppl, String selected) {
-//		Spinner sp;
-//		sp = (Spinner)findViewById(R.id.spDog);
-//		
-//		int sel = -1;
-//		OrgDogovor dg = new OrgDogovor();
-//		String table = DataObjectInfo.getInstance().getTableName(OrgDogovor.class);
-//		DbReader r = new DbReader();
-//		boolean bdo = r.select(dg, table, "ido='" + oi.getData().id + "' and firm=" + Integer.toString(suppl));
-//		
-//		ArrayList<KeyValue> values = new ArrayList<KeyValue>();
-//		while(bdo) {
-//			KeyValue kv = new KeyValue(dg.id, dg.name);
-//			if( selected != null && kv.key.equals(selected) )
-//				sel = values.size();
-//			
-//			values.add(kv);
-//			bdo = r.selectNext(dg);
-//		}
-//	
-//		ArrayAdapter<KeyValue> aa = new ArrayAdapter<KeyValue>(this, R.layout.simple_spinner_layout, values);
-//		aa.setDropDownViewResource(R.layout.simple_spinner_layout_drop_down);
-//		sp.setAdapter(aa);
-//		if( sel >= 0 && sel < sp.getCount())
-//			sp.setSelection(sel);
-//	}
-	
+	void loadDogovors(int suppl, String selected) {
+		Spinner sp;
+		sp = (Spinner)findViewById(R.id.spDog);
+
+		int sel = -1;
+		OrgDogovor dg = new OrgDogovor();
+		String table = DataObjectInfo.getInstance().getTableName(OrgDogovor.class);
+		DbReader r = new DbReader();
+		boolean bdo = r.select(dg, table, "ido='" + oi.getData().id + "' and firm=" + Integer.toString(suppl));
+
+		ArrayList<KeyValue> values = new ArrayList<KeyValue>();
+		while(bdo) {
+			KeyValue kv = new KeyValue(dg.id, dg.name);
+			if( selected != null && kv.key.equals(selected) )
+				sel = values.size();
+
+			values.add(kv);
+			bdo = r.selectNext(dg);
+		}
+
+		ArrayAdapter<KeyValue> aa = new ArrayAdapter<KeyValue>(this, R.layout.simple_spinner_layout, values);
+		aa.setDropDownViewResource(R.layout.simple_spinner_layout_drop_down);
+		sp.setAdapter(aa);
+		if( sel >= 0 && sel < sp.getCount())
+			sp.setSelection(sel);
+	}
+
 	private void init() {
 		editMode = getIntent().getBooleanExtra(ExtrasConst.EDIT_MODE_STR, true);
 		long orderRowId = getIntent().getLongExtra(ExtrasConst.DOC_ROW_ID_STR, ExtrasConst.INVALID_ID);
@@ -127,9 +134,9 @@ public class CreateOrder extends BaseActivity
 		DialogHelper.loadSpinnerFromConfig(config, "ќрганизаци€", firms, spFirma, o.supplyer);
 
 		
-		ArrayList<CharSequence> values = new ArrayList<CharSequence>();
-		values.add("");
-		DialogHelper.loadSpinnerFromConfig(config, "¬идќплаты", values, (Spinner)findViewById(R.id.spPayType), o.payType + 1);
+//		ArrayList<CharSequence> values = new ArrayList<CharSequence>();
+//		values.add("");
+//		DialogHelper.loadSpinnerFromConfig(config, "¬идќплаты", values, (Spinner)findViewById(R.id.spPayType), o.payType + 1);
 		
 		Spinner spWh = (Spinner) findViewById(R.id.spWh);
 		DialogHelper.loadSpinnerFromConfig(config, "—клады", sklads, spWh, o.whName);
@@ -137,16 +144,19 @@ public class CreateOrder extends BaseActivity
 		Spinner spPrices = (Spinner) findViewById(R.id.spPrices);
 		DialogHelper.loadSpinnerFromConfig(config, "¬ид÷ены", priceType, spPrices, o.sumType);
 		
-//		loadDogovors(o.supplyer, o.dog);
-//		spFirma.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//
-//			@Override
-//			public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-//				loadDogovors(arg2, null);
-//			}
-//
-//			@Override public void onNothingSelected(AdapterView<?> arg0) { }
-//		});
+		loadDogovors(o.supplyer, o.dog);
+		spFirma.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+			@Override
+			public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+				if(!loading)
+					loadDogovors(arg2, null);
+				else
+					loading = false;
+			}
+
+			@Override public void onNothingSelected(AdapterView<?> arg0) { }
+		});
 
 		config.getData().key = "ћожно»змен€ть÷ену";
 		try {
@@ -195,7 +205,7 @@ public class CreateOrder extends BaseActivity
 	        if( config.read() ) {	        
 	        	DialogHelper.makeList(config.getData().value, values);
 	        	if( c.selectedPrice < values.size() )
-	        		o.whName = values.get(c.selectedPrice).toString();
+	        		o.whCode = values.get(c.selectedPrice).toString();
 	        }			
 		}
 	}
@@ -310,10 +320,10 @@ public class CreateOrder extends BaseActivity
 		public void onClick(View v) {
 			super.onClick(v);
 			
-			if( ((Spinner)findViewById(R.id.spPayType)).getSelectedItemPosition() <= 0) {
-				Toast.makeText(CreateOrder.this, "¬ыберите вид оплаты", Toast.LENGTH_SHORT).show();
-				return;
-			}
+//			if( ((Spinner)findViewById(R.id.spPayType)).getSelectedItemPosition() <= 0) {
+//				Toast.makeText(CreateOrder.this, "¬ыберите вид оплаты", Toast.LENGTH_LONG).show();
+//				return;
+//			}
 			
 			Spinner spPrices = (Spinner) findViewById(R.id.spPrices);
 			int costType = spPrices.getSelectedItemPosition();
@@ -356,9 +366,9 @@ public class CreateOrder extends BaseActivity
 			if( cash.isChecked() ) o.params |= ParamState.ofCash;
 			else o.params &= (~ParamState.ofCash);
 			
-//			KeyValue kv = (KeyValue)((Spinner)findViewById(R.id.spDog)).getSelectedItem();
-//			if( kv != null )
-//				o.dog = kv.key.toString();
+			KeyValue kv = (KeyValue)((Spinner)findViewById(R.id.spDog)).getSelectedItem();
+			if( kv != null )
+				o.dog = kv.key.toString();
 
 			EditText remark = (EditText)findViewById(R.id.edCreateOrderNotes);
 			o.remark = remark.getText().toString();

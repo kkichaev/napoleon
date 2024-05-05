@@ -48,6 +48,8 @@ class AgentSheet:
 def loadData(params, server):
   data = Data()
   
+  porg = server.Get("PotenzialOrg", 'not "userid" is null', "id")
+  
   for item in params.userids:
     id = item.id
     sheet = AgentSheet()
@@ -59,7 +61,8 @@ def loadData(params, server):
     sheet.name = server.CurrentUser().name
     scrDef = server.Get("ScriptDef", "", "id")
     server.RestoreUser()
-     
+    orgs.update(porg)
+    
     ar = AgentRoute(server, id)
     date = params.start
     
@@ -71,19 +74,19 @@ def loadData(params, server):
       for i in route:
         route_ids.append(i.id)
       
-      where = '"userid"="{0}" and "created" >= ToDate("{1}") and "created" <= ToDate("{2}")'.format(
-          id,
+      where = '"userid"={0} and "created" >= ToDate("{1}") and "created" <= ToDate("{2}")'.format(
+          "'"+id+"'",
           date.strftime("%d/%m/%Y 00:00:00"),
           date.strftime("%d/%m/%Y 23:59:00"))
       
       scripts = server.Get("ScriptDoc", where)
       
       scrMap = dict()
-      
-      for s in scripts:
-        for i in s.items:
-          if i.state == 1:
-            scrMap[i.date] = s.scriptId 
+      if scripts != None:
+        for s in scripts:
+          for i in s.items:
+            if i.state == 1:
+              scrMap[i.date] = s.scriptId 
         
       for dt in docTypes:
         docs = dt.docList(server, where)
@@ -92,6 +95,7 @@ def loadData(params, server):
           continue
         
         for d in docs:
+
           item = Item()
           sheet.items.append(item)
           
@@ -100,6 +104,7 @@ def loadData(params, server):
           item.created = d.created
           item.inroute = "нет" if not d.id in route_ids else ""
           item.sended = d.sended
+          item.remark = d.remark
           
           t = d.created
           if t in scrMap and scrMap[t] in scrDef:

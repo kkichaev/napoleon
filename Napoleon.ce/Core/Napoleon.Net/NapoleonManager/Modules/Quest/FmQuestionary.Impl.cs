@@ -22,6 +22,7 @@ namespace GRSoft.NapoleonManager
       protected DataSet<string, Category> dsCategory;
       protected DataSet<string, Producer> dsProducer;
       protected DataSet<string, AgentQuest> dsAgentQuest;
+      bool readOnly = false;
 
       public void __Initing()
       {
@@ -39,6 +40,18 @@ namespace GRSoft.NapoleonManager
          this.Load += new System.EventHandler(this.FmQuestionary_Load);
 
          InitDataSet();
+
+         Manager dm = CurrentUser.user as Manager;
+         if (!dm.HaveRight(RightTokens.Get("Question"), RightActions.Write))
+         {
+            readOnly = true;
+            tsLabel.Text = "Редактирование запрещено";
+            btnAdd.Enabled = false;
+            btnDel.Enabled = false;
+            btnCopy.Enabled = false;
+            btnUp.Enabled = false;
+            btnDown.Enabled = false;
+         }
       }
 
       protected virtual void InitDataSet()
@@ -129,6 +142,9 @@ namespace GRSoft.NapoleonManager
 
       private void btnAdd_Click(object sender, EventArgs e)
       {
+         if (readOnly)
+            return;
+
          Question quest = FmQuestEdit.ShowInstance(null, this);
 
          if (quest != null)
@@ -136,10 +152,15 @@ namespace GRSoft.NapoleonManager
             quest.number = dgvQuestion.RowCount + 1;
             dsQuestion.Add(quest.idquest, quest);
             quest.InvalidateHtml();
-            btnSave.Enabled = true;
+            SetDirty();
             RefreshData();
             dgvQuestion.CurrentCell = dgvQuestion.Rows[dgvQuestion.RowCount - 1].Cells[0];
          }
+      }
+
+      void SetDirty()
+      {
+         btnSave.Enabled = !readOnly && true;
       }
 
       private void FmQuestionary_Load(object sender, EventArgs e)
@@ -193,12 +214,15 @@ namespace GRSoft.NapoleonManager
          {
             dgvQuestion.Update();
             quest.InvalidateHtml();
-            btnSave.Enabled = true;
+            SetDirty();
          }
       }
 
       private void btnDel_Click(object sender, EventArgs e)
       {
+         if (readOnly)
+            return;
+         
          Question quest = GetSelectedQuest();
 
          if (quest != null &&
@@ -215,7 +239,7 @@ namespace GRSoft.NapoleonManager
             }
 
             recreateNumber();
-            btnSave.Enabled = true;
+            SetDirty();
          }
 
       }
@@ -232,6 +256,9 @@ namespace GRSoft.NapoleonManager
 
       private void btnUp_Click(object sender, EventArgs e)
       {
+         if (readOnly)
+            return;
+         
          DataGridViewRow row = dgvQuestion.CurrentRow;
 
          if (row.Index > 0)
@@ -247,12 +274,15 @@ namespace GRSoft.NapoleonManager
             dgvQuestion.Refresh();
             dgvQuestion.CurrentCell = dgvQuestion.Rows[row.Index - 1].Cells[0];
 
-            btnSave.Enabled = true;
+            SetDirty();
          }
       }
 
       private void btnDown_Click(object sender, EventArgs e)
       {
+         if (readOnly)
+            return;
+         
          DataGridViewRow row = dgvQuestion.CurrentRow;
          
          if (row.Index < dgvQuestion.Rows.Count -1)
@@ -268,7 +298,7 @@ namespace GRSoft.NapoleonManager
             dgvQuestion.Refresh();
             dgvQuestion.CurrentCell = dgvQuestion.Rows[row.Index + 1].Cells[0];
 
-            btnSave.Enabled = true;
+            SetDirty();
          }
       }
 
@@ -282,6 +312,9 @@ namespace GRSoft.NapoleonManager
 
       private void btnCopy_Click(object sender, EventArgs e)
       {
+         if (readOnly)
+            return;
+         
          Question quest = GetSelectedQuest();
 
          if (quest != null)
@@ -289,7 +322,7 @@ namespace GRSoft.NapoleonManager
             Question copy = quest.Copy();
             copy.number = dgvQuestion.RowCount + 1;
             dsQuestion.Add(copy.idquest, copy);
-            btnSave.Enabled = true;
+            SetDirty();
             RefreshData();
             dgvQuestion.CurrentCell = dgvQuestion.Rows[dgvQuestion.RowCount - 1].Cells[0];
          }

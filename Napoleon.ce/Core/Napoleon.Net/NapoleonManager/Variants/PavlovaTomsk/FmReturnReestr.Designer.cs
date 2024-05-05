@@ -29,11 +29,11 @@
       private void InitializeComponent()
       {
          System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+         System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+         System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
          System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
          System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
          System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-         System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-         System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
          System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FmReturnReestr));
          this.toolStrip1 = new System.Windows.Forms.ToolStrip();
          this.btnRefresh = new System.Windows.Forms.ToolStripButton();
@@ -55,6 +55,13 @@
          this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
          this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
          this.dgvOrderItems = new System.Windows.Forms.DataGridView();
+         this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+         this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+         this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+         this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+         this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+         this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+         this.Column14 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
          this.dgvDetail = new System.Windows.Forms.DataGridView();
          this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
          this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -73,13 +80,6 @@
          this.dataGridViewTextBoxColumn15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
          this.dataGridViewTextBoxColumn16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
          this.dataGridViewTextBoxColumn17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-         this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-         this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-         this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-         this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-         this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-         this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-         this.Column14 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
          this.toolStrip1.SuspendLayout();
          ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
          this.splitContainer1.Panel1.SuspendLayout();
@@ -145,7 +145,7 @@
          // 
          this.toolStripLabel1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
          this.toolStripLabel1.Name = "toolStripLabel1";
-         this.toolStripLabel1.Size = new System.Drawing.Size(65, 36);
+         this.toolStripLabel1.Size = new System.Drawing.Size(83, 36);
          this.toolStripLabel1.Text = "Период";
          // 
          // dtpStart
@@ -153,7 +153,7 @@
          this.dtpStart.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
          this.dtpStart.Location = new System.Drawing.Point(387, 7);
          this.dtpStart.Name = "dtpStart";
-         this.dtpStart.Size = new System.Drawing.Size(145, 25);
+         this.dtpStart.Size = new System.Drawing.Size(145, 29);
          this.dtpStart.TabIndex = 1;
          // 
          // dtpFinish
@@ -161,7 +161,7 @@
          this.dtpFinish.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
          this.dtpFinish.Location = new System.Drawing.Point(543, 7);
          this.dtpFinish.Name = "dtpFinish";
-         this.dtpFinish.Size = new System.Drawing.Size(145, 25);
+         this.dtpFinish.Size = new System.Drawing.Size(145, 29);
          this.dtpFinish.TabIndex = 2;
          // 
          // splitContainer1
@@ -202,6 +202,7 @@
          this.dgvMaster.Location = new System.Drawing.Point(0, 0);
          this.dgvMaster.Name = "dgvMaster";
          this.dgvMaster.RowHeadersVisible = false;
+         this.dgvMaster.RowHeadersWidth = 51;
          this.dgvMaster.Size = new System.Drawing.Size(932, 303);
          this.dgvMaster.TabIndex = 0;
          this.dgvMaster.CurrentCellDirtyStateChanged += new System.EventHandler(this.dgvMaster_CurrentCellDirtyStateChanged);
@@ -212,19 +213,23 @@
          this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
          this.Column3.DataPropertyName = "Agent";
          this.Column3.HeaderText = "Агент";
+         this.Column3.MinimumWidth = 6;
          this.Column3.Name = "Column3";
          // 
          // Column15
          // 
          this.Column15.DataPropertyName = "DocType";
          this.Column15.HeaderText = "Тип документа";
+         this.Column15.MinimumWidth = 6;
          this.Column15.Name = "Column15";
+         this.Column15.Width = 125;
          // 
          // Column1
          // 
          this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
          this.Column1.DataPropertyName = "OrgName";
          this.Column1.HeaderText = "Контрагент";
+         this.Column1.MinimumWidth = 6;
          this.Column1.Name = "Column1";
          // 
          // Column2
@@ -232,6 +237,7 @@
          this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
          this.Column2.DataPropertyName = "OrgAddress";
          this.Column2.HeaderText = "Адрес контрагента";
+         this.Column2.MinimumWidth = 6;
          this.Column2.Name = "Column2";
          // 
          // Column4
@@ -239,7 +245,9 @@
          this.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
          this.Column4.DataPropertyName = "Created";
          this.Column4.HeaderText = "Дата документа";
+         this.Column4.MinimumWidth = 6;
          this.Column4.Name = "Column4";
+         this.Column4.Width = 125;
          // 
          // Column5
          // 
@@ -248,13 +256,16 @@
          dataGridViewCellStyle1.Format = "N2";
          this.Column5.DefaultCellStyle = dataGridViewCellStyle1;
          this.Column5.HeaderText = "Сумма";
+         this.Column5.MinimumWidth = 6;
          this.Column5.Name = "Column5";
+         this.Column5.Width = 125;
          // 
          // clmnDecision
          // 
          this.clmnDecision.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
          this.clmnDecision.DataPropertyName = "Decision";
          this.clmnDecision.HeaderText = "Решение";
+         this.clmnDecision.MinimumWidth = 6;
          this.clmnDecision.Name = "clmnDecision";
          this.clmnDecision.Width = 120;
          // 
@@ -263,6 +274,7 @@
          this.Column6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
          this.Column6.DataPropertyName = "ManagerRemark";
          this.Column6.HeaderText = "Комментарий руководителя";
+         this.Column6.MinimumWidth = 6;
          this.Column6.Name = "Column6";
          // 
          // Column11
@@ -270,6 +282,7 @@
          this.Column11.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
          this.Column11.DataPropertyName = "AgentRemark";
          this.Column11.HeaderText = "Комментарий сотрудника";
+         this.Column11.MinimumWidth = 6;
          this.Column11.Name = "Column11";
          // 
          // dgvOrderItems
@@ -289,8 +302,72 @@
          this.dgvOrderItems.Location = new System.Drawing.Point(0, 0);
          this.dgvOrderItems.Name = "dgvOrderItems";
          this.dgvOrderItems.RowHeadersVisible = false;
+         this.dgvOrderItems.RowHeadersWidth = 51;
          this.dgvOrderItems.Size = new System.Drawing.Size(932, 320);
          this.dgvOrderItems.TabIndex = 1;
+         // 
+         // dataGridViewTextBoxColumn1
+         // 
+         this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+         this.dataGridViewTextBoxColumn1.DataPropertyName = "Item";
+         this.dataGridViewTextBoxColumn1.HeaderText = "Наименование товара";
+         this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
+         this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+         // 
+         // dataGridViewTextBoxColumn2
+         // 
+         this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+         this.dataGridViewTextBoxColumn2.DataPropertyName = "Qty";
+         this.dataGridViewTextBoxColumn2.HeaderText = "Количество";
+         this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
+         this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+         // 
+         // dataGridViewTextBoxColumn3
+         // 
+         this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+         this.dataGridViewTextBoxColumn3.DataPropertyName = "CostWODsc";
+         this.dataGridViewTextBoxColumn3.HeaderText = "Цена";
+         this.dataGridViewTextBoxColumn3.MinimumWidth = 6;
+         this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+         // 
+         // dataGridViewTextBoxColumn4
+         // 
+         this.dataGridViewTextBoxColumn4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+         this.dataGridViewTextBoxColumn4.DataPropertyName = "Discount";
+         dataGridViewCellStyle2.Format = "N2";
+         dataGridViewCellStyle2.NullValue = null;
+         this.dataGridViewTextBoxColumn4.DefaultCellStyle = dataGridViewCellStyle2;
+         this.dataGridViewTextBoxColumn4.HeaderText = "Скидка, %";
+         this.dataGridViewTextBoxColumn4.MinimumWidth = 6;
+         this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+         // 
+         // Column12
+         // 
+         this.Column12.DataPropertyName = "Sum";
+         dataGridViewCellStyle3.Format = "N2";
+         this.Column12.DefaultCellStyle = dataGridViewCellStyle3;
+         this.Column12.HeaderText = "Сумма со скидкой";
+         this.Column12.MinimumWidth = 6;
+         this.Column12.Name = "Column12";
+         this.Column12.Width = 125;
+         // 
+         // Column13
+         // 
+         this.Column13.DataPropertyName = "SumWODsc";
+         this.Column13.HeaderText = "Сумма без скидки";
+         this.Column13.MinimumWidth = 6;
+         this.Column13.Name = "Column13";
+         this.Column13.Width = 125;
+         // 
+         // Column14
+         // 
+         this.Column14.DataPropertyName = "Action";
+         this.Column14.HeaderText = "Акция N + 1";
+         this.Column14.MinimumWidth = 6;
+         this.Column14.Name = "Column14";
+         this.Column14.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+         this.Column14.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+         this.Column14.Width = 125;
          // 
          // dgvDetail
          // 
@@ -306,6 +383,7 @@
          this.dgvDetail.Location = new System.Drawing.Point(0, 0);
          this.dgvDetail.Name = "dgvDetail";
          this.dgvDetail.RowHeadersVisible = false;
+         this.dgvDetail.RowHeadersWidth = 51;
          this.dgvDetail.Size = new System.Drawing.Size(932, 320);
          this.dgvDetail.TabIndex = 0;
          // 
@@ -314,6 +392,7 @@
          this.Column7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
          this.Column7.DataPropertyName = "Item";
          this.Column7.HeaderText = "Наименование товара";
+         this.Column7.MinimumWidth = 6;
          this.Column7.Name = "Column7";
          // 
          // Column8
@@ -321,6 +400,7 @@
          this.Column8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
          this.Column8.DataPropertyName = "Qty";
          this.Column8.HeaderText = "Количество";
+         this.Column8.MinimumWidth = 6;
          this.Column8.Name = "Column8";
          // 
          // Column9
@@ -328,6 +408,7 @@
          this.Column9.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
          this.Column9.DataPropertyName = "Cost";
          this.Column9.HeaderText = "Цена";
+         this.Column9.MinimumWidth = 6;
          this.Column9.Name = "Column9";
          // 
          // Column10
@@ -335,6 +416,7 @@
          this.Column10.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
          this.Column10.DataPropertyName = "Cause";
          this.Column10.HeaderText = "Причина возврата";
+         this.Column10.MinimumWidth = 6;
          this.Column10.Name = "Column10";
          // 
          // dataGridViewTextBoxColumn5
@@ -344,13 +426,16 @@
          dataGridViewCellStyle4.Format = "N2";
          this.dataGridViewTextBoxColumn5.DefaultCellStyle = dataGridViewCellStyle4;
          this.dataGridViewTextBoxColumn5.HeaderText = "Сумма";
+         this.dataGridViewTextBoxColumn5.MinimumWidth = 6;
          this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+         this.dataGridViewTextBoxColumn5.Width = 125;
          // 
          // dataGridViewTextBoxColumn6
          // 
          this.dataGridViewTextBoxColumn6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
          this.dataGridViewTextBoxColumn6.DataPropertyName = "ManagerRemark";
          this.dataGridViewTextBoxColumn6.HeaderText = "Комментарий руководителя";
+         this.dataGridViewTextBoxColumn6.MinimumWidth = 6;
          this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
          // 
          // dataGridViewTextBoxColumn7
@@ -358,6 +443,7 @@
          this.dataGridViewTextBoxColumn7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
          this.dataGridViewTextBoxColumn7.DataPropertyName = "AgentRemark";
          this.dataGridViewTextBoxColumn7.HeaderText = "Комментарий сотрудника";
+         this.dataGridViewTextBoxColumn7.MinimumWidth = 6;
          this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
          // 
          // dataGridViewTextBoxColumn8
@@ -365,6 +451,7 @@
          this.dataGridViewTextBoxColumn8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
          this.dataGridViewTextBoxColumn8.DataPropertyName = "Item";
          this.dataGridViewTextBoxColumn8.HeaderText = "Наименование товара";
+         this.dataGridViewTextBoxColumn8.MinimumWidth = 6;
          this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
          // 
          // dataGridViewTextBoxColumn9
@@ -372,6 +459,7 @@
          this.dataGridViewTextBoxColumn9.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
          this.dataGridViewTextBoxColumn9.DataPropertyName = "Qty";
          this.dataGridViewTextBoxColumn9.HeaderText = "Количество";
+         this.dataGridViewTextBoxColumn9.MinimumWidth = 6;
          this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
          // 
          // dataGridViewTextBoxColumn10
@@ -379,6 +467,7 @@
          this.dataGridViewTextBoxColumn10.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
          this.dataGridViewTextBoxColumn10.DataPropertyName = "Cost";
          this.dataGridViewTextBoxColumn10.HeaderText = "Цена";
+         this.dataGridViewTextBoxColumn10.MinimumWidth = 6;
          this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
          // 
          // dataGridViewTextBoxColumn11
@@ -389,6 +478,7 @@
          dataGridViewCellStyle5.NullValue = null;
          this.dataGridViewTextBoxColumn11.DefaultCellStyle = dataGridViewCellStyle5;
          this.dataGridViewTextBoxColumn11.HeaderText = "Скидка, %";
+         this.dataGridViewTextBoxColumn11.MinimumWidth = 6;
          this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
          // 
          // dataGridViewTextBoxColumn12
@@ -397,19 +487,24 @@
          dataGridViewCellStyle6.Format = "N2";
          this.dataGridViewTextBoxColumn12.DefaultCellStyle = dataGridViewCellStyle6;
          this.dataGridViewTextBoxColumn12.HeaderText = "Сумма скидки";
+         this.dataGridViewTextBoxColumn12.MinimumWidth = 6;
          this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
+         this.dataGridViewTextBoxColumn12.Width = 125;
          // 
          // dataGridViewTextBoxColumn13
          // 
          this.dataGridViewTextBoxColumn13.DataPropertyName = "Sum";
          this.dataGridViewTextBoxColumn13.HeaderText = "Сумма";
+         this.dataGridViewTextBoxColumn13.MinimumWidth = 6;
          this.dataGridViewTextBoxColumn13.Name = "dataGridViewTextBoxColumn13";
+         this.dataGridViewTextBoxColumn13.Width = 125;
          // 
          // dataGridViewTextBoxColumn14
          // 
          this.dataGridViewTextBoxColumn14.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
          this.dataGridViewTextBoxColumn14.DataPropertyName = "Item";
          this.dataGridViewTextBoxColumn14.HeaderText = "Наименование товара";
+         this.dataGridViewTextBoxColumn14.MinimumWidth = 6;
          this.dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
          // 
          // dataGridViewTextBoxColumn15
@@ -417,6 +512,7 @@
          this.dataGridViewTextBoxColumn15.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
          this.dataGridViewTextBoxColumn15.DataPropertyName = "Qty";
          this.dataGridViewTextBoxColumn15.HeaderText = "Количество";
+         this.dataGridViewTextBoxColumn15.MinimumWidth = 6;
          this.dataGridViewTextBoxColumn15.Name = "dataGridViewTextBoxColumn15";
          // 
          // dataGridViewTextBoxColumn16
@@ -424,6 +520,7 @@
          this.dataGridViewTextBoxColumn16.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
          this.dataGridViewTextBoxColumn16.DataPropertyName = "Cost";
          this.dataGridViewTextBoxColumn16.HeaderText = "Цена";
+         this.dataGridViewTextBoxColumn16.MinimumWidth = 6;
          this.dataGridViewTextBoxColumn16.Name = "dataGridViewTextBoxColumn16";
          // 
          // dataGridViewTextBoxColumn17
@@ -431,64 +528,12 @@
          this.dataGridViewTextBoxColumn17.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
          this.dataGridViewTextBoxColumn17.DataPropertyName = "Cause";
          this.dataGridViewTextBoxColumn17.HeaderText = "Причина возврата";
+         this.dataGridViewTextBoxColumn17.MinimumWidth = 6;
          this.dataGridViewTextBoxColumn17.Name = "dataGridViewTextBoxColumn17";
-         // 
-         // dataGridViewTextBoxColumn1
-         // 
-         this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-         this.dataGridViewTextBoxColumn1.DataPropertyName = "Item";
-         this.dataGridViewTextBoxColumn1.HeaderText = "Наименование товара";
-         this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-         // 
-         // dataGridViewTextBoxColumn2
-         // 
-         this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-         this.dataGridViewTextBoxColumn2.DataPropertyName = "Qty";
-         this.dataGridViewTextBoxColumn2.HeaderText = "Количество";
-         this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-         // 
-         // dataGridViewTextBoxColumn3
-         // 
-         this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-         this.dataGridViewTextBoxColumn3.DataPropertyName = "CostWODsc";
-         this.dataGridViewTextBoxColumn3.HeaderText = "Цена";
-         this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-         // 
-         // dataGridViewTextBoxColumn4
-         // 
-         this.dataGridViewTextBoxColumn4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-         this.dataGridViewTextBoxColumn4.DataPropertyName = "Discount";
-         dataGridViewCellStyle2.Format = "N2";
-         dataGridViewCellStyle2.NullValue = null;
-         this.dataGridViewTextBoxColumn4.DefaultCellStyle = dataGridViewCellStyle2;
-         this.dataGridViewTextBoxColumn4.HeaderText = "Скидка, %";
-         this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-         // 
-         // Column12
-         // 
-         this.Column12.DataPropertyName = "Sum";
-         dataGridViewCellStyle3.Format = "N2";
-         this.Column12.DefaultCellStyle = dataGridViewCellStyle3;
-         this.Column12.HeaderText = "Сумма со скидкой";
-         this.Column12.Name = "Column12";
-         // 
-         // Column13
-         // 
-         this.Column13.DataPropertyName = "SumWODsc";
-         this.Column13.HeaderText = "Сумма без скидки";
-         this.Column13.Name = "Column13";
-         // 
-         // Column14
-         // 
-         this.Column14.DataPropertyName = "Action";
-         this.Column14.HeaderText = "Акция N + 1";
-         this.Column14.Name = "Column14";
-         this.Column14.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-         this.Column14.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
          // 
          // FmReturnReestr
          // 
-         this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
+         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
          this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
          this.ClientSize = new System.Drawing.Size(932, 666);
          this.Controls.Add(this.splitContainer1);
@@ -498,7 +543,7 @@
          this.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
          this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
          this.Name = "FmReturnReestr";
-         this.Text = "Реестр возвратов";
+         this.Text = "Реестр документов";
          this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FmReturnReestr_FormClosing);
          this.Load += new System.EventHandler(this.FmReturnReestr_Load);
          this.toolStrip1.ResumeLayout(false);

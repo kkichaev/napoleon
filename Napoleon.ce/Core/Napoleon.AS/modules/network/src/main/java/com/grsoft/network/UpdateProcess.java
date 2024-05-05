@@ -279,6 +279,7 @@ public class UpdateProcess extends AsyncTask<Object, Void, Boolean>
 		}
 		finally{
 			endTransaction();
+			onPostExecuteWork(result);
 		}
 		
 		return result;

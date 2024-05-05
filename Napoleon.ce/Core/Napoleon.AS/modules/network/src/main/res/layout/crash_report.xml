@@ -25,9 +25,10 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:gravity="center"
-        android:text="@string/send_report" />
+        android:text="@string/share" />
 
     <Button
+        android:visibility="gone"
         android:id="@+id/btnSendBase"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -37,6 +38,7 @@
         android:text="@string/send_report_and_base" />
 
     <Button
+        android:visibility="gone"
         android:id="@+id/btnClose"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -47,12 +49,14 @@
         android:text="@string/close" />
 
     <TextView
+        android:visibility="gone"
         android:id="@+id/tvComment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/comment_for_crash" />
 
     <EditText
+        android:visibility="gone"
         android:id="@+id/edComment"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

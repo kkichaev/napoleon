@@ -16,6 +16,7 @@ import com.grsoft.dataobjects.NewClient;
 import com.grsoft.dataobjects.impl.NewClientImpl;
 import com.grsoft.napoleon.documents.DocList;
 import com.grsoft.util.ExtrasConst;
+import com.grsoft.view.BaseActivity;
 
 public class NewClientList extends Activity {
     public static void open(Context context){
@@ -34,7 +35,6 @@ public class NewClientList extends Activity {
 
         list = findViewById(R.id.list);
         findViewById(R.id.btnNewDoc).setOnClickListener((v)->newDoc());
-
 
         adapter = new Adapter(this);
         list.setAdapter(adapter);

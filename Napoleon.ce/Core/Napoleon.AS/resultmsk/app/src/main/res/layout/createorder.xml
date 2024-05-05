@@ -37,13 +37,14 @@
                 android:id="@+id/tableLayout1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="4dp"
                 android:stretchColumns="*" >
 
                 <TableRow
                     android:id="@+id/tableRow1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="2dp" >
+                     >
 
                     <LinearLayout
                         android:id="@+id/LinearLayout02"
@@ -105,36 +106,10 @@
                     </LinearLayout>
                 </TableRow>
 
-                <TableRow
-                    android:visibility="gone"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" >
-
-                    <TextView
-                        android:id="@+id/tvDelay"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="3dp"
-                        android:text="@string/delay"
-                        android:textColor="#000000"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:visibility="gone" >
-                    </TextView>
-
-                    <CheckBox
-                        android:id="@+id/cbCreateOrderCash"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/cash"
-                        android:textColor="#000000"
-                        android:textSize="16sp" >
-                    </CheckBox>
-                </TableRow>
             </TableLayout>
 
             <TableLayout
+                android:layout_margin="4dp"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
@@ -145,7 +120,7 @@
                     android:id="@+id/trFirm"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="2dp" >
+                    >
 
                     <TextView
                         android:id="@+id/TextView03"
@@ -168,17 +143,40 @@
                 </TableRow>
 
                 <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="@string/payment_delay"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:paddingLeft="12dp"
+                        android:paddingRight="12dp"
+                        android:id="@+id/tvDelay"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+
+                        tools:text="10"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+                </TableRow>
+
+                <TableRow
                     android:id="@+id/trSklads"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="2dp" >
+                    >
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
                         android:text="@string/sklad"
                         android:textColor="#000000"
                         android:textSize="16sp" />
@@ -196,15 +194,13 @@
                     android:id="@+id/trPrices"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="2dp" >
+                    >
 
                     <TextView
                         android:id="@+id/TextView04"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
                         android:text="@string/cost"
                         android:textColor="#000000"
                         android:textSize="16sp" >

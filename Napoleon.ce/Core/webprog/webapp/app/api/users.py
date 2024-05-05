@@ -14,7 +14,8 @@ def create_user():
     if not 'email' in data or not 'name' in data:
         return bad_request('must_include_email_and_name')
 
-    user = db.session.execute(db.select(User).filter_by(email = data['email'])).scalar()
+    email = data['email']
+    user = User.query.filter(User.email == email).first()
     if user != None :
         return bad_request('email_already_exists')
     token = create_token(data, CREATE_USER_COMMAND, 3600)
@@ -39,7 +40,6 @@ def create_user():
         # print(html_body)
 
     # print(html_body)
-    email = data['email']
     send_email(title
         ,[email] 
         ,text_body=text_body

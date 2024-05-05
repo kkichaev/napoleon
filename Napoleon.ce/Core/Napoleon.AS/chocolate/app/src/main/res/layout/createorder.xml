@@ -1,16 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.gesture.GestureOverlayView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/gestures"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:gestureStrokeType="single"
-    android:eventsInterceptionEnabled="true"
-    android:orientation="vertical"
-    android:gestureColor="#00000000"
-    android:uncertainGestureColor="#00000000">
-    
 <LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
  	android:layout_height="match_parent"
  	android:layout_width="match_parent"
  	android:background="#FFFFFF" 
@@ -104,7 +94,6 @@
 				android:id="@+id/cbCreateOrderCash" 
 				android:text="Наличные" 
 				android:textColor="#000000" 
-				android:visibility="invisible"
 				android:layout_weight="0" />
         </TableRow>
     </TableLayout>
@@ -115,7 +104,6 @@
     	android:layout_weight="0">
 	
        <TableRow 
-           android:visibility="gone"
 	    	android:padding="2dp"
         	android:layout_width="wrap_content" 
         	android:layout_height="wrap_content">
@@ -135,7 +123,8 @@
 			
 		</TableRow>
 		
-		<TableRow 
+		<TableRow
+			android:visibility="gone"
 	    	android:padding="2dp"
         	android:layout_width="wrap_content" 
         	android:layout_height="wrap_content">
@@ -156,8 +145,7 @@
 		</TableRow>       
        <TableRow
 	    	android:padding="2dp"
-	    	android:visibility="gone"
-        	android:layout_width="wrap_content" 
+        	android:layout_width="wrap_content"
         	android:layout_height="wrap_content">
 			
 			<TextView 
@@ -256,4 +244,3 @@
 		</TextView>
 	</LinearLayout>
 </LinearLayout>
-</android.gesture.GestureOverlayView>

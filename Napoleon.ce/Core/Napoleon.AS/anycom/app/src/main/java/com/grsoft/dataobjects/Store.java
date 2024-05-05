@@ -2,7 +2,7 @@ package com.grsoft.dataobjects;
 
 import com.grsoft.database.ServerInfo;
 
-@ServerInfo(name="Stores")
+@ServerInfo(name="AgentStores")
 public class Store extends DataObject {
     public static String CFG_KEY = "Склады";
 

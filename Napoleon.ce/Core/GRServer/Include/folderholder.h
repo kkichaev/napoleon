@@ -29,10 +29,7 @@ public:
 
 	virtual void SessionClosed(ISession* s);
 
-   virtual bool ContainsData(ISession* s) const
-   {
-      return (find(s) != end());
-   }
+	virtual bool ContainsData(ISession* s);
 
 	virtual void Clear(ISession *s);
 

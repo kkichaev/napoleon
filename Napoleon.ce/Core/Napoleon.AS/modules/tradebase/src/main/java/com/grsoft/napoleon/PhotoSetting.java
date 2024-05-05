@@ -133,8 +133,15 @@ public class PhotoSetting extends SettingActivity{
 			        		break;
 			        }
 		        
-		        if (selectedSize != null)
-		        	spPicSize.setSelection(cameraSizes.indexOf(selectedSize));
+		        if (selectedSize != null) {
+					spPicSize.setSelection(cameraSizes.indexOf(selectedSize));
+					if(!sz.isEqual(selectedSize.cameraSize)) {
+						// we cah exit settings without saving, but need set showed size
+						config.cameraHeight = selectedSize.cameraSize.height;
+						config.cameraWidth = selectedSize.cameraSize.width;
+						ConfigManager.save();
+					}
+				}
 		        
 		        cbAutoFocus.setChecked(config.useAutoFocus);
 		        

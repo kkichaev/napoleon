@@ -150,7 +150,7 @@ class Report:
   def compileWhere(self):
       useGSM = 'and isGSM=0' if self.gsm == 0 else ''
     
-      where = '"date" >= ToDate("{0}") and "date" <= ToDate("{1}") {2}'.format(
+      where = '"date" >= ToDate("{0}") and "date" < ToDate("{1}") {2}'.format(
           self.start.strftime("%d/%m/%Y %H:%M:%S"), (self.finish + timedelta(days=1)).strftime("%d/%m/%Y %H:%M:%S"), useGSM) 
           
       return where  
@@ -238,7 +238,7 @@ def printOut(report):
     f = report.finish + timedelta(days=1)
     row = 3
     
-    while s < f:
+    while s.date() < f.date():
         dc = int(s.strftime("%w"))
         value = "{0} ({1})".format(day_array[dc], s.strftime("%d.%m.%Y"))
         xlb.drawDayCell(sheet, row, value, dc > 0 and dc < 6)

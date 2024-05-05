@@ -66,8 +66,8 @@ def loadData(params, server):
       item.username = server.CurrentUser().name
       server.RestoreUser()
       
-      where = '"userid"="{0}" and "created" >= ToDate("{1}") and "created" <= ToDate("{2}")'.format(
-          a.id,
+      where = '"userid"={0} and "created" >= ToDate("{1}") and "created" <= ToDate("{2}")'.format(
+          "'"+a.id+"'",
           params.date.strftime("%d/%m/%Y 0:0:0"),
           params.date.strftime("%d/%m/%Y 23:59:59"))
 

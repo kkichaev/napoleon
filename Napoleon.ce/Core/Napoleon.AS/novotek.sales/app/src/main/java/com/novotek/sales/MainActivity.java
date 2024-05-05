@@ -5,9 +5,10 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
@@ -15,6 +16,11 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.telephony.TelephonyManager;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.LinearInterpolator;
+import android.view.animation.RotateAnimation;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -34,14 +40,13 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.grsoft.camera.CameraActivity;
 import com.novotek.dataobjects.Brand;
+import com.novotek.dataobjects.DataState;
 import com.novotek.dataobjects.Order;
 import com.novotek.dataobjects.Price;
 import com.novotek.dataobjects.ProjectData;
 import com.novotek.dataobjects.priceTree.FolderBase;
 import com.novotek.dataobjects.priceTree.FolderSrc;
 import com.novotek.dataobjects.priceTree.SubFolder;
-import com.novotek.dataobjects.ws.ReqCodeParam;
-import com.novotek.sales.login_views.LoadData;
 import com.novotek.sales.main_views.BaseView;
 import com.novotek.sales.main_views.Basket;
 import com.novotek.sales.main_views.BasketDetail;
@@ -67,9 +72,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     public static final String APP_TOKEN = "app_token";
     static String appId;
     static String devId;
-    private static String appToken = "";
 
-    static boolean askingLogin = false;
     static Model activeModel = null;
     static int lastSelectedItem = -1;
     public static String CHANNEL_ID = "";
@@ -87,18 +90,14 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     };
     private final int REQUEST_CODE_PERMISSIONS = 10;
 
-    public static ReqCodeParam getProgParams() {
-        ReqCodeParam ret = new ReqCodeParam();
-//        ret.appId = appId;
-//        ret.deviceId = devId;
-        return ret;
-    }
-
     private  FolderSrc currentFolder = null;
     private  FolderBase currentSubFolder = null;
     private String searchCondition = null;
     private boolean brandOpenned = false;
     private Brand currentBrand = null;
+
+    ImageView waitView;
+    Animation animation;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -125,9 +124,85 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             ActivityCompat.requestPermissions(this, REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS);
         }
 
-        model.getBasketQty().observe(this, qty -> {
-            updateBasketBadge(qty);
+        model.getBasketQty().observe(this, this::updateBasketBadge);
+
+        model.getNeedLogin().observe(this, needLogin -> {
+            if(needLogin) {
+                Login.open(MainActivity.this);
+            }
         });
+
+        model.getDataState().observe(this, state -> {
+            loadData(state.state == DataState.State.Receiving);
+            if(state.state == DataState.State.Read && curFragment == null) {
+                loadFragment(new Main());
+            }
+//            if(state.state == DataState.State.Receiving) {
+//                loadData(true);
+//                if(!(curFragment instanceof LoadData))
+//                    loadFragment(new LoadData());
+//            } else if(state.state == DataState.State.Error) {
+//                MessagePopup.show(getApplicationContext(), state.error, findViewById(R.id.frmChild), null);
+//            }
+        });
+
+        BRcv rcv = new BRcv((result, error) -> {
+            loadData(false);
+            if(result) {
+                model.checkData(getApplicationContext());
+            } else {
+                if(waitData) {
+                    runOnUiThread(() -> {
+                        MessagePopup.show(getApplicationContext(), error, findViewById(R.id.frmChild), null);
+                    });
+                }
+            }
+        });
+
+        registerReceiver(rcv, new IntentFilter(UpdateDataService.DATA_RECEIVED_ACTION));
+
+        waitView = findViewById(R.id.loading);
+        animation = new RotateAnimation(0, 360,
+                Animation.RELATIVE_TO_SELF, 0.5f,
+                Animation.RELATIVE_TO_SELF, 0.5f);
+
+        animation.setDuration(6000);
+        animation.setRepeatCount(Animation.INFINITE);
+        animation.setInterpolator(new LinearInterpolator(this, null));
+
+        initAppData();
+        model.checkLogin(this);
+    }
+
+    boolean waitData = false;
+    void loadData(boolean loading) {
+        this.waitData = loading;
+        if(loading) {
+            waitView.startAnimation(animation);
+            findViewById(R.id.wait).setVisibility(View.VISIBLE);
+        } else {
+            waitView.clearAnimation();
+            findViewById(R.id.wait).setVisibility(View.GONE);
+        }
+    }
+
+    static class BRcv extends BroadcastReceiver {
+
+        public interface Handler {
+            void complete(boolean result, String error);
+        }
+
+        Handler handler;
+        public BRcv(Handler handler) {
+            this.handler = handler;
+        }
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            boolean result = intent.getBooleanExtra(UpdateDataService.RESULT_EXTRA, false);
+            String error = intent.getStringExtra(UpdateDataService.ERROR_EXTRA);
+            handler.complete(result, error);
+        }
     }
 
     private void updateBasketBadge(Integer qty) {
@@ -198,22 +273,22 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         ft.commit();
     }
 
+//    void checkSession() {
+//        String session = model.getSession(this);
+//        if(session.length() > 0) {
+//
+//        }
+//        if(ProjectData.partners().size() == 0 && allPermissionsGranted()) {
+//            if(askingLogin == false) {
+//                Login.open(this);
+//                askingLogin = true;
+//            }
+//        }
+//    }
+
     @Override
     protected void onResume() {
         super.onResume();
-
-        initAppData();
-
-        if(ProjectData.partners().size() == 0 && allPermissionsGranted()) {
-            if(askingLogin == false) {
-                Login.open(this);
-//                if (appToken.length() == 0)
-//                    Login.open(this);
-//                else
-//                    loadFragment(new LoadData());
-                askingLogin = true;
-            }
-        }
 
         if(reenter) {
             reenter = false;
@@ -233,10 +308,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         super.onActivityResult(requestCode, resultCode, data);
 
         if(requestCode == Login.REQ_CODE) {
-            askingLogin = false;
             if(resultCode == RESULT_OK) {
-                loadFragment(new Main());
-                selectCurrentPartner();
+                model.clearNeedLogin();
+                model.checkData(this);
             } else if(resultCode == Activity.RESULT_CANCELED) {
                 finish();
             }
@@ -289,21 +363,21 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         return true;
     }
 
-    public static String getAppToken(){
-        return appToken;
-    }
-
-    public static void setAppToken(Context context, String token){
-        appToken = token;
-        SharedPreferences.Editor ed = androidx.preference.PreferenceManager.getDefaultSharedPreferences(context).edit();
-        ed.putString(APP_TOKEN, appToken);
-        ed.commit();
-    }
+//    public static String getAppToken(){
+//        return appToken;
+//    }
+//
+//    public static void setAppToken(Context context, String token){
+//        appToken = token;
+//        SharedPreferences.Editor ed = androidx.preference.PreferenceManager.getDefaultSharedPreferences(context).edit();
+//        ed.putString(APP_TOKEN, appToken);
+//        ed.commit();
+//    }
 
     @SuppressLint("MissingPermission")
     private void initAppData() {
-        SharedPreferences pref = androidx.preference.PreferenceManager.getDefaultSharedPreferences(this);
-        appToken = pref.getString(APP_TOKEN, "");
+//        SharedPreferences pref = androidx.preference.PreferenceManager.getDefaultSharedPreferences(this);
+//        appToken = pref.getString(APP_TOKEN, "");
 
         FirebaseMessaging fm = FirebaseMessaging.getInstance();
         fm.getToken()
@@ -350,6 +424,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        if(ProjectData.getCurrent() == null)
+            return false;
+
         BaseView cf = null;
         int id = item.getItemId();
         lastSelectedItem = id;
@@ -418,7 +495,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     }
 
     public void logout() {
-        model.logout();
+        model.logout(this);
 
         Login.open(this);
         openItem(R.id.itHome);

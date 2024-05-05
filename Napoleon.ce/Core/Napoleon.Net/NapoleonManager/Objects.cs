@@ -461,10 +461,14 @@ namespace GRSoft.NapoleonManager
 
    public partial class Price : DataObject, IComparable<Price>
    {
-#if Deka
-      // для Вятича проще передать обычный прайс, а код папки симитировать
-      public static readonly string OBJECT_NAME = "Price";
+#if Anycom
+      public static readonly string OBJECT_NAME = "ManagerPrice";
+      public static readonly string COMMON_OBJECT_NAME = "CommonPrice";
+#elif Agreman
+      public static readonly string OBJECT_NAME = "ManagerPrice";
+      public static readonly string COMMON_OBJECT_NAME = "CommonPrice";
 #else
+      public static readonly string COMMON_OBJECT_NAME = "ManagerPrice";
       public static readonly string OBJECT_NAME = "ManagerPrice";
 #endif
 
@@ -845,7 +849,7 @@ namespace GRSoft.NapoleonManager
 
    public partial class OrderItem : DataObject
    {
-      [Reference("ManagerPrice,Price", "id", typeof(Price))]
+      [Reference("ManagerPrice,CommonPrice,Price", "id", typeof(Price))]
       public Price item = null;
       public string id = "";
 
@@ -1728,7 +1732,7 @@ namespace GRSoft.NapoleonManager
 
    public partial class OrgRemnantsItem : DataObject
    {
-      [Reference("ManagerPrice,Price", "id", typeof(Price))]
+      [Reference("ManagerPrice,CommonPriceCommonPrice,Price", "id", typeof(Price))]
       public Price item = null;
       [Precision(3)]
       public double qty = 0;
@@ -1796,7 +1800,7 @@ namespace GRSoft.NapoleonManager
 
    public partial class MatrixItem : DataObject
    {
-      [Reference("ManagerPrice,Price", "id", typeof(Price))]
+      [Reference("ManagerPrice,CommonPrice,Price", "id", typeof(Price))]
       public Price price = null;
       public string id = String.Empty;
    }
@@ -1921,6 +1925,7 @@ namespace GRSoft.NapoleonManager
       public String userid = "";
       public String name = "";
       public int rem = 0;
+      public int flags = 0;
 
       [ItemType(typeof(ScriptDefItem))]
       public List<ScriptDefItem> items = new List<ScriptDefItem>();
@@ -2605,7 +2610,7 @@ namespace GRSoft.NapoleonManager
 
    public partial class ReturnItem : DataObject
    {
-      [Reference("ManagerPrice,Price", "id", typeof(Price))]
+      [Reference("ManagerPrice,CommonPrice,Price", "id", typeof(Price))]
       public Price item = null;
 
       public String id = "";
@@ -2623,7 +2628,7 @@ namespace GRSoft.NapoleonManager
 #if PoultryNSib || MeatAlliance || Antonov
       public string comment = string.Empty;
 #endif
-#if Sibtrade || MilkRiver
+#if Sibtrade || SibtrAdmiral || MilkRiver
       public string cause = "";
 
       public string Cause { get { return cause; } }
@@ -3180,7 +3185,7 @@ namespace GRSoft.NapoleonManager
 	   public double qty;
 	   public double sum;
 
-      [Reference("ManagerPrice,Price", "id", typeof(Price))]
+      [Reference("ManagerPrice,CommonPrice,Price", "id", typeof(Price))]
       public Price item = null;
    }
 
@@ -3296,7 +3301,7 @@ namespace GRSoft.NapoleonManager
 
    public class MoveItem : DataObject
    {
-      [Reference("ManagerPrice,Price", "id", typeof(Price))]
+      [Reference("ManagerPrice,CommonPrice,Price", "id", typeof(Price))]
       public Price item = null;
       public string id = "";
 
@@ -3342,7 +3347,7 @@ namespace GRSoft.NapoleonManager
 
    public class DistrItem : DataObject
    {
-      [Reference("ManagerPrice,Price", "id", typeof(Price))]
+      [Reference("ManagerPrice,CommonPrice,Price", "id", typeof(Price))]
       public Price item = null;
       public int exists = 0;
 
@@ -3357,7 +3362,7 @@ namespace GRSoft.NapoleonManager
 #if INVOICE_DOC
    public class InvoiceItem : DataObject
    {
-      [Reference("ManagerPrice,Price", "id", typeof(Price))]
+      [Reference("ManagerPrice,CommonPrice,Price", "id", typeof(Price))]
       public Price item = null;
       [Precision(3)]
       public double qty = 0;

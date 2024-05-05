@@ -110,7 +110,7 @@
           flat
           no-caps
           padding="0px"
-          href="mailto:info@grsoft.app"
+          :href="mailto()"
           style="margin-bottom: 10px; margin-left: 16px"
         >
           <u>{{ $t("login.supportEmail") }}</u>
@@ -127,7 +127,8 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { useQuasar } from "quasar";
-import { logout } from "../backend/backend";
+import { logout } from "../backend/user";
+import { mailto } from "../backend/helper";
 import { useRouter } from "vue-router";
 
 const menuList = [
@@ -169,33 +170,41 @@ const expandedMenuList = [
       },
     ],
   },
-  {
-    icon: "command",
-    label: "command",
-    route: "Matrix",
-    children: [
-      {
-        label: "matrix",
-        route: "Matrix",
-      },
-      {
-        label: "script",
-        route: "Script",
-      },
-    ],
-  },
+  // {
+  //   icon: "command",
+  //   label: "command",
+  //   route: "Matrix",
+  //   children: [
+  //     {
+  //       label: "matrix",
+  //       route: "Matrix",
+  //     },
+  //     {
+  //       label: "script",
+  //       route: "Script",
+  //     },
+  //     {
+  //       label: "question",
+  //       route: "Question",
+  //     },
+  //     {
+  //       label: "usersmanagement",
+  //       route: "Management",
+  //     },
+  //   ],
+  // },
 
-  {
-    icon: "command",
-    label: "manager",
-    route: "Manager",
-    children: [
-      {
-        label: "matrix",
-        route: "Manager",
-      },
-    ],
-  },
+  // {
+  //   icon: "command",
+  //   label: "manager",
+  //   route: "Manager",
+  //   children: [
+  //     {
+  //       label: "manager_main",
+  //       route: "Manager",
+  //     },
+  //   ],
+  // },
 ];
 
 const $q = useQuasar();

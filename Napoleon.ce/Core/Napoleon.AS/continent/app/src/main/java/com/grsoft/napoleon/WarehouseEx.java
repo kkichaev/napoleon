@@ -25,8 +25,10 @@ import com.grsoft.database.DataBaseManager;
 import com.grsoft.database.PriceTreeNode;
 import com.grsoft.dataobjects.ConfigHelper;
 import com.grsoft.dataobjects.DataObjectInfo;
+import com.grsoft.dataobjects.OrderEx;
 import com.grsoft.dataobjects.Present;
 import com.grsoft.dataobjects.Price;
+import com.grsoft.dataobjects.impl.OrderImplEx;
 import com.grsoft.dataobjects.impl.WSOrderImpl;
 import com.grsoft.napoleon.documents.DeliveryDoc;
 import com.grsoft.napoleon.documents.DocType;
@@ -138,7 +140,23 @@ public class WarehouseEx extends Warehouse {
 	protected long getCost(Price price) {
 		return CostStrategy.getInstance((Class<? extends Document<?>>) document.getClass()).getCostInt(price, (Document<?>) document, costype);
 	}
-	
+
+	class ZeroQtyFilter extends ZeroPositionFilter {
+		@Override
+		public String getWhereStr() {
+			if(document instanceof OrderImplEx) {
+				if(((OrderEx)document.getData()).isVan())
+					return "vanQty > 0";
+			}
+			return super.getWhereStr();
+		}
+	}
+
+	@Override
+	protected Filter createZeroPositionFilter() {
+		return new ZeroQtyFilter();
+	}
+
 	private Filter[] filters = new Filter[]{createZeroPositionFilter(), new CostPositionFilter()};
 	
 	private Dialog createFilterDlg() {

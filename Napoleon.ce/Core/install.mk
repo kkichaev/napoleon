@@ -39,7 +39,7 @@ endif
 
 ifneq ($(findstring COM_SERVER, $(FEATURES)),)
 SOURCES += ComSrv
-INST_FILES += ComGRServer.dll ComGRServer.pdf ComGRServer_x64.dll 
+INST_FILES += ComGRServer.pdf ComGRServer_x64.dll 
 VPATH += GRServer/ComServer/Docs
 endif
 

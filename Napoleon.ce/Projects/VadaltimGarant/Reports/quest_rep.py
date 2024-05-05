@@ -8,6 +8,7 @@ from grsoft.xl_base import XLBuilder
 from openpyxl import Workbook
 from openpyxl.cell import get_column_letter
 from openpyxl.style import Border, Color, Fill, Alignment
+from orgmap import OrgMap
 
 import datetime
 from datetime import timedelta
@@ -19,7 +20,7 @@ reload(sys);
 
 
 class QuestHelper:
-  LIST_TYPE = 2
+  SET_TYPE = 2
   DATASET_TYPE = 5
   PHOTO_TYPE = 7
   ORG_DATASET_TYPE = "Организация"
@@ -101,7 +102,7 @@ class ReportData:
         quest.items.sort(key= lambda x: x.number)
           
         for i in quest.items:
-          if i.type == QuestHelper.LIST_TYPE or i.type == QuestHelper.NUMBER_LIST_TYPE:
+          if i.type == QuestHelper.SET_TYPE or i.type == QuestHelper.NUMBER_LIST_TYPE:
             for v in i.values:
               key = self.ITEM_KEY_FMT.format(quest.idquest, i.iditem, v.value)
               if not key in self.cellidx:
@@ -120,16 +121,27 @@ class ReportData:
             self.cellidx[key] = idx      
             idx += 1    
 
-  def loadDocs(self, docs, pics, href):
+  def loadDocs(self, docs, pics, href, orgLocation):
+  
     for d in docs:
       i = Item()
       i.created = d.created
       
-      if d.id in self.orgs:
-        i.address = self.orgs[d.id].address
-        i.org = self.orgs[d.id].name
+      org = self.orgs.getOrg(d.id, d.userid)
+      
+      if org != None:
+        i.address = org.address
+        i.org = org.name
         i.orgcode = d.id
-        i.orgData = self.orgs[d.id]
+        i.orgData = org
+        
+        try:
+          lp = orgLocation.getLocation(org)
+          if lp != None:
+            i.orgData.latitude = lp.latitude
+            i.orgData.longitude = lp.longitude
+        except:
+          pass
       
       if d.userid in self.agents:
         i.user = self.agents[d.userid].name
@@ -138,7 +150,7 @@ class ReportData:
       
       photoCount = dict()
       for n in d.items:
-        if n.type == QuestHelper.LIST_TYPE:
+        if n.type == QuestHelper.SET_TYPE:
           self.putItemValue(i.items, self.ITEM_KEY_FMT.format(d.question, n.iditem, n.answer), "X")
           
         elif n.type == QuestHelper.NUMBER_LIST_TYPE:
@@ -155,7 +167,8 @@ class ReportData:
         elif n.type == QuestHelper.DATASET_TYPE:
           val = ''
           if n.remark == QuestHelper.ORG_DATASET_TYPE:
-            val = self.orgs[n.answer].name if n.answer in self.orgs else n.answer
+            org = self.orgs.getOrg(n.answer, d.userid)
+            val = org.name if org != None else n.answer
           
           self.putItemValue(i.items, self.KEY_FMT.format(d.question, n.iditem), val)
         else: 
@@ -215,7 +228,7 @@ class XLB(XLBuilder):
     for i in quest.items:
       self.printCell(sheet, row + 1, cv, i.id, color)
       
-      if i.type == QuestHelper.LIST_TYPE or i.type == QuestHelper.NUMBER_LIST_TYPE:
+      if i.type == QuestHelper.SET_TYPE or i.type == QuestHelper.NUMBER_LIST_TYPE:
         s = cv
         
         for v in i.values:
@@ -271,26 +284,13 @@ class XLB(XLBuilder):
     fill.start_color = color
     
 def loadData(data, params, server):
-    orgs = dict()
-    porg = server.Get("PotenzialOrg", 'not "userid" is null', "id")
     data.agents = server.Get("Agents", "", "id")
     quests = server.Get("Question", '"idquest" is null or "idquest" is not null', "idquest")
     where = '"created" >= ToDate("{0} 0:0:0") and "created" <= ToDate("{1} 0:0:0")'.format(params.start.strftime('%d.%m.%Y'), (params.finish + timedelta(days=1)).strftime('%d.%m.%Y'))
 
     pictures = server.Get("PicStoreSrc", where, "id")
-    orgs.update(porg)
-    data.orgs = orgs
-    
-    if params.param == 0:
-      for item in params.userids:
-        server.ChangeUser(item.id)
-        aorgs = server.Get("Org", '', 'id')
-        server.RestoreUser()
-        
-        if aorgs != None:
-            data.orgs.update(aorgs)
+    data.orgs = OrgMap(server)
 
-    
     if len(params.userids) > 0:
       arr = ''
       
@@ -313,25 +313,12 @@ def loadData(data, params, server):
       
       where = '{0} and "question" in ({1})'.format(where, arr)
     
-    
     answers = server.Get("Answer" if params.param == 0 else "MAnswer", where)
     
-    if params.param == 1:
-      data.agents = server.Get("DivisionManager", "", "login")
-      ids = []
-      for a in answers:
-        if len(a.id) > 0 and not a.id in ids: 
-          ids.append(a.id)
-          aorgs = server.Get("Org", '"id"=\'{0}\''.format(a.id), 'id')
-          
-          if aorgs != None:
-            data.orgs.update(aorgs)
-    
     data.prepare(answers, quests)
-    data.orgs = orgs
-    
+
     href = params.hrefBase
-    data.loadDocs(answers, pictures, href)
+    data.loadDocs(answers, pictures, href, OrgLocation(server))
     
     return data
 

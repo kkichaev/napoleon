@@ -1,6 +1,7 @@
 package com.grsoft.napoleon;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.grsoft.dataobjects.Banner;
 import com.grsoft.dataobjects.impl.ConfigImpl;
@@ -10,8 +11,10 @@ import com.grsoft.napoleon.documents.DocTypeBase;
 import com.grsoft.napoleon.documents.OrderDoc;
 import com.grsoft.napoleon.documents.QuestionDoc;
 import com.grsoft.napoleon.documents.RemnantsDoc;
+import com.grsoft.napoleon.documents.ShelfShareDoc;
 import com.grsoft.napoleon.documents.TaskDoneDoc;
 import com.grsoft.napoleon.documents.VisitDoc;
+import com.grsoft.script.dataobjects.impl.ScriptImpl;
 import com.grsoft.util.MenuHandler;
 
 public class MainEx extends Main{
@@ -23,6 +26,23 @@ public class MainEx extends Main{
         if(bundle == null) {
             BannerView.open(this, Banner.PLACE_START, null);
         }
+    }
+
+    @Override
+    protected void doSync() {
+        if(Features.CHECK_UNCOMPLETE_SCRIPTS) {
+            if (ScriptImpl.hasUncomplete()) {
+                Toast.makeText(this, R.string.has_uncomplete_scripts, Toast.LENGTH_LONG).show();
+                openScriptList();
+                return;
+            }
+            if(ShelfShareDoc.instance().hasIncomplete()) {
+                Toast.makeText(this, R.string.has_incomplete_shelf, Toast.LENGTH_LONG).show();
+                ShelfDocList.open(this);
+                return;
+            }
+        }
+        openUpdateActivity();
     }
 
     @Override

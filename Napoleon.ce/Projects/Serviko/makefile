@@ -37,3 +37,7 @@ endif
 
 include ..\..\make.rull
 
+
+put_mgr:
+	# echo $(Variant) $(ManagerVersion)
+	python upload_mgr_version.py $(Variant) $(ManagerVersion)

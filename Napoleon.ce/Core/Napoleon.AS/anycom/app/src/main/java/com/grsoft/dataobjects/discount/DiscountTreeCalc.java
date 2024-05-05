@@ -1,5 +1,7 @@
 package com.grsoft.dataobjects.discount;
 
+import com.grsoft.util.Consts;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -45,7 +47,8 @@ public class DiscountTreeCalc extends DiscountTree {
         if(el1.orgCost != el2.orgCost) {
             return el1.orgCost == DiscountElement.TYPE_ORG_COST ? -1 : 1;
         }
-        return Integer.compare(el1.priority, el2.priority);
+        int cmp = Integer.compare(el1.priority, el2.priority);
+        return cmp == 0 ? Integer.compare(el2.discount, el1.discount) : cmp;
     }
 
     DiscountCalcElement sum(List<DiscountCalcElement> src) {
@@ -57,13 +60,14 @@ public class DiscountTreeCalc extends DiscountTree {
     }
 
     DiscountCalcElement mul(List<DiscountCalcElement> src) {
+        double scale = 100.0 * DiscountCalcElement.DISCOUNT_SCALE;
         DiscountCalcElement dce = new DiscountCalcElement(src.get(0));
         double dsc = 1;
         for(DiscountCalcElement eli : src) {
-            double cd = (1.0 - eli.discount / 100.0);
+            double cd = (1.0 - eli.discount / scale);
             dsc *= cd;
         }
-        dce.discount = (int)((1.0 - dsc) * 100 + 0.5);
+        dce.discount = (int)((1.0 - dsc) * scale + 0.5);
         return dce;
     }
 

@@ -23,11 +23,15 @@ public class SellingImpl extends OrderImplBase<Selling> implements Scriptable {
 
     }
 
+    public boolean validPayType() { return data.payType.length() > 0;}
+
     @Override
     public int getItemValue(Price item) {
-        for(StoreData sd : ((PriceEx)item).stores) {
-            if(sd.bmark == data.bmark) {
-                return sd.qty;
+        if(item != null) {
+            for (StoreData sd : ((PriceEx) item).stores) {
+                if (sd.bmark == data.bmark) {
+                    return sd.qty;
+                }
             }
         }
         return 0;

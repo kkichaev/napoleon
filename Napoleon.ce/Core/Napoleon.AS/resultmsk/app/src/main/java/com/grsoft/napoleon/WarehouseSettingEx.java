@@ -26,6 +26,9 @@ public class WarehouseSettingEx extends WarehouseSetting{
     protected void init() {
         super.init();
 
+        //
+        // Работает только на 29 API если сделать выше, то надо переписывать работу с презентацией
+        //
         CfgNplEx ce = (CfgNplEx) config;
         ((TextView)findViewById(R.id.tvPhotoFolder)).setText(ce.pricePhotoIndex);
 
@@ -36,7 +39,7 @@ public class WarehouseSettingEx extends WarehouseSetting{
                     "text/xml",
                     "application/xml"
             };
-            intent.putExtra(Intent.EXTRA_MIME_TYPES, types);
+//            intent.putExtra(Intent.EXTRA_MIME_TYPES, types);
             startActivityForResult(intent, PICKFILE_REQUEST_CODE);
         });
     }

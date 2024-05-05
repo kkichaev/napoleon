@@ -11,6 +11,4 @@ public class OrderActionItem extends DataObject {
 
     @Scale(value = Consts.QTY_SCALE)
     public int qty = 0;
-
-    public List<OrderActionBonus> bonus = new ArrayList<>();
 }

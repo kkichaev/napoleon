@@ -583,7 +583,7 @@ public class OrderDetail extends RegDurationActivity implements DataSetNotify,
 	}
 	
 	protected long getItemSum(OrderItem item) {
-		return (long)item.cost * item.qty / Consts.QTY_SCALE;
+		return item.sum != 0 ? item.sum : (long)item.cost * item.qty / Consts.QTY_SCALE;
 	}
 
 	protected String makePackQtyStr(long iqty, String packLabel) {

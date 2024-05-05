@@ -7,6 +7,7 @@ import com.grsoft.dataobjects.DataObjectInfo;
 import com.grsoft.dataobjects.Inventory;
 import com.grsoft.dataobjects.OrderItem;
 import com.grsoft.dataobjects.Price;
+import com.grsoft.napoleon.InvPriceCount;
 import com.grsoft.napoleon.InventoryDetail;
 import com.grsoft.napoleon.PriceCount;
 import com.grsoft.napoleon.R;
@@ -37,7 +38,7 @@ public class InventoryImpl extends OrderImplBase<Inventory> implements Itemsable
 
     @Override
     public void editItem(final long itemRowid, final Context context) {
-        PriceCount.open(context, itemRowid, (DbObject<Inventory>) this);
+        InvPriceCount.open(context, itemRowid, (DbObject<Inventory>) this);
     }
 
     @Override
@@ -72,6 +73,9 @@ public class InventoryImpl extends OrderImplBase<Inventory> implements Itemsable
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+
+                if(updateQtyHandler != null)
+                    updateQtyHandler.itemUpdated(item, data, true);
             } else
                 needUpdate = false;
         } else {
@@ -83,6 +87,11 @@ public class InventoryImpl extends OrderImplBase<Inventory> implements Itemsable
             else
                 needUpdate = false;
 //			}
+
+            if(updateQtyHandler != null) {
+                updateQtyHandler.itemUpdated(item, data, false);
+                needUpdate = true;
+            }
         }
 
         if (needUpdate)

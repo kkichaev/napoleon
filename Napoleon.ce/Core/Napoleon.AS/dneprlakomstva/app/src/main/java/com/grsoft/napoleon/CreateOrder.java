@@ -141,28 +141,6 @@ public class CreateOrder extends BaseActivity
 		tv = (TextView)findViewById(R.id.tvTotalSum);
 		tv.setText(Html.fromHtml("<b>" + Util.IntToScaleStr(order.sum(), Consts.SUM_SCALE, Util.DEC_DELIM, false) + "</b>"));
 		
-		if( Features.DELIVERY_ADDRESS ) {
-			View v = findViewById(R.id.ftrAddress);
-			if( v != null ) {
-				Spinner spAddress = (Spinner) findViewById(R.id.spAddress);
-				if( spAddress != null ) {
-					v.setVisibility(View.VISIBLE);
-					ArrayList<KeyValue> addresses = new ArrayList<KeyValue>();
-					int selected = -1;
-					for(OrgAddress addr : oi.getData().orgAddress) {
-						KeyValue kv = new KeyValue(addr.id, addr.name);
-						if( kv.key.toString().equals(o.adrCode))
-							selected = addresses.size();
-						addresses.add(kv);
-					}
-					ArrayAdapter<KeyValue> aa = new ArrayAdapter<KeyValue>(this, R.layout.simple_spinner_layout, addresses);
-					spAddress.setAdapter(aa);
-					if( selected >= 0 && selected < spAddress.getCount())
-						spAddress.setSelection(selected);
-				}
-			}
-		}
-		
 		TextView tvDelay = (TextView) findViewById(R.id.tvDelay); 
 		tvDelay.setOnClickListener(new DelayClickListener());
 		
@@ -444,20 +422,12 @@ public class CreateOrder extends BaseActivity
 			o.remark = remark.getText().toString();
 			
 			EditText num = (EditText)findViewById(R.id.edIncass);
-			o.incass = Util.StrToScale(num.getText().toString(), Consts.SUM_SCALE);
+			o.incass = (int)Util.StrToScale(num.getText().toString(), Consts.SUM_SCALE);
 			num = (EditText)findViewById(R.id.edWillSum);
-			o.willSum = Util.StrToScale(num.getText().toString(), Consts.SUM_SCALE);
+			o.willSum = (int)Util.StrToScale(num.getText().toString(), Consts.SUM_SCALE);
 			CheckBox cb = (CheckBox)findViewById(R.id.cbNeedIncass);
 			o.willPay = cb.isChecked() ? 1 : 0;
-			
-			if( Features.DELIVERY_ADDRESS ) {
-				Spinner spAddress = (Spinner) findViewById(R.id.spAddress);
-				if( spAddress != null ) {
-					KeyValue sel = (KeyValue) spAddress.getSelectedItem();
-					if( sel != null )
-						o.adrCode = sel.key.toString();
-				}
-			}
+
 			if (updateSumType)
 				order.updateItemsCost(o.sumType);
 			else

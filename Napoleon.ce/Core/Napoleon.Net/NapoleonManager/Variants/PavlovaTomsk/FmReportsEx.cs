@@ -40,6 +40,11 @@ namespace GRSoft.NapoleonManager
          btn.Click += btn_Click3;
          btn.Icon = Properties.Resources.result_report;
          panel4.Controls.Add(btn);
+		 
+		 btnVisitTIme.Visible = false;
+		 btnWorkTime.Visible = false;
+		 panel11.Visible = false;
+		 label8.Visible = false;
       }
 
       void btn_Click(object sender, EventArgs e)

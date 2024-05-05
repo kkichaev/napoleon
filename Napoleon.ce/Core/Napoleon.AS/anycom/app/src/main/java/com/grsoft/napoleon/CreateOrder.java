@@ -27,6 +27,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
@@ -61,6 +62,7 @@ import com.grsoft.view.BaseActivity;
 @SuppressWarnings("deprecation")
 public class CreateOrder extends BaseActivity
 {
+	private static final String PICKUP_KEY = "1";
 	private OrderImplEx order = (OrderImplEx)OrderDoc.instance().create();
 	boolean refreshOrderSum = false;
 	
@@ -103,13 +105,13 @@ public class CreateOrder extends BaseActivity
 				
 		order.read(orderRowId);
 		OrderEx o = (OrderEx) order.getData();
-		
+
 		OrgImpl oi = new OrgImpl();
 		oi.getData().id = o.id;
 		oi.read();
 		oi.close();
 
-		checkDeliveryDay = ((OrgEx)oi.getData()).dscMode == OrgEx.DISCOUNT_BY_DELIVERY;
+		checkDeliveryDay = order.isEditable() && ((OrgEx)oi.getData()).dscMode == OrgEx.DISCOUNT_BY_DELIVERY;
 
 		OrgEx org = (OrgEx) oi.getData();
 		String ret = org.name;
@@ -139,6 +141,22 @@ public class CreateOrder extends BaseActivity
 			if(sklads.size() != 0) {
 				trSklads.setVisibility(View.VISIBLE);
 				spSklads.setEnabled(o.items.size() == 0);
+				if(o.items.size() == 0) {
+					spSklads.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+						@Override
+						public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+							KeyValue kv = (KeyValue) spSklads.getAdapter().getItem(position);
+							if(kv != null && !kv.key.equals(o.whCode)) {
+								o.cards.clear();
+								o.whCode = kv.key.toString();
+								refreshCards();
+							}
+						}
+
+						@Override
+						public void onNothingSelected(AdapterView<?> parent) {}
+					});
+				}
 			}
 		}else
 			trSklads.setVisibility(View.GONE);
@@ -150,33 +168,26 @@ public class CreateOrder extends BaseActivity
 		if(o.deliveryType.length() == 0 && spdt.getCount() > 0) {
 			spdt.setSelection(0);
 		}
+		spdt.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+			@Override
+			public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+				KeyValue sel = (KeyValue) parent.getAdapter().getItem(position);
+				if(!sel.key.equals(PICKUP_KEY)) {
+					if(order.setDeliveryDate((OrgEx) oi.getData())) {
+						refreshDate();
+						clearCards();
+					}
+				}
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> parent) {}
+		});
 
 		config.close();
 
 		refreshCards();
-		
-		if( Features.DELIVERY_ADDRESS ) {
-			View v = findViewById(R.id.ftrAddress);
-			if( v != null ) {
-				Spinner spAddress = (Spinner) findViewById(R.id.spAddress);
-				if( spAddress != null ) {
-					v.setVisibility(View.VISIBLE);
-					ArrayList<KeyValue> addresses = new ArrayList<KeyValue>();
-					int selected = -1;
-					for(OrgAddress addr : oi.getData().orgAddress) {
-						KeyValue kv = new KeyValue(addr.id, addr.name);
-						if( kv.key.toString().equals(o.adrCode))
-							selected = addresses.size();
-						addresses.add(kv);
-					}
-					ArrayAdapter<KeyValue> aa = new ArrayAdapter<KeyValue>(this, R.layout.simple_spinner_layout, addresses);
-					spAddress.setAdapter(aa);
-					if( selected >= 0 && selected < spAddress.getCount())
-						spAddress.setSelection(selected);
-				}
-			}
-		}
-		
+
 		TextView tvDelay = (TextView) findViewById(R.id.tvDelay); 
 		tvDelay.setOnClickListener(new DelayClickListener());
 		
@@ -190,7 +201,7 @@ public class CreateOrder extends BaseActivity
 			
 			@Override
 			public void onClick(View v) {
-				Intent i = CalendarActivityEx.open(CreateOrder.this, order.getDate(), CreateOrder.this::isDateEnabled);
+				Intent i = CalendarActivity.open(CreateOrder.this, order.getDate(), CreateOrder.this::isDateEnabled);
 //				Intent i = new Intent(CreateOrder.this, CalendarActivityEx.class);
 //				i.putExtra(ExtrasConst.DATE_TAG, order.getDate().getTime());
 				startActivityForResult(i, DIALOG_DATE_PICKER_ID);
@@ -208,7 +219,7 @@ public class CreateOrder extends BaseActivity
 		btnOK.setOnClickListener(new OKClickListener());
 
         findViewById(R.id.btnCancel).setOnClickListener(new CancelClickListener());
-        updateDisplayDelay();
+		updateDisplayDelay();
 		refreshDate();
 	}
 
@@ -258,16 +269,20 @@ public class CreateOrder extends BaseActivity
 			refreshDate();
 
 			if(checkDeliveryDay) {
-				if(((OrderEx)order.getData()).cards.size() != 0) {
-					((OrderEx)order.getData()).cards.clear();
-					refreshOrderSum = true;
-					refreshCards();
-					Toast.makeText(this, "Проверьте доступность карты лояльности", Toast.LENGTH_LONG).show();
-				}
+				clearCards();
 			}
 		}
 	}
-	
+
+	private void clearCards() {
+		refreshCards();
+		if(((OrderEx)order.getData()).cards.size() != 0) {
+			((OrderEx)order.getData()).cards.clear();
+			refreshOrderSum = true;
+			Toast.makeText(this, "Проверьте доступность карты лояльности", Toast.LENGTH_LONG).show();
+		}
+	}
+
 	private void refreshDate() {
 		SimpleDateFormat sd = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());		
 		((TextView)findViewById(R.id.tvDate)).setText(sd.format(order.getDate()));		
@@ -299,13 +314,19 @@ public class CreateOrder extends BaseActivity
 	boolean isDateEnabled(Date date) {
 		Date ch = Util.getDate();
 
-		if(date.compareTo(ch) <= 0) {
+		KeyValue kv = (KeyValue)((Spinner)findViewById(R.id.spDlvType)).getSelectedItem();
+		boolean pickup = (kv != null && kv.key.equals(PICKUP_KEY));
+		int cmp = date.compareTo(ch);
+		if( (pickup && cmp < 0) || (!pickup && cmp <= 0)) {
 			return false;
 		}
 
 		if((date.getTime() - ch.getTime()) / (1000 * 24 * 3600) >= 8) {
 			return false;
 		}
+
+		if(pickup)
+			return true;
 
 		if(deliveryFlag != 0 && (deliveryFlag & 0x7f) < 0x7f) {
 			Calendar c = Calendar.getInstance();
@@ -507,15 +528,7 @@ public class CreateOrder extends BaseActivity
 
 			EditText remark = (EditText)findViewById(R.id.edCreateOrderNotes);
 			o.remark = remark.getText().toString();
-			
-			if( Features.DELIVERY_ADDRESS ) {
-				Spinner spAddress = (Spinner) findViewById(R.id.spAddress);
-				if( spAddress != null ) {
-					KeyValue sel = (KeyValue) spAddress.getSelectedItem();
-					if( sel != null )
-						o.adrCode = sel.key.toString();
-				}
-			}
+
 			if (refreshOrderSum)
 				order.refreshSum();
 			order.write();

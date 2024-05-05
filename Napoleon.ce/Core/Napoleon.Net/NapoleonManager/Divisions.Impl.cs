@@ -264,7 +264,7 @@ namespace GRSoft.NapoleonManager
             AddChanged(d);
         }
 
-        void GetData()
+        public void GetData(bool lightData)
         {
             Config c = Config.GetConfig();
             if (c.CheckLogin() == false)
@@ -303,8 +303,11 @@ namespace GRSoft.NapoleonManager
                 dsCommonConfig = new DataSet<int, CommonConfig>(CommonConfig.OBJECT_NAME);
             dsCommonConfig.Filter = "not (\"userid\" is null)";
 
-            updSets.Add(mainArticleFolder);
-            updSets.Add(divisions);
+             if(!lightData || mainArticleFolder.Count == 0)
+               updSets.Add(mainArticleFolder);
+             if(!lightData || divisions.Count == 0)
+               updSets.Add(divisions);
+
             updSets.Add(dsConfig);
             updSets.Add(dsCommonConfig);
 
@@ -1116,7 +1119,7 @@ namespace GRSoft.NapoleonManager
 
         private void Divisions_Load(object sender, EventArgs e)
         {
-            GetData();
+            GetData(false);
         }
 
         private void toolStripLabel1_Click(object sender, EventArgs e)

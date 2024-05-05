@@ -1,6 +1,7 @@
 package com.novotek.dataobjects.priceTree;
 
 import com.novotek.dataobjects.Action;
+import com.novotek.dataobjects.ActionItem;
 import com.novotek.dataobjects.Brand;
 import com.novotek.dataobjects.Catalog;
 import com.novotek.dataobjects.NameObj;
@@ -58,8 +59,8 @@ public class PriceTree {
 
         for(Action a : actions) {
             List<Price> ap = new ArrayList<>();
-            for(String id : a.items) {
-                Price p = priceMap.get(id);
+            for(ActionItem ai : a.items) {
+                Price p = priceMap.get(ai.id);
                 if( p != null ) {
                     ap.add(p);
                 }

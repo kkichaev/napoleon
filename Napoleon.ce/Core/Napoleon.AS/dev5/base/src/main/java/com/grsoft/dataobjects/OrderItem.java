@@ -29,7 +29,8 @@ public class OrderItem extends DataObject implements QtyItem {
 	 * Это первый индекс для порожденных классов
 	 */
 	static public final int USER_FIELDS = 10;
-	
+	static public final int DATA_VERSION = 6;
+
 	@FieldOrder(order=0)
 	public String id = "";
 	
@@ -52,6 +53,11 @@ public class OrderItem extends DataObject implements QtyItem {
 	@FieldVersion(version = 2)
 	@Scale(value=Consts.QTY_SCALE)
 	public int qtyPack = 0;
+
+	@FieldVersion(version = DATA_VERSION)
+	@FieldOrder(order=9)
+	@Scale(value=Consts.SUM_SCALE)
+	public long sum = 0;
 
 	@Override public int getQty() { return qty; }
 	@Override public int getFlags() { return flags; }

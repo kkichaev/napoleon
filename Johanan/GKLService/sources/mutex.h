@@ -13,32 +13,17 @@
 #define MUTEX pthread_mutex_t
 #endif
 
-class Mutex {
+class Mutex
+{
 public:
-    Mutex();
-    ~Mutex();
+	Mutex();
+	~Mutex();
 
-    bool Lock();
-    bool Unlock();
-    bool TryLock();
+	bool Lock();
+	bool Unlock();
 
 private:
-    MUTEX handle;
-};
-
-class WaitEvent {
-public:
-    WaitEvent();
-    ~WaitEvent();
-    
-    bool Waiting(unsigned timeout);
-    void SetEvent();
-    void ResetEvent();
-    
-private:
-    MUTEX handle;
-    int value;
-    pthread_cond_t cond;    
+	MUTEX handle;
 };
 
 #endif

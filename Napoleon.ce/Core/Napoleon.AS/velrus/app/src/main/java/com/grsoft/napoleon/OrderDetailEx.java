@@ -6,26 +6,33 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.grsoft.dataobjects.OrderEx;
+import com.grsoft.dataobjects.OrderItem;
+import com.grsoft.dataobjects.OrderItemEx;
 import com.grsoft.dataobjects.OrgEx;
+import com.grsoft.dataobjects.impl.OrderImplEx;
 import com.grsoft.dataobjects.impl.OrgImpl;
 import com.grsoft.util.Consts;
 import com.grsoft.util.Util;
 
+import java.util.HashSet;
+
 public class OrderDetailEx extends OrderDetail {
-	View btnAction;
+
+	ActionHelper actionHelper = new ActionHelper();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		btnAction = findViewById(R.id.btnAction);
-		btnAction.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				ActionList.open(v.getContext(), doc.getRowid());
-			}
-		});
+		if(actionHelper.applyToAll().size() > 0) {
+			View ab = findViewById(R.id.btnAction);
+			ab.setVisibility(View.VISIBLE);
+			ab.setOnClickListener(v -> {
+				actionHelper.showApplyToAll(OrderDetailEx.this, doc);
+			});
+		}
 	}
 
 	@Override protected void setContentView() { setContentView(R.layout.orderdetailex); }
@@ -50,7 +57,24 @@ public class OrderDetailEx extends OrderDetail {
 				btnSend.setEnabled(true);
 			}
 	}
-	
+
+	@Override
+	protected void deleteItem(OrderItem orderItem) {
+		if(((OrderItemEx)orderItem).bonus > 0) {
+			return;
+		}
+		super.deleteItem(orderItem);
+		((OrderImplEx)doc).removeActions(new HashSet<>());
+	}
+
+	@Override
+	protected void editItem(OrderItem orderItem) {
+		if(((OrderItemEx)orderItem).bonus > 0) {
+			return;
+		}
+		super.editItem(orderItem);
+	}
+
 	@Override
 	protected void onResume() {
 		super.onResume();
@@ -80,8 +104,6 @@ public class OrderDetailEx extends OrderDetail {
 		} else {
 			tvMinSum.setVisibility(View.GONE);
 		}
-
-		btnAction.setVisibility(((OrderEx)doc.getData()).bonus.size() > 0 ? View.VISIBLE : View.GONE);
 	}
 	
 	@Override
@@ -90,5 +112,20 @@ public class OrderDetailEx extends OrderDetail {
 			Toast.makeText(this, R.string.required_items_missed, Toast.LENGTH_SHORT).show();
 		else
 			super.send();
+	}
+
+	@Override
+	protected void setAdapter() {
+		lvItems.setAdapter(new Adapter());
+	}
+
+	class Adapter extends OrderItemsAdapter {
+		@Override
+		protected void drawInternal(View view, String name, int color, OrderItem item, int pos) {
+			super.drawInternal(view, name, color, item, pos);
+			if(((OrderItemEx)item).bonus > 0) {
+				view.setBackgroundColor(Color.LTGRAY);
+			}
+		}
 	}
 }

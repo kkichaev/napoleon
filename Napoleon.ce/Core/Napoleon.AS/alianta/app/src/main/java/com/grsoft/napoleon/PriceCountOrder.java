@@ -23,6 +23,8 @@ import com.grsoft.dataobjects.impl.OrderImplBase;
 import com.grsoft.dataobjects.impl.OrderImplEx;
 import com.grsoft.dataobjects.impl.OrgImpl;
 import com.grsoft.napoleon.ActionHelper.ActionData;
+import com.grsoft.napoleon.documents.CreatableDocument;
+import com.grsoft.napoleon.documents.OrderDoc;
 import com.grsoft.util.Consts;
 import com.grsoft.util.ExtrasConst;
 import com.grsoft.util.InputNumber;
@@ -41,13 +43,16 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 public class PriceCountOrder extends PriceCount implements OrderImplBase.UpdateQtyHandler {
-	
+
+	static final String ACTION_MODE = "actionView";
+
 	ActionFindData action = null;
 	Adapter adapter = new Adapter();
 	boolean actionAssigned = false; 
 //	String actionCode = "";
 	List<Item> items = new ArrayList<Item>();
 	OrgEx org;
+	boolean actionMode = false;
 	
 	public static void open(Context context, long priceRoid, DbObject<? extends DataObject> doc) {
 		if(doc.getRowid() == ExtrasConst.INVALID_ROWID) {
@@ -55,17 +60,31 @@ public class PriceCountOrder extends PriceCount implements OrderImplBase.UpdateQ
 			return;
 		}
 		Intent i = new Intent(context, PriceCountOrder.class);
-		
+
 		i.putExtra(ExtrasConst.PRICE_ROW_ID_STR, priceRoid);
 		i.putExtra(ExtrasConst.DOC_ROW_ID_STR, doc.getRowid());
 
-		context.startActivity(i);		
+		context.startActivity(i);
+	}
+
+	public static void openAction(Context context, long priceRowid) {
+		Intent i = new Intent(context, PriceCountOrder.class);
+
+		i.putExtra(ExtrasConst.PRICE_ROW_ID_STR, priceRowid);
+		i.putExtra(ExtrasConst.DOC_ROW_ID_STR, ExtrasConst.INVALID_ROWID);
+		i.putExtra(ACTION_MODE, true);
+
+		context.startActivity(i);
 	}
 
 	@Override protected int getContentViewId() { return R.layout.pricecountex; }
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		actionMode = getIntent().getBooleanExtra(ACTION_MODE, false);
+		if(actionMode) {
+			document = (CreatableDocument<?>) OrderDoc.instance().create();
+		}
 		super.onCreate(savedInstanceState);
 		((OrderImplEx)document).setUpdateQtyHandler(this);
 	}
@@ -99,7 +118,8 @@ public class PriceCountOrder extends PriceCount implements OrderImplBase.UpdateQ
 //			actionCode = item.action;
 //		}
 		
-		List<ActionHelper.ActionData> actions = ActionHelper.getActions(document.getId(), document.getDate(), p.id);
+		List<ActionHelper.ActionData> actions = actionMode ? ActionHelper.getCurrentActions(p.id) :
+				ActionHelper.getActions(document.getId(), document.getDate(), p.id);
 		if(actions == null || actions.size() == 0) {
 			findViewById(R.id.llActions).setVisibility(View.GONE);
 		} else {
@@ -163,7 +183,7 @@ public class PriceCountOrder extends PriceCount implements OrderImplBase.UpdateQ
 			}
 			TextView tv;
 			tv = (TextView)view.findViewById(R.id.tvDiscount);
-			int dsum = CostStrategy.costWithDiscount(priceVal, item.discount, Consts.SUM_SCALE);
+			int dsum = (int)CostStrategy.costWithDiscount(priceVal, item.discount, Consts.SUM_SCALE);
 			String text =Util.IntToScaleStr(item.discount, Consts.SUM_SCALE, Util.DEC_DELIM, false) + " %";
 			text += "<br/><i>" +  Util.IntToScaleStr(dsum, Consts.SUM_SCALE, Util.DEC_DELIM, false) + "</i>";
 			tv.setText(Html.fromHtml(text));
@@ -211,7 +231,7 @@ public class PriceCountOrder extends PriceCount implements OrderImplBase.UpdateQ
 				public boolean travel(DataTraveler<WhData> item) {
 					Item oi = new Item();
 					if(item.data.idStore.equals(Store.MAIN_WH_ID)) {
-						oi.cost = priceVal;
+						oi.cost = (int)priceVal;
 					} else {
 						for(WhDataItem whi : item.data.items) {
 							if(whi.cfo.equals(org.cfo))
@@ -258,7 +278,7 @@ public class PriceCountOrder extends PriceCount implements OrderImplBase.UpdateQ
 			if(items.size() == 0) {
 				Item i = new Item();
 				i.store = Store.mainStore();
-				i.cost = priceVal;
+				i.cost = (int)priceVal;
 				i.qty = p.qty;
 				i.reserv = p.rezerv;
 				items.add(i);				
@@ -336,7 +356,7 @@ public class PriceCountOrder extends PriceCount implements OrderImplBase.UpdateQ
 			final Item i = (Item)v.getTag();
 			InputNumberDlg.open(v.getContext(), new InputNumber() {
 				
-				@Override public int getValue() { return i.orderQty; }
+				@Override public long getValue() { return i.orderQty; }
 				
 				@Override
 				public void applayInput(int value, Object... params) {
@@ -414,26 +434,27 @@ public class PriceCountOrder extends PriceCount implements OrderImplBase.UpdateQ
 		item.qty = totQty;
 		item.cost = totQty == 0 ? 0 : (int) (totSum * Consts.QTY_SCALE / totQty);
 	}
-}
 
-class Item {
-	public Store store;
-	public int qty;
-	public int cost;
-	public int orderQty;
-	public int pack;
-	public int reserv;
-	public int year;
-	
-	public int getOrderQty(int inPack) {
-		return pack == 0 ? orderQty : (int)((long)orderQty * inPack / Consts.QTY_SCALE);
-	}
-	
-	public void setOrderQty(int inPack, int totQty) {
-		if(pack == 0)
-			orderQty = totQty;
-		else {
-			orderQty = (int)((long)totQty * Consts.QTY_SCALE / inPack);
+	static class Item {
+		public Store store;
+		public int qty;
+		public int cost;
+		public int orderQty;
+		public int pack;
+		public int reserv;
+		public int year;
+
+		public int getOrderQty(int inPack) {
+			return pack == 0 ? orderQty : (int)((long)orderQty * inPack / Consts.QTY_SCALE);
+		}
+
+		public void setOrderQty(int inPack, int totQty) {
+			if(pack == 0)
+				orderQty = totQty;
+			else {
+				orderQty = (int)((long)totQty * Consts.QTY_SCALE / inPack);
+			}
 		}
 	}
 }
+

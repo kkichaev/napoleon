@@ -6,6 +6,12 @@
         <field name="minCost" type="number" prec="2" />
       </add>
     </modify>
+
+    <modify src="Order">
+      <add>
+        <field name="address" type="string" />
+      </add>
+    </modify>
     
     <modify src="Order$items">
       <add>

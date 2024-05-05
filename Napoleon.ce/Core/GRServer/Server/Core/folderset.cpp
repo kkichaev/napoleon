@@ -171,26 +171,43 @@ bool FolderIDHolder::Get(ISession *s, DWORD *val, const std::wstring& key) const
    return retVal;
 }
 
+bool FolderIDHolder::ContainsData(ISession* s)
+{
+   bool ret = (find(s) != end());
+   if (!ret)
+   {
+      if (mutex.Acquire(1000))
+      {
+         s->AddHandler(this);
+         std::map<std::wstring, DWORD> mp;
+         this->insert(std::pair<ISession*, std::map<std::wstring, DWORD>>(s, mp));
+
+         mutex.Release();
+      }
+   }
+   return ret;
+}
+
+
 void FolderIDHolder::SetValue(ISession* s, const Object& o, int keyIndex, int valueIndex)
 {
-   if( keyIndex >= 0 && valueIndex >= 0 )
-   {
-		if (mutex.Acquire(1000))
-		{
-			iterator f = find(s);
-			if (f == end())
-				s->AddHandler(this);
+	if (mutex.Acquire(1000))
+	{
+		iterator f = find(s);
+      if (f == end())
+      {
+         s->AddHandler(this);
+         std::map<std::wstring, DWORD> mp;
+         this->insert(std::pair<ISession*, std::map<std::wstring, DWORD>>(s, mp));
+      }
 
-			const Member& km = o.at(keyIndex);
-			const Member& vm = o.at(valueIndex);
-
-//#ifdef Zakroma
-//			USES_CONVERSION;
-//			gServer->AddLog(IErrorLogger::None, "FolderSet put fid '%s', row=%d",W2A(km.str->c_str()), (DWORD)vm.number);
-//#endif
-			(*this)[s][(const std::wstring&)*km.str] = (DWORD)vm.number;
-			mutex.Release();
-		}
+      if (keyIndex >= 0 && valueIndex >= 0)
+      {
+         const Member& km = o.at(keyIndex);
+         const Member& vm = o.at(valueIndex);
+         (*this)[s][(const std::wstring&)*km.str] = (DWORD)vm.number;
+      }
+      mutex.Release();
    }
 }
 
@@ -596,7 +613,7 @@ bool FolderID::Do(Token* result, const std::vector<Token>& params, Session* sess
          DWORD dval;
 
          ret = true;
-         if( !folderHolder.ContainsData(session) )
+         if (!folderHolder.ContainsData(session))
             session->LoadObject(L"Folder", NULL);
 
          if( folderHolder.Get(session, &dval, val) )

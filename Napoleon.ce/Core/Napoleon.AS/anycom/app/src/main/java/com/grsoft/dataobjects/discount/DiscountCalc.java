@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 
 import com.grsoft.database.DbReader;
 import com.grsoft.dataobjects.Folder;
+import com.grsoft.dataobjects.Order;
 import com.grsoft.dataobjects.OrderCard;
 import com.grsoft.dataobjects.OrderEx;
 import com.grsoft.dataobjects.OrgEx;
@@ -29,16 +30,29 @@ public class DiscountCalc {
 
     String orgId = "";
     String storeId = "";
-    Set<String> cards =  new HashSet<>();
+
+    static Map<Object, PriceEx> curPrice;
+    static Set<String> upFolders;
+    static public Map<String, List<DiscountCondition>> conditions;
+
     Date docDate = new Date();
 
     Map<Object, DiscountTreeCalc> dscTree = null;
+    public List<DiscountCalcElement> alwaysDiscounts = new ArrayList<>();
     public Map<String, Integer> orgPrice = new HashMap<>();
     public Map<String, List<DiscountCalcElement>> priceElements = new HashMap<>();
     public Map<Integer, List<DiscountCalcElement>> folderElements = new HashMap<>();
 
     public DiscountCalc() {
         loadDiscountTree();
+    }
+
+    public static void reload() {
+        curPrice = null;
+        upFolders = null;
+        conditions = null;
+
+        checkCache();
     }
 
     public void loadDiscountTree() {
@@ -63,36 +77,49 @@ public class DiscountCalc {
             needRefresh = true;
         }
 
-        cards = new HashSet<>();
-        for(OrderCard oc : doc.cards) {
-            cards.add(oc.number);
-        }
-
         if(needRefresh) {
             loadElements(org, doc);
             orgPrice = OrgPrice.load(org, doc);
         }
     }
 
-    void loadElements(OrgEx org, OrderEx doc) {
-        Map<Object, PriceEx> prc = DbReader.fetchDic(PriceEx.class, "id");
-        Set<String> folders = new HashSet<>();
-        FolderTree ft = CostStrategy.getFolders();
-        for(PriceEx pe : prc.values()) {
-            for(Folder f : ft.getWithDescendats(pe.fid)) {
-                folders.add(f.fid);
+    static void checkCache() {
+        if(curPrice == null) {
+            FolderTree ft = CostStrategy.getFolders();
+
+            curPrice = DbReader.fetchDic(PriceEx.class, "id");
+            upFolders = new HashSet<>();
+
+            for(PriceEx pe : curPrice.values()) {
+                for(Folder f : ft.getWithParents(pe.fid)) {
+                    upFolders.add(f.fid);
+                }
             }
         }
 
+        if(conditions == null)
+            conditions = DiscountCondition.load();
+    }
+
+    void loadElements(OrgEx org, OrderEx doc) {
+        checkCache();
+
         priceElements.clear();
         folderElements.clear();
+        alwaysDiscounts.clear();
+
+        FolderTree ft = CostStrategy.getFolders();
 
         List<DiscountLoad> items = DiscountLoad.load(org, doc);
 
         for(DiscountLoad dli : items) {
+            if(dli.items.size() == 0) {
+                alwaysDiscounts.add(new DiscountCalcElement(dli));
+                continue;
+            }
             for (DiscountItem di : dli.items) {
                 if (di.type == DiscountItem.TYPE_ITEM) {
-                    if(prc.containsKey(di.id)) {
+                    if(curPrice.containsKey(di.id)) {
                         List<DiscountCalcElement> els = priceElements.get(di.id);
                         if (els == null) {
                             els = new ArrayList<>();
@@ -103,7 +130,7 @@ public class DiscountCalc {
                             els.add(dce);
                     }
                 } else {
-                    if(folders.contains(di.id)) {
+                    if(upFolders.contains(di.id)) {
                         for (Folder f : ft.getWithDescendats(di.id)) {
                             List<DiscountCalcElement> els = folderElements.get(f.id);
                             if (els == null) {
@@ -121,9 +148,8 @@ public class DiscountCalc {
     }
 
 
-    public int calc(Price p, int cost) {
-
-        List<DiscountCalcElement> els = getDiscountCalcElements(p);
+    public int calc(Price p, int cost, OrderEx doc) {
+        List<DiscountCalcElement> els = getDiscountCalcElements(p, doc);
 
         if(els.size() > 0) {
             DiscountCalcElement el = calcDiscount(els);
@@ -131,9 +157,15 @@ public class DiscountCalc {
                 if(el.orgCost == DiscountElement.TYPE_ORG_DISCOUNT) {
                     cost = (int)CostStrategy.costWithDiscount(cost, el.discount, DiscountCalcElement.DISCOUNT_SCALE);
                 } else {
-                    Integer pc = orgPrice.get(p.id);
+                    String key = p.id + el.id;
+                    Integer pc = orgPrice.get(key);
                     if(pc != null)
                         cost = pc;
+                    else {
+                        pc = orgPrice.get(p.id);
+                        if(pc != null)
+                            cost = pc;
+                    }
                 }
             }
         }
@@ -141,20 +173,41 @@ public class DiscountCalc {
         return cost;
     }
 
+    boolean isMet(DiscountCalcElement el, OrderEx doc) {
+        if(el.cardNumber.length() > 0 && !doc.containsCard(el.cardNumber))
+            return false;
+
+        List<DiscountCondition> dcs = conditions.get(el.id);
+        if(dcs == null)
+            return true;
+
+        for(DiscountCondition dc : dcs) {
+            if(dc.isMet(doc))
+                return true;
+        }
+        return false;
+    }
+
     @NonNull
-    private List<DiscountCalcElement> getDiscountCalcElements(Price p) {
+    private List<DiscountCalcElement> getDiscountCalcElements(Price p, OrderEx doc) {
         List<DiscountCalcElement> els = new ArrayList<>();
         List<DiscountCalcElement> del = priceElements.get(p.id);
         if(del != null) {
-            els.addAll(del);
+            for(DiscountCalcElement el : del)
+                if(isMet(el, doc))
+                    els.add(el);
         }
 
         del = folderElements.get(p.folderID);
         if(del != null) {
             for(DiscountCalcElement di : del) {
-                if(!els.contains(di))
+                if(isMet(di, doc) && !els.contains(di))
                     els.add(di);
             }
+        }
+        for(DiscountCalcElement di : alwaysDiscounts) {
+            if(isMet(di, doc))
+                els.add(di);
         }
         return els;
     }
@@ -190,9 +243,6 @@ public class DiscountCalc {
         List<DiscountCalcElement> src = new ArrayList<>();
 
         for(DiscountCalcElement el : els) {
-            if(el.cardNumber.length() > 0 && !cards.contains(el.cardNumber))
-                continue;
-
             src.add(el);
             DiscountTreeCalc newRoot = upToRoot(el.parent, tree);
             if(newRoot != null) {

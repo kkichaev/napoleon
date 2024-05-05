@@ -32,7 +32,7 @@ public class CostStrategy {
 		
 		return result;
 	}
-	
+
 	public static void register(Class<? extends Document<?>> doc, CostStrategy strategy){
 		strategies.put(doc, strategy);
 	}
@@ -70,10 +70,11 @@ public class CostStrategy {
 	public static void refreshCash() {
 		org = null;
 		discountCash.clear();
+		folders = null;
 	}
 
-	static protected void refreshOrg(String id) {
-		if(org == null || org.id.equals(id) == false) {
+	protected boolean refreshOrg(String id) {
+		if(org == null || !org.id.equals(id)) {
 			refreshCash();
 
 			OrgImpl oi = new OrgImpl();
@@ -81,7 +82,9 @@ public class CostStrategy {
 			org.id = id;
 			oi.read();
 			oi.close();
+			return true;
 		}
+		return false;
 	}
 
 	public long getCostInt(Price p, Document<?> doc, int sumType) {

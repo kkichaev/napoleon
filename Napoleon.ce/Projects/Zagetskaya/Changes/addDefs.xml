@@ -68,6 +68,8 @@
             <field name="itname" width="55" type="string"/>
             <field name="qty" type="number" prec="3" />
             <field name="grpos" type="number"  />
+            <field name="pos" type="number" data="POS_I" />
+            <field name="prop" type="number" />
             <field name="ordflag" width="1" type="number" execOn="Put">FirstItem($object)</field>
             <field name="date" type="string" data="DATE_I"/>
             <field name="cause" type="string" />

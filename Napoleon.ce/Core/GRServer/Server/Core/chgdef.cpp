@@ -227,6 +227,8 @@ protected:
 	std::wstring removeOnCommit;
 	std::wstring needDebug;
 
+   DWORD flags;
+
    std::vector<Pointer<IChanger> > changers;
 
    IXmlHandler* prevHandler;
@@ -241,7 +243,7 @@ protected:
    virtual const wchar_t* GetError() const { return L""; }
 
 public:
-   ModifyObject(ObjectDef::ObjectSet* _objects) : state(ModifyObject::State::stStart), objects(_objects), prevHandler(NULL) {}
+   ModifyObject(ObjectDef::ObjectSet* _objects) : state(ModifyObject::State::stStart), objects(_objects), prevHandler(NULL), flags(-1) {}
 
    bool IsSelfModify() const { return dest.empty(); }
    bool IsChild() const { return (src.find(L'$') != std::wstring::npos) || (dest.find(L'$') != std::wstring::npos); }
@@ -276,6 +278,16 @@ void ModifyObject::Load(IXmlHandler* prevHandler, const IXmlHandler::Attributes&
 	atts.Find(&sendAlways, L"sendAlways");
 	atts.Find(&removeOnCommit, L"removeOnCommit");
 	atts.Find(&needDebug, L"debug");
+
+   std::wstring tvalue;
+   if (atts.Find(&tvalue, L"defaultAccess"))
+   {
+      DWORD flg = (tvalue.compare(L"read") == 0) ? IObjectDef::AccessFlags::ReadAccess :
+         (tvalue.compare(L"none") == 0) ? IObjectDef::AccessFlags::NonAccess :
+         0;
+      flags = 0;
+      flags |= flg;
+   }
 
    if( dest.compare(src) == 0 )
       dest.clear();
@@ -455,7 +467,13 @@ bool ModifyObject::Modify(ObjectDef::ObjectSet* objects) const
 
       if( data != NULL )
       {
-			if (!needDebug.empty())
+         if (flags != (DWORD)-1)
+         {
+            data->flags &= (~IObjectDef::AccessFlags::AccFlags);
+            data->flags |= (flags & IObjectDef::AccessFlags::AccFlags);
+         }
+         
+         if (!needDebug.empty())
 				data->needDebug = ((_wcsicmp(needDebug.c_str(), L"true") == 0 || _wtoi(needDebug.c_str()) == 1));;
 
 			if (sendAlways.size() > 0)

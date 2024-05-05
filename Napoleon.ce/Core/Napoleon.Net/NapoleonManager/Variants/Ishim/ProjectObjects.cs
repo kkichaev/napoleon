@@ -5,6 +5,67 @@ using System.Text;
 
 namespace GRSoft.NapoleonManager
 {
+
+   public class IshimPlan : DataObject
+   {
+      public static readonly string OBJECT_NAME = "IshimPlan";
+
+      public DateTime begin = DateTime.Now;
+
+      public class Item : DataObject
+      {
+         public string id = "";
+         
+         [Reference("ManagerPrice,CommonPrice,Price", "id", typeof(Price))]
+         public Price price = null;
+
+         public string Name { get { return price == null ? "" : price.name; } }
+      }
+
+      public  class PlanItem : DataObject, IComparable<PlanItem>
+      {
+         public string id = "";
+         public string name = "";
+
+         public List<Item> items = new List<Item>();
+
+         public int CompareTo(PlanItem other)
+         {
+            return name.CompareTo(other.name);
+         }
+      }
+
+      public List<PlanItem> plans = new List<PlanItem>();
+
+      public bool Empty
+      {
+         get
+         {
+            return plans.Count == 0;
+         }
+      }
+   }
+
+   public class AgentPlan : DataObject
+   {
+      public static readonly string OBJECT_NAME = "AgentPlan";
+
+
+      public DateTime begin = DateTime.Now;
+      public string userid = "";
+
+      public class Item : DataObject
+      {
+         public string id = "";
+         public double weight = 0;
+         public int akb = 0;
+
+         public bool Empty {  get { return weight == 0 && akb == 0; } }
+      }
+
+      public List<Item> items = new List<Item>();
+   }
+
    class Sklad : DataObject
    {
       public static readonly string OBJECT_NAME = "Sklads";

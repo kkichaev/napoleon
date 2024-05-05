@@ -32,8 +32,6 @@ namespace GRSoft.NapoleonManager
          dsProcuration.Filter = filter;
 
          updSets.Add(dsProcuration);
-
-         base.BeforeRefreshData(updSets, agentID, dateBegin, dateEnd);
       }
 
       internal override System.Windows.Forms.Control RefreshDetail(GRSoft.NapoleonManager.OrderDetailRepresentation odr)

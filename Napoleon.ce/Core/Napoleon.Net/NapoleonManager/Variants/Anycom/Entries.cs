@@ -42,6 +42,12 @@ namespace GRSoft.NapoleonManager
          if (baseType == typeof(Divisions))
             return typeof(DivisionsEx);
 
+         if (baseType == typeof(FmPrice))
+            return typeof(FmPriceEx);
+
+         if (baseType == typeof(FmPricePhoto))
+            return typeof(FmPricePhotoEx);
+
          return baseType;
       }
    }

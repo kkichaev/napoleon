@@ -27,7 +27,7 @@ class QuestHelper:
   NUMBER_LIST_TYPE = 8
 
 class Item:
-  __slots__ = ["address", "org", "created", "user", "items", "orgcode", "orgData"]
+  __slots__ = ["address", "city", "org", "created", "user", "items", "orgcode", "orgData"]
   
   def __init__(self):
     self.address = ""
@@ -36,14 +36,18 @@ class Item:
     self.user = ""
     self.orgcode = ""
     self.orgData = None
+    self.city = ""
   
   def values(self):
     coord = ""
+    name = self.org
     if self.orgData != None :
         val = str(self.orgData.longitude) + ", " + str(self.orgData.latitude)
         coord = '=HYPERLINK("https://maps.yandex.ru/?ll={0},{1}&z=18&pt={0},{1},comma", "{2}")'.format(self.orgData.longitude, self.orgData.latitude, val)
         
-    res = [self.org, self.orgcode, coord, self.address, self.created.strftime('%d.%m.%Y'), self.user]
+    if len(self.city) > 0:
+      name = 'ã. ' + self.city + ", " + name
+    res = [name, self.orgcode, coord, self.address, self.created.strftime('%d.%m.%Y'), self.user]
     res.extend(self.items)
     
     return res
@@ -132,6 +136,7 @@ class ReportData:
       if org != None:
         i.address = org.address
         i.org = org.name
+        i.city = org.cid
         i.orgcode = d.id
         i.orgData = org
         

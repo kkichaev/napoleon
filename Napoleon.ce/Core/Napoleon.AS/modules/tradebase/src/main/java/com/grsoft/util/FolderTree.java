@@ -104,6 +104,23 @@ public class FolderTree extends ArrayList<Folder> {
 		return ret;
 	}
 
+	public List<Folder> getWithParents(String fid) {
+		List<Folder> ret = new ArrayList<>();
+		for(Folder f : this) {
+			if(ret.size() == 0) {
+				ret.add(f);
+			} else {
+				while(ret.size() > 0 && f.level <= ret.get(ret.size() - 1).level) {
+					ret.remove(ret.size() - 1);
+				}
+				ret.add(f);
+			}
+			if(f.fid.equals(fid))
+				break;
+		}
+		return ret;
+	}
+
 	public List<Folder> getWithDescendats(String fid) {
 		List<Folder> ret = new ArrayList<>();
 

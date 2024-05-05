@@ -38,7 +38,7 @@ namespace GRSoft.NapoleonManager.Utils
             if (agent == null)
                continue;
 
-            param += "'" + agent.id + "',";
+            param += "'" + agent.id.Replace("'", "''") + "',";
 
             if (handler != null)
             {

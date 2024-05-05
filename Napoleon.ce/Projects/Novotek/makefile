@@ -1,8 +1,8 @@
 export
 
-Variant=Novotek
+#Variant=Novotek
 #Variant=NVTKAvix
-#Variant=NVTDTrade
+Variant=NVTDTrade
 
 include make.vars 
 

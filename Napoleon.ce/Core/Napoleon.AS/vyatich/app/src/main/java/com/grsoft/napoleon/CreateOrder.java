@@ -9,8 +9,10 @@ package com.grsoft.napoleon;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -30,9 +32,12 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import com.grsoft.database.DbReader;
 import com.grsoft.dataobjects.ConfigHelper;
 import com.grsoft.dataobjects.Order;
 import com.grsoft.dataobjects.OrderEx;
+import com.grsoft.dataobjects.OrderProperties;
 import com.grsoft.dataobjects.Org;
 import com.grsoft.dataobjects.OrgAddress;
 import com.grsoft.dataobjects.ParamState;
@@ -125,28 +130,6 @@ public class CreateOrder extends BaseActivity
 		}
 		config.close();
 		
-		if( Features.DELIVERY_ADDRESS ) {
-			View v = findViewById(R.id.ftrAddress);
-			if( v != null ) {
-				Spinner spAddress = (Spinner) findViewById(R.id.spAddress);
-				if( spAddress != null ) {
-					v.setVisibility(View.VISIBLE);
-					ArrayList<KeyValue> addresses = new ArrayList<KeyValue>();
-					int selected = -1;
-					for(OrgAddress addr : oi.getData().orgAddress) {
-						KeyValue kv = new KeyValue(addr.id, addr.name);
-						if( kv.key.toString().equals(o.adrCode))
-							selected = addresses.size();
-						addresses.add(kv);
-					}
-					ArrayAdapter<KeyValue> aa = new ArrayAdapter<KeyValue>(this, R.layout.simple_spinner_layout, addresses);
-					spAddress.setAdapter(aa);
-					if( selected >= 0 && selected < spAddress.getCount())
-						spAddress.setSelection(selected);
-				}
-			}
-		}
-		
 		TextView tvDelay = (TextView) findViewById(R.id.tvDelay); 
 		tvDelay.setOnClickListener(new DelayClickListener());
 		
@@ -155,6 +138,8 @@ public class CreateOrder extends BaseActivity
 
 		if( (o.params & ParamState.ofCash) != 0 )
 			((CheckBox)findViewById(R.id.cbCreateOrderCash)).setChecked(true);
+
+		findViewById(R.id.org_props).setOnClickListener(v -> setOrderProps());
 		
 		findViewById(R.id.tvDate).setOnClickListener(new View.OnClickListener() {
 			
@@ -179,7 +164,41 @@ public class CreateOrder extends BaseActivity
         updateDisplayDelay();
 		refreshDate();
 	}
-	
+
+	List<OrderProperties> props = null;
+	private void setOrderProps() {
+		if(props == null) {
+			props = DbReader.fetch(OrderProperties.class, "", "name");
+		}
+
+		OrderEx o = (OrderEx) order.getData();
+		String[] items = new String[props.size()];
+		boolean[] chk = new boolean[props.size()];
+		List<String> checked = Arrays.asList(o.props.split(";"));
+
+		int idx = 0;
+		for(OrderProperties op : props) {
+			items[idx] = op.name;
+			chk[idx] = checked.contains(op.id);
+			idx++;
+		}
+
+		AlertDialog.Builder b = new AlertDialog.Builder(this);
+		b.setTitle("Выберите свойства");
+		b.setMultiChoiceItems(items, chk, (dialog, which, isChecked) -> chk[which] = isChecked);
+		b.setPositiveButton(android.R.string.ok, (dialog, which) -> {
+			String tprops = "";
+			for(int i=0; i< chk.length; i++) {
+				if(chk[i]) {
+					if(tprops.length() > 0) tprops += ";";
+					tprops += props.get(i).id;
+				}
+			}
+			o.props = tprops;
+		});
+		b.create().show();
+	}
+
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if( data != null && requestCode == DIALOG_DATE_PICKER_ID ) {
@@ -378,16 +397,6 @@ public class CreateOrder extends BaseActivity
 
 			EditText remark = (EditText)findViewById(R.id.edCreateOrderNotes);
 			o.remark = remark.getText().toString();
-			
-			if( Features.DELIVERY_ADDRESS ) {
-				Spinner spAddress = (Spinner) findViewById(R.id.spAddress);
-				if( spAddress != null ) {
-					KeyValue sel = (KeyValue) spAddress.getSelectedItem();
-					if( sel != null )
-						o.adrCode = sel.key.toString();
-				}
-			}
-
 			o.ret = cbReturn.isChecked() ? 1 : 0;
 
 			if (updateSumType)

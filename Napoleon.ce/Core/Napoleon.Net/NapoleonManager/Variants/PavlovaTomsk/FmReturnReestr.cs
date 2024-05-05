@@ -13,8 +13,8 @@ namespace GRSoft.NapoleonManager
 {
    public partial class FmReturnReestr : Form
    {
-      private SimpleDataSet<Returns> dsReturn = new SimpleDataSet<Returns>(Returns.OBJECT_NAME, false);
-      private SimpleDataSet<Order> dsReqOrder = new SimpleDataSet<Order>("ReqOrder", false);
+      private SimpleDataSet<Returns> dsReturn = new SimpleDataSet<Returns>(Returns.OBJECT_NAME, false, true);
+      private SimpleDataSet<Order> dsReqOrder = new SimpleDataSet<Order>("ReqOrder", false, true);
 
       public string COMMON_FILTER_STR = "\"created\" >= ToDate('{0:dd/MM/yyyy}') and \"created\" <= ToDate('{1:dd/MM/yyyy} 23:59:59') and \"userid\"='{2}'";
       public string COMMON_FILTER_STR_ALL = "\"created\" >= ToDate('{0:dd/MM/yyyy}') and \"created\" <= ToDate('{1:dd/MM/yyyy} 23:59:59')";
@@ -223,8 +223,8 @@ namespace GRSoft.NapoleonManager
 
       class WrData
       {
-         public SimpleDataSet<Decision> dcs = new SimpleDataSet<Decision>(Decision.OBJECT_NAME, false);
-         public SimpleDataSet<Order> ord = new SimpleDataSet<Order>(Order.OBJECT_NAME, false);
+         public SimpleDataSet<Decision> dcs = new SimpleDataSet<Decision>(Decision.OBJECT_NAME, false, true);
+         public SimpleDataSet<Order> ord = new SimpleDataSet<Order>(Order.OBJECT_NAME, false, true);
       }
 
       private void SaveChanges(bool showDialog)

@@ -97,8 +97,12 @@ public class PriceCountEx extends PriceCount implements OrderImplBase.UpdateQtyH
 		dsc = 0;
 		
 		PriceEx p = (PriceEx) price.getData();
-		int sumType = document != null ? document.getSumType() : WarehouseEx.costype;
-		priceCost = (p.cost.size() > sumType && sumType >= 0) ?  p.cost.get(sumType).cost : 0;			
+		if(document != null) {
+			priceCost = (int)CostStrategy.defaultInstance.getItemCost(p, document);
+		} else {
+			int sumType = WarehouseEx.costype;
+			priceCost = (p.cost.size() > sumType && sumType >= 0) ? p.cost.get(sumType).cost : 0;
+		}
 
 		TextView tv;
 		tv = (TextView)findViewById(R.id.tvInfo);

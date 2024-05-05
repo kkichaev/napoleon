@@ -73,6 +73,7 @@ public class PriceCountEx extends PriceCount implements OrderImplBase.UpdateQtyH
 			if(p.actionQty > 0 || (oie !=null && oie.actionGift != 0)) {
 				setupAction(p, oie, editable);
 			}
+			updateSumTextView();
 		}
 		findViewById(R.id.trBonus).setVisibility(bonusVisible);
 		
@@ -174,6 +175,20 @@ public class PriceCountEx extends PriceCount implements OrderImplBase.UpdateQtyH
 		updateDiscount();
 	}
 
+	@Override
+	protected long getSum(int count) {
+		if(cbPackets != null && cbPackets.isChecked())
+			count = (int)((long)count * qtyInPack / Consts.QTY_SCALE);
+		return countSum(count);
+	}
+
+	long countSum(int qty) {
+		long sum = (long) priceCost * qty / Consts.QTY_SCALE;
+		if(dsc != 0)
+			sum = CostStrategy.costWithDiscount(sum, dsc, Consts.SUM_SCALE);
+		return sum;
+	}
+
 	void changeDiscount() {
 		InputNumberDlg.open(this, new InputNumber() {
 			@Override
@@ -238,6 +253,7 @@ public class PriceCountEx extends PriceCount implements OrderImplBase.UpdateQtyH
 	public void itemUpdated(OrderItem item, Order order, boolean isNewItem) {
 		OrderItemEx oie = (OrderItemEx) item;
 		oie.discount = dsc;
+		oie.sum = countSum(item.qty);
 		oie.costWODsc = priceCost;
 		oie.actionGift = giftQty;
 	}

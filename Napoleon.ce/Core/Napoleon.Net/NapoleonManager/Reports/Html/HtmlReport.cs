@@ -661,10 +661,11 @@ namespace GRSoft.NapoleonManager
             CollectItems(dgvDetail, routes, a);
 
 #if ADD_NOT_VISITED_IN_REPORT
-            foreach(KeyValuePair<DateTime, RouteDetailData> kv in this)
+            foreach(KeyValuePair<DateTime, List<Org>> kv in routes)
             {
-               List<Org> route = routes[kv.Key];
-               kv.Value.AddNotVisited(route);
+               if (!ContainsKey(kv.Key))
+                  this[kv.Key] = new RouteDetailData();
+               this[kv.Key].AddNotVisited(kv.Value);
             }
 #endif
          }
@@ -674,10 +675,38 @@ namespace GRSoft.NapoleonManager
             foreach (DataGridViewRow r in dgvDetail.Rows)
             {
                OrderDetailRepresentation odr = r.DataBoundItem as OrderDetailRepresentation;
+               DateTime key = odr.DateCreatedDT.Date;
+               if (odr.Doctype.Val == ObjType.TObjType.NotVisit)
+                  key = odr.RouteOrder.date;
+
+#if ADD_NOT_VISITED_IN_REPORT
+               RouteDetailData rdd = null;
+               List<Org> dayRoute = null;
+               if (!ContainsKey(key))
+               {
+                  rdd = CreateRouteDetailData();
+                  this[key] = rdd;
+
+                  dayRoute = OrdersDetail.GetRoutePeriod(key, key.AddDays(1), a);
+                  rdd.route = dayRoute;
+                  routes[key] = dayRoute;
+               }
+               else
+               {
+                  rdd = this[key];
+                  dayRoute = routes[key];
+               }
                if (SkipItem(odr))
                   continue;
 
-               DateTime key = odr.DateCreatedDT.Date;
+               // маршшрут берется на дату DateTime.MinDate здесь добавим контрагента в список чтобы был по маршруту
+               if (odr.Doctype.Val == ObjType.TObjType.NotVisit)
+                  dayRoute.Add(odr.NOrg);
+
+               rdd.Add(odr, dayRoute);
+#else
+               if (SkipItem(odr))
+                  continue;
 
                RouteDetailData rdd = null;
                List<Org> dayRoute = null;
@@ -695,12 +724,13 @@ namespace GRSoft.NapoleonManager
                   rdd = this[key];
                   dayRoute = routes[key];
                }
-
                // маршшрут берется на дату DateTime.MinDate здесь добавим контрагента в список чтобы был по маршруту
                if (odr.Doctype.Val == ObjType.TObjType.NotVisit)
                   dayRoute.Add(odr.NOrg);
 
                rdd.Add(odr, dayRoute);
+#endif
+
             }
          }
 

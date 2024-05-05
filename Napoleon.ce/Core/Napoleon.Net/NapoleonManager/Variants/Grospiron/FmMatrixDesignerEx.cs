@@ -129,9 +129,9 @@ namespace GRSoft.NapoleonManager
          return cbName.Text.Trim();
       }
 
-      protected override void PullRefreshList(List<IDataSet> list)
+      protected override void PullRefreshList(List<IDataSet> list, bool reload)
       {
-         base.PullRefreshList(list);
+         base.PullRefreshList(list, reload);
          list.Add(formats);
          dsPrice.Filter = "";
          dsMatrix.Filter = "";

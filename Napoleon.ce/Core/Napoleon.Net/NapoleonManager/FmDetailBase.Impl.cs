@@ -61,6 +61,9 @@ namespace GRSoft.NapoleonManager
 
       protected MoneyProxyDetail mpdetail = new MoneyProxyDetail();
 
+      private DataSet<int, PicStore> dsPicStore;
+      private Dictionary<string, PicStore> picMap = new Dictionary<string, PicStore>();
+
 #if ORDER_CHARGE
       SimpleDataSet<OrderCharge> dsOrderCharges;
 #endif
@@ -437,6 +440,8 @@ namespace GRSoft.NapoleonManager
             new DataSet<int, Sales>(Sales.OBJECT_NAME, true, true);
          dsSales.UseReceivedFields = true;
 
+         dsPicStore = new DataSet<int, PicStore>(PicStore.OBJECT_COPY_NAME);
+
 #if PRICE_MONITORING
          dsMonitoring = (DataSet<int, Monitoring>)DataModule.Get(Monitoring.OBJECT_NAME) ??
             new DataSet<int, Monitoring>(Monitoring.OBJECT_NAME);
@@ -634,6 +639,9 @@ namespace GRSoft.NapoleonManager
 #endif
          updSets.Add(dsGather);
 
+         dsPicStore.Filter = String.Format(COMMON_FILTER_STR, "created", dateBegin, dateEnd, agentID);
+         updSets.Add(dsPicStore);
+
          BeforeRefreshData(updSets, agentID, dateBegin, dateEnd);
          DBConnection conn = Config.GetConfig().GetConnection();
          conn.ReceiveTimeout = 60 * 1000 * 3;
@@ -656,6 +664,12 @@ namespace GRSoft.NapoleonManager
          if (dsPrice.Count == 0 && dsAgentPrice.Count > 0)
             dsPrice = dsAgentPrice;
 
+         picMap.Clear();
+         foreach (PicStore p in dsPicStore.Data)
+         {
+            picMap[p.id] = p;
+         }
+         
          //UpdateSendDate();
          AfterRefreshData();
 
@@ -1247,6 +1261,18 @@ namespace GRSoft.NapoleonManager
          }
       }
 
+      protected void AddAnswerPhotos(StringBuilder htmlBuilder, Answer a)
+      {
+         foreach (AnswerItem ai in a.items)
+         {
+            if (ai.type == QuestionItem.IMAGE && picMap.ContainsKey(ai.answer))
+            {
+               PicStore ps = picMap[ai.answer];
+               AddPhotoToHtml(htmlBuilder, ai.id, ps.name, ps.smallName, ps.smallSize, a.created.ToString("dd.MM.yy HH:mm"), ps.created);
+            }
+         }
+      }
+
       protected bool AddPhotoToHtml(StringBuilder sb, string name, string img, string smallImg, string smallSize, string docDate, DateTime photoCreated)
       {
          if (smallImg.Length == 0)
@@ -1398,7 +1424,15 @@ namespace GRSoft.NapoleonManager
                   }
                }
 
-               AddObjectPhoto(htmlBuilder, o.StoreObject);
+               Answer a = o.StoreObject as Answer;
+               if (a != null)
+               {
+                  AddAnswerPhotos(htmlBuilder, a);
+               }
+               else
+               {
+                  AddObjectPhoto(htmlBuilder, o.StoreObject);
+               }
 #else
 #if Agama
                int uc = -1;

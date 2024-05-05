@@ -106,9 +106,12 @@ public:
 
    virtual void Type(MemberFormat *type) const = 0;
    virtual void Value(Member* value, sqlite3_stmt *stmt, int index) const = 0;
+   virtual bool EmptyField() const { return false;  }
 
    const std::wstring& Name() const { return name; }
    std::wstring& Name() { return name; }
+
+   virtual bool IsNull(sqlite3_stmt* stmt, int index) const { return false; }
 
 protected:
    FieldBinder(int objectIndex, const std::wstring& name)
@@ -131,6 +134,7 @@ public:
    virtual bool Read(Object* o, sqlite3_stmt *stmt, int index) const { return true; }
    virtual void Type(MemberFormat *type) const { }
 	virtual void Value(Member* m, sqlite3_stmt *stmt, int index) const {}
+   virtual bool EmptyField() const { return true; }
 };
 
 class StringBinder : public FieldBinder
@@ -146,13 +150,17 @@ public:
       return (sqlite3_bind_text16(stmt, index, W32_16(m.str->c_str()), -1, SQLITE_STATIC) == SQLITE_OK);
    }
 
+   virtual bool IsNull(sqlite3_stmt* stmt, int index) const
+   {
+      return (sqlite3_column_text(stmt, index) == NULL);
+   }
+
    virtual bool Read(Object* o, sqlite3_stmt *stmt, int index) const
    {
       USES_WCONVERSION;
       const wchar_t *value = W16_32((const wchar_t*)sqlite3_column_text16(stmt, index));
       const Member& m = o->at(objectIndex);
       m.str->assign((value == NULL) ? L"" : value);
-
       return true;
    }
 
@@ -431,6 +439,21 @@ public:
 
    const std::vector<FieldBinder*>& Fields() const { return fields; }
 
+   bool IsNull(const std::wstring& name, sqlite3_stmt* stmt) const 
+   {
+      int index = 0;
+      auto fi = fields.begin();
+      for (; fi != fields.end(); fi++)
+      {
+         FieldBinder* fb = *fi;
+         if ( !fb->EmptyField() && fb->Name().compare(name) == 0)
+            return fb->IsNull(stmt, index);
+
+         index++;
+      }
+      return NULL;
+   }
+
 protected:
    std::vector<FieldBinder*> fields;
    std::vector<FileField*> files;
@@ -575,13 +598,14 @@ protected:
 class QueryChildReader : public SQLiteQuery
 {
 public:
-	QueryChildReader(const CString& keyFields, const ISessionObject& object, const ISessionObject& _parent);
+	QueryChildReader(const CString& keyFields, const ISessionObject& object, const ISessionObject& _parent, const CString* nullField);
 	~QueryChildReader();
 
 	virtual bool MoveNext(Object *parentObject);
 	virtual bool Get(Object* o) const;
 
 protected:
+   std::wstring nullField;
 	SQLiteQuery* parent;
 	KeyHolder keyHolder;
 	bool keyLoaded;
@@ -2743,8 +2767,15 @@ IDataSource::IReader* SQLiteQueryCreator::CreateReader(const GRServer::ParamList
 			return NULL;
 		}
 
-		ret = new QueryChildReader(*keyFields, object, *object.Parent());
+      CString* checkField = NULL;
+      p = parameters.Find(L"checkNullField", -1);
+      if (p != NULL)
+         object.GetSession().Parse(&checkField, p->value, &object);
+      
+      ret = new QueryChildReader(*keyFields, object, *object.Parent(), checkField);
+
 		delete keyFields;
+      delete checkField;
 	}
 	else
 	{
@@ -3048,7 +3079,7 @@ bool KeyHolder::operator != (const KeyHolder& src) const
 //
 //-------------------------------------- QueryChildReader ----------------------------------------------
 //
-QueryChildReader::QueryChildReader(const CString& keyFields, const ISessionObject& object, const ISessionObject& _parent) :
+QueryChildReader::QueryChildReader(const CString& keyFields, const ISessionObject& object, const ISessionObject& _parent, const CString* checkNullField) :
 	SQLiteQuery(object), keyHolder((const std::wstring&)keyFields, _parent), parent(NULL), keyLoaded(false)
 {
 	ObjectSource *os = _parent.GetSource();
@@ -3059,6 +3090,9 @@ QueryChildReader::QueryChildReader(const CString& keyFields, const ISessionObjec
 
 	if (parent != NULL)
 		parent->AddChildObject(&object);
+
+   if (checkNullField != NULL)
+      nullField.assign((const std::wstring&)(*checkNullField));
 }
 
 QueryChildReader::~QueryChildReader()
@@ -3077,8 +3111,14 @@ bool QueryChildReader::MoveNext(Object *parentObject)
 		stmt = parent->GetStmt();
 		binder.Prepare(stmt, object.GetObjectDef(), *object.format);
 
-		keyHolder.Load(*parentObject);
-		ret = true;
+      keyHolder.Load(*parentObject);
+      ret = true;
+
+      if (!nullField.empty())
+      {
+         if (binder.IsNull(nullField, stmt))
+            return false;
+      }
 	}
 	else
 	{
@@ -3114,7 +3154,15 @@ public:
 	virtual bool Get(Object* o) const;
 
 	virtual bool SetFilter(const wchar_t* filter, const ISessionObject& object) { 
-      if (reader) reader->SetFilter(filter, object);
+      // 
+      // After creating ReadTree
+      // this method doesn't works
+      // 
+      //if (reader) 
+      //{
+      //   reader->SetFilter(filter, object);
+      //   ReadTree();
+      //}
       return true; 
    }
 	virtual void Remove() {}
@@ -3125,6 +3173,8 @@ public:
 
    virtual const ParamHelper* GetParamHelper() const { return reader != NULL ? reader->GetParamHelper() : NULL; }
 
+   bool ReadTree();
+
 protected:
 	int keyIndex;
 	int valueIndex;
@@ -3133,7 +3183,7 @@ protected:
 	const ISessionObject& object;
 
 	const GRServer::Format* format;
-	bool readed;
+	//bool readed;
 	int parentIndex;
 	TreeReader treeReader;
 
@@ -3142,7 +3192,7 @@ protected:
 
 SQLFolderReader::SQLFolderReader(const ISessionObject& _object, const std::wstring& tableName, const CString& parentF, 
    const CString& childF, const CString* ridF, const CString* stmt, const std::vector<wstring>& filters, bool debug) :
-		readed(false), object(_object)
+		object(_object)
 {
 	const SessionObject& so = (const SessionObject&)(*_object.Self());
 	if (stmt == NULL)
@@ -3176,23 +3226,25 @@ SQLFolderReader::SQLFolderReader(const ISessionObject& _object, const std::wstri
 	treeReader.SetData(format->FindMember(L"level"), format->FindMember(childF.c_str()), ridIndex, format->FindMember(L"name"), true);
 }
 
+
+bool SQLFolderReader::ReadTree()
+{
+   bool read = false;
+   treeReader.Clear();
+   while (reader->MoveNext(NULL))
+   {
+      read = true;
+      Object* o = Create(*format);
+      reader->Get(o);
+
+      const Member& mf = o->at(parentIndex);
+      treeReader.Add((const std::wstring&)*mf.str, o);
+   }
+   return read;
+}
+
 bool SQLFolderReader::MoveNext(Object *parentObject)
 {
-	if (!readed)
-	{
-		readed = true;
-
-		treeReader.Clear();
-		while (reader->MoveNext(parentObject))
-		{
-			Object *o = Create(*format);
-			reader->Get(o);
-
-			const Member& mf = o->at(parentIndex);
-			treeReader.Add((const std::wstring&)*mf.str, o);
-		}
-	}
-
 	return treeReader.MoveNext();
 }
 
@@ -3211,7 +3263,7 @@ IDataSource::IReader* SQLFolderCreator::CreateReader(const ParamList& parameters
 	std::wstring tableName;
 	GetTableNameW(&tableName, parameters, object);
 
-	IDataSource::IReader* ret = NULL;
+   SQLFolderReader* ret = NULL;
 
 	const Parameter *pf = parameters.Find(L"parentField", -1);
 	const Parameter *pdebug = parameters.Find(L"debug", -1);
@@ -3237,6 +3289,11 @@ IDataSource::IReader* SQLFolderCreator::CreateReader(const ParamList& parameters
 				)
 			{
 				ret = new SQLFolderReader(object, tableName, *spf, *scf, sridf, stmt, filters, (pdebug == NULL));
+            if (!ret->ReadTree())
+            {
+               delete ret;
+               ret = NULL;
+            }
 			}
 			delete spf;
 			delete scf;

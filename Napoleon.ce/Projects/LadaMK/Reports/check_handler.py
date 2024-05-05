@@ -1,11 +1,12 @@
 # -*- coding: cp1251 -*-
 
+from importlib import reload
 import logging
 import time
 import datetime
 import sys
+
 reload(sys);
-sys.setdefaultencoding("cp1251")
 
 def addError(server, message, type):
     cfObjc = server.New('CheckConfirm')

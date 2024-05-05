@@ -429,7 +429,11 @@ public class ScriptImpl extends CreatableDocument<Script> {
 		}
 		return curSum;
 	}
-	
+
+	protected DocSendListner createDocSender(ScriptItem si, CreatableDocument<?> doc) {
+		return new DocSendListner(si.type, doc);
+	}
+
 	public List<DocExportListener> getSendedDocuments() {
 		List<DocExportListener> docs = new ArrayList<DocExportListener>();
 		
@@ -439,7 +443,7 @@ public class ScriptImpl extends CreatableDocument<Script> {
 		CreatableDocument<?>[] cd = getDocuments();
 		for( ScriptItem si : data.items ) {
 			if( cd[index] != null)
-				docs.add(new DocSendListner(si.type, cd[index]));
+				docs.add(createDocSender(si, cd[index]));
 			index++;
 		}
 		

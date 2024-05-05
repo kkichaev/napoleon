@@ -73,9 +73,6 @@ namespace GRSoft.NapoleonManager
          docs.Add(new SmartTaskEndDoc());
 #endif
 #endif
-#if Shweller
-         docs.Add(new OrgDistributionDoc());
-#endif
       }
    }
 }

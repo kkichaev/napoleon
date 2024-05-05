@@ -1,5 +1,8 @@
 package com.grsoft.dataobjects.impl;
 
+import android.content.Context;
+
+import com.grsoft.dataobjects.OrderEx;
 import com.grsoft.dataobjects.OrderItem;
 import com.grsoft.dataobjects.Org;
 import com.grsoft.dataobjects.PriceEx;
@@ -17,6 +20,14 @@ public class OrderImplEx extends OrderImpl{
         Org org = oi.getData();
 
         data.prcType = org.prcType;
+    }
+
+    @Override
+    public String getDescription(Context context) {
+        if(((OrderEx)data).loadedFromKIS > 0) {
+            return "из 1с № " + ((OrderEx)data).orderNumber;
+        }
+        return super.getDescription(context);
     }
 
     public void refreshSum() {

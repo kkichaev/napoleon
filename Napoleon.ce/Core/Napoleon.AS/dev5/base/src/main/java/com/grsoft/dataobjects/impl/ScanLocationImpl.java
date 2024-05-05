@@ -18,4 +18,9 @@ public class ScanLocationImpl extends CreatableDocument<ScanLocation> {
         data.latitude = 0;
         data.longitude = 0;
     }
+
+    @Override
+    public boolean isEmpty() {
+        return data.latitude == 0 && data.longitude == 0;
+    }
 }

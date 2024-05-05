@@ -68,9 +68,6 @@ public class CreateOrder extends BaseActivity
 
 	private EditText edDover;
 	private CheckBox cbCheck;
-
-	private EditText edCmtWH;
-	private EditText edCmtDlv;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -79,8 +76,6 @@ public class CreateOrder extends BaseActivity
 
 		edDover = findViewById(R.id.edDover);
 		cbCheck = findViewById(R.id.cbCheck);
-		edCmtWH = findViewById(R.id.edCmtWH);
-		edCmtDlv = findViewById(R.id.edCmtDlv);
 
 		init();
 	}
@@ -165,8 +160,8 @@ public class CreateOrder extends BaseActivity
 		TextView tvDelay = (TextView) findViewById(R.id.tvDelay); 
 		tvDelay.setOnClickListener(new DelayClickListener());
 		
-		edCmtWH.setText(o.cmtWH);
-		edCmtDlv.setText(o.cmtDlv);
+		EditText remark = (EditText)findViewById(R.id.edCreateOrderNotes);
+		remark.setText(o.remark);
 
 		if( (o.params & ParamState.ofCash) != 0 )
 			((CheckBox)findViewById(R.id.cbCreateOrderCash)).setChecked(true);
@@ -403,10 +398,8 @@ public class CreateOrder extends BaseActivity
 			if( cash.isChecked() ) o.params |= ParamState.ofCash;
 			else o.params &= (~ParamState.ofCash);
 
-			o.cmtDlv = edCmtDlv.getText().toString().trim();
-			o.cmtWH = edCmtWH.getText().toString().trim();
-
-			o.remark = String.format("%s %s", o.cmtWH, o.cmtDlv);
+			EditText remark = (EditText)findViewById(R.id.edCreateOrderNotes);
+			o.remark = remark.getText().toString();
 			
 			o.boy = ((CheckBox)findViewById(R.id.cbBoy)).isChecked() ? 1 : 0;
 			o.bonus = ((CheckBox)findViewById(R.id.cbBonus)).isChecked() ? 1 : 0;

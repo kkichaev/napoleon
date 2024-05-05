@@ -66,9 +66,8 @@
 
     <LinearLayout
         android:id="@+id/linearLayout2"
-        android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:baselineAligned="false"
         android:orientation="horizontal"
         android:padding="3dp" >
@@ -174,6 +173,28 @@
                     android:textColor="@color/black"
                     android:textSize="@dimen/label_text_sz" />
             </TableRow>
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/minQTY"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/label_text_sz"/>
+
+                <TextView
+                    android:id="@+id/tvMinQty"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:text="TextView"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/label_text_sz" />
+            </TableRow>
         </TableLayout>
 
         <TableLayout
@@ -254,6 +275,67 @@
             </TableRow>
         </TableLayout>
     </LinearLayout>
+    <LinearLayout
+        android:id="@+id/arrivalDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="12dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingLeft="4dp"
+            android:text="@string/arrivalDate"
+            android:textColor="@color/black"
+            android:textSize="@dimen/label_text_sz"/>
+
+        <TextView
+            android:id="@+id/tvArrivalQty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:layout_marginRight="16dp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/label_text_sz" />
+
+        <TextView
+            android:id="@+id/tvArrivalDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:layout_marginRight="4dp"
+            android:text="TextView"
+            android:textColor="@color/black"
+            android:textSize="@dimen/label_text_sz" />
+    </LinearLayout>
+
+    <TableRow
+        android:id="@+id/specTask"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingTop="12dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/specTask"
+            android:paddingRight="4dp"
+            android:paddingLeft="4dp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/label_text_sz"/>
+
+        <TextView
+            android:id="@+id/tvSpecTask"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:text="TextView"
+            android:textColor="@color/black"
+            android:textSize="@dimen/label_text_sz" />
+    </TableRow>
 
     <ImageView
         android:id="@+id/ivPresent2"

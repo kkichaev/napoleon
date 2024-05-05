@@ -298,7 +298,8 @@ namespace GRSoft.NapoleonManager
             foreach (DocumentInfo di in documents)
                list.Add(di.DataSet);
 
-         route = DataModule.GetUserDataSet(idAgent, Schedule.OBJECT_NAME, typeof(DataSet<int, Schedule>), true) as DataSet<int, Schedule>;
+         route = DataModule.GetUserDataSet(idAgent, Schedule.OBJECT_NAME, typeof(DataSet<int, Schedule>)) as DataSet<int, Schedule>;
+         route.Filter = string.Format("\"userid\"='{0}' and \"date\" >= ToDate('{1:dd/MM/yyyy}') and \"date\" <= ToDate('{1:dd/MM/yyyy} 23:59:59')", idAgent, date);
          list.Add(route);
 
          OrgLocations ol = OrgLocations.GetDataSet();
@@ -370,10 +371,10 @@ namespace GRSoft.NapoleonManager
            }
 #endif
 
-         List<Location> route = GetRoute();
+         List<Location> agroute = GetRoute();
          btnRefresh.Enabled = true;
-         ShowRoute(route, 12);
-         lbDistance.Text = String.Format("ѕуть: {0} м", GetFullDistance(route));
+         ShowRoute(agroute, 12);
+         lbDistance.Text = String.Format("ѕуть: {0} м", GetFullDistance(agroute));
       }
 
       private int GetFullDistance(List<Location> route)

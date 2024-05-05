@@ -18,7 +18,7 @@ import "ocidl.idl";
 interface IServer : IDispatch{
 	[id(1), helpstring("Подключение к серверу")] HRESULT Connect([in] BSTR name, [in] USHORT port, [in, defaultvalue("")] BSTR login, [in, defaultvalue("")] BSTR password, [in, defaultvalue("")] BSTR category, [out, retval, defaultvalue(NULL)] VARIANT_BOOL* result);
    [id(2), helpstring("Получить объект-коллекцию")] HRESULT Get([in] BSTR name, [in] BSTR filter, [out,retval] IDispatch** collection);
-   [id(3), helpstring("Удалить объекты с сервера")] HRESULT Delete([in] BSTR name, [in] BSTR filter);
+   [id(3), helpstring("Удалить объекты с сервера")] HRESULT Delete([in] BSTR name, [in] BSTR filter, [out, retval]VARIANT_BOOL* res);
    [id(4), helpstring("Получить пустой объект-коллекцию")] HRESULT New([in] BSTR name, [out,retval] IDispatch** collection);
    [propget, id(5), helpstring("текстовое описание ошибки")] HRESULT ErrorMessage([out, retval] BSTR* pVal);
    [id(6), helpstring("Получить отчет")] HRESULT Report([in] BSTR name, [in, defaultvalue(NULL)] IDispatch *params, [out,retval] IDispatch** collection);
@@ -40,8 +40,8 @@ interface IServer : IDispatch{
 interface IGRObjCol : IDispatch{
    [id(1), helpstring("получить объект по индексу")] HRESULT Get([in] LONG index, [out,retval] IDispatch** object);
    [id(2), helpstring("добавить новый объект в коллекцию")] HRESULT New([out,retval] IDispatch** object);
-   [id(3), helpstring("записать коллекцию на сервер")] HRESULT Write([in, defaultvalue("")]BSTR userid);
-   [id(4), helpstring("заменить коллекцию на сервере")] HRESULT Replace([in]BSTR userid);
+   [id(3), helpstring("записать коллекцию на сервер")] HRESULT Write([in, defaultvalue("")]BSTR userid, [out, retval]VARIANT_BOOL* res);
+   [id(4), helpstring("заменить коллекцию на сервере")] HRESULT Replace([in]BSTR userid, [out, retval]VARIANT_BOOL* res);
    [id(5), helpstring("удалить коллекцию")] HRESULT Delete([in, defaultvalue("")]BSTR userid);
    [propget, id(6), helpstring("количество элементов")] HRESULT Count([out, retval] double* pVal);
    [propget, id(7), helpstring("получить коллекцию полей объекта")] HRESULT Fields([out, retval] IDispatch** pVal);
@@ -49,8 +49,8 @@ interface IGRObjCol : IDispatch{
    [id(9), helpstring("метод RemoveObject")] HRESULT RemoveObject([in] ULONG index);
    [propget, id(10), helpstring("получить тип объекта")] HRESULT Type([out, retval] BSTR* pVal);
    [propput, id(10), helpstring("установить тип объекта")] HRESULT Type([in] BSTR pVal);
-   [id(11), helpstring("записать без расчета расчетных поле")] HRESULT WriteDirect();
-	[id(12), helpstring("заменить коллекцию на сервере  без расчета расчетных поле")] HRESULT ReplaceDirect([in, defaultvalue("")]BSTR where);
+   [id(11), helpstring("записать без расчета расчетных поле")] HRESULT WriteDirect([out, retval]VARIANT_BOOL* res);
+	[id(12), helpstring("заменить коллекцию на сервере  без расчета расчетных поле")] HRESULT ReplaceDirect([in, defaultvalue("")]BSTR where, [out, retval]VARIANT_BOOL* res);
 };
 [
 	object,

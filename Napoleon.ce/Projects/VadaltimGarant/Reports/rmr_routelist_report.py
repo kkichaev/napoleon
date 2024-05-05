@@ -90,10 +90,12 @@ def loadData(params, server):
           if name in rw.data:
             list = []
             
+            f.items = sorted(f.items, key=lambda x: x.pos)
+            
             for on in f.items:
               list.append( "{0} ({1})". format(orgs[on.name].name, orgs[on.name].address) if on.name in orgs else on.name)
               
-            rw.data[name].extend(sorted(list))
+            rw.data[name].extend(list)
       
     page.items.append(route_month)
       

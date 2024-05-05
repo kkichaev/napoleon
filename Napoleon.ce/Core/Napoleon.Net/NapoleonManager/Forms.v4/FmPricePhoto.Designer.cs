@@ -78,14 +78,14 @@
             this.tsbOldPrice});
          this.toolStrip1.Location = new System.Drawing.Point(0, 0);
          this.toolStrip1.Name = "toolStrip1";
-         this.toolStrip1.Size = new System.Drawing.Size(645, 39);
+         this.toolStrip1.Size = new System.Drawing.Size(1058, 39);
          this.toolStrip1.TabIndex = 0;
          // 
          // cbAgents
          // 
          this.cbAgents.Font = new System.Drawing.Font("Arial", 12F);
          this.cbAgents.Name = "cbAgents";
-         this.cbAgents.Size = new System.Drawing.Size(121, 39);
+         this.cbAgents.Size = new System.Drawing.Size(200, 39);
          // 
          // btnRefresh
          // 
@@ -164,9 +164,9 @@
          // 
          // statusStrip1
          // 
-         this.statusStrip1.Location = new System.Drawing.Point(0, 432);
+         this.statusStrip1.Location = new System.Drawing.Point(0, 485);
          this.statusStrip1.Name = "statusStrip1";
-         this.statusStrip1.Size = new System.Drawing.Size(645, 22);
+         this.statusStrip1.Size = new System.Drawing.Size(1058, 22);
          this.statusStrip1.TabIndex = 2;
          this.statusStrip1.Text = "statusStrip1";
          // 
@@ -235,7 +235,7 @@
          this.tgvPrice.Name = "tgvPrice";
          this.tgvPrice.RowHeadersVisible = false;
          this.tgvPrice.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-         this.tgvPrice.Size = new System.Drawing.Size(645, 393);
+         this.tgvPrice.Size = new System.Drawing.Size(1058, 446);
          this.tgvPrice.TabIndex = 3;
          this.tgvPrice.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.tgvPrice_CellFormatting);
          this.tgvPrice.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.tgvPrice_CellPainting);
@@ -285,7 +285,7 @@
          // 
          this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
          this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-         this.ClientSize = new System.Drawing.Size(645, 454);
+         this.ClientSize = new System.Drawing.Size(1058, 507);
          this.Controls.Add(this.tgvPrice);
          this.Controls.Add(this.statusStrip1);
          this.Controls.Add(this.toolStrip1);

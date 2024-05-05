@@ -34,10 +34,9 @@ module.exports = configure(function (ctx) {
         server: false,
         path: "axios",
       },
-      'quasar-lang-pack',
-      'apexcharts',
-      'components'
-
+      "quasar-lang-pack",
+      "apexcharts",
+      "components",
     ],
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#css
@@ -101,9 +100,9 @@ module.exports = configure(function (ctx) {
     devServer: {
       // https: true
       open: false, // opens browser window automatically
-      webSocketServer:  ctx.mode.spa,
+      webSocketServer: ctx.mode.spa,
       hmr: {
-           clientPort:5111
+        clientPort: 5111,
       },
     },
 
@@ -122,12 +121,7 @@ module.exports = configure(function (ctx) {
       // directives: [],
 
       // Quasar plugins
-      plugins: [
-        "Notify",
-        "Cookies",
-        "Dialog",
-        "LocalStorage",
-        "Loading"],
+      plugins: ["Notify", "Cookies", "Dialog", "LocalStorage", "Loading"],
     },
 
     // animations: 'all', // --- includes all animations

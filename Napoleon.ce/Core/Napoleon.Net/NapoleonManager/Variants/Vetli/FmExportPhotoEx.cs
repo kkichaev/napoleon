@@ -16,18 +16,18 @@ namespace GRSoft.NapoleonManager
       public FmExportPhotoEx()
       {
          cbDistrib = new ComboBox();
-         cbDistrib.Location = new  Point(10, 250);
-         cbDistrib.Size = new Size(200, 18);
+         cbDistrib.Location = new  Point(60, 330);
+         cbDistrib.Size = new Size(275, 18);
          Controls.Add(cbDistrib);
 
          dsTDistr = (DataSet<string, TypeDistrib>)DataModule.Get(TypeDistrib.OBJECT_NAME) ?? new DataSet<string, TypeDistrib>(TypeDistrib.OBJECT_NAME);
 
-         Size = new Size(577, 380);
+         Size = new Size(Size.Width, Size.Height + 60);
 
          Label lbl = new Label();
          lbl.Text = "Типы дистрибуций";
          lbl.Size = new Size(200, 18);
-         lbl.Location = new Point(10, 230);
+         lbl.Location = new Point(37, 310);
 
          Controls.Add(lbl);
 
@@ -63,7 +63,7 @@ namespace GRSoft.NapoleonManager
       protected override bool CheckItem(Visit.VisitItem item)
       {
          TypeDistrib t = selTypeDistr as TypeDistrib;
-         return t == null || t.id.Equals(item.did);
+         return (t == null || t.id.Equals(item.did)) && base.CheckItem(item);
       }
    }
 }

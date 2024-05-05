@@ -43,7 +43,7 @@ public class CostStrategyEx extends CostStrategy {
 	}
 	
 	@Override
-	public int getItemCost(Price p, Document<?> doc) {
+	public long getItemCost(Price p, Document<?> doc) {
 		if( doc instanceof OrderImpl){
 			return getItemCost((PriceEx)p, ((OrderEx) doc.getData()).priceid);
 		}

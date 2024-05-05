@@ -775,7 +775,7 @@ namespace GRSoft.NapoleonManager
          }
       }
 
-      private void UpdateDataAfterModifyTree()
+      private void UpdateDataAfterModifyTree(string userid)
       {
          tvAccessibleArticles.SuspendLayout();
 
@@ -784,13 +784,13 @@ namespace GRSoft.NapoleonManager
          int firstLevel = -1;
          foreach (TreeNode node in tvAccessibleArticles.Nodes)
          {
-            firstLevel = UpdateDataAfterModifyTreeLow(node, firstLevel, 0, true);
+            firstLevel = UpdateDataAfterModifyTreeLow(node, firstLevel, 0, true, userid);
          }
 
          tvAccessibleArticles.ResumeLayout();
       }
 
-      private int UpdateDataAfterModifyTreeLow(TreeNode parent, int firstLevel, int levelShift, bool checkRoot)
+      private int UpdateDataAfterModifyTreeLow(TreeNode parent, int firstLevel, int levelShift, bool checkRoot, string userid)
       {
          if (parent.Checked)
          {
@@ -806,6 +806,7 @@ namespace GRSoft.NapoleonManager
                checkRoot = false;
             }
             ManagerFolder dest = new ManagerFolder(folder);
+            dest.userid = userid;
             dest.level += levelShift;
             dsManagerFolder.Add(dest.id, dest);
          }
@@ -814,7 +815,7 @@ namespace GRSoft.NapoleonManager
          {
             foreach (TreeNode node in parent.Nodes)
             {
-               firstLevel = UpdateDataAfterModifyTreeLow(node, firstLevel, levelShift, checkRoot);
+               firstLevel = UpdateDataAfterModifyTreeLow(node, firstLevel, levelShift, checkRoot, userid);
             }
          }
 
@@ -862,7 +863,7 @@ namespace GRSoft.NapoleonManager
             owner.AddReplacedSet(Agent.id, dsHiddenFolders);
 #else
             CheckChildNodes(e.Node, e.Node.Checked);
-            UpdateDataAfterModifyTree();
+            UpdateDataAfterModifyTree(agent.id);
             owner.AddReplacedSet(Agent.id, dsManagerFolder);
 #endif
             canCheckNode = true;

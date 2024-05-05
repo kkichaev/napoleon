@@ -27,23 +27,28 @@ public class DiscountLoad extends Discount {
 
     public static List<DiscountLoad> load(OrgEx o, OrderEx doc) {
         long foreverMarker = 24 * 2 * 3600 * 1000;
-        long docDate = Util.getDayEnd(o.getDiscountDate(doc)).getTime();
+        long docDate = o.getDiscountDate(doc).getTime();
+        long finishDate = docDate - 24 * 3600 * 1000;
 
 
         @SuppressLint("DefaultLocale")
         String stmt = String.format(
             "select d.*, dp.discount dscPriority, dp.orgCost orgPriority, cc.name cardName, cc.number cardNumber " +
             "from (select * from Discount where id in " +
-            "(select od.id from OrgDiscount od, StoreDiscount sd where od.id = sd.id and od.idOrg = '%1$s' and sd.idStore = '%2$s'" +
-            "union all select d.id from Discount d left join OrgDiscount od on d.id = od.id where od.idOrg is null " +
-            "union all select d.id from Discount d left join StoreDiscount od on d.id = od.id where od.idStore is null) " +
-            "and start <= %4$d and (finish < %3$d or finish >= %4$d)) d " +
-            "left join (select * from ClientCard where start <= %4$d and (finish < %3$d or finish >= %4$d)) cc on d.id = cc.idDsc, " +
+            "(select distinct od.id from " +
+            "(select od.id from OrgDiscount od where od.idOrg = '%1$s' " +
+            "union all select d.id from Discount d left join OrgDiscount od on d.id = od.id where od.idOrg is null) od, " +
+            "(select sd.id from StoreDiscount sd where sd.idStore = '%2$s' " +
+            "union all select d.id from Discount d left join StoreDiscount od on d.id = od.id where od.idStore is null) sd " +
+            "where od.id = sd.id) " +
+            "and start <= %4$d and (finish < %3$d or finish > %5$d)) d " +
+            "left join (select * from ClientCard where start <= %4$d and (finish < %3$d or finish > %5$d)) cc on d.id = cc.idDsc, " +
             "DiscountPriority dp where d.kind = dp.kind",
                 o.id
                 ,doc.whCode
                 ,foreverMarker
                 ,docDate
+                ,finishDate
                 );
 
         List<DiscountLoad> res = new ArrayList<>();

@@ -12,7 +12,7 @@ namespace GRSoft.NapoleonManager
    public partial class FmActions : Form
    {
       BindingList<OrderAction> data = new BindingList<OrderAction>();
-      DataSet<int, OrderAction> dsAction = new DataSet<int, OrderAction>(OrderAction.OBJECT_NAME);
+      DataSet<string, OrderAction> dsAction;
       DataSet<string, Price> dsPrice = new DataSet<string, Price>(Price.OBJECT_NAME);
 
       public FmActions()
@@ -20,6 +20,12 @@ namespace GRSoft.NapoleonManager
          InitializeComponent();
          grid.AutoGenerateColumns = false;
          grid.DataSource = data;
+         //dsAction.Filter = "not id is null";
+      }
+
+      public void SetActions(DataSet<string, OrderAction> acts)
+      {
+         dsAction = acts;
       }
 
       private void btnRefresh_Click(object sender, EventArgs e)
@@ -50,7 +56,10 @@ namespace GRSoft.NapoleonManager
             ds.Add(ds.Count, form.Action);
 
             if (DataModule.WriteDataSet(write, Config.GetConfig().GetConnection()))
+            {
                data.Add(form.Action);
+               dsAction.Add(form.Action.id, form.Action);
+            }
             else
                DialogUtil.UpdateErrMsg(this);
          }
@@ -61,27 +70,32 @@ namespace GRSoft.NapoleonManager
          btnRefresh.PerformClick();
       }
 
+      void editAction(OrderAction action)
+      {
+         FmActionEdit form = new FmActionEdit();
+         form.Action = action;
+
+         if (form.ShowDialog() == DialogResult.OK)
+         {
+            grid.Refresh();
+
+            List<IDataSet> write = new List<IDataSet>();
+            DataSet<int, OrderAction> ds = new DataSet<int, OrderAction>(OrderAction.OBJECT_NAME, false);
+            write.Add(ds);
+            ds.Add(ds.Count, form.Action);
+
+            if (!DataModule.WriteDataSet(write, Config.GetConfig().GetConnection()))
+               DialogUtil.UpdateErrMsg(this);
+         }
+      }
+
       private void btnEdit_Click(object sender, EventArgs e)
       {
          OrderAction action = grid.CurrentRow.DataBoundItem as OrderAction;
 
          if (action != null)
          {
-            FmActionEdit form = new FmActionEdit();
-            form.Action = action;
-
-            if (form.ShowDialog() == DialogResult.OK)
-            {
-               grid.Refresh();
-
-               List<IDataSet> write = new List<IDataSet>();
-               DataSet<int, OrderAction> ds = new DataSet<int, OrderAction>(OrderAction.OBJECT_NAME, false);
-               write.Add(ds);
-               ds.Add(ds.Count, form.Action);
-
-               if (!DataModule.WriteDataSet(write, Config.GetConfig().GetConnection()))
-                  DialogUtil.UpdateErrMsg(this);
-            }
+            editAction(action);
          }
       }
 
@@ -100,7 +114,22 @@ namespace GRSoft.NapoleonManager
             if (!DataModule.WriteDataSet(write, Config.GetConfig().GetConnection()))
                DialogUtil.UpdateErrMsg(this);
             else
+            {
                data.Remove(action);
+               dsAction.Remove(action.id);
+            }
+         }
+      }
+
+      private void grid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+      {
+         if(e.ColumnIndex == Column1.Index)
+         {
+            OrderAction action = grid.CurrentRow.DataBoundItem as OrderAction;
+            if(action != null)
+            {
+               editAction(action);
+            }
          }
       }
    }

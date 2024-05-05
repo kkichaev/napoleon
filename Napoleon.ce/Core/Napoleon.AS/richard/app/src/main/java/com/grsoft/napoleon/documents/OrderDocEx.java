@@ -65,6 +65,6 @@ public class OrderDocEx extends OrderDoc {
 
 	@Override
 	public int getDocTitle() {
-		return R.string.sales_doc_title;
+		return R.string.sales_online;
 	}
 }

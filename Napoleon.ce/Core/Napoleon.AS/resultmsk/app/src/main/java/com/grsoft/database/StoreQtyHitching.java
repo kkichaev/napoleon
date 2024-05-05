@@ -1,6 +1,8 @@
 package com.grsoft.database;
 
 import com.grsoft.dataobjects.Price;
+import com.grsoft.dataobjects.PriceEx;
+import com.grsoft.dataobjects.PriceQtyEx;
 import com.grsoft.dataobjects.PriceQtyItem;
 import com.grsoft.dataobjects.Store;
 import com.grsoft.dataobjects.StoreQty;
@@ -17,8 +19,9 @@ import java.util.Map;
 
 public class StoreQtyHitching extends Hitching {
 
-    Map<Object, Price> data;
+    Map<String,PriceEx> loaded = new HashMap<>();
     List<String> stores = new ArrayList<>();
+    DbReader r = new DbReader();
 
     public StoreQtyHitching() {
         super(StoreQty.class);
@@ -41,9 +44,10 @@ public class StoreQtyHitching extends Hitching {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        data = DbReader.fetchDic(Price.class, "id");
     }
 
+
+    boolean debug = false;
     @Override
     public void onRead(RawObject rawObject) throws RuntimeException {
         StoreQty sq = rawObject.createDataObject(dataObject);
@@ -51,29 +55,41 @@ public class StoreQtyHitching extends Hitching {
         if(idx < 0)
             return;
 
-        Price el = data.get(sq.idItem);
-        if(el == null)
-            return;
-
-        if(idx == 0)
-            el.qty =sq.qty;
-        else {
-            while(el.whQty.size() < idx) {
-                el.whQty.add(new PriceQtyItem());
+        if(sq.idItem.indexOf("00022509") > 0) {
+            debug = true;
+        }
+        PriceEx el = loaded.get(sq.idItem);
+        if(el == null) {
+            el = new PriceEx();
+            if(!r.select(el , el.getTableName(), String.format("id='%s'", sq.idItem))) {
+                return;
             }
-            el.whQty.get(idx-1).qty = sq.qty;
+            loaded.put(sq.idItem, el);
+        }
+
+        if(idx == 0) {
+            el.qty = sq.qty;
+            el.date = sq.date;
+            el.arrival = sq.arrival;
+        } else {
+            while(el.whQty.size() < idx) {
+                el.whQty.add(new PriceQtyEx());
+            }
+            PriceQtyEx pi = (PriceQtyEx) el.whQty.get(idx-1);
+            pi.qty = sq.qty;
+            pi.date = sq.date;
+            pi.arrival = sq.arrival;
         }
     }
 
     @Override
     public void onEnd() {
         DbWriter w = new DbWriter();
-        for(Price el : data.values()) {
-            if(el.qty != 0 || el.whQty.size() > 0) {
-                el.updateWhState();
-                w.insertRecord(el);
-            }
+        for(Price el : loaded.values()) {
+            el.updateWhState();
+            w.insertRecord(el);
         }
         w.close();
+        r.close();
     }
 }

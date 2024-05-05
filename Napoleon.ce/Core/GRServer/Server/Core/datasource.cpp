@@ -280,6 +280,7 @@ bool DataSource::Init(const ServerConfig& config, Dispatcher* dispatcher)
       return false;
 
 	AddCreator(new SQLExecutorCreator(internalDataSource));
+   AddCreator(new ManagerRightsCreator(internalDataSource));
 	return ServerData::Init(dispatcher);
 }
 

@@ -58,6 +58,8 @@ public:
    // need for NBTL
    void SetLicense(const std::wstring& lctype);
 
+   void LoadRights(const std::wstring& object, const std::wstring& filter);
+
 protected:
    DWORD flags;
    StrSet allowedUID;
@@ -69,6 +71,7 @@ class UserRights
 {
 public:
 	static UserRights* LoadRights(const wchar_t* user, Session* s);
+   static UserRights* Load(Session* s, const std::wstring& object, const std::wstring& filter);
 
 	bool CanDo(const std::wstring& name, User::ObjectActions action) const;
 

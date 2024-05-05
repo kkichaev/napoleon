@@ -21,6 +21,7 @@ namespace GRSoft.NapoleonManager
 #else
          //(LeopardO || Ardis || ClassicSpb || Plombir || HappyLand || Metelica || Kovalchuk || Slavica || Gilyakov || Alecon || Gulliver || RPK || Athina || Ishim || TD12Months || MariMedSnab || Quad || Bella || Antonov || ClearLine || LukasN || Modus || Birsnek || Demetra || PolyGrand  || MyasoDel || Sapfire || ZooOpt  || Stantor || HappyLand || ASK || WallStreet || Beybars || Servolux || Alianta || Frolov  || Chuvakova || EasternEmpire || EcoLineGroup || Beniaminov)
 #endif
+         docs.Add(new SalesDoc());
 
       }
    }

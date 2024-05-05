@@ -11,6 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -30,6 +31,8 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.grsoft.dataobjects.ConfigHelper;
 import com.grsoft.dataobjects.Order;
 import com.grsoft.dataobjects.Org;
@@ -58,7 +61,8 @@ public class CreateOrder extends BaseActivity
 	
 	private ArrayList<CharSequence> firms = new ArrayList<CharSequence>();
 	private ArrayList<CharSequence> priceType = new ArrayList<CharSequence>();
-	
+	List<KeyValue> sklads = new ArrayList<>();
+
 //	DateHandler dateHandler;
 	TimeHandler timeHandler;
 	
@@ -112,6 +116,18 @@ public class CreateOrder extends BaseActivity
 		Spinner spPrices = (Spinner) findViewById(R.id.spPrices);
 		DialogHelper.loadSpinnerFromConfig(config, "¬ид÷ены", priceType, spPrices, o.sumType);
 
+		View trSklads = findViewById(R.id.trSklads);
+
+		if (Features.WH_QTY) {
+			Spinner spSklads = (Spinner) findViewById(R.id.spSklad);
+			DialogHelper.loadSpinnerWithKeyW(config, "—клады", sklads, spSklads, o.whCode, false);
+			if(sklads.size() != 0) {
+				trSklads.setVisibility(View.VISIBLE);
+				spSklads.setEnabled(o.items.size() == 0);
+			}
+		}else
+			trSklads.setVisibility(View.GONE);
+
 		config.getData().key = "ћожно»змен€ть÷ену";
 		try {
 			if (config.read() && Integer.parseInt(config.getData().value) == 0)
@@ -121,27 +137,6 @@ public class CreateOrder extends BaseActivity
 		}
 		config.close();
 		
-		if( Features.DELIVERY_ADDRESS ) {
-			View v = findViewById(R.id.ftrAddress);
-			if( v != null ) {
-				Spinner spAddress = (Spinner) findViewById(R.id.spAddress);
-				if( spAddress != null ) {
-					v.setVisibility(View.VISIBLE);
-					ArrayList<KeyValue> addresses = new ArrayList<KeyValue>();
-					int selected = -1;
-					for(OrgAddress addr : oi.getData().orgAddress) {
-						KeyValue kv = new KeyValue(addr.id, addr.name);
-						if( kv.key.toString().equals(o.adrCode))
-							selected = addresses.size();
-						addresses.add(kv);
-					}
-					ArrayAdapter<KeyValue> aa = new ArrayAdapter<KeyValue>(this, R.layout.simple_spinner_layout, addresses);
-					spAddress.setAdapter(aa);
-					if( selected >= 0 && selected < spAddress.getCount())
-						spAddress.setSelection(selected);
-				}
-			}
-		}
 		
 		TextView tvDelay = (TextView) findViewById(R.id.tvDelay); 
 		tvDelay.setOnClickListener(new DelayClickListener());
@@ -261,7 +256,7 @@ public class CreateOrder extends BaseActivity
 			
 			builder.setView(dialogView);
 			final AlertDialog dialog = builder.create();
-			
+
 			Button btnCounterUp = (Button) dialogView.findViewById(R.id.btnCounterUp);
 			Button btnCounterDown = (Button) dialogView.findViewById(R.id.btnCounterDown);
 			Button btnCounterOK = (Button) dialogView.findViewById(R.id.btnCounterOk);
@@ -280,7 +275,9 @@ public class CreateOrder extends BaseActivity
 					tvCounter.setText(Integer.toString(val));
 				}
 			});
-			
+
+			btnCounterOK.setOnClickListener((x)->{});
+
 			btnCounterDown.setOnClickListener(new OnClickListenerToNotify() {
 				@Override
 				public void onClick(View v) {
@@ -365,7 +362,21 @@ public class CreateOrder extends BaseActivity
 				o.supplyer = suppl;
 			if( costType >= 0 )
 				o.sumType = costType;
-			
+
+			if (Features.WH_QTY && sklads.size() > 0) {
+				Spinner spSklads = (Spinner) findViewById(R.id.spSklad);
+
+				KeyValue sel = (KeyValue) spSklads.getSelectedItem();
+				if (sel == null || sel.key.length() == 0) {
+					Toast.makeText(CreateOrder.this, "¬ыберите склад", Toast.LENGTH_LONG).show();
+					return;
+				}
+				if (sel != null) {
+					o.whCode = sel.key.toString();
+					o.whIndex = spSklads.getSelectedItemPosition();
+				}
+			}
+
 			CheckBox cash = (CheckBox)findViewById(R.id.cbCreateOrderCash);			
 			if( cash.isChecked() ) o.params |= ParamState.ofCash;
 			else o.params &= (~ParamState.ofCash);
@@ -373,14 +384,6 @@ public class CreateOrder extends BaseActivity
 			EditText remark = (EditText)findViewById(R.id.edCreateOrderNotes);
 			o.remark = remark.getText().toString();
 			
-			if( Features.DELIVERY_ADDRESS ) {
-				Spinner spAddress = (Spinner) findViewById(R.id.spAddress);
-				if( spAddress != null ) {
-					KeyValue sel = (KeyValue) spAddress.getSelectedItem();
-					if( sel != null )
-						o.adrCode = sel.key.toString();
-				}
-			}
 			if (updateSumType)
 				order.updateItemsCost(o.sumType);
 			else

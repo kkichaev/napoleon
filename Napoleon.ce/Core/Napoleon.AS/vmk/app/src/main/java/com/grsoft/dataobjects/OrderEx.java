@@ -1,5 +1,6 @@
 package com.grsoft.dataobjects;
 
+import com.grsoft.types.FieldOrder;
 import com.grsoft.types.Scale;
 import com.grsoft.util.Consts;
 
@@ -11,7 +12,4 @@ public class OrderEx extends Order {
 	public int dover_sum;
 
 	public int check = 0;
-
-	public String cmtWH = "";
-	public String cmtDlv = "";
 }

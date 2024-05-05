@@ -581,7 +581,7 @@ STDMETHODIMP CServer::EndSession(void)
 	return S_OK;
 }
 
-STDMETHODIMP CServer::Delete(BSTR name, BSTR filter)
+STDMETHODIMP CServer::Delete(BSTR name, BSTR filter, VARIANT_BOOL* result)
 {
    Socket s;
 
@@ -589,12 +589,16 @@ STDMETHODIMP CServer::Delete(BSTR name, BSTR filter)
    param += L":";
    param += filter;
 
+   *result = VARIANT_FALSE;
+
    HRESULT res = S_FALSE;
 	if (s.Connect(connectData.address, connectData.port) && connectData.SendCommand(&s, REMOVE_COMMAND, param.c_str()))
    {
-      bool res;
-      ReadAnswer(&s, connectData.timeout, &res, NULL);
+      bool bres;
+      ReadAnswer(&s, connectData.timeout, &bres, NULL);
 		connectData.SendCommand(&s, BYE_COMMAND, L"");
+      if(bres)
+         *result = VARIANT_TRUE;
       res = S_OK;
    }
    return res;

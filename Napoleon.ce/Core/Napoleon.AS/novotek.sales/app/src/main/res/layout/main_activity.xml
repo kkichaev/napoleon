@@ -8,19 +8,68 @@
     tools:context=".MainActivity">
 
 
-    <androidx.fragment.app.FragmentContainerView
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:id="@+id/frmChild"
-        />
+        android:layout_height="match_parent"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <androidx.fragment.app.FragmentContainerView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:id="@+id/frmChild"
+                />
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/btMenu"
-        style="@style/Widget.MaterialComponents.BottomNavigationView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        app:menu="@menu/main_activity_bottom" />
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/btMenu"
+                style="@style/Widget.MaterialComponents.BottomNavigationView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                app:menu="@menu/main_activity_bottom" />
+        </LinearLayout>
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/wait"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@color/wait_bg"
+            >
+            <LinearLayout
+                android:id="@+id/load_wrap"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                >
+                <ImageView
+                    android:layout_gravity="center"
+                    android:id="@+id/loading"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_loading" />
+            </LinearLayout>
+            .
+            <TextView
+                app:layout_constraintTop_toTopOf="@id/load_wrap"
+                app:layout_constraintBottom_toBottomOf="@id/load_wrap"
+                app:layout_constraintLeft_toLeftOf="@id/load_wrap"
+                app:layout_constraintRight_toRightOf="@id/load_wrap"
+                android:id="@+id/load_text"
+                style="@style/PhoneText"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:text="Обновляю\nданные"
+                android:textSize="26sp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
 </LinearLayout>

@@ -26,12 +26,12 @@ public abstract class FieldReader {
 
     public void prepareRead() {}
 
-    public static FieldReader create(String element, Field f) {
+    public static FieldReader create(String element, Field f, Map<Class, List<FieldReader>> readers) {
         Class<?> c = f.getType();
-        return create(element, c, f);
+        return create(element, c, f, readers);
     }
 
-    static FieldReader create(String element, Class<?> c, Field f) {
+    static FieldReader create(String element, Class<?> c, Field f, Map<Class, List<FieldReader>> readers) {
         if(c == String.class) {
             return new StringReader(element, f);
         } else if(c == boolean.class) {
@@ -43,15 +43,15 @@ public abstract class FieldReader {
         } else if(c == Date.class) {
             return new DateReader(element, f);
         } else if(c == List.class) {
-            return new ListReader(element, f);
+            return new ListReader(element, f, readers);
         } else {
-            return new ObjectReader(element, f);
+            return new ObjectReader(element, f, readers);
         }
     }
 
-    static Map<Class, List<FieldReader>> readers = new HashMap<>();
+//    static Map<Class, List<FieldReader>> readers = new HashMap<>();
 
-    public static List<FieldReader> createReader(Class c, boolean aNew) {
+    public static List<FieldReader> createReader(Class c, Map<Class, List<FieldReader>> readers, boolean aNew) {
         List<FieldReader> rdr;
         if(!aNew) {
             rdr = readers.get(c);
@@ -65,7 +65,12 @@ public abstract class FieldReader {
             int mdf = f.getModifiers();
             if ((mdf & (Modifier.FINAL | Modifier.STATIC)) != 0 || (mdf & Modifier.PUBLIC) == 0)
                 continue;
-            FieldReader fr = FieldReader.create(f.getName(), f);
+            String name = f.getName();
+            Alias a = f.getAnnotation(Alias.class);
+            if(a != null) {
+                name = a.name();
+            }
+            FieldReader fr = FieldReader.create(name, f, readers);
             if(fr != null) {
                 rdr.add(fr);
             }
@@ -74,17 +79,19 @@ public abstract class FieldReader {
         return rdr;
     }
 
-    public static void clear() {
-        readers.clear();
-    }
+//    public static void clear() {
+//        readers.clear();
+//    }
 }
 
 class ObjectReader extends FieldReader {
 
     List<FieldReader> readers = null;
+    Map<Class, List<FieldReader>> rds;
 
-    public ObjectReader(String element, Field src) {
+    public ObjectReader(String element, Field src, Map<Class, List<FieldReader>> readers) {
         super(element, src);
+        this.rds = readers;
     }
 
     @Override
@@ -92,7 +99,7 @@ class ObjectReader extends FieldReader {
         JSONObject tobj = obj.optJSONObject(element);
         if(tobj != null) {
             if(readers == null)
-                readers = FieldReader.createReader(src.getType(), false);
+                readers = FieldReader.createReader(src.getType(), rds, false);
             try {
                 Object dest = src.getType().newInstance();
                 for(FieldReader fd : readers) {
@@ -132,14 +139,17 @@ class ListReader extends FieldReader {
     List<?> list;
     String endItem;
     FieldReader primitiveReader = null;
+    Map<Class, List<FieldReader>> readers;
 
-    public ListReader(String element, Field src) {
+    public ListReader(String element, Field src, Map<Class, List<FieldReader>> readers) {
         super(element, src);
+
+        this.readers = readers;
 
         itemClass = (Class<?>) ((ParameterizedType) src.getGenericType()).getActualTypeArguments()[0];
         if(isPrimitive(itemClass)) {
 //            reader = new ArrayList<>();
-            primitiveReader = FieldReader.create("", itemClass, null);
+            primitiveReader = FieldReader.create("", itemClass, null, readers);
         } else {
 //            reader = FieldReader.createReader(itemClass);
         }
@@ -214,7 +224,7 @@ class ListReader extends FieldReader {
             return;
         }
         if(reader == null)
-            reader = FieldReader.createReader(itemClass, true);
+            reader = FieldReader.createReader(itemClass, readers, true);
         try {
             List<T> src = (List<T>)list;
 
@@ -306,7 +316,12 @@ class DateReader extends  FieldReader {
         String val = obj.optString(element);
         if(val != null) {
             try {
-                Date d = df.parse(val);
+                Date d;
+                if(val.startsWith("0001-01-01")) {
+                    d = new Date(24 * 3600 * 1000);
+                } else {
+                    d = df.parse(val);
+                }
                 src.set(o, d);
             } catch (Exception e) {
                 e.printStackTrace();

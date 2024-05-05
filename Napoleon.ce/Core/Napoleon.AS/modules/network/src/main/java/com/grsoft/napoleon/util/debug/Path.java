@@ -13,7 +13,8 @@ public class Path
 {
 	public static String filesDirPath = "";
 	public static  String BASE_NAME = "napoleon.db";
-	private static String dataDirPath = ""; 
+//	private static String dataDirPath = "";
+	static File dataDir = null;
 	public static String SHARED_FOLDER = "Napoleon";
 	private static final String AGENTINFOXML = "exchange.dat";
 	public static String GRSOFT_EXCHANGE = "grsoft_exchange";
@@ -41,28 +42,18 @@ public class Path
 	 */
 	static File PictDir = null;
 	public static String getDataDir(){
-		String result = "";
-//		if(Features.SHARED_PICTURES) {
-//			File dataDir = new File(Environment.getExternalStorageDirectory(), "Android/data/" + packageName + "/files");
-//			result = dataDir.getAbsolutePath();
-//			result = PictDir.getAbsolutePath();
-//		} else {
-//			result = dataDirPath;
+		return dataDir.getAbsolutePath();
+
+//		String result = "";
+//		result = Environment.getExternalStorageDirectory() +"/" + SHARED_FOLDER + "/datadir";
 //
-//			Config cfg = ConfigManager.getConfig();
-//			if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED))
+//		File dataDir = new File(Environment.getExternalStorageDirectory(), "Android/data/" + packageName + "/files");
+//		result = dataDir.getAbsolutePath();
 //
-			result = Environment.getExternalStorageDirectory() +"/" + SHARED_FOLDER + "/datadir";
-
-			File dataDir = new File(Environment.getExternalStorageDirectory(), "Android/data/" + packageName + "/files");
-			result = dataDir.getAbsolutePath();
-
-			File ft = new File(result);
-			if(!ft.exists())
-				ft.mkdirs();
-//		}
-
-		return result;
+//		File ft = new File(result);
+//		if(!ft.exists())
+//			ft.mkdirs();
+//		return result;
 	}
 	
 	/***
@@ -71,28 +62,29 @@ public class Path
 	 */
 	public static void init(Context context){
 		packageName = context.getPackageName();
-		PictDir = new File(Environment.getExternalStorageDirectory() +"/NapoleonPic");
+//		PictDir = new File(Environment.getExternalStorageDirectory() +"/NapoleonPic");
+		File extDir = context.getExternalFilesDir(null);
+		PictDir = new File(extDir, "NapoleonPic");
 
 		File filesDir = context.getFilesDir();
 		if(!filesDir.exists())
 			filesDir.mkdirs();
-		
 		filesDirPath = filesDir.getAbsolutePath();
 		
-		File dataDir = new File(filesDir.getParent(), "src");
-		
+//		File dataDir = new File(filesDir.getParent(), "src");
+//		if(!dataDir.exists())
+//			dataDir.mkdirs();
+//		dataDirPath = dataDir.getAbsolutePath();
+
+		dataDir = new File(extDir, "src");
 		if(!dataDir.exists())
 			dataDir.mkdirs();
-		
-		dataDirPath = dataDir.getAbsolutePath();
-		
-//		if (Environment.getExternalStorageState()
-//		.equals(Environment.MEDIA_MOUNTED)){
-			File sharedFolder = new File(Environment.getExternalStorageDirectory(), SHARED_FOLDER);
-			
-			if (!sharedFolder.exists())
-				sharedFolder.mkdirs();
-//		}
+
+
+//		File sharedFolder = new File(Environment.getExternalStorageDirectory(), SHARED_FOLDER);
+		File sharedFolder = new File(extDir, SHARED_FOLDER);
+		if (!sharedFolder.exists())
+			sharedFolder.mkdirs();
 	}
 	
 	public static void clearDataDir(){
@@ -112,15 +104,14 @@ public class Path
 	}
 	
 	public static File getCacheDir(Context context){
-		//if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-			File cacheDir = new File(Environment.getExternalStorageDirectory(), 
-					"Android/data/" + context.getPackageName() +"/files/");
-			if(!cacheDir.exists())
-				cacheDir.mkdirs();
-			
-			return cacheDir;
-		//}
-		//return new File(dataDirPath);
+		File cacheDir = context.getExternalCacheDir();
+
+//		File cacheDir = new File(Environment.getExternalStorageDirectory(),
+//				"Android/data/" + context.getPackageName() +"/files/");
+		if(!cacheDir.exists())
+			cacheDir.mkdirs();
+
+		return cacheDir;
 	}
 	
 	public static File getAgentInfo(){

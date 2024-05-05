@@ -379,7 +379,7 @@
          <activity android:name="com.grsoft.napoleon.DistanceActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:label="@string/distanceactivity_title"/>
-
+         <activity android:name="com.grsoft.napoleon.TaskListView" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
         <activity
             android:name="com.grsoft.napoleon.PriceCountEx"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />

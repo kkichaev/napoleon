@@ -1,5 +1,6 @@
 package com.grsoft.napoleon;
 
+import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -37,6 +38,28 @@ public class PriceCountEx extends PriceCount{
     StockAdapter adapter;
 
     @Override protected int getContentViewId() {return R.layout.pricecountex;}
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        keypadHelper.setTargetID(0);
+        ivPresent.setOnClickListener(v -> {
+            PhotoView.open(PriceCountEx.this, price.getData());
+        });
+    }
+
+    @Override protected boolean isShowImage() {return true;}
+
+    @Override
+    protected void showItemImage() {
+        ivPresent.setVisibility(View.GONE);
+        ImageHelper.load(this, price.getData().id, image -> {
+            runOnUiThread(() -> {
+                ivPresent.setImageBitmap(image);
+                ivPresent.setVisibility(View.VISIBLE);
+            });
+        });
+    }
 
     @Override
     protected void refreshData() {

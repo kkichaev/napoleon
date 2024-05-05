@@ -10,15 +10,19 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.DataSetObserver;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
+import android.location.Location;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -56,8 +60,10 @@ import com.grsoft.dataobjects.impl.OrderImplBase;
 import com.grsoft.dataobjects.impl.OrgImpl;
 import com.grsoft.dataobjects.impl.OrgSumImpl;
 import com.grsoft.napoleon.chart.ChartActivity;
+import com.grsoft.napoleon.documents.CreatableDocument;
 import com.grsoft.napoleon.documents.DebtDoc;
 import com.grsoft.napoleon.documents.DocType;
+import com.grsoft.napoleon.documents.DocTypeBase;
 import com.grsoft.napoleon.documents.Document;
 import com.grsoft.napoleon.documents.Selector;
 import com.grsoft.napoleon.util.CfgNplW;
@@ -81,6 +87,7 @@ import com.grsoft.util.LinesOnClickListener;
 import com.grsoft.util.MenuActionHandler;
 import com.grsoft.util.MenuHandler;
 import com.grsoft.util.MenuPreparedEvent;
+import com.grsoft.util.SystemActionReciever;
 import com.grsoft.util.Updater;
 import com.grsoft.util.Util;
 import com.grsoft.view.BaseActivity;
@@ -121,8 +128,8 @@ public class Main extends BaseActivity implements Selector, DialogOwner {
 	protected EditText edFind;
 	protected LinesCountController linesController;
 	protected OrgSumImpl orgSum = new OrgSumImpl();
-	protected BaseAdapter solidMainAdapter;
-	protected BaseAdapter foldersMainAdapter;
+//	protected BaseAdapter solidMainAdapter;
+//	protected BaseAdapter foldersMainAdapter;
 	protected FindOnClickListener findOnClickListener;
 	protected final static int SOLID_VIEW = 0;
 	protected final static int FOLDER_VIEW = 1;
@@ -165,6 +172,12 @@ public class Main extends BaseActivity implements Selector, DialogOwner {
 		if(Handler != null)
 			Handler.onStart(this);
 
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+			IntentFilter filter = new IntentFilter("android.location.PROVIDERS_CHANGED");
+			BroadcastReceiver br = new SystemActionReciever();
+			registerReceiver(br, filter, RECEIVER_VISIBLE_TO_INSTANT_APPS);
+		}
+
 //		Thread t = new Thread() {
 //			@Override
 //			public void run() {
@@ -203,14 +216,12 @@ public class Main extends BaseActivity implements Selector, DialogOwner {
 	}
 
 	private void checkBatteryOptimization() {
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-			PowerManager pm = (PowerManager) getSystemService(POWER_SERVICE);
-			if (!pm.isIgnoringBatteryOptimizations(getPackageName())) {
-				Intent intent = new Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS, Uri.parse("package:" + getPackageName()));
+		PowerManager pm = (PowerManager) getSystemService(POWER_SERVICE);
+		if (!pm.isIgnoringBatteryOptimizations(getPackageName())) {
+			Intent intent = new Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS, Uri.parse("package:" + getPackageName()));
 
-				if (intent.resolveActivity(getPackageManager()) != null) {
-					startActivity(intent);
-				}
+			if (intent.resolveActivity(getPackageManager()) != null) {
+				startActivity(intent);
 			}
 		}
 	}
@@ -274,17 +285,33 @@ public class Main extends BaseActivity implements Selector, DialogOwner {
 	}
 
 	void askToPreciseLocation() {
+		if (shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_FINE_LOCATION)) {
+			showPermissionRationale(Manifest.permission.ACCESS_FINE_LOCATION);
+			return;
+		}
+		// You can directly ask for the permission.
+		requestPermissions(new String[] {
+						Manifest.permission.ACCESS_FINE_LOCATION},
+				PERMISSION_REQUEST);
+	}
 
+	void afterPermissionsGranted() {
+		CfgNplW c = (CfgNplW) ConfigManager.getConfig();
+		if(c.serverCode.length() == 0) {
+			Setting.open(this, ConnectionSettings.class);
+		}
 	}
 
 	void requestBackgroundLocation() {
 		if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_BACKGROUND_LOCATION)
 				== PackageManager.PERMISSION_GRANTED) {
+			afterPermissionsGranted();
 			return;
 		}
-		if (shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_BACKGROUND_LOCATION)) {
-			showPermissionRationale(Manifest.permission.ACCESS_BACKGROUND_LOCATION);
-			return;
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+			if (shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_BACKGROUND_LOCATION)) {
+				showPermissionRationale(Manifest.permission.ACCESS_BACKGROUND_LOCATION);
+			}
 		}
 	}
 
@@ -319,34 +346,25 @@ public class Main extends BaseActivity implements Selector, DialogOwner {
 	}
 
 	private void checkApplicationPermission(){
-		if(Build.VERSION.SDK_INT >= 23) {
-			List<String> pms = new ArrayList<>();
-			pms.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
-			pms.add(Manifest.permission.CALL_PHONE);
-			pms.add(Manifest.permission.CAMERA);
-			pms.add(Manifest.permission.READ_PHONE_STATE);
+		List<String> pms = new ArrayList<>();
+//		pms.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+		pms.add(Manifest.permission.CALL_PHONE);
+		pms.add(Manifest.permission.CAMERA);
+		pms.add(Manifest.permission.READ_PHONE_STATE);
 
-			pms.addAll(ADD_PERMISSIONS);
+		pms.addAll(ADD_PERMISSIONS);
 
-			boolean allGranted = true;
-			for(String p : pms) {
-				if(ContextCompat.checkSelfPermission(this, p) != PackageManager.PERMISSION_GRANTED) {
-					allGranted = false;
-					ActivityCompat.requestPermissions(this, pms.toArray(new String[]{}), PERMISSION_REQUEST);
-					break;
-				}
+		List<String> needAsk = new ArrayList<>();
+		for(String p : pms) {
+			if(ContextCompat.checkSelfPermission(this, p) != PackageManager.PERMISSION_GRANTED) {
+				needAsk.add(p);
 			}
+		}
 
-			if(allGranted) {
-				requestLocationPermissions();
-			}
-
-//			if (ContextCompat.checkSelfPermission(this,Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED ||
-//					ContextCompat.checkSelfPermission(this,Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
-//					ContextCompat.checkSelfPermission(this,Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED ||
-//					ContextCompat.checkSelfPermission(this,Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED ){
-//				ActivityCompat.requestPermissions(this, pms.toArray(new String[]{}), PERMISSION_REQUEST);
-//			}
+		if(needAsk.size() == 0) {
+			requestLocationPermissions();
+		} else {
+			ActivityCompat.requestPermissions(this, needAsk.toArray(new String[]{}), PERMISSION_REQUEST);
 		}
 	}
 
@@ -354,10 +372,6 @@ public class Main extends BaseActivity implements Selector, DialogOwner {
 	public void onRequestPermissionsResult(int rc, String[] permissions, int[] result) {
 		if(rc == PERMISSION_REQUEST) {
 			for(int i = 0; i < result.length; i++) {
-//				if (result[i] != PackageManager.PERMISSION_GRANTED) {
-//					showDialog(R.id.permission_not_set_dialog);
-//					break;
-//				}else
 				if (permissions[i].equals(Manifest.permission.CAMERA)) {
 					Config cfg = ConfigManager.getConfig();
 
@@ -404,13 +418,13 @@ public class Main extends BaseActivity implements Selector, DialogOwner {
 
 	protected void initData() {
 		linesController = createLinesClick().getController();
-		solidMainAdapter = createSolidMainAdapter();
-		foldersMainAdapter = createFoldersMainAdapter();
-		foldersMainAdapter.registerDataSetObserver(new DataSetObserver() {
-			@Override public void onChanged() {
-				changedFoldersAdapter();
-			}
-		});
+//		solidMainAdapter = createSolidMainAdapter();
+//		foldersMainAdapter = createFoldersMainAdapter();
+//		foldersMainAdapter.registerDataSetObserver(new DataSetObserver() {
+//			@Override public void onChanged() {
+//				changedFoldersAdapter();
+//			}
+//		});
 //		findOnClickListener = createFindOnClickListener();
 		mode = getPrefValue(LIST_MODE, SOLID_VIEW);
 		textWatcher = new FindTextWatcher(edFind, list);
@@ -428,7 +442,7 @@ public class Main extends BaseActivity implements Selector, DialogOwner {
 	protected LinesOnClickListener createLinesClick() { return new LinesOnClickListener(list, (ImageView) btnLines, this, true); }
 
 	private void initView() {
-		list.setAdapter(solidMainAdapter);
+//		list.setAdapter(solidMainAdapter);
 		list.setDividerHeight(0);
 		list.setOnItemClickListener(onItemListClick());
 		
@@ -514,11 +528,17 @@ public class Main extends BaseActivity implements Selector, DialogOwner {
 	public void switchListMode() {	mode ^= FOLDER_VIEW; }
 	
 	protected void setAdapterMode(){
-		BaseAdapter adapter = solidMainAdapter;
-		
-		if(mode == FOLDER_VIEW)
-			adapter = foldersMainAdapter;
-		
+		BaseAdapter adapter;
+		if(mode == FOLDER_VIEW) {
+			adapter = createFoldersMainAdapter();
+			adapter.registerDataSetObserver(new DataSetObserver() {
+				@Override public void onChanged() {
+					changedFoldersAdapter();
+				}
+			});
+		} else {
+			adapter = createSolidMainAdapter();
+		}
 		if(adapter instanceof MainAdapter)
 			((MainAdapter)adapter).adjustView();
 		
@@ -527,9 +547,6 @@ public class Main extends BaseActivity implements Selector, DialogOwner {
 		findOnClickListener = createFindOnClickListener();
 		btnFind.setOnClickListener(findOnClickListener);
 
-		if(adapter != null && adapter instanceof BaseMainAdapter)
-			((BaseMainAdapter)adapter).reload();
-		
 		setPrefValue(LIST_MODE, mode);
 	}
 
@@ -610,9 +627,10 @@ public class Main extends BaseActivity implements Selector, DialogOwner {
 		tv = (TextView)view.findViewById(R.id.tvOrgSum);
 		
 		if(tv != null){
-			long sum = countOrgSum(data.ids);
-			String text = Util.IntToScaleStr(sum, Consts.SUM_SCALE, Util.DEC_DELIM, false);
-			text += "\n" + Integer.toString(data.ids.size());
+			String text = Integer.toString(data.ids.size());
+//			long sum = countOrgSum(data.ids);
+//			String text = Util.IntToScaleStr(sum, Consts.SUM_SCALE, Util.DEC_DELIM, false);
+//			text += "\n" + Integer.toString(data.ids.size());
 			tv.setText(text);
 			tv.setTextColor(getResources().getColor(R.color.grey));
 		}
@@ -660,7 +678,7 @@ public class Main extends BaseActivity implements Selector, DialogOwner {
 			}
 		}
 
-//		updateHint(docType);
+		updateHint(docType);
 
 		findViewById(R.id.tvTotalSum).setVisibility(docType == DebtDoc.instance() ? View.GONE : View.VISIBLE);
 		int res = docType.getDocTitle();
@@ -668,33 +686,48 @@ public class Main extends BaseActivity implements Selector, DialogOwner {
 			setTitle(res);
 	}
 
-//	void updateHint(DocType docType) {
-//		int vsbl = View.VISIBLE;
-//		try {
-//			String tableName = docType.create().getTableName();
-//			String stmt = String.format("select * from [%s] limit 1", tableName);
-//			Cursor c = DataBaseManager.getDataBase().rawQuery(stmt, null);
-//
-//			if(c.moveToNext()) {
-//				vsbl = View.GONE;
-//			}
-//			c.close();
-//		} catch (Exception e) {
-//		}
-//
-//		findViewById(R.id.main_hint).setVisibility(vsbl);
-//	}
+	void updateHint(DocType curType) {
+		int vsbl = View.GONE;
+
+		if(curType  != DebtDoc.instance() ) {
+			boolean haveDocs = false;
+			for (DocTypeBase dt : DocTypeBase.docTypes) {
+				Document<?> doc = dt.create();
+				if (doc instanceof CreatableDocument) {
+					String stmt = String.format("select exists (select id from [%s])", doc.getTableName());
+					try {
+						Cursor c = DataBaseManager.getDataBase().rawQuery(stmt, null);
+						if (c.moveToNext()) {
+							if (c.getInt(0) == 1) {
+								haveDocs = true;
+								break;
+							}
+						}
+						c.close();
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			}
+			if(!haveDocs)
+				vsbl = View.VISIBLE;
+		}
+		findViewById(R.id.main_hint).setVisibility(vsbl);
+	}
 
 	protected void showRouteMap() {
-		Schedule of = ((FoldersMainAdapter) foldersMainAdapter).getCurrent();
+		Adapter fa = list.getAdapter();
+		if(fa instanceof FoldersMainAdapter) {
+			Schedule of = ((FoldersMainAdapter) fa).getCurrent();
 
-		if (of != null) {
-			ArrayList<String> ids = new ArrayList<String>();
+			if (of != null) {
+				ArrayList<String> ids = new ArrayList<>();
 
-			for (ScheduleItem i : of.items)
-				ids.add(i.id);
+				for (ScheduleItem i : of.items)
+					ids.add(i.id);
 
-			MapActivity.open(this, ids);
+				MapActivity.open(this, ids);
+			}
 		}
 	}
 
@@ -707,7 +740,11 @@ public class Main extends BaseActivity implements Selector, DialogOwner {
 	}
 
 	public boolean isGlobusAvail() {
-		return mode == FOLDER_VIEW && foldersMainAdapter instanceof FoldersMainAdapter && !((FoldersMainAdapter)foldersMainAdapter).isTopLevel();
+		Adapter fa = list.getAdapter();
+		if(fa instanceof FoldersMainAdapter) {
+			return  !((FoldersMainAdapter)fa).isTopLevel();
+		}
+		return false;
 	}
 
 	protected void refreshDocSum(DocType docType) {
@@ -787,7 +824,7 @@ public class Main extends BaseActivity implements Selector, DialogOwner {
 				begin = calendar.getTime().getTime();
 				
 				calendar.add(Calendar.MONTH, 1);
-				end = calendar.getTime().getTime() - 1000; // отнимим 1 секунду от нового месяца
+				end = calendar.getTime().getTime() - 1000; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ 1 пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 			} else {
 				calendar.set(Calendar.HOUR_OF_DAY, 23);
 				calendar.set(Calendar.MINUTE, 59);
@@ -816,10 +853,8 @@ public class Main extends BaseActivity implements Selector, DialogOwner {
 
 		orgSum.close();
 		Adapter a = list.getAdapter();
-		
-		if(a != null && a instanceof BaseMainAdapter) {
-//			((BaseMainAdapter)a).reload();
-			((BaseMainAdapter)a).notifyDataSetChanged();
+		if(a instanceof BaseMainAdapter) {
+			((BaseMainAdapter) a).reload();
 		}
 
 		initScripting();
@@ -854,7 +889,7 @@ public class Main extends BaseActivity implements Selector, DialogOwner {
 		DocType cd = DocType.getCurDoc();
 		if( Features.SCRIPT_DOC && ScriptDefImpl.canScripting() ) {
 			DocType scriptDoc = ScriptDoc.instance();
-			if( cd != scriptDoc && !cd.outOfScript() && ScriptDefImpl.docInScript.contains(cd) == false  ) {
+			if( cd != scriptDoc && !cd.outOfScript() && !ScriptDefImpl.docInScript.contains(cd)) {
 				DocType.setCurDoc(scriptDoc);
 			}
 		}else if (cd.equals(ScriptDoc.instance()))
@@ -902,7 +937,7 @@ public class Main extends BaseActivity implements Selector, DialogOwner {
 	protected Dialog onCreateDialog(int id) {
 		if(id == R.id.trace_wi_dialog) {
 			AlertDialog.Builder ab = new AlertDialog.Builder(this);
-			ab.setTitle("Расчет текущей недели");
+			ab.setTitle("пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ");
 			ab.setMessage("Cur Week");
 			ab.setPositiveButton(android.R.string.ok, null);
 			return ab.create();
@@ -922,10 +957,10 @@ public class Main extends BaseActivity implements Selector, DialogOwner {
 
 	private Dialog createPermissionNotSetDlg() {
 		AlertDialog.Builder ab = new AlertDialog.Builder(this);
-		ab.setTitle("Необходимо установить разрешения");
-		ab.setMessage("В настройках установите все разрешения для программы!");
+		ab.setTitle("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
+		ab.setMessage("пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ!");
 		ab.setCancelable(false);
-		ab.setPositiveButton("Настройки", new DialogInterface.OnClickListener() {
+		ab.setPositiveButton("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				Intent intent = new Intent();
@@ -1169,9 +1204,9 @@ public class Main extends BaseActivity implements Selector, DialogOwner {
 
 	void askClearBase() {
 		AlertDialog.Builder b = new AlertDialog.Builder(Main.this);
-		b.setTitle("Внимание");
-		b.setMessage(Html.fromHtml("<b>Программа работает от имени руководителя.</b><br/>Хотите продолжить работать или очистить базу?"));
-		b.setNegativeButton("Очистить базу", new DialogInterface.OnClickListener() {
+		b.setTitle("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
+		b.setMessage(Html.fromHtml("<b>пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.</b><br/>пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ?"));
+		b.setNegativeButton("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ", new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				CfgNplW cfg = (CfgNplW) ConfigManager.getConfig();
@@ -1185,7 +1220,7 @@ public class Main extends BaseActivity implements Selector, DialogOwner {
 			}
 		});
 
-		b.setPositiveButton("Продолжиить", new DialogInterface.OnClickListener() {
+		b.setPositiveButton("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				doExit();
@@ -1251,8 +1286,14 @@ public class Main extends BaseActivity implements Selector, DialogOwner {
 	
 	protected void openMap(Org o){
 		try {
-			String address = o.address;
-			String uri = String.format("geo:0,0?q=%s", address );
+			String uri;
+			Location l = o.getLocation();
+			if(l != null) {
+				uri = String.format("geo:%f,%f/?z=14", l.getLatitude(), l.getLongitude() );
+			} else {
+				String address = o.address;
+				uri = String.format("geo:0,0?q=%s", address);
+			}
 			Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
 			startActivity(intent);
 		} catch (Exception e) {

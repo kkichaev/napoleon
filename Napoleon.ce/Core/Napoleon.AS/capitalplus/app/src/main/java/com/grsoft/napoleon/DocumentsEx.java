@@ -17,6 +17,8 @@ import com.grsoft.napoleon.documents.OrderDoc;
 import com.grsoft.napoleon.documents.QuestionDoc;
 import com.grsoft.napoleon.documents.VisitDoc;
 import com.grsoft.napoleon.documents.WhOrderDoc;
+import com.grsoft.script.dataobjects.impl.ScriptDefImpl;
+import com.grsoft.script.documents.ScriptDoc;
 import com.grsoft.util.Consts;
 import com.grsoft.util.DocFilterOnClickListener;
 import com.grsoft.util.Util;
@@ -28,14 +30,25 @@ public class DocumentsEx extends Documents {
 	public DeliveryInfo deliveryInfo;
 
 	protected void onlyVisitInit() {
-		super.onlyVisitInit();
-		btnDocFilter.setOnClickListener(new DocFilterOnClickListener(this){
-			{
-				filter = new ArrayList<DocTypeBase>();
-				filter.add(VisitDoc.instance());
-				filter.add(QuestionDoc.instance());
-			}
-		});
+//		super.onlyVisitInit();
+
+		if(ScriptDefImpl.canScripting() && ScriptDefImpl.getAvailableScripts(org.getData().id).size() > 0) {
+			btnDocFilter.setOnClickListener(new DocFilterOnClickListener(this) {
+				{
+					filter = new ArrayList<DocTypeBase>();
+					filter.add(ScriptDoc.instance());
+					filter.add(QuestionDoc.instance());
+				}
+			});
+		} else {
+			btnDocFilter.setOnClickListener(new DocFilterOnClickListener(this) {
+				{
+					filter = new ArrayList<DocTypeBase>();
+					filter.add(VisitDoc.instance());
+					filter.add(QuestionDoc.instance());
+				}
+			});
+		}
 	}
 
 	protected String orgInfo(com.grsoft.dataobjects.Org o) {

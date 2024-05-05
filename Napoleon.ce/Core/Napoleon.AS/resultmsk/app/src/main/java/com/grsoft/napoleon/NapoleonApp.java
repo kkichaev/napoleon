@@ -8,16 +8,25 @@
 
 package com.grsoft.napoleon;
 
+import android.Manifest;
 import android.content.Context;
 
 import com.grsoft.database.PriceHitchinEx;
+import com.grsoft.dataobjects.ContactEx;
 import com.grsoft.dataobjects.DataObjectInfo;
 import com.grsoft.dataobjects.Delivery;
 import com.grsoft.dataobjects.DeliveryEx;
 import com.grsoft.dataobjects.DeliveryItemEx;
 import com.grsoft.dataobjects.Order;
+import com.grsoft.dataobjects.OrderEx;
+import com.grsoft.dataobjects.Org;
+import com.grsoft.dataobjects.OrgEx;
 import com.grsoft.dataobjects.Price;
 import com.grsoft.dataobjects.PriceEx;
+import com.grsoft.dataobjects.PriceQtyEx;
+import com.grsoft.dataobjects.ReportList;
+import com.grsoft.dataobjects.ReportListEx;
+import com.grsoft.dataobjects.ReportRequestEx;
 import com.grsoft.dataobjects.Return;
 import com.grsoft.dataobjects.ReturnItem;
 import com.grsoft.dataobjects.impl.DbObject;
@@ -51,12 +60,18 @@ public class NapoleonApp extends NapoleonAppBase {
 
 		DbObject.regNewDataType(Price.class, PriceEx.class);
 		DbObject.regNewDataType(Delivery.class, DeliveryEx.class);
+		DbObject.regNewDataType(Org.class, OrgEx.class);
+		DbObject.regNewDataType(Order.class, OrderEx.class);
+		DbObject.regNewDataType(com.grsoft.dataobjects.ReportRequest.class, ReportRequestEx.class);
+		DbObject.regNewDataType(ReportList.class, ReportListEx.class);
 
 		CostStrategy.defaultInstance = new CostStrategyEx();
 
 		DataObjectInfo doi = DataObjectInfo.getInstance();
 		doi.replaceListType(Delivery.class, "items", DeliveryItemEx.class);
-		DataObjectInfo.getInstance().replaceListType(Return.class, "items", ReturnItem.class);
+		doi.replaceListType(OrgEx.class, "contacts", ContactEx.class);
+		doi.replaceListType(Return.class, "items", ReturnItem.class);
+		doi.replaceListType(PriceEx.class, "whQty", PriceQtyEx.class);
 
 		UpdateDBW.priceHitchingClass = PriceHitchinEx.class;
 	}
@@ -64,12 +79,14 @@ public class NapoleonApp extends NapoleonAppBase {
 	@Override
 	protected void initChildActivity() {
 		super.initChildActivity();
+		OrderDetail.activity = OrderDetailEx.class;
 		UpdateDB.activity = UpdateDBEx.class;
 		Warehouse.activity = WarehouseEx.class;
 		Documents.activity = DocumentsEx.class;
 		PriceCount.activity = PriceCountEx.class;
 		Setting.WarehouseSettingActivity = WarehouseSettingEx.class;
 		Presentation.activity = PresentationFolderEx.class;
+		ReportParams.activity = ReportParamsEx.class;
 	}
 
 	@Override
@@ -97,6 +114,7 @@ public class NapoleonApp extends NapoleonAppBase {
 		Features.REPORT_REQUEST = true;
 		Features.MARK_OVERDUE_DEBTS = true;
 		Features.PRESENTATION_IN_DB = true;
+		Features.MARK_OVERDUE_DEBTS = true;
 	}
 
 	@Override

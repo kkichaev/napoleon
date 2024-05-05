@@ -17,7 +17,7 @@ public class OrderImplEx extends OrderImpl {
 	int whCount = 0;
 	int qtyIndex = 0;
 	HashMap<String, Integer> qty = new HashMap<String, Integer>();
-	
+
 	public int getWhIndex() {
 		if( whCount == 0 ) {
 			ConfigImpl ci = new ConfigImpl();
@@ -30,15 +30,15 @@ public class OrderImplEx extends OrderImpl {
 			}
 			ci.close();
 		}
-		
+
 		OrderEx oe = (OrderEx)data;
-		
+
 		int wh = oe.whIndex;
 //		int fi = oe.supplyer;
 //		return wh + fi * whCount;
 		return wh;
 	}
-	
+
 	@Override
 	public int getItemValue(Price item) {
 		int index = getWhIndex();

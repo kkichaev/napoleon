@@ -1,5 +1,7 @@
 package com.grsoft.napoleon;
 
+import android.os.Bundle;
+import android.view.View;
 import android.widget.CheckBox;
 
 import com.grsoft.database.DivisionStockHitching;
@@ -22,6 +24,12 @@ import com.grsoft.network.exception.RuntimeException;
 import java.util.List;
 
 public class UpdateDBEx extends UpdateDB {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        findViewById(R.id.cbPresent).setVisibility(View.GONE);
+    }
 
     boolean needRestoreStock() {
         boolean clearing = ((CheckBox)findViewById(R.id.cbRecreateStory)).isChecked();

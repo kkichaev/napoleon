@@ -123,10 +123,6 @@ public class AppBase extends NapoleonAppBase {
         OrderImpl.OrderEditor = new OrderEditor();
         setProgrammVersion();
 
-//        if (BuildConfig){
-//
-//        }
-
         if (newClient()) {
             Main.mainMenuPrepared.add(new MenuPrepareHitching() {
                                           @Override

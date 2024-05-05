@@ -17,12 +17,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@TableInfo(name="OrgPrice", keyFields = "id")
+@TableInfo(name="OrgPrice", keyFields = "id,number")
 @ServerInfo(name="OrgPrice")
 public class OrgPrice extends DataObject {
     public String id = "";
     public int kind = 0;
     public String number = "";
+    public String idDsc = "";
 
     public Date start = new Date();
     public Date finish = new Date();
@@ -32,15 +33,24 @@ public class OrgPrice extends DataObject {
     public static Map<String, Integer> load(OrgEx o, OrderEx doc) {
         Map<String, List<OrgPriceWork>> data = new HashMap<>();
 
-        long docDate = Util.getDayEnd(o.getDiscountDate(doc)).getTime();
+//        long docDate = o.getDiscountDate(doc).getTime();
+//        long finishDate = docDate - 24 * 3600 * 1000;
 
         @SuppressLint("DefaultLocale")
         String stmt = String.format(
-                "select op.items, op.number, op.start, op.finish, dp.orgCost kind, items " +
+                "select op.items, op.number, op.idDsc, op.start, op.finish, dp.orgCost kind, items " +
                 "from orgprice op, discountpriority dp " +
-                "where op.kind = dp.kind and id='%s' and start <= %2$d and finish >= %2$d"
-                ,o.id, docDate
+                "where op.kind = dp.kind and id='%s'"
+                ,o.id
         );
+//        String stmt = String.format(
+//                "select op.items, op.number, op.idDsc, op.start, op.finish, dp.orgCost kind, items " +
+//                        "from orgprice op, discountpriority dp " +
+//                        "where op.kind = dp.kind and id='%s' and start <= %2$d and finish > %3$d"
+//                ,o.id
+//                , docDate
+//                , finishDate
+//        );
 
 
         DbReader r = new DbReader();
@@ -62,8 +72,12 @@ public class OrgPrice extends DataObject {
         for(Map.Entry<String, List<OrgPriceWork>> kv : data.entrySet()) {
             Collections.sort(kv.getValue());
             for(OrgPriceWork opw : kv.getValue()) {
-                ret.put(kv.getKey(), opw.cost);
-                break;
+                String key = kv.getKey();
+                if(!ret.containsKey(key))
+                    ret.put(key, opw.cost);
+                key += opw.idDsc;
+                if(!ret.containsKey(key))
+                    ret.put(key, opw.cost);
             }
         }
 
@@ -71,9 +85,10 @@ public class OrgPrice extends DataObject {
     }
 
     static class OrgPriceWork implements Comparable<OrgPriceWork> {
-        public String id = "";
+//        public String id = "";
         public int kind = 0;
         public String number = "";
+        public String idDsc = "";
 
         public Date start = new Date();
         public Date finish = new Date();
@@ -81,7 +96,8 @@ public class OrgPrice extends DataObject {
         public int cost = 0;
 
         public OrgPriceWork(OrgPrice src, int cost) {
-            id = src.id;
+//            id = src.id;
+            idDsc = src.idDsc;
             kind = src.kind;
             number = src.number;
             start = src.start;

@@ -396,7 +396,10 @@ public class Warehouse extends BaseActivity implements DataSetNotify,
 			v = findViewById(R.id.btnDelFind);
 			if (v != null) {
 				v.setOnClickListener(new OnClickListener() {
-					@Override public void onClick(View v) { edFind.setText(""); }
+					@Override public void onClick(View v) {
+						textWatcher.setNoDelay();
+						edFind.setText("");
+					}
 				});
 			}
 
@@ -1087,7 +1090,6 @@ public class Warehouse extends BaseActivity implements DataSetNotify,
 			}
 		}
 		return new FoldersAdapter(this);
-
 	}
 
 	protected void packing() {
@@ -1619,7 +1621,8 @@ public class Warehouse extends BaseActivity implements DataSetNotify,
 		updateTotalSum();
 
 		CfgNpl cfg = (CfgNpl) ConfigManager.getConfig();
-		linesController.setLinesCount(cfg.linesCount == 0 ? LinesOnClickListener.VARIABLE_LINE_HEIGHT : cfg.linesCount);
+		if(linesController != null)
+			linesController.setLinesCount(cfg.linesCount == 0 ? LinesOnClickListener.VARIABLE_LINE_HEIGHT : cfg.linesCount);
 
 		if( cfg.usePriceMover ) {
 			priceMover = new WarehouseMover();

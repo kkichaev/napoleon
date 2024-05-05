@@ -104,6 +104,7 @@ def loadData(params, server):
           item.created = d.created
           item.inroute = "нет" if not d.id in route_ids else ""
           item.sended = d.sended
+          item.remark = d.remark
           
           t = d.created
           if t in scrMap and scrMap[t] in scrDef:

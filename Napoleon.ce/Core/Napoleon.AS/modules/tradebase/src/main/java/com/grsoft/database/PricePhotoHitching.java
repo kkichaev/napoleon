@@ -48,6 +48,11 @@ public class PricePhotoHitching extends RcvNewHitching {
 		this(context, false);
 	}
 
+	public PricePhotoHitching(Context context, String objName) {
+		this(context, false);
+		this.objectName = objName;
+	}
+
 	public PricePhotoHitching(Context context, boolean appendData) {
 		super(PricePhoto.class, "PricePhoto");
 
@@ -62,7 +67,7 @@ public class PricePhotoHitching extends RcvNewHitching {
 				enableExternalStore = photoDir.mkdirs();
 			
 				if (enableExternalStore){
-					if(Features.SHARED_PICTURES == false ){
+					if(!Features.SHARED_PICTURES){
 						File noMedia = new File(photoDir, ".nomedia");
 						try{
 							noMedia.createNewFile();
@@ -109,11 +114,15 @@ public class PricePhotoHitching extends RcvNewHitching {
 			if (!file.isHidden()) 
 				file.delete();
 	}
+
+	protected PricePhoto read(RawObject rawObject) throws RuntimeException {
+		return (PricePhoto)rawObject.createDataObject(PricePhoto.class);
+	}
 	
 	@Override
 	public void onRead(RawObject rawObject) throws RuntimeException {
 		if (enableExternalStore){
-			PricePhoto pp = (PricePhoto)rawObject.createDataObject(PricePhoto.class);
+			PricePhoto pp = read(rawObject);
 			
 			if (pp.photo != null && pp.photo.length > 0 && pp.items.size() > 0){
 				String fileName = String.format("%s.jpg", UUID.randomUUID().toString().replace("-", ""));

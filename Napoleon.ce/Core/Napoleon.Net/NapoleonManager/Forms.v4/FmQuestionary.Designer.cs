@@ -54,7 +54,9 @@
          this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
          this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
          this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+         this.tsLabel = new System.Windows.Forms.ToolStripStatusLabel();
          this.toolStrip1.SuspendLayout();
+         this.statusStrip1.SuspendLayout();
          ((System.ComponentModel.ISupportInitialize)(this.dgvQuestion)).BeginInit();
          this.SuspendLayout();
          // 
@@ -181,6 +183,8 @@
          // 
          // statusStrip1
          // 
+         this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsLabel});
          this.statusStrip1.Location = new System.Drawing.Point(0, 330);
          this.statusStrip1.Name = "statusStrip1";
          this.statusStrip1.Size = new System.Drawing.Size(639, 22);
@@ -289,6 +293,11 @@
          this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
          this.dataGridViewTextBoxColumn5.Visible = false;
          // 
+         // tsLabel
+         // 
+         this.tsLabel.Name = "tsLabel";
+         this.tsLabel.Size = new System.Drawing.Size(0, 17);
+         // 
          // FmQuestionary
          // 
          this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
@@ -303,6 +312,8 @@
          this.Text = "Анкеты";
          this.toolStrip1.ResumeLayout(false);
          this.toolStrip1.PerformLayout();
+         this.statusStrip1.ResumeLayout(false);
+         this.statusStrip1.PerformLayout();
          ((System.ComponentModel.ISupportInitialize)(this.dgvQuestion)).EndInit();
          this.ResumeLayout(false);
          this.PerformLayout();
@@ -336,5 +347,6 @@
       private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
       private System.Windows.Forms.ToolStripButton btnCopy;
       private System.Windows.Forms.ToolStripButton btnHtmlView;
+      private System.Windows.Forms.ToolStripStatusLabel tsLabel;
    }
 }

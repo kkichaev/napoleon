@@ -48,6 +48,12 @@ public class NapoleonApp extends NapoleonAppBase {
 		//NapoleonChat.init(this);
 	}
 
+	@Override
+	protected void initChildActivity() {
+		super.initChildActivity();
+		DeliveryDetail.activity = DeliveryDetailEx.class;
+	}
+
 	private void setProgrammVersion() {
 		try{
 			ServerCommand.ProgramVersion = getResources().getString(R.string.version);

@@ -20,3 +20,6 @@ project(':mpchart').projectDir = new File('..\\modules\\mpchart\\')
 
 include ':itext'
 project(':itext').projectDir = new File('..\\modules\\itext\\')
+
+include ':camera'
+project(':camera').projectDir = new File('..\\modules\\camera\\')

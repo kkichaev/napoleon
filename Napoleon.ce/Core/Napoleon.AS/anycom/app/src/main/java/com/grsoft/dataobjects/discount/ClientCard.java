@@ -6,7 +6,7 @@ import com.grsoft.dataobjects.DataObject;
 
 import java.util.Date;
 
-@TableInfo(name="ClientCard", keyFields = "number")
+@TableInfo(name="ClientCard", keyFields = "number,idDsc")
 @ServerInfo(name="ClientCard")
 public class ClientCard extends DataObject {
     public String number = "";

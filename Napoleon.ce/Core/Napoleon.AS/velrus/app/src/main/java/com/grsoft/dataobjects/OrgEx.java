@@ -13,6 +13,8 @@ public class OrgEx extends Org {
 	public int minOrder;
 		
 	public int sklad = 0;
+
+	public String cluster = "";
 	
 	public List<MatrixItem> matrix = new ArrayList<MatrixItem>();
 }

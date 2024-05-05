@@ -1,7 +1,7 @@
 export
 
-#Variant=LiberSemey
-Variant=LiberSemeyUstKameng
+Variant=LiberSemey
+#Variant=LiberSemeyUstKameng
 
 include make.vars 
 

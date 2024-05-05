@@ -20,6 +20,7 @@ class QBuilder:
     DATASET_TYPE = 5 # not impl
     PHOTO_TYPE = 7
     ORG_DATASET_TYPE = "Организация"
+    PRICE_DATASET_TyPE = 'Прайс'
     NUMBER_LIST_TYPE = 8 # not checked
 
     class QItem:
@@ -40,12 +41,15 @@ class QBuilder:
             xl.sheet.merge_range(row, col, row, col + 1, self.name, xl.formats.headLeft)
             return  row + 1
         
+        def getValue(self, item) :
+            return item.answer
+
         def printValues(self, doc, xl:XlBuilder, row:int, col:int, horizontal:bool) -> int:
             val = ''
             for ii in doc.items:
                 if ii.iditem != self.id: continue
 
-                val = ii.answer
+                val = self.getValue(ii)
                 break
 
             xl.printValues(row, [val], col)
@@ -53,13 +57,15 @@ class QBuilder:
 
         
         @staticmethod
-        def create(src, images:dict[str,int], hrefBase:str):
+        def create(server, src, images:dict[str,int], hrefBase:str):
             if src.type == QBuilder.SET_TYPE:
                 return QBuilder.QSetItem(src)
             elif src.type == QBuilder.NUMBER_LIST_TYPE:
                 return QBuilder.QNumList(src)
             elif src.type == QBuilder.PHOTO_TYPE:
                 return QBuilder.QPhoto(src, images, hrefBase)
+            elif src.type == QBuilder.DATASET_TYPE:
+                return  QBuilder.QDataSet(server, src)
             return QBuilder.QItem(src)
 
     class QSetItem(QItem):
@@ -120,7 +126,49 @@ class QBuilder:
             
     
     class QNumList(QSetItem):
-        pass
+        def printValues(self, doc, xl: XlBuilder, row: int, col: int, horizontal:bool) -> int:
+            cells = self.count()
+            values = ['' for x in range(cells)]
+            for ii in doc.items:
+                if ii.iditem != self.id: continue
+
+                try:
+                    idx = self.values.index(ii.answer)
+                    values[idx] = ii.remark
+                except: pass
+
+            if horizontal:
+                xl.printValues(row, values, col)
+                return col + cells
+             
+            for i in range(cells):
+                xl.sheet.write(row, col, values[i], xl.formats.cell)
+                row += 1
+            return row
+        
+    class QDataSet(QItem):
+
+        def __init__(self, server, src) -> None:
+            super().__init__(src)
+
+            self.server = server
+            name = ''
+            for v in src.values:
+                if v.value == QBuilder.ORG_DATASET_TYPE:
+                    name = 'Org'
+                elif v.value == QBuilder.PRICE_DATASET_TyPE:
+                    name = 'Price'
+            self.name = name
+            self.items = {}
+
+        def getValue(self, item):
+            val = item.answer
+            if not val in self.items:
+                obj = self.server.Get(self.name, "id='%s'" % val) or []
+                if len(obj) > 0 :
+                    val = obj[0].name
+                self.items[item.answer] = val
+            return val
 
     class QPhoto(QItem):
 
@@ -190,13 +238,13 @@ class QBuilder:
 
     class QDrawer:
 
-        def __init__(self, quest, images:dict[str,int], hrefBase:str) -> None:
+        def __init__(self, server, quest, images:dict[str,int], hrefBase:str) -> None:
             self.id = quest.idquest
             self.name = quest.name
 
             self.items:list[QBuilder.QItem] = []
             for qi in quest.items:
-                self.items.append(QBuilder.QItem.create(qi, images, hrefBase))
+                self.items.append(QBuilder.QItem.create(server, qi, images, hrefBase))
 
             self.items = sorted(self.items, key=lambda x: x.number)
 
@@ -296,7 +344,7 @@ class QBuilder:
         items: list[QBuilder.QDrawer] = []
         quests = server.Get('Question', qfilter) or []
         for q in quests:
-            items.append(QBuilder.QDrawer(q, images, params.hrefBase))
+            items.append(QBuilder.QDrawer(server, q, images, params.hrefBase))
 
         self.items = sorted(items, key=lambda x: x.name)
         self.horizontal = horizontal

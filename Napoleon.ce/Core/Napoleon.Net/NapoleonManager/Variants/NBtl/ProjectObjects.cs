@@ -512,6 +512,9 @@ namespace GRSoft.NapoleonManager
       }
 
       public List<Item> contracts = new List<Item>();
+      public List<Item> whnetwork = new List<Item>();
+
+      public List<DivisionManager.Rights> rights = new List<DivisionManager.Rights>();
    }
 
    public partial class Visit
@@ -609,5 +612,6 @@ namespace GRSoft.NapoleonManager
    {
       public string altText = string.Empty;
       public string clients = string.Empty;
+      public int showInPhoto = 0;
    }
 }

@@ -1,4 +1,3 @@
-# -*- coding: cp1251 -*-
 from importlib import reload
 import logging
 from grsoft.route import AgentRoute
@@ -13,16 +12,14 @@ import datetime
 import quest_rep
 from datetime import timedelta
 
-import sys;
-reload(sys);
-#sys.setdefaultencoding("cp1251")
-
+import sys
 
 class QuestHelper:
-  LIST_TYPE = 2
+  SET_TYPE = 2
   DATASET_TYPE = 5
   PHOTO_TYPE = 7
-  ORG_DATASET_TYPE = "Организация"
+  ORG_DATASET_TYPE = "РћСЂРіР°РЅРёР·Р°С†РёСЏ"
+  PRICE_DATASET_TYPE = 'РџСЂР°Р№СЃ'
   BOOL_TYPE = 4
   NUMBER_LIST_TYPE = 8
 
@@ -40,7 +37,7 @@ class Quest:
     quest.items.sort(key= lambda x: x.number)
     
     for i in quest.items:
-      if i.type == QuestHelper.LIST_TYPE or i.type == QuestHelper.BOOL_TYPE or i.type == QuestHelper.NUMBER_LIST_TYPE:
+      if i.type == QuestHelper.SET_TYPE or i.type == QuestHelper.BOOL_TYPE or i.type == QuestHelper.NUMBER_LIST_TYPE:
         for v in i.values:
           key = ReportData.ITEM_KEY_FMT.format(quest.idquest, i.iditem, v.value)
           if not key in self.rowidx:
@@ -55,7 +52,7 @@ class Quest:
     sz = len(self.rowidx)
     a = [""] * sz
     for n in d.items:
-      if n.type ==QuestHelper.LIST_TYPE:
+      if n.type ==QuestHelper.SET_TYPE:
           self.putItemValue(a, ReportData.ITEM_KEY_FMT.format(d.question, n.iditem, n.answer), "X")
       elif n.type == QuestHelper.NUMBER_LIST_TYPE:
           self.putItemValue(a, ReportData.ITEM_KEY_FMT.format(d.question, n.iditem, n.answer), n.remark)  
@@ -63,20 +60,24 @@ class Quest:
           print("QuestHelper.BOOL_TYPE", d.question, n.iditem, n.answer)
           self.putItemValue(a, ReportData.ITEM_KEY_FMT.format(d.question, n.iditem, n.answer), n.answer)    
       elif n.type == QuestHelper.PHOTO_TYPE:
-        val = '=HYPERLINK("{0}{1}", "Фото")'.format(href, pics[n.answer].name) if n.answer in pics else "Фото не найдено!"
+        val = '=HYPERLINK("{0}{1}", "Р¤РѕС‚Рѕ")'.format(href, pics[n.answer].name) if n.answer in pics else "Р¤РѕС‚Рѕ РЅРµ РЅР°Р№РґРµРЅРѕ!"
         self.putItemValue(a, ReportData.KEY_FMT.format(d.question, n.iditem), val)
           
       elif n.type == QuestHelper.DATASET_TYPE:
         val = ''
         if n.remark == QuestHelper.ORG_DATASET_TYPE:
           val = r.orgs[n.answer].name if n.answer in r.orgs else n.answer
+        elif n.remark == QuestHelper.PRICE_DATASET_TYPE:
+          val =  r.price[n.answer].name if n.answer in r.price else n.answer
         
         self.putItemValue(a, ReportData.KEY_FMT.format(d.question, n.iditem), val)
       else: 
         self.putItemValue(a, ReportData.KEY_FMT.format(d.question, n.iditem), n.answer)
      
     self.answers.append(a)
-    self.orgs.append(d.id)
+    curOrg = r.orgs.getOrg(d.id, d.userid)
+    orgName = curOrg.name if curOrg != None else d.id
+    self.orgs.append(orgName)
     
   def putItemValue(self, items, key, value):
     if key in self.rowidx:
@@ -84,7 +85,7 @@ class Quest:
       items[idx] = value
     
 class ReportData:
-  __slots__ = ['items', 'quests', 'orgs', 'agents', "answers"]
+  __slots__ = ['items', 'quests', 'orgs', 'agents', "answers", 'price']
   KEY_FMT =  "{0}\t{1}"
   ITEM_KEY_FMT = "{0}\t{1}\t{2}"
 
@@ -105,7 +106,7 @@ class ReportData:
         quest = quests[q]
         self.quests[q] = Quest(quest)
 
-  def loadDocs(self, docs, pics, href):
+  def loadDocs(self, docs, pics, href, orgLocation):
     for d in docs:
       if d.question in self.quests:
         self.quests[d.question].addanswer(d, self, pics, href)  
@@ -160,7 +161,7 @@ class XLBuilderEx(XLBuilder):
       self.setupCell(c, Alignment.HORIZONTAL_LEFT)
       self.setBackColor(c, self.FIXED_CELL_COLOR)
       
-      if i.type == QuestHelper.BOOL_TYPE or i.type == QuestHelper.LIST_TYPE or i.type == QuestHelper.NUMBER_LIST_TYPE:
+      if i.type == QuestHelper.BOOL_TYPE or i.type == QuestHelper.SET_TYPE or i.type == QuestHelper.NUMBER_LIST_TYPE:
         sr = row
         
         for v in i.values:
@@ -204,11 +205,11 @@ class XLBuilderEx(XLBuilder):
   def printData(self, sheet, row, data):
     
     for q in data.quests.values():
-      head = ["Клиент"]
+      head = ["РљР»РёРµРЅС‚"]
         
       for o in q.orgs:
-        n = data.orgs[o].name if o in data.orgs else o
-        head.append(n)
+#        n = data.orgs[o].name if o in data.orgs else o
+        head.append(o)
       
       self.makeHead(sheet, row, head)
       
@@ -228,17 +229,17 @@ class XLBuilderEx(XLBuilder):
 def printOut(data, params):
     wb = Workbook(False, 'cp1251')
     sheet = wb.get_active_sheet()
-    sheet.title = "Отчет"
+    sheet.title = "РћС‚С‡РµС‚"
     
     xlb = XLBuilderEx()
     
     c = sheet.cell(row=0, column=0)
-    c.value = "Отчет по анкетам"  
+    c.value = "РћС‚С‡РµС‚ РїРѕ Р°РЅРєРµС‚Р°Рј"  
     c.style.font.bold = True
     c.style.font.size = 18
 
     c = sheet.cell(row=1, column=0)
-    c.value = "Интервал: c {0} по {1}".format(params.start.strftime('%d.%m.%Y'), params.finish.strftime('%d.%m.%Y'))  
+    c.value = "РРЅС‚РµСЂРІР°Р»: c {0} РїРѕ {1}".format(params.start.strftime('%d.%m.%Y'), params.finish.strftime('%d.%m.%Y'))  
     
     r = 2
     xlb.printData(sheet, r, data)

@@ -65,8 +65,8 @@ def loadData(params, server):
         for r in route:
           route_ids.append(r.id)
 
-        where = '"userid"="{0}" and "created" >= ToDate("{1}") and "created" <= ToDate("{2}")'.format(
-            aid,
+        where = '"userid"={0} and "created" >= ToDate("{1}") and "created" <= ToDate("{2}")'.format(
+            "'"+aid+"'",
             date.strftime("%d/%m/%Y 0:0:0"),
             date.strftime("%d/%m/%Y 23:59:59"))
         

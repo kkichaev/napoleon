@@ -1,4 +1,4 @@
-import json
+import time
 from app import db
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -54,14 +54,41 @@ class Account(db.Model):
     country = db.Column(db.String(3), nullable=False)  # iso alpha 3 code
     currency = db.Column(db.String(3), nullable=False) # iso 4217 code
     userid = db.Column(db.Integer, db.ForeignKey('users.id'))
+    locale=db.Column(db.String(20))
     # balance = db.Column(db.Float)
     # user backref
 
     def to_dict(self) -> dict[str, any]:
-        return {'id':self.id, 'country':self.country, 'currency':self.currency}
+        return {'id':self.id, 'country':self.country, 'currency':self.currency, 'locale':self.locale}
     
     @staticmethod
     def from_dict(src) -> Self:
         if not 'currency' in src or not 'country' in src: return None
         return Account(country=src['country'], currency=src['currency'])
     
+
+class Token(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    token = db.Column(db.String(30), nullable=False)
+    time = db.Column(db.Integer, nullable=False)
+
+    @staticmethod
+    def get(token:str, expire:int):
+        ct = int(time.time()) - expire
+        tkn = Token.query.filter(Token.token == token).first()
+        Token.query.filter(Token.time < ct).delete()
+
+        if not tkn:
+            t = Token()
+            t.token = token
+            t.time = int(time.time())
+
+            db.session.add(t)
+            db.session.commit()
+
+        return tkn
+
+
+        
+
+

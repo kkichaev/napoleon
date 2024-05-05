@@ -26,9 +26,11 @@ import com.grsoft.dataobjects.impl.ReturnImpl;
 import com.grsoft.dataobjects.impl.ReturnImplEx;
 import com.grsoft.napoleon.documents.DebtDocEx;
 import com.grsoft.napoleon.documents.DocType;
+import com.grsoft.napoleon.documents.NewClientDoc;
 import com.grsoft.napoleon.documents.ReqNewOrgDoc;
 import com.grsoft.napoleon.documents.ReturnDoc;
 import com.grsoft.napoleon.util.CfgNpl;
+import com.grsoft.napoleon.util.CfgNplEx;
 import com.grsoft.napoleon.util.ConfigManager;
 import com.grsoft.network.ServerCommand;
 import com.grsoft.util.DocFilterOnClickListener;
@@ -49,7 +51,7 @@ public class NapoleonApp extends NapoleonAppBase {
 	
 	@Override
 	protected void defineNewType() {
-		DebtDocEx.init();
+		DebtDocEx.initialize();
 		
 		DbObject.regNewDataType(Price.class, PriceEx.class);
 		DbObject.regNewDataType(Org.class, OrgEx.class);
@@ -77,8 +79,10 @@ public class NapoleonApp extends NapoleonAppBase {
 	@Override
 	protected void initChildDocTypes() {
 		DocType.addType(ReqNewOrgDoc.instance());
+		DocType.addType(NewClientDoc.instance());
 
 		DocFilterOnClickListener.HiddenTypes.add(ReqNewOrgDoc.instance());
+		DocFilterOnClickListener.HiddenTypes.add(NewClientDoc.instance());
 	}
 	
 	@Override
@@ -87,6 +91,8 @@ public class NapoleonApp extends NapoleonAppBase {
 		Features.INCASS_DEBET_DISTRIB = true;
 		Features.UNLIMIT_VISIT_ITEMS = true;
 		Features.HAVE_RETURN_DOC = true;
+		Features.MARK_OVERDUE_DEBTS = true;
+		Features.CONFIG_CHECK_PRICE_QTY = false;
 	}
 	
 	@Override
@@ -96,11 +102,14 @@ public class NapoleonApp extends NapoleonAppBase {
 		Warehouse.activity = WarehouseEx.class;
 		CreateReturn.activity = CreateReturnEx.class;
 		Presentation.activity = PresentationFolderEx.class;
+		UpdateDB.activity = UpdateDBEx.class;
+		PotenzialOrg.activity = NewClientList.class;
+		Setting.BehaviorSettingActivity = BehaviorSettingEx.class;
 	}
 	
 	@Override
 	public void onCreate() {
-		ConfigManager.initConfig(new CfgNpl());
+		ConfigManager.initConfig(new CfgNplEx());
 		super.onCreate();
 
 		OrderImpl.OrderEditor = new OrderEditor();

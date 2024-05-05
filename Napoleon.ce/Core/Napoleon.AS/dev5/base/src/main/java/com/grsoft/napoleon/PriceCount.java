@@ -136,12 +136,13 @@ public class PriceCount extends BaseActivity
 			units = p.units;
 
 			String scode = "";
+			if( units.size() > 0 ) {
+				scode = units.get(0).id;
+			}
 			if( document != null && document instanceof OrderImpl) {
 				OrderItem oi = (OrderItem) ((OrderImpl)document).findItem(p.id);
 				if( oi != null )
 					scode = oi.unit;
-			} else if( units.size() > 0 ) {
-				scode = units.get(0).id;
 			}
 
 			for(PriceUnit ui : units ) {

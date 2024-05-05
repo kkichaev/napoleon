@@ -42,13 +42,14 @@
          // 
          // toolStrip1
          // 
+         this.toolStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
          this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnRefresh,
             this.btnSave,
             this.btnDelete});
          this.toolStrip1.Location = new System.Drawing.Point(0, 0);
          this.toolStrip1.Name = "toolStrip1";
-         this.toolStrip1.Size = new System.Drawing.Size(496, 25);
+         this.toolStrip1.Size = new System.Drawing.Size(496, 39);
          this.toolStrip1.TabIndex = 0;
          this.toolStrip1.Text = "toolStrip1";
          // 
@@ -58,27 +59,27 @@
          this.btnRefresh.Image = global::GRSoft.NapoleonManager.Properties.Resources.view_refresh_6;
          this.btnRefresh.ImageTransparentColor = System.Drawing.Color.Magenta;
          this.btnRefresh.Name = "btnRefresh";
-         this.btnRefresh.Size = new System.Drawing.Size(23, 22);
+         this.btnRefresh.Size = new System.Drawing.Size(36, 36);
          this.btnRefresh.Text = "Обновить";
          this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
          // 
          // btnSave
          // 
          this.btnSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-         this.btnSave.Image = global::GRSoft.NapoleonManager.Properties.Resources.Save;
+         this.btnSave.Image = global::GRSoft.NapoleonManager.Properties.Resources.Save1;
          this.btnSave.ImageTransparentColor = System.Drawing.Color.Magenta;
          this.btnSave.Name = "btnSave";
-         this.btnSave.Size = new System.Drawing.Size(23, 22);
+         this.btnSave.Size = new System.Drawing.Size(36, 36);
          this.btnSave.Text = "Сохранить";
          this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
          // 
          // btnDelete
          // 
          this.btnDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-         this.btnDelete.Image = global::GRSoft.NapoleonManager.Properties.Resources.dialog_cancel;
+         this.btnDelete.Image = global::GRSoft.NapoleonManager.Properties.Resources.delete;
          this.btnDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
          this.btnDelete.Name = "btnDelete";
-         this.btnDelete.Size = new System.Drawing.Size(23, 22);
+         this.btnDelete.Size = new System.Drawing.Size(36, 36);
          this.btnDelete.Text = "Удалить";
          this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
          // 
@@ -88,9 +89,9 @@
          this.grid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1});
          this.grid.Dock = System.Windows.Forms.DockStyle.Fill;
-         this.grid.Location = new System.Drawing.Point(0, 25);
+         this.grid.Location = new System.Drawing.Point(0, 39);
          this.grid.Name = "grid";
-         this.grid.Size = new System.Drawing.Size(496, 432);
+         this.grid.Size = new System.Drawing.Size(496, 418);
          this.grid.TabIndex = 1;
          this.grid.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.grid_CellValueChanged);
          // 
@@ -108,7 +109,7 @@
          this.dataGridViewTextBoxColumn1.HeaderText = "Текст";
          this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
          // 
-         // FmDistribEdit
+         // FmTypeDistribEdit
          // 
          this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
          this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -117,7 +118,7 @@
          this.Controls.Add(this.toolStrip1);
          this.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
          this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-         this.Name = "FmDistribEdit";
+         this.Name = "FmTypeDistribEdit";
          this.Text = "Типы дистрибьюции";
          this.Load += new System.EventHandler(this.FmReturnCauseEdit_Load);
          this.toolStrip1.ResumeLayout(false);

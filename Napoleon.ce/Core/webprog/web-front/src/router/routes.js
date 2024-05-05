@@ -48,6 +48,16 @@ const routes = [
         name: "Script",
         component: () => import("pages/Script.vue"),
       },
+      {
+        path: "/question",
+        name: "Question",
+        component: () => import("pages/Question.vue"),
+      },
+      {
+        path: "/management",
+        name: "Management",
+        component: () => import("pages/Management.vue"),
+      },
     ],
   },
   {
@@ -73,6 +83,11 @@ const routes = [
         path: "/confirm",
         name: "Confirm",
         component: () => import("pages/Confirm.vue"),
+      },
+      {
+        path: "/clr_pwd",
+        name: "ChangePassword",
+        component: () => import("pages/ChangePassword.vue"),
       },
       {
         path: "/prjreg",

@@ -66,7 +66,7 @@ public class NapoleonApp extends NapoleonAppBase {
 		DbObject.regNewDataType(Org.class, OrgEx.class);
 		DbObject.regNewDataType(Order.class, OrderEx.class);
 
-		DataObjectInfo.getInstance().replaceListType(PriceEx.class,"whQty", PriceQtyItemEx.class);
+		//DataObjectInfo.getInstance().replaceListType(PriceEx.class,"whQty", PriceQtyItemEx.class);
 
 		UpdateDB.addHitchingCtor(new HitchingCtor(){
 			@Override
@@ -96,9 +96,9 @@ public class NapoleonApp extends NapoleonAppBase {
 		super.initChildFeature();
 
 		Features.INPUT_QTY_IN_PACK = true;
-		Features.FOLDER_PRESENTATION = true;
-		Features.CAN_CHANGE_PRESENT_FOLDER = true;
-		Features.SHOW_PRESENT_IMG = true;
+		// Features.FOLDER_PRESENTATION = true;
+		// Features.CAN_CHANGE_PRESENT_FOLDER = true;
+		// Features.SHOW_PRESENT_IMG = true;
 		
 		AssortmentMatrixAdapter.PERIOD_IN_MONTH = 2;
 	}

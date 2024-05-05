@@ -6,11 +6,14 @@ import android.view.View;
 import com.grsoft.database.DeliveryHitching;
 import com.grsoft.database.HitchOnSelect;
 import com.grsoft.database.Hitching;
+import com.grsoft.database.LoadOrdersHitching;
 import com.grsoft.database.PriceCostHitching;
 import com.grsoft.database.PriceTypeHitching;
 import com.grsoft.database.RcvNewHitching;
 import com.grsoft.database.StoreHitching;
 import com.grsoft.database.StoreQtyHitching;
+import com.grsoft.dataobjects.Balance;
+import com.grsoft.dataobjects.SpecTask;
 import com.grsoft.network.exception.RuntimeException;
 
 import java.text.SimpleDateFormat;
@@ -33,11 +36,6 @@ public class UpdateDBEx extends UpdateDB{
     }
 
     @Override
-    protected DeliveryHitching getDeliveryHitching() {
-        return new DeliveryHitching("AgentDelivery");
-    }
-
-    @Override
     protected String agentConfigName() {
         return "AgentConfig";
     }
@@ -49,14 +47,22 @@ public class UpdateDBEx extends UpdateDB{
         res.add(new PriceCostHitching());
         res.add(new StoreHitching());
         res.add(new StoreQtyHitching());
-
+        res.add(new RcvNewHitching(SpecTask.class));
 
         CostStrategyEx.resetCache();
         rcvFolders = true;
         return res;
     }
 
-//    @Override
+    @Override
+    protected List<Hitching> getDebetHitching() {
+        List<Hitching> ret =  super.getDebetHitching();
+        ret.add(new RcvNewHitching(Balance.class));
+        ret.add(new LoadOrdersHitching());
+        return ret;
+    }
+
+    //    @Override
 //    protected void postSync(Boolean result) {
 //        super.postSync(result);
 //        if(result & rcvFolders) {

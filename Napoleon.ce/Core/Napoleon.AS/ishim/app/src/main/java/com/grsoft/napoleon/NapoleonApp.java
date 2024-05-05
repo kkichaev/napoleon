@@ -30,6 +30,7 @@ import com.grsoft.database.Hitching;
 import com.grsoft.database.HitchingCtor;
 import com.grsoft.database.PricePhotoHitching;
 import com.grsoft.database.RcvNewHitching;
+import com.grsoft.dataobjects.AgentPlan;
 import com.grsoft.dataobjects.DataObjectInfo;
 import com.grsoft.dataobjects.Folder;
 import com.grsoft.dataobjects.FolderEx;
@@ -57,7 +58,9 @@ import com.grsoft.napoleon.documents.OffTakeInflatorEx;
 import com.grsoft.napoleon.util.CfgNpl;
 import com.grsoft.napoleon.util.ConfigManager;
 import com.grsoft.napoleon.util.debug.Path;
+import com.grsoft.network.RawObject;
 import com.grsoft.network.ServerCommand;
+import com.grsoft.network.exception.RuntimeException;
 import com.grsoft.script.documents.ScriptDoc;
 import com.grsoft.util.FoldersAdapter;
 import com.grsoft.util.MenuHandler;
@@ -96,16 +99,6 @@ public class NapoleonApp extends NapoleonAppBase {
 
 		FoldersAdapter.TreeNodeComparator = new PriceComparer();
 
-		Main.docMenuPrepared.add(new MenuPrepareHitching() {
-
-			@Override
-			public void menuPrepared(List<MenuHandler> menu, final Activity activity) {
-				menu.add(new MenuHandler("Планы", new Runnable() {
-					@Override public void run() { AgentPlan.open(activity); }
-				} ));
-			}
-		} );
-
 		UpdateDB.addHitchingCtor(new HitchingCtor(){
 			@Override
 			public List<Hitching> createList() {
@@ -114,6 +107,7 @@ public class NapoleonApp extends NapoleonAppBase {
 						new RcvNewHitching(PriceSklads.class),
 						new RcvNewHitching(OrgProp.class),
 						new RcvNewHitching(StringCause.class),
+						new RcvNewHitching(AgentPlan.class),
 				};
 				return Arrays.asList(data);
 			}

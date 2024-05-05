@@ -121,6 +121,16 @@
             android:src="@drawable/find"
             style="?footerButton" />
 
+        <TextView
+            android:id="@+id/tvTotalSum"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="right"
+            android:text="@string/sum"
+            style="?footerText"/>
+
+
     </LinearLayout>
 
 </LinearLayout>

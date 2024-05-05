@@ -78,7 +78,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation project(':base')
+    implementation project(':tradebase')
 
     implementation 'androidx.appcompat:appcompat:1.0.0'
 

@@ -1,5 +1,7 @@
 package com.grsoft.database;
 
+import android.content.Context;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -9,11 +11,11 @@ import com.grsoft.dataobjects.DataTraveler;
 import com.grsoft.dataobjects.PresentEx;
 
 public class PrezentHitching extends ReportHitching {
-	public PrezentHitching() {
+	public PrezentHitching(Context context) {
 		super("update_prezent", new ReportParam(),
 				Arrays.asList(
 						new SendPhotoCountHitching(),
-						new UpdatePrezentHitching())
+						new UpdatePrezentHitching(context))
 				);
 	}
 

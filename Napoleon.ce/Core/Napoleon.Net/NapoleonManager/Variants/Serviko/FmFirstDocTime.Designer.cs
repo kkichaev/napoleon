@@ -29,6 +29,7 @@ namespace GRSoft.NapoleonManager
       /// </summary>
       private void InitializeComponent()
       {
+         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FmFirstDocTime));
          this.toolStrip1 = new System.Windows.Forms.ToolStrip();
          this.btnRefresh = new System.Windows.Forms.ToolStripButton();
          this.btnSave = new System.Windows.Forms.ToolStripButton();
@@ -43,8 +44,11 @@ namespace GRSoft.NapoleonManager
          this.clmnFri = new GRSoft.NapoleonManager.TimeColumn();
          this.clmnSat = new GRSoft.NapoleonManager.TimeColumn();
          this.clmnSun = new GRSoft.NapoleonManager.TimeColumn();
+         this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+         this.tsLabel = new System.Windows.Forms.ToolStripStatusLabel();
          this.toolStrip1.SuspendLayout();
          ((System.ComponentModel.ISupportInitialize)(this.dgvItems)).BeginInit();
+         this.statusStrip1.SuspendLayout();
          this.SuspendLayout();
          // 
          // toolStrip1
@@ -170,20 +174,40 @@ namespace GRSoft.NapoleonManager
          this.clmnSun.Name = "clmnSun";
          this.clmnSun.Width = 85;
          // 
+         // statusStrip1
+         // 
+         this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsLabel});
+         this.statusStrip1.Location = new System.Drawing.Point(0, 607);
+         this.statusStrip1.Name = "statusStrip1";
+         this.statusStrip1.Size = new System.Drawing.Size(996, 22);
+         this.statusStrip1.TabIndex = 6;
+         this.statusStrip1.Text = "statusStrip1";
+         // 
+         // tsLabel
+         // 
+         this.tsLabel.Name = "tsLabel";
+         this.tsLabel.Size = new System.Drawing.Size(0, 17);
+         // 
          // FmFirstDocTime
          // 
          this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
          this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
          this.ClientSize = new System.Drawing.Size(996, 629);
+         this.Controls.Add(this.statusStrip1);
          this.Controls.Add(this.dgvItems);
          this.Controls.Add(this.toolStrip1);
+         this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
          this.Margin = new System.Windows.Forms.Padding(2);
          this.Name = "FmFirstDocTime";
          this.Text = "Время первого документа";
          this.toolStrip1.ResumeLayout(false);
          this.toolStrip1.PerformLayout();
          ((System.ComponentModel.ISupportInitialize)(this.dgvItems)).EndInit();
+         this.statusStrip1.ResumeLayout(false);
+         this.statusStrip1.PerformLayout();
          this.ResumeLayout(false);
+         this.PerformLayout();
 
       }
 
@@ -203,5 +227,7 @@ namespace GRSoft.NapoleonManager
       private TimeColumn clmnFri;
       private TimeColumn clmnSat;
       private TimeColumn clmnSun;
+      private System.Windows.Forms.StatusStrip statusStrip1;
+      private System.Windows.Forms.ToolStripStatusLabel tsLabel;
    }
 }

@@ -1,109 +1,8 @@
 import { api } from "boot/axios";
-import { store } from "quasar/wrappers";
 import { useMainStore } from "src/stores/main-store";
-
-export async function registerUser(user) {
-  console.log("registerUser");
-
-  const headers = {
-    "Content-Type": "application/json;charset=UTF-8",
-  };
-
-  const url = "/api/users";
-
-  const response = await api.post(url, user, {
-    headers,
-    withCredentials: true,
-  });
-
-  if (response.message != undefined)
-    throw { message: "RegisterUser Error", code: response.message };
-
-  return response;
-}
-
-export async function sendRegToken(token) {
-  console.log("sendRegToken");
-  const headers = {
-    "Content-Type": "application/json;charset=UTF-8",
-  };
-
-  const url = "/auth/cnf_email/" + token;
-
-  const response = await api.get(url, {
-    headers,
-    withCredentials: true,
-  });
-
-  if (response.status != "200" || response.data == undefined)
-    throw { message: "SendRegToken Error", code: response.status };
-
-  return response;
-}
-
-export async function isAuth() {
-  try {
-    var res = await users();
-
-    if (res) return true;
-  } catch {
-    return false;
-  }
-
-  return false;
-}
-
-export async function users() {
-  const headers = {
-    "Content-Type": "application/json;charset=UTF-8",
-  };
-
-  const url = "/auth/user";
-
-  var response = await api.get(url, {
-    headers,
-    withCredentials: true,
-  });
-
-  if (response.status != "200" || response.data == undefined)
-    throw { message: "User Error", code: response.status };
-
-  const store = useMainStore();
-  store.user = response.data;
-
-  return new Promise((resolve, reject) => {
-    resolve(response.data);
-  });
-}
-
-export async function loginUser(user) {
-  const headers = {
-    "Content-Type": "application/json;charset=UTF-8",
-  };
-
-  const url = "/auth/login";
-
-  const response = await api.post(
-    url,
-    { email: user.email, password: user.password, remember: user.remember },
-    {
-      headers,
-      withCredentials: true,
-    }
-  );
-
-  if (response.status != "200" || response.data == undefined)
-    throw { message: "LoginUser Error", code: response.status };
-
-  const store = useMainStore();
-  store.user = response.data;
-
-  return response;
-}
 
 export function zdig(dig) {
   if (dig < 10) dig = "0" + dig;
-
   return dig;
 }
 
@@ -145,25 +44,6 @@ export async function registerProject(data) {
 
   if (response.status != "200" || response.data == undefined)
     throw { message: "Register Project Tarif Error", code: response.status };
-
-  return response;
-}
-
-export async function logout() {
-  console.log("logout");
-  const headers = {
-    "Content-Type": "application/json;charset=UTF-8",
-  };
-
-  const url = "/auth/logout";
-
-  const response = await api.get(url, {
-    headers,
-    withCredentials: true,
-  });
-
-  const store = useMainStore();
-  store.user = undefined;
 
   return response;
 }
@@ -383,6 +263,115 @@ export async function queryObjects(code, query) {
   return response;
 }
 
+function readObject(data, name) {
+  try {
+    for (var el of data) {
+      if (el.name == name) {
+        return el.data;
+      }
+    }
+  } catch {}
+  return null;
+}
+
+export async function getPayPalClientID() {
+  const headers = {
+    "Content-Type": "application/json;charset=UTF-8",
+  };
+
+  const url = "/api/paypal/client";
+  return api.get(url, {
+    headers: headers,
+    withCredentials: true,
+  });
+}
+
+export async function createPayPalOrder(amount) {
+  const headers = {
+    "Content-Type": "application/json;charset=UTF-8",
+  };
+
+  const data = { amount: amount };
+
+  const url = "/api/paypal/orders";
+  const response = await api.post(url, data, {
+    headers: headers,
+    withCredentials: true,
+  });
+  return response.data;
+}
+
+export async function createYookassaOrder(data) {
+  const headers = {
+    "Content-Type": "application/json;charset=UTF-8",
+  };
+
+  const url = "/api/yookassa/payments";
+  const response = await api.post(url, data, {
+    headers: headers,
+    withCredentials: true,
+    validateStatus: () => true,
+  });
+  return response.data;
+}
+
+export async function commitPayPalOrder(amount, orderid) {
+  const headers = {
+    "Content-Type": "application/json;charset=UTF-8",
+  };
+
+  const clientid = null;
+  const itemid = 1;
+  const data = { amount: amount, itemid: itemid, clientid: clientid };
+
+  const url = "/api/paypal/capture/" + orderid;
+  const response = await api.post(url, data, {
+    headers: headers,
+    withCredentials: true,
+  });
+  return response.data;
+}
+
+// export async function createBill(amount, currency, clientid) {
+//   const headers = {
+//     "Content-Type": "application/json;charset=UTF-8",
+//   };
+
+//   const url = "/api/bills";
+//   const itemId = clientid ? 2 : 1;
+//   var data = {
+//     currency: currency,
+//     items: [{ id: itemId, qty: 1, sum: amount }],
+//   };
+//   if (clientid) {
+//     data["clientid"] = clientid;
+//   }
+//   const response = await api.post(url, data, {
+//     headers: headers,
+//     withCredentials: true,
+//   });
+//   var bill = readObject(response.data, "Bill");
+//   if (bill) {
+//     return new Promise((resolve, reject) => {
+//       resolve(bill[0]);
+//     });
+//   }
+
+//   var msg = response.data;
+//   var answ = readObject(response.data, "ServerAnswer");
+//   if (answ) {
+//     for (var el in answ) {
+//       if (el.response == 0) {
+//         msg = el.message;
+//         break;
+//       }
+//     }
+//   }
+//   return new Promise((resolve, reject) => {
+//     reject(msg);
+//   });
+// }
+
 export async function reqConnects(code) {
   console.log("reqConnects: ", code);
 
@@ -415,17 +404,17 @@ export async function setConnects(code, link, val) {
   const headers = {
     "Content-Type": "application/json;charset=UTF-8",
     Authorization: "Bearer " + code,
-  }
+  };
 
   var url = "/api/req_connect";
-  var response
+  var response;
 
-  if (link){
+  if (link) {
     response = await api.post(url, val, {
       headers,
       withCredentials: true,
     });
-  }else{
+  } else {
     response = await api.delete(url, {
       data: val,
       headers,
@@ -436,5 +425,5 @@ export async function setConnects(code, link, val) {
   if (response.status != "200")
     throw { message: "setConnects", code: response.message };
 
-  return response
+  return response;
 }

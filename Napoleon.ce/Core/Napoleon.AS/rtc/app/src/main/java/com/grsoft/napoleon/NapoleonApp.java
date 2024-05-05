@@ -78,7 +78,6 @@ public class NapoleonApp extends NapoleonAppBase {
 		DbObject.regNewDataType(Price.class, PriceEx.class);
 		DbObject.regNewDataType(Order.class, OrderEx.class);
 		DbObject.regNewDataType(Incass.class, IncassEx.class);
-		CostStrategy.defaultInstance = new CostStrategyEx();
 	}
 
 	@Override

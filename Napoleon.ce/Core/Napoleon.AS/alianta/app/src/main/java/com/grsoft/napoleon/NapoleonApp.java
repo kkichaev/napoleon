@@ -154,9 +154,8 @@ public class NapoleonApp extends NapoleonAppBase {
 
 			@Override
 			public void menuPrepared(List<MenuHandler> menu, final Activity activity) {
-				menu.add(new MenuHandler(activity.getString(R.string.plans), new Runnable() {
-					@Override public void run() { AgentPlanView.open(activity); }
-				}));
+				menu.add(new MenuHandler(activity.getString(R.string.plans), () -> AgentPlanView.open(activity)));
+				menu.add(new MenuHandler(activity.getString(R.string.action_list), () -> WarehousEx.openActions(activity)));
 			}
 		});
 

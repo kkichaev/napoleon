@@ -1,5 +1,5 @@
 export default {
-  appTitle: "Ace team",
+  appTitle: "AceTeam",
 
   login: {
     title: "Login",
@@ -23,7 +23,11 @@ export default {
     registerAction: "Registration",
     autorization: "Authorization",
     projectName: "Project name",
-    emailAlreadyExists: "E-mail has already been registered"
+    emailAlreadyExists: "E-mail has already been registered",
+    regSuccess: "The project and your data have been successfully registered",
+    emailSent:
+      "A letter has been sent to the specified email. You need to confirm your address",
+    thenLogin: "after that you can log in",
   },
   prjreg: {
     title: "Project registration",
@@ -38,37 +42,42 @@ export default {
     offer: "a public offer",
   },
   field_is_required: "Please fill in the field!",
+  enter_email: "Enter email addres, please",
 
   countries: {
-     AZE: "Azerbaijan",
-     ARM: "Armenia",
-     BLR: "Belarus",
-     BGR: "Bulgaria",
-     GEO: "Georgia",
-     ISR: "Israel",
-     IND: "India",
-     KAZ: "Kazakhstan",
-     KGZ: "Kyrgyzstan",
-     MDA: "Moldova",
-     MNG: "Mongolia",
-     ARE: "UAE",
-     KOR: "Republic_Korea",
-     ENG: "Russia",
-     ROU: "Romania",
-     SRB: "Serbia",
-     TJK: "Tajikistan",
-     TKM: "Turkmenistan",
-     TUR: "Türkiye",
-     UZB: "Uzbekistan",
-     UKR: "Ukraine",
+    AZE: "Azerbaijan",
+    ARM: "Armenia",
+    BLR: "Belarus",
+    BGR: "Bulgaria",
+    GEO: "Georgia",
+    ISR: "Israel",
+    IND: "India",
+    KAZ: "Kazakhstan",
+    KGZ: "Kyrgyzstan",
+    MDA: "Moldova",
+    MNG: "Mongolia",
+    ARE: "UAE",
+    KOR: "Republic_Korea",
+    ENG: "Russia",
+    ROU: "Romania",
+    SRB: "Serbia",
+    TJK: "Tajikistan",
+    TKM: "Turkmenistan",
+    TUR: "Türkiye",
+    UZB: "Uzbekistan",
+    UKR: "Ukraine",
   },
   restore: {
     title: "Forgot password?",
     instruction: "Recovery instructions have been sent to your e-mail",
     restore: "Recovery password",
     autorization: "Authorization",
+    emailSent:
+      "A letter with recovery instructions was sent to the specified e-mail address. Check your email.",
+    cantAuth: "Can't authenticate user",
+    changePassword: "Change password",
   },
-  menuLabel:{
+  menuLabel: {
     profil: "Profile",
     projects: "Projects",
     balance: "Balance",
@@ -76,12 +85,15 @@ export default {
     exit: "Exit",
     organization: "Divisions control",
     administration: "Admin",
-    users:"Users control",
-    structure:"Divisions control",
+    users: "Users control",
+    structure: "Divisions control",
     command: "Staff control",
     matrix: "Matrix editor",
     script: "Script editor",
+    question: "Question editor",
+    usersmanagement: "Users Management",
     manager: "Manager",
+    manager_main: "Main",
   },
   profile: {
     title: "General Information",
@@ -94,13 +106,17 @@ export default {
     name: "Name",
     surname: "Last name",
     changePassword: "Change password",
-    save: "Save Changes"
+    save: "Save Changes",
   },
   balance: {
     title: "Balance",
-    remnants: "Available balance - ",
+    remnants: "Available balance",
     project: "Project:",
-    details: "Detailing",
+    details: "Balance detail",
+    sum: "Amount",
+    credit: "Credit your account",
+    invalid_number: "Input number",
+    input_greater: "Minimum",
     table_headers: {
       data: "Date",
       count_of_users: "Number of users",
@@ -108,29 +124,29 @@ export default {
       tarif: "Tariff",
       outcoming: "Spend",
       incoming: "Incom",
-      sum: "Balance"
+      sum: "Balance",
     },
     expense_for_range: "Spending per period: ",
     incoming_for_range: "Income for the period: ",
     code: "Code: ",
-    selectDate: "Select Date"
+    selectDate: "Select Date",
   },
-  project:{
+  project: {
     title: "Projects list",
     name: "Project: ",
     code: "Project Code: ",
     rename: "Rename project",
-    newNamePrompt : 'Input new name'
+    newNamePrompt: "Input new name",
   },
-  tarif:{
+  tarif: {
     current: "Current tariff",
     currentName: "Tariff name:",
     cost: "Tariff price:",
     offer: "Public offer agreement:",
     link: "link",
-    details: 'Details'
+    details: "Details",
   },
-  division:{
+  division: {
     title: "Edit divisions",
     add_department: "Add division",
     add_department_prompt: "Input division's name",
@@ -141,7 +157,7 @@ export default {
     delete: "Delete",
     delete_prompt: "Do you really want to delete it?",
   },
-  users:{
+  users: {
     title: "Users control",
     select_division: "Select division",
     select_project: "Select project",
@@ -154,24 +170,24 @@ export default {
       access: "Last access",
       status: "Status",
     },
-    edit_division_dlg : {
+    edit_division_dlg: {
       title: "Division",
       prompt: "Select division from list",
     },
-    user_types : {
+    user_types: {
       agents: "Agents",
-      managers : "Managers"
+      managers: "Managers",
     },
     status_connected: "Connected to server",
     status_code: "Code",
-    disconnect_uers_promt: "Do you really want to disconnect user?"
+    disconnect_uers_promt: "Do you really want to disconnect user?",
   },
   dialog: {
     ok: "OK",
     cancel: "Cancel",
     alert: "Alert",
   },
-  matrix:{
+  matrix: {
     title: "Matrix editor",
     add_matrix: "Add matrix",
     edit_matrix: "Rename matrix",
@@ -185,17 +201,52 @@ export default {
   goods: "Goods",
   scripts: "Scripts",
   documents: "Documets",
-  script:{
+  questions: "Questions",
+  script: {
     title: "Script editor",
     add_script: "Add script",
     add_script_prompt: "Input script name",
+    edit_script_item: "Edit script item name",
+    edit_script_item_prompt: "Input script item name",
+    edit_script: "Edit script name",
+    edit_script_prompt: "Input script name",
   },
-  documents_label:{
+  documents_label: {
     question: "Question",
     incass: "Incass",
     remnant: "Remnanats",
     visit: "Visist",
     order: "Order",
-  }
-
+  },
+  question: {
+    title: "Question editor",
+    quest_params: "Question parameters",
+    quest_type: "Quest type",
+    name_for_agent: "Name for agent",
+    name_for_report: "Name for report",
+    necessary_quest: "Necessart question",
+    text_prompt: "Text value of user input",
+    question_edit: "Question editor",
+    text_type_description: "String type",
+    number_type_description: "Number type",
+    image_type_description: "Make photo",
+    types: {
+      string: "Text",
+      number: "Number",
+      list: "List",
+      set: "Set",
+      boolean: "Boolean",
+      catalog: "Catalog",
+      image: "Photo",
+    },
+    add_question: "Add Question",
+    edit_question: "Rename Question",
+    add_question_prompt: "Input question name",
+  },
+  management: {
+    title: "Management",
+  },
+  manager: {
+    title: "Main",
+  },
 };

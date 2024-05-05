@@ -10,6 +10,7 @@ import com.grsoft.database.DbWriter;
 import com.grsoft.dataobjects.DataObjectInfo;
 import com.grsoft.dataobjects.impl.ConfigImpl;
 import com.grsoft.dataobjects.impl.DbObject;
+import com.grsoft.dataobjects.impl.OrgImpl;
 import com.grsoft.napoleon.Features;
 import com.grsoft.napoleon.documents.DocTypeBase;
 import com.grsoft.script.dataobjects.ScriptDef;
@@ -66,8 +67,12 @@ public class ScriptDefImpl extends DbObject<ScriptDef> {
 		ScriptDef sd = new ScriptDef();
 		String table = DataObjectInfo.getInstance().getTableName(ScriptDef.class);
 		DbWriter.checkDBTable(ScriptDef.class);
-		
-		boolean ret = r.select(sd, table, "");
+
+		OrgImpl oi = new OrgImpl();
+		oi.read("id", orgId);
+		boolean isPotencial = oi.getData().isPotencial();
+		String filter = isPotencial ? "((flags & 3) = 1 or (flags & 3) = 2)" : "((flags & 3) = 0 or (flags &3) = 2)";
+		boolean ret = r.select(sd, table, filter);
 		
 		while( ret ) {
 			scripts.add(sd);

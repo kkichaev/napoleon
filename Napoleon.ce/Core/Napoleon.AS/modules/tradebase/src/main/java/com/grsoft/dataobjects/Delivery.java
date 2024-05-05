@@ -46,6 +46,10 @@ public class Delivery extends DocDataObject
 		return result;
 	}
 
+	public boolean isOverdue() {
+		return sumD > 0 && (new Date()).compareTo(payDate) > 0;
+	}
+
 	public Map<Integer, Integer> makeTaxEntries() {
 		Map<Integer, Integer> nds = new HashMap<Integer, Integer>();
 		PriceImpl priceImpl = new PriceImpl();

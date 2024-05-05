@@ -2,13 +2,17 @@ package com.grsoft.napoleon;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import com.grsoft.database.DbReader;
 import com.grsoft.database.DbWriter;
 import com.grsoft.database.FolderTreeNode;
 import com.grsoft.database.PriceTreeNode;
 import com.grsoft.database.TreeNode;
+import com.grsoft.dataobjects.Action;
+import com.grsoft.dataobjects.ActionItem;
 import com.grsoft.dataobjects.Matrix;
 import com.grsoft.dataobjects.Price;
 import com.grsoft.dataobjects.PriceEx;
@@ -25,10 +29,12 @@ import com.grsoft.util.FoldersAdapter;
 import com.grsoft.util.MatrixAdapter;
 import com.grsoft.util.PriceTextFilter;
 import com.grsoft.util.TreeNodeCmp;
+import com.grsoft.util.Util;
 import com.grsoft.util.WarehouseManager;
 import com.grsoft.util.ZeroPositionFilter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.view.ContextMenu;
@@ -44,10 +50,19 @@ import android.widget.TextView;
 public class WarehousEx extends Warehouse {
 	static boolean useMatrix = false;
 	static long lastOrder = ExtrasConst.INVALID_ROWID;
-	static final String ACTION_MATRIX = "<Акции>"; 
-	private String LAST_DOC_TYPE = "last_doc_type"; 
+	static final String ACTION_MATRIX = "<Акции>";
+	static final String ACTION_VIEW = "actionview";
+	private String LAST_DOC_TYPE = "last_doc_type";
+
+	boolean showActions = false;
 
 	PriceImpl pi = new PriceImpl();
+
+	public static void openActions(Context context) {
+		Intent i = new Intent(context, WarehousEx.class);
+		i.putExtra(ACTION_VIEW, true);
+		context.startActivity(i);
+	}
 
 //	HashSet<String> actionItems = new HashSet<String>();
 
@@ -55,7 +70,17 @@ public class WarehousEx extends Warehouse {
 	@Override protected int getLayoutId() { return R.layout.warehouseex; }
 
 	@Override
+	public void editItem(long rowid) {
+		if(showActions) {
+			PriceCountOrder.openAction(this, rowid);
+		} else
+			super.editItem(rowid);
+	}
+
+	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		showActions = getIntent().getBooleanExtra(ACTION_VIEW, false);
+
 		super.onCreate(savedInstanceState);
 
 		findViewById(R.id.ibNextPrice).setOnClickListener(new View.OnClickListener() {
@@ -158,6 +183,14 @@ public class WarehousEx extends Warehouse {
 		String lastDocType = getPreferences(Context.MODE_PRIVATE).getString(LAST_DOC_TYPE, "");
 		String curDocName = DocType.getCurDoc().getName();
 		ZeroCostFilter zcf = null;
+
+		if(showActions) {
+			FoldersAdapter ret = (FoldersAdapter) super.createListAdapter();
+			ret.putFilter(new ActionFilter());
+
+			FoldersAdapter.resetCache();
+			return ret;
+		}
 		
 		if(!curDocName.equals(lastDocType)){
 			Editor ed = getPreferences(Context.MODE_PRIVATE).edit();
@@ -210,8 +243,12 @@ public class WarehousEx extends Warehouse {
 
 		ImageView iv = (ImageView)view.findViewById(R.id.iAction);
 		if( iv != null ) {
-			List<ActionHelper.ActionData> actions = document == null ? null : ActionHelper.getActions(document.getId(), document.getDate(), p.id);
-			iv.setImageResource( (actions != null && actions.size() > 0) ? R.drawable.action : R.drawable.empty );
+			if(showActions)
+				iv.setImageResource(R.drawable.action);
+			else {
+				List<ActionHelper.ActionData> actions = document == null ? null : ActionHelper.getActions(document.getId(), document.getDate(), p.id);
+				iv.setImageResource((actions != null && actions.size() > 0) ? R.drawable.action : R.drawable.empty);
+			}
 		}
 
 		int vsbl = ((PriceEx)p).horeca > 0 ? View.VISIBLE : View.GONE;
@@ -242,48 +279,66 @@ public class WarehousEx extends Warehouse {
 			srchFieldName = svf;
 		}
 	}
-}
 
-class ZeroQtyFilter extends Filter {
-	public ZeroQtyFilter() {
-		super(ZeroPositionFilter.NAME);
-		where = "id in (select distinct id from whqty where qty > 0)"; 
-	}
-}
+	static class ActionAdapter extends FoldersAdapter {
 
-class ZeroCostFilter extends Filter {
-	OrderImpl doc;
-	PriceImpl pi;
-	public ZeroCostFilter(OrderImpl doc, PriceImpl pi) {
-		super("CostFilter");
-		this.doc = doc;
-		this.pi = pi;
-	}
+		List<String> items;
 
-	@Override
-	public boolean inset(long priceRowID, String id) {
-		pi.getData().id = id;
-		if(pi.read()) {
-			int cost = CostStrategy.defaultInstance.getItemCost(pi.getData(), doc);
-			return cost != 0;
+		public ActionAdapter(WarehouseManager warehouse, String orgId, Date date) {
+			super(warehouse);
+
+			FoldersAdapter.resetCache();
+			items = ActionHelper.getActionItems(orgId, date);
 		}
-		return false;
+
+		@Override
+		public boolean inset(long rowid, String id, int folder) {
+			return items.contains(id);
+		}
+	}
+
+	static class ZeroCostFilter extends Filter {
+		OrderImpl doc;
+		PriceImpl pi;
+		public ZeroCostFilter(OrderImpl doc, PriceImpl pi) {
+			super("CostFilter");
+			this.doc = doc;
+			this.pi = pi;
+		}
+
+		@Override
+		public boolean inset(long priceRowID, String id) {
+			pi.getData().id = id;
+			if(pi.read()) {
+				int cost = (int)CostStrategy.defaultInstance.getItemCost(pi.getData(), doc);
+				return cost != 0;
+			}
+			return false;
+		}
+	}
+
+	static class ZeroQtyFilter extends Filter {
+		public ZeroQtyFilter() {
+			super(ZeroPositionFilter.NAME);
+			where = "id in (select distinct id from whqty where qty > 0)";
+		}
+	}
+
+	static class ActionFilter extends Filter {
+		public static final String NAME = "ActionFilter";
+		Set<String> ids = new HashSet<>();
+
+		public ActionFilter() {
+			super(NAME);
+
+			ActionHelper.loadAll(Util.getDate());
+			ids = ActionHelper.items();
+		}
+
+		@Override
+		public boolean inset(long priceRowID, String id) {
+			return ids.contains(id);
+		}
 	}
 }
 
-class ActionAdapter extends FoldersAdapter {
-
-	List<String> items;
-	
-	public ActionAdapter(WarehouseManager warehouse, String orgId, Date date) {
-		super(warehouse);
-		
-		FoldersAdapter.resetCache();
-		items = ActionHelper.getActionItems(orgId, date);
-	}
-	
-	@Override
-	public boolean inset(long rowid, String id, int folder) {
-		return items.contains(id);
-	}
-}

@@ -83,6 +83,24 @@ namespace GRSoft.NapoleonAdmin
          get { return GetConfigValue("MinimizeInterface", false); }
          set { ChangeConfigValue("MinimizeInterface", value); }
       }
+
+      public string RightText
+      {
+         get
+         {
+            string ret = "";
+            if(manager != null)
+            {
+               if (manager.HaveRight(MainFormEx.writeScript, RightActions.Write))
+                  ret += "Ñ";
+               if (manager.HaveRight(MainFormEx.writeQuest, RightActions.Write))
+                  ret += "À";
+               if (manager.HaveRight(MainFormEx.writeAgentSched, RightActions.Write))
+                  ret += "Ð";
+            }
+            return ret;
+         }
+      }
    }
 
    public class NewVersionAction : Network.DataObject

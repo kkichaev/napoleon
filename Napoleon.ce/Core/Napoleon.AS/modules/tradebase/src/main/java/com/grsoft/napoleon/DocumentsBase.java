@@ -29,6 +29,8 @@ import com.grsoft.napoleon.documents.VisitDoc;
 import com.grsoft.napoleon.util.CfgNplW;
 import com.grsoft.napoleon.util.ConfigManager;
 import com.grsoft.napoleon.util.OrgInfoClickListener;
+import com.grsoft.script.dataobjects.ScriptDef;
+import com.grsoft.script.dataobjects.impl.ScriptDefImpl;
 import com.grsoft.script.documents.ScriptDoc;
 import com.grsoft.util.Consts;
 import com.grsoft.util.DialogOwner;
@@ -169,9 +171,14 @@ public class DocumentsBase extends RegDurationActivity implements Selector, Dial
 	protected void onlyVisitInit() {
 		if( DocType.getCurDoc() != VisitDoc.instance() )
 			prevDocType  = (DocType) DocType.getCurDoc();
-		
-		DocType.setCurDoc(VisitDoc.instance());
-		btnDocFilter.setOnClickListener(null);
+
+		if(ScriptDefImpl.canScripting() && ScriptDefImpl.getAvailableScripts(org.getData().id).size() > 0) {
+			DocType.setCurDoc(ScriptDoc.instance());
+			btnDocFilter.setOnClickListener(new DocFilterOnClickListener(this, true, true));
+		} else {
+			DocType.setCurDoc(VisitDoc.instance());
+			btnDocFilter.setOnClickListener(null);
+		}
 	}
 	
 	@Override
@@ -269,7 +276,7 @@ public class DocumentsBase extends RegDurationActivity implements Selector, Dial
 	protected boolean isOrgBlocked(Org o, DocType dt) {
 		return (dt == SalesDoc.instance() || dt == OrderDoc.instance() || dt == ScriptDoc.instance()) && org.getData().isStopList();
 	}
-	
+
 	protected void init(Bundle b) {
 		String orgId = "";
 		
@@ -406,8 +413,10 @@ public class DocumentsBase extends RegDurationActivity implements Selector, Dial
 	@Override
 	public void selectedType(DocType newDocType) {
 		DocType curDoc = (DocType) DocType.getCurDoc();
-		if( newDocType != null && (curDoc == null  || newDocType.equals(curDoc) == false) )
+		if( newDocType != null && (curDoc == null  || newDocType.equals(curDoc) == false) ) {
 			adjustViewForDocType((DocType) newDocType);
+			DocType.setCurDoc(newDocType);
+		}
 	}
 	
 	protected boolean canCreateDoc(DocType docType) {

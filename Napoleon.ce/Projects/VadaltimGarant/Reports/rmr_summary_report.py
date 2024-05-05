@@ -65,8 +65,10 @@ class DivItem(Item):
       self.incVals(a)
       
     sz = len(self.childs) + len(self.agents)
-    self.order_progress /= sz
-    self.progress /= sz
+
+    if sz != 0:
+      self.order_progress /= sz
+      self.progress /= sz
   
   def incVals(self, v):
     self.visit += v.visit
@@ -112,10 +114,7 @@ def loadData(params, server):
   for v in map.values():
     d = (params.finish - params.start).days
     
-    if d == 0:
-      item.progress = 0
-      item.order_progress = 0
-    else:  
+    if d > 0:
       item.progress /= d
       item.order_progress /= d
       

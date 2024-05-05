@@ -85,14 +85,14 @@ public class Setting extends TabActivity{
 			openTag = b.getString(ACTIVE_TAB);
 		
 		setContentView(R.layout.setting);
-//		ConfigImpl ci = new ConfigImpl();
-//		ci.getData().key = ADMPWD;
-//		if( ci.read() )
-//			adminPassword = ci.getData().value;
-//		ci.close();
-//		if( adminPassword.length() != 0 )
-//			showDialog(PASSWORD_DLG_ID);
-//		else
+		ConfigImpl ci = new ConfigImpl();
+		ci.getData().key = ADMPWD;
+		if( ci.read() )
+			adminPassword = ci.getData().value;
+		ci.close();
+		if( adminPassword.length() != 0 )
+			showDialog(PASSWORD_DLG_ID);
+		else
 			updatesTabs(true);
 	}
 	

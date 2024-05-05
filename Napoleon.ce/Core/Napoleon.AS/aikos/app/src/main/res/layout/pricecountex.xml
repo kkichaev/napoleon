@@ -10,9 +10,9 @@
 
     <LinearLayout
         android:id="@+id/linearLayout1"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/blue" >
+         >
 
         <TextView
             android:id="@+id/tvPriceName"
@@ -29,16 +29,24 @@
             android:textSize="@dimen/label_text_sz"/>
 
         <ImageView
+            android:padding="4dp"
+            android:scaleType="fitCenter"
             android:id="@+id/ivPresent"
             android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_marginBottom="2dp"
+            android:layout_height="wrap_content"
+            android:maxWidth="88dp"
+            android:maxHeight="88dp"
             android:background="@color/white"
-            android:paddingTop="4dp"
-            android:paddingRight="5dp"
+            android:adjustViewBounds="true"
             android:src="@drawable/image"
             tools:ignore="ContentDescription" />
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/blue"
+        />
 
     <LinearLayout
         android:id="@+id/trRest"

@@ -110,9 +110,9 @@ def loadData(params, server) -> PlanData:
     adata[ai.id].add(ai.userid)
 
   stmt = '''
-select p.fid, sum(d.sum) as [sum], oid from
-(select di.id, [sum], d.id as oid from Delivery d, Delivery$items di
-where d.id = di.delivery$id and d.number = di.delivery$number
+select p.fid, sum([sum]) [sum], oid from
+(select di.id, sumWOTax [sum], d.id as oid from Delivery d, Delivery$items di
+where d.uid = di.Delivery$uid 
 and d.date >= ToDate('{}') and d.date <= ToDate('{}')) d, 
 Price p where p.id = d.id group by oid, p.fid''' . format (
   start.strftime("%d/%m/%Y")

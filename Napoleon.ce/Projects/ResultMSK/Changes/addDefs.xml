@@ -1,6 +1,15 @@
 <?xml version="1.0" ?>
 <serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
   <objects>
+    <object name="SpecTask">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+      <member name="primaryKey">"id"</member>
+      <field name="id" type="string" />
+      <field name="name" type="string" />
+    </object>
+    
     <object name="PriceCost">
       <sources>
         <source name="SQTable" type="internal">
@@ -118,6 +127,8 @@
       <field name="id" type="string" />
       <field name="idItem" type="string" />
       <field name="qty" type="number" prec="2" />
+      <field name="date" type="date" />
+      <field name="arrival" type="number" prec="3" />
     </object>
 
 
@@ -160,6 +171,18 @@
         <member name="primaryKey">"id"</member>
 
         <field name="prcType" type="string" />
+        <field name="delay" type="number" />
+      </add>
+    </modify>
+    
+    <modify src="Org$contacts">
+      <change>
+        <sources>
+          <source name="SQTable" type="internal" />
+        </sources>
+      </change>
+      <add>
+        <field name="email" type="string" />
       </add>
     </modify>
 
@@ -169,6 +192,9 @@
           <source name="SQTable" type="internal" />
         </sources>
       </change>
+      <add>
+        <field name="flags" type="number" />
+      </add>
     </modify>
 
     <modify src="ReportRequest" >
@@ -178,7 +204,31 @@
         </sources>
       </change>
       <add>
+        <member name="primaryKey">"id,userid"</member>
         <field name="userid" type="string" execOn="Put">$user.id</field>
+        <field name="cmpStart" type="datetime" />
+        <field name="cmpEnd" type="datetime" />
+        <field name="price" type="collection">
+          <data>
+            <object name="Item">
+              <sources>
+                <source name="SQTable" type="internal" />
+              </sources>
+              <field name="id" type="string" />
+              <field name="folder" type="number" />
+            </object>
+          </data>
+        </field>
+        <field name="specTasks" type="collection">
+          <data>
+            <object name="Item">
+              <sources>
+                <source name="SQTable" type="internal" />
+              </sources>
+              <field name="id" type="string" />
+            </object>
+          </data>
+        </field>
       </add>
     </modify>
 
@@ -199,6 +249,27 @@
         <field name="value" type="string" width="4000" />
       </change>
     </modify>
+    
+
+    <modify src="Order" dest="LoadedOrders" table="LoadedOrders">
+      <chanage>
+        <sources>
+          <source name="SQTable" type="internal">
+            <param name="readFilter">AgentDataFilter("id","Org",$01) + " and date &gt;= $02"</param>
+            <param name="$01">$user.id</param>
+            <param name="$02">ToDate(FormatDate(AdjustDate(Now(), -10, "day"),"DD.MM.YYYY"))</param>
+          </source>
+        </sources>
+      </chanage>
+      <add>
+        <member name="primaryKey">"id,created"</member>
+        <field name="created" type="timestamp" />
+        <field name="orderNumber" type="string" />
+      </add>
+      <remove>
+        <field name="userid" />
+      </remove>
+    </modify>
 
     <modify src="Price">
       <change>
@@ -213,6 +284,8 @@
         <field name="fid" type="string"/>
         <member name="primaryKey">"id"</member>
         <field name="costRRC" type="number" prec="2" />
+        <field name="quant" type="number" />
+        <field name="task" type="string" />
       </add>
     </modify>
 
@@ -256,8 +329,8 @@
       <change>
         <sources>
           <source name="SQLQuery">
-            <param name="stmt">"select * from Price where id in (select id from AgentData where [type]='Price' and userid='$01')"</param>
-            <param name="$01">$user.id</param>
+            <!-- <param name="stmt">"select * from Price where id in (select id from AgentData where [type]='Price' and userid='$01')"</param> -->
+            <param name="stmt">"select * from Price where " + AgentDataFilter("id","Price",$user.id)</param>
           </source>
         </sources>
         <field name="fid" type="string" />
@@ -269,7 +342,7 @@
         <sources>
           <source name="SQTable" type="internal">
             <param name="readFilter">"date &gt;= $01 and id in (select id from AgentData where [type]='Org' and userid='$02')"</param>
-            <param name="$01">ToDate(FormatDate(AdjustDate(Now(), -1, "month"),"DD.MM.YYYY"))</param>
+            <param name="$01">ToDate(FormatDate(AdjustDate(Now(), -12, "month"),"DD.MM.YYYY"))</param>
             <param name="$02">$user.id</param>
           </source>
         </sources>
@@ -404,22 +477,11 @@
         </sources>
       </change>
       <add>
-        <field name="deliveryType" type="string" />
-        <!--<field name="card" type="string" />-->
-        <field name="cards" type="collection">
-          <data>
-            <object name="Item">
-              <sources>
-                <source name="SQTable" type="internal" />
-              </sources>
-              <field name="number" type="string" />
-            </object>
-          </data>
-        </field>
-
         <event type="put">
           <action name="WriteToLog">$object.type;$object.created</action>
         </event>
+        <field name="whCode" type="string"  />
+        <field name="whIndex" type="number" width="10" />
       </add>
     </modify>
 
@@ -429,11 +491,6 @@
           <source name="SQTable" type="internal" />
         </sources>
       </change>
-      <add>
-        <field name="card" type="string" />
-        <field name="discount" type="number" prec="2" />
-        <field name="costWOD" type="number" prec="2" />
-      </add>
     </modify>
 
     <modify src="Incass">

@@ -8,9 +8,6 @@ import android.text.Html;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
@@ -19,7 +16,6 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.play.core.appupdate.AppUpdateInfo;
@@ -28,16 +24,14 @@ import com.google.android.play.core.appupdate.AppUpdateManagerFactory;
 import com.google.android.play.core.install.model.AppUpdateType;
 import com.google.android.play.core.install.model.UpdateAvailability;
 import com.google.android.play.core.tasks.Task;
+import com.novotek.dataobjects.CommonData;
 import com.novotek.dataobjects.LoginResult;
-import com.novotek.dataobjects.Partner;
-import com.novotek.dataobjects.ws.ErrResult;
+import com.novotek.dataobjects.ws.ReqCodeResult;
 import com.novotek.sales.login_views.AckCode;
 import com.novotek.sales.login_views.CheckCode;
 import com.novotek.sales.login_views.Model;
-import com.novotek.sales.login_views.LoadData;
 import com.novotek.utils.Updater;
 
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -49,6 +43,7 @@ public class Login extends AppCompatActivity {
 
     Model model;
 
+    String token = "";
     Fragment curFragment;
 
     public static LoginResult loginResult = new LoginResult();
@@ -70,63 +65,38 @@ public class Login extends AppCompatActivity {
         });
 
         model.getRequestError().observe(this, err -> {
-//            if(err.error.equals(ErrResult.OLD_VERSION)) {
-//                updateVersion();
-//            } else {
-                runOnUiThread(() -> {
-                    loadFragment(new AckCode());
-                    Toast.makeText(Login.this, err.error, Toast.LENGTH_LONG).show();
-                });
-//            }
+            runOnUiThread(() -> {
+                loadFragment(new AckCode());
+                MessagePopup.show(getApplicationContext(), err.message, findViewById(R.id.frmChild), null);
+//                Toast.makeText(Login.this, err.error, Toast.LENGTH_LONG).show();
+            });
         });
 
         model.getRequestResult().observe(this, result -> {
             if(result != null && result.error != 0) {
-                View v = LayoutInflater.from(this).inflate(R.layout.login_error, null);
-                PopupWindow pw = new PopupWindow(v, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, true);
-                Pattern phoneP = Pattern.compile("<phone>(.+)</phone>");
-                Matcher m = phoneP.matcher(result.message);
-
-                final String phone = m.find() ? m.group(0) : "";
-
-                String text = result.message.replace("phone>", "u>");
-                TextView tv = (TextView)v.findViewById(R.id.text);
-                tv.setText(Html.fromHtml(text));
-
-                tv.setOnClickListener(view -> {
-                    pw.dismiss();
-                    if(phone.length() > 0) {
-                        model.updateLastConnect(this, 0);
-                        startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + Model.toPhoneNumber(phone))));
-                        setResult(RESULT_CANCELED, new Intent());
-                        finish();
-                    }
-                });
-
-                pw.showAtLocation(findViewById(R.id.frmChild), Gravity.CENTER, 0, 0);
-                findViewById(R.id.wait).setVisibility(View.VISIBLE);
-
-                pw.setOnDismissListener(new PopupWindow.OnDismissListener() {
-                    @Override
-                    public void onDismiss() {
-                        findViewById(R.id.wait).setVisibility(View.GONE);
-                    }
-                });
-
-//                Toast.makeText(Login.this, result.message, Toast.LENGTH_LONG).show();
+                showError(result);
             } else {
-                if(!(curFragment instanceof CheckCode)) {
-                    loadFragment(new CheckCode());
+                token = result.token;
+                if(result.token.length() > 0 && result.code.length() == 0) {
+                    finishLogin();
+//                    CommonData.putSession(getApplicationContext(), token);
+//                    loadFragment(new LoadData());
+                } else {
+                    if (!(curFragment instanceof CheckCode)) {
+                        loadFragment(new CheckCode());
+                    }
                 }
             }
         });
 
-        model.getDataLoaded().observe(this, result -> {
-            if(result) {
-                setResult(RESULT_OK, new Intent());
-                finish();
-            }
-        });
+//        model.getDataLoaded().observe(this, result -> {
+//            if(result) {
+//                CommonData.putSession(getApplicationContext(), token);
+//                Intent prm = new Intent();
+//                setResult(RESULT_OK, prm);
+//                finish();
+//            }
+//        });
 
 //        requestWindowFeature(Window.FEATURE_NO_TITLE);
 //        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -135,18 +105,71 @@ public class Login extends AppCompatActivity {
 
         if(Model.TESTING) {
 //            loadFragment(new CheckCode());
-            loadFragment(new LoadData());
+//            loadFragment(new LoadData());
         } else {
             if(model.getWaitInterval() > 0)
                 loadFragment(new CheckCode());
-            else
+            else {
                 loadFragment(new AckCode());
+                model.ackCode(this);
+            }
         }
 
         getSupportFragmentManager().setFragmentResultListener(CheckCode.RESULT_CODE, this, (reqCode, bundle) -> {
-            loadFragment(new LoadData());
+            finishLogin();
+//            loadFragment(new LoadData());
         });
 //        updateVersion();
+    }
+
+    private void finishLogin() {
+        CommonData.putSession(getApplicationContext(), token);
+        Intent prm = new Intent();
+        setResult(RESULT_OK, prm);
+        finish();
+    }
+
+    private void showError(ReqCodeResult result) {
+        MessagePopup.show(getApplicationContext(), result.message, findViewById(R.id.frmChild), (phone, clicked) -> {
+            if(clicked) {
+                model.updateLastConnect(this, 0);
+                startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + Model.toPhoneNumber(phone))));
+                setResult(RESULT_CANCELED, new Intent());
+                finish();
+            }
+            findViewById(R.id.wait).setVisibility(View.GONE);
+        });
+        findViewById(R.id.wait).setVisibility(View.VISIBLE);
+//        View v = LayoutInflater.from(this).inflate(R.layout.login_error, null);
+//        PopupWindow pw = new PopupWindow(v, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, true);
+//        Pattern phoneP = Pattern.compile("<phone>(.+)</phone>");
+//        Matcher m = phoneP.matcher(result.message);
+//
+//        final String phone = m.find() ? m.group(0) : "";
+//
+//        String text = result.message.replace("phone>", "u>");
+//        TextView tv = (TextView)v.findViewById(R.id.text);
+//        tv.setText(Html.fromHtml(text));
+//
+//        tv.setOnClickListener(view -> {
+//            pw.dismiss();
+//            if(phone.length() > 0) {
+//                model.updateLastConnect(this, 0);
+//                startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + Model.toPhoneNumber(phone))));
+//                setResult(RESULT_CANCELED, new Intent());
+//                finish();
+//            }
+//        });
+//
+//        pw.showAtLocation(findViewById(R.id.frmChild), Gravity.CENTER, 0, 0);
+//        findViewById(R.id.wait).setVisibility(View.VISIBLE);
+//
+//        pw.setOnDismissListener(new PopupWindow.OnDismissListener() {
+//            @Override
+//            public void onDismiss() {
+//                findViewById(R.id.wait).setVisibility(View.GONE);
+//            }
+//        });
     }
 
     void loadFragment(Fragment cf) {

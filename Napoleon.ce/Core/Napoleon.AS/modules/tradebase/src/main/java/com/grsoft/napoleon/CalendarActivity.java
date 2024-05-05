@@ -7,6 +7,7 @@ import com.grsoft.util.ExtrasConst;
 import com.grsoft.util.view.CalendarView;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -15,6 +16,15 @@ public class CalendarActivity extends Activity implements CalendarView.OnCalenda
 	public static final String MARK_DATE = "MarkDate";
 	
 	CalendarView.DateMarker dateMarker;
+
+	static CalendarView.CalendarHandler handler;
+
+	public static Intent open(Context context, Date date, CalendarView.CalendarHandler handler) {
+		CalendarActivity.handler = handler;
+		Intent i = new Intent(context, CalendarActivity.class);
+		i.putExtra(ExtrasConst.DATE_TAG, date.getTime());
+		return i;
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +43,11 @@ public class CalendarActivity extends Activity implements CalendarView.OnCalenda
 		ct = b == null? -1 : b.getLong(MARK_DATE, -1);
 		if(ct != -1 ) {
 			cv.setMarkDate(new Date(ct));
+		}
+
+		if(handler != null) {
+			setDateHandler(handler);
+			handler = null;
 		}
 	}
 	

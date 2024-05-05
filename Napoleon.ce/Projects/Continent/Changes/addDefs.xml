@@ -124,6 +124,7 @@
             </sources>
 
             <field name="id" width="40" type="string" data="ID_I"/>
+            <field name="finDate" type="date" />
             <field name="qty" type="number" prec="3" />
             <field name="flags" type="number" width="9" prec="0" data="" />
             <field name="pack" type="number" width="1" execOn="Put">DecodeFlag($object.flags, 1, "", "1")</field>
@@ -289,6 +290,9 @@
 
     <modify src="Order">
       <add>
+        <field name="vanSell" type="number" width="1" />
+        <field name="vanPrn" type="number" width="1" />
+        <field name="desTime" type="number" width="2" />
         <field name="cashToDriver" type="number" width="1" data="CASHDRV" />
         <field name="shipping" type="string" width="55" />
         <field name="firma" type="string" width="30" execOn="Put">ConfigReader("Организация",$object.supplyer)</field>

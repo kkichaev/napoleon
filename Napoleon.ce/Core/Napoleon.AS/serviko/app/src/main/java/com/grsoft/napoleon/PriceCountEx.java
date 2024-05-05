@@ -13,6 +13,7 @@ import com.grsoft.dataobjects.PriceEx;
 import com.grsoft.dataobjects.ServikoAction;
 import com.grsoft.dataobjects.impl.OrderImpl;
 import com.grsoft.dataobjects.impl.OrderImplBase;
+import com.grsoft.dataobjects.impl.OrderImplEx;
 import com.grsoft.util.Consts;
 
 import android.os.Bundle;
@@ -43,14 +44,15 @@ public class PriceCountEx extends PriceCount implements OrderImplBase.UpdateQtyH
 	
 	@Override
 	protected boolean isInputValid(Runnable r) {
-		int qty = qtyItems;
-		qty = fixOrderQty(cbPackets.isChecked(), qty, price.getData());
-		int quant = ((PriceEx)price.getData()).quant * Consts.QTY_SCALE;
-		if(quant != 0 && (qty % quant != 0)) {
-			Toast.makeText(this, "Заказ должен быть кратен " + Integer.toString(quant / Consts.QTY_SCALE), Toast.LENGTH_SHORT).show();
-			return false;
+		if(document instanceof OrderImplEx && ((OrderEx)document.getData()).retDoc == 0) {
+			int qty = qtyItems;
+			qty = fixOrderQty(cbPackets.isChecked(), qty, price.getData());
+			int quant = ((PriceEx) price.getData()).quant * Consts.QTY_SCALE;
+			if (quant != 0 && (qty % quant != 0)) {
+				Toast.makeText(this, "Заказ должен быть кратен " + Integer.toString(quant / Consts.QTY_SCALE), Toast.LENGTH_SHORT).show();
+				return false;
+			}
 		}
-			
 		return super.isInputValid(r);
 	}
 	

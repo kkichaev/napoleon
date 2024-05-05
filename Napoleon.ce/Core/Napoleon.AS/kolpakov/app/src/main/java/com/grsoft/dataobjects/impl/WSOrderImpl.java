@@ -42,7 +42,7 @@ public class WSOrderImpl extends OrderImplBase<WSOrder> {
 	}
 
 	@Override
-	public boolean updateQty(PriceImpl priceImpl, int qty, int cost, boolean inPack) {
+	public boolean updateQty(PriceImpl priceImpl, int qty, long cost, boolean inPack) {
 //2017.06.23 Убрали: ошбика - 1906 		
 //		String prcId = priceImpl.getData().id;
 //		for(WSOrderLoadedItem mi : data.loadedItems)
@@ -75,7 +75,7 @@ public class WSOrderImpl extends OrderImplBase<WSOrder> {
 					e.printStackTrace();
 				}
 			
-				item.cost = cost;
+				item.cost = (int)cost;
 				item.id = price.id;
 				item.qty = qty;
 				
@@ -96,11 +96,11 @@ public class WSOrderImpl extends OrderImplBase<WSOrder> {
 			
 			if( item.qty != qty ) {
 				item.qty = qty;
-				item.cost = cost;
+				item.cost = (int)cost;
 				if(inPack) item.flags |= OrderItem.IN_PACK;
 				else item.flags &= (~OrderItem.IN_PACK);
 			} else if( item.cost != cost ) {
-				item.cost = cost;					
+				item.cost = (int)cost;
 			} else
 				needUpdate = false;
 			

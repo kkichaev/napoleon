@@ -53,7 +53,28 @@
         </event>
       </events>
     </object>
+
+    <object name="OrgMatrix">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
       
+      <member name="primaryKey">"id"</member>
+      
+      <field name="id" type="string" />
+      <field name="items" type="collection">
+        <data>
+          <object name="Item">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+            
+            <field template="id" />
+          </object>
+        </data>
+      </field>
+    </object>
+    
     <object name="Stores">
       <sources>
         <source name="SQTable" type="internal">
@@ -82,6 +103,7 @@
       <field template="id"/>
       <field template="id" name="idItem"/>
       <field template="qty" />
+      <field template="dataVersion" />
     </object>
 
     <object name="RouteTemplate">
@@ -137,6 +159,7 @@
       <field name="idItem" template="id" />
       <field template="id" />
       <field template="cost"/>
+      <field template="dataVersion" />
     </object>
     
     <object name="Order" base="BaseDocument">
@@ -950,9 +973,12 @@
     <modify src="Org">
       <add>
         <field name="prcType" type="string" width="$const.keyWidth" />
+        <field name="matrix" type="string" />
+        <field name="matrixAction" type="number" />
+        <field name="info" type="string" />
       </add>
     </modify>
-
+    
     <modify src="Schedule$items">
       <add>
         <field template="id" />

@@ -7,5 +7,6 @@ public class OrderEx extends Order {
 	public String costType;
 	public int notcomplete = 0;
 
-	public List<BonusItem> bonus = new ArrayList<>();
+	public List<SimpleItem> actions = new ArrayList<>();
+
 }

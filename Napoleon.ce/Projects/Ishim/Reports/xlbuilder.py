@@ -5,22 +5,25 @@ import xlsxwriter
 from xlsxwriter.utility import xl_rowcol_to_cell
 
 class XlBuilder :
-    def __init__(self, name) -> None:
+    def __init__(self, name, draw_border = True, bg_head = '#F2f2f2', border_color = None) -> None:
         self.name = name
         self.tFile = os.path.join(tempfile.gettempdir(), name)  
         self.wb = xlsxwriter.Workbook(self.tFile)
         
         self.boldHead = self.wb.add_format({'bold' : True})
         self.boldHead.set_text_wrap(True)
-        self.boldHead.set_border()
-        self.boldHead.set_bg_color('#F2f2f2')
+        if draw_border: self.boldHead.set_border()
+        self.boldHead.set_bg_color(bg_head)
+        if border_color: self.boldHead.set_border_color(border_color)
+
         self.boldHead.set_align('center')
         self.boldHead.set_align('vcenter')
 
         self.bold = self.wb.add_format({'bold' : True})
 
         self.cellFmt = self.wb.add_format()
-        self.cellFmt.set_border()
+        if draw_border: self.cellFmt.set_border()
+        if border_color: self.cellFmt.set_border_color(border_color)
 
         self.border = self.wb.add_format({'left': 1, 'right' : 1, 'top' : 1, 'bottom' : 1})
 
@@ -34,13 +37,16 @@ class XlBuilder :
     def printHeadValue(self, crow, ccel, value, format):
         self.sheet.write(crow, ccel, value, format)
 
-    def printValues(self, crow, values, cc = 0):
+    def printValues(self, crow, values, cc = 0, format = None):
         for v in values:
-            self.printCellValue(crow, cc, v, self.cellFmt)    
+            self.printCellValue(crow, cc, v, self.cellFmt if not format else format)    
             cc += 1
 
     def printCellValue(self, crow, ccel, value, format):
-        self.sheet.write(crow, ccel, value, format)
+        if isinstance(value, tuple):
+            self.sheet.write(crow, ccel, value[0], value[1])
+        else:
+            self.sheet.write(crow, ccel, value, format)
 
     def setBoderOnRange(self, sheet, r1, c1, r2, c2):
         while r1 < r2:

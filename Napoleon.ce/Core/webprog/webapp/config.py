@@ -6,6 +6,9 @@ class Config(object):
     MOY_SKLAD_APPUID = os.environ.get('MOY_SKLAD_APPUID') or 'DUMMY'
     MOY_SKLAD_ID = os.environ.get('MOY_SKLAD_ID') or 'DUMMY'
 
+    MOY_SKLAD_V2_APPUID = os.environ.get('MOY_SKLAD_V2_APPUID') or 'DUMMY'
+    MOY_SKLAD_V2_ID = os.environ.get('MOY_SKLAD_V2_ID') or 'DUMMY'
+
     SQLALCHEMY_DATABASE_URI  = os.environ.get('DB_URI') or 'postgresql://postgres:1@localhost:5432/postgres'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 

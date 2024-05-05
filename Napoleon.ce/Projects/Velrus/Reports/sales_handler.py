@@ -41,7 +41,8 @@ def run(server):
        conn = None
        try:
            print(userid + ' connecting ' + str(datetime.datetime.now()))
-           conn = o.Initialize(o.RMTrade,connectStr,"NO_SPLASH_SHOW")
+           #conn = o.Initialize(o.RMTrade,connectStr,"NO_SPLASH_SHOW")
+           conn = o.Connect(connectStr)
            print(userid + ' connected ' + str(datetime.datetime.now()))
 
        except RuntimeError as err:
@@ -65,8 +66,9 @@ def run(server):
         print(str(err))
         return
 
-    try:
-         o.SalesHandler(userid)
+    try:        
+         #o.SalesHandler(userid)
+         conn.Napoleon.SalesHandler(userid)
          print(userid + ' handled '  + str(datetime.datetime.now()))
 
          objRes = objList.New()

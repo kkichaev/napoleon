@@ -8,7 +8,7 @@ public class NewClient extends CreateDocDataObject{
     public String inn = "";
     public String name = "";
     public String address = "";
-    public String phone = "";
+    public String phone = "+7";
     public String salesChannel = "";
     public String profile = "";
     public String typeTT = "";

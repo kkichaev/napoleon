@@ -247,7 +247,7 @@ class FCGIManager:
         return self.objects[name]
 
 
-    def send_to_server(self, server_id:str, uri:str, method:str = 'GET', post_data:any=None, h:dict[str:any]={}) -> bytearray:
+    def send_to_server(self, server_id:str, uri:str, method:str = 'GET', post_data:any=None, h:dict[str:any]={}, no_wakeup = False) -> bytearray:
         cntlen = 0
         if post_data:
             if not isinstance(post_data, str):
@@ -261,6 +261,8 @@ class FCGIManager:
             'REQUEST_URI': uri,
             'CONTENT_LENGTH': cntlen,
         })
+        if no_wakeup:
+            h['NO_WAKEUP'] = "1"
 
         headers = self.headers(h)
         res = self.cli.request(headers, post_data)
@@ -356,7 +358,6 @@ class FCGIManager:
 
 class ServerAnswer:
     def __init__(self, data = None) -> None:
-
         if isinstance(data, Collection):
             self.data = data
 
@@ -399,10 +400,11 @@ def get_result_data(res: bytearray) -> tuple[ServerAnswer, None|JsonResult]:
         pos = res.find(b'\r\n\r\n')
         if pos != -1:
             res = res[pos + 4:].decode('utf-8')
-        tres = json.loads(res)
+        tres = json.loads(res)        
         if isinstance(tres, Collection) :
             data = JsonResult()
             answ = ServerAnswer()
+
             for el in tres:
                 name = el['name']
                 if name == "ServerAnswer": answ = ServerAnswer(el["data"])

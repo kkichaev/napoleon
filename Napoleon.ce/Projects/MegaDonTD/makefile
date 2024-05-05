@@ -1,7 +1,7 @@
 export
 
-#Variant=MegaDonTD
-Variant=MegaSouth
+Variant=MegaDonTD
+#Variant=MegaSouth
 
 include make.vars 
 

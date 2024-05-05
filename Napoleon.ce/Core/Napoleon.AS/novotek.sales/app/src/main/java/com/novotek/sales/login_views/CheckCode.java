@@ -69,7 +69,7 @@ public class CheckCode extends Fragment {
                 try {
                     String inpCode = edCode.getText().toString().toUpperCase();
                     if (inpCode.endsWith(r.code.toUpperCase())) {
-                        MainActivity.setAppToken(getContext(), r.token);
+//                        MainActivity.setAppToken(getContext(), r.token);
                         getParentFragmentManager().setFragmentResult(RESULT_CODE, null);
                     } else {
                         Toast.makeText(getActivity(), R.string.wrong_code, Toast.LENGTH_LONG).show();

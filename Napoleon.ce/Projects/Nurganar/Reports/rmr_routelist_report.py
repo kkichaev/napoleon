@@ -48,6 +48,8 @@ def loadData(params, server):
   data = RepData()
   data.agents = server.Get('Agents', '', 'id')
   allorgs = {}
+  
+  porg = server.Get("PotenzialOrg", 'not "userid" is null', "id")
 
   for ai in params.userids:
     route_month = Month()
@@ -61,7 +63,9 @@ def loadData(params, server):
     page.name = server.CurrentUser().name
     folders = server.Get("OrgFolder", "")
     server.RestoreUser()
-      
+    
+    orgs.update(porg)
+    
     for k in orgs.keys():
       data.allorgs[k] = orgs[k]
       
@@ -86,10 +90,12 @@ def loadData(params, server):
           if name in rw.data:
             list = []
             
+            f.items = sorted(f.items, key=lambda x: x.pos)
+            
             for on in f.items:
               list.append( "{0} ({1})". format(orgs[on.name].name, orgs[on.name].address) if on.name in orgs else on.name)
               
-            rw.data[name].extend(sorted(list))
+            rw.data[name].extend(list)
       
     page.items.append(route_month)
       
@@ -103,7 +109,8 @@ def printOut(data, params):
   xlb = XLBuilderCommon()
   
   for page in data.items:
-    sheet.title = page.name
+    titleName = page.name[:30]
+    sheet.title = titleName
     cell = sheet.cell(row=0, column=0)
     cell.value = "Маршуртный лист: {0}".format(page.name)
     cell.style.font.bold = True

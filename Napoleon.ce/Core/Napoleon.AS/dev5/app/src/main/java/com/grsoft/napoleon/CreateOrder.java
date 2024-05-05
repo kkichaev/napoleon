@@ -11,6 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -106,24 +107,45 @@ public class CreateOrder extends BaseActivity
 		if( !editMode ) 
 			initOrder(o, org);
 
+		List<KeyValue> prc = new ArrayList<>();
+		List<KeyValue> stores = new ArrayList<>();
 		ConfigImpl config = new ConfigImpl();
 		
 		Spinner spFirma = (Spinner) findViewById(R.id.spFirma);
-		DialogHelper.loadSpinnerFromDataObject(spFirma, Firm.class,
+		List<Firm> frm = DialogHelper.loadSpinnerFromDataObject(spFirma, Firm.class,
 				object -> o.firmCode.equals(object.id), false);
 
 		Spinner spPrices = (Spinner) findViewById(R.id.spPrices);
-		DialogHelper.loadSpinnerWithKey(config, "¬ид÷ены", new ArrayList<>(), spPrices, o.prcType);
+		DialogHelper.loadSpinnerWithKey(config, "¬ид÷ены", prc, spPrices, o.prcType);
 
 		View trSklads = findViewById(R.id.trSklads);
 
 		if (Features.WH_QTY) {
 			trSklads.setVisibility(View.VISIBLE);
 			Spinner spSklads = (Spinner) findViewById(R.id.spSklad);
-			DialogHelper.loadSpinnerWithKeyW(config, "—клады", new ArrayList<KeyValue>(), spSklads, o.whCode, false);
+			DialogHelper.loadSpinnerWithKeyW(config, "—клады", stores, spSklads, o.whCode, false);
 			spSklads.setEnabled(o.items.size() == 0);
 		}else
 			trSklads.setVisibility(View.GONE);
+
+		if(!editMode) {
+			if(frm.size() > 0) {
+				o.firmCode = frm.get(0).id;
+				o.supplyer = 0;
+			}
+
+			if(prc.size() > 0) {
+				o.sumType = 0;
+				o.prcType = prc.get(0).key.toString();
+			}
+
+			if(stores.size() > 0) {
+				o.whCode = stores.get(0).key.toString();
+				o.whIndex = 0;
+			}
+
+			order.write();
+		}
 
 		config.getData().key = "ћожно»змен€ть÷ену";
 		try {

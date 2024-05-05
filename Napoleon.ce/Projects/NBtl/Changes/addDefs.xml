@@ -109,6 +109,30 @@
           </object>
         </data>
       </field>
+    
+      <field name="whnetwork" type="collection">
+        <data>
+          <object name="Item">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+            <field name="id" type="string"/>
+          </object>
+        </data>
+      </field>
+      
+      <field name="rights" type="collection">
+        <data>
+          <object name="DivisionManagerRights">
+            <sources>
+              <source name="ManagerRights" type="internal" />
+            </sources>
+            <field name="token" type="string" />
+            <field name="type" type="number" />
+            <field name="right" type="number" />
+          </object>
+        </data>
+      </field>
     </object>
 
     <object name="Slsnet">
@@ -116,9 +140,10 @@
         <source name="SQTable" type="internal" />
       </sources>
       <member name="primaryKey">id</member>
+      
       <field name="id" type="string" />
       <field name="name" type="string" />
-	  <field name="plan" type="number" />
+	    <field name="plan" type="number" />
     </object>
 
     <object name="City">
@@ -700,6 +725,7 @@
       <add>
         <field name="clients" type="string"/>
         <field name="altText" type="string"/>
+        <field name="showInPhoto" type="number" width="1" />
       </add>
     </modify>
 

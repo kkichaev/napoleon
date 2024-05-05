@@ -1439,13 +1439,14 @@ bool ODBCDataSource::CheckTable(FieldSet *fields, const IObjectData& objDef)
          {
             USES_CONVERSION;
 
-            gServer->AddError(false, "Table [%s] field [%s] width %d smaller %d",
+            gServer->AddError(true, "Table [%s] field [%s] width %d smaller %d",
                W2A(objDef.tableName.c_str()),
                W2A(mf.name.c_str()),
                fnd->fieldWidth,
                fi->width
             );
-            abort();
+            Sleep(1000);
+//            abort();
             return false;
          }
  		}
@@ -1858,7 +1859,7 @@ IDataSource::IRemover* ODBCDataSource::CreateRemover(IDataSource::IRemover* pare
 {
    if( parent != NULL )
       return NULL;
-   return GRServer::CreateRemover(object, hDbc);
+   return GRServer::CreateRemover(object, (hDbcWr != NULL) ? hDbcWr : hDbc);
 }
 
 IDataSource::ISelector* ODBCDataSource::CreateSelector(const ParamList& parameters, const ISessionObject& object) const

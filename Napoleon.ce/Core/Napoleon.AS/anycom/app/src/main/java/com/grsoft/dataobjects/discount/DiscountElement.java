@@ -10,7 +10,7 @@ public class DiscountElement extends DataObject {
 
     public String id = "";
 
-    @Scale(value = 1000)
+    @Scale(value = DiscountCalcElement.DISCOUNT_SCALE)
     public int discount = 0;
 
     public int priority = 0;

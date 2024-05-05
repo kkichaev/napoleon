@@ -8,7 +8,31 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.Spinner;
+
+import androidx.core.content.FileProvider;
+
 import com.grsoft.napoleon.util.CfgNpl;
+import com.grsoft.napoleon.util.debug.Path;
+import com.grsoft.network.encrypt.EncodableConnection;
+import com.grsoft.network.encrypt.Encryptor;
+import com.grsoft.util.Util;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.security.KeyFactory;
+import java.security.NoSuchAlgorithmException;
+import java.security.PublicKey;
+import java.security.spec.InvalidKeySpecException;
+import java.security.spec.X509EncodedKeySpec;
+import java.util.Arrays;
+import java.util.Random;
+
+import javax.crypto.Cipher;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
 
 
 public class BehaviorSetting extends BehaviorSettingW {
@@ -59,6 +83,41 @@ public class BehaviorSetting extends BehaviorSettingW {
 					}
 				});
 			}
+		}
+
+		View v = findViewById(R.id.btnShareDB);
+		if(v != null)
+			v.setOnClickListener(view -> shareDB());
+	}
+
+	void shareDB() {
+		try {
+			File src = new File(Path.getDataBasePath());
+			File db = Util.encodeFile(this, src);
+
+			if(db == null) {
+				return;
+			}
+
+			Uri uri = null;
+
+			if (Build.VERSION.SDK_INT >= 24) {
+				uri = FileProvider.getUriForFile(this,getString(R.string.fileprovider_authorities), db);
+			}else
+				uri = Uri.fromFile(db);
+
+			String type = getContentResolver().getType(uri);
+
+			Intent sendIntent = new Intent();
+			sendIntent.setAction(Intent.ACTION_SEND);
+			sendIntent.putExtra(Intent.EXTRA_STREAM, uri);
+			sendIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+			sendIntent.setType(type);
+
+			Intent shareIntent = Intent.createChooser(sendIntent, null);
+			startActivity(shareIntent);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 	

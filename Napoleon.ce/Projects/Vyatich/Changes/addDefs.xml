@@ -1,6 +1,17 @@
 <?xml version="1.0" ?>
 <serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
   <objects>
+    <object name="OrderProperties" >
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"id"</member>
+
+      <field name="id" type="string"  />
+      <field name="name" type="string"  />
+    </object>
+    
     <object name="PlanogramDoc" >
       <sources>
         <source name="SQTable" type="internal" />
@@ -325,6 +336,7 @@
       <add>
         <field name="number" type="string" />
         <field name="orgName" type="string" />
+        <field name="props" type="string" />
         <field name="ret" type="number" />
       </add>
       <change>

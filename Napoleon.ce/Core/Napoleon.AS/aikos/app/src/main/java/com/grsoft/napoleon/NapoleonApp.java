@@ -125,6 +125,7 @@ public class NapoleonApp extends NapoleonAppBase {
 		PriceCount.activity = PriceCountEx.class;
 		OrderDetail.activity = OrderDetailEx.class;
 		OrderDeliveryDetail.activity = OrderDeliveryDetailEx.class;
+		Setting.WarehouseSettingActivity = WarehouseSettingEx.class;
 	}
 
 	@Override

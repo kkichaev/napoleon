@@ -81,7 +81,7 @@ public class Price extends DataObject
                PriceQtyItem q = whQty.get(i);
 
                if (q.qty > 0)
-                    whStates |= (1 << i);
+                    whStates |= ((long)1 << i);
           }
      }
 }

@@ -15,4 +15,11 @@ public class UnitItem extends DataObject {
 	@FieldOrder(order=2)
 	@Scale(value=Consts.QTY_SCALE)
 	public int inpack;
+
+	@FieldOrder(order=3)
+	public String unitCode = "";
+
+	@FieldOrder(order=4)
+	@Scale(Consts.WEIGHT_SCALE)
+	public int brutto = 0;
 }

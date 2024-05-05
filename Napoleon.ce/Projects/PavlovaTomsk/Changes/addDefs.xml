@@ -96,6 +96,7 @@
 
     <modify src="Order$items">
       <add>
+        <field name="sum" type="number" prec="2" data="SUM_I" />
         <field name="discount" type="number" prec="2" />
         <field name="costWODsc" type="number" prec ="2" />
         <field name="actionGift" type="number" data="ACT_GIFT" />

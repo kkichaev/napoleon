@@ -2,8 +2,8 @@ export
 
 
 #Variant=Ishim
-Variant=IshimTumen
-#Variant=IshimSurgut
+# Variant=IshimTumen
+Variant=IshimSurgut
 #Variant=IshimKhanty
 
 

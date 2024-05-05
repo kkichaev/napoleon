@@ -1,6 +1,11 @@
 include ../make.vars
 include make.vars
 
+ifdef AdminVersion
+VERSION=$(AdminVersion)
+endif
+
+
 ifdef TEST
 PROGRAM=NapoleonAdminTest
 else
@@ -11,7 +16,7 @@ FORMS=$(ADMIN_FORMS) RmvScheduler
 F_SRC=$(foreach file,$(FORMS),$(file) $(file).Designer)
 
 SOURCE=AgentEdit AgentEdit.Designer AskPassword AskPassword.Designer Config Comparator Entries Login Login.designer MainForm MainForm.Designer \
- Objects Program AssemblyInfo UserData UserDataItem UserLogData Resources.Designer ConfigHistory $(ADMIN_SOURCE) $(F_SRC)
+ Objects Program AssemblyInfo UserData UserDataItem UserLogData Resources.Designer ConfigHistory ReportResult $(ADMIN_SOURCE) $(F_SRC)
 
 RESOURCE=Properties.Resources AgentEdit AskPassword Login MainForm Resources $(ADMIN_RESOURCE) $(FORMS)
 

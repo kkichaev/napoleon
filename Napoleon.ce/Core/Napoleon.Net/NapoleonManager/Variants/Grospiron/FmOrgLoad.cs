@@ -11,7 +11,7 @@ using System.Threading;
 using System.Windows.Forms;
 
 using ExcelLibrary;
-using ExcelLibrary.SpreadSheet;
+// using ExcelLibrary.SpreadSheet;
 
 namespace GRSoft.NapoleonManager
 {
@@ -76,29 +76,55 @@ namespace GRSoft.NapoleonManager
 
       private void ExportData()
       {
-         Workbook wb = Workbook.Load(fileName);
-         Worksheet ws = wb.Worksheets[0];
-
+         Workbook wb = new Workbook();
+		 wb.Open(fileName);
          SimpleDataSet<Org> ds = new SimpleDataSet<Org>(Org.OBJECT_NAME, false);
-         for (int r = ws.Cells.FirstRowIndex + 1; r < ws.Cells.LastRowIndex; r++)
-         {
-            Row row = ws.Cells.Rows[r];
-            Org o = new Org();
-            o.name = row.GetCell(0).StringValue;
-            o.brand = row.GetCell(1).StringValue;
-            o.formatTT = row.GetCell(2).StringValue;
-            o.city = row.GetCell(3).StringValue;
-            o.address2 = row.GetCell(4).StringValue;
-            o.address = o.city + ", " + o.address2;
+		foreach (Sheet sheet in wb.Sheets)
+		{
+			foreach (Row row in sheet.Rows)
+			{
+				Org o = new Org();
+				o.name = row.Cell(0).Value;
+				o.brand = row.Cell(1).Value;
+				o.formatTT = row.Cell(2).Value;
+				o.city = row.Cell(3).Value;
+				o.address2 = row.Cell(4).Value;
+				o.address = o.city + ", " + o.address2;
 
-            if (o.IsValid)
-            {
-               o.id = Guid.NewGuid().ToString().Replace("-", "");
-               o.userid = agent.id;
-               ds.Add(o);
-            }
+				if (o.IsValid)
+				{
+				   o.id = Guid.NewGuid().ToString().Replace("-", "");
+				   o.userid = agent.id;
+				   ds.Add(o);
+				}
+				
+			}
+			break;
+		}
 
-         }
+         // Workbook wb = Workbook.Load(fileName);
+         // Worksheet ws = wb.Worksheets[0];
+
+         // SimpleDataSet<Org> ds = new SimpleDataSet<Org>(Org.OBJECT_NAME, false);
+         // for (int r = ws.Cells.FirstRowIndex + 1; r < ws.Cells.LastRowIndex; r++)
+         // {
+            // Row row = ws.Cells.Rows[r];
+            // Org o = new Org();
+            // o.name = row.GetCell(0).StringValue;
+            // o.brand = row.GetCell(1).StringValue;
+            // o.formatTT = row.GetCell(2).StringValue;
+            // o.city = row.GetCell(3).StringValue;
+            // o.address2 = row.GetCell(4).StringValue;
+            // o.address = o.city + ", " + o.address2;
+
+            // if (o.IsValid)
+            // {
+               // o.id = Guid.NewGuid().ToString().Replace("-", "");
+               // o.userid = agent.id;
+               // ds.Add(o);
+            // }
+
+         // }
 
          if (ds.Count > 0)
          {

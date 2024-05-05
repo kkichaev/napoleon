@@ -1,38 +1,55 @@
 package com.novotek.dataobjects;
 
 import com.novotek.dataobjects.priceTree.PriceTree;
+import com.novotek.dataobjects.xml.Alias;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
-import java.util.HashSet;
+import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
-public class Partner extends PartnerSrc {
-    PriceTree price = new PriceTree();
+public class Partner {
+    public String id = "";
+    public String address = "";
+    public String name = "";
+    public String position = "";
+    public String phone = "";
+    public String payment = "";
+
+    public List<Action> actions = new ArrayList<>();
+    public List<Order> orders = new ArrayList<>();
+
+    @Alias(name="IsAgreement") public boolean haveAgreement = false;
+
+    @Alias(name="products_info_guid") public String product_info = "";
+
+//    PriceTree price = new PriceTree();
 
     public Partner() {}
 
-    public Partner(PartnerSrc src) {
-        id = src.id;
-        address = src.address;
-        name = src.name;
-        position = src.position;
-        phone = src.phone;
-        payment = src.payment;
+    ProductInfo prodInfo = null;
+    ProductInfo getProductInfo() {
+        if(prodInfo == null) {
+            prodInfo = ProjectData.getProductInfo(product_info);
+            if(prodInfo == null) {
+                prodInfo = new ProductInfo();
+            }
+        }
+        return prodInfo;
     }
-
-    List<Order> orders = new ArrayList<>();
 
     public List<Brand> brands(int maxBrands) {
         List<Brand> brands = new ArrayList<>();
-        for(NameObj no : price.brands.keySet()) {
-            Brand b = ProjectData.brands.get(no);
-            if(b == null)
+
+        ProductInfo pi = getProductInfo();
+        for (NameObj no : getPrice().brands.keySet()) {
+            Brand b = pi.getBrand(no);
+            if (b == null)
                 continue;
 
             brands.add(b);
-            if(maxBrands > 0 && brands.size() >= maxBrands)
+            if (maxBrands > 0 && brands.size() >= maxBrands)
                 break;
         }
 
@@ -62,11 +79,33 @@ public class Partner extends PartnerSrc {
 
     public List<Order> getOrders() { return orders; }
 
-    public void setPrice(PriceTree newPrice)  {
-        price = newPrice;
+//    public void setPrice(PriceTree newPrice)  {
+//        price = newPrice;
+//    }
+
+    PriceTree priceTree = null;
+    public PriceTree getPrice() {
+        if(priceTree == null)
+            priceTree = getProductInfo().getPrice(filterActions());
+        return priceTree;
     }
 
-    public PriceTree getPrice() { return price; }
+    List<Action> filterActions() {
+
+        Calendar c = Calendar.getInstance();
+        c.set(Calendar.HOUR_OF_DAY, 23);
+        c.set(Calendar.MINUTE, 59);
+        c.set(Calendar.SECOND, 59);
+        c.add(Calendar.DAY_OF_YEAR, -1);
+
+        List<Action> res = new ArrayList<>();
+
+        for(Action a : actions) {
+            if(a.isActive(c.getTime()))
+                res.add(a);
+        }
+        return res;
+    }
 
     public Order getOrder(String uid) {
 //        for(Order o : orders)

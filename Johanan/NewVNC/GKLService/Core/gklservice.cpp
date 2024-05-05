@@ -16,6 +16,8 @@ typedef int64_t __int64;
 #endif
 
 #ifndef WIN32
+#include <sys/resource.h>
+
 void TmToSystemTime(const tm& tme, SYSTEMTIME* st)
 {
 	st->wMilliseconds = 0;
@@ -74,7 +76,9 @@ void PutLog(const char *str, ...)
 
 	va_list args;
 	va_start(args, str);
-	fprintf(stdout, "%02d:%02d:%02d.%03d ", st.wHour, st.wMinute, st.wSecond, st.wMilliseconds);
+	fprintf(stdout, "%02d.%02d.%d %02d:%02d:%02d.%03d "
+		, st.wDay, st.wMonth, st.wYear
+		, st.wHour, st.wMinute, st.wSecond, st.wMilliseconds);
 	vfprintf(stdout, str, args);
 	fprintf(stdout, "\n");
 	va_end(args);
@@ -310,13 +314,18 @@ bool DeviceData::MakeHandshake(SOCKET socket)
 	msg.append("Connection: Upgrade\r\n");
 	msg.append("Sec-WebSocket-Accept: ").append(hsBuf, 28).append("\r\n\r\n");
 
-	send(socket, msg.c_str(), msg.size(), 0);
+	bool ret = true;
+	if (send(socket, msg.c_str(), msg.size(), 0) <= 0)
+	{
+		ret = false;
+		PutLog("Bad handshake send");
+	}
 
 	state = stWSData;
 	datalen = 0;
 	free(data);
 	data = NULL;
-	return true;
+	return ret;
 }
 
 bool DeviceData::ReadWSData(SOCKET socket)
@@ -440,8 +449,8 @@ bool DeviceData::SendCtl(SOCKET socket, uint8_t frameType)
 	uint16_t opCode = frameType;
 	opCode |= 0x80;
 
-	send(socket, (const char*)&opCode, sizeof(opCode), 0);
-	return true;
+	int rc = send(socket, (const char*)&opCode, sizeof(opCode), 0);
+	return (rc > 0);
 }
 
 bool DeviceData::SendWSData(SOCKET dest, const uint8_t* data, unsigned size, uint8_t type) {
@@ -562,6 +571,11 @@ bool DeviceData::Read(SOCKET socket)
 	int rc = recv(socket, (char*)buf, sizeof(DWORD), 0);
 	if (rc <= 0)
 	{
+#ifdef WIN32
+		PutLog("RECV error %d", WSAGetLastError());
+#else
+		PutLog("RECV error %d", errno);
+#endif
 		isDead = true;
 		return false;
 	}
@@ -1190,7 +1204,11 @@ bool ServerData::HandleClient(SOCKET socket)
 				//CloseDevice(socket);
 				//return false;
 			}
-			send(dd->vncSocket, (const char*)dd->data, dd->datalen, 0);
+			int rc = send(dd->vncSocket, (const char*)dd->data, dd->datalen, 0);
+			if (rc <= 0)
+			{
+				PutLog("Send to vncDevice error ");
+			}
 			//DumpPacket(dd->data, dd->datalen);
 		}
 		else if (dd->command == CMD_PHP_VNC_REQ)
@@ -1779,6 +1797,10 @@ int main(int argc, char* argv[])
 #ifdef WIN32
 	WSADATA wsaData = { 0 };
 	WSAStartup(MAKEWORD(2, 2), &wsaData);
+#else
+	struct rlimit core_limits;
+	core_limits.rlim_cur = core_limits.rlim_max = RLIM_INFINITY;
+	setrlimit(RLIMIT_CORE, &core_limits);
 #endif
 
 	ServerData data;

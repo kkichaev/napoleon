@@ -23,6 +23,7 @@ import android.widget.ImageView;
 class SolidMainAdapter extends BaseMainAdapter implements FilterAdapter, MainAdapter {
 	protected List<Org> data = new ArrayList<Org>();
 	protected Main main;
+	String filter;
 	
 	public SolidMainAdapter(Main main){
 		this.main = main;
@@ -34,11 +35,8 @@ class SolidMainAdapter extends BaseMainAdapter implements FilterAdapter, MainAda
 		return cfg.onlyNewstItems == 1 ? "(hidden = 0 or hidden is null)" : "";
 	}
 
-	protected void loadAdapter(String where) {
-		
-	}
-	
 	protected void load(String filter) {
+		this.filter = filter;
 		data.clear();
 		
 		String where = getWhereStr();
@@ -143,7 +141,10 @@ class SolidMainAdapter extends BaseMainAdapter implements FilterAdapter, MainAda
 	}
 
 	@Override
-	void reload() { load(null); }
+	void reload() {
+		load(filter);
+		notifyDataSetChanged();
+	}
 
 	@Override
 	public Org getOrg(int pos) { return (Org) getItem(pos);	}

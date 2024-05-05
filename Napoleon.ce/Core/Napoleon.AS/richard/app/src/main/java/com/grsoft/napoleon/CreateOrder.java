@@ -24,6 +24,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -152,29 +153,27 @@ public class CreateOrder extends BaseActivity
 			e.printStackTrace();
 		}
 		config.close();
-		
-		if( Features.DELIVERY_ADDRESS ) {
-			View v = findViewById(R.id.ftrAddress);
-			if( v != null ) {
-				Spinner spAddress = (Spinner) findViewById(R.id.spAddress);
-				if( spAddress != null ) {
-					v.setVisibility(View.VISIBLE);
-					ArrayList<KeyValue> addresses = new ArrayList<KeyValue>();
-					int selected = -1;
-					for(OrgAddress addr : oi.getData().orgAddress) {
-						KeyValue kv = new KeyValue(addr.id, addr.name);
-						if( kv.key.toString().equals(o.adrCode))
-							selected = addresses.size();
-						addresses.add(kv);
-					}
-					ArrayAdapter<KeyValue> aa = new ArrayAdapter<KeyValue>(this, R.layout.simple_spinner_layout, addresses);
-					spAddress.setAdapter(aa);
-					if( selected >= 0 && selected < spAddress.getCount())
-						spAddress.setSelection(selected);
+
+		EditText edTake = findViewById(R.id.edTakeSum);
+		if(o.sumTake > 0) {
+			edTake.setText(Util.IntToScaleStr(o.sumTake, Consts.SUM_SCALE, Util.DEC_DELIM, false));
+		}
+		edTake.setEnabled(o.sumTake > 0);
+
+		CheckBox cbTake = findViewById(R.id.cbTakeSum);
+		cbTake.setChecked(o.sumTake > 0);
+		cbTake.setEnabled(order.isEditable());
+		cbTake.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				if(order.isEditable() && isChecked) {
+					edTake.setEnabled(true);
+				} else {
+					edTake.setEnabled(false);
 				}
 			}
-		}
-		
+		});
+
 		CheckBox cbt = (CheckBox)findViewById(R.id.cbTabak);
 		cbt.setChecked(o.tabak > 0);
 		cbt.setEnabled(o.items.size() == 0);
@@ -428,15 +427,15 @@ public class CreateOrder extends BaseActivity
 
 			EditText remark = (EditText)findViewById(R.id.edCreateOrderNotes);
 			o.remark = remark.getText().toString();
-			
-			if( Features.DELIVERY_ADDRESS ) {
-				Spinner spAddress = (Spinner) findViewById(R.id.spAddress);
-				if( spAddress != null ) {
-					KeyValue sel = (KeyValue) spAddress.getSelectedItem();
-					if( sel != null )
-						o.adrCode = sel.key.toString();
-				}
+
+			CheckBox cbTake = findViewById(R.id.cbTakeSum);
+			if(cbTake.isChecked()) {
+				String text = ((EditText)findViewById(R.id.edTakeSum)).getText().toString();
+				o.sumTake = Util.StrToScale(text, Consts.SUM_SCALE);
+			} else {
+				o.sumTake = 0;
 			}
+
 			if (updateSumType)
 				order.updateItemsCost(o.sumType);
 			else

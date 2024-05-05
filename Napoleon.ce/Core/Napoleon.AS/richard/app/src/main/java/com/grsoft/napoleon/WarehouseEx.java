@@ -10,9 +10,11 @@ import com.grsoft.dataobjects.DeliveryEx;
 import com.grsoft.dataobjects.DeliveryItem;
 import com.grsoft.dataobjects.OrderEx;
 import com.grsoft.dataobjects.Return;
+import com.grsoft.dataobjects.SalesEx;
 import com.grsoft.dataobjects.impl.ConfigImpl;
 import com.grsoft.dataobjects.impl.DeliveryImpl;
 import com.grsoft.dataobjects.impl.OrderImplEx;
+import com.grsoft.dataobjects.impl.SalesImplEx;
 import com.grsoft.dataobjects.impl.WhOrderImpl;
 import com.grsoft.napoleon.documents.DeliveryDoc;
 import com.grsoft.napoleon.documents.DocType;
@@ -55,6 +57,11 @@ public class WarehouseEx extends Warehouse {
 				ret.putFilter(new AltFilter());
 			else
 				ret.putFilter(new TabakFilter(oe.tabak == 1));
+		} else if(document instanceof SalesImplEx) {
+			SalesEx se = (SalesEx) document.getData();
+			if(se.upd > 0) {
+				ret.putFilter(new TabakFilter(se.tabak > 0));
+			}
 		}
 		return ret;
 	}

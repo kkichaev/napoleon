@@ -40,33 +40,37 @@ public class CrashReport extends Activity{
 				finish();
 			}
 		});
-		
-		findViewById(R.id.btnSendReport).setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				ReportService.open(v.getContext(), false,
-						((EditText)findViewById(R.id.edComment)).getText().toString().trim(),
-						getIntent().getStringExtra(FOLDER));
-				finish();
-			}
-		});
-		
-		findViewById(R.id.btnSendBase).setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				ReportService.open(v.getContext(), true,
-						edComment.getText().toString().trim(), 
-						getIntent().getStringExtra(FOLDER)); 
-				finish();
-			}
-		});
-		
+
 		String stack = getIntent().getStringExtra(STACK);
-		
-		if (stack != null)
+		if (stack != null) {
 			tvStack.setText(stack);
+
+			findViewById(R.id.btnSendReport).setOnClickListener(v -> {
+				Intent sendIntent = new Intent();
+				sendIntent.setAction(Intent.ACTION_SEND);
+				sendIntent.putExtra(Intent.EXTRA_TEXT, stack);
+				sendIntent.setType("text/plain");
+
+				Intent shareIntent = Intent.createChooser(sendIntent, null);
+				startActivity(shareIntent);
+//
+//			ReportService.open(v.getContext(), false,
+//					((EditText)findViewById(R.id.edComment)).getText().toString().trim(),
+//					getIntent().getStringExtra(FOLDER));
+//			finish();
+			});
+		}
+		
+//		findViewById(R.id.btnSendBase).setOnClickListener(new OnClickListener() {
+//
+//			@Override
+//			public void onClick(View v) {
+//				ReportService.open(v.getContext(), true,
+//						edComment.getText().toString().trim(),
+//						getIntent().getStringExtra(FOLDER));
+//				finish();
+//			}
+//		});
 	}
 }
 

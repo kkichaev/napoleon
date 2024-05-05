@@ -37,6 +37,8 @@ public class NapoleonApp extends NapoleonAppBase {
 	
 	@Override
 	public void onCreate() {
+		Features.VER_4_1 = true;
+		
 		ConfigManager.initConfig(new CfgNpl());
 		super.onCreate();
 

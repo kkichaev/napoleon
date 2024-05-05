@@ -3,6 +3,7 @@ package com.grsoft.napoleon;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import android.os.Bundle;
 import android.text.Html;
@@ -13,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.grsoft.database.DbReader;
 import com.grsoft.database.PriceTreeNode;
 import com.grsoft.database.TreeNode;
 import com.grsoft.dataobjects.DataObject;
@@ -26,7 +28,10 @@ import com.grsoft.dataobjects.OrgEx;
 import com.grsoft.dataobjects.Price;
 import com.grsoft.dataobjects.PriceEx;
 import com.grsoft.dataobjects.impl.DeliveryImpl;
+import com.grsoft.dataobjects.impl.OrderImplBase;
+import com.grsoft.dataobjects.impl.OrderImplEx;
 import com.grsoft.dataobjects.impl.OrgImpl;
+import com.grsoft.dataobjects.impl.SalesImplEx;
 import com.grsoft.napoleon.documents.DeliveryDoc;
 import com.grsoft.napoleon.documents.DocList;
 import com.grsoft.napoleon.documents.DocType;
@@ -47,7 +52,7 @@ public class WarehouseEx extends Warehouse {
 	CostManager.CostType[] costTypes;
 	List<MatrixItem> orgMatrix = null;
 	private boolean matrixInited = false;
-	HashSet<String> actions = new HashSet<String>();
+	Set<String> actions = new HashSet<String>();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -55,17 +60,9 @@ public class WarehouseEx extends Warehouse {
 		btnLines.setVisibility(View.GONE);
 		costTypes = Features.COST_MANAGER.getCostTypes();
 
-		String where = String.format("\"start\"<=%1$d and \"finish\">=%1$d", new Date().getTime());
-		DataTraveler.travel(OrderAction.class, new DataTraveler.Travel<OrderAction>() {
-			@Override
-			public boolean travel(DataTraveler<OrderAction> item) {
-				for(OrderActionItem i : item.data.items)
-					if (!actions.contains(i.id))
-						actions.add(i.id);
-
-				return true;
-			}
-		}, where);
+		if(document instanceof SalesImplEx || document instanceof OrderImplEx) {
+			actions = OrderAction.orgActionItems(document.getId());
+		}
 	}
 	
 	@Override
@@ -106,7 +103,7 @@ public class WarehouseEx extends Warehouse {
 			StringBuilder value = new StringBuilder();
 			PriceEx pe = (PriceEx)price;
 			
-			int[] arr = new int[]{CostStrategy.getInstance(
+			int[] arr = new int[]{(int)CostStrategy.getInstance(
 					(Class<? extends Document<?>>) document.getClass())
 					.getItemCost(price, (Document<?>) document), pe.akc1, pe.akc2};
 			
@@ -219,23 +216,22 @@ public class WarehouseEx extends Warehouse {
 		
 		return true;
 	}
-}
 
+	static class OrgMatrixAdapter extends MatrixBaseAdapter {
+		List<MatrixItem> matrix;
 
-class OrgMatrixAdapter extends MatrixBaseAdapter {
-	List<MatrixItem> matrix;
+		public OrgMatrixAdapter(Warehouse warehouse, List<MatrixItem> matrix) {
+			super(warehouse);
+			this.matrix = matrix;
+		}
 
-	public OrgMatrixAdapter(Warehouse warehouse, List<MatrixItem> matrix) {
-		super(warehouse);
-		this.matrix = matrix;
-	}
+		public String getName() {
+			return "OrgMatrixAdapter";
+		}
 
-	public String getName() {
-		return "OrgMatrixAdapter";
-	}
-
-	@Override
-	protected List<MatrixItem> getMatrixItems() {
-		return matrix;
+		@Override
+		protected List<MatrixItem> getMatrixItems() {
+			return matrix;
+		}
 	}
 }

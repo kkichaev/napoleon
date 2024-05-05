@@ -9,6 +9,8 @@ from flask.sessions import SecureCookieSessionInterface
 from flask import g, request, url_for, redirect, abort
 from http import HTTPStatus
 
+PROG_VERSION = '1.0.1'
+
 db = SQLAlchemy()
 migrate = Migrate()
 login = LoginManager()
@@ -24,7 +26,10 @@ def get_locale():
     # otherwise try to guess the language from the user accept
     # header the browser transmits.  We support de/fr/en in this
     # example.  The best match wins.
-    return request.accept_languages.best_match(['ru', 'en'])
+    try:
+        return request.accept_languages.best_match(['ru', 'en'])
+    except:
+        return 'ru'
 
 @babel.timezoneselector
 def get_timezone():
@@ -51,6 +56,8 @@ class CustomSessionInterface(SecureCookieSessionInterface):
         return super(CustomSessionInterface, self).save_session(*args, **kwargs)
 
 def create_app(config = Config):
+    print('Create app version:', PROG_VERSION)
+
     app = Flask(__name__)
     app.config.from_object(config)
 

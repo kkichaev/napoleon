@@ -1,5 +1,5 @@
 export default {
-  appTitle: "Ace team",
+  appTitle: "AceTeam",
 
   login: {
     title: "Вход в систему",
@@ -23,7 +23,11 @@ export default {
     registerAction: "Регистрация",
     autorization: "Авторизация",
     projectName: "Название проекта",
-    emailAlreadyExists: "E-mail уже был зарегестрирован"
+    emailAlreadyExists: "E-mail уже был зарегестрирован",
+    regSuccess: "Проект и ваши данные успешно зарегестрированы",
+    emailSent:
+      "На указанный email было отправлено письмо. Вам необходимо подтвердить свой адрес",
+    thenLogin: "после этого можно будет авторизироваться",
   },
   prjreg: {
     title: "Регистрация проекта",
@@ -38,6 +42,7 @@ export default {
     offer: "публичной оферты",
   },
   field_is_required: "Заполни поле!",
+  enter_email: "Заполните email, пожалуйста",
 
   countries: {
     AZE: "Азербайджан",
@@ -67,8 +72,12 @@ export default {
     instruction: "Инструкция по восстановлению отправлена на e-mail",
     restore: "Восстановить пароль",
     autorization: "Авторизация",
+    emailSent:
+      "На указанный e-mail было отправлено письмо с инструкциями по восстановлению. Проверьте почту.",
+    cantAuth: "Не могу найти пользователя",
+    changePassword: "Изменить пароль",
   },
-  menuLabel:{
+  menuLabel: {
     profil: "Профиль",
     projects: "Проекты",
     balance: "Баланс",
@@ -76,12 +85,15 @@ export default {
     exit: "Выход",
     organization: "Управление подразделением",
     administration: "Администрирование",
-    users:"Управление пользователями",
-    structure:"Управление подразделениями",
+    users: "Управление пользователями",
+    structure: "Управление подразделениями",
     command: "Управление коммандой",
     matrix: "Редактор матриц",
     script: "Редактор сценариев",
+    question: "Редактор анкет",
+    usersmanagement: "Управление пользователями",
     manager: "Менеджер",
+    manager_main: "Дела",
   },
   profile: {
     title: "Основная информация",
@@ -94,13 +106,17 @@ export default {
     name: "Имя",
     surname: "Фамилия",
     changePassword: "Изменить пароль",
-    save: "Сохранить изменения"
+    save: "Сохранить изменения",
   },
   balance: {
     title: "Баланс",
-    remnants: "Доступный остаток - ",
+    remnants: "Доступный остаток",
     project: "Проект:",
-    details: "Детализация",
+    details: "Детализация баланса",
+    sum: "Сумма",
+    credit: "Пополнить баланс",
+    invalid_number: "Введите значение",
+    input_greater: "Не меньше",
     table_headers: {
       data: "Дата",
       count_of_users: "Кол-во пользователей",
@@ -108,29 +124,29 @@ export default {
       tarif: "Тариф",
       outcoming: "Расход",
       incoming: "Приход",
-      sum: "Остаток"
+      sum: "Остаток",
     },
     expense_for_range: "Расход за период: ",
     incoming_for_range: "Приход за период: ",
     code: "Код: ",
-    selectDate: "Выберите дату"
+    selectDate: "Выберите дату",
   },
-  project:{
+  project: {
     title: "Список проектов",
     name: "Проект: ",
     code: "Код проекта: ",
     rename: "Переименовать проект",
-    newNamePrompt : 'Введите имя проекта'
+    newNamePrompt: "Введите имя проекта",
   },
-  tarif:{
+  tarif: {
     current: "Текущий тариф",
     currentName: "Название тарифа:",
     cost: "Стоимость тарифа:",
     offer: "Договор публичной офферты:",
     link: "посмотреть",
-    details: 'Подробно'
+    details: "Подробно",
   },
-  division:{
+  division: {
     title: "Редактирование подразделений",
     add_department: "Добавить подразделение",
     add_department_prompt: "Введите название подразделения",
@@ -141,7 +157,7 @@ export default {
     delete: "Удалить",
     delete_prompt: "Вы действительно хотите удалить?",
   },
-  users:{
+  users: {
     title: "Администрирование пользователей",
     select_division: "Назначить подразделение",
     select_project: "Выбор проекта",
@@ -154,47 +170,83 @@ export default {
       access: "Последний доступ",
       status: "Статус подключения",
     },
-    edit_division_dlg : {
+    edit_division_dlg: {
       title: "Подразделение",
       prompt: "Выберите подразделение из списка",
     },
-    user_types : {
+    user_types: {
       agents: "Агенты",
-      managers : "Менеджеры"
+      managers: "Менеджеры",
     },
     status_connected: "Подключен к серверу",
     status_code: "Код",
-    disconnect_uers_promt: "Вы действительно хотите отключить пользователя?"
+    disconnect_uers_promt: "Вы действительно хотите отключить пользователя?",
   },
   dialog: {
     ok: "ОК",
     cancel: "Отмена",
     alert: "Внимание",
   },
-  matrix:{
+  matrix: {
     title: "Редактор матриц",
     add_matrix: "Довавить матрицу",
     edit_matrix: "Переименовать матрицу",
-    add_matrix_prompt: "Введите наименование матрицы",
+    add_matrix_prompt: "Введите имя матрицы",
     selected_goods: "Выбранный товар",
     price: "Прайс",
   },
-  edit: "Удалить",
-  delete: "Изменить",
+  edit: "Изменить",
+  delete: "Удалить",
   matrices: "Матрицы",
   goods: "Товары",
   scripts: "Сценарии",
   documents: "Документы",
-  script:{
+  questions: "Анкеты",
+  script: {
     title: "Редактор сценариев",
-    add_script: "Создать сцнарий",
-    add_script_prompt: "Введите наименование сценария",
+    add_script: "Создать сценарий",
+    add_script_prompt: "Введите имя сценария",
+    edit_script_item: "Редактировать название шага сценария",
+    edit_script_item_prompt: "Введите название",
+    edit_script: "Редактировать название сценария",
+    edit_script_prompt: "Введите имя сценария",
   },
-  documents_label:{
+  documents_label: {
     question: "Анкета",
     incass: "Инкассация",
     remnant: "Остатки",
     visit: "Посещение",
     order: "Заявка",
-  }
+  },
+  question: {
+    title: "Редактор анкет",
+    quest_params: "Параметры вопроса",
+    quest_type: "Тип вопроса",
+    name_for_agent: "Название для агента",
+    name_for_report: "Название для отчета",
+    necessary_quest: "Обязательный вопрос",
+    text_prompt: "Текстовое значение, которое вводит пользователь",
+    question_edit: "Редактирование вопроса",
+    text_type_description: "Текстовое значение, которое вводит пользователь",
+    number_type_description: "Строка числового формата",
+    image_type_description: "Сделать фотографию",
+    types: {
+      string: "Текст",
+      number: "Число",
+      list: "Выпадающий список",
+      set: "Множество",
+      boolean: "Логическое",
+      catalog: "Справочник",
+      image: "Фотография",
+    },
+    add_question: "Добавить анкету",
+    edit_question: "Переименовать анекту",
+    add_question_prompt: "Введите имя анкеты",
+  },
+  management: {
+    title: "Управление командой",
+  },
+  manager: {
+    title: "Дела",
+  },
 };

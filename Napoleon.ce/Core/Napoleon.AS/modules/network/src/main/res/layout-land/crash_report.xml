@@ -20,14 +20,13 @@
         android:text="@string/crash2" />
 
     <Button
-        android:visibility="gone"
         android:id="@+id/btnSendReport"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:paddingLeft="60dp"
+        android:paddingRight="60dp"
         android:gravity="center"
-        android:text="@string/send_report" />
+        android:text="@string/share" />
 
     <Button
         android:visibility="gone"

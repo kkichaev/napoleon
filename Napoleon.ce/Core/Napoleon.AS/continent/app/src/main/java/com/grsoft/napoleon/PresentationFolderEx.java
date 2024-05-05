@@ -132,6 +132,10 @@ public class PresentationFolderEx extends PresentationFolder{
             p.close();
             adapter.setFolder(p.getData().folderID);
         }
+
+        if(doc != null) {
+            ((TextView)findViewById(R.id.tvTotalSum)).setText(Util.IntToScaleStr(doc.sum(), Consts.SUM_SCALE, Util.DEC_DELIM, false));
+        }
     }
 
     @Override

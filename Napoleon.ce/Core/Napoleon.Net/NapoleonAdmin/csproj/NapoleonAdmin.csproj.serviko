@@ -105,6 +105,12 @@
       <DependentUpon>RmvScheduler.cs</DependentUpon>
     </Compile>
     <Compile Include="Variants\Serviko\Entries.cs" />
+    <Compile Include="Variants\Serviko\FmManagerRights.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Variants\Serviko\FmManagerRights.Designer.cs">
+      <DependentUpon>FmManagerRights.cs</DependentUpon>
+    </Compile>
     <Compile Include="Variants\Serviko\MainFormEx.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -134,6 +140,9 @@
     </Compile>
     <EmbeddedResource Include="RmvScheduler.resx">
       <DependentUpon>RmvScheduler.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Variants\Serviko\FmManagerRights.resx">
+      <DependentUpon>FmManagerRights.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="Properties\Settings.settings">

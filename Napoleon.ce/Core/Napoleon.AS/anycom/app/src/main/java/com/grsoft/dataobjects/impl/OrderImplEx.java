@@ -3,13 +3,18 @@ package com.grsoft.dataobjects.impl;
 import com.grsoft.dataobjects.OrderCard;
 import com.grsoft.dataobjects.OrderEx;
 import com.grsoft.dataobjects.OrderItem;
+import com.grsoft.dataobjects.OrderItemEx;
 import com.grsoft.dataobjects.OrgEx;
 import com.grsoft.dataobjects.Price;
 import com.grsoft.dataobjects.PriceEx;
 import com.grsoft.napoleon.CostStrategy;
+import com.grsoft.napoleon.CostStrategyEx;
+import com.grsoft.napoleon.documents.OrderDoc;
+import com.grsoft.util.Consts;
 import com.grsoft.util.Util;
 
 import java.util.Calendar;
+import java.util.Date;
 
 public class OrderImplEx extends OrderImpl{
     @Override
@@ -21,9 +26,14 @@ public class OrderImplEx extends OrderImpl{
         OrgEx org = (OrgEx) oi.getData();
 
         o.prcType = org.prcType;
+        setDeliveryDate(org);
+    }
 
+    public boolean setDeliveryDate(OrgEx org) {
+        boolean res = false;
         if(org.delivery != 0 && (org.delivery & 0x7f) < 0x7f) {
             Calendar c = Calendar.getInstance();
+            Date firstDate = null;
 
             while (true) {
                 c.add(Calendar.DAY_OF_MONTH, 1);
@@ -31,22 +41,38 @@ public class OrderImplEx extends OrderImpl{
                 if (dw != 0) {
                     int f = 1 << (dw - 1);
                     if ((org.delivery & f) != 0) {
-                        o.date = Util.getDayStart(c.getTime());
+                        Date dd = Util.getDayStart(c.getTime());
+                        if(data.date.equals(dd)) {
+                            break;
+                        }
+                        if(firstDate == null) {
+                            firstDate = dd;
+                        }
+                        if(data.date.compareTo(dd) < 0) {
+                            if(firstDate != null)
+                                data.date = firstDate;
+                            else
+                                data.date = dd;
+                            res = true;
+                        }
                         break;
                     }
                 }
             }
         }
+
+        return res;
     }
 
     public void refreshSum() {
         PriceImpl pi = new PriceImpl();
         PriceEx pe = (PriceEx) pi.getData();
-        CostStrategy cs = CostStrategy.getInstance(getClass());
+        CostStrategyEx cs = (CostStrategyEx) CostStrategy.defaultInstance;
         for(OrderItem oi : data.items) {
             pe.id = oi.id;
             if(pi.read()) {
                 oi.cost = (int) cs.getItemCost(pe, this);
+                oi.sum = (long) oi.cost * oi.qty / Consts.QTY_SCALE;
             }
         }
         pi.close();

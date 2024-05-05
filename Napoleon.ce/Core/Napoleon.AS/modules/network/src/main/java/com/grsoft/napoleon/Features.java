@@ -604,7 +604,7 @@ public class Features extends FeaturesBase{
 	/**
 	 * Красим красным просроченные долги, и контрагентов с просроченными долгами
 	 */
-	public static boolean MARK_OVERDUE_DEBTS = false;
+	public static boolean 	MARK_OVERDUE_DEBTS = false;
 	
 	/**
 	 * Строка расчета номера недели 
@@ -650,4 +650,6 @@ public class Features extends FeaturesBase{
 	public static boolean ENCODE_CONNECTION = false;
 
 	public static boolean HIDE_SUM_IN_DEBET = false;
+
+	public static boolean IGNORE_BATTERY_OPTIMIZATION = true;
 }

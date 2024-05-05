@@ -24,7 +24,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -37,7 +36,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OrderTabakDetail extends OrderDetail {
-    Adapter adapter;
+    TabakItemsAdapter tabakItemsAdapter;
     
     
 	public static void open(Context context, OrderImplEx doc) {
@@ -63,13 +62,13 @@ public class OrderTabakDetail extends OrderDetail {
 	
 	@Override
 	protected void setAdapter() {
-		adapter = new Adapter();
-		lvItems.setAdapter(adapter);
+		tabakItemsAdapter = new TabakItemsAdapter();
+		lvItems.setAdapter(tabakItemsAdapter);
 	}
 
 	int ctr = 0;
 	void doScan() {
-		if(doc.isEditable() == false)
+		if(!doc.isEditable())
 			return;
 
 //		if(BuildConfig.DEBUG) {
@@ -140,7 +139,7 @@ public class OrderTabakDetail extends OrderDetail {
 		ScannedItems sadd = new ScannedItems();
 		sadd.barcode = bc;
 		oie.barcodes.add(sadd);
-		adapter.notifyDataSetChanged();
+		tabakItemsAdapter.notifyDataSetChanged();
 		doc.write();
 
 		runOnUiThread(new Runnable() {
@@ -162,69 +161,10 @@ public class OrderTabakDetail extends OrderDetail {
 			return updateBC(val.first, bc, bd);
 		}
 
-		ChooseItem ci = new ChooseItem();
+		ChooseItemDlg ci = new ChooseItemDlg();
 		ci.setParams(fnd, bc, bd);
 		ci.show(getFragmentManager(), "");
     	return false;
-	}
-
-	public static class ChooseItem extends DialogFragment {
-
-		static List<Pair<PriceEx, OrderItemEx>> src;
-		static String bc;
-		static BarcodeData bd;
-
-		public void setParams(List<Pair<PriceEx, OrderItemEx>> src, String bc, BarcodeData bd) {
-			ChooseItem.src = src;
-			ChooseItem.bc = bc;
-			ChooseItem.bd = bd;
-		}
-
-		@Nullable
-		@Override
-		public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-			View v = inflater.inflate(R.layout.choose_item, null);
-			ListView lv = v.findViewById(R.id.lvItems);
-
-			lv.setAdapter(new Adapter());
-
-			lv.setOnItemClickListener((adapterView, view, i, l) -> {
-				Pair<PriceEx, OrderItemEx> sel = src.get(i);
-				((OrderTabakDetail)getActivity()).updateBC(sel.first, bc, bd);
-				dismiss();
-			});
-
-			getDialog().setTitle("Выберите товар");
-			return v;
-		}
-
-		class Adapter extends BaseAdapter {
-
-			@Override
-			public int getCount() {
-				return src.size();
-			}
-
-			@Override
-			public Object getItem(int position) {
-				return src.get(position).first;
-			}
-
-			@Override
-			public long getItemId(int position) {
-				return position;
-			}
-
-			@Override
-			public View getView(int position, View convertView, ViewGroup parent) {
-				if(convertView == null)
-					convertView = View.inflate(getActivity(), R.layout.choose_item_row, null);
-
-				PriceEx pe = (PriceEx) getItem(position);
-				((TextView)convertView).setText(pe.name);
-				return convertView;
-			}
-		}
 	}
 
 	
@@ -298,7 +238,7 @@ public class OrderTabakDetail extends OrderDetail {
 		}
 	}
 	
-	class Adapter extends OrderItemsAdapter {
+	class TabakItemsAdapter extends OrderItemsAdapter {
 		@Override int getResourceID() { return R.layout.orderdeliverydetail_list_row; }
 		
 		@Override
@@ -317,6 +257,65 @@ public class OrderTabakDetail extends OrderDetail {
 			TextView tv = (TextView)view.findViewById(R.id.tvDispatch);
 			tv.setText(text);
 			tv.setTextColor(color);
+		}
+	}
+
+	public static class ChooseItemDlg extends DialogFragment {
+
+		static List<Pair<PriceEx, OrderItemEx>> src;
+		static String bc;
+		static BarcodeData bd;
+
+		public void setParams(List<Pair<PriceEx, OrderItemEx>> src, String bc, BarcodeData bd) {
+			ChooseItemDlg.src = src;
+			ChooseItemDlg.bc = bc;
+			ChooseItemDlg.bd = bd;
+		}
+
+		@Nullable
+		@Override
+		public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+			View v = inflater.inflate(R.layout.choose_item, null);
+			ListView lv = v.findViewById(R.id.lvItems);
+
+			lv.setAdapter(new ChooseItemDlg.Adapter());
+
+			lv.setOnItemClickListener((adapterView, view, i, l) -> {
+				Pair<PriceEx, OrderItemEx> sel = src.get(i);
+				((OrderTabakDetail)getActivity()).updateBC(sel.first, bc, bd);
+				dismiss();
+			});
+
+			getDialog().setTitle("Выберите товар");
+			return v;
+		}
+
+		class Adapter extends BaseAdapter {
+
+			@Override
+			public int getCount() {
+				return src.size();
+			}
+
+			@Override
+			public Object getItem(int position) {
+				return src.get(position).first;
+			}
+
+			@Override
+			public long getItemId(int position) {
+				return position;
+			}
+
+			@Override
+			public View getView(int position, View convertView, ViewGroup parent) {
+				if(convertView == null)
+					convertView = View.inflate(getActivity(), R.layout.choose_item_row, null);
+
+				PriceEx pe = (PriceEx) getItem(position);
+				((TextView)convertView).setText(pe.name);
+				return convertView;
+			}
 		}
 	}
 }

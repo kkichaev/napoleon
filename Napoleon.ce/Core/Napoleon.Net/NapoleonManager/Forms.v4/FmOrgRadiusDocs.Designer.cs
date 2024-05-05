@@ -64,7 +64,7 @@
          // 
          this.toolStripLabel1.Name = "toolStripLabel1";
          this.toolStripLabel1.Size = new System.Drawing.Size(480, 36);
-         this.toolStripLabel1.Text = "Отметьте документы которые создаются с провекрой координат";
+         this.toolStripLabel1.Text = "Отметьте документы которые создаются с проверкой координат";
          // 
          // lvItems
          // 

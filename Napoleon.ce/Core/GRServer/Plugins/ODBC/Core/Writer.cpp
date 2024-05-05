@@ -371,7 +371,8 @@ bool Writer::Prepare(const ISessionObject& object)
    if( rootObject )
       SQLSetConnectAttr(hDbc, SQL_ATTR_AUTOCOMMIT, (SQLPOINTER)SQL_AUTOCOMMIT_OFF, 0);
 
-	//AddToLog(IErrorLogger::Full, "Preparing write");
+   writer->orderIndex = 0;
+   //AddToLog(IErrorLogger::Full, "Preparing write");
    return true;
 }
 
@@ -381,6 +382,7 @@ bool Writer::Write(const Object& o, const Object* parent, RowID *rid)
       return false;
 
 	//AddToLog(IErrorLogger::Full, "Writing....");
+   writer->orderIndex++;
    bool ret = writer->Write(o, parent);
    if( ret )
    {
@@ -520,7 +522,6 @@ bool ChildWriter::Write(const Object& o, RowID *rid)
       ServObject::const_iterator i = m.object->begin();
       for (; res && i != m.object->end(); i++)
       {
-         writer->orderIndex++;
          res = Writer::Write(*(*i), &o, NULL);
       }
    }
@@ -553,6 +554,10 @@ bool Remover::Remove(const wchar_t* filter)
       stmt += L" WHERE "; stmt.append((const std::wstring&)parsedFilter);
    }
 
+   {
+      USES_CONVERSION;
+      gServer->AddLog(IErrorLogger::Full, "Remove stmt %s", W2A(stmt.c_str()));
+   }
    SQLRETURN rc = SQLExecDirect(hstmt, (SQLWCHAR*)stmt.c_str(), SQL_NTS);
    bool ret = (rc == SQL_SUCCESS || rc == SQL_NO_DATA);
    if (!ret)
@@ -561,6 +566,7 @@ bool Remover::Remove(const wchar_t* filter)
       gServer->AddLog(IErrorLogger::Full, "Error stmt %s", W2A(stmt.c_str()));
       AddErrorsToLog(false, SQL_HANDLE_STMT, hstmt);
    }
+   //gServer->AddLog(IErrorLogger::Full, "Remove done %X", (int)this);
    //else 
    //{
    //   USES_CONVERSION;

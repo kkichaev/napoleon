@@ -85,6 +85,12 @@ public class NapoleonApp extends NapoleonAppBase {
 	}
 
 	@Override
+	protected void initChildFeature() {
+		super.initChildFeature();
+		Features.LOAD_FULL_PRICE = true;
+	}
+
+	@Override
 	public void onCreate() {
 		ConfigManager.initConfig(new CfgNpl());
 		super.onCreate();

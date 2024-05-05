@@ -3,6 +3,7 @@ package com.grsoft.napoleon;
 import java.util.ArrayList;
 import java.util.List;
 import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -92,6 +93,20 @@ public class PriceCountEx extends PriceCount implements OrderImplBase.UpdateQtyH
 
 	@Override
 	protected boolean getStartInPack() { return true; }
+
+	@Override
+	protected void updateCost() {
+		int cost = Features.COST_MANAGER.getCost(price.getData().id, document.getSumType());
+		int regCost = ((CostManagerImplEx)Features.COST_MANAGER).getCurCost().regularCost;
+
+		String text = Util.IntToScaleStr(cost, Consts.SUM_SCALE, Util.DEC_DELIM, false);
+		if(regCost != 0) {
+			text += "\u2026" + Util.IntToScaleStr(regCost, Consts.SUM_SCALE, Util.DEC_DELIM, false);
+		}
+		TextView tv = (TextView)findViewById(R.id.tvPrice);
+		tv.setText(text);
+		tv.setTextColor(Color.BLACK);
+	}
 
 	@Override
 	protected void refreshData() {

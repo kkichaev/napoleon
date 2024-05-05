@@ -106,9 +106,9 @@ namespace GRSoft.NapoleonManager
 
          dgvQuestItem.DataSource = questItems;
 
-#if QUESTION_REPORT_PYTHON
-         btnAttach.Visible = true;
-#endif
+//#if QUESTION_REPORT_PYTHON
+//         btnAttach.Visible = true;
+//#endif
       }
 
 #if BTL

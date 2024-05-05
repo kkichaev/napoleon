@@ -44,12 +44,21 @@
          this.registred = new System.Windows.Forms.DataGridViewComboBoxColumn();
          this.tracking = new System.Windows.Forms.DataGridViewCheckBoxColumn();
          this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+         this.userUpdate = new System.Windows.Forms.ToolStripButton();
+         this.userChangesSave = new System.Windows.Forms.ToolStripButton();
          this.cbUserType = new System.Windows.Forms.ToolStripComboBox();
+         this.btnAdd = new System.Windows.Forms.ToolStripButton();
+         this.btnEdit = new System.Windows.Forms.ToolStripButton();
+         this.btnDel = new System.Windows.Forms.ToolStripButton();
          this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
          this.tbPresentFolder = new System.Windows.Forms.ToolStripTextBox();
+         this.btnFolder = new System.Windows.Forms.ToolStripButton();
+         this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
+         this.tsFind = new System.Windows.Forms.ToolStripTextBox();
          this.statusStrip1 = new System.Windows.Forms.StatusStrip();
          this.licenseStatusText = new System.Windows.Forms.ToolStripStatusLabel();
          this.rmvScheduler = new System.Windows.Forms.TabPage();
+         this.rmvScheduler1 = new GRSoft.NapoleonAdmin.RmvScheduler();
          this.userActivity = new System.Windows.Forms.TabPage();
          this.dgvActivity = new System.Windows.Forms.DataGridView();
          this.clmnExclMgr = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -59,6 +68,7 @@
          this.statusStrip2 = new System.Windows.Forms.StatusStrip();
          this.userActivityTotals = new System.Windows.Forms.ToolStripStatusLabel();
          this.toolStrip4 = new System.Windows.Forms.ToolStrip();
+         this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
          this.update = new System.Windows.Forms.TabPage();
          this.label4 = new System.Windows.Forms.Label();
          this.sendUpdate = new System.Windows.Forms.Button();
@@ -107,19 +117,11 @@
          this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
          this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
          this.toolStrip3 = new System.Windows.Forms.ToolStrip();
+         this.btnRefreshSyncInfo = new System.Windows.Forms.ToolStripButton();
          this.cbAgentSyncInfo = new System.Windows.Forms.ToolStripComboBox();
          this.version = new System.Windows.Forms.Label();
          this.label8 = new System.Windows.Forms.Label();
          this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-         this.userUpdate = new System.Windows.Forms.ToolStripButton();
-         this.userChangesSave = new System.Windows.Forms.ToolStripButton();
-         this.btnAdd = new System.Windows.Forms.ToolStripButton();
-         this.btnEdit = new System.Windows.Forms.ToolStripButton();
-         this.btnDel = new System.Windows.Forms.ToolStripButton();
-         this.btnFolder = new System.Windows.Forms.ToolStripButton();
-         this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-         this.btnRefreshSyncInfo = new System.Windows.Forms.ToolStripButton();
-         this.rmvScheduler1 = new GRSoft.NapoleonAdmin.RmvScheduler();
          this.tabControl1.SuspendLayout();
          this.users.SuspendLayout();
          ((System.ComponentModel.ISupportInitialize)(this.usersView)).BeginInit();
@@ -167,7 +169,7 @@
          this.users.Controls.Add(this.statusStrip1);
          this.users.Location = new System.Drawing.Point(4, 22);
          this.users.Name = "users";
-         this.users.Padding = new System.Windows.Forms.Padding(3);
+         this.users.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
          this.users.Size = new System.Drawing.Size(1238, 503);
          this.users.TabIndex = 1;
          this.users.Text = "Пользователи";
@@ -326,11 +328,34 @@
             this.btnDel,
             this.toolStripLabel1,
             this.tbPresentFolder,
-            this.btnFolder});
+            this.btnFolder,
+            this.toolStripLabel2,
+            this.tsFind});
          this.toolStrip1.Location = new System.Drawing.Point(3, 3);
          this.toolStrip1.Name = "toolStrip1";
          this.toolStrip1.Size = new System.Drawing.Size(1232, 27);
          this.toolStrip1.TabIndex = 1;
+         // 
+         // userUpdate
+         // 
+         this.userUpdate.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+         this.userUpdate.Image = ((System.Drawing.Image)(resources.GetObject("userUpdate.Image")));
+         this.userUpdate.ImageTransparentColor = System.Drawing.Color.Magenta;
+         this.userUpdate.Name = "userUpdate";
+         this.userUpdate.Size = new System.Drawing.Size(24, 24);
+         this.userUpdate.Text = "Обновить";
+         this.userUpdate.Click += new System.EventHandler(this.userUpdate_Click);
+         // 
+         // userChangesSave
+         // 
+         this.userChangesSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+         this.userChangesSave.Enabled = false;
+         this.userChangesSave.Image = ((System.Drawing.Image)(resources.GetObject("userChangesSave.Image")));
+         this.userChangesSave.ImageTransparentColor = System.Drawing.Color.Magenta;
+         this.userChangesSave.Name = "userChangesSave";
+         this.userChangesSave.Size = new System.Drawing.Size(24, 24);
+         this.userChangesSave.Text = "Сохранить изменения";
+         this.userChangesSave.Click += new System.EventHandler(this.userChangesSave_Click);
          // 
          // cbUserType
          // 
@@ -340,6 +365,36 @@
          this.cbUserType.Name = "cbUserType";
          this.cbUserType.Size = new System.Drawing.Size(121, 27);
          this.cbUserType.SelectedIndexChanged += new System.EventHandler(this.cbUserType_SelectedIndexChanged);
+         // 
+         // btnAdd
+         // 
+         this.btnAdd.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+         this.btnAdd.Image = global::GRSoft.NapoleonAdmin.Properties.Resources.add;
+         this.btnAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
+         this.btnAdd.Name = "btnAdd";
+         this.btnAdd.Size = new System.Drawing.Size(24, 24);
+         this.btnAdd.Text = "Добавить";
+         this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+         // 
+         // btnEdit
+         // 
+         this.btnEdit.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+         this.btnEdit.Image = global::GRSoft.NapoleonAdmin.Properties.Resources.document_sign;
+         this.btnEdit.ImageTransparentColor = System.Drawing.Color.Magenta;
+         this.btnEdit.Name = "btnEdit";
+         this.btnEdit.Size = new System.Drawing.Size(24, 24);
+         this.btnEdit.Text = "Изменить";
+         this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
+         // 
+         // btnDel
+         // 
+         this.btnDel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+         this.btnDel.Image = global::GRSoft.NapoleonAdmin.Properties.Resources.dialog_cancel;
+         this.btnDel.ImageTransparentColor = System.Drawing.Color.Magenta;
+         this.btnDel.Name = "btnDel";
+         this.btnDel.Size = new System.Drawing.Size(24, 24);
+         this.btnDel.Text = "Удалить";
+         this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
          // 
          // toolStripLabel1
          // 
@@ -353,6 +408,29 @@
          this.tbPresentFolder.ReadOnly = true;
          this.tbPresentFolder.Size = new System.Drawing.Size(350, 27);
          this.tbPresentFolder.TextChanged += new System.EventHandler(this.tbPresentFolder_TextChanged);
+         // 
+         // btnFolder
+         // 
+         this.btnFolder.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+         this.btnFolder.Image = global::GRSoft.NapoleonAdmin.Properties.Resources.folder_drag_accept;
+         this.btnFolder.ImageTransparentColor = System.Drawing.Color.Magenta;
+         this.btnFolder.Name = "btnFolder";
+         this.btnFolder.RightToLeft = System.Windows.Forms.RightToLeft.No;
+         this.btnFolder.Size = new System.Drawing.Size(24, 24);
+         this.btnFolder.Text = "Назначить папку с презентацией";
+         this.btnFolder.Click += new System.EventHandler(this.btnSelectPresentFolder_Click);
+         // 
+         // toolStripLabel2
+         // 
+         this.toolStripLabel2.Name = "toolStripLabel2";
+         this.toolStripLabel2.Size = new System.Drawing.Size(42, 24);
+         this.toolStripLabel2.Text = "Поиск";
+         // 
+         // tsFind
+         // 
+         this.tsFind.Name = "tsFind";
+         this.tsFind.Size = new System.Drawing.Size(151, 27);
+         this.tsFind.TextChanged += new System.EventHandler(this.tsFind_TextChanged);
          // 
          // statusStrip1
          // 
@@ -374,11 +452,20 @@
          this.rmvScheduler.Controls.Add(this.rmvScheduler1);
          this.rmvScheduler.Location = new System.Drawing.Point(4, 22);
          this.rmvScheduler.Name = "rmvScheduler";
-         this.rmvScheduler.Padding = new System.Windows.Forms.Padding(3);
+         this.rmvScheduler.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
          this.rmvScheduler.Size = new System.Drawing.Size(1238, 503);
          this.rmvScheduler.TabIndex = 3;
          this.rmvScheduler.Text = "Очистка фото";
          this.rmvScheduler.UseVisualStyleBackColor = true;
+         // 
+         // rmvScheduler1
+         // 
+         this.rmvScheduler1.Dock = System.Windows.Forms.DockStyle.Fill;
+         this.rmvScheduler1.Location = new System.Drawing.Point(3, 3);
+         this.rmvScheduler1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+         this.rmvScheduler1.Name = "rmvScheduler1";
+         this.rmvScheduler1.Size = new System.Drawing.Size(1232, 497);
+         this.rmvScheduler1.TabIndex = 0;
          // 
          // userActivity
          // 
@@ -387,7 +474,7 @@
          this.userActivity.Controls.Add(this.toolStrip4);
          this.userActivity.Location = new System.Drawing.Point(4, 22);
          this.userActivity.Name = "userActivity";
-         this.userActivity.Padding = new System.Windows.Forms.Padding(3);
+         this.userActivity.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
          this.userActivity.Size = new System.Drawing.Size(1238, 503);
          this.userActivity.TabIndex = 6;
          this.userActivity.Text = "Активность менеджеров";
@@ -475,6 +562,16 @@
          this.toolStrip4.TabIndex = 0;
          this.toolStrip4.Text = "toolStrip4";
          // 
+         // toolStripButton1
+         // 
+         this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+         this.toolStripButton1.Image = global::GRSoft.NapoleonAdmin.Properties.Resources.Refresh;
+         this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+         this.toolStripButton1.Name = "toolStripButton1";
+         this.toolStripButton1.Size = new System.Drawing.Size(24, 24);
+         this.toolStripButton1.Text = "Обновить";
+         this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+         // 
          // update
          // 
          this.update.AllowDrop = true;
@@ -485,7 +582,7 @@
          this.update.Controls.Add(this.uploadFileName);
          this.update.Location = new System.Drawing.Point(4, 22);
          this.update.Name = "update";
-         this.update.Padding = new System.Windows.Forms.Padding(3);
+         this.update.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
          this.update.Size = new System.Drawing.Size(1238, 503);
          this.update.TabIndex = 2;
          this.update.Text = "Обновления";
@@ -564,7 +661,7 @@
          this.settings.Controls.Add(this.label1);
          this.settings.Location = new System.Drawing.Point(4, 22);
          this.settings.Name = "settings";
-         this.settings.Padding = new System.Windows.Forms.Padding(3);
+         this.settings.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
          this.settings.Size = new System.Drawing.Size(1238, 503);
          this.settings.TabIndex = 0;
          this.settings.Text = "Настройки";
@@ -734,7 +831,7 @@
          this.gps.Controls.Add(this.groupBox1);
          this.gps.Location = new System.Drawing.Point(4, 22);
          this.gps.Name = "gps";
-         this.gps.Padding = new System.Windows.Forms.Padding(3);
+         this.gps.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
          this.gps.Size = new System.Drawing.Size(1238, 503);
          this.gps.TabIndex = 4;
          this.gps.Text = "GPS Настройки";
@@ -985,6 +1082,16 @@
          this.toolStrip3.TabIndex = 0;
          this.toolStrip3.Text = "toolStrip3";
          // 
+         // btnRefreshSyncInfo
+         // 
+         this.btnRefreshSyncInfo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+         this.btnRefreshSyncInfo.Image = global::GRSoft.NapoleonAdmin.Properties.Resources.Refresh;
+         this.btnRefreshSyncInfo.ImageTransparentColor = System.Drawing.Color.Magenta;
+         this.btnRefreshSyncInfo.Name = "btnRefreshSyncInfo";
+         this.btnRefreshSyncInfo.Size = new System.Drawing.Size(24, 24);
+         this.btnRefreshSyncInfo.Text = "Обновить";
+         this.btnRefreshSyncInfo.Click += new System.EventHandler(this.btnRefreshSyncInfo_Click);
+         // 
          // cbAgentSyncInfo
          // 
          this.cbAgentSyncInfo.Items.AddRange(new object[] {
@@ -999,7 +1106,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
          this.version.Location = new System.Drawing.Point(317, 2);
          this.version.Name = "version";
-         this.version.Size = new System.Drawing.Size(918, 35);
+         this.version.Size = new System.Drawing.Size(917, 35);
          this.version.TabIndex = 3;
          this.version.Text = "version";
          this.version.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1013,96 +1120,6 @@
          this.label8.TabIndex = 4;
          this.label8.Text = "Наполеон - Администратор";
          this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-         // 
-         // userUpdate
-         // 
-         this.userUpdate.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-         this.userUpdate.Image = ((System.Drawing.Image)(resources.GetObject("userUpdate.Image")));
-         this.userUpdate.ImageTransparentColor = System.Drawing.Color.Magenta;
-         this.userUpdate.Name = "userUpdate";
-         this.userUpdate.Size = new System.Drawing.Size(24, 24);
-         this.userUpdate.Text = "Обновить";
-         this.userUpdate.Click += new System.EventHandler(this.userUpdate_Click);
-         // 
-         // userChangesSave
-         // 
-         this.userChangesSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-         this.userChangesSave.Enabled = false;
-         this.userChangesSave.Image = ((System.Drawing.Image)(resources.GetObject("userChangesSave.Image")));
-         this.userChangesSave.ImageTransparentColor = System.Drawing.Color.Magenta;
-         this.userChangesSave.Name = "userChangesSave";
-         this.userChangesSave.Size = new System.Drawing.Size(24, 24);
-         this.userChangesSave.Text = "Сохранить изменения";
-         this.userChangesSave.Click += new System.EventHandler(this.userChangesSave_Click);
-         // 
-         // btnAdd
-         // 
-         this.btnAdd.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-         this.btnAdd.Image = global::GRSoft.NapoleonAdmin.Properties.Resources.add;
-         this.btnAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
-         this.btnAdd.Name = "btnAdd";
-         this.btnAdd.Size = new System.Drawing.Size(24, 24);
-         this.btnAdd.Text = "Добавить";
-         this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-         // 
-         // btnEdit
-         // 
-         this.btnEdit.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-         this.btnEdit.Image = global::GRSoft.NapoleonAdmin.Properties.Resources.document_sign;
-         this.btnEdit.ImageTransparentColor = System.Drawing.Color.Magenta;
-         this.btnEdit.Name = "btnEdit";
-         this.btnEdit.Size = new System.Drawing.Size(24, 24);
-         this.btnEdit.Text = "Изменить";
-         this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
-         // 
-         // btnDel
-         // 
-         this.btnDel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-         this.btnDel.Image = global::GRSoft.NapoleonAdmin.Properties.Resources.dialog_cancel;
-         this.btnDel.ImageTransparentColor = System.Drawing.Color.Magenta;
-         this.btnDel.Name = "btnDel";
-         this.btnDel.Size = new System.Drawing.Size(24, 24);
-         this.btnDel.Text = "Удалить";
-         this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
-         // 
-         // btnFolder
-         // 
-         this.btnFolder.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-         this.btnFolder.Image = global::GRSoft.NapoleonAdmin.Properties.Resources.folder_drag_accept;
-         this.btnFolder.ImageTransparentColor = System.Drawing.Color.Magenta;
-         this.btnFolder.Name = "btnFolder";
-         this.btnFolder.RightToLeft = System.Windows.Forms.RightToLeft.No;
-         this.btnFolder.Size = new System.Drawing.Size(24, 24);
-         this.btnFolder.Text = "Назначить папку с презентацией";
-         this.btnFolder.Click += new System.EventHandler(this.btnSelectPresentFolder_Click);
-         // 
-         // toolStripButton1
-         // 
-         this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-         this.toolStripButton1.Image = global::GRSoft.NapoleonAdmin.Properties.Resources.Refresh;
-         this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-         this.toolStripButton1.Name = "toolStripButton1";
-         this.toolStripButton1.Size = new System.Drawing.Size(24, 24);
-         this.toolStripButton1.Text = "Обновить";
-         this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
-         // 
-         // btnRefreshSyncInfo
-         // 
-         this.btnRefreshSyncInfo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-         this.btnRefreshSyncInfo.Image = global::GRSoft.NapoleonAdmin.Properties.Resources.Refresh;
-         this.btnRefreshSyncInfo.ImageTransparentColor = System.Drawing.Color.Magenta;
-         this.btnRefreshSyncInfo.Name = "btnRefreshSyncInfo";
-         this.btnRefreshSyncInfo.Size = new System.Drawing.Size(24, 24);
-         this.btnRefreshSyncInfo.Text = "Обновить";
-         this.btnRefreshSyncInfo.Click += new System.EventHandler(this.btnRefreshSyncInfo_Click);
-         // 
-         // rmvScheduler1
-         // 
-         this.rmvScheduler1.Dock = System.Windows.Forms.DockStyle.Fill;
-         this.rmvScheduler1.Location = new System.Drawing.Point(3, 3);
-         this.rmvScheduler1.Name = "rmvScheduler1";
-         this.rmvScheduler1.Size = new System.Drawing.Size(1232, 497);
-         this.rmvScheduler1.TabIndex = 0;
          // 
          // MainForm
          // 
@@ -1178,7 +1195,7 @@
       private System.Windows.Forms.Button test;
       private System.Windows.Forms.Label label7;
       private System.Windows.Forms.TextBox log;
-      private System.Windows.Forms.Label version;
+      protected System.Windows.Forms.Label version;
       private System.Windows.Forms.Label label8;
       private System.Windows.Forms.TabPage gps;
       private System.Windows.Forms.GroupBox groupBox1;
@@ -1211,10 +1228,10 @@
       protected System.Windows.Forms.ToolStripButton btnAdd;
       protected System.Windows.Forms.ToolStripButton btnDel;
       private System.Windows.Forms.TabPage syncinfo;
-      private System.Windows.Forms.ToolStrip toolStrip3;
+      protected System.Windows.Forms.ToolStrip toolStrip3;
       private System.Windows.Forms.ToolStripButton btnRefreshSyncInfo;
       private System.Windows.Forms.ToolStripComboBox cbAgentSyncInfo;
-      private System.Windows.Forms.DateTimePicker dtpDateSyncInfo;
+      protected System.Windows.Forms.DateTimePicker dtpDateSyncInfo;
       private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
       private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
       private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
@@ -1243,5 +1260,7 @@
       public  System.Windows.Forms.DataGridViewComboBoxColumn registred;
       public System.Windows.Forms.DataGridViewCheckBoxColumn tracking;
       private RmvScheduler rmvScheduler1;
+      private System.Windows.Forms.ToolStripTextBox tsFind;
+      private System.Windows.Forms.ToolStripLabel toolStripLabel2;
    }
 }

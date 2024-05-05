@@ -11,7 +11,7 @@ from openpyxl.style import Fill
 from openpyxl.style import Color
 from openpyxl.style import NumberFormat
 
-reload(sys);
+reload(sys)
 #sys.setdefaultencoding("cp1251")
 
 class XLB(xl_base.XLBuilder):
@@ -33,7 +33,7 @@ class XLB(xl_base.XLBuilder):
         
 
 class Totals:
-    __slots__ = ['visit','route','outRoute','docs','sum','qty','weight','day']
+    __slots__ = ['visit','route','outRoute','docs','sum','qty','weight','day','notVisit']
     
     def __init__(self, item):
         self.route = item.routeCount        
@@ -44,17 +44,22 @@ class Totals:
         self.qty = 0
         self.weight = 0
         self.day = item.workDate
+        self.notVisit = 0
         
     def add(self, item):
+        visitDoc = item.type != 'Не посетил'
         if item.outRoute != 0:
             if not item.id in self.outRoute: self.outRoute.append(item.id)
         else:
-            if not item.id in self.visit: self.visit.append(item.id)
+            if visitDoc and not item.id in self.visit: self.visit.append(item.id)
             
-        self.docs += 1
-        self.sum += item.sum
-        self.qty += item.qty
-        self.weight += item.weight
+        if visitDoc: 
+            self.docs += 1
+            self.sum += item.sum
+            self.qty += item.qty
+            self.weight += item.weight
+        else: self.notVisit += 1
+
 
     def output(self, sheet, row):
         cell = sheet.cell(row=row, column=0)
@@ -62,7 +67,7 @@ class Totals:
                    len(self.visit) + len(self.outRoute),
                    len(self.visit),
                    len(self.outRoute),
-                   self.route - len(self.visit),
+                   self.notVisit,
                    self.docs,
                    self.sum,
                    self.qty,
@@ -105,8 +110,15 @@ def printOut(params):
             row += 1
             total = Totals(item)
         else:
-            values = [item.name, item.type, 'да' if item.outRoute == 0 else 'нет', item.docDate, item.created.strftime("%H:%M"),
-                      item.sended.strftime("%d.%m.%Y %H:%M"), item.sum, item.qty, item.items, item.weight, item.remark, item.dover ]
+            visitDoc = item.type != 'Не посетил'
+            values = [item.name, item.type, 'да' if item.outRoute == 0 else 'нет', item.docDate, 
+                      item.created.strftime("%H:%M") if visitDoc else '',
+                      item.sended.strftime("%d.%m.%Y %H:%M") if visitDoc else '',
+                      item.sum  if visitDoc else '',
+                        item.qty  if visitDoc else '', item.items if visitDoc else '',
+                        item.weight if visitDoc else '',
+                        item.remark if visitDoc else '',
+                        item.dover ]
             xlb.makeCells(sheet, row, values)
             cell = sheet.cell(row=row,column=6)
             cell.style.number_format.format_code = NumberFormat.FORMAT_NUMBER_00
@@ -120,7 +132,10 @@ def printOut(params):
     cc = 1
     wdh = [45,11,11,11,11,20]
     for w in wdh:
-        sheet.column_dimensions[get_column_letter(cc)].width = w
+        try:
+            sheet.column_dimensions[get_column_letter(cc)].width = w
+        except:
+            pass
         cc += 1
     return wb
 

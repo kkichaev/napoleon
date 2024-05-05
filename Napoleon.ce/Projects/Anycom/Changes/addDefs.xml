@@ -1,6 +1,57 @@
 <?xml version="1.0" ?>
 <serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
 	<objects>
+    <object name="OrderFulfillment">
+      <sources>
+        <source name="SQTable" type="internal" >
+          <param name="readFilter">"userid='$01' and " + '"created" &gt;= $02'</param>
+          <param name="$01">$user.id</param>
+          <param name="$02">ToDate(FormatDate(AdjustDate(Now(), -5, "day"),"DD.MM.YYYY"))</param>
+        </source>
+      </sources>
+    
+      <member name="primaryKey">"userid,created"</member>
+
+      <field name="created" type="timestamp" />
+      <field name="userid" type="string" />
+      <field name="items" type="collection">
+        <data>
+          <object name="Item">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+            <field name="id" type="string" />
+            <field name="remark" type="string" />
+          </object>
+        </data>
+      </field>
+    </object>
+
+    <modify src="PricePhoto" dest="AgentPricePhoto">
+      <change>
+        <sources>
+          <source name="SQLQuery">
+            <param name="stmt">
+              "select PricePhoto$name name, id from PricePhoto$items
+              where id in (select id from AgentData where [type] = 'Price' and userid = '$01')
+              order by name"
+            </param>
+            <param name="$01">$user.id</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+
+    <modify src="AgentPricePhoto$items">
+      <change>
+        <sources>
+          <source name="SQLQuery">
+            <param name="keyFields">"name"</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+      
     <object name="AgentPlan">
       <sources>
         <source name="SQTable" type="internal">
@@ -100,18 +151,20 @@
         </data>
       </field>
     </object>
+    
     <object name="PriceCost">
       <sources>
         <source name="SQTable" type="internal">
-          <param name="readFilter">AgentDataFilter("idItem","Price",$01)</param>
+          <param name="readFilter">AgentDataFilter("id","PriceType",$01) + AgentDataFilter("idItem","Price",$01, " and ")</param>
           <param name="$01">$user.id</param>
         </source>
       </sources>
-      <member name="primaryKey">"idItem,id"</member>
+      <member name="primaryKey">"idItem,id,date"</member>
       <field name="idItem" type="string" />
       <field name="id" type="string" />
       <field name="date" type="date" />
       <field name="cost" type="number" prec="2"/>
+      <field name="version" type="number" />
     </object>
 
     <object name="PriceTypes">
@@ -128,12 +181,37 @@
       <field name="name" type="string"/>
     </object>
 
-    <object name="Stores">
+    <object name="AgentStoreData">
       <sources>
         <source name="SQTable" type="internal">
-          <param name="readFilter">AgentDataFilter("id","Store",$01)</param>
-          <param name="$01">$user.id</param>
           <param name="ordered" />
+        </source>
+      </sources>
+
+      <member name="primaryKey">"id,userid"</member>
+
+      <field name="id" type="string" />
+      <field name="userid" type="string"/>
+    </object>
+
+    <object name="Stores">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"id"</member>
+
+      <field name="id" type="string" />
+      <field name="name" type="string"/>
+    </object>
+
+    <object name="AgentStores">
+      <sources>
+        <source name="SQLQuery" type="internal">
+          <param name="stmt">
+            "select s.* from Stores s, AgentStoreData a where s.id = a.id and a.userid = '$01' order by a._objOrdered"
+          </param>
+          <param name="$01">$user.id</param>
         </source>
       </sources>
 
@@ -146,7 +224,7 @@
     <object name="StoreQty">
       <sources>
         <source name="SQTable" type="internal">
-          <param name="readFilter">AgentDataFilter("id","Store",$01) + AgentDataFilter("idItem","Price",$01, "and")</param>
+          <param name="readFilter">"id in (select id from AgentStoreData where userid = '$01') and " + AgentDataFilter("idItem","Price",$01)</param>
           <param name="$01">$user.id</param>
         </source>
       </sources>
@@ -156,6 +234,8 @@
       <field name="id" type="string" />
       <field name="idItem" type="string" />
       <field name="qty" type="number" prec="2" />
+
+      <field name="version" type="number" />
     </object>
 
 
@@ -176,7 +256,7 @@
         <sources>
           <source name="SQTable" type="internal" />
         </sources>
-        <field name="id" type="string" />
+
         <field name="id" type="string" />
         <field name="name" type="string" />
         <field name="login" type="string" width="30" />
@@ -193,15 +273,18 @@
         </source>
       </sources>
 
-      <member name="primaryKey">"id"</member>
+      <member name="primaryKey">"id,number"</member>
 
       <field name="id" type="string" />
       
       <!-- 0 - Тариф, 1 - ТУ, 2 - Промо, 3 - ТКСГ -->
       <field name="kind" type="number" />
       <field name="number" type="string" />
+      <field name="idDsc" type="string" />
       <field name="start" type="date" />
       <field name="finish" type="date" />
+      
+      <field name="version" type="number" />
 
       <field name="items" type="collection">
         <data>
@@ -222,7 +305,7 @@
         <source name="SQTable" type="internal" />
       </sources>
 
-      <member name="primaryKey">"number"</member>
+      <member name="primaryKey">"number,idDsc"</member>
 
       <field name="number" type="string" />
       <field name="name" type="string" />
@@ -231,6 +314,69 @@
       <field name="finish" type="date" />
     </object>
 
+    <object name="DiscountConditions">
+      <sources>
+        <source name="SQTable" type="internal" />
+      </sources>
+      <member name="primaryKey">"id,idCnd"</member>
+
+      <field name="id" type="string" />
+      <field name="idCnd" type="string" />
+      <field name="sum" type="number" prec="2" />
+      <field name="qty" type="number" prec="3" />
+
+      <field name="items" type="collection">
+        <data>
+          <object name="Item">
+            <sources>
+              <source name="SQTable" type="internal" />
+            </sources>
+            <field name="id" type="string" data="id_i" />
+            <!-- 0 Price, 1 folder -->
+            <field name="type" type="number" />
+          </object>
+        </data>
+      </field>
+    </object>
+
+    <modify src="DiscountConditions" dest="AgentDiscountConditions">
+      <change>
+        <sources>
+          <source name="SQLQuery">
+            <param name="stmt">
+              "select d.*, di.id id_i, di.type from
+              (select * from DiscountConditions where
+               id in 
+               (select distinct od.id from
+                (select id from OrgDiscount where idOrg in (select id from AgentData where userid = '$01' and [type] = 'Org')
+                union all
+                select d.id from Discount d left join OrgDiscount od on d.id = od.id where idOrg is null) od,
+               (select distinct id from StoreDiscount where idStore in (select id from AgentStoreData where userid = '$01')
+                 union all
+                select d.id from Discount d left join StoreDiscount od on d.id = od.id where idStore is null) sd
+               where od.id = sd.id)
+              ) d left join
+              (select * from DiscountConditions$items where
+                [type] = 1 or id in (select id from AgentData where [type] = 'Price' and userid = '$01')
+              ) di on d.id = di.DiscountConditions$id
+              order by id, idCnd"
+            </param>
+            <param name="$01">$user.id</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+    <modify src="AgentDiscountConditions$items">
+      <change>
+        <sources>
+          <source name="SQLQuery">
+            <param name="keyFields">"id,idCnd"</param>
+            <param name="checkNullField">"id"</param>
+          </source>
+        </sources>
+      </change>
+    </modify>
+    
     <object name="Discount">
       <sources>
         <source name="SQTable" type="internal">
@@ -239,7 +385,7 @@
 (select id from OrgDiscount where idOrg in (select id from AgentData where userid = '$01' and [type] = 'Org')
 union all
 select d.id from Discount d left join OrgDiscount od on d.id = od.id where idOrg is null) od,
-(select distinct id from StoreDiscount where idStore in (select id from AgentData where userid = '$01' and [type] = 'Store')
+(select distinct id from StoreDiscount where idStore in (select id from AgentStoreData where userid = '$01')
 union all
 select d.id from Discount d left join StoreDiscount od on d.id = od.id where idStore is null) sd
 where od.id = sd.id)"</param>
@@ -249,7 +395,7 @@ where od.id = sd.id)"</param>
       <member name="primaryKey">"id"</member>
 
       <field name="id" type="string" />
-      <field name="discount" type="number" prec="2" />
+      <field name="discount" type="number" prec="3" />
       
       <field name="priority" type="number" />
       <!-- 0 - Тариф, 1 - ТУ, 2 - Промо, 3 - ТКСГ -->
@@ -259,7 +405,8 @@ where od.id = sd.id)"</param>
       <field name="start" type="date" />
       <field name="finish" type="date" />
       <field name="parent" type="string" />
-
+      <field name="name" type="string" />
+      
       <field name="items" type="collection">
         <data>
           <object name="Item">
@@ -285,6 +432,7 @@ where od.id = sd.id)"</param>
 
       <field name="id" type="string" />
       <field name="idOrg" type="string" />
+      <field name="version" type="number" />
     </object>
 
     <object name="DiscountPriority">
@@ -302,7 +450,7 @@ where od.id = sd.id)"</param>
     <object name="StoreDiscount">
       <sources>
         <source name="SQTable" type="internal">
-          <param name="readFilter">"idStore in (select id from AgentData where userid = '$01' and [type] = 'Store')"</param>
+          <param name="readFilter">"idStore in (select id from AgentStoreData where userid = '$01')"</param>
           <param name="$01">$user.id</param>
         </source>
       </sources>
@@ -342,6 +490,8 @@ where od.id = sd.id)"</param>
         <field name="email" type="string" />   
         <!-- 0 by created, 1 by delivery -->
         <field name="dscMode" type="number"/>
+        <field name="delivery" type="number" />
+        <field name="prcType" type="string" />
       </add>
     </modify>
 
@@ -363,9 +513,25 @@ where od.id = sd.id)"</param>
     <modify src="Config">
       <change>
         <sources>
-          <source name="SQTable" type="internal" />
+          <source name="SQTable" type="internal" >
+            <param name="readFilter">'"userid" is null or "userid"=' + "'' or " + '"userid"=' + "'" + $user.id + "'"</param>
+          </source>
         </sources>
         <field name="value" type="string" width="4000" />
+        <field name="userid" type="string" />
+        <member name="primaryKey">"userid,key"</member>
+      </change>
+    </modify>
+    
+    <modify src="Config" dest="AgentConfig">
+      <change>
+        <sources>
+          <source name="SQLQuery" >
+            <param name="stmt">'select * from Config where "userid"=' + "'" + $user.id + "' or userid is null or userid = '' order by userid"</param>
+          </source>
+        </sources>
+        <field name="value" type="string" width="4000" />
+        <field name="userid" type="string" />
       </change>
     </modify>
 
@@ -424,8 +590,18 @@ where od.id = sd.id)"</param>
       <change>
         <sources>
           <source name="SQLQuery">
-            <param name="stmt">"select * from Price where id in (select id from AgentData where [type]='Price' and userid='$01')"</param>
-            <param name="$01">$user.id</param>
+            <param name="stmt">"select * from Price where id in (select id from AgentData where [type]='Price' and userid='"+$user.id+"')"</param>
+          </source>
+        </sources>
+        <field name="fid" type="string" />
+      </change>
+    </modify>
+    
+    <modify src="ManagerPrice" dest="CommonPrice">
+      <change>
+        <sources>
+          <source name="SQLQuery">
+            <param name="stmt">"select * from Price"</param>
           </source>
         </sources>
       </change>
@@ -443,8 +619,8 @@ where od.id = sd.id)"</param>
         <field name="number" type="string"  />
       </change>
       <add>
-        <member name="primaryKey">"id,number"</member>
-        <memberArray name="index">"date</memberArray>
+        <member name="primaryKey">"uid"</member>
+        <memberArray name="index">"date"</memberArray>
         <field name="uid" type="string" />
       </add>
     </modify>
@@ -455,6 +631,9 @@ where od.id = sd.id)"</param>
           <source name="SQTable" type="internal" />
         </sources>
       </change>
+      <add>
+        <field name="sumWOTax" type="number" prec="2" />
+      </add>
     </modify>
 
     <modify src="Delivery" dest="AgentDelivery">
@@ -466,7 +645,7 @@ where od.id = sd.id)"</param>
               (select distinct d.id, d.number from Delivery d, Delivery$items di,
               (select id from AgentData where [type] = 'Org' and userid = '$01') ad,
               (select id from AgentData where [type] = 'Price' and userid = '$01') ap
-              where d.id = di.Delivery$id and d.number = di.Delivery$number
+              where d.uid = di.Delivery$uid
               and d.id = ad.id and di.id = ap.id
               and d.date &gt;= $02) ad
               where d.id = ad.id and d.number = ad.number"
@@ -590,6 +769,17 @@ where od.id = sd.id)"</param>
       </change>
       <add>
         <field name="deliveryType" type="string" />
+        <!--<field name="card" type="string" />-->
+        <field name="cards" type="collection">
+          <data>
+            <object name="Item">
+              <sources>
+                <source name="SQTable" type="internal" />
+              </sources>
+              <field name="number" type="string" />
+            </object>
+          </data>
+        </field>
 
         <event type="put">
           <action name="WriteToLog">$object.type;$object.created</action>
@@ -685,7 +875,9 @@ where od.id = sd.id)"</param>
         </sources>
       </change>
 	  <add>
-		<field name="userid" type="string" />
+		  <field name="userid" type="string" />
+      <field name="created" type="timestamp" />
+      <field name="whCode" type="string"  />
 	  </add>
     </modify>
 
@@ -715,6 +907,10 @@ where od.id = sd.id)"</param>
           </source>
         </sources>
       </change>
+	  <add>
+		  <field name="userid" type="string" />
+      <field name="created" type="timestamp" />
+	  </add>
     </modify>
 
     <modify src="Offer" dest="NewOffers">

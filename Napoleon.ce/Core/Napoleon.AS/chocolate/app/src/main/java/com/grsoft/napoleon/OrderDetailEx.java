@@ -17,16 +17,16 @@ public class OrderDetailEx extends OrderDetail {
 				if( isValidDoc() )
 					Warehouse.open(OrderDetailEx.this, doc, true);
 				else
-					Toast.makeText(OrderDetailEx.this, "Не заполнен склад", Toast.LENGTH_SHORT).show();
-//					Toast.makeText(OrderDetailEx.this, "Не заполнен договор, склад или организация", Toast.LENGTH_SHORT).show();
+//					Toast.makeText(OrderDetailEx.this, "Не заполнен склад", Toast.LENGTH_SHORT).show();
+					Toast.makeText(OrderDetailEx.this, "Не заполнен договор, склад или организация", Toast.LENGTH_SHORT).show();
 			}
 		});
 	}
 
 	protected boolean isValidDoc() {
 		OrderEx o = (OrderEx) doc.getData();
-//		if( o.whName.length() == 0 || o.dog.length() == 0 || o.supplyer < 0 )
-		if( o.whName.length() == 0 )
+		if( o.whName.length() == 0 || o.dog.length() == 0 || o.supplyer < 0 )
+//		if( o.whName.length() == 0 )
 			return false;
 		return true;
 	}

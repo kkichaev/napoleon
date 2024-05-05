@@ -24,12 +24,18 @@ public class FindTextWatcher implements TextWatcher {
 	FilterAdapter adapter;
 	AbsListView listView;
 
+	boolean noDelay = false;
+
 	public FindTextWatcher(EditText findField, AbsListView listView) {
 
 		this.listView = listView;
 
 		this.findField = findField;
 		curValue = findField.getText().toString();
+	}
+
+	public void setNoDelay() {
+		noDelay = true;
 	}
 
 	public FindTextWatcher(EditText findField, FilterAdapter adapter) {
@@ -78,26 +84,34 @@ public class FindTextWatcher implements TextWatcher {
 		if (timer != null)
 			timer.cancel();
 
+		if(noDelay) {
+			runSearch();
+			noDelay = false;
+			return;
+		}
 		timer = new Timer();
 		timer.schedule(new TimerTask() {
 			@Override
 			public void run() {
 				timer.cancel();
 				timer = null;
-
-				findField.post(new Runnable() {
-					@Override
-					public void run() {
-						if (getAdapter() != null) {
-							String val = findField.getText().toString();
-							if (val.equals(curValue) == false) {
-								doSearch(adapter, val);
-							}
-						}
-					}
-				});
+				runSearch();
 			}
 		}, TIMER_DELAY);
+	}
+
+	private void runSearch() {
+		findField.post(new Runnable() {
+			@Override
+			public void run() {
+				if (getAdapter() != null) {
+					String val = findField.getText().toString();
+					if (!val.equals(curValue)) {
+						doSearch(adapter, val);
+					}
+				}
+			}
+		});
 	}
 
 	@Override

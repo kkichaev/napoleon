@@ -37,7 +37,8 @@ public class PriceCostHitching extends Hitching {
     @Override
     public void onRead(RawObject rawObject) throws RuntimeException {
         PriceCostRcv rcv = rawObject.createDataObject(dataObject);
-        PriceCost pc = data.get(rcv.idItem);
+        String key = rcv.idItem + Long.toString(rcv.date.getTime());
+        PriceCost pc = data.get(key);
         if(pc == null) {
             pc = new PriceCost();
             pc.id = rcv.idItem;
@@ -45,7 +46,7 @@ public class PriceCostHitching extends Hitching {
             int size = priceTypes.size();
 
             pc.cost = new int[size];
-            data.put(rcv.idItem, pc);
+            data.put(key, pc);
         }
 
         int index = priceTypes.indexOf(rcv.id);

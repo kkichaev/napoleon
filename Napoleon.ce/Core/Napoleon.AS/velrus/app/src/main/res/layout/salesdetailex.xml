@@ -85,15 +85,40 @@
                 android:layout_width="wrap_content"
                 android:textColor="#FF0000"
                 android:text="Закажите фокусный товар!"
-                android:layout_height="wrap_content"></Button>
+                android:layout_height="wrap_content"/>
         </LinearLayout>
     </LinearLayout>
+
+    <Button
+        android:visibility="gone"
+        android:id="@+id/bonus"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:text="@string/bonus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        />
 
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="fill_parent"
         style="?footer" >
 
+        <ImageButton
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnBack"
+            android:src="@drawable/arrow_back"
+            style="?footerButton"/>
+
+<LinearLayout
+    android:id="@+id/tabBtn"
+    android:layout_width="0dp"
+    android:layout_weight="1"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
         <ImageButton android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/btnAddItems"
@@ -119,6 +144,14 @@
             style="?footerButton" android:visibility="gone"/>
 
         <ImageButton
+            android:visibility="gone"
+            android:id="@+id/btnAction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/bonus"
+            style="?footerButton"  />
+
+        <ImageButton
             android:id="@+id/btnGetNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -140,5 +173,6 @@
             android:gravity="right"
             android:text="@string/sum"
             style="?footerText"/>
+</LinearLayout>
     </LinearLayout>
 </LinearLayout>

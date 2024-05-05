@@ -365,25 +365,11 @@ namespace GRSoft.Network
             stream.Close();
             client.Close();
          }
-<<<<<<< .mine
-         catch (Exception ex)
-||||||| .r18742
-         catch (Exception)
-=======
          catch (Exception e)
->>>>>>> .r18918
          {
-<<<<<<< .mine
-            System.Windows.Forms.MessageBox.Show(ex.Message, "Îøèáêà", System.Windows.Forms.MessageBoxButtons.OK,
-               System.Windows.Forms.MessageBoxIcon.Information);
-||||||| .r18742
-            //System.Windows.Forms.MessageBox.Show(ex.Message, "Îøèáêà", System.Windows.Forms.MessageBoxButtons.OK,
-            //   System.Windows.Forms.MessageBoxIcon.Information);
-=======
             Debug.Print(e.Message);
             //System.Windows.Forms.MessageBox.Show(ex.Message, "Îøèáêà", System.Windows.Forms.MessageBoxButtons.OK,
             //   System.Windows.Forms.MessageBoxIcon.Information);
->>>>>>> .r18918
          }
 
          return res;
@@ -1377,6 +1363,30 @@ namespace GRSoft.Network
 
          if (po.Count <= 1)
             return false;
+
+         Thread t = conn.SendCommand(new SendParamStr(po, CheckWrited, writed));
+         t.Join();
+
+         return (writed.Count == 0);
+      }
+
+      public static bool WriteAndRemove(List<IDataSet> wrSet, List<ServerCommand> rmvSet, DBConnection conn)
+      {
+         List<string> writed = new List<string>();
+
+         PacketObject po = new PacketObject();
+
+         if (wrSet != null && wrSet.Count > 0)
+            AddWrited(wrSet, conn, writed, po);
+
+         foreach(ServerCommand sc in rmvSet)
+         {
+            writed.Add(sc[ServerCommand.PARAM_TAG].ToString().Split(new char[] { ':' })[0]);
+            po.Add(sc);
+         }
+
+         if (po.Count == 0)
+            return true;
 
          Thread t = conn.SendCommand(new SendParamStr(po, CheckWrited, writed));
          t.Join();

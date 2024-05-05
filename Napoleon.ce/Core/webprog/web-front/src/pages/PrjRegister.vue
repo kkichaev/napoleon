@@ -56,7 +56,9 @@
           <q-checkbox v-model="offer">
             {{ $t("prjreg.offerAgree") }}
           </q-checkbox>
-          <a :href=getLink() style="margin-left: 5px" target="_blank">{{ $t("prjreg.offer") }} </a>
+          <a :href="getLink()" style="margin-left: 5px" target="_blank"
+            >{{ $t("prjreg.offer") }}
+          </a>
         </div>
       </div>
 
@@ -77,7 +79,7 @@
 <script>
 import { ref } from "vue";
 import { data } from "../assets/countries.js";
-import { currency } from "../assets/currency.js";
+import { getCurrency } from "../backend/helper";
 import { registerProject } from "../backend/backend";
 import { useBackendStore } from "../stores/backend";
 import { useRouter } from "vue-router";
@@ -121,7 +123,7 @@ export default {
     }
 
     function offerClick(event) {
-      router.push({ name: "Offer", params: { country: sel.value.id}});
+      router.push({ name: "Offer", params: { country: sel.value.id } });
     }
 
     return {
@@ -137,12 +139,6 @@ export default {
   },
   computed: {
     getLabel: function () {
-      function getCurrency(id) {
-        if (id in currency) return currency[id];
-
-        return "\u0024";
-      }
-
       if (this.sel)
         return (
           this.$t("countries." + this.sel.id) +
@@ -155,18 +151,17 @@ export default {
       return "";
     },
   },
-  methods:{
-    getOffer: (param)=>{
-      var file = 'offerge.pdf'
-      if (['RUS', 'BLR'].includes(param))
-        file = 'offerrus.pdf'
+  methods: {
+    getOffer: (param) => {
+      var file = "offerge.pdf";
+      if (["RUS", "BLR"].includes(param)) file = "offerrus.pdf";
 
-      return "/" + file
+      return "/" + file;
     },
-    getLink: function (){
-      return this.getOffer(this.sel.id)
-    }
-  }
+    getLink: function () {
+      return this.getOffer(this.sel.id);
+    },
+  },
 };
 </script>
 

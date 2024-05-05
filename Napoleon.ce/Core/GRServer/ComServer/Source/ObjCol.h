@@ -95,7 +95,7 @@ END_COM_MAP()
    const GRServer::ServObject* GetServObject() const { return servObject; }
    ObjCreator& GetObjCreator() { return server->GetObjCreator(); }
 
-   STDMETHOD(WriteInt)(BSTR userid, bool haveUserid);
+   STDMETHOD(WriteInt)(BSTR userid, bool haveUserid, VARIANT_BOOL* result);
 	
 protected:
    GRServer::ServObject* servObject;
@@ -110,10 +110,10 @@ public:
 
    STDMETHOD(Get)(LONG index, IDispatch** object);
    STDMETHOD(New)(IDispatch** object);
-   STDMETHOD(Write)(BSTR userid);
-   STDMETHOD(WriteDirect)();
-   STDMETHOD(Replace)(BSTR userid);
-   STDMETHOD(ReplaceDirect)(BSTR where);
+   STDMETHOD(Write)(BSTR userid, VARIANT_BOOL* res);
+   STDMETHOD(WriteDirect)(VARIANT_BOOL* res);
+   STDMETHOD(Replace)(BSTR userid, VARIANT_BOOL* res);
+   STDMETHOD(ReplaceDirect)(BSTR where, VARIANT_BOOL* res);
    STDMETHOD(Delete)(BSTR userid);
    STDMETHOD(get_Count)(double* pVal);
    STDMETHOD(get_Fields)(IDispatch** pVal);

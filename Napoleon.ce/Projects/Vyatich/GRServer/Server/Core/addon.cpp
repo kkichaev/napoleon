@@ -332,7 +332,7 @@ private:
 class OrderWriter : public IDataSource::IWriter
 {
 public:
-	OrderWriter(const char* _fileName) : fileName(_fileName), itemsWriter(NULL), iId(-1), iDate(-1), iCreated(-1), reserv(NULL) {}
+	OrderWriter(const char* _fileName) : fileName(_fileName), itemsWriter(NULL), iId(-1), iDate(-1), iCreated(-1), reserv(NULL), iOrdProps(-1){}
 	//OrderWriter(const char* _fileName) : fileName(_fileName), itemsWriter(NULL), iId(-1), iDate(-1), iRet(-1), isRet(0), iCreated(-1), reserv(NULL) {}
    virtual ~OrderWriter() { Close(); }
 
@@ -352,6 +352,7 @@ protected:
    OrderItemsWriter *itemsWriter;
    std::string fileName, userId, userName;
 	int iId, iDate, iCreated, iRemark, iOrgName; // , iRet, isRet;
+   int iOrdProps;
    SessionObject *reserv;
    DateParser createdFormat;
    ReservReader reservWriter;
@@ -1764,6 +1765,7 @@ bool OrderWriter::Prepare(const ISessionObject& object)
    iCreated = format->FindMember(L"created");
    iRemark = format->FindMember(L"remark");
    iOrgName = format->FindMember(L"orgName");
+   iOrdProps = format->FindMember(L"props");
 	//iRet = format->FindMember(L"ret");
 
    reserv = GetReservObject(s);
@@ -1872,6 +1874,8 @@ bool OrderWriter::Write(const Object& o, RowID *rid)
    const char* orgName = (iOrgName < 0) ? "" : W2A(o.at(iOrgName).str->c_str());
    std::wstring crbuf;
 
+   const char* props = (iOrdProps < 0) ? "" : W2A(o.at(iOrdProps).str->c_str());
+
    createdFormat.ToString(&crbuf, o.at(iCreated).datetime);
 	//isRet = 0;
 	//if (iRet >= 0)
@@ -1881,10 +1885,12 @@ bool OrderWriter::Write(const Object& o, RowID *rid)
 
    FileTimeToSystemTime(&o.at(iDate).datetime, &st);
    const char* id = W2A(o.at(iId).str->c_str());
-   fprintf(f, "status|%s|%s|||\n""client|%s|%s|||%d/%d/%d|||on|||\n""manager|%s|%s|%s||%s\n",
+   fprintf(f, "status|%s|%s|||\n""client|%s|%s|||%d/%d/%d|||on|||\n""manager|%s|%s|%s||%s|%s\n",
       GetStatus(),GetNumber(),
       orgName, id, st.wDay, st.wMonth, st.wYear, userId.c_str(),
-      userName.c_str(), remark, W2A(crbuf.c_str()));
+      userName.c_str(), remark, W2A(crbuf.c_str())
+      ,props
+   );
    itemsWriter->SetDestFile(f);
    itemsWriter->Write(o, rid);
    fclose(f);

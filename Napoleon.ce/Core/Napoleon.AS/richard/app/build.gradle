@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 31
 
     defaultConfig {
         applicationId "com.grsoft.napoleon"
         minSdkVersion 24
-        targetSdkVersion 29
+        targetSdkVersion 31
         versionCode 22
         versionName "22"
     }
@@ -49,31 +49,46 @@ android {
         }
     }
 
+	flavorDimensions "version"
+    productFlavors{
+        order{
+            dimension "version"
+        }
+
+        van{
+            dimension "version"
+        }
+    }
+
+
     buildTypes {
         debug {
             manifestPlaceholders.access_background_location = "android.permission.ACCESS_BACKGROUND_LOCATION"
+            manifestPlaceholders.request_install_packages = "android.permission.REQUEST_INSTALL_PACKAGES"
         }
 
         release {
             signingConfig signingConfigs.release
             manifestPlaceholders.access_background_location = "android.permission.ACCESS_BACKGROUND_LOCATION"
+            manifestPlaceholders.request_install_packages = "android.permission.REQUEST_INSTALL_PACKAGES"
         }
 
         market {
             signingConfig signingConfigs.market
             manifestPlaceholders.access_background_location = "fake.name"
+            manifestPlaceholders.request_install_packages ="fake.name"
         }
     }
 
     applicationVariants.all {
         variant ->
-            if (variant.buildType.name == "release")
+            if (variant.buildType.name == "release"&& variant.productFlavors[0].name.equals("order"))
                 variant.outputs.all {
                     outputFileName = "Richard.apk"
                 }
-            if (variant.buildType.name == "market")
+			if (variant.buildType.name == "release"&& variant.productFlavors[0].name.equals("van"))
                 variant.outputs.all {
-                    outputFileName = "NapoleonMarketDev4.apk"
+                    outputFileName = "RichardVan.apk"
                 }
     }
 

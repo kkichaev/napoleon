@@ -1,5 +1,5 @@
-# -*- coding: cp1251 -*-
 import calendar
+import logging
 
 from datetime import timedelta
 from datetime import datetime
@@ -15,9 +15,6 @@ from openpyxl.style import NumberFormat
 
 import sys;
 from manager import *
-
-reload(sys);
-sys.setdefaultencoding("cp1251")
 
 bkgColor = "ff8FBC8F"
 
@@ -36,7 +33,7 @@ def inflateParams(server):
     return int(server.Params[0].month), int(server.Params[0].year)
 
 def getAgentName(id, agents):
-    return agents[id].name if id in agents else "Торговый представитель с кодом<{0}>".format(id)
+    return agents[id].name if id in agents else "РўРѕСЂРіРѕРІС‹Р№ РїСЂРµРґСЃС‚Р°РІРёС‚РµР»СЊ СЃ РєРѕРґРѕРј<{0}>".format(id)
 
 def loadData(server):
     m, y = inflateParams(server)
@@ -130,7 +127,7 @@ def drawData(sh, xlb, data, row, agrw):
         
     ikm = '=SUM({0}{1}:{0}{2})'.format(get_column_letter(4),row-len(data)+1, row)
     ism = '=SUM({0}{1}:{0}{2})'.format(get_column_letter(6),row-len(data)+1, row)
-    xlb.makeCells(sh, row, ['','Итого','',ikm,'',ism])
+    xlb.makeCells(sh, row, ['','РС‚РѕРіРѕ','',ikm,'',ism])
     
     return row
         
@@ -142,27 +139,27 @@ def paintHeadCell(xlb, cell):
 def makeHead(xlb, sheet, row):
     cell = sheet.cell(row=row, column=0)
     paintHeadCell(xlb, cell)
-    cell.value = "Дата"
+    cell.value = "Р”Р°С‚Р°"
     
     cell = sheet.cell(row=row, column=1)
     paintHeadCell(xlb, cell)
-    cell.value = "ТП"
+    cell.value = "РўРџ"
     
     cell = sheet.cell(row=row, column=2)
     paintHeadCell(xlb, cell)
-    cell.value = "Время"
+    cell.value = "Р’СЂРµРјСЏ"
     
     cell = sheet.cell(row=row, column=3)
     paintHeadCell(xlb, cell)
-    cell.value = "КМ"
+    cell.value = "РљРњ"
     
     cell = sheet.cell(row=row, column=4)
     paintHeadCell(xlb, cell)
-    cell.value = "Стоимость ГСМ"
+    cell.value = "РЎС‚РѕРёРјРѕСЃС‚СЊ Р“РЎРњ"
     
     cell = sheet.cell(row=row, column=5)
     paintHeadCell(xlb, cell)
-    cell.value = "К выдаче руб"
+    cell.value = "Рљ РІС‹РґР°С‡Рµ СЂСѓР±"
                     
 def printData(xlb, sh, data, cost):
     weeks = data.keys()
@@ -179,7 +176,7 @@ def printData(xlb, sh, data, cost):
         
         agrw = dict()
         for d in dts:
-            ag = sorted(data[w][d], cmp=lambda x, y:  cmp(x.agent,y.agent))
+            ag = sorted(data[w][d], key = lambda x: x.agent)
             row = drawData(sh, xlb, ag, row, agrw) 
             row += 1
         
@@ -188,7 +185,7 @@ def printData(xlb, sh, data, cost):
     
     row = drawResultMonth(sh, xlb, row, month, cost)
     sh.merge_cells(start_row=row, start_column = 0, end_row =row, end_column = 2);
-    xlb.makeCells(sh,row,['Итого за месяц','','',funSum(get_column_letter(4), wkrg),'',funSum(get_column_letter(6), wkrg)])    
+    xlb.makeCells(sh,row,['РС‚РѕРіРѕ Р·Р° РјРµСЃСЏС†','','',funSum(get_column_letter(4), wkrg),'',funSum(get_column_letter(6), wkrg)])    
     
     setCellWidth(sh, [15,26,26,18,18,18,0])
     sh.column_dimensions['G'].visible = False
@@ -201,7 +198,7 @@ def drawResultMonth(sh, xlb, row, agrw, cost):
     rws = list()
     
     for a in ags:
-        xlb.makeCells(sh, row, ['Месяц',a,funSum(get_column_letter(3), agrw[a]), funSum(get_column_letter(4), agrw[a]),
+        xlb.makeCells(sh, row, ['РњРµСЃСЏС†',a,funSum(get_column_letter(3), agrw[a]), funSum(get_column_letter(4), agrw[a]),
           cost, funcDiv(get_column_letter(4), get_column_letter(5), row+1 , 10)])
           
         rws.append(row+1)
@@ -217,7 +214,7 @@ def drawResultWeek(sh, xlb, row, agrw, m, cost):
     rws = list()
     
     for a in ags:
-        xlb.makeCells(sh, row, ['Неделя',a,funSum(get_column_letter(7), agrw[a]), funSum(get_column_letter(4), agrw[a]) + '+{0}{1}'.format(get_column_letter(3), row + 1),
+        xlb.makeCells(sh, row, ['РќРµРґРµР»СЏ',a,funSum(get_column_letter(7), agrw[a]), funSum(get_column_letter(4), agrw[a]) + '+{0}{1}'.format(get_column_letter(3), row + 1),
           cost, funcDiv(get_column_letter(4), get_column_letter(5), row+1 , 10)])
           
         if not a in m:
@@ -229,7 +226,7 @@ def drawResultWeek(sh, xlb, row, agrw, m, cost):
         
     
     sh.merge_cells(start_row=row, start_column = 0, end_row =row, end_column = 2);
-    xlb.makeCells(sh,row,['Итого за неделю','','',funSum(get_column_letter(4), rws),'',funSum(get_column_letter(6), rws)])
+    xlb.makeCells(sh,row,['РС‚РѕРіРѕ Р·Р° РЅРµРґРµР»СЋ','','',funSum(get_column_letter(4), rws),'',funSum(get_column_letter(6), rws)])
     row += 1
     
     return row
@@ -263,7 +260,9 @@ def doReport(server):
     XLBuilder().workbookToObject(wb, "time.xlsx", server)
           
 def run(server):
-    print "start\t" + __name__ + "\t" + datetime.now().strftime('%d/%m/%Y %H:%M:%S')
-    doReport(server)
-    print "finish\t" +  __name__ + "\t" + datetime.now().strftime('%d/%m/%Y %H:%M:%S')
-    
+  logging.basicConfig(format='%(module)s %(asctime)s.%(msecs)03d %(message)s', datefmt='%d.%m.%Y %H:%M:%S', stream=sys.stdout, level=logging.DEBUG)    
+  logging.info('start report')
+  
+  doReport(server)
+
+  logging.info('end')

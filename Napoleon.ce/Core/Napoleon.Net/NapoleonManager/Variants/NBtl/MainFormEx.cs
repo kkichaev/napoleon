@@ -14,6 +14,8 @@ namespace GRSoft.NapoleonManager
       private DataSet<int, Contract> dsContract;
       DataSet<string, NBTLViewer> viewers = new DataSet<string, NBTLViewer>(NBTLViewer.OBJECT_NAME);
 
+      RightToken canViewReports = RightTokens.Get("FmReports");
+
       public MainFormEx()
       {
          dsSlsnet = new DataSet<string, Slsnet>(Slsnet.OBJECT_NAME);
@@ -31,6 +33,8 @@ namespace GRSoft.NapoleonManager
          tgvAgentsSummaryCount.Visible = false;
          tgvAgentsSummarySum.Visible = false;
          tgvAgentsSummaryProgres.Visible = false;
+
+         btnReport.Visible = false;
 #else
          tgvAgentsSummaryCount.Visible = false;
          tgvAgentsSummarySum.Visible = false;
@@ -73,6 +77,7 @@ namespace GRSoft.NapoleonManager
             m.login = v.id;
             m.password = v.password;
             m.division = v.division;
+            m.rights = v.rights;
 
             foreach(IDataSet ds in upd)
             {
@@ -85,12 +90,20 @@ namespace GRSoft.NapoleonManager
          }
       }
 
-      public string ViewerContracts()
+      public NBTLViewer CurViewer()
       {
-         string wherein = "";
          NBTLViewer v;
          Manager mgr = CurrentUser.user as Manager;
          if (mgr != null && mgr.src != null && viewers.TryGetValue(mgr.src.login, out v))
+            return v;
+
+         return null;
+      }
+
+      public string ViewerContracts(NBTLViewer v)
+      {
+         string wherein = "";
+         if (v != null)
          {
             foreach (NBTLViewer.Item i in v.contracts)
             {
@@ -102,12 +115,38 @@ namespace GRSoft.NapoleonManager
          return wherein;
       }
 
-      public string ScriptFilter()
+      public string ViewerWhNet(NBTLViewer v)
       {
-         string wherein = ViewerContracts();
-         return wherein.Length > 0 ?
-            "\"scriptId\" in (select \"id\" from \"ScriptDef\" where \"cdefid\" in (" + wherein + "))" :
-            "1 = 0";
+         string wherein = "";
+         // толкьо монитор бещ права просмотра отчетов
+         if (v != null && !((Manager)CurrentUser.user).HaveRight(canViewReports, RightActions.Read))
+         {
+            foreach (NBTLViewer.Item i in v.whnetwork)
+            {
+               if (wherein.Length > 0) wherein += ",";
+               wherein += "'" + i.id + "'";
+            }
+         }
+
+         return wherein;
+      }
+
+      public string ScriptFilter(string tablePrefix)
+      {
+         NBTLViewer v = CurViewer();
+         string wherein = ViewerContracts(v);
+
+         if(wherein.Length == 0)
+            return "1 = 0";
+
+         string filter = tablePrefix + "\"scriptId\" in (select \"id\" from \"ScriptDef\" where \"cdefid\" in (" + wherein + "))";
+         string whnet = ViewerWhNet(v);
+         if(whnet.Length > 0)
+         {
+            filter += " and " + tablePrefix + "\"id\" in (select \"id\" from \"Org\" where \"sid\" in (" + whnet + "))";
+         }
+
+         return filter;
       }
 
       public string GetMonitorFilter(string userid)
@@ -121,7 +160,7 @@ namespace GRSoft.NapoleonManager
 
             string filter = "\"{0}\" in (select sdi.\"date\" from \"ScriptDoc$items\" sdi INNER JOIN \"ScriptDoc\" sd on " +
                "sdi.\"ScriptDoc$userid\" = sd.\"userid\" and sdi.\"ScriptDoc$created\" = sd.\"created\" where sd.\"created\" >= ToDate('{1:dd/MM/yyyy}') and " +
-               "sd.\"created\" < ToDate('{2:dd/MM/yyyy} 23:59:59') and (sd." + ScriptFilter() + ")"+ uidFilter + ")";
+               "sd.\"created\" < ToDate('{2:dd/MM/yyyy} 23:59:59') and (" + ScriptFilter("sd.") + ")"+ uidFilter + ")";
             return filter;
          }
 
@@ -140,6 +179,9 @@ namespace GRSoft.NapoleonManager
          base.AfterRefreshData();
 
          availDocs.Clear();
+#if NbtlMonitor
+         btnReport.Visible = ((Manager)CurrentUser.user).HaveRight(canViewReports, RightActions.Read);
+#endif
 
          foreach(ScriptDoc sd in scripts.Data)
          {
@@ -183,7 +225,7 @@ namespace GRSoft.NapoleonManager
          COMMON_FILTER_STR = GetMonitorFilter(null);
          string dateF = String.Format("and \"{0}\" >= ToDate('{1:dd/MM/yyyy}') and \"{0}\" < ToDate('{2:dd/MM/yyyy} 23:59:59')"
             , "created", dateBegin, dateEnd);
-         scripts.Filter = ScriptFilter() + dateF;
+         scripts.Filter = ScriptFilter("") + dateF;
 #endif
          base.AdjustFilterForDS(dateBegin, dateEnd);
          dsVisit.Filter = String.Format(COMMON_FILTER_STR, "created", dateBegin, dateEnd);

@@ -8,6 +8,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.novotek.dataobjects.CommonData;
 import com.novotek.dataobjects.Order;
 import com.novotek.dataobjects.Partner;
 import com.novotek.dataobjects.priceTree.FolderBase;
@@ -29,10 +30,6 @@ public class Model extends ViewModel {
     private static final String DEMO_TOKEN = "demo_token";
     public static long WAIT_NEXT_SEND_INTERVAL = BuildConfig.DEBUG ? 0 :  60 * 1000;
 
-    public static final String PHONE_NUMBER = "phone_number";
-
-    public static final String LAST_CONNECT = "last_connect";
-
     public static String DEMO_PHONE = "+71234567890";
     public static boolean DEMO = false;
 
@@ -47,13 +44,12 @@ public class Model extends ViewModel {
 
     MutableLiveData<ErrResult> requestError = new MutableLiveData<>();
     MutableLiveData<ReqCodeResult> requestResult = new MutableLiveData<>();
-    private String appToken = "";
+
     long lastConnect = 0;
 
     public void load(Context context) {
-        SharedPreferences pref = androidx.preference.PreferenceManager.getDefaultSharedPreferences(context);
-        phone.setValue(pref.getString(PHONE_NUMBER, "+7"));
-        lastConnect = pref.getLong(LAST_CONNECT, 0);
+        phone.setValue(CommonData.getPhone(context));
+        lastConnect = CommonData.getLastConnect(context);
 
         if(phone.getValue() != null && phone.getValue().equals(DEMO_PHONE)) {
             TESTING = true;
@@ -61,27 +57,13 @@ public class Model extends ViewModel {
         }
     }
 
-    public static String phoneNumber(Context context) {
-        SharedPreferences pref = androidx.preference.PreferenceManager.getDefaultSharedPreferences(context);
-        return pref.getString(PHONE_NUMBER, "+7");
-    }
-
     public void save(Context context) {
-        SharedPreferences.Editor ed = androidx.preference.PreferenceManager.getDefaultSharedPreferences(context).edit();
-        ed.putString(PHONE_NUMBER, phone.getValue());
-        ed.commit();
-    }
-
-    public String getAppToken(){
-        return appToken;
+        CommonData.putPhone(context, phone.getValue());
     }
 
     public void updateLastConnect(Context context, long time) {
         lastConnect = time;
-
-        SharedPreferences.Editor ed = androidx.preference.PreferenceManager.getDefaultSharedPreferences(context).edit();
-        ed.putLong(LAST_CONNECT, lastConnect);
-        ed.commit();
+        CommonData.putLastConnect(context, lastConnect);
     }
 
     public MutableLiveData<String> getPhone() { return phone; }
@@ -107,22 +89,20 @@ public class Model extends ViewModel {
     }
 
     public static String toPhoneNumber(String num) {
-        String res = "";
+        StringBuilder res = new StringBuilder();
         for( char sym : num.toCharArray()) {
             if(sym == '+' && res.length() == 0) {
-                res += sym;
+                res.append(sym);
                 continue;
             }
             if(Character.isDigit(sym)) {
-                res += sym;
+                res.append(sym);
             }
         }
-        return res;
+        return res.toString();
     }
 
     public void ackCode(Context context) {
-        requestInProgress.setValue(true);
-
         WSExchange exc = new WSExchange(context);
         exc.setHandler(new WSExchange.Events() {
             @Override
@@ -168,9 +148,14 @@ public class Model extends ViewModel {
             res.token = DEMO_TOKEN;
             requestResult.postValue(res);
         } else {
-            ReqCodeParam prm = MainActivity.getProgParams();
-            prm.phone = sphone;
-            exc.reqCode(prm);
+            if(sphone.length() >= 10) {
+                requestInProgress.setValue(true);
+
+                ReqCodeParam prm = new ReqCodeParam();
+                prm.phone = sphone;
+                CommonData.putPhone(context, sphone);
+                exc.reqCode(prm, CommonData.getSession(context));
+            }
         }
     }
 
@@ -184,32 +169,33 @@ public class Model extends ViewModel {
     }
 
 
-    public void loadData(final Context context) {
-        requestInProgress.postValue(true);
-        WSExchange exc = new WSExchange(context);
-        exc.setHandler(new WSExchange.Events() {
-            @Override
-            public void error(Exception e) {
-                handleError(e);
-            }
-
-            @Override
-            public void complete(boolean result, Object response, WSExchange exchange) {
-                ErrResult err = WSExchange.checkError(result, response);
-                if (err != null) {
-                    requestInProgress.postValue(false);
-                    requestError.postValue(err);
-                    return;
-                }
-                requestInProgress.postValue(false);
-                dataLoaded.postValue(true);
-            }
-        });
-
-        if(TESTING) {
-            exc.getTestData();
-        } else {
-            exc.getData();
-        }
-    }
+//    public void loadData(final Context context) {
+//        requestInProgress.postValue(true);
+//        WSExchange exc = new WSExchange(context);
+//        exc.setHandler(new WSExchange.Events() {
+//            @Override
+//            public void error(Exception e) {
+//                handleError(e);
+//            }
+//
+//            @Override
+//            public void complete(boolean result, Object response, WSExchange exchange) {
+//                ErrResult err = WSExchange.checkError(result, response);
+//                if (err != null) {
+//                    requestInProgress.postValue(false);
+//                    requestError.postValue(err);
+//                    return;
+//                }
+//
+//                requestInProgress.postValue(false);
+//                dataLoaded.postValue(true);
+//            }
+//        });
+//
+//        if(TESTING) {
+//            exc.getTestData();
+//        } else {
+//            exc.getData();
+//        }
+//    }
 }

@@ -1,18 +1,24 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 31
 
     defaultConfig {
         applicationId "com.grsoft.napoleon"
         minSdkVersion 15
-        targetSdkVersion 28
-        versionCode 14
-        versionName "1.0"
+        /*changed to 31 for put in google play*/
+        targetSdkVersion 31
+        versionCode 24
+        versionName "24"
     }
 
     buildTypes {
         release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+        market {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
@@ -22,7 +28,7 @@ android {
 
     lintOptions {
         checkReleaseBuilds false
-        abortOnError false
+        //abortOnError false
     }
 
     signingConfigs {
@@ -32,26 +38,64 @@ android {
             storeFile file(System.getenv('NAPOLEON_KEY'))
             storePassword 'GrSoftNapoleon'
         }
-    }
 
-    buildTypes {
-        release {
-            signingConfig signingConfigs.release
+        market {
+            keyAlias 'grnpl'
+            keyPassword 'GrSoftNapoleon'
+            storeFile file(System.getenv('GRNPL_KEY'))
+            storePassword 'GrSoftNapoleon'
         }
     }
 
-    applicationVariants.all {
-        variant ->
-            variant.outputs.all {
-                outputFileName = "Velrus.apk"
-            }
+    buildTypes {
+        debug {
+            manifestPlaceholders.access_background_location = "android.permission.ACCESS_BACKGROUND_LOCATION"
+            manifestPlaceholders.request_install_packages = "android.permission.REQUEST_INSTALL_PACKAGES"
+        }
+
+        release {
+            signingConfig signingConfigs.release
+            manifestPlaceholders.access_background_location = "android.permission.ACCESS_BACKGROUND_LOCATION"
+            manifestPlaceholders.request_install_packages = "android.permission.REQUEST_INSTALL_PACKAGES"
+        }
+    }
+	
+	flavorDimensions "version"
+    productFlavors{
+        order{
+            dimension "version"
+        }
+
+        van{
+            dimension "version"
+        }
+		vanTest {
+            dimension "version"
+        }
     }
 
+	applicationVariants.all {
+        variant ->
+            if (variant.buildType.name == "release"&& variant.productFlavors[0].name.equals("order"))
+                variant.outputs.all {
+                    outputFileName = "VelrusOrd.apk"
+                }
+		    if (variant.buildType.name == "release"&& variant.productFlavors[0].name.equals("van"))
+                variant.outputs.all {
+                    outputFileName = "Velrus.apk"
+                }
+		    if (variant.buildType.name == "release"&& variant.productFlavors[0].name.equals("vanTest"))
+                variant.outputs.all {
+                    outputFileName = "VelrusTest.apk"
+                }
+		}
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation project(':tradebase')
-    implementation 'androidx.core:core:1.2.0'
+
+    implementation 'androidx.appcompat:appcompat:1.0.0'
+
 }

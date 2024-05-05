@@ -12,7 +12,9 @@ import com.grsoft.aceteam.R;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import com.grsoft.database.TableInfo;
 import com.grsoft.napoleon.util.ConfigManager;
@@ -55,9 +57,16 @@ public class Visit extends VisitInfo implements PhotoListDoc, DataUploader
 	@Override
 	public void upload(UploadContext context) throws UploadException {
 		boolean updated = false;
+		Set<String> used = new HashSet<>();
+
 		for(VisitItem vi : items) {
 			if (vi.href.length() == 0 && vi.photo != null && vi.photo.length > 0) {
-				@SuppressLint("SimpleDateFormat") String tag = new SimpleDateFormat("yyyyMMddHHmmss").format(date);
+				@SuppressLint("SimpleDateFormat")
+				String tag = new SimpleDateFormat("yyyyMMddHHmmss").format(date);
+				while (used.contains(tag)) {
+					tag += "_";
+				}
+				used.add(tag);
 				BucketHelper.Result res = BucketHelper.putToBucket(new String(vi.photo), tag, ConfigManager.getConfig());
 				if (res.url != null) {
 					vi.href = res.url;

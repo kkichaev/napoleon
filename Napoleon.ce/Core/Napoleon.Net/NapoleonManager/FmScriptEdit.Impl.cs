@@ -51,8 +51,17 @@ namespace GRSoft.NapoleonManager
             lblInfo.Text = "Редактирование запрещено - есть документы по сценарию";
          } else
          {
-            lblInfo.Text = "";
+            Manager dm = CurrentUser.user as Manager;
+            if(!dm.HaveRight(RightTokens.Get("ScriptDef"), RightActions.Write))
+            {
+               MarkDirty(false);
+               lblInfo.Text = "Редактирование запрещено";
+               isReadonly = true;
+            }
+            else
+               lblInfo.Text = "";
          }
+         cbOrgType.SelectedIndex = script == null ? 0 :(script.flags & 0x3);
       }
 
       public virtual void __Initing(PostProcess postProcess)
@@ -87,6 +96,7 @@ namespace GRSoft.NapoleonManager
             idx++;
          }
 #endif
+         cbOrgType.SelectedIndexChanged += (o,s) => MarkDirty(true);
          DecoratorFactory.GetDecorator(this);
       }
 
@@ -198,6 +208,8 @@ namespace GRSoft.NapoleonManager
                   script.items.Add(scriptItem);
                }
             }
+            script.flags &= (~3);
+            script.flags |= (cbOrgType.SelectedIndex & 3);
 
             DataSet<int, ScriptDef> ins = new DataSet<int, ScriptDef>(ScriptDef.OBJECT_NAME, false);
             ins.Add(0, script);

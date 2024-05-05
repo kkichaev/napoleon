@@ -95,7 +95,12 @@ namespace GRSoft.NapoleonManager
       internal override void AfterWrited()
       {
          foreach (CommonConfig c in updated)
+         {
             ConfigUtils.AddConfig(dsCommonConfig, c);
+            ConfigUtils.AddConfig(dsConfig, c);
+         }
+         // foreach (CommonConfig c in updated)
+            // ConfigUtils.AddConfig(dsCommonConfig, c);
          updated.Clear();
       }
 

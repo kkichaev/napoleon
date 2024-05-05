@@ -29,6 +29,8 @@ public class Order implements Comparable<Order>
 
     public String id = "";
     public String dateDelivery = "";
+    public String payment = "";
+    public boolean upd = false;
 
     public int statusValue = 0;
 

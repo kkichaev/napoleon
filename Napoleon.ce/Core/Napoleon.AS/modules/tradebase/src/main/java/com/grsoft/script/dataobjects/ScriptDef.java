@@ -16,6 +16,8 @@ public class ScriptDef extends DataObject {
 	 * Имя сценария, если нет - берем название первого документа
 	 */
 	public String name="";
+
+	public int flags = 0;
 	
 	public List<ScriptDefItem> items = new ArrayList<ScriptDefItem>();
 	

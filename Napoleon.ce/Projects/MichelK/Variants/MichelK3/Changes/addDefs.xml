@@ -89,6 +89,7 @@
     <modify src="Price">
       <add>
         <field name="descr" type="string" />
+        <field name="sklad" type="string" />
       </add>
     </modify>
 
@@ -98,7 +99,7 @@
       <add>
         <field name="supplyer" type="number" />
         <field name="sumType" type="number" />
-
+		<field name="whCode" type="string" />
       </add>
     </modify>
 

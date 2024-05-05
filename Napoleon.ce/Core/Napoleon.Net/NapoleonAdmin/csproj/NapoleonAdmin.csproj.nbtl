@@ -105,6 +105,12 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Variants\NBtl\ProjectObjects.cs" />
+    <Compile Include="Variants\NBtl\SetWhNet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Variants\NBtl\SetWhNet.Designer.cs">
+      <DependentUpon>SetWhNet.cs</DependentUpon>
+    </Compile>
     <Compile Include="Variants\NBtl\SetContracts.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -137,6 +143,9 @@
     </Compile>
     <EmbeddedResource Include="RmvScheduler.resx">
       <DependentUpon>RmvScheduler.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Variants\NBtl\SetWhNet.resx">
+      <DependentUpon>SetWhNet.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Variants\NBtl\SetContracts.resx">
       <DependentUpon>SetContracts.cs</DependentUpon>

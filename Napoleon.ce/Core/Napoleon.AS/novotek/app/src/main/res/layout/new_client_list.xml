@@ -6,19 +6,19 @@
 
     <LinearLayout
         android:id="@+id/llHeader"
-        style="?header"
+        style="@style/Header"
         android:layout_width="match_parent"
         android:orientation="horizontal">
 
         <TextView
-            style="?headerText"
+            style="@style/HeaderText"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:text="@string/caption" />
 
         <TextView
-            style="?headerText"
+            style="@style/HeaderText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/status" />
@@ -74,12 +74,13 @@
 
     <LinearLayout
         android:id="@+id/llTaskBar"
-        style="?footer"
-        android:layout_width="match_parent">
+        style="@style/Footer"
+        android:layout_width="match_parent"
+        >
 
         <ImageButton
             android:id="@+id/btnNewDoc"
-            style="?footerButton"
+            style="@style/FooterButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@string/newDoc"

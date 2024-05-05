@@ -10,13 +10,16 @@ import com.grsoft.dataobjects.DataObject;
 import com.grsoft.dataobjects.PresentEx;
 import com.grsoft.dataobjects.PricePhotoEx;
 import com.grsoft.dataobjects.PricePhotoItem;
+import com.grsoft.napoleon.BuildConfig;
 import com.grsoft.napoleon.util.CfgNpl;
 import com.grsoft.napoleon.util.ConfigManager;
 import com.grsoft.network.RawObject;
 import com.grsoft.network.exception.RuntimeException;
 
+import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
+import android.os.Build;
 
 
 public class UpdatePrezentHitching extends Hitching {
@@ -31,12 +34,11 @@ public class UpdatePrezentHitching extends Hitching {
 	boolean enableExternalStore = true;
 	String presentPath = "";
 	
-	public UpdatePrezentHitching() {
+	public UpdatePrezentHitching(Context context) {
 		super(PricePhotoEx.class, "PricePhoto");
 
-		CfgNpl cfg = (CfgNpl) ConfigManager.getConfig();
-		presentPath = cfg.presentpath;
-		
+		presentPath = context.getExternalFilesDir(null) + "/price_photos/";
+
 		try {
 			File photoDir = new File(presentPath);
 			if (!photoDir.exists()){

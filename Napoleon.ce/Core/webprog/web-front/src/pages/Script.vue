@@ -18,7 +18,7 @@
               v-for="d in scriptDef"
               :key="d.id"
               hide-expand-icon
-              @click.stop="scriptClick(d)"
+              @click.stop="scriptClick(d, false)"
               v-model="d.expanded"
               dense
               :style= "[isSelected(d) ? {'background-color': 'rgba(18, 110, 130, 0.50)'} : {'background-color': 'white'}]">
@@ -31,24 +31,26 @@
                 <q-item-section>
                   {{ d.name }}
                 </q-item-section>
-                <q-btn class="button" flat icon="img: /img/edit.svg" @click="editScript(d)"/>
-                <q-btn class="button" flat icon="img: /img/trash_full.svg" @click="deleteScript(d)" />
+                <q-btn class="button" flat icon="img: /img/edit.svg" @click.stop = "editScript(d)"/>
+                <q-btn class="button" flat icon="img: /img/trash_full.svg" @click.stop = "deleteScript(d)" />
               </template>
 
               <div style="background-color: white">
                 <q-list :style= "[isSelected(d) ? {'background-color': 'rgba(18, 110, 130, 0.10)'} : {'background-color': 'white'}]">
                   <q-item
-                    v-for="i in d.items"
-                    :key="i.id">
+                    v-for="i, idx in d.items"
+                    :key="i.id"
+                    clickable
+                    @click.stop="scriptClick(d, true)">
 
                     <q-item-section avatar class="col">
                       {{ i.name }}
                     </q-item-section>
-                    <q-btn class="button" flat icon="img: /img/edit.svg" />
-                    <q-btn class="button" flat icon="img: /img/short_down.svg" />
-                    <q-btn class="button" flat icon="img: /img/short_up.svg" />
-                    <q-btn class="button" flat :icon="getScriptItemStatusIcon(i)" />
-                    <q-btn class="button" flat icon="img: /img/trash_full.svg" @click="deleteScriptItem(i)"/>
+                    <q-btn class="button" flat icon="img: /img/edit.svg" @click.stop="editItem(d,i)"/>
+                    <q-btn class="button" flat icon="img: /img/short_down.svg" @click.stop="moveItemDown(d,idx)"/>
+                    <q-btn class="button" flat icon="img: /img/short_up.svg" @click.stop="moveItemUp(d,idx)"/>
+                    <q-btn class="button" flat :icon="getScriptItemStatusIcon(i)" @click.stop = "checkCondition(d,i)"/>
+                    <q-btn class="button" flat icon="img: /img/trash_full.svg" @click.stop = "deleteScriptItem(d,idx)"/>
                   </q-item>
                 </q-list>
               </div>
@@ -99,19 +101,97 @@ const serverCode = ref()
 const selScript = ref()
 const scriptDef = ref([])
 
+const moveScriptItem = (doc, index, down)=>{
+  const items = doc.items
+  const pos = down ? index+1 : index-1
+  const item = items[index]
+
+  items.splice(index,1)
+  items.splice(pos,0,item)
+}
+
+const moveItem = (doc, index, down = false)=>{
+  selScript.value = doc
+  $q.loading.show()
+  moveScriptItem(doc, index, down)
+  postObjects(serverCode.value, 'ScriptDef',[doc]).
+    finally(()=>$q.loading.hide())
+}
+
+const moveItemUp = (doc, index) =>{
+  if (index > 0)
+    moveItem(doc, index)
+}
+
+const moveItemDown = (doc, index) =>{
+  if (index < doc.items.length - 1)
+    moveItem(doc, index, true)
+}
+
+const editItem = (d, i)=>{
+  selScript.value = d
+  const text = ref(i.name)
+  $q.dialog({
+    title: i18n.t('script.edit_script_item'),
+    message: i18n.t('script.edit_script_item_prompt'),
+    cancel: true,
+    prompt: {
+      model: text,
+      type: 'text',
+    },
+  }).onOk(() => {
+    if (text.value){
+      i.name = text.value
+      $q.loading.show()
+      postObjects(serverCode.value, 'ScriptDef',[d])
+      .finally(()=> $q.loading.hide())
+    }
+  })
+}
+
+const deleteScriptItem = (d, i)=>{
+  selScript.value = d
+  d.items.splice(i,1)
+  $q.loading.show()
+  postObjects(serverCode.value, 'ScriptDef',[d])
+  .finally(()=> $q.loading.hide())
+}
+
+const checkCondition = (d, i)=>{
+  selScript.value = d
+  i.condition = i.condition != 0 ? 0 : 1
+  $q.loading.show()
+  postObjects(serverCode.value, 'ScriptDef',[d])
+  .finally(()=> $q.loading.hide())
+}
+
+const initDocItems = (d)=>{
+  for (let i = 0; i < d.items.length; i++){
+    let item = d.items[i]
+    item.pos = i + 1;
+    item.nextDoc = i < d.items.length - 1 ? item.pos : -1
+
+    console.log("idi: ", item)
+  }
+}
+
 const addDocument = (d)=>{
   if (selScript.value){
     let item = {
       id: UuidTool.newUuid(),
-      condition: true,
+      condition: 1,
       curType: d.type,
       name: i18n.t(d.label),
       condParam: '',
-      pos: selScript.value.items.length
+      pos: selScript.value.items.length,
+      nextDoc: -1
     }
 
     let copy = {...selScript.value}
     copy.items.push(item)
+    initDocItems(copy)
+    console.log(copy)
+
     postObjects(serverCode.value, 'ScriptDef',[copy])
       .then(()=>scriptDef.value.items = copy.items)
   }
@@ -147,13 +227,15 @@ const getScriptIcon = (sd)=>{
   return `img: /img/${name}.svg`
 }
 
-const scriptClick = (sd)=>{
+const scriptClick = (sd, exp)=>{
+  if (exp)
+    sd.expanded = !sd.expanded
+
   selScript.value = sd
-  selScript.value.expanded = true
 }
 
 const getScriptItemStatusIcon = (si)=>{
-  var name = true ? 'checkbox_checked' : 'checkbox'
+  var name = si.condition != 0 ? 'checkbox_checked' : 'checkbox'
   return `img: /img/${name}.svg`
 }
 
@@ -178,8 +260,12 @@ const rcvObjects = (data)=>{
   }))
 
   defs.sort((a,b)=>a.name.localeCompare(b.name))
+
   if (defs){
     defs.forEach(el=>scriptDef.value.push({expanded: true, ...el}))
+
+    if (defs.length > 0)
+      selScript.value = defs[0]
   }
 }
 
@@ -213,6 +299,12 @@ const genID = ()=>{
   return buf.readInt32BE();
 }
 
+const postAddScript = (ns)=>{
+  scriptDef.value.push(ns)
+  selScript.value = ns
+  ns.expanded = true
+}
+
 const addScript = ()=>{
   const text = ref('')
   console.log("addScript")
@@ -228,14 +320,13 @@ const addScript = ()=>{
     if (text.value){
       const s = {id: genID(), name: text.value, items: []}
       postObjects(serverCode.value, 'ScriptDef',[s])
-      .then(()=>scriptDef.value.push(s))
+      .then(()=>postAddScript(s))
     }
   })
 }
 
 const editScript = (value)=>{
   const text = ref(value.name)
-  console.log("addScript")
   $q.dialog({
     title: i18n.t('script.add_script'),
     message: i18n.t('script.add_script_prompt'),

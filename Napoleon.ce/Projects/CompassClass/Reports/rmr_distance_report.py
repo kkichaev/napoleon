@@ -28,7 +28,8 @@ class AgentGps:
       
       lastpos = None
       
-      for g in self.items:
+      print (len(self.items))
+      for g in sorted(self.items, key=lambda el: el.date):
           if g.date.date() == date:
               if lastpos == None:
                   lastpos = g
@@ -36,7 +37,8 @@ class AgentGps:
 
               result += coordutils.distance(lastpos.latitude, lastpos.longitude, g.latitude, g.longitude)
               lastpos = g
-              
+      
+      print (result)        
       return result
         
 class Data:
@@ -56,7 +58,51 @@ class Data:
           result.append([v.id, v.distance(date)])
           
       return result    
-        
+
+class DocsInterval:
+    def __init__(self):
+        self.start = 0
+        self.finish = 0
+    
+    def add(self, doc):
+        tm = doc.created.time()
+        if self.start == 0 or self.start > tm: self.start = tm
+        if self.finish == 0 or self.finish < tm: self.finish = tm
+
+    def inInteval(self, time):
+        return time >= self.start and time <= self.finish
+
+    def __repr__(self):
+        return 'start:' + str(self.start) + ', finish:' + str(self.finish)
+
+class DocsTimeData:
+    def __init__(self):
+        self.data = dict()
+
+    def collectTimeInfo(self, server, userids, start, finish):
+        uids = "";
+        for ui in userids:
+            uids += "'" + ui.id + "',"
+        where = '"' + uids[:-1] + ';' + start.strftime("%d/%m/%Y") + ";" + finish.strftime("%d/%m/%Y 23:59:59") + '"'
+        docs = server.Get("AgentDocumentsTime", where)
+        if docs != None:
+            for d in docs:
+                if not d.userid in self.data:
+                    self.data[d.userid] = dict()
+
+                docDate = d.created.date()
+                if not docDate in self.data[d.userid]:
+                    self.data[d.userid][docDate] = DocsInterval()
+                
+                self.data[d.userid][docDate].add(d)
+
+    def contains(self, gps):
+        if gps.userid in self.data and gps.date.date() in self.data[gps.userid]:
+            return self.data[gps.userid][gps.date.date()].inInteval(gps.date.time())
+
+        return False
+
+
 class Report:
   def __init__(self, params):
     self.userids = params.userids
@@ -65,6 +111,7 @@ class Report:
     self.gsm = params.gsm
     self.data = Data()
     self.summary = dict()
+    self.timeFromDocs = params.timeFromDocs
   
   def load(self, server):
     where = self.compileWhere()
@@ -82,17 +129,28 @@ class Report:
     if ft.hour * ft.minute * ft.second * ft.microsecond == 0:
         ft = ft.replace(23,59,59,999999)
     
+    docsTimeData = DocsTimeData()
+    if self.timeFromDocs > 0 :
+        docsTimeData.collectTimeInfo(server, self.userids, self.start, self.finish)
+
+    print (len(gps))
     for g in gps:
       if g.userid in userids:
         gt = g.date.time()
         
+        if self.timeFromDocs > 0 and docsTimeData.contains(g): 
+            self.data.add(g)
+            continue
+
         if st <= gt and ft >= gt:
             self.data.add(g)
-    
+
+
+
   def compileWhere(self):
       useGSM = 'and isGSM=0' if self.gsm == 0 else ''
     
-      where = '"date" >= ToDate("{0}") and "date" <= ToDate("{1}" {2})'.format(
+      where = '"date" >= ToDate("{0}") and "date" < ToDate("{1}") {2}'.format(
           self.start.strftime("%d/%m/%Y %H:%M:%S"), (self.finish + timedelta(days=1)).strftime("%d/%m/%Y %H:%M:%S"), useGSM) 
           
       return where  
@@ -180,7 +238,7 @@ def printOut(report):
     f = report.finish + timedelta(days=1)
     row = 3
     
-    while s < f:
+    while s.date() < f.date():
         dc = int(s.strftime("%w"))
         value = "{0} ({1})".format(day_array[dc], s.strftime("%d.%m.%Y"))
         xlb.drawDayCell(sheet, row, value, dc > 0 and dc < 6)

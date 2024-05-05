@@ -14,6 +14,8 @@
 #include "loaders.h"
 #include "constloader.h"
 
+#include "objects.h"
+
 #define _CONVERSION_DONT_USE_THREAD_LOCALE
 #include <atlconv.h>
 
@@ -457,6 +459,28 @@ bool ObjectDef::HaveEvent(Event::Type type)
 bool ObjectDef::Fire(Event::Type type, Session* session, SessionObject* param)
 {
    return globalEvents.Fire(type, session, param);
+}
+
+static std::map<std::wstring, int>* _tmap = NULL;
+std::map<std::wstring, int>* ObjectDef::RestrictObjects()
+{
+   if (_tmap == NULL)
+   {
+      _tmap = new std::map<std::wstring, int>();
+      auto oi = objects.begin();
+      for (; oi != objects.end(); oi++)
+      {
+         DWORD val = (oi->flags & IObjectDef::AccessFlags::AccFlags);
+         if (val != 0)
+         {
+            val = ((val & IObjectDef::AccessFlags::NonAccess) != 0) ?(int)User::RightValues::rvNone :
+               ((val & IObjectDef::AccessFlags::ReadAccess) != 0) ? (int)User::RightValues::rvRead :
+               (int)User::RightValues::rvWrite;
+            _tmap->insert(std::pair<std::wstring, int>(oi->name, val));
+         }
+      }
+   }
+   return _tmap;
 }
 
 //void ObjectDef::GetObjectsName(std::vector<std::wstring> *names, DWORD flags)

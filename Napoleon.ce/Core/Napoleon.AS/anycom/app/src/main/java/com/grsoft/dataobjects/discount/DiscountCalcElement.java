@@ -6,7 +6,7 @@ import com.grsoft.util.Consts;
 import java.util.Objects;
 
 public class DiscountCalcElement {
-    static final int DISCOUNT_SCALE = 1000;
+    public static final int DISCOUNT_SCALE = 1000;
 
     public String cardNumber = "";
     public String cardName = "";
@@ -14,7 +14,7 @@ public class DiscountCalcElement {
 
     public int priority = 0;
 
-    @Scale(value = Consts.SUM_SCALE)
+    @Scale(value = DISCOUNT_SCALE)
     public int discount = 0;
 
     public int orgCost = 0;
@@ -26,12 +26,12 @@ public class DiscountCalcElement {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         DiscountCalcElement that = (DiscountCalcElement) o;
-        return Objects.equals(id, that.id);
+        return Objects.equals(id, that.id) && Objects.equals(cardNumber, that.cardNumber);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(id,cardNumber);
     }
 
     public DiscountCalcElement(DiscountLoad src) {

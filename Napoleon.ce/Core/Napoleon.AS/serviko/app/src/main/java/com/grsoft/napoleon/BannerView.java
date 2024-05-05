@@ -29,6 +29,9 @@ public class BannerView extends Activity {
     int curBanner = 0;
 
     public static void open(Context context, int place, FinishHandler handler) {
+        if(BuildConfig.DEBUG)
+            return;
+
         String filter = String.format("((place & %d) <> 0)", place);
         banners = DbReader.fetch(Banner.class, filter, "pos");
         if(banners.size() == 0 && handler != null) {

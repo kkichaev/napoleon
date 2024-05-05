@@ -2,6 +2,15 @@
   <q-page class='page' style="padding: 25px">
     <q-card class='page-content-full-hight'>
       <div class="page-header">{{ $t('division.title') }}</div>
+      <div>
+        <q-select
+          class="form_field"
+          v-model="project"
+          :options="projects"
+          option-value="code"
+          option-label="name"
+          @update:model-value="(value) => onChangedProject(value)"/>
+      </div>
       <q-tree
         ref="tree"
         :nodes="divisions"
@@ -171,23 +180,34 @@ const divlist = ref([])
 const selDivision = ref()
 const selManager = ref()
 const divisions = ref([])
-const severCode = ref('')
 const maxid = ref(0)
 const tree = ref()
 const divisionTree = ref({})
+const project = ref("");
+const projects = ref();
 
 onMounted(()=>{
   $q.loading.show()
   getServers()
     .then((response)=>{
-      severCode.value = response[0].code
-      return queryObjects(severCode.value, [{name: "Division"}, {name: "DivisionManager"}])
+      projects.value = response;
+      project.value = response[0];
+      return queryObjects(project.value.code, [{name: "Division"}, {name: "DivisionManager"}])
     })
     .then((response)=>{createDivision(response)})
     .then(()=>tree.value.expandAll())
     .catch((error)=>{console.log("get data ERROR! " + error)})
     .finally(()=>{ $q.loading.hide() })
 })
+
+const onChangedProject = (value) =>{
+  $q.loading.show()
+  queryObjects(project.value.code, [{name: "Division"}, {name: "DivisionManager"}])
+    .then((response)=>{createDivision(response)})
+    .then(()=>tree.value.expandAll())
+    .catch((error)=>{console.log("get data ERROR! " + error)})
+    .finally(()=>{ $q.loading.hide() })
+}
 
 const createLeaf = (m) => {
   return {id: m.id, name : m.name, header: 'manager', division: m.division}
@@ -287,8 +307,8 @@ const deleteItem = (item)=>{
   }).onOk(() => {
     if (item.header == "depart"){
       var ids = collectID(item)
-      deleteObjects(severCode.value, 'DivisionManager', `"id" in (${ids.mgr})`).
-        then(()=>deleteObjects(severCode.value, 'Division', `"id" in (${ids.div})`)
+      deleteObjects(project.value.code, 'DivisionManager', `"id" in (${ids.mgr})`).
+        then(()=>deleteObjects(project.value.code, 'Division', `"id" in (${ids.div})`)
         .then(()=>{
           parent = divisionTree.value[item.parent]
           if (parent){
@@ -299,7 +319,7 @@ const deleteItem = (item)=>{
           }}
         ))
     }if (item.header == "manager")
-      deleteObjects(severCode.value, 'DivisionManager', `"id"="${item.id}"`)
+      deleteObjects(project.value.code, 'DivisionManager', `"id"="${item.id}"`)
         .then(()=>{
           parent = divisionTree.value[item.division]
           if (parent){
@@ -325,7 +345,7 @@ const editDepart = (item)=>{
     cancel: true,
   }).onOk(() => {
     var d = {id: item.id, name: text.value, parent: item.parent}
-    postObjects(severCode.value, 'Division',[d])
+    postObjects(project.value.code, 'Division',[d])
       .then(()=>{
         item.name = text.value
       })
@@ -345,7 +365,7 @@ const addDepart = (item)=>{
     cancel: true,
   }).onOk(() => {
     var d = {id: maxid.value, name: text.value, parent: item.id}
-    postObjects(severCode.value, 'Division',[d])
+    postObjects(project.value.code, 'Division',[d])
       .then(()=>{
         maxid.value += 1
         item.children.push({id: d.id, name: d.name, header: 'depart', children: []})
@@ -370,7 +390,7 @@ const addManager = (item)=>{
 const okAddManager = ()=>{
   var man = {id: crypto.randomUUID(), name: input.value, division: selDivision.value.id}
 
-  postObjects(severCode.value, 'DivisionManager',[man])
+  postObjects(project.value.code, 'DivisionManager',[man])
       .then(()=>{
         selDivision.value.children.push({id: man.id, name: man.name, header: 'manager', division: selDivision.value.id})
       })
@@ -379,7 +399,7 @@ const okAddManager = ()=>{
 const okEditManager = ()=>{
   var man = {id: selManager.value.id, name: input.value, division: selDivision.value.id}
 
-  postObjects(severCode.value, 'DivisionManager',[man])
+  postObjects(project.value.code, 'DivisionManager',[man])
       .then(()=>{
         if (selDivision.value.id != selManager.value.id){
           var idx = divisionTree.value[selManager.value.division].children.indexOf(selManager.value)
@@ -399,6 +419,14 @@ const okEditManager = ()=>{
 </script>
 
 <style scoped lang="scss">
+.form_field {
+  background-color: $control-backgroud;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-top: 10px;
+  min-width: 100%;
+  min-height: 56px;
+}
 
 .user{
   width: 100%;

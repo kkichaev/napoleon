@@ -54,28 +54,36 @@ namespace GRSoft.NapoleonManager
 
       private void InitDataSets()
       {
-         dsPrice = (DataSet<string, Price>)DataModule.Get(Price.OBJECT_NAME) ?? new DataSet<string, Price>(Price.OBJECT_NAME);
+         dsPrice = (DataSet<string, Price>)DataModule.Get(Price.COMMON_OBJECT_NAME) ?? new DataSet<string, Price>(Price.COMMON_OBJECT_NAME);
          dsMatrix = (DataSet<int, Matrix>)DataModule.Get(MatrixObjectName) ?? new DataSet<int, Matrix>(MatrixObjectName, true);
          dsFolder = new DataSet<string, ManagerFolder>(ManagerFolder.OBJECT_NAME, false);
       }
 
+      protected override void OnClosing(CancelEventArgs e)
+      {
+         tvPrice.Nodes.Clear();
+         base.OnClosing(e);
+      }
+
       protected virtual string MatrixObjectName { get { return Matrix.OBJECT_NAME; } }
 
-      protected virtual void RefreshData()
+      protected virtual void RefreshData(bool reload)
       {
          List<IDataSet> list = new List<IDataSet>();
-         PullRefreshList(list);
+         PullRefreshList(list, reload);
          FmWait.StdDataRefresh(this, list, ControlsFillAfterLoaded);
       }
 
-      protected virtual void PullRefreshList(List<IDataSet> list)
+      protected virtual void PullRefreshList(List<IDataSet> list, bool reload)
       {
          dsMatrix.Filter = DataUtils.USERID_IS_NULL_STR;
          dsFolder.Filter = DataUtils.USERID_IS_NULL_STR;
          dsPrice.Filter = DataUtils.COMMON_PRICE_FILTER_STR;
 
-         list.Add(dsPrice);
-         list.Add(dsFolder);
+         if(reload || dsPrice.Count == 0)
+            list.Add(dsPrice);
+         if(reload || dsFolder.Count == 0)
+            list.Add(dsFolder);
          list.Add(dsMatrix);
       }
 
@@ -88,10 +96,22 @@ namespace GRSoft.NapoleonManager
 
       protected virtual void MakePriceTree(TreeView tv, DataSet<string, ManagerFolder> folders, DataSet<string, Price> price)
       {
+         bool largePrice = (price.Count > 5000);
+
+         if (largePrice)
+            Cursor.Current = Cursors.WaitCursor;
+
+         tv.BeginUpdate();
+
          ArticlesTreeConstructor t = new ArticlesTreeConstructor(tv, folders, price);
          t.GetPriceName = GetPriceName;
          t.MakeArticlesTree(0, 1);
          PostTreeConstruct(t);
+         
+         tv.EndUpdate();
+
+         if (largePrice)
+            Cursor.Current = Cursors.Default;
       }
 
       protected void FillPrice()
@@ -217,7 +237,7 @@ namespace GRSoft.NapoleonManager
 
       private void tsbRefresh_Click(object sender, EventArgs e)
       {
-         RefreshData();
+         RefreshData(true);
       }
 
       private void tvMatrix_DragEnter(object sender, DragEventArgs e)
@@ -583,7 +603,7 @@ namespace GRSoft.NapoleonManager
          base.OnLoad(e);
          bool designMode = (LicenseManager.UsageMode == LicenseUsageMode.Designtime);
          if (!designMode)
-            RefreshData();
+            RefreshData(false);
       }
 
 

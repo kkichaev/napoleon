@@ -102,6 +102,7 @@
     <modify src="Order">
       <add>
         <field name="whCode" type="string" width="20" data="ID_WH" />
+        <field name="id" type="string" width="200" />
       </add>
     </modify>
     <modify src="Delivery">

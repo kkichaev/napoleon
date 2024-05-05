@@ -1,6 +1,60 @@
 <?xml version="1.0" ?>
 <serverDefs xmlns="http://grsoft.ru/schemas/serverDefs.xsd">
 	<objects>
+    <object name="NewClient">
+      <sources>
+        <source name="DBFCatalogTable">
+          <param name="tableName">"NC" + $user.id</param>
+          <param name="catalog">"id"</param>
+          <param name="ordered">1</param>
+        </source>
+        <source name="SQTable" type="internal" />
+      </sources>
+
+      <member name="primaryKey">"userid,created"</member>
+      <memberArray name="index">"created"</memberArray>
+
+      <field name="userid" type="string" data="USER_ID" execOn="Put">$user.id</field>
+      <field name="created" type="timestamp" data="CREATED"/>
+      <field name="timeZone" type="number" />
+      <field name="serverTimeZone" type="number" data="S_TZ" execOn="Put" feature="USE_TIMEZONE">ServerTimeZone()</field>
+      <field name="sended" type="timestamp" data="S_DATE" execOn="Put">Now()</field>
+      <field name="date" type="date" />
+      <field name="id" width="55" type="string" />
+      <field name="remark" type="string" />
+      <field name="account" type="string" />
+      <field name="inn" type="string" />
+      <field name="address" type="string" />
+      <field name="name" type="string" />
+      <field name="ogrn" type="string" />
+      <field name="kpp" type="string" />
+      <field name="legalAdr" type="string" data="LEG_ADR" />
+      <field name="fio" type="string" />
+      <field name="post" type="string" />
+      <field name="phone" type="string" />
+      <field name="email" type="string" />
+      <field name="bank" type="string" />
+      <field name="isNDS" type="number" width="1" />
+      <field name="isNAL" type="number" width="1" />
+      <field name="firma" type="string" />
+      <field name="remark" type="string" />
+      <field name="amount" type="string" />
+      <field name="depth" type="string" />
+      <field name="costype" type="string" />
+      <field name="bik" type="string" />
+      <field name="isFact" type="number" width="1" />
+      <field name="status" type="string" />
+
+      <field name="visitDoc" type="timestamp" />
+
+      <events>
+        <event type="put">
+          <action name="WriteInternal">$object.type</action>
+          <action name="WriteToLog">$object.type;$object.created</action>
+        </event>
+      </events>
+    </object>    
+    
     <object name="OrderProceeded" sendAlways="true">
       <sources>
         <source name="DBFTable">
@@ -134,6 +188,7 @@
       <add>
         <field name="dlv_pos" type="number" data="rowid" />
         <field name="hidden" type="number" />
+        <field name="debet" type="number" prec="2" />
       </add>
     </modify>
     

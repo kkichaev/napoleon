@@ -8,6 +8,7 @@ import com.grsoft.database.DeliveryHitching;
 import com.grsoft.database.HitchOnSelect;
 import com.grsoft.database.Hitching;
 import com.grsoft.database.PriceCostHitching;
+import com.grsoft.database.PricePhotoHitching;
 import com.grsoft.database.PriceTypeHitching;
 import com.grsoft.database.RcvNewHitching;
 import com.grsoft.database.StoreHitching;
@@ -15,6 +16,8 @@ import com.grsoft.database.StoreQtyHitching;
 import com.grsoft.dataobjects.OrderFulfillment;
 import com.grsoft.dataobjects.discount.ClientCard;
 import com.grsoft.dataobjects.discount.Discount;
+import com.grsoft.dataobjects.discount.DiscountCalc;
+import com.grsoft.dataobjects.discount.DiscountCondition;
 import com.grsoft.dataobjects.discount.DiscountPriority;
 import com.grsoft.dataobjects.discount.DiscountTree;
 import com.grsoft.dataobjects.discount.OrgDiscount;
@@ -23,6 +26,7 @@ import com.grsoft.dataobjects.discount.StoreDiscount;
 import com.grsoft.network.exception.RuntimeException;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
@@ -46,6 +50,13 @@ public class UpdateDBEx extends UpdateDB{
     }
 
     @Override
+    protected List<Hitching> getPrezentHitching() {
+        List<Hitching> ret = new ArrayList<>();
+        ret.add(new PricePhotoHitching(this, "AgentPricePhoto"));
+        return ret;
+    }
+
+    @Override
     protected List<Hitching> getGenDataHitchings() throws RuntimeException {
         List<Hitching> res = super.getGenDataHitchings();
         res.add(new PriceTypeHitching());
@@ -60,6 +71,7 @@ public class UpdateDBEx extends UpdateDB{
         res.add(new RcvNewHitching(ClientCard.class));
         res.add(new RcvNewHitching(OrgDiscount.class));
         res.add(new RcvNewHitching(StoreDiscount.class));
+        res.add(new RcvNewHitching(DiscountCondition.class));
 
         res.add(new Hitching(OrderFulfillment.class));
         res.add(new AgentPlanRcv());
@@ -74,6 +86,10 @@ public class UpdateDBEx extends UpdateDB{
         super.postSync(result);
         DbWriter.checkDBTable(StoreDiscount.class);
         DbWriter.checkDBTable(OrgDiscount.class);
+
+        if(result) {
+            DiscountCalc.reload();
+        }
     }
 //
 //    private void compactFolders() {

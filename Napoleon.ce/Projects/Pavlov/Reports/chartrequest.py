@@ -45,7 +45,7 @@ def run(server):
     #sys.setdefaultencoding("cp1251") 
 
     user = server.CurrentUser()
-    price = server.Get("Price", "", "id")
+    price = server.Get("Price", "setqtyfilter(false)", "id")
     
     server.RegisterType("AgentTopSale[id:s,name:s,qty:n(3)]]")
     output = server.New("AgentTopSale")

@@ -72,3 +72,7 @@ def count_balance():
     for u in User.query.all():
         if u.account:
             Balance.count(u)
+
+@app.cli.command('check_balance')
+def check_balance():
+    Balance.check_balance()

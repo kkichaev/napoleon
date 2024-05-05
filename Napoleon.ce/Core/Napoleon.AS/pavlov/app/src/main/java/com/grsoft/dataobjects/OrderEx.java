@@ -4,4 +4,6 @@ public class OrderEx extends Order {
 	public String suplCode = "";
 	
 	public String rem2 = "";
+
+	public String adrCode = "";
 }

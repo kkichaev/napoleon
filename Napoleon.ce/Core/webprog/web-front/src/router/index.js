@@ -1,4 +1,4 @@
-import { isAuth } from "src/backend/backend";
+import { isAuth } from "src/backend/user";
 import { route } from "quasar/wrappers";
 import {
   createRouter,
@@ -35,15 +35,23 @@ export default route(function (/* { store, ssrContext } */) {
     history: createHistory(process.env.VUE_ROUTER_BASE),
   });
 
-  const excludeForCheckin = ["Login", "Register", "RestorePassword", "Confirm", "Error", "ForgotPassword", "Offer"]
+  const excludeForCheckin = [
+    "Login",
+    "Register",
+    "RestorePassword",
+    "Confirm",
+    "Error",
+    "ForgotPassword",
+    "Offer",
+    "ChangePassword",
+  ];
 
   Router.beforeEach(async (to, from, next) => {
-    const store = useMainStore()
+    const store = useMainStore();
 
-    var auth = store.user != undefined
+    var auth = store.user != undefined;
 
-    if (!auth)
-      auth = await isAuth()
+    if (!auth) auth = await isAuth();
 
     if (!auth && !excludeForCheckin.includes(to.name)) {
       next({ name: "Login" });

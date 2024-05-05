@@ -26,7 +26,7 @@ implements Cloneable{
 
 	@FieldOrder(order=7)
 	@Scale(value=Consts.SUM_SCALE)
-	public int sum;
+	public int _sum;
 
 	@FieldOrder(order=8)
 	@Scale(value=Consts.SUM_SCALE)
@@ -48,7 +48,7 @@ implements Cloneable{
 			tax = 0;
 		}
 
-		sum = (int)((long)cost * qty /Consts.QTY_SCALE);
+		sum = ((long)cost * qty /Consts.QTY_SCALE);
 		double val = (double)cost * 100 / (100 + tax);
 		taxSum = (int)(sum - val * qty / Consts.QTY_SCALE + 0.5);
 		costWOtax = (int)(val + 0.5);

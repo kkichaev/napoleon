@@ -9,25 +9,23 @@ from manager.task import TaskReportData
 from rmr_visit_report import Data, AgentSheet
 from datetime import datetime
 from openpyxl.cell import get_column_letter
+from openpyxl.cell import get_column_letter
+from orgmap import OrgMap
 
 reload(sys);
 #sys.setdefaultencoding("cp1251")
 
 class RepData(Data):
-  __slots__ = ["allorgs", "agents"]
-
-  def __init__(self):
+  def __init__(self, server):
     Data.__init__(self)
-    self.allorgs = dict()
+    self.orgs = OrgMap(server)
     self.agents = None
   
   
 def loadData(params, server):
-  data = RepData()
+  data = RepData(server)
   data.agents = server.Get('Agents', '', 'id')
     
-  allorgs = {}
-  
   for ai in params.userids:
     repData = TaskReportData()
     sheet = AgentSheet()
@@ -35,14 +33,8 @@ def loadData(params, server):
     data.items.append(sheet)
     
     server.ChangeUser("'" + ai.id + "'")
-    orgs = server.Get("Org", "", "id")
-    porg = server.Get("PotenzialOrg", "", "id")
-    orgs.update(porg)
     sheet.name = server.CurrentUser().name
     server.RestoreUser()
-      
-    for k in orgs.keys():
-      data.allorgs[k] = orgs[k]
   
     where = '"start" <= ToDate("{1}") and "finish" >= ToDate("{0}")'.format(
         params.start.strftime("%d/%m/%Y 0:0:0"),
@@ -52,8 +44,7 @@ def loadData(params, server):
     tasks = server.Get('OrgTask', where)
     
     for doc in tasks:
-      if doc.orgid in orgs:
-        repData.addTask(doc)
+      repData.addTask(doc)
     
     where = '"created" >= ToDate("{0}")'.format(
         params.start.strftime("%d/%m/%Y 0:0:0"))
@@ -62,8 +53,7 @@ def loadData(params, server):
     doneTask = server.Get('TaskDone', where)
     
     for doc in doneTask:
-      if doc.id in orgs:
-        repData.addTaskDone(doc)
+      repData.addTaskDone(doc)
     
     sheet.items.append(repData)
   
@@ -95,49 +85,43 @@ def printOut(data, params):
     
     row = 3
     
-    xlb.makeHead(sheet, row, ["Название магазина", "Адрес", "Период", "Задача", "Выполнена (да /нет)", "Комментарий сотрудника", 'Агент', 'Дата выполнения', 'Постановщик', 'Дата создания'], True)
+    xlb.makeHead(sheet, row, ["Название магазина", "Адрес", "Период", "Задача", "Выполнена (да /нет)", "Комментарий сотрудника", 'Агент', 'Дата выполнения', 'Постановщик', 'Дата   создания'], True)
     
     minDate = datetime(1970,1,1)
     
     for repData in page.items:
       for item in repData.tasks:
-          task = item.task
-          
-          if not task.orgid in data.allorgs:
-            continue
+        task = item.task
             
-          value = []
+        value = []
+        
+        o = data.orgs.getOrg(task.orgid, task.userid)
+        value.append(o.name)
+        value.append(o.address)
           
-          o = data.allorgs[task.orgid]
-          value.append(o.name)
-          value.append(o.address)
-          
-          value.append("{0}-{1}".format(task.start.strftime("%d.%m.%Y"), task.finish.strftime("%d.%m.%Y")))
-          value.append(task.text)
-          value.append( 'Да' if item.isDone else 'Нет')
-          value.append(item.comment)
+        value.append("{0}-{1}".format(task.start.strftime("%d.%m.%Y"), task.finish.strftime("%d.%m.%Y")))
+        value.append(task.text)
+        value.append( 'Да' if item.isDone else 'Нет')
+        value.append(item.comment)
 
-          #task.comment)    
+        if task.userid in data.agents:
+          value.append(data.agents[task.userid].name)
+        else:
+          value.append(task.userid)
           
-          if task.userid in data.agents:
-              value.append(data.agents[task.userid].name)
-          else:
-              value.append(task.userid)
-          
-          
-          value.append(item.responceDate.strftime("%d.%m.%Y") if item.responceDate != None else '')
+        value.append(item.responceDate.strftime("%d.%m.%Y") if item.responceDate != None else '')
 
-          value.append(task.manager)
-          if task.created < minDate: value.append('')
-          else: value.append(task.created.strftime("%d.%m.%Y %H:%M"))
+        value.append(task.manager)
+        if task.created < minDate: value.append('')
+        else: value.append(task.created.strftime("%d.%m.%Y %H:%M"))
 
-          row += 1
-          xlb.makeCells(sheet, row, value)
+        row += 1
+        xlb.makeCells(sheet, row, value)
           
       cc = 1
       for w in [20,20,15,15,15,35,35,15,20,20]:
-          sheet.column_dimensions[get_column_letter(cc)].width = w
-          cc += 1
+        sheet.column_dimensions[get_column_letter(cc)].width = w
+        cc += 1
         
     sheet = wb.create_sheet()
     
